@@ -4,15 +4,15 @@ networks:
     external:
       name: proxy
 services:
-  rte:
-    image: rte
+  editor:
+    image: editor
     build: .
-    container_name: rte
+    container_name: editor
     restart: unless-stopped
     labels:
       traefik.enable: "true"
       traefik.port: "8080"
-      traefik.frontend.rule: "Host: rte.app.loc"
+      traefik.frontend.rule: "Host: editor.app.loc"
     volumes:
       - source: .
         target: /app
