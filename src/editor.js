@@ -45,9 +45,6 @@ class Editor {
             'italic': (selection) => {
                 this.insertHtml('i', selection);
             },
-            'underline': () => {
-                this.execute('underline');
-            },
             'clear': () => {
                 this.execute('removeformat');
             },
