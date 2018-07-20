@@ -54,7 +54,7 @@ function RTE(el) {
         }
     };
 
-    const allowed = ['a', 'blockquote', 'br', 'div', 'h2', 'h3', 'i', 'img', 'li', 'ol', 'p', 'strong', 'u', 'ul'];
+    const allowed = ['a', 'blockquote', 'br', 'h2', 'h3', 'i', 'img', 'li', 'ol', 'p', 'strong', 'u', 'ul'];
 
     function init(el) {
         let editor = el;
