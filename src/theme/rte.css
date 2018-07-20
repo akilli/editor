@@ -6,13 +6,6 @@
     border: thin solid #d3d3d3;
 }
 
-.rte-src {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    color: #fff;
-    background: #231f20;
-}
-
 .rte-toolbar {
     padding: 0.75rem;
 }

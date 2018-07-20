@@ -2,9 +2,6 @@
 
 function RTE(el) {
     const commands = {
-        'src': (editor) => {
-            editor.classList.toggle('rte-src');
-        },
         'paragraph': () => {
             cmd('insertparagraph', null);
         },
@@ -82,8 +79,7 @@ function RTE(el) {
         editor.classList.add('rte');
         editor.setAttribute('contenteditable', 'true');
         editor.addEventListener('change', function () {
-            let html = strip(decode(editor.innerHTML));
-            editor.innerHTML = editor.classList.contains('rte-src') ? encode(html) : html;
+            editor.innerHTML = strip(decode(editor.innerHTML));
         });
     }
 
@@ -150,10 +146,6 @@ function RTE(el) {
 
     function trim(html) {
         return html ? html.trim().replace(/\s/g, ' ').replace(/^((<|&lt;)br\s*\/*(>|&gt;))+/gi, ' ').replace(/((<|&lt;)br\s*\/*(>|&gt;))+$/gi, ' ').trim() : '';
-    }
-
-    function encode(html) {
-        return html ? html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;') : '';
     }
 
     function decode(html) {
