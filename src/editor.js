@@ -108,7 +108,7 @@ class Editor {
 
         this.toolbar();
         this._element.innerHTML = this.getData();
-        this._element.classList.add('rte');
+        this._element.classList.add('editor');
         this._element.setAttribute('contenteditable', 'true');
     }
 
@@ -125,7 +125,6 @@ class Editor {
             img.setAttribute('src', Editor.icon(item));
             img.setAttribute('alt', item);
             img.setAttribute('title', item);
-            img.setAttribute('data-rte-cmd', item);
             img.addEventListener('click', () => {
                 const selection = this._window.getSelection();
 
@@ -137,7 +136,7 @@ class Editor {
             toolbar.appendChild(img);
         });
 
-        toolbar.classList.add('rte-toolbar');
+        toolbar.classList.add('editor-toolbar');
         this._element.parentNode.insertBefore(toolbar, this._element);
     }
 

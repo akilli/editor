@@ -1,4 +1,4 @@
-.rte {
+.editor {
     width: 100%;
     min-height: 15rem;
     vertical-align: top;
@@ -6,11 +6,11 @@
     border: thin solid #d3d3d3;
 }
 
-.rte-toolbar {
+.editor-toolbar {
     padding: 0.75rem;
 }
 
-.rte-toolbar img {
+.editor-toolbar img {
     margin-right: 0.5rem;
     cursor: pointer;
 }
