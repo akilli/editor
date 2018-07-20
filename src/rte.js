@@ -5,12 +5,6 @@ function RTE(el) {
         'src': (editor) => {
             editor.classList.toggle('rte-src');
         },
-        'undo': () => {
-            cmd('undo', null);
-        },
-        'redo': () => {
-            cmd('redo', null);
-        },
         'paragraph': () => {
             cmd('insertparagraph', null);
         },
