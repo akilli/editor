@@ -11,41 +11,26 @@ function RTE(el) {
         'redo': () => {
             cmd('redo', null);
         },
-        'remove': () => {
-            cmd('removeformat', null);
+        'paragraph': () => {
+            cmd('insertparagraph', null);
         },
-        'jl': () => {
-            cmd('justifyleft', null);
+        'h2': () => {
+            cmd('formatblock', '<h2>');
         },
-        'jc': () => {
-            cmd('justifycenter', null);
+        'h3': () => {
+            cmd('formatblock', '<h3>');
         },
-        'jr': () => {
-            cmd('justifyright', null);
+        'bold': (editor, sel) => {
+            insertHtml('strong', sel);
         },
-        'jf': () => {
-            cmd('justifyfull', null);
+        'italic': (editor, sel) => {
+            insertHtml('i', sel);
         },
-        'b': () => {
-            cmd('bold', null);
-        },
-        'i': () => {
-            cmd('italic', null);
-        },
-        'u': () => {
+        'underline': () => {
             cmd('underline', null);
         },
-        'small': (editor, sel) => {
-            insertHtml('small', sel);
-        },
-        's': (editor, sel) => {
-            insertHtml('s', sel);
-        },
-        'sup': () => {
-            cmd('superscript', null);
-        },
-        'sub': () => {
-            cmd('subscript', null);
+        'clear': () => {
+            cmd('removeformat', null);
         },
         'link': () => {
             let value;
@@ -57,46 +42,25 @@ function RTE(el) {
         'unlink': () => {
             cmd('unlink', null);
         },
-        'img': () => {
-            const value = prompt('URL', 'http://');
-
-            if (value) {
-                cmd('insertimage', value);
-            }
-        },
-        'h1': () => {
-            cmd('formatblock', '<h1>');
-        },
-        'h2': () => {
-            cmd('formatblock', '<h2>');
-        },
-        'h3': () => {
-            cmd('formatblock', '<h3>');
-        },
-        'h4': () => {
-            cmd('formatblock', '<h4>');
-        },
-        'h5': () => {
-            cmd('formatblock', '<h5>');
-        },
-        'h6': () => {
-            cmd('formatblock', '<h6>');
-        },
-        'p': () => {
-            cmd('insertparagraph', null);
-        },
-        'blockquote': () => {
-            cmd('formatblock', '<blockquote>');
-        },
         'ol': () => {
             cmd('insertorderedlist', null);
         },
         'ul': () => {
             cmd('insertunorderedlist', null);
+        },
+        'quote': () => {
+            cmd('formatblock', '<blockquote>');
+        },
+        'image': () => {
+            const value = prompt('URL', 'http://');
+
+            if (value) {
+                cmd('insertimage', value);
+            }
         }
     };
 
-    const allowed = ['a', 'b', 'blockquote', 'br', 'div', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'i', 'img', 'li', 'ol', 'p', 's', 'small', 'strong', 'sub', 'sup', 'u', 'ul'];
+    const allowed = ['a', 'blockquote', 'br', 'div', 'h2', 'h3', 'i', 'img', 'li', 'ol', 'p', 'strong', 'u', 'ul'];
 
     function init(el) {
         let editor = el;
@@ -142,11 +106,12 @@ function RTE(el) {
                 continue;
             }
 
-            const button = document.createElement('button');
-            button.setAttribute('type', 'button');
-            button.setAttribute('data-rte-cmd', key);
-            button.textContent = key;
-            button.addEventListener('click', function () {
+            const img = document.createElement('img');
+            img.setAttribute('src', icon(key));
+            img.setAttribute('alt', key);
+            img.setAttribute('title', key);
+            img.setAttribute('data-rte-cmd', key);
+            img.addEventListener('click', function () {
                 const sel = window.getSelection(),
                     callback = tags[this.getAttribute('data-rte-cmd')] || null;
 
@@ -162,7 +127,7 @@ function RTE(el) {
                 return false;
             });
 
-            toolbar.appendChild(button);
+            toolbar.appendChild(img);
         }
 
         editor.parentNode.insertBefore(toolbar, editor);
@@ -183,6 +148,10 @@ function RTE(el) {
         if (tag && html.length > 0) {
             cmd('insertHTML', '<' + tag + '>' + html + '</' + tag + '>');
         }
+    }
+
+    function icon(key) {
+        return '/src/theme/icon/' + key + '.svg';
     }
 
     function trim(html) {
