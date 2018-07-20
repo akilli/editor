@@ -107,6 +107,7 @@ class Editor {
         }
 
         this.toolbar();
+        this._element.innerHTML = this.getData();
         this._element.classList.add('rte');
         this._element.setAttribute('contenteditable', 'true');
     }
@@ -176,7 +177,7 @@ class Editor {
      * @return {string}
      */
     static trim(html) {
-        return html ? html.trim().replace(/\s/g, ' ').replace(/^((<|&lt;)br\s*\/*(>|&gt;))+/gi, ' ').replace(/((<|&lt;)br\s*\/*(>|&gt;))+$/gi, ' ').trim() : '';
+        return html ? html.trim().replace(/\s+/g, ' ').replace(/^(<br\s*\/?>)+/gi, ' ').replace(/(<br\s*\/?>)+$/gi, ' ').trim() : '';
     }
 
     /**
