@@ -1,10 +1,10 @@
 'use strict';
 
-(function (document, RTE) {
+(function (document, Editor) {
     document.addEventListener('DOMContentLoaded', () => {
-        const editor = new RTE(document.getElementById('editor'));
+        const editor = Editor.create(document.getElementById('editor'));
         const save = document.getElementById('save');
 
-        save.addEventListener('click', () => console.log(editor.innerHTML));
+        save.addEventListener('click', () => console.log(editor.getData()));
     });
-})(document, RTE);
+})(document, Editor);

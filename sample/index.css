@@ -13,9 +13,6 @@ body > * {
     padding: 0.75rem 0;
 }
 
-/**
- * Text
- */
 h2,
 h3,
 p {
@@ -30,18 +27,17 @@ h3 {
     font-size: 1.125rem;
 }
 
-/**
- * List
- */
+a {
+    color: #900;
+    text-decoration: underline;
+}
+
 ol,
 ul {
     margin: 1.5rem 0;
     padding-left: 2rem;
 }
 
-/**
- * Button
- */
 [role=button],
 [type=button],
 [type=reset],
