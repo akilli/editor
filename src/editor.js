@@ -101,6 +101,9 @@ class Editor {
             element.form.addEventListener('submit', () => {
                 element.innerHTML = this.getData();
             });
+            this._element.addEventListener('change', () => {
+                element.innerHTML = this.getData();
+            });
         }
 
         this.toolbar();
@@ -127,6 +130,7 @@ class Editor {
 
                 if (selection.containsNode(this._element, true)) {
                     this._commands[item](selection);
+                    this._element.dispatchEvent(new Event('change'));
                 }
             });
 
