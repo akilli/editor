@@ -1,7 +1,7 @@
 'use strict';
 
 function RTE(el) {
-    const tags = {
+    const commands = {
         'src': (editor) => {
             editor.classList.toggle('rte-src');
         },
@@ -101,8 +101,8 @@ function RTE(el) {
         const toolbar = document.createElement('div');
         toolbar.classList.add('rte-toolbar');
 
-        for (let key in tags) {
-            if (!tags.hasOwnProperty(key)) {
+        for (let key in commands) {
+            if (!commands.hasOwnProperty(key)) {
                 continue;
             }
 
@@ -113,7 +113,7 @@ function RTE(el) {
             img.setAttribute('data-rte-cmd', key);
             img.addEventListener('click', function () {
                 const sel = window.getSelection(),
-                    callback = tags[this.getAttribute('data-rte-cmd')] || null;
+                    callback = commands[this.getAttribute('data-rte-cmd')] || null;
 
                 // Selection outside element or invalid key
                 if (!sel.containsNode(editor, true) || !callback) {
