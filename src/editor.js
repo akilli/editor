@@ -35,7 +35,7 @@ export default class Editor {
          * @type {string[]}
          * @readonly
          */
-        this.allowed = ['a', 'blockquote', 'br', 'h2', 'h3', 'i', 'img', 'li', 'ol', 'p', 'strong', 'u', 'ul'];
+        this.allowed = ['a', 'blockquote', 'br', 'h2', 'h3', 'i', 'img', 'li', 'ol', 'p', 'strong', 'ul'];
 
         /**
          * Editor commands
@@ -136,7 +136,9 @@ export default class Editor {
      * @return {string}
      */
     getData() {
-        return this.filter(this.element.innerHTML);
+        this.element.innerHTML = this.filter(this.element.innerHTML);
+
+        return this.element.innerHTML;
     }
 
     /**
@@ -166,7 +168,15 @@ export default class Editor {
      * @return {string}
      */
     filter(html) {
-        return Editor.trim(Editor.strip(Editor.decode(html), this.allowed));
+        const tmp = this.document.createElement('div');
+
+        tmp.innerHTML = Editor.trim(Editor.strip(Editor.decode(html), this.allowed));
+        tmp.querySelectorAll('br:first-child').forEach(item => item.parentNode.removeChild(item));
+        tmp.querySelectorAll('br:last-child').forEach(item => item.parentNode.removeChild(item));
+        tmp.querySelectorAll(':scope > br').forEach(item => item.parentNode.removeChild(item));
+        tmp.querySelectorAll('p:empty').forEach(item => item.parentNode.removeChild(item));
+
+        return tmp.innerHTML;
     }
 
     /**
@@ -214,7 +224,7 @@ export default class Editor {
     }
 
     /**
-     * Decode HTML
+     * Trim HTML
      *
      * @param {string} html
      *
