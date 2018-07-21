@@ -1,4 +1,4 @@
-import Command from './command.js';
+import Command from './Command.js';
 
 /**
  * Allowed heading tags

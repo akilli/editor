@@ -1,4 +1,4 @@
-import Editor from '../src/editor.js';
+import Editor from '../src/Editor.js';
 
 (function (document, Editor) {
     document.addEventListener('DOMContentLoaded', () => {

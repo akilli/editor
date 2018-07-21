@@ -1,15 +1,15 @@
-import BoldCommand from '../src/command/boldcommand.js';
-import ClearCommand from '../src/command/clearcommand.js';
-import Command from './command/command.js';
-import HeadingCommand from '../src/command/headingcommand.js';
-import ImageCommand from '../src/command/imagecommand.js';
-import ItalicCommand from '../src/command/italiccommand.js';
-import LinkCommand from '../src/command/linkcommand.js';
-import OrderedListCommand from '../src/command/orderedlistcommand.js';
-import ParagraphCommand from '../src/command/paragraphcommand.js';
-import QuoteCommand from '../src/command/quotecommand.js';
-import UnlinkCommand from '../src/command/unlinkcommand.js';
-import UnorderedListCommand from '../src/command/unorderedlistcommand.js';
+import BoldCommand from './command/BoldCommand.js';
+import ClearCommand from './command/ClearCommand.js';
+import Command from './command/Command.js';
+import HeadingCommand from './command/HeadingCommand.js';
+import ImageCommand from './command/ImageCommand.js';
+import ItalicCommand from './command/ItalicCommand.js';
+import LinkCommand from './command/LinkCommand.js';
+import OrderedListCommand from './command/OrderedListCommand.js';
+import ParagraphCommand from './command/ParagraphCommand.js';
+import QuoteCommand from './command/QuoteCommand.js';
+import UnlinkCommand from './command/UnlinkCommand.js';
+import UnorderedListCommand from './command/UnorderedListCommand.js';
 
 /**
  * Editor
