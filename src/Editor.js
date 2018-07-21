@@ -36,7 +36,7 @@ export default class Editor {
          * @type {string[]}
          * @readonly
          */
-        this.allowed = ['a', 'blockquote', 'br', 'h2', 'h3', 'i', 'img', 'li', 'ol', 'p', 'strong', 'ul'];
+        this.allowed = ['a', 'b', 'blockquote', 'br', 'h2', 'h3', 'i', 'img', 'li', 'ol', 'p', 'ul'];
 
         /**
          * Editor commands
@@ -169,9 +169,20 @@ export default class Editor {
      * @return {string}
      */
     filter(html) {
+        return this.clean(Editor.trim(Editor.strip(Editor.decode(html), this.allowed)));
+    }
+
+    /**
+     * Clean HTML
+     *
+     * @param {string} html
+     *
+     * @return {string}
+     */
+    clean(html) {
         const tmp = this.document.createElement('div');
 
-        tmp.innerHTML = Editor.trim(Editor.strip(Editor.decode(html), this.allowed));
+        tmp.innerHTML = html;
         tmp.querySelectorAll('br:first-child').forEach(item => item.parentNode.removeChild(item));
         tmp.querySelectorAll('br:last-child').forEach(item => item.parentNode.removeChild(item));
         tmp.querySelectorAll(':scope > br').forEach(item => item.parentNode.removeChild(item));
