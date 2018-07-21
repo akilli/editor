@@ -162,7 +162,7 @@ class Editor {
     }
 
     static icon(key) {
-        return '/src/theme/icon/' + key + '.svg';
+        return '/src/editor/theme/icon/' + key + '.svg';
     }
 
     /**
