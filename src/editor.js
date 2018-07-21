@@ -1,3 +1,5 @@
+import Command from './command/command';
+
 /**
  * Editor
  */
@@ -15,126 +17,99 @@ class Editor {
 
         /**
          * @type {Object}
-         * @private
+         * @readonly
          */
-        this._config = config;
+        this.config = config;
 
         /**
          * @type {string[]}
-         * @private
+         * @readonly
          */
-        this._allowed = ['a', 'blockquote', 'br', 'h2', 'h3', 'i', 'img', 'li', 'ol', 'p', 'strong', 'u', 'ul'];
+        this.allowed = ['a', 'blockquote', 'br', 'h2', 'h3', 'i', 'img', 'li', 'ol', 'p', 'strong', 'u', 'ul'];
 
         /**
-         * @type {Object}
-         * @private
+         * Editor commands
+         *
+         * @type {Map<string, Command>}
          */
-        this._commands = {
-            'paragraph': () => {
-                this.execute('insertparagraph');
-            },
-            'h2': () => {
-                this.execute('formatblock', '<h2>');
-            },
-            'h3': () => {
-                this.execute('formatblock', '<h3>');
-            },
-            'bold': (selection) => {
-                this.insertHtml('strong', selection);
-            },
-            'italic': (selection) => {
-                this.insertHtml('i', selection);
-            },
-            'clear': () => {
-                this.execute('removeformat');
-            },
-            'link': () => {
-                let url;
-
-                if (url = prompt('URL', 'http://')) {
-                    this.execute('createlink', url);
-                }
-            },
-            'unlink': () => {
-                this.execute('unlink');
-            },
-            'ol': () => {
-                this.execute('insertorderedlist');
-            },
-            'ul': () => {
-                this.execute('insertunorderedlist');
-            },
-            'quote': () => {
-                this.execute('formatblock', '<blockquote>');
-            },
-            'image': () => {
-                const url = prompt('URL', 'http://');
-
-                if (url) {
-                    this.execute('insertimage', url);
-                }
-            }
-        };
+        this.commands = new Map();
 
         /**
          * @type {HTMLElement}
-         * @private
+         * @readonly
          */
-        this._element = element;
+        this.element = element;
 
         /**
          * @type {Document}
-         * @private
+         * @readonly
          */
-        this._document = element.ownerDocument;
+        this.document = element.ownerDocument;
 
         /**
          * @type {Window}
-         * @private
+         * @readonly
          */
-        this._window = element.ownerDocument.defaultView;
+        this.window = element.ownerDocument.defaultView;
+
+        let html = this.element.innerHTML;
 
         if (element instanceof HTMLTextAreaElement) {
-            this._element = this._document.createElement('div');
-            element.parentNode.appendChild(this._element);
+            this.element = this.document.createElement('div');
+            html = element.value;
+            element.parentNode.insertBefore(this.element, element);
             element.setAttribute('hidden', 'hidden');
             element.form.addEventListener('submit', () => {
-                element.innerHTML = this.getData();
+                element.value = this.getData();
             });
         }
 
         this.toolbar();
-        this._element.innerHTML = this.getData();
-        this._element.classList.add('editor');
-        this._element.setAttribute('contenteditable', 'true');
+        this.setData(html);
+        this.element.classList.add('editor');
+        this.element.setAttribute('contenteditable', 'true');
     }
 
+    /**
+     * Returns editor element's innerHTML
+     *
+     * @return {string}
+     */
     getData() {
-        return Editor.trim(Editor.strip(this._element.innerHTML, this._allowed));
+        return this.filter(this.element.innerHTML);
     }
 
+    /**
+     * Sets editor element's innerHTML
+     *
+     * @param {string} html
+     */
+    setData(html) {
+        this.element.innerHTML = this.filter(html);
+    }
+
+    /**
+     * Init toolbar
+     */
     toolbar() {
-        const toolbar = this._document.createElement('div');
+        const toolbar = this.document.createElement('div');
 
-        Object.getOwnPropertyNames(this._commands).forEach((item) => {
-            const img = this._document.createElement('img');
+        for (let item of this.commands) {
+            const img = this.document.createElement('img');
 
-            img.setAttribute('src', Editor.icon(item));
-            img.setAttribute('alt', item);
-            img.setAttribute('title', item);
+            img.setAttribute('src', Editor.icon(item[0]));
+            img.setAttribute('alt', item[0]);
+            img.setAttribute('title', item[0]);
             img.addEventListener('click', () => {
-                const selection = this._window.getSelection();
-
-                if (selection.containsNode(this._element, true)) {
-                    this._commands[item](selection);
+                if (this.window.getSelection().containsNode(this.element, true)) {
+                    item[1].execute();
                 }
             });
-
             toolbar.appendChild(img);
-        });
+        }
 
         toolbar.classList.add('editor-toolbar');
-        this._element.parentNode.insertBefore(toolbar, this._element);
+        this.element.parentNode.insertBefore(toolbar, this.element);
     }
 
     /**
@@ -144,36 +119,28 @@ class Editor {
      * @param {?string} value
      */
     execute(command, value = null) {
-        this._document.execCommand(command, false, value);
+        this.document.execCommand(command, false, value);
     }
 
     /**
-     * Insert HTML
      *
-     * @param {string} tag
-     * @param {Selection} selection
+     * @param {string} command
+     *
+     * @return {string}
      */
-    insertHtml(tag, selection) {
-        const html = selection.toString();
-
-        if (tag && html.length > 0) {
-            this.execute('insertHTML', '<' + tag + '>' + html + '</' + tag + '>');
-        }
-    }
-
-    static icon(key) {
-        return '/src/theme/icon/' + key + '.svg';
+    static icon(command) {
+        return '/src/theme/icon/' + command + '.svg';
     }
 
     /**
-     * Trim HTML
+     * Filter HTML
      *
      * @param {string} html
      *
      * @return {string}
      */
-    static trim(html) {
-        return html ? html.trim().replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').replace(/^(<br\s*\/?>)+/gi, ' ').replace(/(<br\s*\/?>)+$/gi, ' ').trim() : '';
+    filter(html) {
+        return Editor.trim(Editor.strip(html, this.allowed));
     }
 
     /**
@@ -188,6 +155,17 @@ class Editor {
         const call = ($0, $1) => allowed.indexOf($1.toLowerCase()) > -1 ? $0 : '';
 
         return html ? html.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, call) : '';
+    }
+
+    /**
+     * Trim HTML
+     *
+     * @param {string} html
+     *
+     * @return {string}
+     */
+    static trim(html) {
+        return html ? html.trim().replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').replace(/^(<br\s*\/?>)+/gi, ' ').replace(/(<br\s*\/?>)+$/gi, ' ').trim() : '';
     }
 
     /**
