@@ -260,7 +260,7 @@ export default class Editor {
      * @return {string}
      */
     static icon(command) {
-        return '/src/theme/icon/' + command + '.svg';
+        return '/editor/src/theme/icon/' + command + '.svg';
     }
 
     /**
