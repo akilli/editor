@@ -1,12 +1,13 @@
+import BoldCommand from '../src/command/boldcommand.js';
 import ClearCommand from '../src/command/clearcommand.js';
 import Command from './command/command.js';
 import HeadingCommand from '../src/command/headingcommand.js';
 import ImageCommand from '../src/command/imagecommand.js';
+import ItalicCommand from '../src/command/italiccommand.js';
 import LinkCommand from '../src/command/linkcommand.js';
 import OrderedListCommand from '../src/command/orderedlistcommand.js';
 import ParagraphCommand from '../src/command/paragraphcommand.js';
 import QuoteCommand from '../src/command/quotecommand.js';
-import SimpleCommand from '../src/command/simplecommand.js';
 import UnlinkCommand from '../src/command/unlinkcommand.js';
 import UnorderedListCommand from '../src/command/unorderedlistcommand.js';
 
@@ -92,8 +93,8 @@ export default class Editor {
      */
     initCommands() {
         this.execute('defaultParagraphSeparator', 'p');
-        this.commands.set('bold', new SimpleCommand(this, 'strong'));
-        this.commands.set('italic', new SimpleCommand(this, 'i'));
+        this.commands.set('bold', new BoldCommand(this));
+        this.commands.set('italic', new ItalicCommand(this));
         this.commands.set('clear', new ClearCommand(this));
         this.commands.set('link', new LinkCommand(this));
         this.commands.set('unlink', new UnlinkCommand(this));
