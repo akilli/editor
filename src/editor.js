@@ -1,4 +1,14 @@
+import ClearCommand from '../src/command/clearcommand.js';
 import Command from './command/command.js';
+import HeadingCommand from '../src/command/headingcommand.js';
+import ImageCommand from '../src/command/imagecommand.js';
+import LinkCommand from '../src/command/linkcommand.js';
+import OrderedListCommand from '../src/command/orderedlistcommand.js';
+import ParagraphCommand from '../src/command/paragraphcommand.js';
+import QuoteCommand from '../src/command/quotecommand.js';
+import SimpleCommand from '../src/command/simplecommand.js';
+import UnlinkCommand from '../src/command/unlinkcommand.js';
+import UnorderedListCommand from '../src/command/unorderedlistcommand.js';
 
 /**
  * Editor
@@ -73,7 +83,26 @@ export default class Editor {
      * Init editor
      */
     init() {
+        this.initCommands();
         this.initToolbar();
+    }
+
+    /**
+     * Init commands
+     */
+    initCommands() {
+        this.commands.set('bold', new SimpleCommand(this, 'strong'));
+        this.commands.set('italic', new SimpleCommand(this, 'i'));
+        this.commands.set('clear', new ClearCommand(this));
+        this.commands.set('link', new LinkCommand(this));
+        this.commands.set('unlink', new UnlinkCommand(this));
+        this.commands.set('unorderedlist', new UnorderedListCommand(this));
+        this.commands.set('orderedlist', new OrderedListCommand(this));
+        this.commands.set('paragraph', new ParagraphCommand(this));
+        this.commands.set('h2', new HeadingCommand(this, 'h2'));
+        this.commands.set('h3', new HeadingCommand(this, 'h3'));
+        this.commands.set('quote', new QuoteCommand(this));
+        this.commands.set('image', new ImageCommand(this));
     }
 
     /**
