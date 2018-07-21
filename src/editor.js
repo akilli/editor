@@ -166,6 +166,11 @@ export default class Editor {
      */
     filter(html) {
         return html
+            .replace(/&amp;/g, '&')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&quot;/g, '"')
+            .replace(/&#039;/g, "'")
             .replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, ($0, $1) => this.allowed.includes($1.toLowerCase()) ? $0 : '')
             .trim()
             .replace(/&nbsp;/g, ' ')
