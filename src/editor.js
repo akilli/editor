@@ -170,6 +170,22 @@ export default class Editor {
     }
 
     /**
+     * Encode HTML
+     *
+     * @param {string} html
+     *
+     * @return {string}
+     */
+    static encode(html) {
+        return html
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+    /**
      * Decode HTML
      *
      * @param {string} html
