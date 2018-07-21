@@ -173,7 +173,7 @@ class Editor {
      * @return {string}
      */
     static trim(html) {
-        return html ? html.trim().replace(/\s+/g, ' ').replace(/^(<br\s*\/?>)+/gi, ' ').replace(/(<br\s*\/?>)+$/gi, ' ').trim() : '';
+        return html ? html.trim().replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').replace(/^(<br\s*\/?>)+/gi, ' ').replace(/(<br\s*\/?>)+$/gi, ' ').trim() : '';
     }
 
     /**
