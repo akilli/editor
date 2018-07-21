@@ -5,6 +5,9 @@ import Editor from '../src/editor.js';
         const editor = Editor.create(document.getElementById('editor'));
         const save = document.getElementById('save');
 
-        save.addEventListener('click', () => console.log(editor.getData()));
+        save.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            console.log(editor.getData());
+        });
     });
 })(document, Editor);
