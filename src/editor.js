@@ -1,9 +1,9 @@
-import Command from './command/command';
+import Command from './command/command.js';
 
 /**
  * Editor
  */
-class Editor {
+export default class Editor {
     /**
      * Creates a new instance of editor with given configuration
      *
@@ -64,34 +64,22 @@ class Editor {
             });
         }
 
-        this.toolbar();
         this.setData(html);
         this.element.classList.add('editor');
         this.element.setAttribute('contenteditable', 'true');
     }
 
     /**
-     * Returns editor element's innerHTML
-     *
-     * @return {string}
+     * Init editor
      */
-    getData() {
-        return this.filter(this.element.innerHTML);
-    }
-
-    /**
-     * Sets editor element's innerHTML
-     *
-     * @param {string} html
-     */
-    setData(html) {
-        this.element.innerHTML = this.filter(html);
+    init() {
+        this.initToolbar();
     }
 
     /**
      * Init toolbar
      */
-    toolbar() {
+    initToolbar() {
         const toolbar = this.document.createElement('div');
 
         for (let item of this.commands) {
@@ -113,6 +101,24 @@ class Editor {
     }
 
     /**
+     * Returns editor element's innerHTML
+     *
+     * @return {string}
+     */
+    getData() {
+        return this.filter(this.element.innerHTML);
+    }
+
+    /**
+     * Sets editor element's innerHTML
+     *
+     * @param {string} html
+     */
+    setData(html) {
+        this.element.innerHTML = this.filter(html);
+    }
+
+    /**
      * Execute command
      *
      * @param {string} command
@@ -123,16 +129,6 @@ class Editor {
     }
 
     /**
-     *
-     * @param {string} command
-     *
-     * @return {string}
-     */
-    static icon(command) {
-        return '/src/theme/icon/' + command + '.svg';
-    }
-
-    /**
      * Filter HTML
      *
      * @param {string} html
@@ -140,32 +136,25 @@ class Editor {
      * @return {string}
      */
     filter(html) {
-        return Editor.trim(Editor.strip(html, this.allowed));
+        return html
+            .replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, ($0, $1) => this.allowed.includes($1.toLowerCase()) ? $0 : '')
+            .trim()
+            .replace(/&nbsp;/g, ' ')
+            .replace(/\s+/g, ' ')
+            .replace(/^(<br\s*\/?>)+/gi, ' ')
+            .replace(/(<br\s*\/?>)+$/gi, ' ')
+            .trim();
     }
 
     /**
-     * Strip tags
+     * Returns icon URL for given command
      *
-     * @param {string} html
-     * @param {Array} allowed
-     *
-     * @return {string}
-     */
-    static strip(html, allowed = []) {
-        const call = ($0, $1) => allowed.indexOf($1.toLowerCase()) > -1 ? $0 : '';
-
-        return html ? html.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, call) : '';
-    }
-
-    /**
-     * Trim HTML
-     *
-     * @param {string} html
+     * @param {string} command
      *
      * @return {string}
      */
-    static trim(html) {
-        return html ? html.trim().replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').replace(/^(<br\s*\/?>)+/gi, ' ').replace(/(<br\s*\/?>)+$/gi, ' ').trim() : '';
+    static icon(command) {
+        return '/src/theme/icon/' + command + '.svg';
     }
 
     /**
@@ -177,6 +166,9 @@ class Editor {
      * @return {Editor}
      */
     static create(element, config = {}) {
-        return new Editor(element, config);
+        const editor = new Editor(element, config);
+        editor.init();
+
+        return editor;
     }
 }

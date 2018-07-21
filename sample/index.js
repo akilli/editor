@@ -1,4 +1,4 @@
-'use strict';
+import Editor from '../src/editor.js';
 
 (function (document, Editor) {
     document.addEventListener('DOMContentLoaded', () => {
