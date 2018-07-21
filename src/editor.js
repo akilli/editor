@@ -91,6 +91,7 @@ export default class Editor {
      * Init commands
      */
     initCommands() {
+        this.execute('defaultParagraphSeparator', 'p');
         this.commands.set('bold', new SimpleCommand(this, 'strong'));
         this.commands.set('italic', new SimpleCommand(this, 'i'));
         this.commands.set('clear', new ClearCommand(this));
@@ -165,13 +166,46 @@ export default class Editor {
      * @return {string}
      */
     filter(html) {
+        return Editor.trim(Editor.strip(Editor.decode(html), this.allowed));
+    }
+
+    /**
+     * Decode HTML
+     *
+     * @param {string} html
+     *
+     * @return {string}
+     */
+    static decode(html) {
         return html
             .replace(/&amp;/g, '&')
             .replace(/&lt;/g, '<')
             .replace(/&gt;/g, '>')
             .replace(/&quot;/g, '"')
-            .replace(/&#039;/g, "'")
-            .replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, ($0, $1) => this.allowed.includes($1.toLowerCase()) ? $0 : '')
+            .replace(/&#039;/g, "'");
+    }
+
+    /**
+     * Strip disallowed HTML elements
+     *
+     * @param {string} html
+     * @param {string[]} allowed
+     *
+     * @return {string}
+     */
+    static strip(html, allowed) {
+        return html.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, ($0, $1) => allowed.includes($1.toLowerCase()) ? $0 : '');
+    }
+
+    /**
+     * Decode HTML
+     *
+     * @param {string} html
+     *
+     * @return {string}
+     */
+    static trim(html) {
+        return html
             .trim()
             .replace(/&nbsp;/g, ' ')
             .replace(/\s+/g, ' ')
