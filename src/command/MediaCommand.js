@@ -15,9 +15,17 @@ export default class MediaCommand extends Command {
                 ',location=no,menubar=no,minimizable=no,modal=yes,resizable=yes,scrollbars=yes,toolbar=no,width=' +
                 this.editor.window.screen.width;
             const win = this.editor.window.open(this.editor.config.mediabrowser, 'mediabrowser', feat);
+            let origin;
+
+            try {
+                origin = win.origin;
+            } catch (e) {
+                console.log(e);
+                origin = getOrigin(this.editor.config.mediabrowser);
+            }
 
             this.editor.window.addEventListener('message', (ev) => {
-                if (ev.origin === win.origin && ev.source === win && !!ev.data.src) {
+                if (ev.origin === origin && ev.source === win && !!ev.data.src) {
                     this.editor.execute('insertHTML', '<img src="' + ev.data.src + '" alt="" />');
                     win.close();
                 }
@@ -26,4 +34,11 @@ export default class MediaCommand extends Command {
             this.editor.execute('insertHTML', '<img src="' + url + '" alt="" />');
         }
     }
+}
+
+function getOrigin(url) {
+    const a = document.createElement('a');
+    a.href = url;
+
+    return a.origin;
 }
