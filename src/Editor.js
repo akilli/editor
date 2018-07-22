@@ -84,8 +84,28 @@ export default class Editor {
      * Init editor
      */
     init() {
+        this.initTheme();
         this.initCommands();
         this.initToolbar();
+    }
+
+    /**
+     * Init theme
+     */
+    initTheme() {
+        const css = this.document.styleSheets;
+        const link = this.document.createElement('link');
+
+        link.rel = 'stylesheet';
+        link.href = this.theme('editor.css');
+
+        for (let i = 0; i < css.length; ++i) {
+            if (css[i].href === link.href) {
+                return;
+            }
+        }
+
+        this.document.head.appendChild(link);
     }
 
     /**
@@ -163,14 +183,25 @@ export default class Editor {
     }
 
     /**
-     * Returns icon URL for given command
+     * Returns theme URL
      *
-     * @param {string} command
+     * @param {string} path
      *
      * @return {string}
      */
-    icon(command) {
-        return this.config.path + 'theme/icon/' + command + '.svg';
+    theme(path) {
+        return this.config.path + 'theme/' + path;
+    }
+
+    /**
+     * Returns icon URL
+     *
+     * @param {string} name
+     *
+     * @return {string}
+     */
+    icon(name) {
+        return this.config.path + 'theme/icon/' + name + '.svg';
     }
 
     /**
