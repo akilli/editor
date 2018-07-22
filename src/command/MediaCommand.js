@@ -11,8 +11,9 @@ export default class MediaCommand extends Command {
         let url;
 
         if (!!this.editor.config.mediabrowser) {
-            const feat = 'alwaysRaised=yes,dependent=yes,height=' + window.screen.height + ',location=no,menubar=no,' +
-                'minimizable=no,modal=yes,resizable=yes,scrollbars=yes,toolbar=no,width=' + window.screen.width;
+            const feat = 'alwaysRaised=yes,dependent=yes,height=' + this.editor.window.screen.height +
+                ',location=no,menubar=no,minimizable=no,modal=yes,resizable=yes,scrollbars=yes,toolbar=no,width=' +
+                this.editor.window.screen.width;
             const win = this.editor.window.open(this.editor.config.mediabrowser, 'mediabrowser', feat);
 
             this.editor.window.addEventListener('message', (ev) => {
