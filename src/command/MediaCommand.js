@@ -1,7 +1,7 @@
 import Command from './Command.js';
 
 /**
- * Image Command
+ * Media Command
  */
 export default class MediaCommand extends Command {
     /**
