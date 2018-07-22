@@ -2,9 +2,9 @@ import BoldCommand from './command/BoldCommand.js';
 import ClearCommand from './command/ClearCommand.js';
 import Command from './command/Command.js';
 import HeadingCommand from './command/HeadingCommand.js';
-import ImageCommand from './command/ImageCommand.js';
 import ItalicCommand from './command/ItalicCommand.js';
 import LinkCommand from './command/LinkCommand.js';
+import MediaCommand from './command/MediaCommand.js';
 import OrderedListCommand from './command/OrderedListCommand.js';
 import ParagraphCommand from './command/ParagraphCommand.js';
 import QuoteCommand from './command/QuoteCommand.js';
@@ -93,6 +93,7 @@ export default class Editor {
      */
     initCommands() {
         this.execute('defaultParagraphSeparator', 'p');
+        this.execute('enableObjectResizing', false);
         this.commands.set('bold', new BoldCommand(this));
         this.commands.set('italic', new ItalicCommand(this));
         this.commands.set('clear', new ClearCommand(this));
@@ -104,7 +105,7 @@ export default class Editor {
         this.commands.set('h2', new HeadingCommand(this, 'h2'));
         this.commands.set('h3', new HeadingCommand(this, 'h3'));
         this.commands.set('quote', new QuoteCommand(this));
-        this.commands.set('image', new ImageCommand(this));
+        this.commands.set('media', new MediaCommand(this));
     }
 
     /**
@@ -116,7 +117,7 @@ export default class Editor {
         for (let item of this.commands) {
             const img = this.document.createElement('img');
 
-            img.setAttribute('src', Editor.icon(item[0]));
+            img.setAttribute('src', this.icon(item[0]));
             img.setAttribute('alt', item[0]);
             img.setAttribute('title', item[0]);
             img.addEventListener('click', () => {
@@ -159,6 +160,17 @@ export default class Editor {
      */
     execute(command, value = null) {
         this.document.execCommand(command, false, value);
+    }
+
+    /**
+     * Returns icon URL for given command
+     *
+     * @param {string} command
+     *
+     * @return {string}
+     */
+    icon(command) {
+        return this.config.path + 'theme/icon/' + command + '.svg';
     }
 
     /**
@@ -250,17 +262,6 @@ export default class Editor {
             .replace(/^(<br\s*\/?>)+/gi, ' ')
             .replace(/(<br\s*\/?>)+$/gi, ' ')
             .trim();
-    }
-
-    /**
-     * Returns icon URL for given command
-     *
-     * @param {string} command
-     *
-     * @return {string}
-     */
-    static icon(command) {
-        return '/editor/src/theme/icon/' + command + '.svg';
     }
 
     /**
