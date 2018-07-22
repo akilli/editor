@@ -1,6 +1,7 @@
 import BoldCommand from './command/BoldCommand.js';
 import ClearCommand from './command/ClearCommand.js';
 import Command from './command/Command.js';
+import DetailsCommand from './command/DetailsCommand.js';
 import HeadingCommand from './command/HeadingCommand.js';
 import ItalicCommand from './command/ItalicCommand.js';
 import LinkCommand from './command/LinkCommand.js';
@@ -36,7 +37,7 @@ export default class Editor {
          * @type {string[]}
          * @readonly
          */
-        this.allowed = ['a', 'b', 'blockquote', 'br', 'h2', 'h3', 'i', 'img', 'li', 'ol', 'p', 'ul'];
+        this.allowed = ['a', 'b', 'blockquote', 'br', 'details', 'h2', 'h3', 'i', 'img', 'li', 'ol', 'p', 'summary', 'ul'];
 
         /**
          * Editor commands
@@ -125,6 +126,7 @@ export default class Editor {
         this.commands.set('h2', new HeadingCommand(this, 'h2'));
         this.commands.set('h3', new HeadingCommand(this, 'h3'));
         this.commands.set('quote', new QuoteCommand(this));
+        this.commands.set('details', new DetailsCommand(this));
         this.commands.set('media', new MediaCommand(this));
     }
 
