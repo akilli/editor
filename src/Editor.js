@@ -9,6 +9,7 @@ import MediaCommand from './command/MediaCommand.js';
 import OrderedListCommand from './command/OrderedListCommand.js';
 import ParagraphCommand from './command/ParagraphCommand.js';
 import QuoteCommand from './command/QuoteCommand.js';
+import TableCommand from './command/TableCommand.js';
 import Toolbar from './ui/Toolbar.js';
 import UnlinkCommand from './command/UnlinkCommand.js';
 import UnorderedListCommand from './command/UnorderedListCommand.js';
@@ -70,7 +71,8 @@ export default class Editor {
             'h2', 'h3',
             'blockquote',
             'details', 'summary',
-            'audio', 'iframe', 'img', 'video'
+            'audio', 'iframe', 'img', 'video',
+            'table', 'tbody', 'tfoot', 'td', 'th', 'thead', 'tr'
         ];
 
         /**
@@ -152,6 +154,7 @@ export default class Editor {
         this.commands.set('quote', new QuoteCommand(this));
         this.commands.set('details', new DetailsCommand(this));
         this.commands.set('media', new MediaCommand(this));
+        this.commands.set('table', new TableCommand(this));
     }
 
     /**
