@@ -45,7 +45,7 @@ export default class Editor {
             'h2', 'h3',
             'blockquote',
             'details', 'summary',
-            'audio', 'iframe', 'image', 'video'
+            'audio', 'iframe', 'img', 'video'
         ];
 
         /**
