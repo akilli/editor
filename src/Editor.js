@@ -8,9 +8,13 @@ import LinkCommand from './command/LinkCommand.js';
 import MediaCommand from './command/MediaCommand.js';
 import OrderedListCommand from './command/OrderedListCommand.js';
 import ParagraphCommand from './command/ParagraphCommand.js';
+import RedoCommand from './command/RedoCommand.js';
 import QuoteCommand from './command/QuoteCommand.js';
+import StrikeCommand from './command/StrikeCommand.js';
 import TableCommand from './command/TableCommand.js';
 import Toolbar from './ui/Toolbar.js';
+import UnderlineCommand from './command/UnderlineCommand.js';
+import UndoCommand from './command/UndoCommand.js';
 import UnlinkCommand from './command/UnlinkCommand.js';
 import UnorderedListCommand from './command/UnorderedListCommand.js';
 
@@ -60,11 +64,13 @@ export default class Editor {
         this.config = config;
 
         /**
+         * @todo Transform b => strong, strike => s
+         *
          * @type {string[]}
          * @readonly
          */
         this.allowed = [
-            'b', 'i',
+            'b', 'i', 'strike', 'u',
             'a',
             'li', 'ol', 'ul',
             'br',  'p',
@@ -140,10 +146,15 @@ export default class Editor {
      */
     initCommands() {
         this.execute('defaultParagraphSeparator', 'p');
+        this.execute('enableInlineTableEditing', 'false');
         this.execute('enableObjectResizing', 'false');
+        this.commands.set('undo', new UndoCommand(this));
+        this.commands.set('redo', new RedoCommand(this));
+        this.commands.set('clear', new ClearCommand(this));
         this.commands.set('bold', new BoldCommand(this));
         this.commands.set('italic', new ItalicCommand(this));
-        this.commands.set('clear', new ClearCommand(this));
+        this.commands.set('underline', new UnderlineCommand(this));
+        this.commands.set('strike', new StrikeCommand(this));
         this.commands.set('link', new LinkCommand(this));
         this.commands.set('unlink', new UnlinkCommand(this));
         this.commands.set('unorderedlist', new UnorderedListCommand(this));
