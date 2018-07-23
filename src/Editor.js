@@ -9,6 +9,7 @@ import MediaCommand from './command/MediaCommand.js';
 import OrderedListCommand from './command/OrderedListCommand.js';
 import ParagraphCommand from './command/ParagraphCommand.js';
 import QuoteCommand from './command/QuoteCommand.js';
+import Toolbar from './ui/Toolbar.js';
 import UnlinkCommand from './command/UnlinkCommand.js';
 import UnorderedListCommand from './command/UnorderedListCommand.js';
 
@@ -49,25 +50,39 @@ export default class Editor {
         ];
 
         /**
-         * Editor commands
+         * Commands
          *
          * @type {Map<string, Command>}
          */
         this.commands = new Map();
 
         /**
+         * Toolbar
+         *
+         * @type {Toolbar}
+         * @readonly
+         */
+        this.toolbar = new Toolbar(this);
+
+        /**
+         * Corresponding DOM element
+         *
          * @type {HTMLElement}
          * @readonly
          */
         this.element = element;
 
         /**
+         * Correspondig DOM Document
+         *
          * @type {Document}
          * @readonly
          */
         this.document = element.ownerDocument;
 
         /**
+         * Corresponding Window object
+         *
          * @type {Window}
          * @readonly
          */
@@ -96,7 +111,7 @@ export default class Editor {
     init() {
         this.initTheme();
         this.initCommands();
-        this.initToolbar();
+        this.toolbar.init();
     }
 
     /**
@@ -137,30 +152,6 @@ export default class Editor {
         this.commands.set('quote', new QuoteCommand(this));
         this.commands.set('details', new DetailsCommand(this));
         this.commands.set('media', new MediaCommand(this));
-    }
-
-    /**
-     * Init toolbar
-     */
-    initToolbar() {
-        const toolbar = this.document.createElement('div');
-
-        for (let item of this.commands) {
-            const img = this.document.createElement('img');
-
-            img.setAttribute('src', this.icon(item[0]));
-            img.setAttribute('alt', item[0]);
-            img.setAttribute('title', item[0]);
-            img.addEventListener('click', () => {
-                if (this.window.getSelection().containsNode(this.element, true)) {
-                    item[1].execute();
-                }
-            });
-            toolbar.appendChild(img);
-        }
-
-        toolbar.classList.add('editor-toolbar');
-        this.element.parentNode.insertBefore(toolbar, this.element);
     }
 
     /**
