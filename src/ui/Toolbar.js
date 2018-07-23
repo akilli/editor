@@ -21,14 +21,23 @@ export default class Toolbar {
          * @readonly
          */
         this.editor = editor;
+
+        /**
+         * Corresponding DOM element
+         *
+         * @type {HTMLElement}
+         * @readonly
+         */
+        this.element = this.editor.document.createElement('div');
+
+        this.element.classList.add('editor-toolbar');
+        this.editor.element.parentNode.insertBefore(this.element, this.editor.element);
     }
 
     /**
      * Init toolbar
      */
     init() {
-        const toolbar = this.editor.document.createElement('div');
-
         for (let item of this.editor.commands) {
             const img = this.editor.document.createElement('img');
 
@@ -40,10 +49,7 @@ export default class Toolbar {
                     item[1].execute();
                 }
             });
-            toolbar.appendChild(img);
+            this.element.appendChild(img);
         }
-
-        toolbar.classList.add('editor-toolbar');
-        this.editor.element.parentNode.insertBefore(toolbar, this.editor.element);
     }
 }

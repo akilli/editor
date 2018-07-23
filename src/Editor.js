@@ -29,6 +29,30 @@ export default class Editor {
         }
 
         /**
+         * Corresponding DOM element
+         *
+         * @type {HTMLElement}
+         * @readonly
+         */
+        this.element = element;
+
+        /**
+         * Correspondig DOM Document
+         *
+         * @type {Document}
+         * @readonly
+         */
+        this.document = element.ownerDocument;
+
+        /**
+         * Corresponding Window object
+         *
+         * @type {Window}
+         * @readonly
+         */
+        this.window = element.ownerDocument.defaultView;
+
+        /**
          * @type {Object}
          * @readonly
          */
@@ -63,30 +87,6 @@ export default class Editor {
          * @readonly
          */
         this.toolbar = new Toolbar(this);
-
-        /**
-         * Corresponding DOM element
-         *
-         * @type {HTMLElement}
-         * @readonly
-         */
-        this.element = element;
-
-        /**
-         * Correspondig DOM Document
-         *
-         * @type {Document}
-         * @readonly
-         */
-        this.document = element.ownerDocument;
-
-        /**
-         * Corresponding Window object
-         *
-         * @type {Window}
-         * @readonly
-         */
-        this.window = element.ownerDocument.defaultView;
 
         let html = this.element.innerHTML;
 
@@ -138,7 +138,7 @@ export default class Editor {
      */
     initCommands() {
         this.execute('defaultParagraphSeparator', 'p');
-        this.execute('enableObjectResizing', false);
+        this.execute('enableObjectResizing', 'false');
         this.commands.set('bold', new BoldCommand(this));
         this.commands.set('italic', new ItalicCommand(this));
         this.commands.set('clear', new ClearCommand(this));
