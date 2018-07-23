@@ -157,11 +157,11 @@ export default class Editor {
         this.commands.set('strike', new StrikeCommand(this));
         this.commands.set('link', new LinkCommand(this));
         this.commands.set('unlink', new UnlinkCommand(this));
-        this.commands.set('unorderedlist', new UnorderedListCommand(this));
-        this.commands.set('orderedlist', new OrderedListCommand(this));
         this.commands.set('paragraph', new ParagraphCommand(this));
         this.commands.set('header2', new HeadingCommand(this, 'h2'));
         this.commands.set('header3', new HeadingCommand(this, 'h3'));
+        this.commands.set('unorderedlist', new UnorderedListCommand(this));
+        this.commands.set('orderedlist', new OrderedListCommand(this));
         this.commands.set('quote', new QuoteCommand(this));
         this.commands.set('details', new DetailsCommand(this));
         this.commands.set('media', new MediaCommand(this));
