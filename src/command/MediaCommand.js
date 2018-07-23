@@ -1,5 +1,5 @@
 import Command from './Command.js';
-import MediaUtils from '../media/MediaUtils.js';
+import MediaUtils from '../utils/MediaUtils.js';
 
 /**
  * Media Command
