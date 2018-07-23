@@ -37,7 +37,16 @@ export default class Editor {
          * @type {string[]}
          * @readonly
          */
-        this.allowed = ['a', 'b', 'blockquote', 'br', 'details', 'h2', 'h3', 'i', 'img', 'li', 'ol', 'p', 'summary', 'ul'];
+        this.allowed = [
+            'b', 'i',
+            'a',
+            'li', 'ol', 'ul',
+            'br',  'p',
+            'h2', 'h3',
+            'blockquote',
+            'details', 'summary',
+            'audio', 'iframe', 'image', 'video'
+        ];
 
         /**
          * Editor commands
