@@ -8,6 +8,6 @@ export default class DetailsCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.execute('insertHTML', '<details><summary>Summary</summary><p>Content</p></details>');
+        this.editor.execute('inserthtml', '<details><summary>Summary</summary><p>Content</p></details>');
     }
 }
