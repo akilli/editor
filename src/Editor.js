@@ -73,12 +73,11 @@ export default class Editor {
             'b', 'i', 'strike', 'u',
             'a',
             'li', 'ol', 'ul',
-            'br',  'p',
-            'h2', 'h3',
-            'blockquote',
+            'blockquote', 'h2', 'h3', 'p',
             'details', 'summary',
             'audio', 'iframe', 'img', 'video',
-            'table', 'tbody', 'tfoot', 'td', 'th', 'thead', 'tr'
+            'table', 'tbody', 'tfoot', 'td', 'th', 'thead', 'tr',
+            'br',
         ];
 
         /**
