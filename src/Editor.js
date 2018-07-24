@@ -11,7 +11,6 @@ import RedoCommand from './command/RedoCommand.js';
 import QuoteCommand from './command/QuoteCommand.js';
 import TableCommand from './command/TableCommand.js';
 import Toolbar from './ui/Toolbar.js';
-import UnderlineCommand from './command/UnderlineCommand.js';
 import UndoCommand from './command/UndoCommand.js';
 import UnlinkCommand from './command/UnlinkCommand.js';
 import UnorderedListCommand from './command/UnorderedListCommand.js';
@@ -68,7 +67,7 @@ export default class Editor {
          * @readonly
          */
         this.allowed = [
-            'b', 'i', 'u',
+            'b', 'i',
             'a',
             'li', 'ol', 'ul',
             'blockquote', 'h2', 'h3', 'p',
@@ -149,7 +148,6 @@ export default class Editor {
         this.commands.set('redo', new RedoCommand(this));
         this.commands.set('bold', new BoldCommand(this));
         this.commands.set('italic', new ItalicCommand(this));
-        this.commands.set('underline', new UnderlineCommand(this));
         this.commands.set('link', new LinkCommand(this));
         this.commands.set('unlink', new UnlinkCommand(this));
         this.commands.set('paragraph', new ParagraphCommand(this));
