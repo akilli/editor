@@ -11,7 +11,7 @@ export default class LinkCommand extends Command {
         let url;
 
         if (url = this.editor.window.prompt('URL')) {
-            this.editor.execute('createlink', url);
+            this.editor.document.execCommand('createlink', false, url);
         }
     }
 }

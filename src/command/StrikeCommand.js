@@ -8,6 +8,6 @@ export default class StrikeCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.execute('strikethrough');
+        this.editor.document.execCommand('strikethrough');
     }
 }

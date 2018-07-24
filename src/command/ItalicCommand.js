@@ -8,6 +8,6 @@ export default class ItalicCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.execute('italic');
+        this.editor.document.execCommand('italic');
     }
 }

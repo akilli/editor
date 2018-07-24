@@ -8,6 +8,6 @@ export default class QuoteCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.execute('formatblock', '<blockquote>');
+        this.editor.document.execCommand('formatblock', false, '<blockquote>');
     }
 }

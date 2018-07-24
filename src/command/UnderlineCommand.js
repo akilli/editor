@@ -8,6 +8,6 @@ export default class UnderlineCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.execute('underline');
+        this.editor.document.execCommand('underline');
     }
 }

@@ -144,9 +144,9 @@ export default class Editor {
      * Init commands
      */
     initCommands() {
-        this.execute('defaultParagraphSeparator', 'p');
-        this.execute('enableInlineTableEditing', 'false');
-        this.execute('enableObjectResizing', 'false');
+        this.document.execCommand('defaultParagraphSeparator', false, 'p');
+        this.document.execCommand('enableInlineTableEditing', false, 'false');
+        this.document.execCommand('enableObjectResizing', false, 'false');
         this.commands.set('undo', new UndoCommand(this));
         this.commands.set('redo', new RedoCommand(this));
         this.commands.set('clear', new ClearCommand(this));
@@ -185,16 +185,6 @@ export default class Editor {
      */
     setData(html) {
         this.element.innerHTML = this.filter(html);
-    }
-
-    /**
-     * Execute command
-     *
-     * @param {string} command
-     * @param {?string} value
-     */
-    execute(command, value = null) {
-        this.document.execCommand(command, false, value);
     }
 
     /**

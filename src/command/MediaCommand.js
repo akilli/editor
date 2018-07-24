@@ -72,7 +72,7 @@ export default class MediaCommand extends Command {
                     media.setAttribute('allowfullscreen', 'allowfullscreen');
                 }
 
-                this.editor.execute('inserthtml', media.outerHTML);
+                this.editor.document.execCommand('inserthtml', false, media.outerHTML);
             });
     }
 }

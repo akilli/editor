@@ -8,6 +8,6 @@ export default class ParagraphCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.execute('formatblock', '<p>');
+        this.editor.document.execCommand('formatblock', false, '<p>');
     }
 }

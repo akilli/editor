@@ -37,6 +37,6 @@ export default class HeadingCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.execute('formatblock', '<' + this.tag + '>');
+        this.editor.document.execCommand('formatblock', false, '<' + this.tag + '>');
     }
 }
