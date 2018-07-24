@@ -9,7 +9,6 @@ import OrderedListCommand from './command/OrderedListCommand.js';
 import ParagraphCommand from './command/ParagraphCommand.js';
 import RedoCommand from './command/RedoCommand.js';
 import QuoteCommand from './command/QuoteCommand.js';
-import StrikeCommand from './command/StrikeCommand.js';
 import TableCommand from './command/TableCommand.js';
 import Toolbar from './ui/Toolbar.js';
 import UnderlineCommand from './command/UnderlineCommand.js';
@@ -63,13 +62,13 @@ export default class Editor {
         this.config = config;
 
         /**
-         * @todo Transform b => strong, strike => s
+         * @todo Transform b => strong
          *
          * @type {string[]}
          * @readonly
          */
         this.allowed = [
-            'b', 'i', 'strike', 'u',
+            'b', 'i', 'u',
             'a',
             'li', 'ol', 'ul',
             'blockquote', 'h2', 'h3', 'p',
@@ -151,7 +150,6 @@ export default class Editor {
         this.commands.set('bold', new BoldCommand(this));
         this.commands.set('italic', new ItalicCommand(this));
         this.commands.set('underline', new UnderlineCommand(this));
-        this.commands.set('strike', new StrikeCommand(this));
         this.commands.set('link', new LinkCommand(this));
         this.commands.set('unlink', new UnlinkCommand(this));
         this.commands.set('paragraph', new ParagraphCommand(this));
