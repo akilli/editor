@@ -8,7 +8,13 @@ export default class TableCommand extends Command {
      * @inheritDoc
      */
     execute() {
+        const figure = this.editor.document.createElement('figure');
+        const caption = this.editor.document.createElement('figcaption');
         const table = this.editor.document.createElement('table');
+
+        figure.appendChild(table);
+        figure.appendChild(caption);
+        caption.innerHTML = 'Lorem ipsum';
 
         ['thead', 'tfoot', 'tbody'].forEach(part => {
             const item = this.editor.document.createElement(part);
@@ -23,6 +29,6 @@ export default class TableCommand extends Command {
             }
         });
 
-        this.editor.document.execCommand('inserthtml', false, table.outerHTML);
+        this.editor.document.execCommand('inserthtml', false, figure.outerHTML);
     }
 }
