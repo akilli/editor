@@ -72,7 +72,7 @@ export default class Editor {
             'li', 'ol', 'ul',
             'blockquote', 'h2', 'h3', 'p',
             'details', 'summary',
-            'audio', 'iframe', 'img', 'video',
+            'audio', 'figure', 'figcaption', 'iframe', 'img', 'video',
             'table', 'tbody', 'tfoot', 'td', 'th', 'thead', 'tr',
             'br',
         ];

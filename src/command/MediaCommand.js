@@ -52,9 +52,13 @@ export default class MediaCommand extends Command {
                     return;
                 }
 
+                const figure = this.editor.document.createElement('figure');
                 const media = this.editor.document.createElement(type.element);
                 const a = this.editor.document.createElement('a');
 
+                figure.classList.add('media');
+                figure.classList.add(type.id);
+                figure.appendChild(media);
                 a.href = data.src;
                 media.setAttribute('src', a.origin === this.editor.window.origin ? a.pathname : a.href);
 
@@ -72,7 +76,13 @@ export default class MediaCommand extends Command {
                     media.setAttribute('allowfullscreen', 'allowfullscreen');
                 }
 
-                this.editor.document.execCommand('inserthtml', false, media.outerHTML);
+                if (!!data.caption) {
+                    const caption = this.editor.document.createElement('figcaption');
+                    caption.innerHTML = data.caption;
+                    figure.appendChild(caption);
+                }
+
+                this.editor.document.execCommand('inserthtml', false, figure.outerHTML);
             });
     }
 }
