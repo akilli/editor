@@ -107,6 +107,9 @@ export default class Editor {
         this.setData(html);
         this.element.classList.add('editor');
         this.element.setAttribute('contenteditable', 'true');
+        this.document.execCommand('defaultParagraphSeparator', false, 'p');
+        this.document.execCommand('enableInlineTableEditing', false, 'false');
+        this.document.execCommand('enableObjectResizing', false, 'false');
     }
 
     /**
@@ -141,9 +144,6 @@ export default class Editor {
      * Init commands
      */
     initCommands() {
-        this.document.execCommand('defaultParagraphSeparator', false, 'p');
-        this.document.execCommand('enableInlineTableEditing', false, 'false');
-        this.document.execCommand('enableObjectResizing', false, 'false');
         this.commands.set('undo', new UndoCommand(this));
         this.commands.set('redo', new RedoCommand(this));
         this.commands.set('bold', new BoldCommand(this));
