@@ -14,8 +14,8 @@ export default class DetailsCommand extends Command {
 
         details.appendChild(summary);
         details.appendChild(content);
-        summary.innerText = 'Summary';
-        content.innerText = 'Content';
+        summary.innerHTML = 'Summary';
+        content.innerHTML = 'Content';
 
         this.editor.document.execCommand('inserthtml', false, details.outerHTML);
     }
