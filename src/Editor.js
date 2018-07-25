@@ -229,6 +229,7 @@ export default class Editor {
         tmp.querySelectorAll('br:last-child').forEach(item => item.parentNode.removeChild(item));
         tmp.querySelectorAll(':scope > br').forEach(item => item.parentNode.removeChild(item));
         tmp.querySelectorAll('p:empty').forEach(item => item.parentNode.removeChild(item));
+        tmp.querySelectorAll('[style]').forEach(item => item.removeAttribute('style'));
 
         return tmp.innerHTML;
     }
