@@ -5,6 +5,17 @@
     border: thin solid #d3d3d3;
 }
 
+.editor::before {
+    display: table;
+    content: " ";
+}
+
+.editor::after {
+    display: table;
+    content: " ";
+    clear: both;
+}
+
 /**
  * Toolbar
  */
@@ -17,31 +28,4 @@
     height: 1.5rem;
     margin-right: 0.5rem;
     cursor: pointer;
-}
-
-/**
- * Table
- */
-.editor table {
-    width: 100%;
-    margin: 1.5rem 0;
-    font-size: 0.875rem;
-}
-
-.editor td,
-.editor th {
-    min-height: 1.5rem;
-    border: solid 0.0625rem #e4e7ea;
-}
-
-.editor td,
-.editor th {
-    border: solid 0.0625rem #e4e7ea;
-}
-
-.editor thead tr:last-child td,
-.editor thead tr:last-child th,
-.editor tbody tr:last-child td,
-.editor tbody tr:last-child th {
-    border-bottom-color: #000;
 }
