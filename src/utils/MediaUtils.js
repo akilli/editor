@@ -54,6 +54,25 @@ export default class MediaUtils {
     }
 
     /**
+     * Returns given media type from given element or null
+     *
+     * @param {string} element
+     *
+     * @return {?Object}
+     */
+    static getTypeFromElement(element) {
+        const ids = MediaUtils.getTypeIds();
+
+        for (let i = 0; i < ids.length; ++i) {
+            if (mediaTypes[ids[i]].element === element) {
+                return mediaTypes[ids[i]];
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Returns media type from given URL or null
      *
      * @param {string} url
@@ -72,11 +91,11 @@ export default class MediaUtils {
 
         if (response.ok) {
             const mime = response.headers.get('content-type').split(';')[0].trim();
-            const types = MediaUtils.getTypeIds();
+            const ids = MediaUtils.getTypeIds();
 
-            for (let i = 0; i < types.length; ++i) {
-                if (mediaTypes[types[i]].mime.includes(mime)) {
-                    return mediaTypes[types[i]];
+            for (let i = 0; i < ids.length; ++i) {
+                if (mediaTypes[ids[i]].mime.includes(mime)) {
+                    return mediaTypes[ids[i]];
                 }
             }
         }
