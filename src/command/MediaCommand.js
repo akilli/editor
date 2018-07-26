@@ -54,13 +54,11 @@ export default class MediaCommand extends Command {
 
                 const figure = this.editor.document.createElement('figure');
                 const media = this.editor.document.createElement(type.element);
-                const a = this.editor.document.createElement('a');
 
                 figure.classList.add('media');
                 figure.classList.add(type.id);
                 figure.appendChild(media);
-                a.href = data.src;
-                media.setAttribute('src', a.origin === this.editor.window.origin ? a.pathname : a.href);
+                media.setAttribute('src', this.editor.url(data.src));
 
                 ['height', 'width'].forEach(item => {
                     if (data[item]) {

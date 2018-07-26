@@ -156,9 +156,9 @@ export default class Editor {
         this.commands.set('unorderedlist', new UnorderedListCommand(this));
         this.commands.set('orderedlist', new OrderedListCommand(this));
         this.commands.set('quote', new QuoteCommand(this));
-        this.commands.set('details', new DetailsCommand(this));
         this.commands.set('media', new MediaCommand(this));
         this.commands.set('table', new TableCommand(this));
+        this.commands.set('details', new DetailsCommand(this));
     }
 
     /**
@@ -182,6 +182,20 @@ export default class Editor {
     }
 
     /**
+     * Converts URL
+     *
+     * @param {string} url
+     *
+     * @return {string}
+     */
+    url(url) {
+        const a = this.document.createElement('a');
+        a.href = url;
+
+        return a.origin === this.window.origin ? a.pathname : a.href;
+    }
+
+    /**
      * Returns theme URL
      *
      * @param {string} path
@@ -189,7 +203,7 @@ export default class Editor {
      * @return {string}
      */
     theme(path) {
-        return this.config.path + 'theme/' + path;
+        return this.config.path + '/theme/' + path;
     }
 
     /**
@@ -200,7 +214,7 @@ export default class Editor {
      * @return {string}
      */
     icon(name) {
-        return this.config.path + 'theme/icon/' + name + '.svg';
+        return this.theme('icon/' + name + '.svg');
     }
 
     /**
