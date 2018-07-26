@@ -9,6 +9,7 @@ import OrderedListCommand from './command/OrderedListCommand.js';
 import ParagraphCommand from './command/ParagraphCommand.js';
 import RedoCommand from './command/RedoCommand.js';
 import QuoteCommand from './command/QuoteCommand.js';
+import SubheadingCommand from './command/SubheadingCommand.js';
 import TableCommand from './command/TableCommand.js';
 import Toolbar from './ui/Toolbar.js';
 import UndoCommand from './command/UndoCommand.js';
@@ -151,8 +152,8 @@ export default class Editor {
         this.commands.set('link', new LinkCommand(this));
         this.commands.set('unlink', new UnlinkCommand(this));
         this.commands.set('paragraph', new ParagraphCommand(this));
-        this.commands.set('heading2', new HeadingCommand(this, 'h2'));
-        this.commands.set('heading3', new HeadingCommand(this, 'h3'));
+        this.commands.set('heading', new HeadingCommand(this));
+        this.commands.set('subheading', new SubheadingCommand(this));
         this.commands.set('unorderedlist', new UnorderedListCommand(this));
         this.commands.set('orderedlist', new OrderedListCommand(this));
         this.commands.set('quote', new QuoteCommand(this));
