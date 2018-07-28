@@ -62,21 +62,117 @@ export default class Editor {
         this.config = config;
 
         /**
-         * @todo Transform b => strong
+         * Tag configuration
          *
-         * @type {string[]}
+         * @type {Object}
          * @readonly
          */
-        this.allowed = [
-            'b', 'i',
-            'a',
-            'li', 'ol', 'ul',
-            'blockquote', 'h2', 'h3', 'p',
-            'details', 'summary',
-            'audio', 'figure', 'figcaption', 'iframe', 'img', 'video',
-            'table', 'tbody', 'tfoot', 'td', 'th', 'thead', 'tr',
-            'br',
-        ];
+        this.tags = {
+            a: {
+                group: 'inline',
+                allowed: ['b', 'i'],
+            },
+            audio: {
+                group: 'block',
+                allowed: []
+            },
+            b: {
+                group: 'inline',
+                allowed: ['a', 'i'],
+            },
+            blockquote: {
+                group: 'block',
+                allowed: ['p'],
+            },
+            br: {
+                group: 'inline',
+                allowed: [],
+            },
+            details: {
+                group: 'block',
+                allowed: ['figure', 'p', 'summary', 'table']
+            },
+            figcaption: {
+                group: 'block',
+                allowed: ['a', 'b', 'i'],
+            },
+            figure: {
+                group: 'block',
+                allowed: ['audio', 'blockquote', 'figcaption', 'iframe', 'img', 'table', 'video'],
+            },
+            h2: {
+                group: 'block',
+                allowed: [],
+            },
+            h3: {
+                group: 'block',
+                allowed: [],
+            },
+            i: {
+                group: 'inline',
+                allowed: ['a', 'b'],
+            },
+            iframe: {
+                group: 'block',
+                allowed: []
+            },
+            img: {
+                group: 'block',
+                allowed: []
+            },
+            li: {
+                group: 'block',
+                allowed: ['a', 'b', 'i'],
+            },
+            ol: {
+                group: 'block',
+                allowed: ['li'],
+            },
+            p: {
+                group: 'block',
+                allowed: [],
+            },
+            summary: {
+                group: 'block',
+                allowed: []
+            },
+            table: {
+                group: 'block',
+                allowed: ['tbody', 'tfoot', 'thead']
+            },
+            tbody: {
+                group: 'block',
+                allowed: ['tr']
+            },
+            td: {
+                group: 'block',
+                allowed: ['a', 'b', 'i']
+            },
+            tfoot: {
+                group: 'block',
+                allowed: ['tr']
+            },
+            th: {
+                group: 'block',
+                allowed: ['a', 'b', 'i']
+            },
+            thead: {
+                group: 'block',
+                allowed: ['tr']
+            },
+            tr: {
+                group: 'block',
+                allowed: ['td', 'th']
+            },
+            ul: {
+                group: 'block',
+                allowed: ['li'],
+            },
+            video: {
+                group: 'block',
+                allowed: []
+            },
+        };
 
         /**
          * Commands
@@ -226,7 +322,23 @@ export default class Editor {
      * @return {string}
      */
     filter(html) {
-        return this.clean(Editor.trim(Editor.strip(Editor.decode(html), this.allowed)));
+        const tmp = this.document.createElement('div');
+        const treeWalker = this.document.createTreeWalker(tmp);
+        let node;
+
+        tmp.innerHTML = html;
+
+        while (treeWalker.nextNode()) {
+            node = treeWalker.currentNode;
+
+            if (node.nodeType === Node.TEXT_NODE && node.parentNode === treeWalker.root) {
+                const p = this.document.createElement('p');
+                p.innerText = node.nodeValue;
+                node.parentNode.replaceChild(p, node);
+            }
+        }
+
+        return this.clean(Editor.trim(Editor.strip(Editor.decode(tmp.innerHTML), Object.getOwnPropertyNames(this.tags))));
     }
 
     /**
