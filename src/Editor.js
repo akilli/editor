@@ -68,110 +68,179 @@ export default class Editor {
          * @readonly
          */
         this.tags = {
+            _root_: {
+                group: 'root',
+                empty: false,
+                attributes: [],
+                allowed: ['details', 'figure', 'h2', 'h3', 'ol', 'p', 'ul'],
+            },
             a: {
                 group: 'inline',
+                empty: false,
+                attributes: ['href'],
                 allowed: ['b', 'i'],
             },
             audio: {
-                group: 'block',
-                allowed: []
+                group: 'media',
+                empty: false,
+                attributes: ['controls', 'height', 'src', 'width'],
+                allowed: [],
             },
             b: {
                 group: 'inline',
+                empty: false,
+                attributes: [],
                 allowed: ['a', 'i'],
             },
             blockquote: {
                 group: 'block',
+                empty: false,
+                attributes: [],
                 allowed: ['p'],
             },
             br: {
-                group: 'inline',
+                group: 'break',
+                empty: true,
+                attributes: [],
                 allowed: [],
             },
             details: {
                 group: 'block',
-                allowed: ['figure', 'p', 'summary', 'table']
+                empty: false,
+                attributes: [],
+                allowed: ['figure', 'p', 'summary', 'table'],
             },
             figcaption: {
                 group: 'block',
+                empty: false,
+                attributes: [],
                 allowed: ['a', 'b', 'i'],
             },
             figure: {
                 group: 'block',
+                empty: false,
+                attributes: ['class'],
                 allowed: ['audio', 'blockquote', 'figcaption', 'iframe', 'img', 'table', 'video'],
             },
             h2: {
                 group: 'block',
+                empty: false,
+                attributes: [],
                 allowed: [],
             },
             h3: {
                 group: 'block',
+                empty: false,
+                attributes: [],
                 allowed: [],
             },
             i: {
                 group: 'inline',
+                empty: false,
+                attributes: [],
                 allowed: ['a', 'b'],
             },
             iframe: {
-                group: 'block',
-                allowed: []
+                group: 'media',
+                empty: false,
+                attributes: ['allowfullscreen', 'height', 'src', 'width'],
+                allowed: [],
             },
             img: {
-                group: 'block',
-                allowed: []
+                group: 'media',
+                empty: true,
+                attributes: ['alt', 'height', 'src', 'width'],
+                allowed: [],
             },
             li: {
                 group: 'block',
+                empty: false,
+                attributes: [],
                 allowed: ['a', 'b', 'i'],
             },
             ol: {
                 group: 'block',
+                empty: false,
+                attributes: [],
                 allowed: ['li'],
             },
             p: {
                 group: 'block',
-                allowed: [],
+                empty: false,
+                attributes: [],
+                allowed: ['a', 'b', 'br', 'i'],
             },
             summary: {
                 group: 'block',
-                allowed: []
+                empty: false,
+                attributes: [],
+                allowed: [],
             },
             table: {
                 group: 'block',
-                allowed: ['tbody', 'tfoot', 'thead']
+                empty: false,
+                attributes: [],
+                allowed: ['tbody', 'tfoot', 'thead'],
             },
             tbody: {
                 group: 'block',
-                allowed: ['tr']
+                empty: false,
+                attributes: [],
+                allowed: ['tr'],
             },
             td: {
                 group: 'block',
-                allowed: ['a', 'b', 'i']
+                empty: false,
+                attributes: [],
+                allowed: ['a', 'b', 'i'],
             },
             tfoot: {
                 group: 'block',
-                allowed: ['tr']
+                empty: false,
+                attributes: [],
+                allowed: ['tr'],
             },
             th: {
                 group: 'block',
-                allowed: ['a', 'b', 'i']
+                empty: false,
+                attributes: [],
+                allowed: ['a', 'b', 'i'],
             },
             thead: {
                 group: 'block',
-                allowed: ['tr']
+                empty: false,
+                attributes: [],
+                allowed: ['tr'],
             },
             tr: {
                 group: 'block',
-                allowed: ['td', 'th']
+                empty: false,
+                attributes: [],
+                allowed: ['td', 'th'],
             },
             ul: {
                 group: 'block',
+                empty: false,
+                attributes: [],
                 allowed: ['li'],
             },
             video: {
-                group: 'block',
-                allowed: []
+                group: 'media',
+                empty: false,
+                attributes: ['controls', 'height', 'src', 'width'],
+                allowed: [],
             },
+        };
+
+        /**
+         * Element mapping
+         *
+         * @type {Object}
+         */
+        this.mapping = {
+            div: 'p',
+            em: 'i',
+            strong: 'b'
         };
 
         /**
@@ -323,22 +392,63 @@ export default class Editor {
      */
     filter(html) {
         const tmp = this.document.createElement('div');
-        const treeWalker = this.document.createTreeWalker(tmp);
-        let node;
+        tmp.innerHTML = Editor.decode(html);
+        tmp.querySelectorAll(Object.getOwnPropertyNames(this.mapping).join(', ')).forEach(item => {
+            const newEl = this.document.createElement(this.mapping[item.tagName.toLowerCase()]);
+            newEl.innerHTML = item.innerHTML;
+            item.parentNode.replaceChild(newEl, item);
+        });
+        this.walk(tmp);
 
-        tmp.innerHTML = html;
+        return this.clean(Editor.trim(tmp.innerHTML));
+    }
 
-        while (treeWalker.nextNode()) {
-            node = treeWalker.currentNode;
-
-            if (node.nodeType === Node.TEXT_NODE && node.parentNode === treeWalker.root) {
-                const p = this.document.createElement('p');
-                p.innerText = node.nodeValue;
-                node.parentNode.replaceChild(p, node);
-            }
+    /**
+     * Tree traversal
+     *
+     * @param {HTMLElement} parent
+     */
+    walk(parent) {
+        if (!(parent instanceof HTMLElement)) {
+            throw 'No HTML element';
         }
 
-        return this.clean(Editor.trim(Editor.strip(Editor.decode(tmp.innerHTML), Object.getOwnPropertyNames(this.tags))));
+        const isTop = !parent.parentNode;
+        const parentCfg = isTop ? this.tags._root_ : this.tags[parent.tagName.toLowerCase()];
+
+        Array.from(parent.childNodes).forEach(node => {
+            const tag = node.nodeName.toLowerCase();
+            const cfg = node.nodeType === Node.ELEMENT_NODE && !!this.tags[tag] ? this.tags[tag] : null;
+
+            if (cfg && (parentCfg.allowed.includes(tag) || isTop && cfg.group === 'inline')) {
+                Array.from(node.attributes).forEach(item => {
+                    if (!cfg.attributes.includes(item.name)) {
+                        node.removeAttribute(item);
+                    }
+                });
+
+                if (node.hasChildNodes()) {
+                    this.walk(node);
+                }
+
+                if (!node.hasChildNodes() && !cfg.empty) {
+                    parent.removeChild(node);
+                } else if (isTop && cfg.group === 'inline') {
+                    const p = this.document.createElement('p');
+                    p.innerHTML = node.outerHTML;
+                    parent.replaceChild(p, node);
+                }
+            } else if (isTop && (node.nodeType === Node.TEXT_NODE && !!node.nodeValue.trim() || node.nodeType === Node.ELEMENT_NODE && !!node.innerText.trim())) {
+                const p = this.document.createElement('p');
+                p.innerText = node.nodeType === Node.TEXT_NODE ? node.nodeValue.trim() : node.innerText.trim();
+                parent.replaceChild(p, node);
+            } else if (node.nodeType === Node.ELEMENT_NODE && !!node.innerText.trim()) {
+                const text = this.document.createTextNode(node.innerText.trim());
+                parent.replaceChild(text, node);
+            } else if (node.nodeType !== Node.TEXT_NODE || isTop) {
+                parent.removeChild(node);
+            }
+        });
     }
 
     /**
@@ -362,22 +472,6 @@ export default class Editor {
     }
 
     /**
-     * Encode HTML
-     *
-     * @param {string} html
-     *
-     * @return {string}
-     */
-    static encode(html) {
-        return html
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
-    }
-
-    /**
      * Decode HTML
      *
      * @param {string} html
@@ -391,18 +485,6 @@ export default class Editor {
             .replace(/&gt;/g, '>')
             .replace(/&quot;/g, '"')
             .replace(/&#039;/g, "'");
-    }
-
-    /**
-     * Strip disallowed HTML elements
-     *
-     * @param {string} html
-     * @param {string[]} allowed
-     *
-     * @return {string}
-     */
-    static strip(html, allowed) {
-        return html.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, ($0, $1) => allowed.includes($1.toLowerCase()) ? $0 : '');
     }
 
     /**
