@@ -423,7 +423,7 @@ export default class Editor {
             if (cfg && (parentCfg.allowed.includes(tag) || isTop && cfg.group === 'inline')) {
                 Array.from(node.attributes).forEach(item => {
                     if (!cfg.attributes.includes(item.name)) {
-                        node.removeAttribute(item);
+                        node.removeAttribute(item.name);
                     }
                 });
 
