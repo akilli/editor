@@ -1,4 +1,5 @@
 import Command from './Command.js';
+import MediaBrowser from '../utils/MediaBrowser.js';
 import MediaUtils from '../utils/MediaUtils.js';
 
 /**
@@ -12,27 +13,7 @@ export default class MediaCommand extends Command {
         let url;
 
         if (!!this.editor.config.mediabrowser) {
-            const feat = 'alwaysRaised=yes,dependent=yes,height=' + this.editor.window.screen.height +
-                ',location=no,menubar=no,minimizable=no,modal=yes,resizable=yes,scrollbars=yes,toolbar=no,width=' +
-                this.editor.window.screen.width;
-            const win = this.editor.window.open(this.editor.config.mediabrowser, 'mediabrowser', feat);
-            let origin;
-
-            try {
-                origin = win.origin;
-            } catch (e) {
-                this.editor.window.console.log(e);
-                const a = this.editor.document.createElement('a');
-                a.href = this.editor.config.mediabrowser;
-                origin = a.origin;
-            }
-
-            this.editor.window.addEventListener('message', (ev) => {
-                if (ev.origin === origin && ev.source === win && !!ev.data.src) {
-                    this.insertElement(ev.data);
-                    win.close();
-                }
-            }, false);
+            MediaBrowser.open(this.editor.window, this.editor.config.mediabrowser, (data) => this.insertElement(data));
         } else if (url = this.editor.window.prompt('URL')) {
             this.insertElement({src: url});
         }
@@ -46,6 +27,10 @@ export default class MediaCommand extends Command {
      * @param {Object} data
      */
     insertElement(data) {
+        if (!data.src) {
+            return;
+        }
+
         MediaUtils.getTypeFromUrl(data.src)
             .then(type => {
                 if (!type) {
