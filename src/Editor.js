@@ -257,10 +257,26 @@ export default class Editor {
          * @readonly
          */
         this.toolbar = new Toolbar(this);
+    }
 
+    /**
+     * Init editor
+     */
+    init() {
+        this.initElement();
+        this.initTheme();
+        this.initCommands();
+        this.toolbar.init();
+    }
+
+    /**
+     * Init element
+     */
+    initElement() {
         let html = this.element.innerHTML;
 
-        if (element instanceof HTMLTextAreaElement) {
+        if (this.element instanceof HTMLTextAreaElement) {
+            const element = this.element;
             this.element = this.document.createElement('div');
             html = element.value;
             element.parentNode.insertBefore(this.element, element);
@@ -273,18 +289,6 @@ export default class Editor {
         this.setData(html);
         this.element.classList.add('editor');
         this.element.setAttribute('contenteditable', 'true');
-        this.execute('defaultParagraphSeparator', 'p');
-        this.execute('enableInlineTableEditing', 'false');
-        this.execute('enableObjectResizing', 'false');
-    }
-
-    /**
-     * Init editor
-     */
-    init() {
-        this.initTheme();
-        this.initCommands();
-        this.toolbar.init();
     }
 
     /**
@@ -310,6 +314,9 @@ export default class Editor {
      * Init commands
      */
     initCommands() {
+        this.execute('defaultParagraphSeparator', 'p');
+        this.execute('enableInlineTableEditing', 'false');
+        this.execute('enableObjectResizing', 'false');
         this.commands.set('undo', new UndoCommand(this));
         this.commands.set('redo', new RedoCommand(this));
         this.commands.set('bold', new BoldCommand(this));
