@@ -7,29 +7,6 @@ export default class DetailsCommand extends Command {
     /**
      * @inheritDoc
      */
-    constructor(editor) {
-        super(editor);
-        this.editor.register(ev => {
-            ev.forEach(item => {
-                item.addedNodes.forEach(node => {
-                    let summary;
-
-                    if (node instanceof HTMLDetailsElement && !!(summary = node.querySelector('summary'))) {
-                        summary.addEventListener('keyup', e => {
-                            if (e.keyCode === 32) {
-                                e.preventDefault();
-                                this.editor.execute('inserttext', ' ');
-                            }
-                        });
-                    }
-                });
-            });
-        }, {childList: true});
-    }
-
-    /**
-     * @inheritDoc
-     */
     execute() {
         const details = this.editor.document.createElement('details');
         const summary = this.editor.document.createElement('summary');
@@ -38,6 +15,12 @@ export default class DetailsCommand extends Command {
         details.appendChild(summary);
         details.appendChild(p);
         summary.innerHTML = 'Summary';
+        summary.addEventListener('keyup', ev => {
+            if (ev.key === ' ') {
+                ev.preventDefault();
+                this.editor.execute('inserttext', ' ');
+            }
+        });
         p.innerHTML = 'Content';
 
         this.editor.insert(details);
