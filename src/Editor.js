@@ -437,6 +437,7 @@ export default class Editor {
 
         const isTop = !parent.parentNode;
         const parentCfg = isTop ? this.tags._root_ : this.tags[parent.tagName.toLowerCase()];
+        let br;
 
         Array.from(parent.childNodes).forEach(node => {
             let tag = node.nodeName.toLowerCase();
@@ -486,6 +487,10 @@ export default class Editor {
                 parent.removeChild(node);
             }
         });
+
+        while ((br = parent.firstChild) && br instanceof HTMLBRElement || (br = parent.lastChild) && br instanceof HTMLBRElement) {
+            parent.removeChild(br);
+        }
     }
 
     /**
