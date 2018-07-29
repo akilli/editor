@@ -8,6 +8,6 @@ export default class UndoCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.document.execCommand('undo');
+        this.editor.execute('undo');
     }
 }

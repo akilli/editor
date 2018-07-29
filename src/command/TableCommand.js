@@ -29,6 +29,6 @@ export default class TableCommand extends Command {
             }
         });
 
-        this.editor.document.execCommand('inserthtml', false, figure.outerHTML);
+        this.editor.execute('inserthtml', figure.outerHTML);
     }
 }

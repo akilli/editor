@@ -8,6 +8,6 @@ export default class OrderedListCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.document.execCommand('insertorderedlist');
+        this.editor.execute('insertorderedlist');
     }
 }

@@ -8,6 +8,6 @@ export default class RedoCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.document.execCommand('redo');
+        this.editor.execute('redo');
     }
 }

@@ -17,6 +17,6 @@ export default class QuoteCommand extends Command {
         quote.innerHTML = '<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat</p>';
         caption.innerHTML = 'Lorem ipsum';
 
-        this.editor.document.execCommand('inserthtml', false, figure.outerHTML);
+        this.editor.execute('inserthtml', figure.outerHTML);
     }
 }

@@ -8,6 +8,6 @@ export default class BoldCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.document.execCommand('bold');
+        this.editor.execute('bold');
     }
 }

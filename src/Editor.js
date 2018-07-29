@@ -273,9 +273,9 @@ export default class Editor {
         this.setData(html);
         this.element.classList.add('editor');
         this.element.setAttribute('contenteditable', 'true');
-        this.document.execCommand('defaultParagraphSeparator', false, 'p');
-        this.document.execCommand('enableInlineTableEditing', false, 'false');
-        this.document.execCommand('enableObjectResizing', false, 'false');
+        this.execute('defaultParagraphSeparator', 'p');
+        this.execute('enableInlineTableEditing', 'false');
+        this.execute('enableObjectResizing', 'false');
     }
 
     /**
@@ -345,6 +345,16 @@ export default class Editor {
      */
     setData(html) {
         this.element.innerHTML = this.filter(html);
+    }
+
+    /**
+     * Execute command
+     *
+     * @param {string} command
+     * @param {?string} value
+     */
+    execute(command, value = null) {
+        this.document.execCommand(command, false, value);
     }
 
     /**

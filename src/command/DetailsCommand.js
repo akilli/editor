@@ -19,7 +19,7 @@ export default class DetailsCommand extends Command {
                         summary.addEventListener('keyup', e => {
                             if (e.keyCode === 32) {
                                 e.preventDefault();
-                                this.editor.document.execCommand('inserttext', false, ' ');
+                                this.editor.execute('inserttext', ' ');
                             }
                         });
                     }
@@ -42,6 +42,6 @@ export default class DetailsCommand extends Command {
         summary.innerHTML = 'Summary';
         content.innerHTML = 'Content';
 
-        this.editor.document.execCommand('inserthtml', false, details.outerHTML);
+        this.editor.execute('inserthtml', details.outerHTML);
     }
 }

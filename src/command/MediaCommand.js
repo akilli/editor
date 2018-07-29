@@ -65,7 +65,7 @@ export default class MediaCommand extends Command {
                     figure.appendChild(caption);
                 }
 
-                this.editor.document.execCommand('inserthtml', false, figure.outerHTML);
+                this.editor.execute('inserthtml', figure.outerHTML);
             });
     }
 }

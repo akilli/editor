@@ -8,6 +8,6 @@ export default class UnlinkCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.document.execCommand('unlink');
+        this.editor.execute('unlink');
     }
 }
