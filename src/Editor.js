@@ -302,7 +302,7 @@ export default class Editor {
             });
         }
 
-        this.setData(html);
+        this.element.innerHTML = this.filterHtml(html);
         this.element.classList.add('editor');
         this.register(ev => {
             ev.forEach(item => {
@@ -367,15 +367,6 @@ export default class Editor {
         this.element.innerHTML = this.filterHtml(this.element.innerHTML);
 
         return this.element.innerHTML;
-    }
-
-    /**
-     * Sets editor element's innerHTML
-     *
-     * @param {string} html
-     */
-    setData(html) {
-        this.element.innerHTML = this.filterHtml(html);
     }
 
     /**
