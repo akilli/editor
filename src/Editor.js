@@ -233,11 +233,11 @@ export default class Editor {
         };
 
         /**
-         * Element mapping
+         * Element converters
          *
          * @type {Object}
          */
-        this.mapping = {
+        this.converters = {
             abbr: null,
             cite: null,
             code: null,
@@ -442,9 +442,9 @@ export default class Editor {
         Array.from(parent.childNodes).forEach(node => {
             let tag = node.nodeName.toLowerCase();
 
-            if (node instanceof HTMLElement && this.mapping.hasOwnProperty(tag)) {
+            if (node instanceof HTMLElement && this.converters.hasOwnProperty(tag)) {
                 const oldNode = node;
-                const map = this.mapping[tag];
+                const map = this.converters[tag];
 
                 if (!!map && (node = this.document.createElement(map)) && node instanceof HTMLElement) {
                     node.innerHTML = oldNode.innerHTML;
