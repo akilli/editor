@@ -379,20 +379,19 @@ export default class Editor {
     }
 
     /**
+     * Insert an element
      *
      * @param {HTMLElement} el
-     * @param {boolean} first
+     * @param {?HTMLElement} parent
      */
-    insert(el, first = false) {
-        if (!(el instanceof HTMLElement)) {
-            throw 'No HTML element';
+    insert(el, parent = null) {
+        if (!(el instanceof HTMLElement) || !!parent && !(parent instanceof HTMLElement)) {
+            throw 'Invalid HTML element';
+        } else if (!parent) {
+            parent = this.element;
         }
 
-        if (first && !!this.element.firstElementChild) {
-            this.element.insertBefore(el, this.element.firstElementChild);
-        } else {
-            this.element.appendChild(el);
-        }
+        parent.appendChild(el);
     }
 
     /**
@@ -466,19 +465,6 @@ export default class Editor {
     filter(html) {
         const tmp = this.document.createElement('div');
         tmp.innerHTML = Editor.decode(html);
-        tmp.querySelectorAll(Object.getOwnPropertyNames(this.mapping).join(', ')).forEach(item => {
-            const name = this.mapping[item.tagName.toLowerCase()];
-            let newNode;
-
-            if (name) {
-                newNode = this.document.createElement(name);
-                newNode.innerHTML = item.innerHTML;
-            } else {
-                newNode = this.document.createTextNode(item.innerText.trim());
-            }
-
-            item.parentNode.replaceChild(newNode, item);
-        });
         this.walk(tmp);
 
         return Editor.trim(tmp.innerHTML);
@@ -498,8 +484,23 @@ export default class Editor {
         const parentCfg = isTop ? this.tags._root_ : this.tags[parent.tagName.toLowerCase()];
 
         Array.from(parent.childNodes).forEach(node => {
-            const tag = node.nodeName.toLowerCase();
-            const cfg = node.nodeType === Node.ELEMENT_NODE && !!this.tags[tag] ? this.tags[tag] : null;
+            let tag = node.nodeName.toLowerCase();
+
+            if (node instanceof HTMLElement && this.mapping.hasOwnProperty(tag)) {
+                const oldNode = node;
+                const map = this.mapping[tag];
+
+                if (!!map && (node = this.document.createElement(map)) && node instanceof HTMLElement) {
+                    node.innerHTML = oldNode.innerHTML;
+                } else {
+                    node = this.document.createTextNode(oldNode.innerText.trim());
+                }
+
+                parent.replaceChild(node, oldNode);
+                tag = node.nodeName.toLowerCase();
+            }
+
+            const cfg = node instanceof HTMLElement && !!this.tags[tag] ? this.tags[tag] : null;
 
             if (cfg && (parentCfg.allowed.includes(tag) || isTop && cfg.group === 'inline')) {
                 Array.from(node.attributes).forEach(item => {
