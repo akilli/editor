@@ -359,40 +359,18 @@ export default class Editor {
     }
 
     /**
-     * Returns editor element's innerHTML
+     * Short-cut method to register a mutation observer
      *
-     * @return {string}
+     * @param {function} callback
+     * @param {Object} cfg
      */
-    getData() {
-        this.element.innerHTML = this.filterHtml(this.element.innerHTML);
-
-        return this.element.innerHTML;
-    }
-
-    /**
-     * Insert an element
-     *
-     * @param {HTMLElement} el
-     * @param {?HTMLElement} parent
-     */
-    insert(el, parent = null) {
-        if (!(el instanceof HTMLElement) || !!parent && !(parent instanceof HTMLElement)) {
-            throw 'Invalid HTML element';
-        } else if (!parent) {
-            parent = this.element;
+    register(callback, cfg) {
+        if (typeof callback !== 'function' || !cfg) {
+            throw 'Invalid observer';
         }
 
-        parent.appendChild(el);
-    }
-
-    /**
-     * Execute command
-     *
-     * @param {string} command
-     * @param {?string} value
-     */
-    execute(command, value = null) {
-        this.document.execCommand(command, false, value);
+        const mutation = new MutationObserver(callback);
+        mutation.observe(this.element, cfg);
     }
 
     /**
@@ -432,18 +410,40 @@ export default class Editor {
     }
 
     /**
-     * Short-cut method to register a mutation observer
+     * Returns editor element's innerHTML
      *
-     * @param {function} callback
-     * @param {Object} cfg
+     * @return {string}
      */
-    register(callback, cfg) {
-        if (typeof callback !== 'function' || !cfg) {
-            throw 'Invalid observer';
+    getData() {
+        this.element.innerHTML = this.filterHtml(this.element.innerHTML);
+
+        return this.element.innerHTML;
+    }
+
+    /**
+     * Insert an element
+     *
+     * @param {HTMLElement} el
+     * @param {?HTMLElement} parent
+     */
+    insert(el, parent = null) {
+        if (!(el instanceof HTMLElement) || !!parent && !(parent instanceof HTMLElement)) {
+            throw 'Invalid HTML element';
+        } else if (!parent) {
+            parent = this.element;
         }
 
-        const mutation = new MutationObserver(callback);
-        mutation.observe(this.element, cfg);
+        parent.appendChild(el);
+    }
+
+    /**
+     * Execute command
+     *
+     * @param {string} command
+     * @param {?string} value
+     */
+    execute(command, value = null) {
+        this.document.execCommand(command, false, value);
     }
 
     /**
