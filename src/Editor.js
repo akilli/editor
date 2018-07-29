@@ -553,23 +553,6 @@ export default class Editor {
     }
 
     /**
-     * Indicates if any HTML element is part of current selection
-     *
-     * @return {boolean}
-     */
-    isHtmlSelected() {
-        const sel = this.window.getSelection();
-
-        for (let i = 0; i < sel.rangeCount; ++i) {
-            if (!!sel.getRangeAt(i).cloneContents().firstElementChild) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
      * Converts URL
      *
      * @param {string} url
