@@ -394,6 +394,21 @@ export default class Editor {
     }
 
     /**
+     * Short-cut method to register a mutation observer
+     *
+     * @param {function} callback
+     * @param {Object} cfg
+     */
+    register(callback, cfg) {
+        if (typeof callback !== 'function' || !cfg) {
+            throw 'Invalid observer';
+        }
+
+        const mutation = new MutationObserver(callback);
+        mutation.observe(this.element, cfg);
+    }
+
+    /**
      * Filter HTML
      *
      * @param {string} html

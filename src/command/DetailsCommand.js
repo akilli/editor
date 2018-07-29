@@ -9,8 +9,7 @@ export default class DetailsCommand extends Command {
      */
     constructor(editor) {
         super(editor);
-
-        const mutation = new MutationObserver(ev => {
+        this.editor.register(ev => {
             ev.forEach(item => {
                 item.addedNodes.forEach(node => {
                     let summary;
@@ -25,8 +24,7 @@ export default class DetailsCommand extends Command {
                     }
                 });
             });
-        });
-        mutation.observe(this.editor.element, {childList: true});
+        }, {childList: true});
     }
 
     /**
