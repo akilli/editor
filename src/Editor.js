@@ -410,7 +410,7 @@ export default class Editor {
         });
         this.walk(tmp);
 
-        return this.clean(Editor.trim(tmp.innerHTML));
+        return Editor.trim(tmp.innerHTML);
     }
 
     /**
@@ -441,7 +441,7 @@ export default class Editor {
                     this.walk(node);
                 }
 
-                if (!node.hasChildNodes() && !cfg.empty) {
+                if (!node.hasChildNodes() && !cfg.empty || cfg.group === 'break' && (node === parent.firstElementChild || node === parent.lastElementChild)) {
                     parent.removeChild(node);
                 } else if (isTop && cfg.group === 'inline') {
                     const p = this.document.createElement('p');
@@ -459,26 +459,6 @@ export default class Editor {
                 parent.removeChild(node);
             }
         });
-    }
-
-    /**
-     * Clean HTML
-     *
-     * @param {string} html
-     *
-     * @return {string}
-     */
-    clean(html) {
-        const tmp = this.document.createElement('div');
-
-        tmp.innerHTML = html;
-        tmp.querySelectorAll('br:first-child').forEach(item => item.parentNode.removeChild(item));
-        tmp.querySelectorAll('br:last-child').forEach(item => item.parentNode.removeChild(item));
-        tmp.querySelectorAll(':scope > br').forEach(item => item.parentNode.removeChild(item));
-        tmp.querySelectorAll('p:empty').forEach(item => item.parentNode.removeChild(item));
-        tmp.querySelectorAll('[style]').forEach(item => item.removeAttribute('style'));
-
-        return tmp.innerHTML;
     }
 
     /**
