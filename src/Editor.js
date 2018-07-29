@@ -78,7 +78,7 @@ export default class Editor {
                 group: 'inline',
                 empty: false,
                 attributes: ['href'],
-                allowed: ['b', 'i'],
+                allowed: [],
             },
             audio: {
                 group: 'media',
@@ -90,7 +90,7 @@ export default class Editor {
                 group: 'inline',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'i'],
+                allowed: [],
             },
             blockquote: {
                 group: 'block',
@@ -138,7 +138,7 @@ export default class Editor {
                 group: 'inline',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'b'],
+                allowed: [],
             },
             iframe: {
                 group: 'media',
