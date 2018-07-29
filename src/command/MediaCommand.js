@@ -31,41 +31,31 @@ export default class MediaCommand extends Command {
             return;
         }
 
+        data.src = this.editor.url(data.src);
         MediaUtils.getTypeFromUrl(data.src)
             .then(type => {
-                if (!type) {
+                let cfg;
+
+                if (!type || !(cfg = this.editor.tags[type.element])) {
                     return;
                 }
 
-                const figure = this.editor.document.createElement('figure');
-                const media = this.editor.document.createElement(type.element);
+                let html = '<' + type.element;
 
-                figure.classList.add('media');
-                figure.classList.add(type.id);
-                figure.appendChild(media);
-                media.setAttribute('src', this.editor.url(data.src));
-
-                ['height', 'width'].forEach(item => {
-                    if (data[item]) {
-                        media.setAttribute(item, data[item]);
+                cfg.attributes.forEach(item => {
+                    if (['allowfullscreen', 'alt', 'controls'].includes(item)) {
+                        html += ' ' + item + '="' + item + '"';
+                    } else if (data[item]) {
+                        html += ' ' + item + '="' + data[item] + '"';
                     }
                 });
-
-                if (type.id === 'image') {
-                    media.setAttribute('alt', data.alt || '');
-                } else if (['audio', 'video'].includes(type.id)) {
-                    media.setAttribute('controls', 'controls');
-                } else if (type.id === 'iframe') {
-                    media.setAttribute('allowfullscreen', 'allowfullscreen');
-                }
+                html += cfg.empty ? ' />' : '></' + type.element + '>';
 
                 if (!!data.caption) {
-                    const caption = this.editor.document.createElement('figcaption');
-                    caption.innerHTML = data.caption;
-                    figure.appendChild(caption);
+                    html += '<figcaption>' + data.caption + '</figcaption>';
                 }
 
-                this.editor.execute('inserthtml', figure.outerHTML);
+                this.editor.execute('inserthtml', '<figure class="media ' + type.id + '">' + html + '</figure>');
             });
     }
 }
