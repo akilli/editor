@@ -238,9 +238,25 @@ export default class Editor {
          * @type {Object}
          */
         this.mapping = {
+            abbr: null,
+            cite: null,
+            code: null,
+            data: null,
+            dfn: null,
             div: 'p',
             em: 'i',
-            strong: 'b'
+            kbd: null,
+            mark: null,
+            q: null,
+            s: null,
+            small: null,
+            span: null,
+            strong: 'b',
+            sub: null,
+            sup: null,
+            time: null,
+            u: null,
+            var: null,
         };
 
         /**
@@ -426,9 +442,17 @@ export default class Editor {
         const tmp = this.document.createElement('div');
         tmp.innerHTML = Editor.decode(html);
         tmp.querySelectorAll(Object.getOwnPropertyNames(this.mapping).join(', ')).forEach(item => {
-            const newEl = this.document.createElement(this.mapping[item.tagName.toLowerCase()]);
-            newEl.innerHTML = item.innerHTML;
-            item.parentNode.replaceChild(newEl, item);
+            const name = this.mapping[item.tagName.toLowerCase()];
+            let newNode;
+
+            if (name) {
+                newNode = this.document.createElement(name);
+                newNode.innerHTML = item.innerHTML;
+            } else {
+                newNode = this.document.createTextNode(item.innerText.trim());
+            }
+
+            item.parentNode.replaceChild(newNode, item);
         });
         this.walk(tmp);
 
@@ -470,11 +494,11 @@ export default class Editor {
                     p.innerHTML = node.outerHTML;
                     parent.replaceChild(p, node);
                 }
-            } else if (isTop && (node.nodeType === Node.TEXT_NODE && !!node.nodeValue.trim() || node.nodeType === Node.ELEMENT_NODE && !!node.innerText.trim())) {
+            } else if (isTop && (node.nodeType === Node.TEXT_NODE && !!node.nodeValue.trim() || cfg && !!node.innerText.trim())) {
                 const p = this.document.createElement('p');
                 p.innerText = node.nodeType === Node.TEXT_NODE ? node.nodeValue.trim() : node.innerText.trim();
                 parent.replaceChild(p, node);
-            } else if (node.nodeType === Node.ELEMENT_NODE && !!node.innerText.trim()) {
+            } else if (cfg && !!node.innerText.trim()) {
                 const text = this.document.createTextNode(node.innerText.trim());
                 parent.replaceChild(text, node);
             } else if (node.nodeType !== Node.TEXT_NODE || isTop) {
