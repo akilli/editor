@@ -29,3 +29,20 @@
     margin-right: 0.5rem;
     cursor: pointer;
 }
+
+/**
+ * Table
+ */
+.editor td,
+.editor th {
+    height: 1.5rem;
+}
+
+.editor h2,
+.editor h3,
+.editor li,
+.editor figcaption,
+.editor p,
+.editor summary {
+    min-height: 1.5rem;
+}
