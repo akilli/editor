@@ -304,7 +304,15 @@ export default class Editor {
 
         this.setData(html);
         this.element.classList.add('editor');
-        this.element.setAttribute('contenteditable', 'true');
+        this.register(ev => {
+            ev.forEach(item => {
+                item.addedNodes.forEach(node => {
+                    if (node instanceof HTMLElement && node.parentNode === this.element && this.tags._root_.allowed.includes(node.tagName.toLowerCase())) {
+                        node.setAttribute('contenteditable', 'true');
+                    }
+                });
+            });
+        }, {childList: true});
     }
 
     /**
