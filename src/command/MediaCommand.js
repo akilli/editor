@@ -36,7 +36,7 @@ export default class MediaCommand extends Command {
             .then(type => {
                 let cfg;
 
-                if (!type || !(cfg = this.editor.tags[type.element])) {
+                if (!type || !(cfg = this.editor.getTag(type.element))) {
                     return;
                 }
 

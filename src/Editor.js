@@ -238,25 +238,25 @@ export default class Editor {
          * @type {Object}
          */
         this.converters = {
-            abbr: null,
-            cite: null,
-            code: null,
-            data: null,
-            dfn: null,
+            abbr: '_text_',
+            cite: '_text_',
+            code: '_text_',
+            data: '_text_',
+            dfn: '_text_',
             div: 'p',
             em: 'i',
-            kbd: null,
-            mark: null,
-            q: null,
-            s: null,
-            small: null,
-            span: null,
+            kbd: '_text_',
+            mark: '_text_',
+            q: '_text_',
+            s: '_text_',
+            small: '_text_',
+            span: '_text_',
             strong: 'b',
-            sub: null,
-            sup: null,
-            time: null,
-            u: null,
-            var: null,
+            sub: '_text_',
+            sup: '_text_',
+            time: '_text_',
+            u: '_text_',
+            var: '_text_',
         };
 
         /**
@@ -307,7 +307,7 @@ export default class Editor {
         this.register(ev => {
             ev.forEach(item => {
                 item.addedNodes.forEach(node => {
-                    if (node instanceof HTMLElement && node.parentNode === this.element && this.tags._root_.allowed.includes(node.tagName.toLowerCase())) {
+                    if (node instanceof HTMLElement && node.parentNode === this.element && this.allowed(node.tagName, '_root_')) {
                         node.setAttribute('contenteditable', 'true');
                     }
                 });
@@ -436,29 +436,37 @@ export default class Editor {
         }
 
         const isTop = !parent.parentNode;
-        const parentCfg = isTop ? this.tags._root_ : this.tags[parent.tagName.toLowerCase()];
+        const parentTag = isTop ? '_root_' : parent.tagName;
         let br;
 
         Array.from(parent.childNodes).forEach(node => {
-            let tag = node.nodeName.toLowerCase();
+            let tag = null;
+            let conv = null;
+            let cfg = null;
 
-            if (node instanceof HTMLElement && this.converters.hasOwnProperty(tag)) {
-                const oldNode = node;
-                const map = this.converters[tag];
+            if (node instanceof HTMLElement) {
+                tag = node.tagName;
 
-                if (!!map && (node = this.document.createElement(map)) && node instanceof HTMLElement) {
-                    node.innerHTML = oldNode.innerHTML;
-                } else {
-                    node = this.document.createTextNode(oldNode.innerText.trim());
+                if (conv = this.getConverter(tag)) {
+                    const oldNode = node;
+
+                    if (conv !== '_text_' && (node = this.document.createElement(conv)) && node instanceof HTMLElement) {
+                        node.innerHTML = oldNode.innerHTML;
+                        tag = node.tagName;
+                    } else {
+                        node = this.document.createTextNode(oldNode.innerText.trim());
+                        tag = null;
+                    }
+
+                    parent.replaceChild(node, oldNode);
                 }
 
-                parent.replaceChild(node, oldNode);
-                tag = node.nodeName.toLowerCase();
+                cfg = this.getTag(tag);
             }
 
-            const cfg = node instanceof HTMLElement && !!this.tags[tag] ? this.tags[tag] : null;
+            const isText = node.nodeType === Node.TEXT_NODE;
 
-            if (cfg && (parentCfg.allowed.includes(tag) || isTop && cfg.group === 'inline')) {
+            if (cfg && (this.allowed(tag, parentTag) || isTop && cfg.group === 'inline')) {
                 Array.from(node.attributes).forEach(item => {
                     if (!cfg.attributes.includes(item.name)) {
                         node.removeAttribute(item.name);
@@ -476,14 +484,14 @@ export default class Editor {
                     p.innerHTML = node.outerHTML;
                     parent.replaceChild(p, node);
                 }
-            } else if (isTop && (node.nodeType === Node.TEXT_NODE && !!node.nodeValue.trim() || cfg && !!node.innerText.trim())) {
+            } else if (isTop && (isText && !!node.nodeValue.trim() || cfg && !!node.innerText.trim())) {
                 const p = this.document.createElement('p');
-                p.innerText = node.nodeType === Node.TEXT_NODE ? node.nodeValue.trim() : node.innerText.trim();
+                p.innerText = isText ? node.nodeValue.trim() : node.innerText.trim();
                 parent.replaceChild(p, node);
             } else if (cfg && !!node.innerText.trim()) {
                 const text = this.document.createTextNode(node.innerText.trim());
                 parent.replaceChild(text, node);
-            } else if (node.nodeType !== Node.TEXT_NODE || isTop) {
+            } else if (!isText || isTop) {
                 parent.removeChild(node);
             }
         });
@@ -505,6 +513,43 @@ export default class Editor {
         textarea.innerHTML = html;
 
         return textarea.value;
+    }
+
+    /**
+     * Returns tag configuration for given element
+     *
+     * @param {string} el
+     *
+     * @return {?Object}
+     */
+    getTag(el) {
+        return this.tags[el.toLowerCase()] || null;
+    }
+
+    /**
+     * Returns converter configuration for given element
+     *
+     * @param {string} el
+     *
+     * @return {?string}
+     */
+    getConverter(el) {
+        return this.converters[el.toLowerCase()] || null;
+    }
+
+    /**
+     * Checks if given element is allowed inside given parent element
+     *
+     * @param {string} el
+     * @param {string} parent
+     *
+     * @return {boolean}
+     */
+    allowed(el, parent) {
+        el = el.toLowerCase();
+        parent = parent.toLowerCase();
+
+        return !!this.tags[parent] && this.tags[parent].allowed.includes(el);
     }
 
     /**
