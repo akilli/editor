@@ -45,9 +45,11 @@ export default class Toolbar {
             img.setAttribute('alt', item[0]);
             img.setAttribute('title', item[0]);
             img.addEventListener('click', () => {
-                if (this.editor.window.getSelection().containsNode(this.editor.element, true)) {
-                    item[1].execute();
+                if (!this.editor.window.getSelection().containsNode(this.editor.element, true)) {
+                    this.editor.element.focus();
                 }
+
+                item[1].execute();
             });
             this.element.appendChild(img);
         }

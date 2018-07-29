@@ -8,6 +8,8 @@ export default class SubheadingCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.execute('formatblock', '<h3>');
+        const h = document.createElement('h3');
+        h.innerText = 'Subheading';
+        this.editor.insert(h);
     }
 }

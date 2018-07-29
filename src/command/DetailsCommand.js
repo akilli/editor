@@ -40,6 +40,6 @@ export default class DetailsCommand extends Command {
         summary.innerHTML = 'Summary';
         p.innerHTML = 'Content';
 
-        this.editor.execute('inserthtml', details.outerHTML);
+        this.editor.insert(details);
     }
 }

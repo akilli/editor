@@ -28,6 +28,6 @@ export default class TableCommand extends Command {
             }
         });
 
-        this.editor.execute('inserthtml', figure.outerHTML);
+        this.editor.insert(figure);
     }
 }

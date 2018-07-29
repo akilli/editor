@@ -156,7 +156,7 @@ export default class Editor {
                 group: 'block',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'b', 'i'],
+                allowed: ['a', 'b', 'br', 'i'],
             },
             ol: {
                 group: 'block',
@@ -192,7 +192,7 @@ export default class Editor {
                 group: 'block',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'b', 'i'],
+                allowed: ['a', 'b', 'br', 'i'],
             },
             tfoot: {
                 group: 'block',
@@ -204,7 +204,7 @@ export default class Editor {
                 group: 'block',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'b', 'i'],
+                allowed: ['a', 'b', 'br', 'i'],
             },
             thead: {
                 group: 'block',
@@ -368,6 +368,23 @@ export default class Editor {
      */
     setData(html) {
         this.element.innerHTML = this.filter(html);
+    }
+
+    /**
+     *
+     * @param {HTMLElement} el
+     * @param {boolean} first
+     */
+    insert(el, first = false) {
+        if (!(el instanceof HTMLElement)) {
+            throw 'No HTML element';
+        }
+
+        if (first && !!this.element.firstElementChild) {
+            this.element.insertBefore(el, this.element.firstElementChild);
+        } else {
+            this.element.appendChild(el);
+        }
     }
 
     /**

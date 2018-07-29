@@ -8,6 +8,8 @@ export default class HeadingCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.execute('formatblock', '<h2>');
+        const h = document.createElement('h2');
+        h.innerText = 'Heading';
+        this.editor.insert(h);
     }
 }

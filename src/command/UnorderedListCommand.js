@@ -8,6 +8,10 @@ export default class UnorderedListCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.execute('insertunorderedlist');
+        const list = document.createElement('ul');
+        const item = document.createElement('li');
+        list.appendChild(item);
+        item.innerText = 'List Item';
+        this.editor.insert(list);
     }
 }

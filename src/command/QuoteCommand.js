@@ -19,6 +19,6 @@ export default class QuoteCommand extends Command {
         p.innerText = 'Blockquote';
         caption.innerHTML = 'Caption';
 
-        this.editor.execute('inserthtml', figure.outerHTML);
+        this.editor.insert(figure);
     }
 }
