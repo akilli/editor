@@ -364,7 +364,7 @@ export default class Editor {
      * @return {string}
      */
     getData() {
-        this.element.innerHTML = this.filter(this.element.innerHTML);
+        this.element.innerHTML = this.filterHtml(this.element.innerHTML);
 
         return this.element.innerHTML;
     }
@@ -375,7 +375,7 @@ export default class Editor {
      * @param {string} html
      */
     setData(html) {
-        this.element.innerHTML = this.filter(html);
+        this.element.innerHTML = this.filterHtml(html);
     }
 
     /**
@@ -456,26 +456,26 @@ export default class Editor {
     }
 
     /**
-     * Filter HTML
+     * Filters HTML
      *
      * @param {string} html
      *
      * @return {string}
      */
-    filter(html) {
+    filterHtml(html) {
         const tmp = this.document.createElement('div');
         tmp.innerHTML = Editor.decode(html);
-        this.walk(tmp);
+        this.filterElement(tmp);
 
         return Editor.trim(tmp.innerHTML);
     }
 
     /**
-     * Tree traversal
+     * Filters element
      *
      * @param {HTMLElement} parent
      */
-    walk(parent) {
+    filterElement(parent) {
         if (!(parent instanceof HTMLElement)) {
             throw 'No HTML element';
         }
@@ -510,7 +510,7 @@ export default class Editor {
                 });
 
                 if (node.hasChildNodes()) {
-                    this.walk(node);
+                    this.filterElement(node);
                 }
 
                 if (!node.hasChildNodes() && !cfg.empty || cfg.group === 'break' && (node === parent.firstElementChild || node === parent.lastElementChild)) {
