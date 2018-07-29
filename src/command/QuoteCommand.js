@@ -8,7 +8,17 @@ export default class QuoteCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        const html = '<figure class="quote"><blockquote><p>Quote</p></blockquote><figcaption>Caption</figcaption></figure>';
-        this.editor.execute('inserthtml', html);
+        const figure = this.editor.document.createElement('figure');
+        const quote = this.editor.document.createElement('blockquote');
+        const p = this.editor.document.createElement('p');
+        const caption = this.editor.document.createElement('figcaption');
+
+        figure.appendChild(quote);
+        figure.appendChild(caption);
+        quote.appendChild(p);
+        p.innerText = 'Blockquote';
+        caption.innerHTML = 'Caption';
+
+        this.editor.execute('inserthtml', figure.outerHTML);
     }
 }

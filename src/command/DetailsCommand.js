@@ -31,6 +31,15 @@ export default class DetailsCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.execute('inserthtml', '<details><summary>Summary</summary><p>Content</p></details>');
+        const details = this.editor.document.createElement('details');
+        const summary = this.editor.document.createElement('summary');
+        const p = this.editor.document.createElement('p');
+
+        details.appendChild(summary);
+        details.appendChild(p);
+        summary.innerHTML = 'Summary';
+        p.innerHTML = 'Content';
+
+        this.editor.execute('inserthtml', details.outerHTML);
     }
 }

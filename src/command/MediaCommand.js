@@ -40,22 +40,28 @@ export default class MediaCommand extends Command {
                     return;
                 }
 
-                let html = '<' + type.element;
+                const figure = this.editor.document.createElement('figure');
+                const media = this.editor.document.createElement(type.element);
+
+                figure.classList.add('media');
+                figure.classList.add(type.id);
+                figure.appendChild(media);
 
                 cfg.attributes.forEach(item => {
                     if (['allowfullscreen', 'alt', 'controls'].includes(item)) {
-                        html += ' ' + item + '="' + item + '"';
+                        media.setAttribute(item, item);
                     } else if (data[item]) {
-                        html += ' ' + item + '="' + data[item] + '"';
+                        media.setAttribute(item, data[item]);
                     }
                 });
-                html += cfg.empty ? ' />' : '></' + type.element + '>';
 
                 if (!!data.caption) {
-                    html += '<figcaption>' + data.caption + '</figcaption>';
+                    const caption = this.editor.document.createElement('figcaption');
+                    caption.innerHTML = data.caption;
+                    figure.appendChild(caption);
                 }
 
-                this.editor.execute('inserthtml', '<figure class="media ' + type.id + '">' + html + '</figure>');
+                this.editor.execute('inserthtml', figure.outerHTML);
             });
     }
 }
