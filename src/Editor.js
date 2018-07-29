@@ -374,42 +374,6 @@ export default class Editor {
     }
 
     /**
-     * Converts URL
-     *
-     * @param {string} url
-     *
-     * @return {string}
-     */
-    url(url) {
-        const a = this.document.createElement('a');
-        a.href = url;
-
-        return a.origin === this.window.origin ? a.pathname : a.href;
-    }
-
-    /**
-     * Returns theme URL
-     *
-     * @param {string} path
-     *
-     * @return {string}
-     */
-    theme(path) {
-        return this.config.path + '/theme/' + path;
-    }
-
-    /**
-     * Returns icon URL
-     *
-     * @param {string} name
-     *
-     * @return {string}
-     */
-    icon(name) {
-        return this.theme('icon/' + name + '.svg');
-    }
-
-    /**
      * Returns editor element's innerHTML
      *
      * @return {string}
@@ -455,10 +419,10 @@ export default class Editor {
      */
     filterHtml(html) {
         const tmp = this.document.createElement('div');
-        tmp.innerHTML = Editor.decode(html);
+        tmp.innerHTML = this.decode(html);
         this.filterElement(tmp);
 
-        return Editor.trim(tmp.innerHTML);
+        return tmp.innerHTML;
     }
 
     /**
@@ -504,7 +468,7 @@ export default class Editor {
                     this.filterElement(node);
                 }
 
-                if (!node.hasChildNodes() && !cfg.empty || cfg.group === 'break' && (node === parent.firstElementChild || node === parent.lastElementChild)) {
+                if (!node.hasChildNodes() && !cfg.empty) {
                     parent.removeChild(node);
                 } else if (isTop && cfg.group === 'inline') {
                     const p = this.document.createElement('p');
@@ -531,30 +495,47 @@ export default class Editor {
      *
      * @return {string}
      */
-    static decode(html) {
-        return html
-            .replace(/&amp;/g, '&')
-            .replace(/&lt;/g, '<')
-            .replace(/&gt;/g, '>')
-            .replace(/&quot;/g, '"')
-            .replace(/&#039;/g, "'");
+    decode(html) {
+        const textarea = this.document.createElement('textarea');
+        textarea.innerHTML = html;
+
+        return textarea.value;
     }
 
     /**
-     * Trim HTML
+     * Converts URL
      *
-     * @param {string} html
+     * @param {string} url
      *
      * @return {string}
      */
-    static trim(html) {
-        return html
-            .trim()
-            .replace(/&nbsp;/g, ' ')
-            .replace(/\s+/g, ' ')
-            .replace(/^(<br\s*\/?>)+/gi, ' ')
-            .replace(/(<br\s*\/?>)+$/gi, ' ')
-            .trim();
+    url(url) {
+        const a = this.document.createElement('a');
+        a.href = url;
+
+        return a.origin === this.window.origin ? a.pathname : a.href;
+    }
+
+    /**
+     * Returns theme URL
+     *
+     * @param {string} path
+     *
+     * @return {string}
+     */
+    theme(path) {
+        return this.config.path + '/theme/' + path;
+    }
+
+    /**
+     * Returns icon URL
+     *
+     * @param {string} name
+     *
+     * @return {string}
+     */
+    icon(name) {
+        return this.theme('icon/' + name + '.svg');
     }
 
     /**
