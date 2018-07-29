@@ -15,7 +15,7 @@ export default class DetailsCommand extends Command {
                 item.addedNodes.forEach(node => {
                     let summary;
 
-                    if (node.tagName.toLowerCase() === 'details' && !!(summary = node.querySelector('summary'))) {
+                    if (node instanceof HTMLDetailsElement && !!(summary = node.querySelector('summary'))) {
                         summary.addEventListener('keyup', e => {
                             if (e.keyCode === 32) {
                                 e.preventDefault();
