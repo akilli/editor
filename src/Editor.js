@@ -1,18 +1,14 @@
-import BoldCommand from './command/BoldCommand.js';
 import Command from './command/Command.js';
 import DetailsCommand from './command/DetailsCommand.js';
 import HeadingCommand from './command/HeadingCommand.js';
-import ItalicCommand from './command/ItalicCommand.js';
 import LinkCommand from './command/LinkCommand.js';
 import ListCommand from './command/ListCommand.js';
 import MediaCommand from './command/MediaCommand.js';
 import ParagraphCommand from './command/ParagraphCommand.js';
-import RedoCommand from './command/RedoCommand.js';
 import QuoteCommand from './command/QuoteCommand.js';
 import TableCommand from './command/TableCommand.js';
+import TextFormatCommand from './command/TextFormatCommand.js';
 import Toolbar from './ui/Toolbar.js';
-import UndoCommand from './command/UndoCommand.js';
-import UnlinkCommand from './command/UnlinkCommand.js';
 
 /**
  * Editor
@@ -84,12 +80,6 @@ export default class Editor {
                 attributes: ['controls', 'height', 'src', 'width'],
                 allowed: [],
             },
-            b: {
-                group: 'text',
-                empty: false,
-                attributes: [],
-                allowed: [],
-            },
             blockquote: {
                 group: 'block',
                 empty: false,
@@ -112,7 +102,7 @@ export default class Editor {
                 group: 'block',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'b', 'i'],
+                allowed: ['a', 'i', 'strong'],
             },
             figure: {
                 group: 'block',
@@ -154,7 +144,7 @@ export default class Editor {
                 group: 'block',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'b', 'br', 'i'],
+                allowed: ['a', 'br', 'i', 'strong'],
             },
             ol: {
                 group: 'block',
@@ -166,7 +156,13 @@ export default class Editor {
                 group: 'block',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'b', 'br', 'i'],
+                allowed: ['a', 'br', 'i', 'strong'],
+            },
+            strong: {
+                group: 'text',
+                empty: false,
+                attributes: [],
+                allowed: [],
             },
             summary: {
                 group: 'block',
@@ -190,7 +186,7 @@ export default class Editor {
                 group: 'block',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'b', 'br', 'i'],
+                allowed: ['a', 'br', 'i', 'strong'],
             },
             tfoot: {
                 group: 'block',
@@ -202,7 +198,7 @@ export default class Editor {
                 group: 'block',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'b', 'br', 'i'],
+                allowed: ['a', 'br', 'i', 'strong'],
             },
             thead: {
                 group: 'block',
@@ -237,6 +233,7 @@ export default class Editor {
          */
         this.converters = {
             abbr: '_text_',
+            b: 'strong',
             cite: '_text_',
             code: '_text_',
             data: '_text_',
@@ -249,7 +246,6 @@ export default class Editor {
             q: '_text_',
             small: '_text_',
             span: '_text_',
-            strong: 'b',
             sub: '_text_',
             sup: '_text_',
             time: '_text_',
@@ -344,12 +340,9 @@ export default class Editor {
         this.execute('defaultParagraphSeparator', 'p');
         this.execute('enableInlineTableEditing', 'false');
         this.execute('enableObjectResizing', 'false');
-        this.commands.set('undo', new UndoCommand(this));
-        this.commands.set('redo', new RedoCommand(this));
-        this.commands.set('bold', new BoldCommand(this));
-        this.commands.set('italic', new ItalicCommand(this));
+        this.commands.set('bold', new TextFormatCommand(this, 'strong'));
+        this.commands.set('italic', new TextFormatCommand(this, 'i'));
         this.commands.set('link', new LinkCommand(this));
-        this.commands.set('unlink', new UnlinkCommand(this));
         this.commands.set('paragraph', new ParagraphCommand(this));
         this.commands.set('heading', new HeadingCommand(this, 'h2'));
         this.commands.set('subheading', new HeadingCommand(this, 'h3'));
@@ -401,6 +394,46 @@ export default class Editor {
         }
 
         parent.appendChild(el);
+    }
+
+    /**
+     * Add or remove formatting to/from selected text
+     *
+     * @param {HTMLElement} el
+     */
+    formatText(el) {
+        if (!(el instanceof HTMLElement)) {
+            throw 'Invalid HTML element';
+        }
+
+        const sel = this.window.getSelection();
+        const range = sel.getRangeAt(0);
+        const anc = range.commonAncestorContainer;
+
+        if (sel.isCollapsed || sel.rangeCount !== 1 || anc instanceof HTMLElement && !anc.contentEditable) {
+            return;
+        }
+
+        const parent = sel.anchorNode.parentElement;
+        let same = true;
+        const cn = range.cloneContents().childNodes;
+
+        for (let i = 0; i < cn.length; ++i) {
+            if (cn[i].nodeType === Node.TEXT_NODE && cn[i].nodeValue.trim() || cn[i] instanceof HTMLElement && cn[i].tagName !== el.tagName) {
+                same = false;
+                break;
+            }
+        }
+
+        if (parent.tagName === el.tagName && parent.parentElement.contentEditable || parent.contentEditable && same) {
+            const text = this.document.createTextNode(range.toString());
+            range.deleteContents();
+            range.insertNode(text);
+        } else if (parent.contentEditable && this.allowed(el.tagName, parent.tagName)) {
+            el.innerText = range.toString();
+            range.deleteContents();
+            range.insertNode(el);
+        }
     }
 
     /**

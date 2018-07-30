@@ -8,10 +8,12 @@ export default class LinkCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        let url;
+        let src;
 
-        if (url = this.editor.window.prompt('URL')) {
-            this.editor.execute('createlink', url);
+        if (src = this.editor.window.prompt('URL')) {
+            const a = document.createElement('a');
+            a.setAttribute('src', src);
+            this.editor.formatText(a);
         }
     }
 }
