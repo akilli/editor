@@ -304,6 +304,11 @@ export default class Editor {
 
         this.element.innerHTML = this.filterHtml(html);
         this.element.classList.add('editor');
+        Array.from(this.element.children).forEach(node => {
+            if (this.allowed(node.tagName, '_root_')) {
+                node.setAttribute('contenteditable', 'true');
+            }
+        });
         this.register(ev => {
             ev.forEach(item => {
                 item.addedNodes.forEach(node => {
