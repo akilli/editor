@@ -247,7 +247,6 @@ export default class Editor {
             kbd: '_text_',
             mark: '_text_',
             q: '_text_',
-            s: '_text_',
             small: '_text_',
             span: '_text_',
             strong: 'b',
