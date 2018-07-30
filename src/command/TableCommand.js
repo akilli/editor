@@ -12,6 +12,7 @@ export default class TableCommand extends Command {
         const caption = this.editor.document.createElement('figcaption');
         const table = this.editor.document.createElement('table');
 
+        figure.classList.add('table');
         figure.appendChild(table);
         figure.appendChild(caption);
         caption.innerHTML = 'Caption';

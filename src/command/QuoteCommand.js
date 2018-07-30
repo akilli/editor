@@ -13,6 +13,7 @@ export default class QuoteCommand extends Command {
         const p = this.editor.document.createElement('p');
         const caption = this.editor.document.createElement('figcaption');
 
+        figure.classList.add('quote');
         figure.appendChild(quote);
         figure.appendChild(caption);
         quote.appendChild(p);
