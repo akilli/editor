@@ -240,7 +240,6 @@ export default class Editor {
             cite: '_text_',
             code: '_text_',
             data: '_text_',
-            del: '_text_',
             dfn: '_text_',
             div: 'p',
             em: 'i',
