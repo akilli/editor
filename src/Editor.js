@@ -4,8 +4,8 @@ import DetailsCommand from './command/DetailsCommand.js';
 import HeadingCommand from './command/HeadingCommand.js';
 import ItalicCommand from './command/ItalicCommand.js';
 import LinkCommand from './command/LinkCommand.js';
+import ListCommand from './command/ListCommand.js';
 import MediaCommand from './command/MediaCommand.js';
-import OrderedListCommand from './command/OrderedListCommand.js';
 import ParagraphCommand from './command/ParagraphCommand.js';
 import RedoCommand from './command/RedoCommand.js';
 import QuoteCommand from './command/QuoteCommand.js';
@@ -13,7 +13,6 @@ import TableCommand from './command/TableCommand.js';
 import Toolbar from './ui/Toolbar.js';
 import UndoCommand from './command/UndoCommand.js';
 import UnlinkCommand from './command/UnlinkCommand.js';
-import UnorderedListCommand from './command/UnorderedListCommand.js';
 
 /**
  * Editor
@@ -356,8 +355,8 @@ export default class Editor {
         this.commands.set('paragraph', new ParagraphCommand(this));
         this.commands.set('heading', new HeadingCommand(this, 'h2'));
         this.commands.set('subheading', new HeadingCommand(this, 'h3'));
-        this.commands.set('unorderedlist', new UnorderedListCommand(this));
-        this.commands.set('orderedlist', new OrderedListCommand(this));
+        this.commands.set('unorderedlist', new ListCommand(this, 'ul'));
+        this.commands.set('orderedlist', new ListCommand(this, 'ol'));
         this.commands.set('quote', new QuoteCommand(this));
         this.commands.set('media', new MediaCommand(this));
         this.commands.set('table', new TableCommand(this));
