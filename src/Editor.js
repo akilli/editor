@@ -75,7 +75,7 @@ export default class Editor {
                 allowed: ['details', 'figure', 'h2', 'h3', 'ol', 'p', 'ul'],
             },
             a: {
-                group: 'inline',
+                group: 'text',
                 empty: false,
                 attributes: ['href'],
                 allowed: [],
@@ -87,7 +87,7 @@ export default class Editor {
                 allowed: [],
             },
             b: {
-                group: 'inline',
+                group: 'text',
                 empty: false,
                 attributes: [],
                 allowed: [],
@@ -135,7 +135,7 @@ export default class Editor {
                 allowed: [],
             },
             i: {
-                group: 'inline',
+                group: 'text',
                 empty: false,
                 attributes: [],
                 allowed: [],
@@ -242,9 +242,11 @@ export default class Editor {
             cite: '_text_',
             code: '_text_',
             data: '_text_',
+            del: '_text_',
             dfn: '_text_',
             div: 'p',
             em: 'i',
+            ins: '_text_',
             kbd: '_text_',
             mark: '_text_',
             q: '_text_',
@@ -471,7 +473,7 @@ export default class Editor {
 
             const isText = node.nodeType === Node.TEXT_NODE;
 
-            if (cfg && (this.allowed(tag, parentTag) || isTop && cfg.group === 'inline')) {
+            if (cfg && (this.allowed(tag, parentTag) || isTop && cfg.group === 'text')) {
                 Array.from(node.attributes).forEach(item => {
                     if (!cfg.attributes.includes(item.name)) {
                         node.removeAttribute(item.name);
@@ -484,7 +486,7 @@ export default class Editor {
 
                 if (!node.hasChildNodes() && !cfg.empty) {
                     parent.removeChild(node);
-                } else if (isTop && cfg.group === 'inline') {
+                } else if (isTop && cfg.group === 'text') {
                     const p = this.document.createElement('p');
                     p.innerHTML = node.outerHTML;
                     parent.replaceChild(p, node);
