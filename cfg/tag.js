@@ -60,7 +60,7 @@ const cfg = [
         'details',
         {
             attributes: [],
-            children: ['figure', 'p', 'summary', 'table'],
+            children: ['figure', 'p', 'summary'],
             empty: false,
             group: 'block',
         }
