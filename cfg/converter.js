@@ -6,7 +6,6 @@
 const cfg = [
     ['abbr', '_text_'],
     ['b', 'strong'],
-    ['cite', '_text_'],
     ['code', '_text_'],
     ['data', '_text_'],
     ['div', 'p'],

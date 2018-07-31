@@ -164,6 +164,7 @@ export default class Editor {
         this.commands.set('italic', new TextFormatCommand(this, 'i'));
         this.commands.set('definition', new TextFormatCommand(this, 'dfn'));
         this.commands.set('quote', new TextFormatCommand(this, 'q'));
+        this.commands.set('cite', new TextFormatCommand(this, 'cite'));
         this.commands.set('mark', new TextFormatCommand(this, 'mark'));
         this.commands.set('keyboard', new TextFormatCommand(this, 'kbd'));
         this.commands.set('link', new LinkCommand(this));

@@ -57,6 +57,15 @@ const cfg = [
         }
     ],
     [
+        'cite',
+        {
+            attributes: [],
+            children: [],
+            empty: false,
+            group: 'text',
+        }
+    ],
+    [
         'details',
         {
             attributes: [],
