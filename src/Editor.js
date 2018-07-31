@@ -279,7 +279,7 @@ export default class Editor {
      */
     init() {
         this.initElement();
-        this.initTheme();
+        this.initGui();
         this.initCommands();
         this.toolbar.init();
     }
@@ -320,14 +320,14 @@ export default class Editor {
     }
 
     /**
-     * Init theme
+     * Init GUI
      */
-    initTheme() {
+    initGui() {
         const css = this.document.styleSheets;
         const link = this.document.createElement('link');
 
         link.rel = 'stylesheet';
-        link.href = this.theme('editor.css');
+        link.href = this.gui('editor.css');
 
         for (let i = 0; i < css.length; ++i) {
             if (css[i].href === link.href) {
@@ -648,14 +648,14 @@ export default class Editor {
     }
 
     /**
-     * Returns theme URL
+     * Returns GUI URL
      *
      * @param {string} path
      *
      * @return {string}
      */
-    theme(path) {
-        return this.config.path + '/theme/' + path;
+    gui(path) {
+        return this.config.path + '/gui/' + path;
     }
 
     /**
@@ -666,7 +666,7 @@ export default class Editor {
      * @return {string}
      */
     icon(name) {
-        return this.theme('icon/' + name + '.svg');
+        return this.gui('icon/' + name + '.svg');
     }
 
     /**
