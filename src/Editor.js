@@ -442,11 +442,10 @@ export default class Editor {
      * @return {boolean}
      */
     allowed(tag, parentTag) {
-        tag = tag.toLowerCase();
-        parentTag = parentTag.toLowerCase();
-        const cfg = this.tags.get(parentTag);
+        const cfg = this.getTag(tag);
+        const parentCfg = this.getTag(parentTag);
 
-        return cfg && cfg.children.includes(tag);
+        return cfg && parentCfg && parentCfg.children.includes(cfg.group);
     }
 
     /**

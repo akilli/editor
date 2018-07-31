@@ -4,7 +4,7 @@
  * @typedef {Object} CfgTag
  *
  * @property {string[]} attributes Allowed attributes
- * @property {string[]} children   Allowed child elements
+ * @property {string[]} children   Allowed groups of child elements
  * @property {boolean}  empty      Is empty element
  * @property {string}   group      Name of the tag group
  */
@@ -15,7 +15,7 @@ const cfg = [
         '_root_',
         {
             attributes: [],
-            children: ['details', 'figure', 'h2', 'h3', 'ol', 'p', 'ul'],
+            children: ['details', 'figure', 'heading', 'list', 'paragraph'],
             empty: false,
             group: 'root',
         }
@@ -42,9 +42,9 @@ const cfg = [
         'blockquote',
         {
             attributes: [],
-            children: ['p'],
+            children: ['paragraph'],
             empty: false,
-            group: 'block',
+            group: 'blockquote',
         }
     ],
     [
@@ -60,25 +60,25 @@ const cfg = [
         'details',
         {
             attributes: [],
-            children: ['figure', 'p', 'summary'],
+            children: ['figure', 'paragraph', 'summary'],
             empty: false,
-            group: 'block',
+            group: 'details',
         }
     ],
     [
         'figcaption',
         {
             attributes: [],
-            children: ['a', 'i', 'mark', 'strong'],
+            children: ['text'],
             empty: false,
-            group: 'block',
+            group: 'caption',
         }
     ],
     [
         'figure',
         {
             attributes: ['class'],
-            children: ['audio', 'blockquote', 'figcaption', 'iframe', 'img', 'table', 'video'],
+            children: ['blockquote', 'caption', 'media', 'table'],
             empty: false,
             group: 'block',
         }
@@ -89,7 +89,7 @@ const cfg = [
             attributes: [],
             children: [],
             empty: false,
-            group: 'block',
+            group: 'heading',
         }
     ],
     [
@@ -98,7 +98,7 @@ const cfg = [
             attributes: [],
             children: [],
             empty: false,
-            group: 'block',
+            group: 'heading',
         }
     ],
     [
@@ -132,9 +132,9 @@ const cfg = [
         'li',
         {
             attributes: [],
-            children: ['a', 'br', 'i', 'mark', 'strong'],
+            children: ['break', 'text'],
             empty: false,
-            group: 'block',
+            group: 'listitem',
         }
     ],
     [
@@ -150,18 +150,18 @@ const cfg = [
         'ol',
         {
             attributes: [],
-            children: ['li'],
+            children: ['listitem'],
             empty: false,
-            group: 'block',
+            group: 'list',
         }
     ],
     [
         'p',
         {
             attributes: [],
-            children: ['a', 'br', 'i', 'mark', 'strong'],
+            children: ['break', 'text'],
             empty: false,
-            group: 'block',
+            group: 'paragraph',
         }
     ],
     [
@@ -179,78 +179,78 @@ const cfg = [
             attributes: [],
             children: [],
             empty: false,
-            group: 'block',
+            group: 'summary',
         }
     ],
     [
         'table',
         {
             attributes: [],
-            children: ['tbody', 'tfoot', 'thead'],
+            children: ['tablepart'],
             empty: false,
-            group: 'block',
+            group: 'table',
         }
     ],
     [
         'tbody',
         {
             attributes: [],
-            children: ['tr'],
+            children: ['tablerow'],
             empty: false,
-            group: 'block',
+            group: 'tablepart',
         }
     ],
     [
         'td',
         {
             attributes: [],
-            children: ['a', 'br', 'i', 'mark', 'strong'],
+            children: ['break', 'text'],
             empty: false,
-            group: 'block',
+            group: 'tablecell',
         }
     ],
     [
         'tfoot',
         {
             attributes: [],
-            children: ['tr'],
+            children: ['tablerow'],
             empty: false,
-            group: 'block',
+            group: 'tablepart',
         }
     ],
     [
         'th',
         {
             attributes: [],
-            children: ['a', 'br', 'i', 'mark', 'strong'],
+            children: ['break', 'text'],
             empty: false,
-            group: 'block',
+            group: 'tablecell',
         }
     ],
     [
         'thead', {
             attributes: [],
-            children: ['tr'],
+            children: ['tablerow'],
             empty: false,
-            group: 'block',
+            group: 'tablepart',
         }
     ],
     [
         'tr',
         {
             attributes: [],
-            children: ['td', 'th'],
+            children: ['tablecell'],
             empty: false,
-            group: 'block',
+            group: 'tablerow',
         }
     ],
     [
         'ul',
         {
             attributes: [],
-            children: ['li'],
+            children: ['listitem'],
             empty: false,
-            group: 'block',
+            group: 'list',
         }
     ],
     [
