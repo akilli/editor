@@ -402,18 +402,16 @@ export default class Editor {
      * @param {HTMLElement} el
      */
     formatText(el) {
-        if (!(el instanceof HTMLElement)) {
-            throw 'Invalid HTML element';
-        }
-
         const sel = this.window.getSelection();
         const range = sel.getRangeAt(0);
-        const anc = range.commonAncestorContainer;
 
-        if (sel.isCollapsed || sel.rangeCount !== 1 || anc instanceof HTMLElement && !anc.contentEditable) {
+        if (!(el instanceof HTMLElement)) {
+            throw 'Invalid HTML element';
+        } else if (sel.isCollapsed || !range) {
             return;
         }
 
+        let node = el;
         const parent = sel.anchorNode.parentElement;
         let same = true;
         const cn = range.cloneContents().childNodes;
@@ -426,14 +424,13 @@ export default class Editor {
         }
 
         if (parent.tagName === el.tagName && parent.parentElement.contentEditable || parent.contentEditable && same) {
-            const text = this.document.createTextNode(range.toString());
-            range.deleteContents();
-            range.insertNode(text);
+            node = this.document.createTextNode(range.toString());
         } else if (parent.contentEditable && this.allowed(el.tagName, parent.tagName)) {
             el.innerText = range.toString();
-            range.deleteContents();
-            range.insertNode(el);
         }
+
+        range.deleteContents();
+        range.insertNode(node);
     }
 
     /**
@@ -548,7 +545,7 @@ export default class Editor {
         const textarea = this.document.createElement('textarea');
         textarea.innerHTML = html;
 
-        return textarea.value;
+        return textarea.value.replace('/&nbsp;/g', ' ');
     }
 
     /**
