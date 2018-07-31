@@ -1,9 +1,9 @@
 import Command from './Command.js';
 
 /**
- * Quote Command
+ * Blockquote Command
  */
-export default class QuoteCommand extends Command {
+export default class BlockquoteCommand extends Command {
     /**
      * @inheritDoc
      */

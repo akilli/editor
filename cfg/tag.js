@@ -183,6 +183,15 @@ const cfg = [
         }
     ],
     [
+        'q',
+        {
+            attributes: [],
+            children: [],
+            empty: false,
+            group: 'text',
+        }
+    ],
+    [
         'strong',
         {
             attributes: [],

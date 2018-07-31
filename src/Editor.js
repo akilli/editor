@@ -1,3 +1,4 @@
+import BlockquoteCommand from './command/BlockquoteCommand.js';
 import Command from './command/Command.js';
 import DetailsCommand from './command/DetailsCommand.js';
 import HeadingCommand from './command/HeadingCommand.js';
@@ -5,7 +6,6 @@ import LinkCommand from './command/LinkCommand.js';
 import ListCommand from './command/ListCommand.js';
 import MediaCommand from './command/MediaCommand.js';
 import ParagraphCommand from './command/ParagraphCommand.js';
-import QuoteCommand from './command/QuoteCommand.js';
 import TableCommand from './command/TableCommand.js';
 import TextFormatCommand from './command/TextFormatCommand.js';
 import Toolbar from './ui/Toolbar.js';
@@ -163,6 +163,7 @@ export default class Editor {
         this.commands.set('bold', new TextFormatCommand(this, 'strong'));
         this.commands.set('italic', new TextFormatCommand(this, 'i'));
         this.commands.set('definition', new TextFormatCommand(this, 'dfn'));
+        this.commands.set('quote', new TextFormatCommand(this, 'q'));
         this.commands.set('mark', new TextFormatCommand(this, 'mark'));
         this.commands.set('keyboard', new TextFormatCommand(this, 'kbd'));
         this.commands.set('link', new LinkCommand(this));
@@ -171,7 +172,7 @@ export default class Editor {
         this.commands.set('subheading', new HeadingCommand(this, 'h3'));
         this.commands.set('unorderedlist', new ListCommand(this, 'ul'));
         this.commands.set('orderedlist', new ListCommand(this, 'ol'));
-        this.commands.set('quote', new QuoteCommand(this));
+        this.commands.set('blockquote', new BlockquoteCommand(this));
         this.commands.set('media', new MediaCommand(this));
         this.commands.set('table', new TableCommand(this));
         this.commands.set('details', new DetailsCommand(this));

@@ -12,7 +12,6 @@ const cfg = [
     ['div', 'p'],
     ['em', 'i'],
     ['ins', '_text_'],
-    ['q', '_text_'],
     ['small', '_text_'],
     ['span', '_text_'],
     ['sub', '_text_'],
