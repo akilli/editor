@@ -9,6 +9,8 @@ import QuoteCommand from './command/QuoteCommand.js';
 import TableCommand from './command/TableCommand.js';
 import TextFormatCommand from './command/TextFormatCommand.js';
 import Toolbar from './ui/Toolbar.js';
+import cfgConverter from '../cfg/converter.js';
+import cfgTag from '../cfg/tag.js';
 
 /**
  * Editor
@@ -58,205 +60,18 @@ export default class Editor {
         /**
          * Tag configuration
          *
-         * @type {Object}
+         * @type {Map<string, CfgTag>}
          * @readonly
          */
-        this.tags = {
-            _root_: {
-                group: 'root',
-                empty: false,
-                attributes: [],
-                allowed: ['details', 'figure', 'h2', 'h3', 'ol', 'p', 'ul'],
-            },
-            a: {
-                group: 'text',
-                empty: false,
-                attributes: ['href'],
-                allowed: [],
-            },
-            audio: {
-                group: 'media',
-                empty: false,
-                attributes: ['controls', 'height', 'src', 'width'],
-                allowed: [],
-            },
-            blockquote: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: ['p'],
-            },
-            br: {
-                group: 'break',
-                empty: true,
-                attributes: [],
-                allowed: [],
-            },
-            details: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: ['figure', 'p', 'summary', 'table'],
-            },
-            figcaption: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: ['a', 'i', 'mark', 'strong'],
-            },
-            figure: {
-                group: 'block',
-                empty: false,
-                attributes: ['class'],
-                allowed: ['audio', 'blockquote', 'figcaption', 'iframe', 'img', 'table', 'video'],
-            },
-            h2: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: [],
-            },
-            h3: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: [],
-            },
-            i: {
-                group: 'text',
-                empty: false,
-                attributes: [],
-                allowed: [],
-            },
-            iframe: {
-                group: 'media',
-                empty: false,
-                attributes: ['allowfullscreen', 'height', 'src', 'width'],
-                allowed: [],
-            },
-            img: {
-                group: 'media',
-                empty: true,
-                attributes: ['alt', 'height', 'src', 'width'],
-                allowed: [],
-            },
-            li: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: ['a', 'br', 'i', 'mark', 'strong'],
-            },
-            mark: {
-                group: 'text',
-                empty: false,
-                attributes: [],
-                allowed: [],
-            },
-            ol: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: ['li'],
-            },
-            p: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: ['a', 'br', 'i', 'mark', 'strong'],
-            },
-            strong: {
-                group: 'text',
-                empty: false,
-                attributes: [],
-                allowed: [],
-            },
-            summary: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: [],
-            },
-            table: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: ['tbody', 'tfoot', 'thead'],
-            },
-            tbody: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: ['tr'],
-            },
-            td: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: ['a', 'br', 'i', 'mark', 'strong'],
-            },
-            tfoot: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: ['tr'],
-            },
-            th: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: ['a', 'br', 'i', 'mark', 'strong'],
-            },
-            thead: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: ['tr'],
-            },
-            tr: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: ['td', 'th'],
-            },
-            ul: {
-                group: 'block',
-                empty: false,
-                attributes: [],
-                allowed: ['li'],
-            },
-            video: {
-                group: 'media',
-                empty: false,
-                attributes: ['controls', 'height', 'src', 'width'],
-                allowed: [],
-            },
-        };
+        this.tags = new Map(cfgTag);
 
         /**
          * Element converters
          *
-         * @type {Object}
+         * @type {Map<string, string>}
+         * @readonly
          */
-        this.converters = {
-            abbr: '_text_',
-            b: 'strong',
-            cite: '_text_',
-            code: '_text_',
-            data: '_text_',
-            dfn: '_text_',
-            div: 'p',
-            em: 'i',
-            ins: '_text_',
-            kbd: '_text_',
-            q: '_text_',
-            small: '_text_',
-            span: '_text_',
-            sub: '_text_',
-            sup: '_text_',
-            time: '_text_',
-            u: '_text_',
-            var: '_text_',
-        };
+        this.converters = new Map(cfgConverter);
 
         /**
          * Commands
@@ -604,7 +419,7 @@ export default class Editor {
      * @return {?Object}
      */
     getTag(tag) {
-        return this.tags[tag.toLowerCase()] || null;
+        return this.tags.get(tag.toLowerCase()) || null;
     }
 
     /**
@@ -615,7 +430,7 @@ export default class Editor {
      * @return {?string}
      */
     getConverter(tag) {
-        return this.converters[tag.toLowerCase()] || null;
+        return this.converters.get(tag.toLowerCase()) || null;
     }
 
     /**
@@ -629,8 +444,9 @@ export default class Editor {
     allowed(tag, parentTag) {
         tag = tag.toLowerCase();
         parentTag = parentTag.toLowerCase();
+        const cfg = this.tags.get(parentTag);
 
-        return !!this.tags[parentTag] && this.tags[parentTag].allowed.includes(tag);
+        return cfg && cfg.children.includes(tag);
     }
 
     /**

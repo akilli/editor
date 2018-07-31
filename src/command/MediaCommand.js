@@ -1,6 +1,6 @@
 import Command from './Command.js';
-import MediaBrowser from '../utils/MediaBrowser.js';
-import MediaUtils from '../utils/MediaUtils.js';
+import MediaBrowser from '../util/MediaBrowser.js';
+import MediaType from '../util/MediaType.js';
 
 /**
  * Media Command
@@ -32,7 +32,7 @@ export default class MediaCommand extends Command {
         }
 
         data.src = this.editor.url(data.src);
-        MediaUtils.getTypeFromUrl(data.src)
+        MediaType.fromUrl(data.src)
             .then(type => {
                 let cfg;
 
