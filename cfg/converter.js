@@ -9,11 +9,9 @@ const cfg = [
     ['cite', '_text_'],
     ['code', '_text_'],
     ['data', '_text_'],
-    ['dfn', '_text_'],
     ['div', 'p'],
     ['em', 'i'],
     ['ins', '_text_'],
-    ['kbd', '_text_'],
     ['q', '_text_'],
     ['small', '_text_'],
     ['span', '_text_'],
@@ -21,7 +19,7 @@ const cfg = [
     ['sup', '_text_'],
     ['time', '_text_'],
     ['u', '_text_'],
-    ['var', '_text_'],
+    ['var', 'i'],
 ];
 
 export default cfg;

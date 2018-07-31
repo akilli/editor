@@ -66,6 +66,15 @@ const cfg = [
         }
     ],
     [
+        'dfn',
+        {
+            attributes: [],
+            children: [],
+            empty: false,
+            group: 'text',
+        }
+    ],
+    [
         'figcaption',
         {
             attributes: [],
@@ -135,6 +144,15 @@ const cfg = [
             children: ['break', 'text'],
             empty: false,
             group: 'listitem',
+        }
+    ],
+    [
+        'kbd',
+        {
+            attributes: [],
+            children: [],
+            empty: false,
+            group: 'text',
         }
     ],
     [

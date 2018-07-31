@@ -162,7 +162,9 @@ export default class Editor {
         this.execute('enableObjectResizing', 'false');
         this.commands.set('bold', new TextFormatCommand(this, 'strong'));
         this.commands.set('italic', new TextFormatCommand(this, 'i'));
+        this.commands.set('definition', new TextFormatCommand(this, 'dfn'));
         this.commands.set('mark', new TextFormatCommand(this, 'mark'));
+        this.commands.set('keyboard', new TextFormatCommand(this, 'kbd'));
         this.commands.set('link', new LinkCommand(this));
         this.commands.set('paragraph', new ParagraphCommand(this));
         this.commands.set('heading', new HeadingCommand(this, 'h2'));
