@@ -98,7 +98,7 @@ const cfg = [
             attributes: ['class'],
             children: ['blockquote', 'caption', 'media', 'table'],
             empty: false,
-            group: 'block',
+            group: 'figure',
         }
     ],
     [
