@@ -289,7 +289,7 @@ export default class Editor {
             const element = this.element;
             this.element = this.document.createElement('div');
             html = element.value;
-            element.parentNode.insertBefore(this.element, element);
+            element.parentElement.insertBefore(this.element, element);
             element.setAttribute('hidden', 'hidden');
             element.form.addEventListener('submit', () => {
                 element.value = this.getData();
@@ -306,7 +306,7 @@ export default class Editor {
         this.register(ev => {
             ev.forEach(item => {
                 item.addedNodes.forEach(node => {
-                    if (node instanceof HTMLElement && node.parentNode === this.element && this.allowed(node.tagName, '_root_')) {
+                    if (node instanceof HTMLElement && node.parentElement === this.element && this.allowed(node.tagName, '_root_')) {
                         node.setAttribute('contenteditable', 'true');
                     }
                 });
@@ -397,40 +397,60 @@ export default class Editor {
     }
 
     /**
-     * Add or remove formatting to/from selected text
+     * Adds or removes formatting to/from selected text
      *
      * @param {HTMLElement} el
      */
     formatText(el) {
-        const sel = this.window.getSelection();
-        const range = sel.getRangeAt(0);
-
         if (!(el instanceof HTMLElement)) {
             throw 'Invalid HTML element';
-        } else if (sel.isCollapsed || !range) {
+        }
+
+        const sel = this.window.getSelection();
+        const anc = sel.anchorNode;
+        const foc = sel.focusNode;
+
+        if (sel.isCollapsed || !sel.toString().trim() || !this.isTextOrHtml(anc)) {
             return;
         }
 
-        let node = el;
-        const parent = sel.anchorNode.parentElement;
-        let same = true;
-        const cn = range.cloneContents().childNodes;
+        const ancEl = anc instanceof Text ? anc.parentElement : anc;
+        const focEl = foc instanceof Text ? foc.parentElement : foc;
+        const ancEdit = ancEl.closest('[contenteditable=true]');
+        const focEdit = focEl.closest('[contenteditable=true]');
 
-        for (let i = 0; i < cn.length; ++i) {
-            if (cn[i].nodeType === Node.TEXT_NODE && cn[i].nodeValue.trim() || cn[i] instanceof HTMLElement && cn[i].tagName !== el.tagName) {
-                same = false;
-                break;
-            }
+        if (!ancEdit || !focEdit || !ancEdit.isSameNode(focEdit)) {
+            return;
         }
 
-        if (parent.tagName === el.tagName && parent.parentElement.contentEditable || parent.contentEditable && same) {
-            node = this.document.createTextNode(range.toString());
-        } else if (parent.contentEditable && this.allowed(el.tagName, parent.tagName)) {
-            el.innerText = range.toString();
+        const range = sel.getRangeAt(0);
+        const cfg = this.getTag(ancEl.tagName);
+        const parent = !cfg || cfg.group === 'text' ? ancEl.parentElement : ancEl;
+
+        if (range.startContainer instanceof Text && !range.startContainer.parentElement.isSameNode(parent)) {
+            range.setStartBefore(range.startContainer.parentElement);
         }
+
+        if (range.endContainer instanceof Text && !range.endContainer.parentElement.isSameNode(parent)) {
+            range.setEndAfter(range.endContainer.parentElement);
+        }
+
+        const selText = range.toString();
+        const selNodes = range.cloneContents().childNodes;
+        let same = Array.from(selNodes).every(item => {
+            return this.isTextOrHtml(item) && item instanceof Text && !item.nodeValue.trim() || item instanceof HTMLElement && item.tagName === el.tagName;
+        });
 
         range.deleteContents();
-        range.insertNode(node);
+
+        if (parent.contentEditable && this.allowed(el.tagName, parent.tagName) && selText.trim() && (!cfg || !same)) {
+            el.innerText = selText;
+            range.insertNode(el);
+        } else {
+            range.insertNode(this.document.createTextNode(selText));
+        }
+
+        parent.normalize();
     }
 
     /**
@@ -468,36 +488,21 @@ export default class Editor {
             throw 'No HTML element';
         }
 
-        const isTop = !parent.parentNode;
+        const isTop = !parent.parentElement;
         const parentTag = isTop ? '_root_' : parent.tagName;
         let br;
 
+        parent.normalize();
         Array.from(parent.childNodes).forEach(node => {
-            let tag = null;
-            let conv = null;
-            let cfg = null;
-
-            if (node instanceof HTMLElement) {
-                tag = node.tagName;
-
-                if (conv = this.getConverter(tag)) {
-                    const oldNode = node;
-
-                    if (conv !== '_text_' && (node = this.document.createElement(conv)) && node instanceof HTMLElement) {
-                        node.innerHTML = oldNode.innerHTML;
-                        tag = node.tagName;
-                    } else {
-                        node = this.document.createTextNode(oldNode.innerText.trim());
-                        tag = null;
-                    }
-
-                    parent.replaceChild(node, oldNode);
-                }
-
-                cfg = this.getTag(tag);
+            if (!this.isTextOrHtml(node)) {
+                parent.removeChild(node);
+                return;
             }
 
-            const isText = node.nodeType === Node.TEXT_NODE;
+            node = this.convert(node);
+            const isHtml = node instanceof HTMLElement;
+            const tag = isHtml ? node.tagName : null;
+            const cfg = isHtml ? this.getTag(tag) : null;
 
             if (cfg && (this.allowed(tag, parentTag) || isTop && cfg.group === 'text')) {
                 Array.from(node.attributes).forEach(item => {
@@ -517,14 +522,14 @@ export default class Editor {
                     p.innerHTML = node.outerHTML;
                     parent.replaceChild(p, node);
                 }
-            } else if (isTop && (isText && !!node.nodeValue.trim() || cfg && !!node.innerText.trim())) {
+            } else if (isTop && (!isHtml && !!node.nodeValue.trim() || cfg && !!node.innerText.trim())) {
                 const p = this.document.createElement('p');
-                p.innerText = isText ? node.nodeValue.trim() : node.innerText.trim();
+                p.innerText = isHtml ? node.innerText.trim() : node.nodeValue.trim();
                 parent.replaceChild(p, node);
             } else if (cfg && !!node.innerText.trim()) {
                 const text = this.document.createTextNode(node.innerText.trim());
                 parent.replaceChild(text, node);
-            } else if (!isText || isTop) {
+            } else if (isHtml || isTop) {
                 parent.removeChild(node);
             }
         });
@@ -532,6 +537,43 @@ export default class Editor {
         while ((br = parent.firstChild) && br instanceof HTMLBRElement || (br = parent.lastChild) && br instanceof HTMLBRElement) {
             parent.removeChild(br);
         }
+    }
+
+    /**
+     * Converts element
+     *
+     * @param {Node} node
+     *
+     * @return {Node}
+     */
+    convert(node) {
+        let conv;
+        let newNode;
+
+        if (!(node instanceof HTMLElement) || !(conv = this.getConverter(node.tagName))) {
+            return node;
+        }
+
+        if (conv !== '_text_' && (newNode = this.document.createElement(conv)) && newNode instanceof HTMLElement) {
+            newNode.innerHTML = node.innerHTML;
+        } else {
+            newNode = this.document.createTextNode(node.innerText.trim());
+        }
+
+        node.parentElement.replaceChild(newNode, node);
+
+        return newNode;
+    }
+
+    /**
+     * Indicates if given node is either a text node or a HTML element
+     *
+     * @param {Node} node
+     *
+     * @return {boolean}
+     */
+    isTextOrHtml(node) {
+        return node instanceof Text || node instanceof HTMLElement;
     }
 
     /**
@@ -549,40 +591,40 @@ export default class Editor {
     }
 
     /**
-     * Returns tag configuration for given element
+     * Returns tag configuration for given tag
      *
-     * @param {string} el
+     * @param {string} tag
      *
      * @return {?Object}
      */
-    getTag(el) {
-        return this.tags[el.toLowerCase()] || null;
+    getTag(tag) {
+        return this.tags[tag.toLowerCase()] || null;
     }
 
     /**
-     * Returns converter configuration for given element
+     * Returns converter configuration for given tag
      *
-     * @param {string} el
+     * @param {string} tag
      *
      * @return {?string}
      */
-    getConverter(el) {
-        return this.converters[el.toLowerCase()] || null;
+    getConverter(tag) {
+        return this.converters[tag.toLowerCase()] || null;
     }
 
     /**
      * Checks if given element is allowed inside given parent element
      *
-     * @param {string} el
-     * @param {string} parent
+     * @param {string} tag
+     * @param {string} parentTag
      *
      * @return {boolean}
      */
-    allowed(el, parent) {
-        el = el.toLowerCase();
-        parent = parent.toLowerCase();
+    allowed(tag, parentTag) {
+        tag = tag.toLowerCase();
+        parentTag = parentTag.toLowerCase();
 
-        return !!this.tags[parent] && this.tags[parent].allowed.includes(el);
+        return !!this.tags[parentTag] && this.tags[parentTag].allowed.includes(tag);
     }
 
     /**
