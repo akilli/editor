@@ -102,7 +102,7 @@ export default class Editor {
                 group: 'block',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'i', 'strong'],
+                allowed: ['a', 'i', 'mark', 'strong'],
             },
             figure: {
                 group: 'block',
@@ -144,7 +144,13 @@ export default class Editor {
                 group: 'block',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'br', 'i', 'strong'],
+                allowed: ['a', 'br', 'i', 'mark', 'strong'],
+            },
+            mark: {
+                group: 'text',
+                empty: false,
+                attributes: [],
+                allowed: [],
             },
             ol: {
                 group: 'block',
@@ -156,7 +162,7 @@ export default class Editor {
                 group: 'block',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'br', 'i', 'strong'],
+                allowed: ['a', 'br', 'i', 'mark', 'strong'],
             },
             strong: {
                 group: 'text',
@@ -186,7 +192,7 @@ export default class Editor {
                 group: 'block',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'br', 'i', 'strong'],
+                allowed: ['a', 'br', 'i', 'mark', 'strong'],
             },
             tfoot: {
                 group: 'block',
@@ -198,7 +204,7 @@ export default class Editor {
                 group: 'block',
                 empty: false,
                 attributes: [],
-                allowed: ['a', 'br', 'i', 'strong'],
+                allowed: ['a', 'br', 'i', 'mark', 'strong'],
             },
             thead: {
                 group: 'block',
@@ -242,7 +248,6 @@ export default class Editor {
             em: 'i',
             ins: '_text_',
             kbd: '_text_',
-            mark: '_text_',
             q: '_text_',
             small: '_text_',
             span: '_text_',
@@ -342,6 +347,7 @@ export default class Editor {
         this.execute('enableObjectResizing', 'false');
         this.commands.set('bold', new TextFormatCommand(this, 'strong'));
         this.commands.set('italic', new TextFormatCommand(this, 'i'));
+        this.commands.set('mark', new TextFormatCommand(this, 'mark'));
         this.commands.set('link', new LinkCommand(this));
         this.commands.set('paragraph', new ParagraphCommand(this));
         this.commands.set('heading', new HeadingCommand(this, 'h2'));
