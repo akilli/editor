@@ -16,11 +16,11 @@ export default class TagManager {
          * @type {Map<string, Tag>}
          * @readonly
          */
-        this.tags = new Map();
+        this.data = new Map();
 
         tags.forEach(item => {
             const tag = new Tag(item);
-            return this.tags.set(tag.name, tag);
+            return this.data.set(tag.name, tag);
         });
     }
 
@@ -32,7 +32,7 @@ export default class TagManager {
      * @return {?Tag}
      */
     get(name) {
-        return this.tags.get(name.toLowerCase()) || null;
+        return this.data.get(name.toLowerCase()) || null;
     }
 
     /**
