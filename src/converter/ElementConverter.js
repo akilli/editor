@@ -5,14 +5,14 @@ import Converter from './Converter.js';
  */
 export default class ElementConverter extends Converter {
     /**
-     * Initializes a new element converter and with given tag
+     * Initializes a new element converter and with given tag name
      *
-     * @param {String} tag
+     * @param {String} name
      */
-    constructor(tag) {
+    constructor(name) {
         super();
 
-        if (!tag) {
+        if (!name) {
             throw 'Missing replacement tag';
         }
 
@@ -22,7 +22,7 @@ export default class ElementConverter extends Converter {
          * @type {String}
          * @readonly
          */
-        this.tag = tag;
+        this.name = name;
     }
 
     /**
@@ -37,7 +37,7 @@ export default class ElementConverter extends Converter {
             throw 'Invalid element';
         }
 
-        const newElement = element.ownerDocument.createElement(this.tag);
+        const newElement = element.ownerDocument.createElement(this.name);
         newElement.innerHTML = element.innerHTML;
 
         return newElement;

@@ -20,7 +20,7 @@ export default class ListCommand extends Command {
         }
 
         /**
-         * Elements tag name
+         * Tag
          *
          * @type {Tag}
          * @readonly

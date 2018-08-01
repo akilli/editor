@@ -113,14 +113,14 @@ export default class Editor {
         this.element.innerHTML = this.filterHtml(html);
         this.element.classList.add('editor');
         Array.from(this.element.children).forEach(node => {
-            if (this.allowed(node.tagName, 'root')) {
+            if (this.tags.allowed(node.tagName, 'root')) {
                 node.setAttribute('contenteditable', 'true');
             }
         });
         this.register(ev => {
             ev.forEach(item => {
                 item.addedNodes.forEach(node => {
-                    if (node instanceof HTMLElement && node.parentElement === this.element && this.allowed(node.tagName, 'root')) {
+                    if (node instanceof HTMLElement && node.parentElement === this.element && this.tags.allowed(node.tagName, 'root')) {
                         node.setAttribute('contenteditable', 'true');
                     }
                 });
@@ -161,7 +161,7 @@ export default class Editor {
                 || !(command = item[1](this))
                 || !(command instanceof Command)
             ) {
-                throw 'Invalid command configuration';
+                throw 'Invalid command';
             }
 
             this.commands.set(item[0], command);
@@ -257,7 +257,7 @@ export default class Editor {
 
         range.deleteContents();
 
-        if (parent.contentEditable && this.allowed(element.tagName, parent.tagName) && selText.trim() && (!tag || !same)) {
+        if (parent.contentEditable && this.tags.allowed(element.tagName, parent.tagName) && selText.trim() && (!tag || !same)) {
             element.innerText = selText;
             range.insertNode(element);
         } else {
@@ -318,7 +318,7 @@ export default class Editor {
             const name = isHtml ? node.tagName : null;
             const tag = isHtml ? this.tags.get(name) : null;
 
-            if (tag && (this.allowed(name, parentTag) || isTop && tag.group === 'text')) {
+            if (tag && (this.tags.allowed(name, parentTag) || isTop && tag.group === 'text')) {
                 Array.from(node.attributes).forEach(item => {
                     if (!tag.attributes.includes(item.name)) {
                         node.removeAttribute(item.name);
@@ -374,6 +374,24 @@ export default class Editor {
     }
 
     /**
+     * Returns converter configuration for given tag
+     *
+     * @param {String} name
+     *
+     * @return {?Converter}
+     */
+    getConverter(name) {
+        const callback = this.converters.get(name.toLowerCase());
+        let converter;
+
+        if (typeof callback === 'function' && (converter = callback()) && converter instanceof Converter) {
+            return converter;
+        }
+
+        return null;
+    }
+
+    /**
      * Indicates if given node is either a text node or a HTML element
      *
      * @param {Node} node
@@ -396,39 +414,6 @@ export default class Editor {
         textarea.innerHTML = html;
 
         return textarea.value.replace('/&nbsp;/g', ' ');
-    }
-
-    /**
-     * Returns converter configuration for given tag
-     *
-     * @param {String} tag
-     *
-     * @return {?Converter}
-     */
-    getConverter(tag) {
-        const callback = this.converters.get(tag.toLowerCase());
-        let converter;
-
-        if (typeof callback === 'function' && (converter = callback()) && converter instanceof Converter) {
-            return converter;
-        }
-
-        return null;
-    }
-
-    /**
-     * Checks if given element is allowed inside given parent element
-     *
-     * @param {String} name
-     * @param {String} parentName
-     *
-     * @return {Boolean}
-     */
-    allowed(name, parentName) {
-        const tag = this.tags.get(name);
-        const parentTag = this.tags.get(parentName);
-
-        return tag && parentTag && parentTag.children.includes(tag.group);
     }
 
     /**
