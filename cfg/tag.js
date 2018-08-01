@@ -1,7 +1,7 @@
 /**
  * Tag configuration
  *
- * @type {Object}
+ * @type {Object[]}
  */
 const data = [
     {name: 'root', children: ['details', 'figure', 'heading', 'list', 'p']},
