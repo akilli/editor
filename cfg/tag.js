@@ -1,8 +1,8 @@
 /**
  * Tag configuration
+ *
+ * @type {Object}
  */
-'use strict';
-
 const data = [
     {name: 'root', children: ['details', 'figure', 'heading', 'list', 'p']},
     {name: 'a', group: 'text', attributes: ['href']},

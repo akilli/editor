@@ -1,14 +1,14 @@
 /**
  * Media type configuration
  *
+ * @type {Object}
+ *
  * @typedef {Object} ConfigMediaType
  *
  * @property {String}   id      Media type ID
  * @property {String}   element The corresponding HTML element name
  * @property {String[]} mime    Supported MIME types
  */
-'use strict';
-
 const data = {
     audio: {
         id: 'audio',
