@@ -9,13 +9,14 @@ export default class ListCommand extends Command {
      *
      * @param {Editor} editor
      * @param {String} name
+     * @param {String} tagName
      */
-    constructor(editor, name) {
-        super(editor);
+    constructor(editor, name, tagName) {
+        super(editor, name);
 
         let tag;
 
-        if (!name || !(tag = this.editor.tags.get(name)) || tag.group !== 'list') {
+        if (!tagName || !(tag = this.editor.tags.get(tagName)) || tag.group !== 'list') {
             throw 'Invalid heading element';
         }
 

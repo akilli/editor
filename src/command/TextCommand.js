@@ -9,14 +9,15 @@ export default class TextCommand extends Command {
      *
      * @param {Editor} editor
      * @param {String} name
+     * @param {String} tagName
      */
-    constructor(editor, name) {
-        super(editor);
+    constructor(editor, name, tagName) {
+        super(editor, name);
 
         let tag;
 
-        if (!name || !(tag = this.editor.tags.get(name)) || tag.group !== 'text') {
-            throw 'Invalid element';
+        if (!tagName || !(tag = this.editor.tags.get(tagName)) || tag.group !== 'text') {
+            throw 'Invalid text element';
         }
 
         /**

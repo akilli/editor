@@ -7,8 +7,8 @@ export default class DetailsCommand extends Command {
     /**
      * @inheritDoc
      */
-    constructor(editor) {
-        super(editor);
+    constructor(editor, name) {
+        super(editor, name);
         this.editor.element.querySelectorAll('summary').forEach(summary => {
             summary.addEventListener('keyup', this.onKeyup.bind(this));
         });

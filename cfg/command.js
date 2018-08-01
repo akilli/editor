@@ -9,26 +9,28 @@ import TableCommand from '../src/command/TableCommand.js';
 import TextCommand from '../src/command/TextCommand.js';
 
 /**
- * Command configuration
+ * Commands configuration
+ *
+ * @type {Function[]}
  */
 const data = [
-    ['bold', editor => new TextCommand(editor, 'strong')],
-    ['italic', editor => new TextCommand(editor, 'i')],
-    ['definition', editor => new TextCommand(editor, 'dfn')],
-    ['quote', editor => new TextCommand(editor, 'q')],
-    ['cite', editor => new TextCommand(editor, 'cite')],
-    ['mark', editor => new TextCommand(editor, 'mark')],
-    ['keyboard', editor => new TextCommand(editor, 'kbd')],
-    ['link', editor => new LinkCommand(editor)],
-    ['paragraph', editor => new ParagraphCommand(editor)],
-    ['heading', editor => new HeadingCommand(editor, 'h2')],
-    ['subheading', editor => new HeadingCommand(editor, 'h3')],
-    ['unorderedlist', editor => new ListCommand(editor, 'ul')],
-    ['orderedlist', editor => new ListCommand(editor, 'ol')],
-    ['blockquote', editor => new BlockquoteCommand(editor)],
-    ['media', editor => new MediaCommand(editor)],
-    ['table', editor => new TableCommand(editor)],
-    ['details', editor => new DetailsCommand(editor)],
+    editor => new TextCommand(editor, 'bold', 'strong'),
+    editor => new TextCommand(editor, 'italic', 'i'),
+    editor => new TextCommand(editor, 'definition', 'dfn'),
+    editor => new TextCommand(editor, 'quote', 'q'),
+    editor => new TextCommand(editor, 'cite', 'cite'),
+    editor => new TextCommand(editor, 'mark', 'mark'),
+    editor => new TextCommand(editor, 'keyboard', 'kbd'),
+    editor => new LinkCommand(editor, 'link'),
+    editor => new ParagraphCommand(editor, 'paragraph'),
+    editor => new HeadingCommand(editor, 'heading', 'h2'),
+    editor => new HeadingCommand(editor, 'subheading', 'h3'),
+    editor => new ListCommand(editor, 'unorderedlist', 'ul'),
+    editor => new ListCommand(editor, 'orderedlist', 'ol'),
+    editor => new BlockquoteCommand(editor, 'blockquote'),
+    editor => new MediaCommand(editor, 'media'),
+    editor => new TableCommand(editor, 'table'),
+    editor => new DetailsCommand(editor, 'details'),
 ];
 
 export default data;

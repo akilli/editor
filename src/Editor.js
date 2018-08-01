@@ -1,4 +1,4 @@
-import Command from './command/Command.js';
+import CommandManager from './command/CommandManager.js';
 import Converter from './converter/Converter.js';
 import TagManager from './tag/TagManager.js';
 import Toolbar from './toolbar/Toolbar.js';
@@ -52,7 +52,7 @@ export default class Editor {
         this.config = config;
 
         /**
-         * Tag configuration
+         * Tag Manager
          *
          * @type TagManager
          * @readonly
@@ -68,11 +68,11 @@ export default class Editor {
         this.converters = new Map(configConverter);
 
         /**
-         * Commands
+         * Command Manager
          *
-         * @type {Map<string, Command>}
+         * @type {CommandManager}
          */
-        this.commands = new Map();
+        this.commands = new CommandManager(this, configCommand);
 
         /**
          * Toolbar
@@ -89,7 +89,6 @@ export default class Editor {
     init() {
         this.initElement();
         this.initGui();
-        this.initCommands();
         this.toolbar.init();
     }
 
@@ -145,27 +144,6 @@ export default class Editor {
         }
 
         this.document.head.appendChild(link);
-    }
-
-    /**
-     * Init commands
-     */
-    initCommands() {
-        configCommand.forEach(item => {
-            let command;
-
-            if (!Array.isArray(item)
-                || item.length !== 2
-                || typeof item[0] !== 'string'
-                || typeof item[1] !== 'function'
-                || !(command = item[1](this))
-                || !(command instanceof Command)
-            ) {
-                throw 'Invalid command';
-            }
-
-            this.commands.set(item[0], command);
-        });
     }
 
     /**

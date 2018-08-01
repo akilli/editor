@@ -5,12 +5,13 @@ import TextCommand from './TextCommand.js';
  */
 export default class LinkCommand extends TextCommand {
     /**
-     * Initializes a new editor command and registers tag
+     * Initializes a new editor command with given name and registers tag
      *
      * @param {Editor} editor
+     * @param {String} name
      */
-    constructor(editor) {
-        super(editor, 'a');
+    constructor(editor, name) {
+        super(editor, name, 'a');
     }
 
     /**
