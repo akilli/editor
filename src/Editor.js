@@ -53,7 +53,7 @@ export default class Editor {
         /**
          * Tag configuration
          *
-         * @type {Map<string, CfgTag>}
+         * @type {Map<string, ConfigTag>}
          * @readonly
          */
         this.tags = new Map(configTag);
@@ -436,9 +436,9 @@ export default class Editor {
      */
     allowed(tag, parentTag) {
         const config = this.getTag(tag);
-        const parentCfg = this.getTag(parentTag);
+        const parentConfig = this.getTag(parentTag);
 
-        return config && parentCfg && parentCfg.children.includes(config.group);
+        return config && parentConfig && parentConfig.children.includes(config.group);
     }
 
     /**

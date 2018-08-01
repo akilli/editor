@@ -1,7 +1,7 @@
 /**
  * Tag configuration
  *
- * @typedef {Object} CfgTag
+ * @typedef {Object} ConfigTag
  *
  * @property {string[]} attributes Allowed attributes
  * @property {string[]} children   Allowed groups of child elements

@@ -1,7 +1,7 @@
 /**
  * Media type configuration
  *
- * @typedef {Object} CfgMediaType
+ * @typedef {Object} ConfigMediaType
  *
  * @property {string}   id      Media type ID
  * @property {string}   element The corresponding HTML element name
