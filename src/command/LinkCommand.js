@@ -20,7 +20,7 @@ export default class LinkCommand extends TextCommand {
         let src;
 
         if (src = this.editor.window.prompt('URL')) {
-            const a = document.createElement(this.tag);
+            const a = document.createElement(this.tag.name);
             a.setAttribute('src', src);
             this.editor.formatText(a);
         }
