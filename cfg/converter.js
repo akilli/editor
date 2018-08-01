@@ -1,4 +1,5 @@
 import ElementConverter from '../src/converter/ElementConverter.js';
+import NumberConverter from '../src/converter/NumberConverter.js';
 import TextConverter from '../src/converter/TextConverter.js';
 
 /**
@@ -14,8 +15,8 @@ const data = [
     ['ins', () => new TextConverter()],
     ['small', () => new TextConverter()],
     ['span', () => new TextConverter()],
-    ['sub', () => new TextConverter()],
-    ['sup', () => new TextConverter()],
+    ['sub', () => new NumberConverter()],
+    ['sup', () => new NumberConverter()],
     ['time', () => new TextConverter()],
     ['u', () => new TextConverter()],
     ['var', () => new ElementConverter('i')],
