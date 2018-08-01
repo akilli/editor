@@ -6,8 +6,8 @@ export default class MediaBrowser {
      * Opens a media browser window and registers a listener for communication between editor and browser windows
      *
      * @param {Window} window
-     * @param {string} url
-     * @param {function} callback
+     * @param {String} url
+     * @param {Function} callback
      */
     static open(window, url, callback) {
         if (!url || typeof callback !== 'function') {

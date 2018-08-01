@@ -7,7 +7,7 @@ export default class MediaType {
     /**
      * Returns all media types IDs
      *
-     * @return {string[]}
+     * @return {String[]}
      */
     static ids() {
         return Object.getOwnPropertyNames(configMediaType);
@@ -16,7 +16,7 @@ export default class MediaType {
     /**
      * Returns given media type or null
      *
-     * @param {string} type
+     * @param {String} type
      *
      * @return {?Object}
      */
@@ -27,7 +27,7 @@ export default class MediaType {
     /**
      * Returns given media type from given element or null
      *
-     * @param {string} element
+     * @param {String} element
      *
      * @return {?Object}
      */
@@ -46,7 +46,7 @@ export default class MediaType {
     /**
      * Returns media type from given URL or null
      *
-     * @param {string} url
+     * @param {String} url
      *
      * @return {Promise<Object>}
      */

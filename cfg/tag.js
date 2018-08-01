@@ -3,11 +3,11 @@
  *
  * @typedef {Object} ConfigTag
  *
- * @property {string[]} attributes Allowed attributes
- * @property {string[]} children   Allowed groups of child elements
- * @property {boolean}  editable   Is element editable
- * @property {boolean}  empty      Is empty element
- * @property {string}   group      Name of the tag group
+ * @property {String[]} attributes Allowed attributes
+ * @property {String[]} children   Allowed groups of child elements
+ * @property {Boolean}  editable   Is element editable
+ * @property {Boolean}  empty      Is empty element
+ * @property {String}   group      Name of the tag group
  */
 'use strict';
 

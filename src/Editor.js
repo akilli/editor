@@ -170,7 +170,7 @@ export default class Editor {
     /**
      * Short-cut method to register a mutation observer
      *
-     * @param {function} callback
+     * @param {Function} callback
      * @param {Object} config
      */
     register(callback, config) {
@@ -185,7 +185,7 @@ export default class Editor {
     /**
      * Returns editor element's innerHTML
      *
-     * @return {string}
+     * @return {String}
      */
     getData() {
         this.element.innerHTML = this.filterHtml(this.element.innerHTML);
@@ -269,8 +269,8 @@ export default class Editor {
     /**
      * Execute command
      *
-     * @param {string} command
-     * @param {?string} value
+     * @param {String} command
+     * @param {?String} value
      */
     execute(command, value = null) {
         this.document.execCommand(command, false, value);
@@ -279,9 +279,9 @@ export default class Editor {
     /**
      * Filters HTML
      *
-     * @param {string} html
+     * @param {String} html
      *
-     * @return {string}
+     * @return {String}
      */
     filterHtml(html) {
         const tmp = this.document.createElement('div');
@@ -377,7 +377,7 @@ export default class Editor {
      *
      * @param {Node} node
      *
-     * @return {boolean}
+     * @return {Boolean}
      */
     isTextOrHtml(node) {
         return node instanceof Text || node instanceof HTMLElement;
@@ -386,9 +386,9 @@ export default class Editor {
     /**
      * Decode HTML
      *
-     * @param {string} html
+     * @param {String} html
      *
-     * @return {string}
+     * @return {String}
      */
     decode(html) {
         const textarea = this.document.createElement('textarea');
@@ -400,7 +400,7 @@ export default class Editor {
     /**
      * Returns tag configuration for given tag
      *
-     * @param {string} tag
+     * @param {String} tag
      *
      * @return {?Object}
      */
@@ -411,7 +411,7 @@ export default class Editor {
     /**
      * Returns converter configuration for given tag
      *
-     * @param {string} tag
+     * @param {String} tag
      *
      * @return {?Converter}
      */
@@ -429,10 +429,10 @@ export default class Editor {
     /**
      * Checks if given element is allowed inside given parent element
      *
-     * @param {string} tag
-     * @param {string} parentTag
+     * @param {String} tag
+     * @param {String} parentTag
      *
-     * @return {boolean}
+     * @return {Boolean}
      */
     allowed(tag, parentTag) {
         const config = this.getTag(tag);
@@ -444,9 +444,9 @@ export default class Editor {
     /**
      * Converts URL
      *
-     * @param {string} url
+     * @param {String} url
      *
-     * @return {string}
+     * @return {String}
      */
     url(url) {
         const a = this.document.createElement('a');
@@ -458,9 +458,9 @@ export default class Editor {
     /**
      * Returns GUI URL
      *
-     * @param {string} path
+     * @param {String} path
      *
-     * @return {string}
+     * @return {String}
      */
     gui(path) {
         return this.config.path + '/gui/' + path;
@@ -469,9 +469,9 @@ export default class Editor {
     /**
      * Returns icon URL
      *
-     * @param {string} name
+     * @param {String} name
      *
-     * @return {string}
+     * @return {String}
      */
     icon(name) {
         return this.gui('icon/' + name + '.svg');

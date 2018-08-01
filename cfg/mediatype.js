@@ -3,9 +3,9 @@
  *
  * @typedef {Object} ConfigMediaType
  *
- * @property {string}   id      Media type ID
- * @property {string}   element The corresponding HTML element name
- * @property {string[]} mime    Supported MIME types
+ * @property {String}   id      Media type ID
+ * @property {String}   element The corresponding HTML element name
+ * @property {String[]} mime    Supported MIME types
  */
 'use strict';
 

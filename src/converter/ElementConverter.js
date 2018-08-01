@@ -7,7 +7,7 @@ export default class ElementConverter extends Converter {
     /**
      * Initializes a new element converter and with given tag
      *
-     * @param {string} tag
+     * @param {String} tag
      */
     constructor(tag) {
         super();
@@ -19,7 +19,7 @@ export default class ElementConverter extends Converter {
         /**
          * The new tag name of the converted element
          *
-         * @type {?string}
+         * @type {String}
          * @readonly
          */
         this.tag = tag;

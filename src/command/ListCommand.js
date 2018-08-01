@@ -8,7 +8,7 @@ export default class ListCommand extends Command {
      * Initializes a new editor command and registers list tag
      *
      * @param {Editor} editor
-     * @param {string} tag
+     * @param {String} tag
      */
     constructor(editor, tag) {
         super(editor);
@@ -22,7 +22,7 @@ export default class ListCommand extends Command {
         /**
          * Elements tag name
          *
-         * @type {string}
+         * @type {String}
          * @readonly
          */
         this.tag = tag;
