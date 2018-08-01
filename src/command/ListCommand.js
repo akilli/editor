@@ -1,13 +1,6 @@
 import Command from './Command.js';
 
 /**
- * Allowed list tags
- *
- * @type {string[]}
- */
-const tags = ['ol', 'ul'];
-
-/**
  * List Command
  */
 export default class ListCommand extends Command {
@@ -20,11 +13,15 @@ export default class ListCommand extends Command {
     constructor(editor, tag) {
         super(editor);
 
-        if (!tag || !tags.includes(tag) || !this.editor.getTag(tag)) {
+        let config;
+
+        if (!tag || !(config = this.editor.getTag(tag)) || config.group !== 'list') {
             throw 'Invalid heading element';
         }
 
         /**
+         * Elements tag name
+         *
          * @type {string}
          * @readonly
          */

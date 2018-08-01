@@ -1,18 +1,11 @@
 import Command from './Command.js';
 
 /**
- * Allowed text formatting tags
- *
- * @type {string[]}
- */
-const tags = ['abbr', 'b', 'cite', 'code', 'data', 'del', 'dfn', 'em', 'i', 'ins', 'kbd', 'mark', 'q', 's', 'small', 'strong', 'sub', 'sup', 'time', 'u', 'var'];
-
-/**
- * Text Format Command
+ * Text Command
  */
 export default class TextCommand extends Command {
     /**
-     * Initializes a new editor command and registers text formatting tag
+     * Initializes a new editor command and registers tag
      *
      * @param {Editor} editor
      * @param {string} tag
@@ -20,11 +13,15 @@ export default class TextCommand extends Command {
     constructor(editor, tag) {
         super(editor);
 
-        if (!tag || !tags.includes(tag) || !this.editor.getTag(tag)) {
-            throw 'Invalid text formatting element';
+        let config;
+
+        if (!tag || !(config = this.editor.getTag(tag)) || config.group !== 'text') {
+            throw 'Invalid element';
         }
 
         /**
+         * Elements tag name
+         *
          * @type {string}
          * @readonly
          */

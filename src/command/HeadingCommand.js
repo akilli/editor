@@ -1,13 +1,6 @@
 import Command from './Command.js';
 
 /**
- * Allowed heading tags
- *
- * @type {string[]}
- */
-const tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-
-/**
  * Heading Command
  */
 export default class HeadingCommand extends Command {
@@ -20,11 +13,15 @@ export default class HeadingCommand extends Command {
     constructor(editor, tag) {
         super(editor);
 
-        if (!tag || !tags.includes(tag) || !this.editor.getTag(tag)) {
+        let config;
+
+        if (!tag || !(config = this.editor.getTag(tag)) || config.group !== 'heading') {
             throw 'Invalid heading element';
         }
 
         /**
+         * Elements tag name
+         *
          * @type {string}
          * @readonly
          */

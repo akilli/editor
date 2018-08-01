@@ -1,9 +1,18 @@
-import Command from './Command.js';
+import TextCommand from './TextCommand.js';
 
 /**
  * Link Command
  */
-export default class LinkCommand extends Command {
+export default class LinkCommand extends TextCommand {
+    /**
+     * Initializes a new editor command and registers tag
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'a');
+    }
+
     /**
      * @inheritDoc
      */
@@ -11,7 +20,7 @@ export default class LinkCommand extends Command {
         let src;
 
         if (src = this.editor.window.prompt('URL')) {
-            const a = document.createElement('a');
+            const a = document.createElement(this.tag);
             a.setAttribute('src', src);
             this.editor.formatText(a);
         }
