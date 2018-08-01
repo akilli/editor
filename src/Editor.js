@@ -1,6 +1,6 @@
 import Command from './command/Command.js';
 import Converter from './converter/Converter.js';
-import Toolbar from './ui/Toolbar.js';
+import Toolbar from './toolbar/Toolbar.js';
 import configCommand from '../cfg/command.js';
 import configConverter from '../cfg/converter.js';
 import configTag from '../cfg/tag.js';
