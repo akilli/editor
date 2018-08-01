@@ -10,7 +10,7 @@ const tags = ['abbr', 'b', 'cite', 'code', 'data', 'del', 'dfn', 'em', 'i', 'ins
 /**
  * Text Format Command
  */
-export default class TextFormatCommand extends Command {
+export default class TextCommand extends Command {
     /**
      * Initializes a new editor command and registers text formatting tag
      *

@@ -6,19 +6,19 @@ import ListCommand from '../src/command/ListCommand.js';
 import MediaCommand from '../src/command/MediaCommand.js';
 import ParagraphCommand from '../src/command/ParagraphCommand.js';
 import TableCommand from '../src/command/TableCommand.js';
-import TextFormatCommand from '../src/command/TextFormatCommand.js';
+import TextCommand from '../src/command/TextCommand.js';
 
 /**
  * Command configuration
  */
 const data = [
-    ['bold', editor => new TextFormatCommand(editor, 'strong')],
-    ['italic', editor => new TextFormatCommand(editor, 'i')],
-    ['definition', editor => new TextFormatCommand(editor, 'dfn')],
-    ['quote', editor => new TextFormatCommand(editor, 'q')],
-    ['cite', editor => new TextFormatCommand(editor, 'cite')],
-    ['mark', editor => new TextFormatCommand(editor, 'mark')],
-    ['keyboard', editor => new TextFormatCommand(editor, 'kbd')],
+    ['bold', editor => new TextCommand(editor, 'strong')],
+    ['italic', editor => new TextCommand(editor, 'i')],
+    ['definition', editor => new TextCommand(editor, 'dfn')],
+    ['quote', editor => new TextCommand(editor, 'q')],
+    ['cite', editor => new TextCommand(editor, 'cite')],
+    ['mark', editor => new TextCommand(editor, 'mark')],
+    ['keyboard', editor => new TextCommand(editor, 'kbd')],
     ['link', editor => new LinkCommand(editor)],
     ['paragraph', editor => new ParagraphCommand(editor)],
     ['heading', editor => new HeadingCommand(editor, 'h2')],
