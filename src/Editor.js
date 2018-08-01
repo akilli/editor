@@ -1,5 +1,6 @@
 import BlockquoteCommand from './command/BlockquoteCommand.js';
 import Command from './command/Command.js';
+import Converter from './converter/Converter.js';
 import DetailsCommand from './command/DetailsCommand.js';
 import HeadingCommand from './command/HeadingCommand.js';
 import LinkCommand from './command/LinkCommand.js';
@@ -9,8 +10,8 @@ import ParagraphCommand from './command/ParagraphCommand.js';
 import TableCommand from './command/TableCommand.js';
 import TextFormatCommand from './command/TextFormatCommand.js';
 import Toolbar from './ui/Toolbar.js';
-import cfgConverter from '../cfg/converter.js';
-import cfgTag from '../cfg/tag.js';
+import configConverter from '../cfg/converter.js';
+import configTag from '../cfg/tag.js';
 
 /**
  * Editor
@@ -63,15 +64,15 @@ export default class Editor {
          * @type {Map<string, CfgTag>}
          * @readonly
          */
-        this.tags = new Map(cfgTag);
+        this.tags = new Map(configTag);
 
         /**
          * Element converters
          *
-         * @type {Map<string, string>}
+         * @type {Map<string, function>}
          * @readonly
          */
-        this.converters = new Map(cfgConverter);
+        this.converters = new Map(configConverter);
 
         /**
          * Commands
@@ -183,15 +184,15 @@ export default class Editor {
      * Short-cut method to register a mutation observer
      *
      * @param {function} callback
-     * @param {Object} cfg
+     * @param {Object} config
      */
-    register(callback, cfg) {
-        if (typeof callback !== 'function' || !cfg) {
+    register(callback, config) {
+        if (typeof callback !== 'function' || !config) {
             throw 'Invalid observer';
         }
 
         const mutation = new MutationObserver(callback);
-        mutation.observe(this.element, cfg);
+        mutation.observe(this.element, config);
     }
 
     /**
@@ -208,26 +209,26 @@ export default class Editor {
     /**
      * Insert an element
      *
-     * @param {HTMLElement} el
+     * @param {HTMLElement} element
      * @param {?HTMLElement} parent
      */
-    insert(el, parent = null) {
-        if (!(el instanceof HTMLElement) || !!parent && !(parent instanceof HTMLElement)) {
+    insert(element, parent = null) {
+        if (!(element instanceof HTMLElement) || !!parent && !(parent instanceof HTMLElement)) {
             throw 'Invalid HTML element';
         } else if (!parent) {
             parent = this.element;
         }
 
-        parent.appendChild(el);
+        parent.appendChild(element);
     }
 
     /**
      * Adds or removes formatting to/from selected text
      *
-     * @param {HTMLElement} el
+     * @param {HTMLElement} element
      */
-    formatText(el) {
-        if (!(el instanceof HTMLElement)) {
+    formatText(element) {
+        if (!(element instanceof HTMLElement)) {
             throw 'Invalid HTML element';
         }
 
@@ -249,8 +250,8 @@ export default class Editor {
         }
 
         const range = sel.getRangeAt(0);
-        const cfg = this.getTag(ancEl.tagName);
-        const parent = !cfg || cfg.group === 'text' ? ancEl.parentElement : ancEl;
+        const config = this.getTag(ancEl.tagName);
+        const parent = !config || config.group === 'text' ? ancEl.parentElement : ancEl;
 
         if (range.startContainer instanceof Text && !range.startContainer.parentElement.isSameNode(parent)) {
             range.setStartBefore(range.startContainer.parentElement);
@@ -263,14 +264,14 @@ export default class Editor {
         const selText = range.toString();
         const selNodes = range.cloneContents().childNodes;
         let same = Array.from(selNodes).every(item => {
-            return this.isTextOrHtml(item) && item instanceof Text && !item.nodeValue.trim() || item instanceof HTMLElement && item.tagName === el.tagName;
+            return this.isTextOrHtml(item) && item instanceof Text && !item.nodeValue.trim() || item instanceof HTMLElement && item.tagName === element.tagName;
         });
 
         range.deleteContents();
 
-        if (parent.contentEditable && this.allowed(el.tagName, parent.tagName) && selText.trim() && (!cfg || !same)) {
-            el.innerText = selText;
-            range.insertNode(el);
+        if (parent.contentEditable && this.allowed(element.tagName, parent.tagName) && selText.trim() && (!config || !same)) {
+            element.innerText = selText;
+            range.insertNode(element);
         } else {
             range.insertNode(this.document.createTextNode(selText));
         }
@@ -327,11 +328,11 @@ export default class Editor {
             node = this.convert(node);
             const isHtml = node instanceof HTMLElement;
             const tag = isHtml ? node.tagName : null;
-            const cfg = isHtml ? this.getTag(tag) : null;
+            const config = isHtml ? this.getTag(tag) : null;
 
-            if (cfg && (this.allowed(tag, parentTag) || isTop && cfg.group === 'text')) {
+            if (config && (this.allowed(tag, parentTag) || isTop && config.group === 'text')) {
                 Array.from(node.attributes).forEach(item => {
-                    if (!cfg.attributes.includes(item.name)) {
+                    if (!config.attributes.includes(item.name)) {
                         node.removeAttribute(item.name);
                     }
                 });
@@ -340,18 +341,18 @@ export default class Editor {
                     this.filterElement(node);
                 }
 
-                if (!node.hasChildNodes() && !cfg.empty) {
+                if (!node.hasChildNodes() && !config.empty) {
                     parent.removeChild(node);
-                } else if (isTop && cfg.group === 'text') {
+                } else if (isTop && config.group === 'text') {
                     const p = this.document.createElement('p');
                     p.innerHTML = node.outerHTML;
                     parent.replaceChild(p, node);
                 }
-            } else if (isTop && (!isHtml && !!node.nodeValue.trim() || cfg && !!node.innerText.trim())) {
+            } else if (isTop && (!isHtml && !!node.nodeValue.trim() || config && !!node.innerText.trim())) {
                 const p = this.document.createElement('p');
                 p.innerText = isHtml ? node.innerText.trim() : node.nodeValue.trim();
                 parent.replaceChild(p, node);
-            } else if (cfg && !!node.innerText.trim()) {
+            } else if (config && !!node.innerText.trim()) {
                 const text = this.document.createTextNode(node.innerText.trim());
                 parent.replaceChild(text, node);
             } else if (isHtml || isTop) {
@@ -372,19 +373,13 @@ export default class Editor {
      * @return {Node}
      */
     convert(node) {
-        let conv;
-        let newNode;
+        let converter;
 
-        if (!(node instanceof HTMLElement) || !(conv = this.getConverter(node.tagName))) {
+        if (!(node instanceof HTMLElement) || !(converter = this.getConverter(node.tagName))) {
             return node;
         }
 
-        if (conv !== '_text_' && (newNode = this.document.createElement(conv)) && newNode instanceof HTMLElement) {
-            newNode.innerHTML = node.innerHTML;
-        } else {
-            newNode = this.document.createTextNode(node.innerText.trim());
-        }
-
+        const newNode = converter.convert(node);
         node.parentElement.replaceChild(newNode, node);
 
         return newNode;
@@ -431,10 +426,17 @@ export default class Editor {
      *
      * @param {string} tag
      *
-     * @return {?string}
+     * @return {?Converter}
      */
     getConverter(tag) {
-        return this.converters.get(tag.toLowerCase()) || null;
+        const callback = this.converters.get(tag.toLowerCase());
+        let converter;
+
+        if (typeof callback === 'function' && (converter = callback(this)) && converter instanceof Converter) {
+            return converter;
+        }
+
+        return null;
     }
 
     /**
@@ -446,10 +448,10 @@ export default class Editor {
      * @return {boolean}
      */
     allowed(tag, parentTag) {
-        const cfg = this.getTag(tag);
+        const config = this.getTag(tag);
         const parentCfg = this.getTag(parentTag);
 
-        return cfg && parentCfg && parentCfg.children.includes(cfg.group);
+        return config && parentCfg && parentCfg.children.includes(config.group);
     }
 
     /**
