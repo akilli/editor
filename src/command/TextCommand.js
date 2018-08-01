@@ -8,21 +8,21 @@ export default class TextCommand extends Command {
      * Initializes a new editor command and registers tag
      *
      * @param {Editor} editor
-     * @param {String} tag
+     * @param {String} name
      */
-    constructor(editor, tag) {
+    constructor(editor, name) {
         super(editor);
 
-        let config;
+        let tag;
 
-        if (!tag || !(config = this.editor.getTag(tag)) || config.group !== 'text') {
+        if (!name || !(tag = this.editor.tags.get(name)) || tag.group !== 'text') {
             throw 'Invalid element';
         }
 
         /**
          * Elements tag name
          *
-         * @type {String}
+         * @type {Tag}
          * @readonly
          */
         this.tag = tag;
@@ -32,6 +32,6 @@ export default class TextCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.formatText(document.createElement(this.tag));
+        this.editor.formatText(document.createElement(this.tag.name));
     }
 }

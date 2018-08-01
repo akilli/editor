@@ -8,21 +8,21 @@ export default class HeadingCommand extends Command {
      * Initializes a new editor command and registers heading tag
      *
      * @param {Editor} editor
-     * @param {String} tag
+     * @param {String} name
      */
-    constructor(editor, tag) {
+    constructor(editor, name) {
         super(editor);
 
-        let config;
+        let tag;
 
-        if (!tag || !(config = this.editor.getTag(tag)) || config.group !== 'heading') {
+        if (!name || !(tag = this.editor.tags.get(name)) || tag.group !== 'heading') {
             throw 'Invalid heading element';
         }
 
         /**
          * Elements tag name
          *
-         * @type {String}
+         * @type {Tag}
          * @readonly
          */
         this.tag = tag;
@@ -32,7 +32,7 @@ export default class HeadingCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        const h = document.createElement(this.tag);
+        const h = document.createElement(this.tag.name);
         h.innerText = 'Heading';
         this.editor.insert(h);
     }

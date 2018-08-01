@@ -1,5 +1,6 @@
 import Command from './command/Command.js';
 import Converter from './converter/Converter.js';
+import TagManager from './tag/TagManager.js';
 import Toolbar from './toolbar/Toolbar.js';
 import configCommand from '../cfg/command.js';
 import configConverter from '../cfg/converter.js';
@@ -53,10 +54,10 @@ export default class Editor {
         /**
          * Tag configuration
          *
-         * @type {Map<string, ConfigTag>}
+         * @type TagManager
          * @readonly
          */
-        this.tags = new Map(configTag);
+        this.tags = new TagManager(configTag);
 
         /**
          * Element converters
@@ -112,14 +113,14 @@ export default class Editor {
         this.element.innerHTML = this.filterHtml(html);
         this.element.classList.add('editor');
         Array.from(this.element.children).forEach(node => {
-            if (this.allowed(node.tagName, '_root_')) {
+            if (this.allowed(node.tagName, 'root')) {
                 node.setAttribute('contenteditable', 'true');
             }
         });
         this.register(ev => {
             ev.forEach(item => {
                 item.addedNodes.forEach(node => {
-                    if (node instanceof HTMLElement && node.parentElement === this.element && this.allowed(node.tagName, '_root_')) {
+                    if (node instanceof HTMLElement && node.parentElement === this.element && this.allowed(node.tagName, 'root')) {
                         node.setAttribute('contenteditable', 'true');
                     }
                 });
@@ -237,8 +238,8 @@ export default class Editor {
         }
 
         const range = sel.getRangeAt(0);
-        const config = this.getTag(ancEl.tagName);
-        const parent = !config || config.group === 'text' ? ancEl.parentElement : ancEl;
+        const tag = this.tags.get(ancEl.tagName);
+        const parent = !tag || tag.group === 'text' ? ancEl.parentElement : ancEl;
 
         if (range.startContainer instanceof Text && !range.startContainer.parentElement.isSameNode(parent)) {
             range.setStartBefore(range.startContainer.parentElement);
@@ -256,7 +257,7 @@ export default class Editor {
 
         range.deleteContents();
 
-        if (parent.contentEditable && this.allowed(element.tagName, parent.tagName) && selText.trim() && (!config || !same)) {
+        if (parent.contentEditable && this.allowed(element.tagName, parent.tagName) && selText.trim() && (!tag || !same)) {
             element.innerText = selText;
             range.insertNode(element);
         } else {
@@ -302,7 +303,7 @@ export default class Editor {
         }
 
         const isTop = !parent.parentElement;
-        const parentTag = isTop ? '_root_' : parent.tagName;
+        const parentTag = isTop ? 'root' : parent.tagName;
         let br;
 
         parent.normalize();
@@ -314,12 +315,12 @@ export default class Editor {
 
             node = this.convert(node);
             const isHtml = node instanceof HTMLElement;
-            const tag = isHtml ? node.tagName : null;
-            const config = isHtml ? this.getTag(tag) : null;
+            const name = isHtml ? node.tagName : null;
+            const tag = isHtml ? this.tags.get(name) : null;
 
-            if (config && (this.allowed(tag, parentTag) || isTop && config.group === 'text')) {
+            if (tag && (this.allowed(name, parentTag) || isTop && tag.group === 'text')) {
                 Array.from(node.attributes).forEach(item => {
-                    if (!config.attributes.includes(item.name)) {
+                    if (!tag.attributes.includes(item.name)) {
                         node.removeAttribute(item.name);
                     }
                 });
@@ -328,18 +329,18 @@ export default class Editor {
                     this.filterElement(node);
                 }
 
-                if (!node.hasChildNodes() && !config.empty) {
+                if (!node.hasChildNodes() && !tag.empty) {
                     parent.removeChild(node);
-                } else if (isTop && config.group === 'text') {
+                } else if (isTop && tag.group === 'text') {
                     const p = this.document.createElement('p');
                     p.innerHTML = node.outerHTML;
                     parent.replaceChild(p, node);
                 }
-            } else if (isTop && (!isHtml && !!node.nodeValue.trim() || config && !!node.innerText.trim())) {
+            } else if (isTop && (!isHtml && !!node.nodeValue.trim() || tag && !!node.innerText.trim())) {
                 const p = this.document.createElement('p');
                 p.innerText = isHtml ? node.innerText.trim() : node.nodeValue.trim();
                 parent.replaceChild(p, node);
-            } else if (config && !!node.innerText.trim()) {
+            } else if (tag && !!node.innerText.trim()) {
                 const text = this.document.createTextNode(node.innerText.trim());
                 parent.replaceChild(text, node);
             } else if (isHtml || isTop) {
@@ -398,17 +399,6 @@ export default class Editor {
     }
 
     /**
-     * Returns tag configuration for given tag
-     *
-     * @param {String} tag
-     *
-     * @return {?Object}
-     */
-    getTag(tag) {
-        return this.tags.get(tag.toLowerCase()) || null;
-    }
-
-    /**
      * Returns converter configuration for given tag
      *
      * @param {String} tag
@@ -429,16 +419,16 @@ export default class Editor {
     /**
      * Checks if given element is allowed inside given parent element
      *
-     * @param {String} tag
-     * @param {String} parentTag
+     * @param {String} name
+     * @param {String} parentName
      *
      * @return {Boolean}
      */
-    allowed(tag, parentTag) {
-        const config = this.getTag(tag);
-        const parentConfig = this.getTag(parentTag);
+    allowed(name, parentName) {
+        const tag = this.tags.get(name);
+        const parentTag = this.tags.get(parentName);
 
-        return config && parentConfig && parentConfig.children.includes(config.group);
+        return tag && parentTag && parentTag.children.includes(tag.group);
     }
 
     /**
