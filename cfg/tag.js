@@ -5,6 +5,7 @@
  *
  * @property {string[]} attributes Allowed attributes
  * @property {string[]} children   Allowed groups of child elements
+ * @property {boolean}  editable   Is element editable
  * @property {boolean}  empty      Is empty element
  * @property {string}   group      Name of the tag group
  */
@@ -16,6 +17,7 @@ const data = [
         {
             attributes: [],
             children: ['details', 'figure', 'heading', 'list', 'paragraph'],
+            editable: false,
             empty: false,
             group: 'root',
         }
@@ -25,6 +27,7 @@ const data = [
         {
             attributes: ['href'],
             children: [],
+            editable: false,
             empty: false,
             group: 'text',
         }
@@ -34,6 +37,7 @@ const data = [
         {
             attributes: ['controls', 'height', 'src', 'width'],
             children: [],
+            editable: false,
             empty: false,
             group: 'media',
         }
@@ -43,6 +47,7 @@ const data = [
         {
             attributes: [],
             children: ['paragraph'],
+            editable: false,
             empty: false,
             group: 'blockquote',
         }
@@ -52,6 +57,7 @@ const data = [
         {
             attributes: [],
             children: [],
+            editable: false,
             empty: true,
             group: 'break',
         }
@@ -61,6 +67,7 @@ const data = [
         {
             attributes: [],
             children: [],
+            editable: false,
             empty: false,
             group: 'text',
         }
@@ -70,6 +77,7 @@ const data = [
         {
             attributes: [],
             children: ['figure', 'paragraph', 'summary'],
+            editable: false,
             empty: false,
             group: 'details',
         }
@@ -79,6 +87,7 @@ const data = [
         {
             attributes: [],
             children: [],
+            editable: false,
             empty: false,
             group: 'text',
         }
@@ -88,6 +97,7 @@ const data = [
         {
             attributes: [],
             children: ['text'],
+            editable: true,
             empty: false,
             group: 'caption',
         }
@@ -97,6 +107,7 @@ const data = [
         {
             attributes: ['class'],
             children: ['blockquote', 'caption', 'media', 'table'],
+            editable: false,
             empty: false,
             group: 'figure',
         }
@@ -106,6 +117,7 @@ const data = [
         {
             attributes: [],
             children: [],
+            editable: true,
             empty: false,
             group: 'heading',
         }
@@ -115,6 +127,7 @@ const data = [
         {
             attributes: [],
             children: [],
+            editable: true,
             empty: false,
             group: 'heading',
         }
@@ -124,6 +137,7 @@ const data = [
         {
             attributes: [],
             children: [],
+            editable: false,
             empty: false,
             group: 'text',
         }
@@ -133,6 +147,7 @@ const data = [
         {
             attributes: ['allowfullscreen', 'height', 'src', 'width'],
             children: [],
+            editable: false,
             empty: false,
             group: 'media',
         }
@@ -142,6 +157,7 @@ const data = [
         {
             attributes: ['alt', 'height', 'src', 'width'],
             children: [],
+            editable: false,
             empty: true,
             group: 'media',
         }
@@ -151,6 +167,7 @@ const data = [
         {
             attributes: [],
             children: ['break', 'text'],
+            editable: true,
             empty: false,
             group: 'listitem',
         }
@@ -160,6 +177,7 @@ const data = [
         {
             attributes: [],
             children: [],
+            editable: false,
             empty: false,
             group: 'text',
         }
@@ -169,6 +187,7 @@ const data = [
         {
             attributes: [],
             children: [],
+            editable: false,
             empty: false,
             group: 'text',
         }
@@ -178,6 +197,7 @@ const data = [
         {
             attributes: [],
             children: ['listitem'],
+            editable: false,
             empty: false,
             group: 'list',
         }
@@ -187,6 +207,7 @@ const data = [
         {
             attributes: [],
             children: ['break', 'text'],
+            editable: true,
             empty: false,
             group: 'paragraph',
         }
@@ -196,6 +217,7 @@ const data = [
         {
             attributes: [],
             children: [],
+            editable: false,
             empty: false,
             group: 'text',
         }
@@ -205,6 +227,7 @@ const data = [
         {
             attributes: [],
             children: [],
+            editable: false,
             empty: false,
             group: 'text',
         }
@@ -214,6 +237,7 @@ const data = [
         {
             attributes: [],
             children: [],
+            editable: true,
             empty: false,
             group: 'summary',
         }
@@ -223,6 +247,7 @@ const data = [
         {
             attributes: [],
             children: ['tablepart'],
+            editable: false,
             empty: false,
             group: 'table',
         }
@@ -232,6 +257,7 @@ const data = [
         {
             attributes: [],
             children: ['tablerow'],
+            editable: false,
             empty: false,
             group: 'tablepart',
         }
@@ -241,6 +267,7 @@ const data = [
         {
             attributes: [],
             children: ['break', 'text'],
+            editable: true,
             empty: false,
             group: 'tablecell',
         }
@@ -250,6 +277,7 @@ const data = [
         {
             attributes: [],
             children: ['tablerow'],
+            editable: false,
             empty: false,
             group: 'tablepart',
         }
@@ -259,6 +287,7 @@ const data = [
         {
             attributes: [],
             children: ['break', 'text'],
+            editable: true,
             empty: false,
             group: 'tablecell',
         }
@@ -267,6 +296,7 @@ const data = [
         'thead', {
             attributes: [],
             children: ['tablerow'],
+            editable: false,
             empty: false,
             group: 'tablepart',
         }
@@ -276,6 +306,7 @@ const data = [
         {
             attributes: [],
             children: ['tablecell'],
+            editable: false,
             empty: false,
             group: 'tablerow',
         }
@@ -285,6 +316,7 @@ const data = [
         {
             attributes: [],
             children: ['listitem'],
+            editable: false,
             empty: false,
             group: 'list',
         }
@@ -294,6 +326,7 @@ const data = [
         {
             attributes: ['controls', 'height', 'src', 'width'],
             children: [],
+            editable: false,
             empty: false,
             group: 'media',
         }
