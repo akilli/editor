@@ -26,5 +26,7 @@ export default class Command {
     /**
      * Execute command
      */
-    execute() {}
+    execute() {
+        throw 'Not implemented';
+    }
 }
