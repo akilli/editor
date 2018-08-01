@@ -9,7 +9,7 @@
  */
 'use strict';
 
-const cfg = {
+const data = {
     audio: {
         id: 'audio',
         element: 'audio',
@@ -35,4 +35,4 @@ const cfg = {
     }
 };
 
-export default cfg;
+export default data;

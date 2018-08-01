@@ -10,7 +10,7 @@
  */
 'use strict';
 
-const cfg = [
+const data = [
     [
         '_root_',
         {
@@ -300,4 +300,4 @@ const cfg = [
     ],
 ];
 
-export default cfg;
+export default data;

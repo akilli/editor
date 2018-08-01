@@ -34,9 +34,9 @@ export default class MediaCommand extends Command {
         data.src = this.editor.url(data.src);
         MediaType.fromUrl(data.src)
             .then(type => {
-                let cfg;
+                let config;
 
-                if (!type || !(cfg = this.editor.getTag(type.element))) {
+                if (!type || !(config = this.editor.getTag(type.element))) {
                     return;
                 }
 
@@ -47,7 +47,7 @@ export default class MediaCommand extends Command {
                 figure.classList.add(type.id);
                 figure.appendChild(media);
 
-                cfg.attributes.forEach(item => {
+                config.attributes.forEach(item => {
                     if (['allowfullscreen', 'alt', 'controls'].includes(item)) {
                         media.setAttribute(item, item);
                     } else if (data[item]) {

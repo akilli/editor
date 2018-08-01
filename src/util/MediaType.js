@@ -1,4 +1,4 @@
-import cfgMediaType from '../../cfg/mediatype.js';
+import configMediaType from '../../cfg/mediatype.js';
 
 /**
  * Media Type
@@ -10,7 +10,7 @@ export default class MediaType {
      * @return {string[]}
      */
     static ids() {
-        return Object.getOwnPropertyNames(cfgMediaType);
+        return Object.getOwnPropertyNames(configMediaType);
     }
 
     /**
@@ -21,7 +21,7 @@ export default class MediaType {
      * @return {?Object}
      */
     static get(type) {
-        return cfgMediaType[type] || null;
+        return configMediaType[type] || null;
     }
 
     /**
@@ -35,8 +35,8 @@ export default class MediaType {
         const ids = MediaType.ids();
 
         for (let i = 0; i < ids.length; ++i) {
-            if (cfgMediaType[ids[i]].element === element) {
-                return cfgMediaType[ids[i]];
+            if (configMediaType[ids[i]].element === element) {
+                return configMediaType[ids[i]];
             }
         }
 
@@ -65,8 +65,8 @@ export default class MediaType {
             const ids = MediaType.ids();
 
             for (let i = 0; i < ids.length; ++i) {
-                if (cfgMediaType[ids[i]].mime.includes(mime)) {
-                    return cfgMediaType[ids[i]];
+                if (configMediaType[ids[i]].mime.includes(mime)) {
+                    return configMediaType[ids[i]];
                 }
             }
         }
