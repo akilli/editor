@@ -1,6 +1,6 @@
 import Command from './Command.js';
-import MediaBrowser from '../util/MediaBrowser.js';
-import MediaType from '../util/MediaType.js';
+import MediaBrowser from '../media/MediaBrowser.js';
+import MediaType from '../media/MediaType.js';
 
 /**
  * Media Command
