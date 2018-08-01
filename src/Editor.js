@@ -432,7 +432,7 @@ export default class Editor {
         const callback = this.converters.get(tag.toLowerCase());
         let converter;
 
-        if (typeof callback === 'function' && (converter = callback(this)) && converter instanceof Converter) {
+        if (typeof callback === 'function' && (converter = callback()) && converter instanceof Converter) {
             return converter;
         }
 
