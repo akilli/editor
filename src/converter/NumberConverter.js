@@ -30,9 +30,7 @@ export default class NumberConverter extends Converter {
         let text = element.innerText.trim();
 
         if (map.hasOwnProperty(tag) && !isNaN(text)) {
-            console.log(text);
             text = text.replace(/[0-9]/g, n => map[tag][n]);
-            console.log(text);
         }
 
         return element.ownerDocument.createTextNode(text);
