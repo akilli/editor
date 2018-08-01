@@ -1,15 +1,7 @@
-import BlockquoteCommand from './command/BlockquoteCommand.js';
 import Command from './command/Command.js';
 import Converter from './converter/Converter.js';
-import DetailsCommand from './command/DetailsCommand.js';
-import HeadingCommand from './command/HeadingCommand.js';
-import LinkCommand from './command/LinkCommand.js';
-import ListCommand from './command/ListCommand.js';
-import MediaCommand from './command/MediaCommand.js';
-import ParagraphCommand from './command/ParagraphCommand.js';
-import TableCommand from './command/TableCommand.js';
-import TextFormatCommand from './command/TextFormatCommand.js';
 import Toolbar from './ui/Toolbar.js';
+import configCommand from '../cfg/command.js';
 import configConverter from '../cfg/converter.js';
 import configTag from '../cfg/tag.js';
 
@@ -158,26 +150,21 @@ export default class Editor {
      * Init commands
      */
     initCommands() {
-        this.execute('defaultParagraphSeparator', 'p');
-        this.execute('enableInlineTableEditing', 'false');
-        this.execute('enableObjectResizing', 'false');
-        this.commands.set('bold', new TextFormatCommand(this, 'strong'));
-        this.commands.set('italic', new TextFormatCommand(this, 'i'));
-        this.commands.set('definition', new TextFormatCommand(this, 'dfn'));
-        this.commands.set('quote', new TextFormatCommand(this, 'q'));
-        this.commands.set('cite', new TextFormatCommand(this, 'cite'));
-        this.commands.set('mark', new TextFormatCommand(this, 'mark'));
-        this.commands.set('keyboard', new TextFormatCommand(this, 'kbd'));
-        this.commands.set('link', new LinkCommand(this));
-        this.commands.set('paragraph', new ParagraphCommand(this));
-        this.commands.set('heading', new HeadingCommand(this, 'h2'));
-        this.commands.set('subheading', new HeadingCommand(this, 'h3'));
-        this.commands.set('unorderedlist', new ListCommand(this, 'ul'));
-        this.commands.set('orderedlist', new ListCommand(this, 'ol'));
-        this.commands.set('blockquote', new BlockquoteCommand(this));
-        this.commands.set('media', new MediaCommand(this));
-        this.commands.set('table', new TableCommand(this));
-        this.commands.set('details', new DetailsCommand(this));
+        configCommand.forEach(item => {
+            let command;
+
+            if (!Array.isArray(item)
+                || item.length !== 2
+                || typeof item[0] !== 'string'
+                || typeof item[1] !== 'function'
+                || !(command = item[1](this))
+                || !(command instanceof Command)
+            ) {
+                throw 'Invalid command configuration';
+            }
+
+            this.commands.set(item[0], command);
+        });
     }
 
     /**
