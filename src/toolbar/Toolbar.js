@@ -41,7 +41,7 @@ export default class Toolbar {
         for (let item of this.editor.commands) {
             const img = this.editor.document.createElement('img');
 
-            img.setAttribute('src', this.editor.icon(item[0]));
+            img.setAttribute('src', this.icon(item[0]));
             img.setAttribute('alt', item[0]);
             img.setAttribute('title', item[0]);
             img.addEventListener('click', () => {
@@ -53,5 +53,16 @@ export default class Toolbar {
             });
             this.element.appendChild(img);
         }
+    }
+
+    /**
+     * Returns command icon URL
+     *
+     * @param {String} name
+     *
+     * @return {String}
+     */
+    icon(name) {
+        return this.editor.gui('command/' + name + '.svg');
     }
 }

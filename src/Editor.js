@@ -442,17 +442,6 @@ export default class Editor {
     }
 
     /**
-     * Returns icon URL
-     *
-     * @param {String} name
-     *
-     * @return {String}
-     */
-    icon(name) {
-        return this.gui('icon/' + name + '.svg');
-    }
-
-    /**
      * Factory method to create a new instance of editor with given configuration
      *
      * @param {HTMLElement} element
