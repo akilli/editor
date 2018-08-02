@@ -24,9 +24,9 @@ export default class DetailsCommand extends Command {
 
         details.appendChild(summary);
         details.appendChild(p);
-        summary.innerHTML = 'Summary';
         summary.addEventListener('keyup', this.onKeyup.bind(this));
-        p.innerHTML = 'Content';
+        summary.innerText = 'Summary';
+        p.innerText = 'Content';
 
         this.editor.insert(details);
     }

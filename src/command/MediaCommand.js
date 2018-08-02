@@ -56,9 +56,9 @@ export default class MediaCommand extends Command {
                 });
 
                 if (!!data.caption) {
-                    const caption = this.editor.document.createElement('figcaption');
-                    caption.innerHTML = data.caption;
-                    figure.appendChild(caption);
+                    const figcaption = this.editor.document.createElement('figcaption');
+                    figcaption.innerHTML = data.caption;
+                    figure.appendChild(figcaption);
                 }
 
                 this.editor.insert(figure);

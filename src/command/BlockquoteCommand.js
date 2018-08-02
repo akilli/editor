@@ -9,16 +9,16 @@ export default class BlockquoteCommand extends Command {
      */
     execute() {
         const figure = this.editor.document.createElement('figure');
-        const quote = this.editor.document.createElement('blockquote');
+        const blockquote = this.editor.document.createElement('blockquote');
         const p = this.editor.document.createElement('p');
-        const caption = this.editor.document.createElement('figcaption');
+        const figcaption = this.editor.document.createElement('figcaption');
 
         figure.classList.add('quote');
-        figure.appendChild(quote);
-        figure.appendChild(caption);
-        quote.appendChild(p);
+        figure.appendChild(blockquote);
+        figure.appendChild(figcaption);
+        blockquote.appendChild(p);
         p.innerText = 'Blockquote';
-        caption.innerHTML = 'Caption';
+        figcaption.innerText = 'Caption';
 
         this.editor.insert(figure);
     }

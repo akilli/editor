@@ -5,28 +5,14 @@ import Command from './Command.js';
  */
 export default class ListCommand extends Command {
     /**
-     * Initializes a new editor command and registers list tag
-     *
-     * @param {Editor} editor
-     * @param {String} name
-     * @param {String} tagName
+     * @inheritDoc
      */
     constructor(editor, name, tagName) {
-        super(editor, name);
+        super(editor, name, tagName);
 
-        let tag;
-
-        if (!tagName || !(tag = this.editor.tags.get(tagName)) || tag.group !== 'list') {
-            throw 'Invalid heading element';
+        if (!this.tag || this.tag.group !== 'list') {
+            throw 'Invalid list element';
         }
-
-        /**
-         * Tag
-         *
-         * @type {Tag}
-         * @readonly
-         */
-        this.tag = tag;
     }
 
     /**
@@ -35,6 +21,7 @@ export default class ListCommand extends Command {
     execute() {
         const list = document.createElement(this.tag.name);
         const item = document.createElement('li');
+
         list.appendChild(item);
         item.innerText = 'List Item';
         this.editor.insert(list);

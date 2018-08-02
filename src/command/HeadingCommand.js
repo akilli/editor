@@ -5,28 +5,14 @@ import Command from './Command.js';
  */
 export default class HeadingCommand extends Command {
     /**
-     * Initializes a new editor command and registers heading tag
-     *
-     * @param {Editor} editor
-     * @param {String} name
-     * @param {String} tagName
+     * @inheritDoc
      */
     constructor(editor, name, tagName) {
-        super(editor, name);
+        super(editor, name, tagName);
 
-        let tag;
-
-        if (!tagName || !(tag = this.editor.tags.get(tagName)) || tag.group !== 'heading') {
+        if (!this.tag || this.tag.group !== 'heading') {
             throw 'Invalid heading element';
         }
-
-        /**
-         * Tag
-         *
-         * @type {Tag}
-         * @readonly
-         */
-        this.tag = tag;
     }
 
     /**

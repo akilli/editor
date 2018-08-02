@@ -9,13 +9,13 @@ export default class TableCommand extends Command {
      */
     execute() {
         const figure = this.editor.document.createElement('figure');
-        const caption = this.editor.document.createElement('figcaption');
         const table = this.editor.document.createElement('table');
+        const figcaption = this.editor.document.createElement('figcaption');
 
         figure.classList.add('table');
         figure.appendChild(table);
-        figure.appendChild(caption);
-        caption.innerHTML = 'Caption';
+        figure.appendChild(figcaption);
+        figcaption.innerText = 'Caption';
 
         ['thead', 'tfoot', 'tbody'].forEach(part => {
             const item = this.editor.document.createElement(part);
