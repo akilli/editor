@@ -34,19 +34,4 @@ export default class TagManager {
     get(name) {
         return this.data.get(name.toLowerCase()) || null;
     }
-
-    /**
-     * Checks if given element is allowed inside given parent element
-     *
-     * @param {String} name
-     * @param {String} parentName
-     *
-     * @return {Boolean}
-     */
-    allowed(name, parentName) {
-        const tag = this.get(name);
-        const parentTag = this.get(parentName);
-
-        return tag && parentTag && parentTag.children.includes(tag.group);
-    }
 }
