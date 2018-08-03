@@ -63,7 +63,7 @@ export default class Editor {
          * @type {Map<String, Tag>}
          * @readonly
          */
-        this.tags = this.createTags();
+        this.tags = this.createTags(configTag);
 
         /**
          * Element converters
@@ -71,14 +71,14 @@ export default class Editor {
          * @type {Map<String, Converter>}
          * @readonly
          */
-        this.converters = this.createConverters();
+        this.converters = this.createConverters(configConverter);
 
         /**
          * Commands
          *
          * @type {Map<String, Command>}
          */
-        this.commands = this.createCommands();
+        this.commands = this.createCommands(configCommand);
 
         /**
          * Corresponding DOM element of the widget toolbar
@@ -124,12 +124,14 @@ export default class Editor {
     /**
      * Creates tags map
      *
+     * @param {Object[]} config
+     *
      * @return {Map<String, Tag>}
      */
-    createTags() {
+    createTags(config) {
         const map = new Map();
 
-        configTag.forEach(item => {
+        config.forEach(item => {
             const tag = new Tag(item);
             return map.set(tag.name, tag);
         });
@@ -140,17 +142,19 @@ export default class Editor {
     /**
      * Creates converters map
      *
+     * @param {Object.<String, Converter>} config
+     *
      * @return {Map<String, Converter>}
      */
-    createConverters() {
+    createConverters(config) {
         const map = new Map();
 
-        Object.getOwnPropertyNames(configConverter).forEach(key => {
-            if (!(configConverter[key] instanceof Converter)) {
+        Object.getOwnPropertyNames(config).forEach(key => {
+            if (!(config[key] instanceof Converter)) {
                 throw 'Invalid converter';
             }
 
-            map.set(key, configConverter[key]);
+            map.set(key, config[key]);
         });
 
         return map;
@@ -159,15 +163,17 @@ export default class Editor {
     /**
      * Creates commands map
      *
+     * @param {Object.<String, Function>} config
+     *
      * @return {Map<String, Command>}
      */
-    createCommands() {
+    createCommands(config) {
         const map = new Map();
 
-        Object.getOwnPropertyNames(configCommand).forEach(key => {
+        Object.getOwnPropertyNames(config).forEach(key => {
             let command;
 
-            if (typeof configCommand[key] !== 'function' || !(command = configCommand[key](this)) || !(command instanceof Command)) {
+            if (typeof config[key] !== 'function' || !(command = config[key](this)) || !(command instanceof Command)) {
                 throw 'Invalid command';
             }
 
