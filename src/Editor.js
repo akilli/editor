@@ -1,6 +1,6 @@
 import CommandManager from './command/CommandManager.js';
 import Converter from './converter/Converter.js';
-import TagManager from './tag/TagManager.js';
+import Tag from './tag/Tag.js';
 import Toolbar from './toolbar/Toolbar.js';
 import configCommand from '../cfg/command.js';
 import configConverter from '../cfg/converter.js';
@@ -54,15 +54,20 @@ export default class Editor {
         /**
          * Tag Manager
          *
-         * @type TagManager
+         * @type {Map<String, Tag>}
          * @readonly
          */
-        this.tags = new TagManager(configTag);
+        this.tags = new Map();
+
+        configTag.forEach(item => {
+            const tag = new Tag(item);
+            return this.tags.set(tag.name, tag);
+        });
 
         /**
          * Element converters
          *
-         * @type {Map<string, Converter>}
+         * @type {Map<String, Converter>}
          * @readonly
          */
         this.converters = new Map();
