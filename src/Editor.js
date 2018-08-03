@@ -244,7 +244,7 @@ export default class Editor {
         for (let item of this.commands.entries()) {
             const img = this.document.createElement('img');
 
-            img.setAttribute('src', this.commandIcon(item[0]));
+            img.setAttribute('src', this.gui('command/' + item[0] + '.svg'));
             img.setAttribute('alt', item[0]);
             img.setAttribute('title', item[0]);
             img.addEventListener('click', () => {
@@ -542,17 +542,6 @@ export default class Editor {
      */
     gui(path) {
         return this.config.path + '/gui/' + path;
-    }
-
-    /**
-     * Returns command icon URL
-     *
-     * @param {String} name
-     *
-     * @return {String}
-     */
-    commandIcon(name) {
-        return this.gui('command/' + name + '.svg');
     }
 
     /**
