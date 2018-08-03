@@ -46,7 +46,13 @@ export default class Editor {
         this.window = element.ownerDocument.defaultView;
 
         /**
-         * @type {Object}
+         * Configuration
+         *
+         * @typedef {Object} Config
+         * @property {String} mediabrowser Media browser URL
+         * @property {String} path         URL path to editor root directory
+         *
+         * @type {Config}
          * @readonly
          */
         this.config = config;
