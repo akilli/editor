@@ -217,19 +217,16 @@ export default class Editor {
      * Init element
      */
     initElement() {
-        this.element.innerHTML = this.filterHtml(this.element.innerHTML);
-        Array.from(this.element.children).forEach(node => {
-            if (this.allowed(node.tagName, 'root')) {
+        const callback = node => {
+            if (node instanceof HTMLElement && node.parentElement === this.element && this.allowed(node.tagName, 'root')) {
                 node.setAttribute('contenteditable', 'true');
             }
-        });
+        };
+        this.element.innerHTML = this.filterHtml(this.element.innerHTML);
+        Array.from(this.element.children).forEach(callback);
         this.register(ev => {
             ev.forEach(item => {
-                item.addedNodes.forEach(node => {
-                    if (node instanceof HTMLElement && node.parentElement === this.element && this.allowed(node.tagName, 'root')) {
-                        node.setAttribute('contenteditable', 'true');
-                    }
-                });
+                item.addedNodes.forEach(callback);
             });
         }, {childList: true});
     }
