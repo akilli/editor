@@ -49,8 +49,8 @@ export default class Editor {
          * Configuration
          *
          * @typedef {Object} Config
+         * @property {String} gui          URL path to editor root directory
          * @property {String} mediabrowser Media browser URL
-         * @property {String} path         URL path to editor root directory
          *
          * @type {Config}
          * @readonly
@@ -541,7 +541,7 @@ export default class Editor {
      * @return {String}
      */
     gui(path) {
-        return this.config.path + '/gui/' + path;
+        return this.config.gui + '/' + path;
     }
 
     /**
