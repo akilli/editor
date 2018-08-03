@@ -16,20 +16,8 @@ export default class DetailsCommand extends Command {
                 this.editor.execute('inserttext', ' ');
             }
         };
-        this.editor.element.querySelectorAll('summary').forEach(summary => {
-            summary.addEventListener('keyup', callback);
-        });
-        this.editor.register(ev => {
-            ev.forEach(item => {
-                item.addedNodes.forEach(node => {
-                    let summary;
-
-                    if (node instanceof HTMLDetailsElement && !!(summary = node.querySelector('summary'))) {
-                        summary.addEventListener('keyup', callback);
-                    }
-                });
-            });
-        }, {childList: true});
+        this.editor.element.querySelectorAll('summary').forEach(summary => summary.addEventListener('keyup', callback));
+        this.editor.register(() =>  this.editor.element.querySelectorAll('summary').forEach(summary => summary.addEventListener('keyup', callback)), {childList: true});
     }
 
     /**

@@ -217,18 +217,18 @@ export default class Editor {
      * Init element
      */
     initElement() {
-        const callback = node => {
-            if (node instanceof HTMLElement && node.parentElement === this.element && this.allowed(node.tagName, 'root')) {
-                node.setAttribute('contenteditable', 'true');
+        const editables = [...this.tags].reduce((result, item) => {
+            if (item[1].editable) {
+                result += (result ? ', ' : '') + item[1].name;
             }
-        };
+
+            return result;
+        }, '');
+        const callback = n => n.setAttribute('contenteditable', 'true');
+
         this.element.innerHTML = this.filterHtml(this.element.innerHTML);
-        Array.from(this.element.children).forEach(callback);
-        this.register(ev => {
-            ev.forEach(item => {
-                item.addedNodes.forEach(callback);
-            });
-        }, {childList: true});
+        this.element.querySelectorAll(editables).forEach(callback);
+        this.register(() => this.element.querySelectorAll(editables).forEach(callback), {childList: true});
     }
 
     /**
