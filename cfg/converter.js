@@ -13,6 +13,7 @@ const data = [
     ['div', () => new ElementConverter('p')],
     ['em', () => new ElementConverter('i')],
     ['ins', () => new TextConverter()],
+    ['samp', () => new TextConverter()],
     ['small', () => new TextConverter()],
     ['span', () => new TextConverter()],
     ['sub', () => new NumberConverter()],
