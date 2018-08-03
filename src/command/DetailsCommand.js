@@ -11,7 +11,7 @@ export default class DetailsCommand extends Command {
         super(editor);
 
         const callback = ev => {
-            if (ev instanceof KeyboardEvent && ev.key === ' ') {
+            if (ev.key === ' ') {
                 ev.preventDefault();
                 this.editor.execute('inserttext', ' ');
             }
