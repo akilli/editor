@@ -17,7 +17,7 @@ export default class DetailsCommand extends Command {
             }
         };
         this.editor.element.querySelectorAll('summary').forEach(summary => summary.addEventListener('keyup', callback));
-        this.editor.register(() =>  this.editor.element.querySelectorAll('summary').forEach(summary => summary.addEventListener('keyup', callback)), {childList: true});
+        this.editor.register(() =>  this.editor.element.querySelectorAll('summary').forEach(summary => summary.addEventListener('keyup', callback)));
     }
 
     /**

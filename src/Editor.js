@@ -228,7 +228,7 @@ export default class Editor {
 
         this.element.innerHTML = this.filterHtml(this.element.innerHTML);
         this.element.querySelectorAll(editables).forEach(callback);
-        this.register(() => this.element.querySelectorAll(editables).forEach(callback), {childList: true});
+        this.register(() => this.element.querySelectorAll(editables).forEach(callback));
     }
 
     /**
@@ -280,15 +280,14 @@ export default class Editor {
      * Short-cut method to register a mutation observer
      *
      * @param {Function} callback
-     * @param {Object} config
      */
-    register(callback, config) {
-        if (typeof callback !== 'function' || !config) {
+    register(callback) {
+        if (typeof callback !== 'function') {
             throw 'Invalid observer';
         }
 
         const mutation = new MutationObserver(callback);
-        mutation.observe(this.element, config);
+        mutation.observe(this.element, {childList: true});
     }
 
     /**
