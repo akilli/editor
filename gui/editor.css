@@ -33,6 +33,11 @@
     cursor: pointer;
 }
 
+.editor-toolbar-widget img {
+    width: 3rem;
+    height: 3rem;
+}
+
 /**
  * Editable
  */

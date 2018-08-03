@@ -1,7 +1,7 @@
 import Command from './command/Command.js';
 import Converter from './converter/Converter.js';
 import Tag from './tag/Tag.js';
-import Toolbar from './toolbar/Toolbar.js';
+import TextCommand from './command/TextCommand.js';
 import configCommand from '../cfg/command.js';
 import configConverter from '../cfg/converter.js';
 import configTag from '../cfg/tag.js';
@@ -22,7 +22,7 @@ export default class Editor {
         }
 
         /**
-         * Corresponding DOM element
+         * Corresponding DOM element of the editor
          *
          * @type {HTMLElement}
          * @readonly
@@ -63,12 +63,7 @@ export default class Editor {
          * @type {Map<String, Tag>}
          * @readonly
          */
-        this.tags = new Map();
-
-        configTag.forEach(item => {
-            const tag = new Tag(item);
-            return this.tags.set(tag.name, tag);
-        });
+        this.tags = this.createTags();
 
         /**
          * Element converters
@@ -76,22 +71,74 @@ export default class Editor {
          * @type {Map<String, Converter>}
          * @readonly
          */
-        this.converters = new Map();
-
-        Object.getOwnPropertyNames(configConverter).forEach(key => {
-            if (!(configConverter[key] instanceof Converter)) {
-                throw 'Invalid converter';
-            }
-
-            this.converters.set(key, configConverter[key]);
-        });
+        this.converters = this.createConverters();
 
         /**
          * Commands
          *
          * @type {Map<String, Command>}
          */
-        this.commands = new Map();
+        this.commands = this.createCommands();
+
+        /**
+         * Corresponding DOM element of the widget toolbar
+         *
+         * @type {HTMLElement}
+         * @readonly
+         */
+        this.widgetToolbar = this.createToolbar('widget');
+
+        /**
+         * Corresponding DOM element of the text toolbar
+         *
+         * @type {HTMLElement}
+         * @readonly
+         */
+        this.textToolbar = this.createToolbar('text');
+    }
+
+    /**
+     * Creates tags map
+     *
+     * @return {Map<String, Tag>}
+     */
+    createTags() {
+        const map = new Map();
+
+        configTag.forEach(item => {
+            const tag = new Tag(item);
+            return map.set(tag.name, tag);
+        });
+
+        return map;
+    }
+
+    /**
+     * Creates converters map
+     *
+     * @return {Map<String, Converter>}
+     */
+    createConverters() {
+        const map = new Map();
+
+        Object.getOwnPropertyNames(configConverter).forEach(key => {
+            if (!(configConverter[key] instanceof Converter)) {
+                throw 'Invalid converter';
+            }
+
+            map.set(key, configConverter[key]);
+        });
+
+        return map;
+    }
+
+    /**
+     * Creates commands map
+     *
+     * @return {Map<String, Command>}
+     */
+    createCommands() {
+        const map = new Map();
 
         Object.getOwnPropertyNames(configCommand).forEach(key => {
             let command;
@@ -100,16 +147,31 @@ export default class Editor {
                 throw 'Invalid command';
             }
 
-            return this.commands.set(key, command);
+            return map.set(key, command);
         });
 
-        /**
-         * Toolbar
-         *
-         * @type {Toolbar}
-         * @readonly
-         */
-        this.toolbar = new Toolbar(this);
+        return map;
+    }
+
+    /**
+     * Creates a toolbar with given name
+     *
+     * @param {String} name
+     *
+     * @return {HTMLElement}
+     */
+    createToolbar(name) {
+        if (!name || typeof name !== 'string') {
+            throw 'Invalid toolbar name';
+        }
+
+        const toolbar = this.document.createElement('div');
+
+        toolbar.classList.add('editor-toolbar');
+        toolbar.classList.add('editor-toolbar-' + name);
+        this.element.parentNode.insertBefore(toolbar, this.element);
+
+        return toolbar;
     }
 
     /**
@@ -118,7 +180,7 @@ export default class Editor {
     init() {
         this.initElement();
         this.initGui();
-        this.toolbar.init();
+        this.initToolbar();
     }
 
     /**
@@ -173,6 +235,32 @@ export default class Editor {
         }
 
         this.document.head.appendChild(link);
+    }
+
+    /**
+     * Init Toolbar
+     */
+    initToolbar() {
+        for (let item of this.commands.entries()) {
+            const img = this.document.createElement('img');
+
+            img.setAttribute('src', this.commandIcon(item[0]));
+            img.setAttribute('alt', item[0]);
+            img.setAttribute('title', item[0]);
+            img.addEventListener('click', () => {
+                if (!this.window.getSelection().containsNode(this.element, true)) {
+                    this.element.focus();
+                }
+
+                item[1].execute();
+            });
+
+            if (item[1] instanceof TextCommand) {
+                this.textToolbar.appendChild(img);
+            } else {
+                this.widgetToolbar.appendChild(img);
+            }
+        }
     }
 
     /**
@@ -454,6 +542,17 @@ export default class Editor {
      */
     gui(path) {
         return this.config.path + '/gui/' + path;
+    }
+
+    /**
+     * Returns command icon URL
+     *
+     * @param {String} name
+     *
+     * @return {String}
+     */
+    commandIcon(name) {
+        return this.gui('command/' + name + '.svg');
     }
 
     /**
