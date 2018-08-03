@@ -1,4 +1,4 @@
-import CommandManager from './command/CommandManager.js';
+import Command from './command/Command.js';
 import Converter from './converter/Converter.js';
 import Tag from './tag/Tag.js';
 import Toolbar from './toolbar/Toolbar.js';
@@ -52,7 +52,7 @@ export default class Editor {
         this.config = config;
 
         /**
-         * Tag Manager
+         * Tags
          *
          * @type {Map<String, Tag>}
          * @readonly
@@ -81,11 +81,21 @@ export default class Editor {
         });
 
         /**
-         * Command Manager
+         * Commands
          *
-         * @type {CommandManager}
+         * @type {Map<String, Command>}
          */
-        this.commands = new CommandManager(this, configCommand);
+        this.commands = new Map();
+
+        configCommand.forEach(item => {
+            let command;
+
+            if (typeof item !== 'function' || !(command = item(this)) || !(command instanceof Command)) {
+                throw 'Invalid command';
+            }
+
+            return this.commands.set(command.name, command);
+        });
 
         /**
          * Toolbar

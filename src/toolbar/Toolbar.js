@@ -38,7 +38,7 @@ export default class Toolbar {
      * Init toolbar
      */
     init() {
-        for (let item of this.editor.commands.all()) {
+        for (let item of this.editor.commands.entries()) {
             const img = this.editor.document.createElement('img');
 
             img.setAttribute('src', this.icon(item[0]));
