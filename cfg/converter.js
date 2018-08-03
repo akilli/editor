@@ -1,5 +1,6 @@
 import ElementConverter from '../src/converter/ElementConverter.js';
-import NumberConverter from '../src/converter/NumberConverter.js';
+import SubscriptConverter from '../src/converter/SubscriptConverter.js';
+import SuperscriptConverter from '../src/converter/SuperscriptConverter.js';
 import TextConverter from '../src/converter/TextConverter.js';
 
 /**
@@ -16,8 +17,8 @@ const data = [
     ['samp', () => new TextConverter()],
     ['small', () => new TextConverter()],
     ['span', () => new TextConverter()],
-    ['sub', () => new NumberConverter()],
-    ['sup', () => new NumberConverter()],
+    ['sub', () => new SubscriptConverter()],
+    ['sup', () => new SuperscriptConverter()],
     ['time', () => new TextConverter()],
     ['u', () => new TextConverter()],
     ['var', () => new ElementConverter('i')],
