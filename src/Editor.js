@@ -239,7 +239,7 @@ export default class Editor {
         }
 
         const range = sel.getRangeAt(0);
-        const tag = this.tags.get(ancEl.tagName);
+        const tag = this.getTag(ancEl.tagName);
         const parent = !tag || tag.group === 'text' ? ancEl.parentElement : ancEl;
 
         if (range.startContainer instanceof Text && !range.startContainer.parentElement.isSameNode(parent)) {
@@ -317,7 +317,7 @@ export default class Editor {
             node = this.convert(node);
             const isHtml = node instanceof HTMLElement;
             const name = isHtml ? node.tagName : null;
-            const tag = isHtml ? this.tags.get(name) : null;
+            const tag = isHtml ? this.getTag(name) : null;
 
             if (tag && (this.allowed(name, parentTag) || isTop && tag.group === 'text')) {
                 Array.from(node.attributes).forEach(item => {
@@ -355,6 +355,17 @@ export default class Editor {
     }
 
     /**
+     * Returns tag configuration vor given tag name
+     *
+     * @param {String} name
+     *
+     * @return {?Tag}
+     */
+    getTag(name) {
+        return this.tags.get(name.toLowerCase()) || null;
+    }
+
+    /**
      * Checks if given element is allowed inside given parent element
      *
      * @param {String} name
@@ -363,8 +374,8 @@ export default class Editor {
      * @return {Boolean}
      */
     allowed(name, parentName) {
-        const tag = this.tags.get(name);
-        const parentTag = this.tags.get(parentName);
+        const tag = this.getTag(name);
+        const parentTag = this.getTag(parentName);
 
         return tag && parentTag && parentTag.children.includes(tag.group);
     }

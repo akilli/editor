@@ -18,7 +18,7 @@ export default class Command {
             throw 'Invalid editor';
         } else if (!name || typeof name !== 'string') {
             throw 'Invalid command name';
-        } else if (tagName && !(tag = editor.tags.get(tagName))) {
+        } else if (tagName && !(tag = editor.getTag(tagName))) {
             throw 'Invalid heading element';
         }
 
