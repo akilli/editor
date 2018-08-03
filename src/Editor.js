@@ -86,15 +86,15 @@ export default class Editor {
          * @type {HTMLElement}
          * @readonly
          */
-        this.widgetToolbar = this.createToolbar('widget');
+        this.toolbarWidget = this.createToolbar('widget');
 
         /**
-         * Corresponding DOM element of the text toolbar
+         * Corresponding DOM element of the editable's toolbar
          *
          * @type {HTMLElement}
          * @readonly
          */
-        this.textToolbar = this.createToolbar('text');
+        this.toolbarEditable = this.createToolbar('editable');
     }
 
     /**
@@ -272,9 +272,9 @@ export default class Editor {
             });
 
             if (item[1] instanceof TextCommand) {
-                this.textToolbar.appendChild(img);
+                this.toolbarEditable.appendChild(img);
             } else {
-                this.widgetToolbar.appendChild(img);
+                this.toolbarWidget.appendChild(img);
             }
         }
     }
