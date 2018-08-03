@@ -7,8 +7,8 @@ export default class ListCommand extends Command {
     /**
      * @inheritDoc
      */
-    constructor(editor, name, tagName) {
-        super(editor, name, tagName);
+    constructor(editor, tagName) {
+        super(editor, tagName);
 
         if (!this.tag || this.tag.group !== 'list') {
             throw 'Invalid list element';

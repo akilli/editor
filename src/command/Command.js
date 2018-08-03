@@ -5,19 +5,16 @@ import Editor from '../Editor.js';
  */
 export default class Command {
     /**
-     * Initializes a new editor command with given name and tag name
+     * Initializes a new editor command optionally with given tag name
      *
      * @param {Editor} editor
-     * @param {String} name
      * @param {?String} tagName
      */
-    constructor(editor, name, tagName = null) {
+    constructor(editor, tagName = null) {
         let tag = null;
 
         if (!(editor instanceof Editor)) {
             throw 'Invalid editor';
-        } else if (!name || typeof name !== 'string') {
-            throw 'Invalid command name';
         } else if (tagName && !(tag = editor.getTag(tagName))) {
             throw 'Invalid heading element';
         }
@@ -29,14 +26,6 @@ export default class Command {
          * @readonly
          */
         this.editor = editor;
-
-        /**
-         * Command name
-         *
-         * @type {String}
-         * @readonly
-         */
-        this.name = name;
 
         /**
          * Tag

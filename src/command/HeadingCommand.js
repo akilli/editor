@@ -7,8 +7,8 @@ export default class HeadingCommand extends Command {
     /**
      * @inheritDoc
      */
-    constructor(editor, name, tagName) {
-        super(editor, name, tagName);
+    constructor(editor, tagName) {
+        super(editor, tagName);
 
         if (!this.tag || this.tag.group !== 'heading') {
             throw 'Invalid heading element';

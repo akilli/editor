@@ -72,12 +72,12 @@ export default class Editor {
          */
         this.converters = new Map();
 
-        configConverter.forEach(item => {
-            if (!Array.isArray(item) || item.length !== 2 || !item[0] || !(item[1] instanceof Converter)) {
+        Object.getOwnPropertyNames(configConverter).forEach(key => {
+            if (!(configConverter[key] instanceof Converter)) {
                 throw 'Invalid converter';
             }
 
-            this.converters.set(item[0], item[1]);
+            this.converters.set(key, configConverter[key]);
         });
 
         /**
@@ -87,14 +87,14 @@ export default class Editor {
          */
         this.commands = new Map();
 
-        configCommand.forEach(item => {
+        Object.getOwnPropertyNames(configCommand).forEach(key => {
             let command;
 
-            if (typeof item !== 'function' || !(command = item(this)) || !(command instanceof Command)) {
+            if (typeof configCommand[key] !== 'function' || !(command = configCommand[key](this)) || !(command instanceof Command)) {
                 throw 'Invalid command';
             }
 
-            return this.commands.set(command.name, command);
+            return this.commands.set(key, command);
         });
 
         /**
