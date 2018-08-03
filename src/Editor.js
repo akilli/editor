@@ -62,10 +62,18 @@ export default class Editor {
         /**
          * Element converters
          *
-         * @type {Map<string, function>}
+         * @type {Map<string, Converter>}
          * @readonly
          */
-        this.converters = new Map(configConverter);
+        this.converters = new Map();
+
+        configConverter.forEach(item => {
+            if (!Array.isArray(item) || item.length !== 2 || !item[0] || !(item[1] instanceof Converter)) {
+                throw 'Invalid converter';
+            }
+
+            this.converters.set(item[0], item[1]);
+        });
 
         /**
          * Command Manager
@@ -341,7 +349,7 @@ export default class Editor {
     convert(node) {
         let converter;
 
-        if (!(node instanceof HTMLElement) || !(converter = this.getConverter(node.tagName))) {
+        if (!(node instanceof HTMLElement) || !(converter = this.converters.get(node.tagName.toLowerCase()))) {
             return node;
         }
 
@@ -349,24 +357,6 @@ export default class Editor {
         node.parentElement.replaceChild(newNode, node);
 
         return newNode;
-    }
-
-    /**
-     * Returns converter configuration for given tag
-     *
-     * @param {String} name
-     *
-     * @return {?Converter}
-     */
-    getConverter(name) {
-        const callback = this.converters.get(name.toLowerCase());
-        let converter;
-
-        if (typeof callback === 'function' && (converter = callback()) && converter instanceof Converter) {
-            return converter;
-        }
-
-        return null;
     }
 
     /**
