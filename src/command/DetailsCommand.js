@@ -9,9 +9,27 @@ export default class DetailsCommand extends Command {
      */
     constructor(editor) {
         super(editor);
+
+        const callback = ev => {
+            if (ev instanceof KeyboardEvent && ev.key === ' ') {
+                ev.preventDefault();
+                this.editor.execute('inserttext', ' ');
+            }
+        };
         this.editor.element.querySelectorAll('summary').forEach(summary => {
-            summary.addEventListener('keyup', this.onKeyup.bind(this));
+            summary.addEventListener('keyup', callback);
         });
+        this.editor.register(ev => {
+            ev.forEach(item => {
+                item.addedNodes.forEach(node => {
+                    let summary;
+
+                    if (node instanceof HTMLDetailsElement && !!(summary = node.querySelector('summary'))) {
+                        summary.addEventListener('keyup', callback);
+                    }
+                });
+            });
+        }, {childList: true});
     }
 
     /**
@@ -24,22 +42,9 @@ export default class DetailsCommand extends Command {
 
         details.appendChild(summary);
         details.appendChild(p);
-        summary.addEventListener('keyup', this.onKeyup.bind(this));
         summary.innerText = 'Summary';
         p.innerText = 'Content';
 
         this.editor.insert(details);
-    }
-
-    /**
-     * Keyboard event listener
-     *
-     * @param {KeyboardEvent} ev
-     */
-    onKeyup(ev) {
-        if (ev instanceof KeyboardEvent && ev.key === ' ') {
-            ev.preventDefault();
-            this.editor.execute('inserttext', ' ');
-        }
     }
 }
