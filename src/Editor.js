@@ -22,14 +22,6 @@ export default class Editor {
         }
 
         /**
-         * Corresponding DOM element of the editor
-         *
-         * @type {HTMLElement}
-         * @readonly
-         */
-        this.element = element;
-
-        /**
          * Correspondig DOM Document
          *
          * @type {Document}
@@ -44,6 +36,14 @@ export default class Editor {
          * @readonly
          */
         this.window = element.ownerDocument.defaultView;
+
+        /**
+         * Corresponding DOM element of the editor
+         *
+         * @type {HTMLElement}
+         * @readonly
+         */
+        this.element = this.createElement(element);
 
         /**
          * Configuration
@@ -95,6 +95,30 @@ export default class Editor {
          * @readonly
          */
         this.textToolbar = this.createToolbar('text');
+    }
+
+    /**
+     * Creates editor element if necessary
+     *
+     * @param {HTMLElement} element
+     *
+     * @return {HTMLElement}
+     */
+    createElement(element) {
+        if (element instanceof HTMLTextAreaElement) {
+            const textarea = element;
+            element = this.document.createElement('div');
+            element.innerHTML = textarea.value;
+            textarea.parentElement.insertBefore(element, textarea);
+            textarea.setAttribute('hidden', 'hidden');
+            textarea.form.addEventListener('submit', () => {
+                textarea.value = this.getData();
+            });
+        }
+
+        element.classList.add('editor');
+
+        return element;
     }
 
     /**
@@ -187,21 +211,7 @@ export default class Editor {
      * Init element
      */
     initElement() {
-        let html = this.element.innerHTML;
-
-        if (this.element instanceof HTMLTextAreaElement) {
-            const element = this.element;
-            this.element = this.document.createElement('div');
-            html = element.value;
-            element.parentElement.insertBefore(this.element, element);
-            element.setAttribute('hidden', 'hidden');
-            element.form.addEventListener('submit', () => {
-                element.value = this.getData();
-            });
-        }
-
-        this.element.innerHTML = this.filterHtml(html);
-        this.element.classList.add('editor');
+        this.element.innerHTML = this.filterHtml(this.element.innerHTML);
         Array.from(this.element.children).forEach(node => {
             if (this.allowed(node.tagName, 'root')) {
                 node.setAttribute('contenteditable', 'true');
