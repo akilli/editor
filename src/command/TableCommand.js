@@ -15,7 +15,6 @@ export default class TableCommand extends Command {
         figure.classList.add('table');
         figure.appendChild(table);
         figure.appendChild(figcaption);
-        figcaption.innerText = 'Caption';
 
         ['thead', 'tbody', 'tfoot'].forEach(part => {
             const item = this.editor.document.createElement(part);

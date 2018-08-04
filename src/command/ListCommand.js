@@ -23,7 +23,6 @@ export default class ListCommand extends Command {
         const item = document.createElement('li');
 
         list.appendChild(item);
-        item.innerText = 'List Item';
         this.editor.insert(list);
     }
 }

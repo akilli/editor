@@ -17,8 +17,6 @@ export default class BlockquoteCommand extends Command {
         figure.appendChild(blockquote);
         figure.appendChild(figcaption);
         blockquote.appendChild(p);
-        p.innerText = 'Blockquote';
-        figcaption.innerText = 'Caption';
 
         this.editor.insert(figure);
     }

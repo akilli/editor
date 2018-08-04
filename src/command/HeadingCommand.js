@@ -19,8 +19,6 @@ export default class HeadingCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        const h = document.createElement(this.tag.name);
-        h.innerText = 'Heading';
-        this.editor.insert(h);
+        this.editor.insert(document.createElement(this.tag.name));
     }
 }

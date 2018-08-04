@@ -227,6 +227,7 @@ export default class Editor {
         const selector = editables.join(', ');
         const callback = node => {
             node.setAttribute('contenteditable', 'true');
+            node.focus();
             node.addEventListener('keydown', ev => {
                 if (ev.key === 'Enter' && (!ev.shiftKey || !this.allowed('br', node.tagName))) {
                     ev.preventDefault();
@@ -248,8 +249,7 @@ export default class Editor {
 
                         if (this.allowed(tag.enter, parentName)) {
                             const newElement = this.document.createElement(tag.enter);
-                            newElement.innerText = 'Content';
-                            this.insert(newElement, current);
+                            this.insertAfter(newElement, current);
                             break;
                         }
                     } while (!!(current = current.parentElement) && this.element.contains(current) && !current.isSameNode(this.element));
@@ -346,29 +346,35 @@ export default class Editor {
      * Insert an element
      *
      * @param {HTMLElement} element
-     * @param {?HTMLElement} ref
      */
-    insert(element, ref = null) {
-        if (!(element instanceof HTMLElement) || ref && !(ref instanceof HTMLElement)) {
+    insert(element) {
+        if (!(element instanceof HTMLElement)) {
             throw 'Invalid HTML element';
-        }
-
-        if (!ref) {
-            ref = this.element.lastElementChild;
-        }
-
-        const parent = !ref ? this.element : ref.parentElement;
-        const parentName = parent.isSameNode(this.element) ? 'root' : parent.tagName;
-
-        if (!this.element.contains(parent) || !this.allowed(element.tagName, parentName)) {
+        } else if (!this.allowed(element.tagName, 'root')) {
             throw 'Element is not allowed here';
         }
 
-        if (!ref) {
-            parent.appendChild(element);
-        } else {
-            parent.insertBefore(element, ref.nextElementSibling);
+        this.element.appendChild(element);
+    }
+
+    /**
+     * Insert an element after a reference element
+     *
+     * @param {HTMLElement} element
+     * @param {HTMLElement} ref
+     */
+    insertAfter(element, ref) {
+        if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
+            throw 'Invalid HTML element';
         }
+
+        const parentName = this.element.isSameNode(ref.parentElement) ? 'root' : ref.parentElement.tagName;
+
+        if (!this.element.contains(ref.parentElement) || !this.allowed(element.tagName, parentName)) {
+            throw 'Element is not allowed here';
+        }
+
+        ref.parentElement.insertBefore(element, ref.nextElementSibling);
     }
 
     /**

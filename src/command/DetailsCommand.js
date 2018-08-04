@@ -40,9 +40,6 @@ export default class DetailsCommand extends Command {
 
         details.appendChild(summary);
         details.appendChild(p);
-        summary.innerText = 'Summary';
-        p.innerText = 'Content';
-
         this.editor.insert(details);
     }
 }
