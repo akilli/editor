@@ -40,11 +40,11 @@
  * Editable
  */
 .editor > :hover {
-    outline: 0.0625rem solid #d3d3d3;
+    outline: 0.25rem solid #d3d3d3;
 }
 
 .editor [contenteditable=true]:hover {
-    outline: 0.0625rem solid yellow;
+    outline: 0.25rem solid yellow;
 }
 
 .editor [contenteditable=true]:empty::after {
