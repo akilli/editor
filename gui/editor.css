@@ -4,8 +4,6 @@
 .editor {
     width: 100%;
     min-height: 15rem;
-    padding: 0.75rem;
-    border: thin solid #d3d3d3;
 }
 
 .editor::before {
