@@ -252,7 +252,7 @@ export default class Editor {
                             this.insertAfter(newElement, current);
                             break;
                         }
-                    } while (!!(current = current.parentElement) && this.element.contains(current) && !current.isSameNode(this.element));
+                    } while (!!(current = current.parentElement) && this.element.contains(current) && !this.element.isSameNode(current));
                 }
             });
         };
