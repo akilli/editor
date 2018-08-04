@@ -11,8 +11,9 @@ export default class Tag {
      * @param {String[]} children
      * @param {Boolean} editable
      * @param {Boolean} empty
+     * @param {?String} enter
      */
-    constructor({name = null, group = null, attributes = [], children = [], editable = false, empty = false} = {}) {
+    constructor({name = null, group = null, attributes = [], children = [], editable = false, empty = false, enter = null} = {}) {
         if (!name || typeof name !== 'string') {
             throw 'Invalid tag';
         }
@@ -64,5 +65,13 @@ export default class Tag {
          * @readonly
          */
         this.empty = Boolean(empty);
+
+        /**
+         * Element to insert when ENTER-key is pressed
+         *
+         * @type {?String}
+         * @readonly
+         */
+        this.enter = enter && typeof enter === 'string' ? enter : null;
     }
 }

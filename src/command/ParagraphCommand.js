@@ -8,7 +8,7 @@ export default class ParagraphCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        const p = document.createElement('p');
+        const p = this.editor.document.createElement('p');
         p.innerText = 'Paragraph';
         this.editor.insert(p);
     }

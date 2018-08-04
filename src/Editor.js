@@ -219,16 +219,57 @@ export default class Editor {
     initElement() {
         const editables = [...this.tags].reduce((result, item) => {
             if (item[1].editable) {
-                result += (result ? ', ' : '') + item[1].name;
+                result.push(item[1].name);
             }
 
             return result;
-        }, '');
-        const callback = n => n.setAttribute('contenteditable', 'true');
+        }, []);
+        const selector = editables.join(', ');
+        const callback = node => {
+            node.setAttribute('contenteditable', 'true');
+            node.addEventListener('keydown', ev => {
+                if (ev.key === 'Enter' && (!ev.shiftKey || !this.allowed('br', node.tagName))) {
+                    ev.preventDefault();
+                    ev.cancelBubble = true;
+                }
+            });
+            node.addEventListener('keyup', ev => {
+                let tag;
+
+                if (ev.key === 'Enter' && !ev.shiftKey && (tag = this.getTag(node.tagName)) && !!tag.enter) {
+                    let current = node;
+                    let parentName;
+
+                    ev.preventDefault();
+                    ev.cancelBubble = true;
+
+                    do {
+                        parentName = current.parentElement.isSameNode(this.element) ? 'root' : current.parentElement.tagName;
+
+                        if (this.allowed(tag.enter, parentName)) {
+                            const newElement = this.document.createElement(tag.enter);
+                            newElement.innerText = 'Content';
+                            this.insert(newElement, current);
+                            break;
+                        }
+                    } while (!!(current = current.parentElement) && this.element.contains(current) && !current.isSameNode(this.element));
+                }
+            });
+        };
 
         this.element.innerHTML = this.filterHtml(this.element.innerHTML);
-        this.element.querySelectorAll(editables).forEach(callback);
-        this.register(() => this.element.querySelectorAll(editables).forEach(callback));
+        this.element.querySelectorAll(selector).forEach(callback);
+        this.register(ev => {
+            ev.forEach(item => {
+                item.addedNodes.forEach(node => {
+                    if (node instanceof HTMLElement && editables.includes(node.tagName.toLowerCase())) {
+                        callback(node);
+                    } else if (node instanceof HTMLElement) {
+                        node.querySelectorAll(selector).forEach(callback)
+                    }
+                });
+            });
+        });
     }
 
     /**
@@ -287,7 +328,7 @@ export default class Editor {
         }
 
         const mutation = new MutationObserver(callback);
-        mutation.observe(this.element, {childList: true});
+        mutation.observe(this.element, {childList: true, subtree: true});
     }
 
     /**
@@ -305,16 +346,29 @@ export default class Editor {
      * Insert an element
      *
      * @param {HTMLElement} element
-     * @param {?HTMLElement} parent
+     * @param {?HTMLElement} ref
      */
-    insert(element, parent = null) {
-        if (!(element instanceof HTMLElement) || !!parent && !(parent instanceof HTMLElement)) {
+    insert(element, ref = null) {
+        if (!(element instanceof HTMLElement) || ref && !(ref instanceof HTMLElement)) {
             throw 'Invalid HTML element';
-        } else if (!parent) {
-            parent = this.element;
         }
 
-        parent.appendChild(element);
+        if (!ref) {
+            ref = this.element.lastElementChild;
+        }
+
+        const parent = !ref ? this.element : ref.parentElement;
+        const parentName = parent.isSameNode(this.element) ? 'root' : parent.tagName;
+
+        if (!this.element.contains(parent) || !this.allowed(element.tagName, parentName)) {
+            throw 'Element is not allowed here';
+        }
+
+        if (!ref) {
+            parent.appendChild(element);
+        } else {
+            parent.insertBefore(element, ref.nextElementSibling);
+        }
     }
 
     /**
