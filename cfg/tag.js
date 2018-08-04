@@ -4,7 +4,7 @@
  * @type {Object[]}
  */
 const data = [
-    {name: 'root', children: ['details', 'figure', 'heading', 'list', 'p']},
+    {name: 'root', children: ['details', 'figure', 'heading', 'list', 'p', 'section']},
     {name: 'a', group: 'text', attributes: ['href']},
     {name: 'audio', group: 'media', attributes: ['controls', 'height', 'src', 'width']},
     {name: 'blockquote', children: ['p']},
@@ -25,6 +25,7 @@ const data = [
     {name: 'ol', group: 'list', children: ['li']},
     {name: 'p', children: ['br', 'text'], editable: true, enter: 'p'},
     {name: 'q', group: 'text'},
+    {name: 'section', attributes: ['class'], children: ['details', 'figure', 'heading', 'p']},
     {name: 'strong', group: 'text'},
     {name: 'summary', editable: true, enter: 'p'},
     {name: 'table', children: ['tablepart']},
