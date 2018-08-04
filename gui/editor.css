@@ -49,6 +49,11 @@
     outline: 0.0625rem solid yellow;
 }
 
+.editor [contenteditable=true]:empty::after {
+    content: 'Add text...';
+    color: #d3d3d3;
+}
+
 /**
  * Table
  */
