@@ -10,20 +10,29 @@ export default class DetailsCommand extends Command {
     constructor(editor) {
         super(editor);
 
-        const callback = ev => {
+        const keyDown = ev => {
+            if (ev.key === ' ') {
+                ev.preventDefault();
+            }
+        };
+        const keyUp = ev => {
             if (ev.key === ' ') {
                 ev.preventDefault();
                 this.editor.execute('inserttext', ' ');
             }
         };
-        this.editor.element.querySelectorAll('summary').forEach(summary => summary.addEventListener('keyup', callback));
+        this.editor.element.querySelectorAll('summary').forEach(summary => {
+            summary.addEventListener('keydown', keyDown);
+            summary.addEventListener('keyup', keyUp)
+        });
         this.editor.register(ev =>  {
             ev.forEach(item => {
                 item.addedNodes.forEach(node => {
                     let summary;
 
                     if (node instanceof HTMLDetailsElement && !!(summary = node.querySelector('summary'))) {
-                        summary.addEventListener('keyup', callback);
+                        summary.addEventListener('keydown', keyDown);
+                        summary.addEventListener('keyup', keyUp);
                     }
                 });
             });
