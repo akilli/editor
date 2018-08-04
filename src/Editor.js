@@ -226,6 +226,10 @@ export default class Editor {
         }, []);
         const selector = editables.join(', ');
         const callback = node => {
+            if (!node.hasChildNodes()) {
+                node.innerText = 'Change me!';
+            }
+
             node.setAttribute('contenteditable', 'true');
             node.focus();
             node.addEventListener('keydown', ev => {

@@ -48,7 +48,7 @@
 }
 
 .editor [contenteditable=true]:empty::after {
-    content: 'Add text...';
+    content: 'Gimme some text!';
     color: #d3d3d3;
 }
 
