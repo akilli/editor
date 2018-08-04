@@ -19,6 +19,6 @@ export default class TextCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        this.editor.formatText(document.createElement(this.tag.name));
+        this.editor.formatText(this.editor.document.createElement(this.tag.name));
     }
 }
