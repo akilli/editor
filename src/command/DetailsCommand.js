@@ -22,7 +22,7 @@ export default class DetailsCommand extends Command {
                 node.addEventListener('keyup', ev => {
                     if (ev.key === ' ') {
                         ev.preventDefault();
-                        this.editor.execute('inserttext', ' ');
+                        this.editor.insertText(' ');
                     }
                 });
             }

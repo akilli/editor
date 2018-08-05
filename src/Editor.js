@@ -331,6 +331,21 @@ export default class Editor {
     }
 
     /**
+     * Execute command
+     *
+     * @param {String} name
+     */
+    execute(name) {
+        const command = this.commands.get(name);
+
+        if (!command) {
+            throw 'Invalid command';
+        }
+
+        command.execute();
+    }
+
+    /**
      * Returns editor element's innerHTML
      *
      * @return {String}
@@ -374,6 +389,15 @@ export default class Editor {
         }
 
         ref.parentElement.insertBefore(element, ref.nextElementSibling);
+    }
+
+    /**
+     * Insert text
+     *
+     * @param {String} text
+     */
+    insertText(text) {
+        this.document.execCommand('inserttext', false, text);
     }
 
     /**
@@ -431,16 +455,6 @@ export default class Editor {
         }
 
         parent.normalize();
-    }
-
-    /**
-     * Execute command
-     *
-     * @param {String} command
-     * @param {?String} value
-     */
-    execute(command, value = null) {
-        this.document.execCommand(command, false, value);
     }
 
     /**
