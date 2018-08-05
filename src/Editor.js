@@ -225,7 +225,7 @@ export default class Editor {
             return result;
         }, []);
         const selector = editables.join(', ');
-        const callback = node => {
+        const editableCallback = node => {
             node.setAttribute('contenteditable', 'true');
             node.focus();
             node.addEventListener('keydown', ev => {
@@ -256,20 +256,27 @@ export default class Editor {
                 }
             });
         };
+        const draggableCallback = node => {
+            if (node instanceof HTMLElement && this.element.isSameNode(node.parentElement)) {
+                node.setAttribute('draggable', 'true');
+            }
+        };
 
         this.element.innerHTML = this.filterHtml(this.element.innerHTML);
-        this.element.querySelectorAll(selector).forEach(callback);
+        this.element.querySelectorAll(selector).forEach(editableCallback);
         this.register(ev => {
             ev.forEach(item => {
                 item.addedNodes.forEach(node => {
                     if (node instanceof HTMLElement && editables.includes(node.tagName.toLowerCase())) {
-                        callback(node);
+                        editableCallback(node);
                     } else if (node instanceof HTMLElement) {
-                        node.querySelectorAll(selector).forEach(callback)
+                        node.querySelectorAll(selector).forEach(editableCallback)
                     }
                 });
             });
         });
+        Array.from(this.element.children).forEach(draggableCallback);
+        this.register(ev => ev.forEach(item => item.addedNodes.forEach(draggableCallback)));
     }
 
     /**
