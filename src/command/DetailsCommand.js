@@ -10,33 +10,26 @@ export default class DetailsCommand extends Command {
     constructor(editor) {
         super(editor);
 
-        const keyDown = ev => {
-            if (ev.key === ' ') {
-                ev.preventDefault();
-            }
-        };
-        const keyUp = ev => {
-            if (ev.key === ' ') {
-                ev.preventDefault();
-                this.editor.execute('inserttext', ' ');
-            }
-        };
-        this.editor.element.querySelectorAll('summary').forEach(summary => {
-            summary.addEventListener('keydown', keyDown);
-            summary.addEventListener('keyup', keyUp)
-        });
-        this.editor.register(ev =>  {
-            ev.forEach(item => {
-                item.addedNodes.forEach(node => {
-                    let summary;
+        const callback = node => {
+            const name = node.nodeName.toLowerCase();
 
-                    if (node instanceof HTMLDetailsElement && !!(summary = node.querySelector('summary'))) {
-                        summary.addEventListener('keydown', keyDown);
-                        summary.addEventListener('keyup', keyUp);
+            if (node instanceof HTMLElement && (name === 'summary' || node instanceof HTMLDetailsElement && (node = node.querySelector('summary')))) {
+                node.addEventListener('keydown', ev => {
+                    if (ev.key === ' ') {
+                        ev.preventDefault();
                     }
                 });
-            });
-        });
+                node.addEventListener('keyup', ev => {
+                    if (ev.key === ' ') {
+                        ev.preventDefault();
+                        this.editor.execute('inserttext', ' ');
+                    }
+                });
+            }
+        };
+
+        this.editor.element.querySelectorAll('summary').forEach(callback);
+        this.editor.register(ev =>  ev.forEach(item => item.addedNodes.forEach(callback)));
     }
 
     /**
