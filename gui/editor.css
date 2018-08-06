@@ -64,6 +64,10 @@
 /**
  * Drag'n'Drop
  */
+.editor [draggable=true] {
+    min-height: 1.5rem;
+}
+
 .editor > .dragover {
     outline: 0.25rem dashed red;
 }

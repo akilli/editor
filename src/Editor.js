@@ -209,14 +209,23 @@ export default class Editor {
      */
     init() {
         this.initElement();
+        this.initEditable();
+        this.initDraggable();
         this.initGui();
         this.initToolbar();
     }
 
     /**
-     * Init element
+     * Init editor element
      */
     initElement() {
+        this.element.innerHTML = this.filterHtml(this.element.innerHTML);
+    }
+
+    /**
+     * Init editable elements
+     */
+    initEditable() {
         const editables = [...this.tags].reduce((result, item) => {
             if (item[1].editable) {
                 result.push(item[1].name);
@@ -256,7 +265,7 @@ export default class Editor {
                 }
             });
         };
-        this.element.innerHTML = this.filterHtml(this.element.innerHTML);
+
         this.element.querySelectorAll(selector).forEach(editableCallback);
         this.register(ev => {
             ev.forEach(item => {
@@ -269,6 +278,72 @@ export default class Editor {
                 });
             });
         });
+    }
+
+    /**
+     * Init draggable elements
+     */
+    initDraggable() {
+        const disableDragCallback = node => {
+            if (node instanceof HTMLAnchorElement && node instanceof HTMLImageElement) {
+                node.draggable = false;
+                node.addEventListener('dragstart', ev => ev.preventDefault());
+            }
+        };
+        const draggableCallback = node => {
+            if (node instanceof HTMLElement && this.element.isSameNode(node.parentElement)) {
+                const keyName = 'text/x-editor-name';
+                const keyHtml = 'text/x-editor-html';
+                const removeClass = () => {
+                    node.classList.remove('dragover');
+
+                    if (node.classList.length <= 0) {
+                        node.removeAttribute('class');
+                    }
+                };
+                const allowDrop = ev => {
+                    const name = ev.dataTransfer.getData(keyName);
+
+                    if (name && this.allowed(name, 'root')) {
+                        ev.preventDefault();
+                        node.classList.add('dragover');
+                        ev.dataTransfer.dropEffect = 'move';
+                    }
+                };
+
+                node.draggable = true;
+                node.addEventListener('dragstart', ev => {
+                    ev.dataTransfer.effectAllowed = 'move';
+                    ev.dataTransfer.setData(keyName, node.tagName.toLowerCase());
+                    ev.dataTransfer.setData(keyHtml, node.outerHTML);
+                });
+                node.addEventListener('dragend', ev => {
+                    if (ev.dataTransfer.dropEffect === 'move') {
+                        node.parentElement.removeChild(node);
+                    }
+                });
+                node.addEventListener('dragenter', allowDrop);
+                node.addEventListener('dragover', allowDrop);
+                node.addEventListener('dragleave', removeClass);
+                node.addEventListener('drop', ev => {
+                    const name = ev.dataTransfer.getData(keyName);
+                    const html = ev.dataTransfer.getData(keyHtml);
+
+                    ev.preventDefault();
+                    removeClass();
+
+                    if (name && this.allowed(name, 'root') && html) {
+                        node.insertAdjacentHTML('beforebegin', html);
+                    }
+                });
+            }
+        };
+
+        this.document.querySelectorAll('a, img').forEach(disableDragCallback);
+        this.register(ev => ev.forEach(item => item.addedNodes.forEach(disableDragCallback)));
+
+        Array.from(this.element.children).forEach(draggableCallback);
+        this.register(ev => ev.forEach(item => item.addedNodes.forEach(draggableCallback)));
     }
 
     /**
