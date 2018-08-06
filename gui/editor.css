@@ -43,6 +43,15 @@
     outline: 0.25rem solid #d3d3d3;
 }
 
+.editor [contenteditable=true] {
+    min-height: 1.5rem;
+}
+
+.editor td[contenteditable=true],
+.editor th[contenteditable=true] {
+    height: 1.5rem;
+}
+
 .editor [contenteditable=true]:hover {
     outline: 0.25rem solid yellow;
 }
@@ -53,18 +62,18 @@
 }
 
 /**
- * Table
+ * Drag'n'Drop
  */
-.editor td,
-.editor th {
-    height: 1.5rem;
+.editor > .dragover {
+    outline: 0.25rem dashed red;
 }
 
-.editor h2,
-.editor h3,
-.editor li,
-.editor figcaption,
-.editor p,
-.editor summary {
-    min-height: 1.5rem;
+/**
+ * Media
+ */
+.editor audio,
+.editor iframe,
+.editor img,
+.editor video {
+    pointer-events: none;
 }
