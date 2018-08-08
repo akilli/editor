@@ -23,7 +23,7 @@ export default class TableCommand extends Command {
             item.appendChild(tr);
 
             for (let i = 0; i < 2; ++i) {
-                let cell = this.editor.document.createElement(item.tagName === 'thead' ? 'th' : 'td');
+                let cell = this.editor.document.createElement(part === 'thead' ? 'th' : 'td');
                 tr.appendChild(cell);
             }
         });
