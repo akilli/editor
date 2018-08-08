@@ -36,7 +36,7 @@
 .editor-toolbar-widget {
     position: sticky;
     top: 0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 .editor-toolbar-widget img {
@@ -50,23 +50,26 @@
 }
 
 /**
- * Editable
+ * Widgets
  */
 .editor > :hover {
     outline: 0.25rem solid #d3d3d3;
 }
 
-.editor [contenteditable=true] {
+/**
+ * Editable
+ */
+.editor [contenteditable=true]:hover {
+    outline: 0.25rem solid yellow;
+}
+
+.editor [contenteditable] {
     min-height: 1.5rem;
 }
 
-.editor td[contenteditable=true],
-.editor th[contenteditable=true] {
+.editor td[contenteditable],
+.editor th[contenteditable] {
     height: 1.5rem;
-}
-
-.editor [contenteditable=true]:hover {
-    outline: 0.25rem solid yellow;
 }
 
 .editor [contenteditable=true]:empty::after {
@@ -75,13 +78,13 @@
 }
 
 /**
- * Drag'n'Drop
+ * Draggable
  */
-.editor [draggable=true] {
-    min-height: 1.5rem;
+.editor [draggable=true]:hover {
+    outline: 0.25rem dashed #d3d3d3;
 }
 
-.editor > .dragover {
+.editor .dragover {
     outline: 0.25rem dashed red;
 }
 
