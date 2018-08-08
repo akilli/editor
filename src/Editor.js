@@ -222,8 +222,11 @@ export default class Editor {
         this.element.innerHTML = this.filterHtml(this.element.innerHTML);
         this.element.addEventListener('selectstart', () => {
             const active = this.document.activeElement;
-            this.toolbarEditable.style.display = 'block';
-            this.toolbarEditable.style.top = (active.offsetTop - this.toolbarEditable.clientHeight) + 'px';
+
+            if (active.contentEditable && this.allowedGroup('text', active.tagName)) {
+                this.toolbarEditable.style.display = 'block';
+                this.toolbarEditable.style.top = (active.offsetTop + active.offsetParent.offsetTop - this.toolbarEditable.clientHeight) + 'px';
+            }
         });
         this.document.addEventListener('selectionchange', () => {
             const active = this.document.activeElement;
@@ -644,6 +647,20 @@ export default class Editor {
         const parentTag = this.getTag(parentName);
 
         return tag && parentTag && parentTag.children.includes(tag.group);
+    }
+
+    /**
+     * Checks if given group is allowed inside given parent element
+     *
+     * @param {String} group
+     * @param {String} parentName
+     *
+     * @return {Boolean}
+     */
+    allowedGroup(group, parentName) {
+        const parentTag = this.getTag(parentName);
+
+        return parentTag && parentTag.children.includes(group);
     }
 
     /**
