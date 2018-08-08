@@ -220,6 +220,18 @@ export default class Editor {
      */
     initElement() {
         this.element.innerHTML = this.filterHtml(this.element.innerHTML);
+        this.element.addEventListener('selectstart', () => {
+            const active = this.document.activeElement;
+            this.toolbarEditable.style.display = 'block';
+            this.toolbarEditable.style.top = (active.offsetTop - this.toolbarEditable.clientHeight) + 'px';
+        });
+        this.document.addEventListener('selectionchange', () => {
+            const active = this.document.activeElement;
+
+            if (this.window.getSelection().isCollapsed || !active.contentEditable || !this.element.contains(active)) {
+                this.toolbarEditable.removeAttribute('style');
+            }
+        });
     }
 
     /**
