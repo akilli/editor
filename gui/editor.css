@@ -22,6 +22,7 @@
  */
 .editor-toolbar {
     padding: 0.75rem;
+    background: #fff;
     border: 0.0625rem solid #d3d3d3;
 }
 
@@ -36,7 +37,6 @@
     position: sticky;
     top: 0;
     margin-bottom: 1.5rem;
-    background: #fff;
 }
 
 .editor-toolbar-widget img {
