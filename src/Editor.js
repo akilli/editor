@@ -309,6 +309,25 @@ export default class Editor {
             if (node instanceof HTMLElement && this.element.isSameNode(node.parentElement)) {
                 const keyName = 'text/x-editor-name';
                 const keyHtml = 'text/x-editor-html';
+                const toggle = () => {
+                    const isDraggable = node.hasAttribute('draggable');
+
+                    this.element.querySelectorAll('[draggable]').forEach(item => {
+                        item.removeAttribute('draggable');
+
+                        if (item.hasAttribute('contenteditable')) {
+                            item.setAttribute('contenteditable', 'true');
+                        }
+                    });
+
+                    if (!isDraggable) {
+                        node.setAttribute('draggable', 'true');
+
+                        if (node.hasAttribute('contenteditable')) {
+                            node.setAttribute('contenteditable', 'false');
+                        }
+                    }
+                };
                 const removeClass = () => {
                     node.classList.remove('dragover');
 
@@ -326,7 +345,7 @@ export default class Editor {
                     }
                 };
 
-                node.draggable = true;
+                node.addEventListener('dblclick', toggle);
                 node.addEventListener('dragstart', ev => {
                     ev.dataTransfer.effectAllowed = 'move';
                     ev.dataTransfer.setData(keyName, node.tagName.toLowerCase());
@@ -336,6 +355,8 @@ export default class Editor {
                     if (ev.dataTransfer.dropEffect === 'move') {
                         node.parentElement.removeChild(node);
                     }
+
+                    toggle();
                 });
                 node.addEventListener('dragenter', allowDrop);
                 node.addEventListener('dragover', allowDrop);
