@@ -108,7 +108,7 @@ export default class Editor {
         if (element instanceof HTMLTextAreaElement) {
             const textarea = element;
             element = this.document.createElement('div');
-            element.innerHTML = textarea.value;
+            element.innerHTML = textarea.value.replace('/&nbsp;/g', ' ');
             textarea.parentElement.insertBefore(element, textarea);
             textarea.setAttribute('hidden', 'hidden');
             textarea.form.addEventListener('submit', () => {
@@ -219,7 +219,7 @@ export default class Editor {
      * Init editor element
      */
     initElement() {
-        this.element.innerHTML = this.filterHtml(this.element.innerHTML);
+        this.filter(this.element);
         this.element.addEventListener('selectstart', () => {
             const active = this.document.activeElement;
 
@@ -269,7 +269,7 @@ export default class Editor {
                     ev.cancelBubble = true;
 
                     do {
-                        parentName = current.parentElement.isSameNode(this.element) ? 'root' : current.parentElement.tagName;
+                        parentName = this.getName(current.parentElement);
 
                         if (this.allowed(tag.enter, parentName)) {
                             const newElement = this.document.createElement(tag.enter);
@@ -307,6 +307,7 @@ export default class Editor {
         };
         const draggableCallback = node => {
             if (node instanceof HTMLElement && this.element.isSameNode(node.parentElement)) {
+                const parentName = 'root';
                 const keyName = 'text/x-editor-name';
                 const keyHtml = 'text/x-editor-html';
                 const toggle = () => {
@@ -338,7 +339,7 @@ export default class Editor {
                 const allowDrop = ev => {
                     const name = ev.dataTransfer.getData(keyName);
 
-                    if (name && this.allowed(name, 'root')) {
+                    if (name && this.allowed(name, parentName)) {
                         ev.preventDefault();
                         node.classList.add('dragover');
                         ev.dataTransfer.dropEffect = 'move';
@@ -368,7 +369,7 @@ export default class Editor {
                     ev.preventDefault();
                     removeClass();
 
-                    if (name && this.allowed(name, 'root') && html) {
+                    if (name && this.allowed(name, parentName) && html) {
                         node.insertAdjacentHTML('beforebegin', html);
                     }
                 });
@@ -463,7 +464,7 @@ export default class Editor {
      * @return {String}
      */
     getData() {
-        this.element.innerHTML = this.filterHtml(this.element.innerHTML);
+        this.filter(this.element);
 
         return this.element.innerHTML;
     }
@@ -480,7 +481,7 @@ export default class Editor {
         }
 
         const parent = ref ? ref.parentElement : this.element;
-        const parentName = this.element.isSameNode(parent) ? 'root' : parent.tagName;
+        const parentName = this.getName(parent);
 
         if (!this.element.contains(parent) || !this.allowed(element.tagName, parentName)) {
             throw 'Element is not allowed here';
@@ -556,38 +557,23 @@ export default class Editor {
     }
 
     /**
-     * Filters HTML
-     *
-     * @param {String} html
-     *
-     * @return {String}
-     */
-    filterHtml(html) {
-        const tmp = this.document.createElement('div');
-        tmp.innerHTML = this.decode(html);
-        this.filterElement(tmp);
-
-        return tmp.innerHTML;
-    }
-
-    /**
      * Filters element
      *
-     * @param {HTMLElement} element
+     * @param {HTMLElement} parent
      */
-    filterElement(element) {
-        if (!(element instanceof HTMLElement)) {
+    filter(parent) {
+        if (!(parent instanceof HTMLElement)) {
             throw 'No HTML element';
         }
 
-        const isTop = !element.parentElement;
-        const elementName = isTop ? 'root' : element.tagName;
+        const isRoot = this.element.isSameNode(parent);
+        const parentName = this.getName(parent);
         let br;
 
-        element.normalize();
-        Array.from(element.childNodes).forEach(node => {
+        parent.normalize();
+        Array.from(parent.childNodes).forEach(node => {
             if (!this.isTextOrHtml(node)) {
-                element.removeChild(node);
+                parent.removeChild(node);
                 return;
             }
 
@@ -596,7 +582,7 @@ export default class Editor {
             const name = isHtml ? node.tagName : null;
             const tag = isHtml ? this.getTag(name) : null;
 
-            if (tag && (this.allowed(name, elementName) || isTop && tag.group === 'text')) {
+            if (tag && (this.allowed(name, parentName) || isRoot && tag.group === 'text')) {
                 Array.from(node.attributes).forEach(item => {
                     if (!tag.attributes.includes(item.name)) {
                         node.removeAttribute(item.name);
@@ -604,31 +590,46 @@ export default class Editor {
                 });
 
                 if (node.hasChildNodes()) {
-                    this.filterElement(node);
+                    this.filter(node);
                 }
 
                 if (!node.hasChildNodes() && !tag.empty) {
-                    element.removeChild(node);
-                } else if (isTop && tag.group === 'text') {
+                    parent.removeChild(node);
+                } else if (isRoot && tag.group === 'text') {
                     const p = this.document.createElement('p');
                     p.innerHTML = node.outerHTML;
-                    element.replaceChild(p, node);
+                    parent.replaceChild(p, node);
                 }
-            } else if (isTop && (!isHtml && !!node.nodeValue.trim() || tag && !!node.innerText.trim())) {
+            } else if (isRoot && (!isHtml && !!node.nodeValue.trim() || tag && !!node.innerText.trim())) {
                 const p = this.document.createElement('p');
                 p.innerText = isHtml ? node.innerText.trim() : node.nodeValue.trim();
-                element.replaceChild(p, node);
+                parent.replaceChild(p, node);
             } else if (tag && !!node.innerText.trim()) {
                 const text = this.document.createTextNode(node.innerText.trim());
-                element.replaceChild(text, node);
-            } else if (isHtml || isTop) {
-                element.removeChild(node);
+                parent.replaceChild(text, node);
+            } else if (isHtml || isRoot) {
+                parent.removeChild(node);
             }
         });
 
-        while ((br = element.firstChild) && br instanceof HTMLBRElement || (br = element.lastChild) && br instanceof HTMLBRElement) {
-            element.removeChild(br);
+        while ((br = parent.firstChild) && br instanceof HTMLBRElement || (br = parent.lastChild) && br instanceof HTMLBRElement) {
+            parent.removeChild(br);
         }
+    }
+
+    /**
+     * Returns tag name from element considering execption for root element
+     *
+     * @param {HTMLElement} element
+     *
+     * @return {String}
+     */
+    getName(element) {
+        if (!(element instanceof HTMLElement)) {
+            throw 'No HTML element';
+        }
+
+        return this.element.isSameNode(element) ? 'root' : element.tagName;
     }
 
     /**
@@ -700,20 +701,6 @@ export default class Editor {
      */
     isTextOrHtml(node) {
         return node instanceof Text || node instanceof HTMLElement;
-    }
-
-    /**
-     * Decode HTML
-     *
-     * @param {String} html
-     *
-     * @return {String}
-     */
-    decode(html) {
-        const textarea = this.document.createElement('textarea');
-        textarea.innerHTML = html;
-
-        return textarea.value.replace('/&nbsp;/g', ' ');
     }
 
     /**
