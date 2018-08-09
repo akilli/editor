@@ -464,9 +464,11 @@ export default class Editor {
      * @return {String}
      */
     getData() {
-        this.filter(this.element);
+        const element = this.document.createElement(this.element.tagName);
+        element.innerHTML = this.element.innerHTML;
+        this.filter(element, true);
 
-        return this.element.innerHTML;
+        return element.innerHTML;
     }
 
     /**
@@ -560,14 +562,15 @@ export default class Editor {
      * Filters element
      *
      * @param {HTMLElement} parent
+     * @param {Boolean} forceRoot
      */
-    filter(parent) {
+    filter(parent, forceRoot = false) {
         if (!(parent instanceof HTMLElement)) {
             throw 'No HTML element';
         }
 
-        const isRoot = this.element.isSameNode(parent);
-        const parentName = this.getName(parent);
+        const isRoot = forceRoot || this.element.isSameNode(parent);
+        const parentName = forceRoot ? 'root' : this.getName(parent);
         let br;
 
         parent.normalize();
