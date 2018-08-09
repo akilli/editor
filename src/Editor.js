@@ -573,21 +573,21 @@ export default class Editor {
     /**
      * Filters element
      *
-     * @param {HTMLElement} parent
+     * @param {HTMLElement} element
      */
-    filterElement(parent) {
-        if (!(parent instanceof HTMLElement)) {
+    filterElement(element) {
+        if (!(element instanceof HTMLElement)) {
             throw 'No HTML element';
         }
 
-        const isTop = !parent.parentElement;
-        const parentTag = isTop ? 'root' : parent.tagName;
+        const isTop = !element.parentElement;
+        const elementName = isTop ? 'root' : element.tagName;
         let br;
 
-        parent.normalize();
-        Array.from(parent.childNodes).forEach(node => {
+        element.normalize();
+        Array.from(element.childNodes).forEach(node => {
             if (!this.isTextOrHtml(node)) {
-                parent.removeChild(node);
+                element.removeChild(node);
                 return;
             }
 
@@ -596,7 +596,7 @@ export default class Editor {
             const name = isHtml ? node.tagName : null;
             const tag = isHtml ? this.getTag(name) : null;
 
-            if (tag && (this.allowed(name, parentTag) || isTop && tag.group === 'text')) {
+            if (tag && (this.allowed(name, elementName) || isTop && tag.group === 'text')) {
                 Array.from(node.attributes).forEach(item => {
                     if (!tag.attributes.includes(item.name)) {
                         node.removeAttribute(item.name);
@@ -608,26 +608,26 @@ export default class Editor {
                 }
 
                 if (!node.hasChildNodes() && !tag.empty) {
-                    parent.removeChild(node);
+                    element.removeChild(node);
                 } else if (isTop && tag.group === 'text') {
                     const p = this.document.createElement('p');
                     p.innerHTML = node.outerHTML;
-                    parent.replaceChild(p, node);
+                    element.replaceChild(p, node);
                 }
             } else if (isTop && (!isHtml && !!node.nodeValue.trim() || tag && !!node.innerText.trim())) {
                 const p = this.document.createElement('p');
                 p.innerText = isHtml ? node.innerText.trim() : node.nodeValue.trim();
-                parent.replaceChild(p, node);
+                element.replaceChild(p, node);
             } else if (tag && !!node.innerText.trim()) {
                 const text = this.document.createTextNode(node.innerText.trim());
-                parent.replaceChild(text, node);
+                element.replaceChild(text, node);
             } else if (isHtml || isTop) {
-                parent.removeChild(node);
+                element.removeChild(node);
             }
         });
 
-        while ((br = parent.firstChild) && br instanceof HTMLBRElement || (br = parent.lastChild) && br instanceof HTMLBRElement) {
-            parent.removeChild(br);
+        while ((br = element.firstChild) && br instanceof HTMLBRElement || (br = element.lastChild) && br instanceof HTMLBRElement) {
+            element.removeChild(br);
         }
     }
 
