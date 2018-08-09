@@ -431,14 +431,15 @@ export default class Editor {
      * Short-cut method to register a mutation observer
      *
      * @param {Function} callback
+     * @param {Object} config
      */
-    register(callback) {
+    register(callback, config = {childList: true, subtree: true}) {
         if (typeof callback !== 'function') {
             throw 'Invalid observer';
         }
 
         const mutation = new MutationObserver(callback);
-        mutation.observe(this.element, {childList: true, subtree: true});
+        mutation.observe(this.element, config);
     }
 
     /**
