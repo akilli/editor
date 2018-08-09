@@ -273,7 +273,7 @@ export default class Editor {
 
                         if (this.allowed(tag.enter, parentName)) {
                             const newElement = this.document.createElement(tag.enter);
-                            this.insertAfter(newElement, current);
+                            this.insert(newElement, current);
                             break;
                         }
                     } while (!!(current = current.parentElement) && this.element.contains(current) && !this.element.isSameNode(current));
@@ -469,38 +469,24 @@ export default class Editor {
     }
 
     /**
-     * Insert an element
+     * Inserts an element at the editor element or optionally after given reference element
      *
      * @param {HTMLElement} element
+     * @param {?HTMLElement} ref
      */
-    insert(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'Invalid HTML element';
-        } else if (!this.allowed(element.tagName, 'root')) {
-            throw 'Element is not allowed here';
-        }
-
-        this.element.appendChild(element);
-    }
-
-    /**
-     * Insert an element after a reference element
-     *
-     * @param {HTMLElement} element
-     * @param {HTMLElement} ref
-     */
-    insertAfter(element, ref) {
-        if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
+    insert(element, ref) {
+        if (!(element instanceof HTMLElement) || ref && !(ref instanceof HTMLElement)) {
             throw 'Invalid HTML element';
         }
 
-        const parentName = this.element.isSameNode(ref.parentElement) ? 'root' : ref.parentElement.tagName;
+        const parent = ref ? ref.parentElement : this.element;
+        const parentName = this.element.isSameNode(parent) ? 'root' : parent.tagName;
 
-        if (!this.element.contains(ref.parentElement) || !this.allowed(element.tagName, parentName)) {
+        if (!this.element.contains(parent) || !this.allowed(element.tagName, parentName)) {
             throw 'Element is not allowed here';
         }
 
-        ref.parentElement.insertBefore(element, ref.nextElementSibling);
+        parent.insertBefore(element, ref ? ref.nextElementSibling : null)
     }
 
     /**
