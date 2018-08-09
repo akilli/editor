@@ -269,7 +269,7 @@ export default class Editor {
                     ev.cancelBubble = true;
 
                     do {
-                        parentName = this.getName(current.parentElement);
+                        parentName = this.getTagName(current.parentElement);
 
                         if (this.allowed(tag.enter, parentName)) {
                             const newElement = this.document.createElement(tag.enter);
@@ -483,7 +483,7 @@ export default class Editor {
         }
 
         const parent = ref ? ref.parentElement : this.element;
-        const parentName = this.getName(parent);
+        const parentName = this.getTagName(parent);
 
         if (!this.element.contains(parent) || !this.allowed(element.tagName, parentName)) {
             throw 'Element is not allowed here';
@@ -570,7 +570,7 @@ export default class Editor {
         }
 
         const isRoot = forceRoot || this.element.isSameNode(parent);
-        const parentName = forceRoot ? 'root' : this.getName(parent);
+        const parentName = forceRoot ? 'root' : this.getTagName(parent);
         let br;
 
         parent.normalize();
@@ -627,7 +627,7 @@ export default class Editor {
      *
      * @return {String}
      */
-    getName(element) {
+    getTagName(element) {
         if (!(element instanceof HTMLElement)) {
             throw 'No HTML element';
         }
