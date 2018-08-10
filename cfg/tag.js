@@ -6,7 +6,7 @@
 const data = [
     {name: 'root', children: ['details', 'figure', 'heading', 'list', 'p', 'section']},
     {name: 'a', group: 'text', attributes: ['href']},
-    {name: 'audio', group: 'media', attributes: ['controls', 'height', 'src', 'width']},
+    {name: 'audio', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true},
     {name: 'blockquote', children: ['p']},
     {name: 'br', empty: true},
     {name: 'cite', group: 'text'},
@@ -17,7 +17,7 @@ const data = [
     {name: 'h2', group: 'heading', editable: true, enter: 'p'},
     {name: 'h3', group: 'heading', editable: true, enter: 'p'},
     {name: 'i', group: 'text'},
-    {name: 'iframe', group: 'media', attributes: ['allowfullscreen', 'height', 'src', 'width']},
+    {name: 'iframe', group: 'media', attributes: ['allowfullscreen', 'height', 'src', 'width'], empty: true},
     {name: 'img', group: 'media', attributes: ['alt', 'height', 'src', 'width'], empty: true},
     {name: 'li', children: ['br', 'text'], editable: true, enter: 'li'},
     {name: 'kbd', group: 'text'},
@@ -36,7 +36,7 @@ const data = [
     {name: 'thead', group: 'tablepart', children: ['tr']},
     {name: 'tr', children: ['tablecell']},
     {name: 'ul', group: 'list', children: ['li']},
-    {name: 'video', group: 'media', attributes: ['controls', 'height', 'src', 'width']}
+    {name: 'video', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true}
 ];
 
 export default data;
