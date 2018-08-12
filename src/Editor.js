@@ -95,14 +95,6 @@ export default class Editor {
          * @readonly
          */
         this.toolbarEditable = this.createToolbar('editable');
-
-        /**
-         * Dialog DOM element
-         *
-         * @type {HTMLElement}
-         * @readonly
-         */
-        this.dialog = this.createDialog();
     }
 
     /**
@@ -210,47 +202,6 @@ export default class Editor {
         this.element.parentElement.insertBefore(toolbar, this.element);
 
         return toolbar;
-    }
-
-    /**
-     * Creates editor dialog
-     *
-     * @return {HTMLElement}
-     */
-    createDialog() {
-        const dialog = this.document.createElement('dialog');
-        const form = this.document.createElement('form');
-        const fieldset = this.document.createElement('fieldset');
-        const ok = this.document.createElement('button');
-        const cancel = this.document.createElement('button');
-
-        dialog.classList.add('editor-dialog');
-        dialog.addEventListener('click', ev => {
-            if (ev.target === dialog) {
-                dialog.removeAttribute('open');
-            }
-        });
-        ok.type = 'submit';
-        ok.innerText = 'OK';
-        ok.addEventListener('click', ev => {
-            ev.preventDefault();
-            dialog.removeAttribute('open');
-            fieldset.innerHTML = '';
-        });
-        cancel.innerText = 'Cancel';
-        cancel.type = 'reset';
-        cancel.addEventListener('click', ev => {
-            ev.preventDefault();
-            dialog.removeAttribute('open');
-            fieldset.innerHTML = '';
-        });
-        this.element.parentElement.appendChild(dialog);
-        dialog.appendChild(form);
-        form.appendChild(fieldset);
-        form.appendChild(ok);
-        form.appendChild(cancel);
-
-        return dialog;
     }
 
     /**
