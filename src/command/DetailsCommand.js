@@ -13,7 +13,7 @@ export default class DetailsCommand extends Command {
         const callback = node => {
             const name = node.nodeName.toLowerCase();
 
-            if (node instanceof HTMLElement && (name === 'summary' || node instanceof HTMLDetailsElement && (node = node.querySelector('summary')))) {
+            if (node instanceof HTMLElement && (name === 'summary' || name === 'details' && (node = node.querySelector('summary')))) {
                 node.addEventListener('keydown', ev => {
                     if (ev.key === ' ') {
                         ev.preventDefault();
