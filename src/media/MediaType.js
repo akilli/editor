@@ -32,7 +32,7 @@ export default class MediaType {
      * @return {?Object}
      */
     static fromElement(element) {
-        const ids = MediaType.ids();
+        const ids = this.ids();
 
         for (let i = 0; i < ids.length; ++i) {
             if (configMediaType[ids[i]].element === element) {
@@ -62,7 +62,7 @@ export default class MediaType {
 
         if (response.ok) {
             const mime = response.headers.get('content-type').split(';')[0].trim();
-            const ids = MediaType.ids();
+            const ids = this.ids();
 
             for (let i = 0; i < ids.length; ++i) {
                 if (configMediaType[ids[i]].mime.includes(mime)) {
