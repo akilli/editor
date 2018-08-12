@@ -95,6 +95,14 @@ export default class Editor {
          * @readonly
          */
         this.toolbarEditable = this.createToolbar('editable');
+
+        /**
+         * Dialog DOM element
+         *
+         * @type {HTMLElement}
+         * @readonly
+         */
+        this.dialog = this.createDialog();
     }
 
     /**
@@ -202,6 +210,25 @@ export default class Editor {
         this.element.parentNode.insertBefore(toolbar, this.element);
 
         return toolbar;
+    }
+
+    /**
+     * Creates editor dialog
+     *
+     * @return {HTMLElement}
+     */
+    createDialog() {
+        const dialog = this.document.createElement('dialog');
+
+        dialog.classList.add('editor-dialog');
+        dialog.addEventListener('click', ev => {
+            if (ev.target === dialog) {
+                dialog.removeAttribute('open');
+            }
+        });
+        this.element.parentElement.appendChild(dialog);
+
+        return dialog;
     }
 
     /**
