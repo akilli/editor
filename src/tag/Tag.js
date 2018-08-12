@@ -59,7 +59,7 @@ export default class Tag {
         this.editable = Boolean(editable);
 
         /**
-         * Is empty element
+         * Is element empty or allowed to be empty
          *
          * @type {Boolean}
          * @readonly
