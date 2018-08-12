@@ -300,7 +300,7 @@ export default class Editor {
      */
     initDraggable() {
         const disableDragCallback = node => {
-            if (node instanceof HTMLAnchorElement && node instanceof HTMLImageElement) {
+            if (node instanceof HTMLAnchorElement || node instanceof HTMLImageElement) {
                 node.draggable = false;
                 node.addEventListener('dragstart', ev => ev.preventDefault());
             }
