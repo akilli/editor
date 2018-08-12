@@ -207,7 +207,7 @@ export default class Editor {
 
         toolbar.classList.add('editor-toolbar');
         toolbar.classList.add('editor-toolbar-' + name);
-        this.element.parentNode.insertBefore(toolbar, this.element);
+        this.element.parentElement.insertBefore(toolbar, this.element);
 
         return toolbar;
     }
