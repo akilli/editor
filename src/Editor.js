@@ -477,7 +477,7 @@ export default class Editor {
      * @param {HTMLElement} element
      * @param {?HTMLElement} ref
      */
-    insert(element, ref) {
+    insert(element, ref = null) {
         if (!(element instanceof HTMLElement) || ref && !(ref instanceof HTMLElement)) {
             throw 'Invalid HTML element';
         }
