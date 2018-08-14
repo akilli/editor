@@ -8,12 +8,12 @@
 
 .editor::before {
     display: table;
-    content: " ";
+    content: ' ';
 }
 
 .editor::after {
     display: table;
-    content: " ";
+    content: ' ';
     clear: both;
 }
 
@@ -23,7 +23,7 @@
 .editor-toolbar {
     padding: 0.75rem;
     background: #fff;
-    border: 0.0625rem solid #d3d3d3;
+    border: 0.0625rem solid lightgrey;
 }
 
 .editor-toolbar img {
@@ -53,16 +53,12 @@
  * Widgets
  */
 .editor > :hover {
-    outline: 0.25rem solid #d3d3d3;
+    outline: 0.25rem solid lightgrey;
 }
 
 /**
  * Editable
  */
-.editor [contenteditable=true]:hover {
-    outline: 0.25rem solid yellow;
-}
-
 .editor [contenteditable] {
     min-height: 1.5rem;
 }
@@ -72,20 +68,24 @@
     height: 1.5rem;
 }
 
+.editor [contenteditable=true]:hover {
+    outline: 0.25rem solid yellow;
+}
+
 .editor [contenteditable=true]:empty::after {
     content: 'Gimme some text!';
-    color: #d3d3d3;
+    color: lightgrey;
 }
 
 /**
  * Draggable
  */
 .editor [draggable=true]:hover {
-    outline: 0.25rem dashed #d3d3d3;
+    outline: 0.25rem dashed lightgrey;
 }
 
 .editor .dragover {
-    outline: 0.25rem dashed red;
+    outline: 0.25rem dashed darkgreen;
 }
 
 /**
