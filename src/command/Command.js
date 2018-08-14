@@ -16,7 +16,7 @@ export default class Command {
         if (!(editor instanceof Editor)) {
             throw 'Invalid editor';
         } else if (tagName && !(tag = editor.getTag(tagName))) {
-            throw 'Invalid heading element';
+            throw 'Invalid element';
         }
 
         /**
