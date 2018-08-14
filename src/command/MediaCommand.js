@@ -12,7 +12,7 @@ export default class MediaCommand extends Command {
     execute() {
         let url;
 
-        if (!!this.editor.config.mediabrowser) {
+        if (this.editor.config.mediabrowser) {
             MediaBrowser.open(this.editor.window, this.editor.config.mediabrowser, (data) => this.insertElement(data));
         } else if (url = this.editor.window.prompt('URL')) {
             this.insertElement({src: url});
@@ -54,7 +54,7 @@ export default class MediaCommand extends Command {
                     }
                 });
 
-                if (!!data.caption) {
+                if (data.caption) {
                     const figcaption = this.editor.document.createElement('figcaption');
                     figcaption.innerHTML = data.caption;
                     figure.appendChild(figcaption);

@@ -261,7 +261,7 @@ export default class Editor {
             node.addEventListener('keyup', ev => {
                 let tag;
 
-                if (ev.key === 'Enter' && !ev.shiftKey && (tag = this.getTag(node.tagName)) && !!tag.enter) {
+                if (ev.key === 'Enter' && !ev.shiftKey && (tag = this.getTag(node.tagName)) && tag.enter) {
                     let current = node;
                     let parentName;
 
@@ -276,7 +276,7 @@ export default class Editor {
                             this.insert(newElement, current);
                             break;
                         }
-                    } while (!!(current = current.parentElement) && this.element.contains(current) && !this.element.isSameNode(current));
+                    } while ((current = current.parentElement) && this.element.contains(current) && !this.element.isSameNode(current));
                 }
             });
         };
@@ -409,7 +409,7 @@ export default class Editor {
         for (let item of this.commands.entries()) {
             const img = this.document.createElement('img');
 
-            img.setAttribute('src', this.gui('command/' + item[0] + '.svg'));
+            img.setAttribute('src', this.gui('icon/' + item[0] + '.svg'));
             img.setAttribute('alt', item[0]);
             img.setAttribute('title', item[0]);
             img.addEventListener('click', () => {
@@ -512,25 +512,17 @@ export default class Editor {
         }
 
         const sel = this.window.getSelection();
-        const anc = sel.anchorNode;
-        const foc = sel.focusNode;
+        const anc = sel.anchorNode instanceof Text ? sel.anchorNode.parentElement : sel.anchorNode;
+        const ancEdit = this.getSelectedEditable();
 
-        if (sel.isCollapsed || !sel.toString().trim() || !this.isTextOrHtml(anc)) {
-            return;
-        }
 
-        const ancEl = anc instanceof Text ? anc.parentElement : anc;
-        const focEl = foc instanceof Text ? foc.parentElement : foc;
-        const ancEdit = ancEl.closest('[contenteditable=true]');
-        const focEdit = focEl.closest('[contenteditable=true]');
-
-        if (!ancEdit || !focEdit || !ancEdit.isSameNode(focEdit)) {
+        if (sel.isCollapsed || !sel.toString().trim() || !(anc instanceof HTMLElement) || !ancEdit) {
             return;
         }
 
         const range = sel.getRangeAt(0);
-        const tag = this.getTag(ancEl.tagName);
-        const parent = !tag || tag.group === 'text' ? ancEl.parentElement : ancEl;
+        const tag = this.getTag(anc.tagName);
+        const parent = !tag || tag.group === 'text' ? anc.parentElement : anc;
 
         if (range.startContainer instanceof Text && !range.startContainer.parentElement.isSameNode(parent)) {
             range.setStartBefore(range.startContainer.parentElement);
@@ -543,7 +535,7 @@ export default class Editor {
         const selText = range.toString();
         const selNodes = range.cloneContents().childNodes;
         let same = Array.from(selNodes).every(item => {
-            return this.isTextOrHtml(item) && item instanceof Text && !item.nodeValue.trim() || item instanceof HTMLElement && item.tagName === element.tagName;
+            return item instanceof Text && !item.nodeValue.trim() || item instanceof HTMLElement && item.tagName === element.tagName;
         });
 
         range.deleteContents();
@@ -556,6 +548,39 @@ export default class Editor {
         }
 
         parent.normalize();
+    }
+
+    /**
+     * Returns current selected contenteditable or null
+     *
+     * @return {?HTMLElement}
+     */
+    getSelectedEditable() {
+        const sel = this.window.getSelection();
+        const anc = sel.anchorNode instanceof Text ? sel.anchorNode.parentElement : sel.anchorNode;
+        const foc = sel.focusNode instanceof Text ? sel.focusNode.parentElement : sel.focusNode;
+
+        if (anc instanceof HTMLElement && foc instanceof HTMLElement) {
+            const ancEdit = anc.closest('[contenteditable=true]');
+            const focEdit = foc.closest('[contenteditable=true]');
+
+            if (ancEdit instanceof HTMLElement && focEdit instanceof HTMLElement && ancEdit.isSameNode(focEdit)) {
+                return ancEdit;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns current selected widget or null
+     *
+     * @return {?HTMLElement}
+     */
+    getSelectedWidget() {
+        const editable = this.getSelectedEditable();
+
+        return editable ? editable.closest('div.editor > *') : null;
     }
 
     /**
@@ -575,42 +600,50 @@ export default class Editor {
 
         parent.normalize();
         Array.from(parent.childNodes).forEach(node => {
-            if (!this.isTextOrHtml(node)) {
-                parent.removeChild(node);
-                return;
-            }
+            if (node instanceof HTMLElement) {
+                node = this.convert(node);
+                const name = node.tagName;
+                const tag = this.getTag(name);
+                const text = node.innerText.trim();
 
-            node = this.convert(node);
-            const isHtml = node instanceof HTMLElement;
-            const name = isHtml ? node.tagName : null;
-            const tag = isHtml ? this.getTag(name) : null;
-
-            if (tag && (this.allowed(name, parentName) || isRoot && tag.group === 'text')) {
-                Array.from(node.attributes).forEach(item => {
-                    if (!tag.attributes.includes(item.name)) {
-                        node.removeAttribute(item.name);
-                    }
-                });
-
-                if (node.hasChildNodes()) {
-                    this.filter(node);
-                }
-
-                if (!node.hasChildNodes() && !tag.empty) {
+                if (!tag) {
                     parent.removeChild(node);
-                } else if (isRoot && tag.group === 'text') {
+                } else if (this.allowed(name, parentName) || isRoot && tag.group === 'text') {
+                    Array.from(node.attributes).forEach(item => {
+                        if (!tag.attributes.includes(item.name)) {
+                            node.removeAttribute(item.name);
+                        }
+                    });
+
+                    if (node.hasChildNodes()) {
+                        this.filter(node);
+                    }
+
+                    if (!node.hasChildNodes() && !tag.empty) {
+                        parent.removeChild(node);
+                    } else if (isRoot && tag.group === 'text') {
+                        const p = this.document.createElement('p');
+                        p.innerHTML = node.outerHTML;
+                        parent.replaceChild(p, node);
+                    }
+                } else if (isRoot && text) {
                     const p = this.document.createElement('p');
-                    p.innerHTML = node.outerHTML;
+                    p.innerText = text;
                     parent.replaceChild(p, node);
+                } else if (text) {
+                    parent.replaceChild(this.document.createTextNode(text), node);
+                } else {
+                    parent.removeChild(node);
                 }
-            } else if (isRoot && (!isHtml && !!node.nodeValue.trim() || tag && !!node.innerText.trim())) {
-                const p = this.document.createElement('p');
-                p.innerText = isHtml ? node.innerText.trim() : node.nodeValue.trim();
-                parent.replaceChild(p, node);
-            } else if (tag && !!node.innerText.trim()) {
-                const text = this.document.createTextNode(node.innerText.trim());
-                parent.replaceChild(text, node);
-            } else if (isHtml || isRoot) {
+            } else if (node instanceof Text) {
+                if (isRoot && node.nodeValue.trim()) {
+                    const p = this.document.createElement('p');
+                    p.innerText = node.nodeValue.trim();
+                    parent.replaceChild(p, node);
+                } else if (isRoot) {
+                    parent.removeChild(node);
+                }
+            } else {
                 parent.removeChild(node);
             }
         });
@@ -678,32 +711,25 @@ export default class Editor {
     /**
      * Converts element
      *
-     * @param {Node} node
+     * @param {HTMLElement} element
      *
      * @return {Node}
      */
-    convert(node) {
-        let converter;
-
-        if (!(node instanceof HTMLElement) || !(converter = this.converters.get(node.tagName.toLowerCase()))) {
-            return node;
+    convert(element) {
+        if (!(element instanceof HTMLElement)) {
+            throw 'No HTML element';
         }
 
-        const newNode = converter.convert(node);
-        node.parentElement.replaceChild(newNode, node);
+        const converter = this.converters.get(element.tagName.toLowerCase());
+
+        if (!converter) {
+            return element;
+        }
+
+        const newNode = converter.convert(element);
+        element.parentElement.replaceChild(newNode, element);
 
         return newNode;
-    }
-
-    /**
-     * Indicates if given node is either a text node or a HTML element
-     *
-     * @param {Node} node
-     *
-     * @return {Boolean}
-     */
-    isTextOrHtml(node) {
-        return node instanceof Text || node instanceof HTMLElement;
     }
 
     /**
