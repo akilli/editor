@@ -770,7 +770,7 @@ export default class Editor {
      * @return {String}
      */
     gui(path) {
-        return this.config.gui + '/' + path;
+        return this.url(this.config.gui + '/' + path);
     }
 
     /**
