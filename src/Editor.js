@@ -4,6 +4,7 @@ import Tag from './tag/Tag.js';
 import TextCommand from './command/TextCommand.js';
 import configCommand from '../cfg/command.js';
 import configConverter from '../cfg/converter.js';
+import configEditor from '../cfg/editor.js';
 import configTag from '../cfg/tag.js';
 
 /**
@@ -48,14 +49,10 @@ export default class Editor {
         /**
          * Configuration
          *
-         * @typedef {Object} Config
-         * @property {String} gui          URL path to editor root directory
-         * @property {String} mediabrowser Media browser URL
-         *
-         * @type {Config}
+         * @type {ConfigEditor}
          * @readonly
          */
-        this.config = config;
+        this.config = this.createConfig(config);
 
         /**
          * Tags
@@ -119,6 +116,25 @@ export default class Editor {
         element.classList.add('editor');
 
         return element;
+    }
+
+    /**
+     * Creates editor configuration object from default configuration and custom overwrites
+     *
+     * @param {Object} custom
+     *
+     * @return {ConfigEditor}
+     */
+    createConfig(custom) {
+        let config = configEditor;
+
+        Object.getOwnPropertyNames(config).forEach(key => {
+            if (custom.hasOwnProperty(key)) {
+                config[key] = custom[key];
+            }
+        });
+
+        return config;
     }
 
     /**
