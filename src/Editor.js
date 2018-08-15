@@ -236,21 +236,6 @@ export default class Editor {
      */
     initElement() {
         this.filter(this.element);
-        this.element.addEventListener('selectstart', () => {
-            const active = this.document.activeElement;
-
-            if (active.contentEditable && this.allowedGroup('text', active.tagName)) {
-                this.toolbarEditable.style.display = 'block';
-                this.toolbarEditable.style.top = (active.offsetTop + active.offsetParent.offsetTop - this.toolbarEditable.clientHeight) + 'px';
-            }
-        });
-        this.document.addEventListener('selectionchange', () => {
-            const active = this.document.activeElement;
-
-            if (this.window.getSelection().isCollapsed || !active.contentEditable || !this.element.contains(active)) {
-                this.toolbarEditable.removeAttribute('style');
-            }
-        });
     }
 
     /**
@@ -422,6 +407,22 @@ export default class Editor {
      * Init Toolbar
      */
     initToolbar() {
+        this.element.addEventListener('selectstart', () => {
+            const active = this.document.activeElement;
+
+            if (active.contentEditable && this.allowedGroup('text', active.tagName)) {
+                this.toolbarEditable.style.display = 'block';
+                this.toolbarEditable.style.top = (active.offsetTop + active.offsetParent.offsetTop - this.toolbarEditable.clientHeight) + 'px';
+            }
+        });
+        this.document.addEventListener('selectionchange', () => {
+            const active = this.document.activeElement;
+
+            if (this.window.getSelection().isCollapsed || !active.contentEditable || !this.element.contains(active)) {
+                this.toolbarEditable.removeAttribute('style');
+            }
+        });
+
         for (let item of this.commands.entries()) {
             const img = this.document.createElement('img');
 
