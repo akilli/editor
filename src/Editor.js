@@ -330,19 +330,12 @@ export default class Editor {
                         }
                     }
                 };
-                const removeClass = () => {
-                    node.classList.remove('dragover');
-
-                    if (node.classList.length <= 0) {
-                        node.removeAttribute('class');
-                    }
-                };
                 const allowDrop = ev => {
                     const name = ev.dataTransfer.getData(keyName);
 
                     if (name && this.allowed(name, parentName)) {
                         ev.preventDefault();
-                        node.classList.add('dragover');
+                        node.setAttribute('data-editor-dragover', '');
                         ev.dataTransfer.dropEffect = 'move';
                     }
                 };
@@ -362,13 +355,13 @@ export default class Editor {
                 });
                 node.addEventListener('dragenter', allowDrop);
                 node.addEventListener('dragover', allowDrop);
-                node.addEventListener('dragleave', removeClass);
+                node.addEventListener('dragleave', () => node.removeAttribute('data-editor-dragover'));
                 node.addEventListener('drop', ev => {
                     const name = ev.dataTransfer.getData(keyName);
                     const html = ev.dataTransfer.getData(keyHtml);
 
                     ev.preventDefault();
-                    removeClass();
+                    node.removeAttribute('data-editor-dragover');
 
                     if (name && this.allowed(name, parentName) && html) {
                         node.insertAdjacentHTML('beforebegin', html);

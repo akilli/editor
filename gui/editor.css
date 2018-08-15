@@ -84,7 +84,7 @@
     outline: 0.25rem dashed lightgrey;
 }
 
-.editor .dragover {
+.editor [data-editor-dragover] {
     outline: 0.25rem dashed darkgreen;
 }
 
