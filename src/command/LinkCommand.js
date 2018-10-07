@@ -17,12 +17,18 @@ export default class LinkCommand extends TextCommand {
      * @inheritDoc
      */
     execute() {
-        let href;
+        const sel = this.editor.getSelectedElement();
+        const old = sel instanceof HTMLAnchorElement ? sel : null;
+        let href = old ? old.getAttribute('href') : '';
 
-        if (href = this.editor.window.prompt('URL')) {
-            const a = this.editor.document.createElement(this.tag.name);
-            a.setAttribute('href', href);
-            this.editor.formatText(a);
+        if (href = this.editor.window.prompt('URL', href)) {
+            if (old) {
+                old.setAttribute('href', href);
+            } else {
+                const a = this.editor.document.createElement(this.tag.name);
+                a.setAttribute('href', href);
+                this.editor.formatText(a);
+            }
         }
     }
 }
