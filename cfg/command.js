@@ -9,6 +9,7 @@ import ParagraphCommand from '../src/command/ParagraphCommand.js';
 import SectionCommand from '../src/command/SectionCommand.js';
 import TableCommand from '../src/command/TableCommand.js';
 import TextCommand from '../src/command/TextCommand.js';
+import UnlinkCommand from '../src/command/UnlinkCommand.js';
 
 /**
  * Commands configuration
@@ -24,6 +25,7 @@ const data = {
     mark: editor => new TextCommand(editor, 'mark'),
     keyboard: editor => new TextCommand(editor, 'kbd'),
     link: editor => new LinkCommand(editor),
+    unlink: editor => new UnlinkCommand(editor),
     paragraph: editor => new ParagraphCommand(editor),
     heading: editor => new HeadingCommand(editor, 'h2'),
     subheading: editor => new HeadingCommand(editor, 'h3'),
