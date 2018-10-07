@@ -561,6 +561,19 @@ export default class Editor {
     }
 
     /**
+     * Returns current selected element or null
+     *
+     * @return {?HTMLElement}
+     */
+    getSelectedElement() {
+        const sel = this.window.getSelection();
+        const anc = sel.anchorNode instanceof Text ? sel.anchorNode.parentElement : sel.anchorNode;
+        const foc = sel.focusNode instanceof Text ? sel.focusNode.parentElement : sel.focusNode;
+
+        return anc instanceof HTMLElement && foc instanceof HTMLElement && anc.isSameNode(foc) ? anc : null;
+    }
+
+    /**
      * Returns current selected contenteditable or null
      *
      * @return {?HTMLElement}
