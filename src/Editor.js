@@ -764,9 +764,10 @@ export default class Editor {
      */
     url(url) {
         const a = this.document.createElement('a');
+        const origin = this.window.origin || this.window.location.origin;
         a.href = url;
 
-        return a.origin === this.window.origin ? a.pathname : a.href;
+        return a.origin === origin ? a.pathname : a.href;
     }
 
     /**

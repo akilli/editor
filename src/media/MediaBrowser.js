@@ -21,7 +21,7 @@ export default class MediaBrowser {
         let origin;
 
         try {
-            origin = win.origin;
+            origin = win.origin || win.location.origin;
         } catch (e) {
             window.console.log(e);
             const a = document.createElement('a');
