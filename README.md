@@ -1,7 +1,7 @@
 # `akilli/editor`
 
-Minimal rich text editor.
+Minimal rich text editor
 
-## Example
+## Demo
 
-You can see this editor in action @ https://akilli.github.io/rte/editor/
+https://akilli.github.io/rte/editor
