@@ -17,6 +17,10 @@
     clear: both;
 }
 
+.editor > :not(:first-child) {
+    margin-top: 1.5rem;
+}
+
 /**
  * Toolbar
  */
