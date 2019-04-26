@@ -14,6 +14,11 @@ export default class DetailsCommand extends Command {
             const name = node.nodeName.toLowerCase();
 
             if (node instanceof HTMLElement && (name === 'summary' || name === 'details' && (node = node.querySelector('summary')))) {
+                node.addEventListener('blur', () => {
+                    if (!node.innerText.trim()) {
+                        node.innerText = 'Details';
+                    }
+                });
                 node.addEventListener('keydown', ev => {
                     if (ev.key === ' ') {
                         ev.preventDefault();
