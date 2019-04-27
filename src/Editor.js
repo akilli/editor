@@ -416,24 +416,24 @@ export default class Editor {
             }
         });
 
-        for (let item of this.commands.entries()) {
-            const img = this.document.createElement('img');
+        for (let cmd of this.commands.entries()) {
+            const item = this.document.createElement('img');
 
-            img.setAttribute('src', this.gui('icon/' + item[0] + '.svg'));
-            img.setAttribute('alt', item[0]);
-            img.setAttribute('title', item[0]);
-            img.addEventListener('click', () => {
+            item.setAttribute('src', this.gui('icon/' + cmd[0] + '.svg'));
+            item.setAttribute('alt', cmd[0]);
+            item.setAttribute('title', cmd[0]);
+            item.addEventListener('click', () => {
                 if (!this.window.getSelection().containsNode(this.element, true)) {
                     this.element.focus();
                 }
 
-                item[1].execute();
+                cmd[1].execute();
             });
 
-            if (item[1] instanceof TextCommand) {
-                this.toolbarEditable.appendChild(img);
+            if (cmd[1] instanceof TextCommand) {
+                this.toolbarEditable.appendChild(item);
             } else {
-                this.toolbarWidget.appendChild(img);
+                this.toolbarWidget.appendChild(item);
             }
         }
     }
