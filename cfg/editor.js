@@ -1,7 +1,7 @@
 /**
  * Editor configuration
  *
- * @type {Object}
+ * @type {ConfigEditor}
  *
  * @typedef {Object} ConfigEditor
  *
