@@ -30,7 +30,7 @@
     border: 0.0625rem solid lightgrey;
 }
 
-.editor-toolbar img {
+.editor-toolbar > * {
     width: 1.5rem;
     height: 1.5rem;
     margin-right: 0.5rem;
@@ -43,7 +43,7 @@
     margin-bottom: 3rem;
 }
 
-.editor-toolbar-widget img {
+.editor-toolbar-widget > * {
     width: 3rem;
     height: 3rem;
 }
