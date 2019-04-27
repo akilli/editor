@@ -19,16 +19,16 @@ export default class LinkCommand extends TextCommand {
     execute() {
         const sel = this.editor.getSelectedElement();
         const old = sel instanceof HTMLAnchorElement ? sel : null;
-        let href = old ? old.getAttribute('href') : '';
+        const href = this.editor.window.prompt('URL', old ? old.getAttribute('href') : '');
 
-        if (href = this.editor.window.prompt('URL', href)) {
-            if (old) {
-                old.setAttribute('href', href);
-            } else {
-                const a = this.editor.document.createElement(this.tag.name);
-                a.setAttribute('href', href);
-                this.editor.formatText(a);
-            }
+        if (!!href && !!old) {
+            old.setAttribute('href', href);
+        } else if (!!href) {
+            const a = this.editor.document.createElement(this.tag.name);
+            a.setAttribute('href', href);
+            this.editor.formatText(a);
+        } else if (!!old) {
+            old.parentElement.replaceChild(this.editor.document.createTextNode(old.innerText), old);
         }
     }
 }
