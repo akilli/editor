@@ -1,6 +1,6 @@
+import Browser from '../util/Browser.js';
 import Command from './Command.js';
-import MediaBrowser from '../media/MediaBrowser.js';
-import MediaType from '../media/MediaType.js';
+import Media from '../util/Media.js';
 
 /**
  * Media Command
@@ -13,7 +13,7 @@ export default class MediaCommand extends Command {
         let url;
 
         if (this.editor.config.mediabrowser) {
-            MediaBrowser.open(this.editor.window, this.editor.config.mediabrowser, (data) => this.prepare(data));
+            Browser.open(this.editor.window, this.editor.config.mediabrowser, (data) => this.prepare(data));
         } else if (url = this.editor.window.prompt('URL')) {
             this.prepare({src: url});
         }
@@ -34,7 +34,7 @@ export default class MediaCommand extends Command {
         if (data.type) {
             this.insert(data);
         } else {
-            MediaType.fromUrl(data.src)
+            Media.fromUrl(data.src)
                 .then(type => {
                     data.type = type;
                     this.insert(data);
@@ -53,7 +53,7 @@ export default class MediaCommand extends Command {
         let type;
         let tag;
 
-        if (!data.src || !data.type || !(type = MediaType.get(data.type)) || !(tag = this.editor.getTag(type.element))) {
+        if (!data.src || !data.type || !(type = Media.get(data.type)) || !(tag = this.editor.getTag(type.element))) {
             return;
         }
 

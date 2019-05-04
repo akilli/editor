@@ -5,21 +5,21 @@ export default class EditorConfig {
     /**
      * Creates a new instance of editor config with given defaults
      *
-     * @param {Object} opt
+     * @param {Object} opts
      */
-    constructor(opt = {}) {
+    constructor(opts = {}) {
         /**
          * URL path to `gui` directory
          *
          * @type {String}
          */
-        this.gui = opt.gui || '/editor/gui';
+        this.gui = opts.gui || '/editor/gui';
 
         /**
          * URL to media browser
          *
          * @type {?String}
          */
-        this.mediabrowser = opt.mediabrowser || null;
+        this.mediabrowser = opts.mediabrowser || null;
     }
 }

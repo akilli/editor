@@ -36,9 +36,9 @@ const types = {
 };
 
 /**
- * Media Type
+ * Media
  */
-export default class MediaType {
+export default class Media {
     /**
      * Returns all media types IDs
      *
@@ -91,7 +91,6 @@ export default class MediaType {
         try {
             response = await fetch(url);
         } catch (e) {
-            console.log(e);
             return null;
         }
 
