@@ -10,7 +10,7 @@ export default class DetailsCommand extends Command {
     constructor(editor) {
         super(editor);
 
-        const callback = node => {
+        const call = node => {
             const name = node.nodeName.toLowerCase();
 
             if (node instanceof HTMLElement && (name === 'summary' || name === 'details' && (node = node.querySelector('summary')))) {
@@ -33,8 +33,8 @@ export default class DetailsCommand extends Command {
             }
         };
 
-        this.editor.element.querySelectorAll('summary').forEach(callback);
-        this.editor.register(ev =>  ev.forEach(item => item.addedNodes.forEach(callback)));
+        this.editor.element.querySelectorAll('summary').forEach(call);
+        this.editor.register(ev =>  ev.forEach(item => item.addedNodes.forEach(call)));
     }
 
     /**

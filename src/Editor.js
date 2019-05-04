@@ -422,15 +422,15 @@ export default class Editor {
     /**
      * Short-cut method to register a mutation observer
      *
-     * @param {Function} callback
+     * @param {Function} call
      * @param {Object} config
      */
-    register(callback, config = {childList: true, subtree: true}) {
-        if (typeof callback !== 'function') {
+    register(call, config = {childList: true, subtree: true}) {
+        if (typeof call !== 'function') {
             throw 'Invalid observer';
         }
 
-        const mutation = new MutationObserver(callback);
+        const mutation = new MutationObserver(call);
         mutation.observe(this.element, config);
     }
 

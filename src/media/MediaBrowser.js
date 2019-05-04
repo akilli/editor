@@ -7,10 +7,10 @@ export default class MediaBrowser {
      *
      * @param {Window} window
      * @param {String} url
-     * @param {Function} callback
+     * @param {Function} call
      */
-    static open(window, url, callback) {
-        if (!url || typeof callback !== 'function') {
+    static open(window, url, call) {
+        if (!url || typeof call !== 'function') {
             return;
         }
 
@@ -31,7 +31,7 @@ export default class MediaBrowser {
 
         window.addEventListener('message', (ev) => {
             if (ev.origin === origin && ev.source === win) {
-                callback(ev.data);
+                call(ev.data);
                 win.close();
             }
         }, false);
