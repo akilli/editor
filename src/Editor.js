@@ -1,10 +1,10 @@
 import Command from './command/Command.js';
 import Converter from './converter/Converter.js';
+import EditorConfig from './config/EditorConfig.js';
 import Tag from './tag/Tag.js';
 import TextCommand from './command/TextCommand.js';
 import configCommand from '../cfg/command.js';
 import configConverter from '../cfg/converter.js';
-import configEditor from '../cfg/editor.js';
 import configTag from '../cfg/tag.js';
 
 /**
@@ -49,10 +49,10 @@ export default class Editor {
         /**
          * Configuration
          *
-         * @type {ConfigEditor}
+         * @type {EditorConfig}
          * @readonly
          */
-        this.config = this.createConfig(config);
+        this.config = new EditorConfig(config);
 
         /**
          * Tags
@@ -116,25 +116,6 @@ export default class Editor {
         element.classList.add('editor');
 
         return element;
-    }
-
-    /**
-     * Creates editor configuration object from default configuration and custom overwrites
-     *
-     * @param {Object} custom
-     *
-     * @return {ConfigEditor}
-     */
-    createConfig(custom) {
-        let config = configEditor;
-
-        Object.getOwnPropertyNames(config).forEach(key => {
-            if (custom.hasOwnProperty(key)) {
-                config[key] = custom[key];
-            }
-        });
-
-        return config;
     }
 
     /**
