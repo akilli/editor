@@ -1,0 +1,214 @@
+/**
+ * Variable
+ */
+:root {
+    --editor-border: lightgrey;
+    --editor-drag: darkgreen;
+    --editor-outline: yellow;
+    --editor-placeholder: 'Gimme some text!';
+}
+
+/**
+ * Font
+ */
+@font-face {
+    font-family: editor;
+    font-style: normal;
+    font-weight: normal;
+    src: url(editor.woff2) format('woff2');
+}
+
+/**
+ * Editor Content
+ */
+.editor-content {
+    width: 100%;
+    padding: 0.75rem 0.6875rem 0.6875rem;
+    border: 0.0625rem solid var(--editor-border);
+    border-top: 0;
+}
+
+.editor-content::before {
+    display: table;
+    content: ' ';
+}
+
+.editor-content::after {
+    display: table;
+    content: ' ';
+    clear: both;
+}
+
+/**
+ * Widgets
+ */
+.editor-content > :not(:first-child) {
+    margin-top: 1.5rem;
+}
+
+.editor-content > :hover {
+    outline: 0.25rem solid var(--editor-border);
+}
+
+/**
+ * Editable
+ */
+.editor-content [contenteditable] {
+    min-height: 1.5rem;
+}
+
+.editor-content td[contenteditable],
+.editor-content th[contenteditable] {
+    height: 1.5rem;
+}
+
+.editor-content [contenteditable=true]:hover {
+    outline: 0.25rem solid var(--editor-outline);
+}
+
+.editor-content [contenteditable=true]:empty::after {
+    content: var(--editor-placeholder);
+    color: var(--editor-border);
+}
+
+/**
+ * Draggable
+ */
+.editor-content [draggable=true]:hover {
+    outline: 0.25rem dashed var(--editor-border);
+}
+
+.editor-content [data-editor-dragover] {
+    outline: 0.25rem dashed var(--editor-drag);
+}
+
+/**
+ * Media
+ */
+.editor-content audio,
+.editor-content iframe,
+.editor-content img,
+.editor-content video {
+    pointer-events: none;
+}
+
+/**
+ * Toolbar
+ */
+.editor-toolbar {
+    display: flex;
+    padding: 0.6875rem;
+    color: #000;
+    background: #fff;
+    border: 0.0625rem solid var(--editor-border);
+}
+
+.editor-toolbar-widget {
+    position: sticky;
+    top: 0;
+}
+
+.editor-toolbar-editable {
+    position: absolute;
+    display: none;
+}
+
+.editor-toolbar-editable.editor-toolbar-active {
+    display: flex;
+}
+
+/**
+ * Toolbar Buttons
+ */
+.editor-toolbar [data-cmd] {
+    display: block;
+    line-height: 1;
+    margin-right: 0.75rem;
+    padding: 0;
+    font-family: editor;
+    font-size: 0;
+}
+
+.editor-toolbar [data-cmd]::before {
+    font-size: 1rem;
+}
+
+.editor-toolbar-widget [data-cmd]::before {
+    font-size: 1.5rem;
+}
+
+.editor-toolbar [data-cmd=blockquote]::before {
+    content: '\e805';
+}
+
+.editor-toolbar [data-cmd=bold]::before {
+    content: '\e801';
+}
+
+.editor-toolbar [data-cmd=cite]::before {
+    content: '\e807';
+}
+
+.editor-toolbar [data-cmd=definition]::before {
+    content: '\f129';
+}
+
+.editor-toolbar [data-cmd=delete]::before {
+    content: '\f1f8';
+}
+
+.editor-toolbar [data-cmd=details]::before {
+    content: '\f150';
+}
+
+.editor-toolbar [data-cmd=heading]::before {
+    content: '\f1dc';
+}
+
+.editor-toolbar [data-cmd=italic]::before {
+    content: '\e802';
+}
+
+.editor-toolbar [data-cmd=keyboard]::before {
+    content: '\f11c';
+}
+
+.editor-toolbar [data-cmd=link]::before {
+    content: '\e803';
+}
+
+.editor-toolbar [data-cmd=mark]::before {
+    content: '\e809';
+}
+
+.editor-toolbar [data-cmd=media]::before {
+    content: '\e800';
+}
+
+.editor-toolbar [data-cmd=orderedlist]::before {
+    content: '\f0cb';
+}
+
+.editor-toolbar [data-cmd=paragraph]::before {
+    content: '\f1dd';
+}
+
+.editor-toolbar [data-cmd=quote]::before {
+    content: '\f10d';
+}
+
+.editor-toolbar [data-cmd=section]::before {
+    content: '\f2c2';
+}
+
+.editor-toolbar [data-cmd=subheading]::before {
+    content: '\f0fd';
+}
+
+.editor-toolbar [data-cmd=table]::before {
+    content: '\f0ce';
+}
+
+.editor-toolbar [data-cmd=unorderedlist]::before {
+    content: '\f0ca';
+}
