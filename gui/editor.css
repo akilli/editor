@@ -30,27 +30,110 @@
     border: 0.0625rem solid lightgrey;
 }
 
-.editor-toolbar > * {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: 0.5rem;
-    cursor: pointer;
-}
-
 .editor-toolbar-widget {
     position: sticky;
     top: 0;
     margin-bottom: 3rem;
 }
 
-.editor-toolbar-widget > * {
+.editor-toolbar-editable {
+    position: absolute;
+    display: none;
+}
+
+/**
+ * Toolbar Buttons
+ */
+.editor-toolbar button {
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1;
+    margin-right: 0.5rem;
+    font-size: 0;
+    background: no-repeat center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.editor-toolbar-widget button {
     width: 3rem;
     height: 3rem;
 }
 
-.editor-toolbar-editable {
-    position: absolute;
-    display: none;
+.editor-toolbar button[data-cmd=blockquote] {
+    background-image: url(icon/blockquote.svg);
+}
+
+.editor-toolbar button[data-cmd=bold] {
+    background-image: url(icon/bold.svg);
+}
+
+.editor-toolbar button[data-cmd=cite] {
+    background-image: url(icon/cite.svg);
+}
+
+.editor-toolbar button[data-cmd=definition] {
+    background-image: url(icon/definition.svg);
+}
+
+.editor-toolbar button[data-cmd=delete] {
+    background-image: url(icon/delete.svg);
+}
+
+.editor-toolbar button[data-cmd=details] {
+    background-image: url(icon/details.svg);
+}
+
+.editor-toolbar button[data-cmd=heading] {
+    background-image: url(icon/heading.svg);
+}
+
+.editor-toolbar button[data-cmd=italic] {
+    background-image: url(icon/italic.svg);
+}
+
+.editor-toolbar button[data-cmd=keyboard] {
+    background-image: url(icon/keyboard.svg);
+}
+
+.editor-toolbar button[data-cmd=link] {
+    background-image: url(icon/link.svg);
+}
+
+.editor-toolbar button[data-cmd=mark] {
+    background-image: url(icon/mark.svg);
+}
+
+.editor-toolbar button[data-cmd=media] {
+    background-image: url(icon/media.svg);
+}
+
+.editor-toolbar button[data-cmd=orderedlist] {
+    background-image: url(icon/orderedlist.svg);
+}
+
+.editor-toolbar button[data-cmd=paragraph] {
+    background-image: url(icon/paragraph.svg);
+}
+
+.editor-toolbar button[data-cmd=quote] {
+    background-image: url(icon/quote.svg);
+}
+
+.editor-toolbar button[data-cmd=section] {
+    background-image: url(icon/section.svg);
+}
+
+.editor-toolbar button[data-cmd=subheading] {
+    background-image: url(icon/subheading.svg);
+}
+
+.editor-toolbar button[data-cmd=table] {
+    background-image: url(icon/table.svg);
+}
+
+.editor-toolbar button[data-cmd=unorderedlist] {
+    background-image: url(icon/unorderedlist.svg);
 }
 
 /**

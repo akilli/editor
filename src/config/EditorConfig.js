@@ -9,13 +9,6 @@ export default class EditorConfig {
      */
     constructor(opts = {}) {
         /**
-         * URL path to `gui` directory
-         *
-         * @type {String}
-         */
-        this.gui = opts.gui || '/editor/gui';
-
-        /**
          * URL to media browser
          *
          * @type {?String}

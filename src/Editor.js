@@ -208,7 +208,6 @@ export default class Editor {
         this.initElement();
         this.initEditable();
         this.initDraggable();
-        this.initGui();
         this.initToolbar();
     }
 
@@ -359,25 +358,6 @@ export default class Editor {
     }
 
     /**
-     * Init GUI
-     */
-    initGui() {
-        const css = this.document.styleSheets;
-        const link = this.document.createElement('link');
-
-        link.rel = 'stylesheet';
-        link.href = this.gui('editor.css');
-
-        for (let i = 0; i < css.length; ++i) {
-            if (css[i].href === link.href) {
-                return;
-            }
-        }
-
-        this.document.head.appendChild(link);
-    }
-
-    /**
      * Init Toolbar
      */
     initToolbar() {
@@ -398,11 +378,11 @@ export default class Editor {
         });
 
         for (let cmd of this.commands.entries()) {
-            const item = this.document.createElement('img');
-
-            item.setAttribute('src', this.gui('icon/' + cmd[0] + '.svg'));
-            item.setAttribute('alt', cmd[0]);
+            const item = this.document.createElement('button');
+            item.setAttribute('type', 'button');
+            item.setAttribute('data-cmd', cmd[0]);
             item.setAttribute('title', cmd[0]);
+            item.innerText = cmd[0];
             item.addEventListener('click', () => {
                 if (!this.window.getSelection().containsNode(this.element, true)) {
                     this.element.focus();
@@ -749,17 +729,6 @@ export default class Editor {
         a.href = url;
 
         return a.origin === origin ? a.pathname : a.href;
-    }
-
-    /**
-     * Returns GUI URL
-     *
-     * @param {String} path
-     *
-     * @return {String}
-     */
-    gui(path) {
-        return this.url(this.config.gui + '/' + path);
     }
 
     /**
