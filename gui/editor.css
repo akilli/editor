@@ -1,4 +1,14 @@
 /**
+ * Font
+ */
+@font-face {
+    font-family: editor;
+    font-style: normal;
+    font-weight: normal;
+    src: url(editor.woff2) format('woff2');
+}
+
+/**
  * Editor
  */
 .editor {
@@ -25,7 +35,7 @@
  * Toolbar
  */
 .editor-toolbar {
-    padding: 0.75rem;
+    padding: 0.25rem;
     background: #fff;
     border: 0.0625rem solid lightgrey;
 }
@@ -34,6 +44,7 @@
     position: sticky;
     top: 0;
     margin-bottom: 3rem;
+    padding: 0.75rem;
 }
 
 .editor-toolbar-editable {
@@ -44,96 +55,95 @@
 /**
  * Toolbar Buttons
  */
-.editor-toolbar button {
-    width: 1.5rem;
-    height: 1.5rem;
+.editor-toolbar [data-cmd] {
     line-height: 1;
-    margin-right: 0.5rem;
+    margin-right: 0.75rem;
+    font-family: editor;
     font-size: 0;
-    background: no-repeat center;
-    background-size: contain;
-    cursor: pointer;
 }
 
-.editor-toolbar-widget button {
-    width: 3rem;
-    height: 3rem;
+.editor-toolbar [data-cmd]::before {
+    font-size: 1rem;
 }
 
-.editor-toolbar button[data-cmd=blockquote] {
-    background-image: url(blockquote.svg);
+.editor-toolbar-widget [data-cmd]::before {
+    font-size: 1.5rem;
 }
 
-.editor-toolbar button[data-cmd=bold] {
-    background-image: url(bold.svg);
+.editor-toolbar [data-cmd=blockquote]::before {
+    content: '\e805';
 }
 
-.editor-toolbar button[data-cmd=cite] {
-    background-image: url(cite.svg);
+.editor-toolbar [data-cmd=bold]::before {
+    content: '\e801';
 }
 
-.editor-toolbar button[data-cmd=definition] {
-    background-image: url(definition.svg);
+.editor-toolbar [data-cmd=cite]::before {
+    content: '\e807';
 }
 
-.editor-toolbar button[data-cmd=delete] {
-    background-image: url(delete.svg);
+.editor-toolbar [data-cmd=definition]::before {
+    content: '\f129';
 }
 
-.editor-toolbar button[data-cmd=details] {
-    background-image: url(details.svg);
+.editor-toolbar [data-cmd=delete]::before {
+    content: '\f1f8';
 }
 
-.editor-toolbar button[data-cmd=heading] {
-    background-image: url(heading.svg);
+.editor-toolbar [data-cmd=details]::before {
+    content: '\f150';
 }
 
-.editor-toolbar button[data-cmd=italic] {
-    background-image: url(italic.svg);
+.editor-toolbar [data-cmd=heading]::before {
+    content: '\f1dc';
 }
 
-.editor-toolbar button[data-cmd=keyboard] {
-    background-image: url(keyboard.svg);
+.editor-toolbar [data-cmd=italic]::before {
+    content: '\e802';
 }
 
-.editor-toolbar button[data-cmd=link] {
-    background-image: url(link.svg);
+.editor-toolbar [data-cmd=keyboard]::before {
+    content: '\f11c';
 }
 
-.editor-toolbar button[data-cmd=mark] {
-    background-image: url(mark.svg);
+.editor-toolbar [data-cmd=link]::before {
+    content: '\e803';
 }
 
-.editor-toolbar button[data-cmd=media] {
-    background-image: url(media.svg);
+.editor-toolbar [data-cmd=mark]::before {
+    content: '\e809';
 }
 
-.editor-toolbar button[data-cmd=orderedlist] {
-    background-image: url(orderedlist.svg);
+.editor-toolbar [data-cmd=media]::before {
+    content: '\e800';
 }
 
-.editor-toolbar button[data-cmd=paragraph] {
-    background-image: url(paragraph.svg);
+.editor-toolbar [data-cmd=orderedlist]::before {
+    content: '\f0cb';
 }
 
-.editor-toolbar button[data-cmd=quote] {
-    background-image: url(quote.svg);
+.editor-toolbar [data-cmd=paragraph]::before {
+    content: '\f1dd';
 }
 
-.editor-toolbar button[data-cmd=section] {
-    background-image: url(section.svg);
+.editor-toolbar [data-cmd=quote]::before {
+    content: '\f10d';
 }
 
-.editor-toolbar button[data-cmd=subheading] {
-    background-image: url(subheading.svg);
+.editor-toolbar [data-cmd=section]::before {
+    content: '\f2c2';
 }
 
-.editor-toolbar button[data-cmd=table] {
-    background-image: url(table.svg);
+.editor-toolbar [data-cmd=subheading]::before {
+    content: '\f0fd';
 }
 
-.editor-toolbar button[data-cmd=unorderedlist] {
-    background-image: url(unorderedlist.svg);
+.editor-toolbar [data-cmd=table]::before {
+    content: '\f0ce';
+}
+
+.editor-toolbar [data-cmd=unorderedlist]::before {
+    content: '\f0ca';
 }
 
 /**
