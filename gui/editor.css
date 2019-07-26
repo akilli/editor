@@ -61,79 +61,79 @@
 }
 
 .editor-toolbar button[data-cmd=blockquote] {
-    background-image: url(icon/blockquote.svg);
+    background-image: url(blockquote.svg);
 }
 
 .editor-toolbar button[data-cmd=bold] {
-    background-image: url(icon/bold.svg);
+    background-image: url(bold.svg);
 }
 
 .editor-toolbar button[data-cmd=cite] {
-    background-image: url(icon/cite.svg);
+    background-image: url(cite.svg);
 }
 
 .editor-toolbar button[data-cmd=definition] {
-    background-image: url(icon/definition.svg);
+    background-image: url(definition.svg);
 }
 
 .editor-toolbar button[data-cmd=delete] {
-    background-image: url(icon/delete.svg);
+    background-image: url(delete.svg);
 }
 
 .editor-toolbar button[data-cmd=details] {
-    background-image: url(icon/details.svg);
+    background-image: url(details.svg);
 }
 
 .editor-toolbar button[data-cmd=heading] {
-    background-image: url(icon/heading.svg);
+    background-image: url(heading.svg);
 }
 
 .editor-toolbar button[data-cmd=italic] {
-    background-image: url(icon/italic.svg);
+    background-image: url(italic.svg);
 }
 
 .editor-toolbar button[data-cmd=keyboard] {
-    background-image: url(icon/keyboard.svg);
+    background-image: url(keyboard.svg);
 }
 
 .editor-toolbar button[data-cmd=link] {
-    background-image: url(icon/link.svg);
+    background-image: url(link.svg);
 }
 
 .editor-toolbar button[data-cmd=mark] {
-    background-image: url(icon/mark.svg);
+    background-image: url(mark.svg);
 }
 
 .editor-toolbar button[data-cmd=media] {
-    background-image: url(icon/media.svg);
+    background-image: url(media.svg);
 }
 
 .editor-toolbar button[data-cmd=orderedlist] {
-    background-image: url(icon/orderedlist.svg);
+    background-image: url(orderedlist.svg);
 }
 
 .editor-toolbar button[data-cmd=paragraph] {
-    background-image: url(icon/paragraph.svg);
+    background-image: url(paragraph.svg);
 }
 
 .editor-toolbar button[data-cmd=quote] {
-    background-image: url(icon/quote.svg);
+    background-image: url(quote.svg);
 }
 
 .editor-toolbar button[data-cmd=section] {
-    background-image: url(icon/section.svg);
+    background-image: url(section.svg);
 }
 
 .editor-toolbar button[data-cmd=subheading] {
-    background-image: url(icon/subheading.svg);
+    background-image: url(subheading.svg);
 }
 
 .editor-toolbar button[data-cmd=table] {
-    background-image: url(icon/table.svg);
+    background-image: url(table.svg);
 }
 
 .editor-toolbar button[data-cmd=unorderedlist] {
-    background-image: url(icon/unorderedlist.svg);
+    background-image: url(unorderedlist.svg);
 }
 
 /**
