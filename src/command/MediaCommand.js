@@ -13,7 +13,7 @@ export default class MediaCommand extends Command {
         let url;
 
         if (this.editor.config.mediabrowser) {
-            Browser.open(this.editor.window, this.editor.config.mediabrowser, (data) => this.prepare(data));
+            Browser.open(this.editor.window, this.editor.config.mediabrowser, data => this.prepare(data));
         } else if (url = this.editor.window.prompt('URL')) {
             this.prepare({src: url});
         }

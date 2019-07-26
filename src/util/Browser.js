@@ -31,7 +31,7 @@ export default class Browser {
             origin = a.origin;
         }
 
-        window.addEventListener('message', (ev) => {
+        window.addEventListener('message', ev => {
             if (ev.origin === origin && ev.source === win) {
                 call(ev.data);
                 win.close();
