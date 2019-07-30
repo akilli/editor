@@ -669,6 +669,8 @@ export default class Editor {
         while ((br = parent.firstChild) && br instanceof HTMLBRElement || (br = parent.lastChild) && br instanceof HTMLBRElement) {
             parent.removeChild(br);
         }
+
+        parent.querySelectorAll('figure > figcaption:only-child').forEach(node => node.parentElement.removeChild(node));
     }
 
     /**
