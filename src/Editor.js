@@ -637,7 +637,7 @@ export default class Editor {
                         this.filter(node);
                     }
 
-                    if (!node.hasChildNodes() && !tag.empty) {
+                    if (!node.hasChildNodes() && !tag.empty && !(node instanceof HTMLTableCellElement)) {
                         parent.removeChild(node);
                     } else if (isRoot && tag.group === 'text') {
                         const p = this.document.createElement('p');
@@ -666,11 +666,16 @@ export default class Editor {
             }
         });
 
+        // Trim br elements
         while ((br = parent.firstChild) && br instanceof HTMLBRElement || (br = parent.lastChild) && br instanceof HTMLBRElement) {
             parent.removeChild(br);
         }
 
+        // Filter our figure elements with figcaption elements as only child
         parent.querySelectorAll('figure > figcaption:only-child').forEach(node => node.parentElement.removeChild(node));
+
+        // Filter empty tables
+        parent.querySelectorAll('table').forEach(node => !node.querySelector('th:not(:empty), td:not(:empty)') && node.parentElement.removeChild(node));
     }
 
     /**
