@@ -1,5 +1,4 @@
 import BlockquoteCommand from '../src/command/BlockquoteCommand.js';
-import DeleteCommand from '../src/command/DeleteCommand.js';
 import DetailsCommand from '../src/command/DetailsCommand.js';
 import HeadingCommand from '../src/command/HeadingCommand.js';
 import LinkCommand from '../src/command/LinkCommand.js';
@@ -37,5 +36,4 @@ export default {
     table: editor => new TableCommand(editor),
     details: editor => new DetailsCommand(editor),
     section: editor => new SectionCommand(editor),
-    delete: editor => new DeleteCommand(editor),
 }
