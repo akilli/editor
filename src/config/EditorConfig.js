@@ -9,44 +9,12 @@ export default class EditorConfig {
      */
     constructor(opts = {}) {
         /**
-         * URL to audio browser
+         * Block
          *
-         * @type {?String}
+         * @type {Object}
          * @readonly
          */
-        this.audiobrowser = opts.audiobrowser;
-
-        /**
-         * URL to block browser
-         *
-         * @type {?String}
-         * @readonly
-         */
-        this.blockapi = opts.blockapi;
-
-        /**
-         * URL to block browser
-         *
-         * @type {?String}
-         * @readonly
-         */
-        this.blockbrowser = opts.blockbrowser;
-
-        /**
-         * URL to iframe browser
-         *
-         * @type {?String}
-         * @readonly
-         */
-        this.iframebrowser = opts.iframebrowser;
-
-        /**
-         * URL to image browser
-         *
-         * @type {?String}
-         * @readonly
-         */
-        this.imagebrowser = opts.imagebrowser;
+        this.block = opts.block || {};
 
         /**
          * Language
@@ -57,19 +25,19 @@ export default class EditorConfig {
         this.lang = opts.lang;
 
         /**
+         * Media
+         *
+         * @type {Object}
+         * @readonly
+         */
+        this.media = opts.media || {};
+
+        /**
          * Section
          *
          * @type {Object}
          * @readonly
          */
-        this.section = opts.section;
-
-        /**
-         * URL to video browser
-         *
-         * @type {?String}
-         * @readonly
-         */
-        this.videobrowser = opts.videobrowser;
+        this.section = opts.section || {};
     }
 }

@@ -89,7 +89,7 @@ export default class Media {
         let response;
 
         try {
-            response = await fetch(url);
+            response = await fetch(url, {method: 'HEAD'});
         } catch (e) {
             return null;
         }
