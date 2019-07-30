@@ -89,7 +89,7 @@ export default class Media {
         let response;
 
         try {
-            response = await fetch(url, {method: 'HEAD'});
+            response = await fetch(url, {method: 'HEAD', mode: 'no-cors'});
         } catch (e) {
             return null;
         }
