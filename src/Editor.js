@@ -1,10 +1,12 @@
 import Command from './command/Command.js';
 import Converter from './converter/Converter.js';
 import EditorConfig from './config/EditorConfig.js';
+import Observer from './observer/Observer.js';
 import Tag from './tag/Tag.js';
 import TextCommand from './command/TextCommand.js';
 import configCommand from '../cfg/command.js';
 import configConverter from '../cfg/converter.js';
+import configObserver from '../cfg/observer.js';
 import configTag from '../cfg/tag.js';
 
 /**
@@ -15,13 +17,11 @@ export default class Editor {
      * Creates a new instance of editor with given configuration
      *
      * @param {HTMLElement} orig
-     * @param {EditorConfig} config
+     * @param {Object} config
      */
     constructor(orig, config = {}) {
         if (!(orig instanceof HTMLElement)) {
             throw 'Invalid element';
-        } else if (!(config instanceof EditorConfig)) {
-            throw 'Invalid configuration';
         }
 
         const element = orig.ownerDocument.createElement('div');
@@ -70,7 +70,7 @@ export default class Editor {
          * @type {EditorConfig}
          * @readonly
          */
-        this.config = config;
+        this.config = new EditorConfig(config);
 
         /**
          * Corresponding DOM element of the editor
@@ -126,6 +126,13 @@ export default class Editor {
          * @type {Map<String, Command>}
          */
         this.commands = this.createCommands(configCommand);
+
+        /**
+         * Observers
+         *
+         * @type {Observer[]}
+         */
+        this.observers = this.createObservers(configObserver);
     }
 
     /**
@@ -168,6 +175,25 @@ export default class Editor {
     }
 
     /**
+     * Creates observers
+     *
+     * @param {Observer[]} config
+     *
+     * @return {Observer[]}
+     */
+    createObservers(config) {
+        return config.map(item => {
+            item = new item(this);
+
+            if (!(item instanceof Observer)) {
+                throw 'Invalid observer';
+            }
+
+            return item;
+        });
+    }
+
+    /**
      * Creates commands map
      *
      * @param {Object.<String, Function>} config
@@ -194,168 +220,9 @@ export default class Editor {
      * Init editor
      */
     init() {
-        this.initObserver();
+        this.observers.forEach(item => this.register(ev => item.observe(ev)));
         this.initContent();
         this.initToolbar();
-    }
-
-    /**
-     * Init observer
-     */
-    initObserver() {
-        // Editables
-        const editables = [...this.tags].reduce((result, item) => {
-            if (item[1].editable) {
-                result.push(item[1].name);
-            }
-
-            return result;
-        }, []);
-        const editableCallback = node => {
-            node.contentEditable = true;
-            node.focus();
-            node.addEventListener('keydown', ev => {
-                if (ev.key === 'Enter' && (!ev.shiftKey || !this.allowed('br', node.tagName))) {
-                    ev.preventDefault();
-                    ev.cancelBubble = true;
-                }
-            });
-            node.addEventListener('keyup', ev => {
-                let tag;
-
-                if (ev.key === 'Enter' && !ev.shiftKey && (tag = this.getTag(node.tagName)) && tag.enter) {
-                    let current = node;
-                    let parentName;
-
-                    ev.preventDefault();
-                    ev.cancelBubble = true;
-
-                    do {
-                        parentName = this.getTagName(current.parentElement);
-
-                        if (this.allowed(tag.enter, parentName)) {
-                            const newElement = this.document.createElement(tag.enter);
-                            this.insert(newElement, current);
-                            break;
-                        }
-                    } while ((current = current.parentElement) && this.content.contains(current) && !this.content.isSameNode(current));
-                }
-            });
-        };
-
-        this.register(ev => {
-            ev.forEach(item => {
-                item.addedNodes.forEach(node => {
-                    if (node instanceof HTMLElement && editables.includes(node.tagName.toLowerCase())) {
-                        editableCallback(node);
-                    } else if (node instanceof HTMLElement) {
-                        node.querySelectorAll(editables.join(', ')).forEach(editableCallback)
-                    }
-                });
-            });
-        });
-
-        // Fix space key for editable summary elements
-        this.register(ev =>  ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && node.tagName.toLowerCase() === 'summary' || node instanceof HTMLDetailsElement && (node = node.querySelector('summary'))) {
-                node.addEventListener('blur', () => {
-                    if (!node.innerText.trim()) {
-                        node.innerText = 'Details';
-                    }
-                });
-                node.addEventListener('keydown', ev => {
-                    if (ev.key === ' ') {
-                        ev.preventDefault();
-                    }
-                });
-                node.addEventListener('keyup', ev => {
-                    if (ev.key === ' ') {
-                        ev.preventDefault();
-                        this.insertText(' ');
-                    }
-                });
-            }
-        })));
-
-        // Disable dragging of anchor and image elements
-        this.register(ev => ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLAnchorElement || node instanceof HTMLImageElement) {
-                node.draggable = false;
-                node.addEventListener('dragstart', ev => ev.preventDefault());
-            }
-        })));
-
-        // Drag'n'drop for widgets
-        this.register(ev => ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && this.content.isSameNode(node.parentElement)) {
-                const parentName = 'root';
-                const keyName = 'text/x-editor-name';
-                const keyHtml = 'text/x-editor-html';
-                const toggle = () => {
-                    const isDraggable = node.hasAttribute('draggable');
-
-                    this.content.querySelectorAll('[draggable]').forEach(item => {
-                        item.removeAttribute('draggable');
-
-                        if (item.hasAttribute('contenteditable')) {
-                            item.setAttribute('contenteditable', 'true');
-                        }
-                    });
-
-                    if (!isDraggable) {
-                        node.setAttribute('draggable', 'true');
-
-                        if (node.hasAttribute('contenteditable')) {
-                            node.setAttribute('contenteditable', 'false');
-                        }
-                    }
-                };
-                const allowDrop = ev => {
-                    const name = ev.dataTransfer.getData(keyName);
-
-                    if (name && this.allowed(name, parentName)) {
-                        ev.preventDefault();
-                        node.setAttribute('data-editor-dragover', '');
-                        ev.dataTransfer.dropEffect = 'move';
-                    }
-                };
-
-                node.addEventListener('dblclick', toggle);
-                node.addEventListener('dragstart', ev => {
-                    ev.dataTransfer.effectAllowed = 'move';
-                    ev.dataTransfer.setData(keyName, node.tagName.toLowerCase());
-                    ev.dataTransfer.setData(keyHtml, node.outerHTML);
-                });
-                node.addEventListener('dragend', ev => {
-                    if (ev.dataTransfer.dropEffect === 'move') {
-                        node.parentElement.removeChild(node);
-                    }
-
-                    toggle();
-                });
-                node.addEventListener('dragenter', allowDrop);
-                node.addEventListener('dragover', allowDrop);
-                node.addEventListener('dragleave', () => node.removeAttribute('data-editor-dragover'));
-                node.addEventListener('drop', ev => {
-                    const name = ev.dataTransfer.getData(keyName);
-                    const html = ev.dataTransfer.getData(keyHtml);
-
-                    ev.preventDefault();
-                    node.removeAttribute('data-editor-dragover');
-
-                    if (name && this.allowed(name, parentName) && html) {
-                        node.insertAdjacentHTML('beforebegin', html);
-                    }
-                });
-            }
-        })));
-
-        // Figure observer to create missing figcaption elements
-        this.register(ev => ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && node.tagName.toLowerCase() === 'figure' && !node.querySelector(':scope > figcaption')) {
-                node.appendChild(this.document.createElement('figcaption'));
-            }
-        })));
     }
 
     /**
@@ -379,7 +246,7 @@ export default class Editor {
         this.content.addEventListener('selectstart', () => {
             const active = this.document.activeElement;
 
-            if (active.contentEditable && this.allowedGroup('text', active.tagName)) {
+            if (active.isContentEditable && this.allowedGroup('text', active.tagName)) {
                 this.toolbarEditable.classList.add('editor-toolbar-active');
                 this.toolbarEditable.style.top = (active.offsetTop + active.offsetParent.offsetTop - this.toolbarEditable.clientHeight) + 'px';
             }
@@ -387,7 +254,7 @@ export default class Editor {
         this.document.addEventListener('selectionchange', () => {
             const active = this.document.activeElement;
 
-            if (this.window.getSelection().isCollapsed || !active.contentEditable || !this.content.contains(active)) {
+            if (this.window.getSelection().isCollapsed || !active.isContentEditable || !this.content.contains(active)) {
                 this.toolbarEditable.classList.remove('editor-toolbar-active');
                 this.toolbarEditable.removeAttribute('style');
             }
@@ -537,7 +404,7 @@ export default class Editor {
 
         range.deleteContents();
 
-        if (parent.contentEditable && this.allowed(element.tagName, parent.tagName) && selText.trim() && (!tag || !same)) {
+        if (parent.isContentEditable && this.allowed(element.tagName, parent.tagName) && selText.trim() && (!tag || !same)) {
             element.innerText = selText;
             range.insertNode(element);
         } else {
@@ -756,7 +623,7 @@ export default class Editor {
      * Factory method to create a new instance of editor with given configuration
      *
      * @param {HTMLElement} element
-     * @param {EditorConfig} config
+     * @param {Object} config
      *
      * @return {Editor}
      */
