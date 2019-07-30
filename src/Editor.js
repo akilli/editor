@@ -678,6 +678,7 @@ export default class Editor {
         parent.querySelectorAll('tbody').forEach(node => !node.querySelector('th:not(:empty), td:not(:empty)') && node.parentElement.parentElement.removeChild(node.parentElement));
         parent.querySelectorAll('thead').forEach(node => !node.querySelector('th:not(:empty), td:not(:empty)') && node.parentElement.removeChild(node));
         parent.querySelectorAll('tfoot').forEach(node => !node.querySelector('th:not(:empty), td:not(:empty)') && node.parentElement.removeChild(node));
+        parent.querySelectorAll('tr').forEach(node => !node.querySelector('th:not(:empty), td:not(:empty)') && node.parentElement.removeChild(node));
     }
 
     /**
