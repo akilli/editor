@@ -9,11 +9,33 @@ export default class MediaCommand extends Command {
     /**
      * @inheritDoc
      */
+    constructor(editor, tagName) {
+        super(editor, tagName);
+
+        let type;
+
+        if (!this.tag || this.tag.group !== 'media' || !(type = Media.fromElement(this.tag.name))) {
+            throw 'Invalid media element';
+        }
+
+        /**
+         * Type
+         *
+         * @type {MediaTypeElement}
+         * @readonly
+         */
+        this.type = type;
+    }
+
+    /**
+     * @inheritDoc
+     */
     execute() {
+        const browser = this.editor.config[`${this.type.id}browser`];
         let url;
 
-        if (this.editor.config.mediabrowser) {
-            Browser.open(this.editor.window, this.editor.config.mediabrowser, data => this.prepare(data));
+        if (browser) {
+            Browser.open(this.editor.window, browser, data => this.prepare(data));
         } else if (url = this.editor.window.prompt('URL')) {
             this.prepare({src: url});
         }
@@ -27,13 +49,9 @@ export default class MediaCommand extends Command {
      * @param {Object} data
      */
     prepare(data) {
-        if (!data.src) {
-            return;
-        }
-
-        if (data.type) {
+        if (data.src && data.type) {
             this.insert(data);
-        } else {
+        } else if (data.src) {
             Media.fromUrl(data.src)
                 .then(type => {
                     data.type = type.id;
@@ -50,22 +68,19 @@ export default class MediaCommand extends Command {
      * @param {Object} data
      */
     insert(data) {
-        let type;
-        let tag;
-
-        if (!data.src || !data.type || !(type = Media.get(data.type)) || !(tag = this.editor.getTag(type.element))) {
+        if (!data.src || !data.type || data.type !== this.type.id) {
             return;
         }
 
         const figure = this.editor.document.createElement('figure');
-        const media = this.editor.document.createElement(type.element);
+        const media = this.editor.document.createElement(this.type.element);
         const figcaption = this.editor.document.createElement('figcaption');
 
         data.src = this.editor.url(data.src);
 
-        figure.classList.add(type.id);
+        figure.classList.add(this.type.id);
         figure.appendChild(media);
-        tag.attributes.forEach(item => {
+        this.tag.attributes.forEach(item => {
             if (['allowfullscreen', 'controls'].includes(item)) {
                 media.setAttribute(item, item);
             } else if (data[item]) {

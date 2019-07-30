@@ -137,6 +137,10 @@
     font-size: 1.5rem;
 }
 
+.editor-toolbar [data-cmd=audio]::before {
+    content: '\e80c';
+}
+
 .editor-toolbar [data-cmd=blockquote]::before {
     content: '\e805';
 }
@@ -165,6 +169,14 @@
     content: '\f1dc';
 }
 
+.editor-toolbar [data-cmd=iframe]::before {
+    content: '\f1c9';
+}
+
+.editor-toolbar [data-cmd=image]::before {
+    content: '\e800';
+}
+
 .editor-toolbar [data-cmd=italic]::before {
     content: '\e802';
 }
@@ -179,10 +191,6 @@
 
 .editor-toolbar [data-cmd=mark]::before {
     content: '\e809';
-}
-
-.editor-toolbar [data-cmd=media]::before {
-    content: '\e800';
 }
 
 .editor-toolbar [data-cmd=orderedlist]::before {
@@ -211,4 +219,8 @@
 
 .editor-toolbar [data-cmd=unorderedlist]::before {
     content: '\f0ca';
+}
+
+.editor-toolbar [data-cmd=video]::before {
+    content: '\e80b';
 }
