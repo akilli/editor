@@ -424,7 +424,7 @@ export default class Editor {
         const anc = sel.anchorNode instanceof Text ? sel.anchorNode.parentElement : sel.anchorNode;
         const foc = sel.focusNode instanceof Text ? sel.focusNode.parentElement : sel.focusNode;
 
-        return anc instanceof HTMLElement && foc instanceof HTMLElement && anc.isSameNode(foc) ? anc : null;
+        return anc instanceof HTMLElement && foc instanceof HTMLElement && anc.isSameNode(foc) && this.content.contains(anc) ? anc : null;
     }
 
     /**
@@ -441,7 +441,7 @@ export default class Editor {
             const ancEdit = anc.closest('[contenteditable=true]');
             const focEdit = foc.closest('[contenteditable=true]');
 
-            if (ancEdit instanceof HTMLElement && focEdit instanceof HTMLElement && ancEdit.isSameNode(focEdit)) {
+            if (ancEdit instanceof HTMLElement && focEdit instanceof HTMLElement && ancEdit.isSameNode(focEdit) && this.content.contains(ancEdit)) {
                 return ancEdit;
             }
         }
