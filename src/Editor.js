@@ -674,8 +674,10 @@ export default class Editor {
         // Filter our figure elements with figcaption elements as only child
         parent.querySelectorAll('figure > figcaption:only-child').forEach(node => node.parentElement.removeChild(node));
 
-        // Filter empty tables
-        parent.querySelectorAll('table').forEach(node => !node.querySelector('th:not(:empty), td:not(:empty)') && node.parentElement.removeChild(node));
+        // Filter empty tables and table parts
+        parent.querySelectorAll('tbody').forEach(node => !node.querySelector('th:not(:empty), td:not(:empty)') && node.parentElement.parentElement.removeChild(node.parentElement));
+        parent.querySelectorAll('thead').forEach(node => !node.querySelector('th:not(:empty), td:not(:empty)') && node.parentElement.removeChild(node));
+        parent.querySelectorAll('tfoot').forEach(node => !node.querySelector('th:not(:empty), td:not(:empty)') && node.parentElement.removeChild(node));
     }
 
     /**
