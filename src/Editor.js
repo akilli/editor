@@ -225,7 +225,6 @@ export default class Editor {
 
             return result;
         }, []);
-        const selector = editables.join(', ');
         const editableCallback = node => {
             node.contentEditable = true;
             node.focus();
@@ -264,7 +263,7 @@ export default class Editor {
                     if (node instanceof HTMLElement && editables.includes(node.tagName.toLowerCase())) {
                         editableCallback(node);
                     } else if (node instanceof HTMLElement) {
-                        node.querySelectorAll(selector).forEach(editableCallback)
+                        node.querySelectorAll(editables.join(', ')).forEach(editableCallback)
                     }
                 });
             });
