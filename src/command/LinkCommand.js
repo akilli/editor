@@ -5,7 +5,7 @@ import TextCommand from './TextCommand.js';
  */
 export default class LinkCommand extends TextCommand {
     /**
-     * Initializes a new editor command
+     * @inheritDoc
      *
      * @param {Editor} editor
      */

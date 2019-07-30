@@ -200,20 +200,6 @@ export default class Editor {
     }
 
     /**
-     * Init content
-     */
-    initContent() {
-        if (this.orig instanceof HTMLTextAreaElement) {
-            this.content.innerHTML = this.orig.value.replace('/&nbsp;/g', ' ');
-            this.orig.form.addEventListener('submit', () => this.save());
-        } else {
-            this.content.innerHTML = this.orig.innerHTML;
-        }
-
-        this.filter(this.content);
-    }
-
-    /**
      * Init observer
      */
     initObserver() {
@@ -364,20 +350,26 @@ export default class Editor {
             }
         })));
 
-        // Disable dragging of anchor and image elements
-        this.register(ev => ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLAnchorElement || node instanceof HTMLImageElement) {
-                node.draggable = false;
-                node.addEventListener('dragstart', ev => ev.preventDefault());
-            }
-        })));
-
         // Figure observer to create missing figcaption elements
         this.register(ev => ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLElement && node.tagName.toLowerCase() === 'figure' && !node.querySelector(':scope > figcaption')) {
                 node.appendChild(this.document.createElement('figcaption'));
             }
         })));
+    }
+
+    /**
+     * Init content
+     */
+    initContent() {
+        if (this.orig instanceof HTMLTextAreaElement) {
+            this.content.innerHTML = this.orig.value.replace('/&nbsp;/g', ' ');
+            this.orig.form.addEventListener('submit', () => this.save());
+        } else {
+            this.content.innerHTML = this.orig.innerHTML;
+        }
+
+        this.filter(this.content);
     }
 
     /**
