@@ -761,21 +761,6 @@ export default class Editor {
     }
 
     /**
-     * Converts URL
-     *
-     * @param {String} url
-     *
-     * @return {String}
-     */
-    url(url) {
-        const a = this.document.createElement('a');
-        const origin = this.window.origin || this.window.location.origin;
-        a.href = url;
-
-        return a.origin === origin ? a.pathname : a.href;
-    }
-
-    /**
      * Factory method to create a new instance of editor with given configuration
      *
      * @param {HTMLElement} element

@@ -65,8 +65,6 @@ export default class MediaCommand extends Command {
             const media = this.editor.document.createElement(this.type.element);
             const figcaption = this.editor.document.createElement('figcaption');
 
-            data.src = this.editor.url(data.src);
-
             figure.classList.add(this.type.id);
             figure.appendChild(media);
             this.tag.attributes.forEach(item => {
