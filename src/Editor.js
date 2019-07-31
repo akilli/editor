@@ -535,9 +535,9 @@ export default class Editor {
 
         // Filter empty tables and table parts
         parent.querySelectorAll('tbody').forEach(node => !node.querySelector('th:not(:empty), td:not(:empty)') && node.parentElement.parentElement.removeChild(node.parentElement));
-        parent.querySelectorAll('thead').forEach(node => !node.querySelector('th:not(:empty), td:not(:empty)') && node.parentElement.removeChild(node));
-        parent.querySelectorAll('tfoot').forEach(node => !node.querySelector('th:not(:empty), td:not(:empty)') && node.parentElement.removeChild(node));
-        parent.querySelectorAll('tr').forEach(node => !node.querySelector('th:not(:empty), td:not(:empty)') && node.parentElement.removeChild(node));
+        ['thead', 'tfoot', 'tr'].forEach(
+            item => parent.querySelectorAll(item).forEach(node => !node.querySelector('th:not(:empty), td:not(:empty)') && node.parentElement.removeChild(node))
+        );
     }
 
     /**
