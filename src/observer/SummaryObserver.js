@@ -12,7 +12,11 @@ export default class SummaryObserver extends Observer {
             if (node instanceof HTMLElement && node.tagName.toLowerCase() === 'summary'
                 || node instanceof HTMLDetailsElement && (node = node.querySelector('summary'))
             ) {
-                const call = () => !node.innerText.trim() && (node.innerText = 'Details');
+                const call = () => {
+                    if (!node.innerText.trim()) {
+                        node.innerText = 'Details';
+                    }
+                };
                 call();
                 node.addEventListener('blur', call);
                 node.addEventListener('keydown', ev => {
