@@ -6,8 +6,6 @@ import Observer from './Observer.js';
 export default class EditableObserver extends Observer {
     /**
      * @inheritDoc
-     *
-     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);

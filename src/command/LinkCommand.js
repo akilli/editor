@@ -6,8 +6,6 @@ import TextCommand from './TextCommand.js';
 export default class LinkCommand extends TextCommand {
     /**
      * @inheritDoc
-     *
-     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor, 'a');
