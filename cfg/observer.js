@@ -17,4 +17,4 @@ export default [
     DraggableObserver,
     FigureObserver,
     DeleteObserver,
-];
+]
