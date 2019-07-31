@@ -103,7 +103,7 @@
     border: 0.0625rem solid var(--editor-border);
 }
 
-.editor-toolbar-widget {
+.editor-toolbar-main {
     position: sticky;
     top: 0;
 }
@@ -133,7 +133,7 @@
     font-size: 1rem;
 }
 
-.editor-toolbar-widget [data-cmd]::before {
+.editor-toolbar-main [data-cmd]::before {
     font-size: 1.5rem;
 }
 

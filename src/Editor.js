@@ -28,17 +28,17 @@ export default class Editor {
 
         const element = orig.ownerDocument.createElement('div');
         const content = orig.ownerDocument.createElement('div');
-        const toolbarWidget = orig.ownerDocument.createElement('div');
+        const toolbarMain = orig.ownerDocument.createElement('div');
         const toolbarEditable = orig.ownerDocument.createElement('div');
 
         element.classList.add('editor');
         content.classList.add('editor-content');
-        toolbarWidget.classList.add('editor-toolbar', 'editor-toolbar-widget');
+        toolbarMain.classList.add('editor-toolbar', 'editor-toolbar-main');
         toolbarEditable.classList.add('editor-toolbar', 'editor-toolbar-editable');
 
         orig.hidden = true;
         orig.insertAdjacentElement('afterend', element);
-        element.appendChild(toolbarWidget);
+        element.appendChild(toolbarMain);
         element.appendChild(content);
         element.appendChild(toolbarEditable);
 
@@ -91,12 +91,12 @@ export default class Editor {
         this.content = content;
 
         /**
-         * Corresponding DOM element of the widget toolbar
+         * Corresponding DOM element of the main toolbar
          *
          * @type {HTMLDivElement}
          * @readonly
          */
-        this.toolbarWidget = toolbarWidget;
+        this.toolbarMain = toolbarMain;
 
         /**
          * Corresponding DOM element of the editable toolbar
@@ -297,7 +297,7 @@ export default class Editor {
             if (cmd[1] instanceof TextCommand) {
                 this.toolbarEditable.appendChild(item);
             } else {
-                this.toolbarWidget.appendChild(item);
+                this.toolbarMain.appendChild(item);
             }
         }
     }
