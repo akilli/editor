@@ -35,7 +35,7 @@ export default class EditableObserver extends Observer {
             if (node instanceof HTMLElement && this.editables.includes(node.tagName.toLowerCase())) {
                 this.toEditable(node);
             } else if (node instanceof HTMLElement) {
-                node.querySelectorAll(this.editables.join(', ')).forEach(this.toEditable)
+                node.querySelectorAll(this.editables.join(', ')).forEach(ed => this.toEditable(ed))
             }
         }));
     }
