@@ -134,14 +134,34 @@ export default class Editor {
          *
          * @type {Observer[]}
          */
-        this.observers = this.createObservers(configObserver);
+        this.observers = this.create(configObserver, Observer);
 
         /**
          * Filters
          *
          * @type {Filter[]}
          */
-        this.filters = this.createFilters(configFilter);
+        this.filters = this.create(configFilter, Filter);
+    }
+
+    /**
+     * Instantiates each element in given array with this editor instance
+     *
+     * @private
+     *
+     * @param {Function[]} config
+     * @param {Function} constructor
+     *
+     * @return {Array}
+     */
+    create(config, constructor) {
+        return config.map(item => {
+            if (typeof item !== 'function' || !(item = new item(this)) || !(item instanceof constructor)) {
+                throw 'Invalid item';
+            }
+
+            return item;
+        });
     }
 
     /**
@@ -210,48 +230,6 @@ export default class Editor {
         });
 
         return map;
-    }
-
-    /**
-     * Creates observers
-     *
-     * @private
-     *
-     * @param {Observer[]} config
-     *
-     * @return {Observer[]}
-     */
-    createObservers(config) {
-        return config.map(item => {
-            item = new item(this);
-
-            if (!(item instanceof Observer)) {
-                throw 'Invalid observer';
-            }
-
-            return item;
-        });
-    }
-
-    /**
-     * Creates filters
-     *
-     * @private
-     *
-     * @param {Filter[]} config
-     *
-     * @return {Filter[]}
-     */
-    createFilters(config) {
-        return config.map(item => {
-            item = new item(this);
-
-            if (!(item instanceof Filter)) {
-                throw 'Invalid filter';
-            }
-
-            return item;
-        });
     }
 
     /**
