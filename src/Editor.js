@@ -1,11 +1,13 @@
 import Command from './command/Command.js';
 import Converter from './converter/Converter.js';
 import EditorConfig from './config/EditorConfig.js';
+import Filter from './filter/Filter.js';
 import Observer from './observer/Observer.js';
 import Tag from './tag/Tag.js';
 import TextCommand from './command/TextCommand.js';
 import configCommand from '../cfg/command.js';
 import configConverter from '../cfg/converter.js';
+import configFilter from '../cfg/filter.js';
 import configObserver from '../cfg/observer.js';
 import configTag from '../cfg/tag.js';
 
@@ -133,10 +135,19 @@ export default class Editor {
          * @type {Observer[]}
          */
         this.observers = this.createObservers(configObserver);
+
+        /**
+         * Filters
+         *
+         * @type {Filter[]}
+         */
+        this.filters = this.createFilters(configFilter);
     }
 
     /**
      * Creates tags map
+     *
+     * @private
      *
      * @param {Object[]} config
      *
@@ -155,6 +166,8 @@ export default class Editor {
 
     /**
      * Creates converters map
+     *
+     * @private
      *
      * @param {Object.<String, Converter>} config
      *
@@ -175,26 +188,9 @@ export default class Editor {
     }
 
     /**
-     * Creates observers
-     *
-     * @param {Observer[]} config
-     *
-     * @return {Observer[]}
-     */
-    createObservers(config) {
-        return config.map(item => {
-            item = new item(this);
-
-            if (!(item instanceof Observer)) {
-                throw 'Invalid observer';
-            }
-
-            return item;
-        });
-    }
-
-    /**
      * Creates commands map
+     *
+     * @private
      *
      * @param {Object.<String, Function>} config
      *
@@ -217,6 +213,48 @@ export default class Editor {
     }
 
     /**
+     * Creates observers
+     *
+     * @private
+     *
+     * @param {Observer[]} config
+     *
+     * @return {Observer[]}
+     */
+    createObservers(config) {
+        return config.map(item => {
+            item = new item(this);
+
+            if (!(item instanceof Observer)) {
+                throw 'Invalid observer';
+            }
+
+            return item;
+        });
+    }
+
+    /**
+     * Creates filters
+     *
+     * @private
+     *
+     * @param {Filter[]} config
+     *
+     * @return {Filter[]}
+     */
+    createFilters(config) {
+        return config.map(item => {
+            item = new item(this);
+
+            if (!(item instanceof Filter)) {
+                throw 'Invalid filter';
+            }
+
+            return item;
+        });
+    }
+
+    /**
      * Init editor
      */
     init() {
@@ -227,6 +265,8 @@ export default class Editor {
 
     /**
      * Init content
+     *
+     * @private
      */
     initContent() {
         if (this.orig instanceof HTMLTextAreaElement) {
@@ -241,6 +281,8 @@ export default class Editor {
 
     /**
      * Init Toolbar
+     *
+     * @private
      */
     initToolbar() {
         this.content.addEventListener('selectstart', () => {
@@ -467,76 +509,7 @@ export default class Editor {
      * @param {Boolean} forceRoot
      */
     filter(parent, forceRoot = false) {
-        if (!(parent instanceof HTMLElement)) {
-            throw 'No HTML element';
-        }
-
-        const isRoot = forceRoot || this.content.isSameNode(parent);
-        const parentName = forceRoot ? 'root' : this.getTagName(parent);
-        let br;
-
-        parent.normalize();
-        Array.from(parent.childNodes).forEach(node => {
-            if (node instanceof HTMLElement) {
-                node = this.convert(node);
-                const name = node.tagName;
-                const tag = this.getTag(name);
-                const text = node.innerText.trim();
-
-                if (!tag) {
-                    parent.removeChild(node);
-                } else if (this.allowed(name, parentName) || isRoot && tag.group === 'text') {
-                    Array.from(node.attributes).forEach(item => {
-                        if (!tag.attributes.includes(item.name)) {
-                            node.removeAttribute(item.name);
-                        }
-                    });
-
-                    if (node.hasChildNodes()) {
-                        this.filter(node);
-                    }
-
-                    if (!node.hasChildNodes() && !tag.empty && !(node instanceof HTMLTableCellElement)) {
-                        parent.removeChild(node);
-                    } else if (isRoot && tag.group === 'text') {
-                        const p = this.document.createElement('p');
-                        p.innerHTML = node.outerHTML;
-                        parent.replaceChild(p, node);
-                    }
-                } else if (isRoot && text) {
-                    const p = this.document.createElement('p');
-                    p.innerText = text;
-                    parent.replaceChild(p, node);
-                } else if (text) {
-                    parent.replaceChild(this.document.createTextNode(text), node);
-                } else {
-                    parent.removeChild(node);
-                }
-            } else if (node instanceof Text) {
-                if (isRoot && node.nodeValue.trim()) {
-                    const p = this.document.createElement('p');
-                    p.innerText = node.nodeValue.trim();
-                    parent.replaceChild(p, node);
-                } else if (isRoot) {
-                    parent.removeChild(node);
-                }
-            } else {
-                parent.removeChild(node);
-            }
-        });
-
-        // Trim br elements
-        while ((br = parent.firstChild) && br instanceof HTMLBRElement || (br = parent.lastChild) && br instanceof HTMLBRElement) {
-            parent.removeChild(br);
-        }
-
-        // Filter our figure elements with figcaption elements as only child
-        parent.querySelectorAll('figure > figcaption:only-child').forEach(node => node.parentElement.removeChild(node));
-
-        // Filter empty tables and table sections
-        const sel = 'th:not(:empty), td:not(:empty)';
-        parent.querySelectorAll('tbody').forEach(node => !node.querySelector(sel) && node.parentElement.parentElement.removeChild(node.parentElement));
-        ['thead', 'tfoot', 'tr'].forEach(item => parent.querySelectorAll(item).forEach(node => !node.querySelector(sel) && node.parentElement.removeChild(node)));
+        this.filters.forEach(item => item.filter(parent, forceRoot));
     }
 
     /**
