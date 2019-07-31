@@ -16,14 +16,14 @@ export default class TableCommand extends Command {
         figure.appendChild(table);
         figure.appendChild(figcaption);
 
-        ['thead', 'tbody', 'tfoot'].forEach(part => {
-            const item = this.editor.document.createElement(part);
+        ['thead', 'tbody', 'tfoot'].forEach(section => {
+            const item = this.editor.document.createElement(section);
             const tr = this.editor.document.createElement('tr');
             table.appendChild(item);
             item.appendChild(tr);
 
             for (let i = 0; i < 2; ++i) {
-                let cell = this.editor.document.createElement(part === 'thead' ? 'th' : 'td');
+                let cell = this.editor.document.createElement(section === 'thead' ? 'th' : 'td');
                 tr.appendChild(cell);
             }
         });
