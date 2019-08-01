@@ -49,17 +49,24 @@ export default class Dialog {
     open(oldData = {}) {
         this.editor.document.querySelectorAll('dialog.editor-dialog').forEach(node => node.parentElement.removeChild(node));
 
+        const range = this.editor.window.getSelection().getRangeAt(0);
         const dialog = this.editor.document.createElement('dialog');
         const form = this.editor.document.createElement('form');
         const fieldset = this.editor.document.createElement('fieldset');
         const cancel = this.editor.document.createElement('button');
         const save = this.editor.document.createElement('button');
+        const close = () => {
+            const sel = this.editor.window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            dialog.parentElement.removeChild(dialog);
+        };
 
         dialog.appendChild(form);
         dialog.classList.add('editor-dialog');
         dialog.addEventListener('click', ev => {
             if (ev.target === dialog) {
-                dialog.parentElement.removeChild(dialog);
+                close();
             }
         });
         dialog.open = true;
@@ -72,7 +79,7 @@ export default class Dialog {
         form.appendChild(fieldset);
         form.addEventListener('submit', ev => {
             ev.preventDefault();
-            dialog.parentElement.removeChild(dialog);
+            close();
             const data = {};
             Array.from(fieldset.elements).forEach(item => data[item.name] = item.value);
             this.save(data);
@@ -80,7 +87,7 @@ export default class Dialog {
         cancel.innerText = 'Cancel';
         cancel.type = 'button';
         cancel.setAttribute('data-action', 'cancel');
-        cancel.addEventListener('click', () => dialog.parentElement.removeChild(dialog));
+        cancel.addEventListener('click', close);
         form.appendChild(cancel);
         save.innerText = 'Save';
         save.setAttribute('data-action', 'save');
