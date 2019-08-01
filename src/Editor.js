@@ -19,7 +19,7 @@ export default class Editor {
      * Creates a new instance of editor with given configuration
      *
      * @param {HTMLElement} orig
-     * @param {Object} config
+     * @param {Object} [config = {}]
      */
     constructor(orig, config = {}) {
         if (!(orig instanceof HTMLElement)) {
@@ -306,7 +306,7 @@ export default class Editor {
      * Short-cut method to register a mutation observer
      *
      * @param {Function} call
-     * @param {Object} config
+     * @param {Object} [config = {childList: true, subtree: true}]
      */
     register(call, config = {childList: true, subtree: true}) {
         if (typeof call !== 'function') {
@@ -359,7 +359,7 @@ export default class Editor {
      * Inserts an element at the editor element or optionally after given reference element
      *
      * @param {HTMLElement} element
-     * @param {?HTMLElement} ref
+     * @param {?HTMLElement} [ref = null]
      */
     insert(element, ref = null) {
         if (!(element instanceof HTMLElement) || ref && !(ref instanceof HTMLElement)) {
@@ -484,7 +484,7 @@ export default class Editor {
      * Filters element
      *
      * @param {HTMLElement} parent
-     * @param {Boolean} forceRoot
+     * @param {Boolean} [forceRoot = false]
      */
     filter(parent, forceRoot = false) {
         this.filters.forEach(item => item.filter(parent, forceRoot));
@@ -573,7 +573,7 @@ export default class Editor {
      * Factory method to create a new instance of editor with given configuration
      *
      * @param {HTMLElement} element
-     * @param {Object} config
+     * @param {Object} [config = {}]
      *
      * @return {Editor}
      */

@@ -5,7 +5,7 @@ export default class EditorConfig {
     /**
      * Creates a new instance of editor config with given defaults
      *
-     * @param {Object} opts
+     * @param {Object} [opts = {}]
      */
     constructor(opts = {}) {
         /**

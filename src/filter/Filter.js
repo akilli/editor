@@ -27,7 +27,7 @@ export default class Filter {
      * Filters element
      *
      * @param {HTMLElement} parent
-     * @param {Boolean} forceRoot
+     * @param {Boolean} [forceRoot = false]
      */
     filter(parent, forceRoot = false) {
         throw 'Not implemented';

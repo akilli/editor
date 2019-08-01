@@ -8,15 +8,14 @@ export default class Browser {
      * @param {Window} window
      * @param {String} url
      * @param {Function} call
-     * @param {String} name
-     * @param {String} opts
+     * @param {String} [name = 'browser']
+     * @param {String} [opts = null]
      */
     static open(window, url, call, name = 'browser', opts = null) {
-        if (!url || typeof call !== 'function') {
+        if (!url || typeof call !== 'function' || !name) {
             return;
         }
 
-        name = name || 'browser';
         opts = opts || `alwaysRaised=yes,dependent=yes,height=${window.screen.height},location=no,menubar=no,minimizable=no,modal=yes,resizable=yes,scrollbars=yes,toolbar=no,width=${window.screen.width}`;
 
         const document = window.document;

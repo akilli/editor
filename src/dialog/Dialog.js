@@ -9,7 +9,7 @@ export default class Dialog {
      *
      * @param {Editor} editor
      * @param {Function} save
-     * @param {String} html
+     * @param {String} [html = '']
      */
     constructor(editor, save, html = '') {
         if (!(editor instanceof Editor) || typeof save !== 'function' || typeof html !== 'string') {

@@ -6,12 +6,12 @@ export default class Tag {
      * Defines a new tag
      *
      * @param {String} name
-     * @param {String} group
-     * @param {String[]} attributes
-     * @param {String[]} children
-     * @param {Boolean} editable
-     * @param {Boolean} empty
-     * @param {?String} enter
+     * @param {String} [group = name]
+     * @param {String[]} [attributes = []]
+     * @param {String[]} [children = []]
+     * @param {Boolean} [editable = false]
+     * @param {Boolean} [empty = false]
+     * @param {?String} [enter = null]
      */
     constructor({name = null, group = null, attributes = [], children = [], editable = false, empty = false, enter = null} = {}) {
         if (!name || typeof name !== 'string') {
