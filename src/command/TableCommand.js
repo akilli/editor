@@ -26,11 +26,10 @@ export default class TableCommand extends Command {
 
         const figure = this.editor.document.createElement('figure');
         const table = this.editor.document.createElement('table');
-        const figcaption = this.editor.document.createElement('figcaption');
 
         figure.classList.add('table');
         figure.appendChild(table);
-        figure.appendChild(figcaption);
+        figure.appendChild(this.editor.document.createElement('figcaption'));
 
         ['thead', 'tbody', 'tfoot'].forEach(section => {
             const item = this.editor.document.createElement(section);
