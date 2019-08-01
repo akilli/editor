@@ -8,6 +8,18 @@ export default class TableCommand extends Command {
      * @inheritDoc
      */
     execute() {
+        let rows = this.editor.window.prompt('Rows');
+
+        if (isNaN(rows) || rows <= 0) {
+            return;
+        }
+
+        let cols = this.editor.window.prompt('Cols');
+
+        if (isNaN(cols) || cols <= 0) {
+            return;
+        }
+
         const figure = this.editor.document.createElement('figure');
         const table = this.editor.document.createElement('table');
         const figcaption = this.editor.document.createElement('figcaption');
@@ -18,12 +30,19 @@ export default class TableCommand extends Command {
 
         ['thead', 'tbody', 'tfoot'].forEach(section => {
             const item = this.editor.document.createElement(section);
-            const tr = this.editor.document.createElement('tr');
-            table.appendChild(item);
-            item.appendChild(tr);
+            const cell = section === 'thead' ? 'th' : 'td';
+            const r = section === 'tbody' ? rows : 1;
+            let tr;
 
-            for (let i = 0; i < 2; ++i) {
-                tr.appendChild(this.editor.document.createElement(section === 'thead' ? 'th' : 'td'));
+            table.appendChild(item);
+
+            for (let i = 0; i < r; i++) {
+                tr = this.editor.document.createElement('tr');
+                item.appendChild(tr);
+
+                for (let j = 0; j < cols; ++j) {
+                    tr.appendChild(this.editor.document.createElement(cell));
+                }
             }
         });
 
