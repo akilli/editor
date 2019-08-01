@@ -1,3 +1,4 @@
+import LinkDialog from '../dialog/LinkDialog.js';
 import TextCommand from './TextCommand.js';
 
 /**
@@ -8,16 +9,15 @@ export default class LinkCommand extends TextCommand {
      * @inheritDoc
      */
     constructor(editor) {
-        super(editor, 'a');
+        super(editor, 'a', LinkDialog);
     }
 
     /**
      * @inheritDoc
      */
-    insert(data = {}) {
+    insert({href = null} = {}) {
         const sel = this.editor.getSelectedElement();
         const old = sel instanceof HTMLAnchorElement ? sel : null;
-        const href = this.editor.window.prompt('URL', old ? old.getAttribute('href') : '');
 
         if (!!href && !!old) {
             old.setAttribute('href', href);
@@ -28,5 +28,14 @@ export default class LinkCommand extends TextCommand {
         } else if (!!old) {
             old.parentElement.replaceChild(this.editor.document.createTextNode(old.innerText), old);
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    oldData() {
+        const sel = this.editor.getSelectedElement();
+
+        return sel instanceof HTMLAnchorElement ? {href: sel.getAttribute('href')} : {};
     }
 }
