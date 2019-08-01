@@ -7,8 +7,8 @@ export default class TextCommand extends Command {
     /**
      * @inheritDoc
      */
-    constructor(editor, tagName) {
-        super(editor, tagName);
+    constructor(editor, tagName, dialog = null) {
+        super(editor, tagName, dialog);
 
         if (!this.tag || this.tag.group !== 'text') {
             throw 'Invalid text element';

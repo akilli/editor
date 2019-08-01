@@ -41,14 +41,14 @@ export default class Command {
          * @type {?Dialog}
          * @readonly
          */
-        this.dialog = dialog ? new dialog(this.editor, this.insert) : null;
+        this.dialog = dialog ? new dialog(this.editor, data => this.insert(data)) : null;
     }
 
     /**
      * Execute command
      */
     execute() {
-        this.dialog ? this.dialog.open() : this.insert();
+        this.dialog ? this.dialog.open(this.oldData()) : this.insert();
     }
 
      /**
@@ -58,5 +58,14 @@ export default class Command {
       */
     insert(data = {}) {
         throw 'Not implemented';
+    }
+
+    /**
+     * Returns old data for dialog
+     *
+     * @returns {Object}
+     */
+    oldData() {
+        return {};
     }
 }

@@ -43,8 +43,10 @@ export default class Dialog {
 
     /**
      * Opens a dialog and executes given callback on save
+     *
+     * @param {Object} [oldData = {}]
      */
-    open() {
+    open(oldData = {}) {
         this.editor.document.querySelectorAll('dialog.editor-dialog').forEach(node => node.parentElement.removeChild(node));
 
         const dialog = this.editor.document.createElement('dialog');
@@ -62,6 +64,11 @@ export default class Dialog {
         });
         dialog.open = true;
         fieldset.insertAdjacentHTML('beforeend', this.html);
+        Object.getOwnPropertyNames(oldData).forEach(item => {
+            if (fieldset.elements[item]) {
+                fieldset.elements[item].value = oldData[item];
+            }
+        });
         form.appendChild(fieldset);
         form.addEventListener('submit', ev => {
             ev.preventDefault();
