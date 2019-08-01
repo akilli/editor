@@ -12,6 +12,7 @@ export default class TableDialog extends Dialog {
      */
     constructor(editor, save) {
         super(editor, save, `
+            <legend>Table</legend>
             <div data-attr="rows" data-required>
                 <label for="rows">Rows</label>
                 <input id="rows" name="rows" type="number" value="1" required="required" min="1" />
