@@ -1,4 +1,5 @@
 import Command from './Command.js';
+import TableDialog from '../dialog/TableDialog.js';
 
 /**
  * Table Command
@@ -8,15 +9,18 @@ export default class TableCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        const rows = this.editor.window.prompt('Rows');
+        const dialog = new TableDialog(this.editor, this.insert);
+        dialog.open();
+    }
 
-        if (isNaN(rows) || rows <= 0) {
-            return;
-        }
-
-        const cols = this.editor.window.prompt('Cols');
-
-        if (isNaN(cols) || cols <= 0) {
+    /**
+     * Inserts table
+     *
+     * @param {Number} rows
+     * @param {Number} cols
+     */
+    insert({rows = 1, cols = 1} = {}) {
+        if (rows <= 0 || cols <= 0) {
             return;
         }
 
