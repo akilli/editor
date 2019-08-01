@@ -7,7 +7,7 @@ export default class ParagraphCommand extends Command {
     /**
      * @inheritDoc
      */
-    insert() {
+    insert(data = {}) {
         this.editor.insert(this.editor.document.createElement('p'));
     }
 }

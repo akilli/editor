@@ -7,7 +7,7 @@ export default class SectionCommand extends Command {
     /**
      * @inheritDoc
      */
-    insert() {
+    insert(data = {}) {
         const section = this.editor.document.createElement('section');
         section.appendChild(this.editor.document.createElement('h2'));
         section.appendChild(this.editor.document.createElement('p'));

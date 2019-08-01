@@ -42,25 +42,22 @@ export default class MediaCommand extends Command {
     }
 
     /**
-     * Insert media element
-     *
-     * @private
-     *
-     * @param {Object} data
+     * @inheritDoc
      */
-    async insert(data) {
+    insert(data = {}) {
         if (!data.src) {
             return;
         }
 
         const a = this.editor.document.createElement('a');
         const origin = this.editor.window.origin || this.editor.window.location.origin;
+        const call = async () => await Media.fromUrl(data.src);
         let type;
 
         a.href = data.src;
         data.src = a.origin === origin ? a.pathname : a.href;
 
-        if (data.type && data.type === this.type.id || (type = await Media.fromUrl(data.src)) && type.id === this.type.id || !type && a.origin !== origin) {
+        if (data.type && data.type === this.type.id || (type = call()) && type.id === this.type.id || !type && a.origin !== origin) {
             const figure = this.editor.document.createElement('figure');
             const media = this.editor.document.createElement(this.type.element);
             const figcaption = this.editor.document.createElement('figcaption');
