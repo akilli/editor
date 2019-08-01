@@ -8,13 +8,13 @@ export default class TableCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        let rows = this.editor.window.prompt('Rows');
+        const rows = this.editor.window.prompt('Rows');
 
         if (isNaN(rows) || rows <= 0) {
             return;
         }
 
-        let cols = this.editor.window.prompt('Cols');
+        const cols = this.editor.window.prompt('Cols');
 
         if (isNaN(cols) || cols <= 0) {
             return;
