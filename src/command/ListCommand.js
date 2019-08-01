@@ -18,11 +18,9 @@ export default class ListCommand extends Command {
     /**
      * @inheritDoc
      */
-    execute() {
+    insert() {
         const list = this.editor.document.createElement(this.tag.name);
-        const item = this.editor.document.createElement('li');
-
-        list.appendChild(item);
+        list.appendChild(this.editor.document.createElement('li'));
         this.editor.insert(list);
     }
 }

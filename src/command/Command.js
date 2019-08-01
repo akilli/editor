@@ -1,3 +1,4 @@
+import Dialog from '../dialog/Dialog.js';
 import Editor from '../Editor.js';
 
 /**
@@ -8,15 +9,14 @@ export default class Command {
      * Initializes a new editor command optionally with given tag name
      *
      * @param {Editor} editor
-     * @param {?String} tagName
+     * @param {?String} [tagName = null]
+     * @param {?Function} [dialog = null]
      */
-    constructor(editor, tagName = null) {
-        let tag = null;
+    constructor(editor, tagName = null, dialog = null) {
+        let tag;
 
-        if (!(editor instanceof Editor)) {
-            throw 'Invalid editor';
-        } else if (tagName && !(tag = editor.getTag(tagName))) {
-            throw 'Invalid element';
+        if (!(editor instanceof Editor) || tagName && !(tag = editor.getTag(tagName)) || dialog && !(dialog instanceof Dialog.constructor)) {
+            throw 'Invalid argument';
         }
 
         /**
@@ -34,12 +34,29 @@ export default class Command {
          * @readonly
          */
         this.tag = tag;
+
+        /**
+         * Dialog
+         *
+         * @type {?Dialog}
+         * @readonly
+         */
+        this.dialog = dialog ? new dialog(this.editor, this.insert) : null;
     }
 
     /**
      * Execute command
      */
     execute() {
+        this.dialog ? this.dialog.open() : this.insert();
+    }
+
+     /**
+      * Insert
+      *
+      * @param {Object} [data = {}]
+      */
+    insert(data = {}) {
         throw 'Not implemented';
     }
 }

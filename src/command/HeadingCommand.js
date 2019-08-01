@@ -18,7 +18,7 @@ export default class HeadingCommand extends Command {
     /**
      * @inheritDoc
      */
-    execute() {
+    insert() {
         this.editor.insert(this.editor.document.createElement(this.tag.name));
     }
 }

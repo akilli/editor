@@ -7,13 +7,10 @@ export default class DetailsCommand extends Command {
     /**
      * @inheritDoc
      */
-    execute() {
+    insert() {
         const details = this.editor.document.createElement('details');
-        const summary = this.editor.document.createElement('summary');
-        const p = this.editor.document.createElement('p');
-
-        details.appendChild(summary);
-        details.appendChild(p);
+        details.appendChild(this.editor.document.createElement('summary'));
+        details.appendChild(this.editor.document.createElement('p'));
         this.editor.insert(details);
     }
 }

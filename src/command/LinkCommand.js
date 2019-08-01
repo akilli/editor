@@ -14,7 +14,7 @@ export default class LinkCommand extends TextCommand {
     /**
      * @inheritDoc
      */
-    execute() {
+    insert() {
         const sel = this.editor.getSelectedElement();
         const old = sel instanceof HTMLAnchorElement ? sel : null;
         const href = this.editor.window.prompt('URL', old ? old.getAttribute('href') : '');

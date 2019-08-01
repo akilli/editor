@@ -8,9 +8,8 @@ export default class TableCommand extends Command {
     /**
      * @inheritDoc
      */
-    execute() {
-        const dialog = new TableDialog(this.editor, this.insert);
-        dialog.open();
+    constructor(editor) {
+        super(editor, null, TableDialog);
     }
 
     /**
