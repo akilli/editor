@@ -6,7 +6,7 @@
  * @property {String}   element The corresponding HTML element name
  * @property {String[]} mime    Supported MIME types
  *
- * @type {MediaTypeElement}
+ * @type {Object.<String, MediaTypeElement>}
  */
 const types = {
     audio: {
@@ -52,7 +52,7 @@ export default class Media {
      *
      * @param {String} type
      *
-     * @return {?Object}
+     * @return {?MediaTypeElement}
      */
     static get(type) {
         return types[type] || null;
@@ -63,7 +63,7 @@ export default class Media {
      *
      * @param {String} element
      *
-     * @return {?Object}
+     * @return {?MediaTypeElement}
      */
     static fromElement(element) {
         const ids = this.ids();
@@ -82,7 +82,7 @@ export default class Media {
      *
      * @param {String} url
      *
-     * @return {Promise<Object>}
+     * @return {Promise<MediaTypeElement>}
      */
     static async fromUrl(url) {
         let response;
