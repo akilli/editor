@@ -1,13 +1,12 @@
 /**
  * Media types
  *
- * @type {Object}
- *
  * @typedef {Object} MediaTypeElement
- *
  * @property {String}   id      Media type ID
  * @property {String}   element The corresponding HTML element name
  * @property {String[]} mime    Supported MIME types
+ *
+ * @type {MediaTypeElement}
  */
 const types = {
     audio: {
