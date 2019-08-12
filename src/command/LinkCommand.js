@@ -1,21 +1,19 @@
-import EditableCommand from './EditableCommand.js';
 import LinkDialog from '../dialog/LinkDialog.js';
+import TextCommand from './TextCommand.js';
 
 /**
  * Link Command
  */
-export default class LinkCommand extends EditableCommand {
+export default class LinkCommand extends TextCommand {
     /**
      * @inheritDoc
      */
-    constructor(editor, tagName = 'a') {
-        super(editor, tagName, LinkDialog);
+    constructor(editor) {
+        super(editor, 'a', LinkDialog);
     }
 
     /**
      * @inheritDoc
-     *
-     * @param {String} href
      */
     insert({href = null} = {}) {
         const sel = this.editor.getSelectedElement();

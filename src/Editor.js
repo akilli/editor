@@ -1,10 +1,10 @@
 import Command from './command/Command.js';
 import Converter from './converter/Converter.js';
-import EditableCommand from './command/EditableCommand.js';
 import EditorConfig from './config/EditorConfig.js';
 import Filter from './filter/Filter.js';
 import Observer from './observer/Observer.js';
 import Tag from './tag/Tag.js';
+import TextCommand from './command/TextCommand.js';
 import configCommand from '../cfg/command.js';
 import configConverter from '../cfg/converter.js';
 import configFilter from '../cfg/filter.js';
@@ -294,7 +294,7 @@ export default class Editor {
                 cmd[1].execute();
             });
 
-            if (cmd[1] instanceof EditableCommand) {
+            if (cmd[1] instanceof TextCommand) {
                 this.toolbarEditable.appendChild(item);
             } else {
                 this.toolbarMain.appendChild(item);
