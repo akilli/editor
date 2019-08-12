@@ -1,6 +1,7 @@
 import Browser from '../util/Browser.js';
 import Command from './Command.js';
 import Media from '../util/Media.js';
+import MediaDialog from '../dialog/MediaDialog.js';
 
 /**
  * Media Command
@@ -10,7 +11,7 @@ export default class MediaCommand extends Command {
      * @inheritDoc
      */
     constructor(editor, tagName) {
-        super(editor, tagName);
+        super(editor, tagName, MediaDialog);
 
         let type;
 
@@ -32,12 +33,11 @@ export default class MediaCommand extends Command {
      */
     execute() {
         const browser = this.editor.config.media[this.type.id];
-        let url;
 
         if (browser) {
             Browser.open(this.editor.window, browser, data => this.insert(data));
-        } else if (url = this.editor.window.prompt('URL')) {
-            this.insert({src: url});
+        } else {
+            super.execute();
         }
     }
 
