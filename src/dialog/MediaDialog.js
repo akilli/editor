@@ -18,6 +18,14 @@ export default class MediaDialog extends Dialog {
                 <label for="editor-alt">Alternative text</label>
                 <input id="editor-alt" name="alt" type="text" placeholder="Replacement text for use when media elements are not available" />
             </div>
+            <div data-attr="width">
+                <label for="editor-width">Width</label>
+                <input id="editor-width" name="width" type="number" />
+            </div>
+            <div data-attr="height">
+                <label for="editor-height">Height</label>
+                <input id="editor-height" name="height" type="number" />
+            </div>
         `);
     }
 }
