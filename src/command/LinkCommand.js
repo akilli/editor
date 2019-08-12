@@ -13,7 +13,9 @@ export default class LinkCommand extends TextCommand {
     }
 
     /**
-     * @inheritDoc
+     * Inserts, updates or removes link element
+     *
+     * @param {String} url
      */
     insert({href = null} = {}) {
         const sel = this.editor.getSelectedElement();
