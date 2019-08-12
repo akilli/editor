@@ -1,9 +1,9 @@
 import Command from './command/Command.js';
+import Config from './config/Config.js';
 import Converter from './converter/Converter.js';
-import EditorConfig from './config/EditorConfig.js';
 import Filter from './filter/Filter.js';
 import Observer from './observer/Observer.js';
-import Tag from './tag/Tag.js';
+import Tag from './config/Tag.js';
 import TextCommand from './command/TextCommand.js';
 import configCommand from '../cfg/command.js';
 import configConverter from '../cfg/converter.js';
@@ -19,9 +19,9 @@ export default class Editor {
      * Creates a new instance of editor with given configuration
      *
      * @param {HTMLElement} orig
-     * @param {Object} [config = {}]
+     * @param {Object} [cfg = {}]
      */
-    constructor(orig, config = {}) {
+    constructor(orig, cfg = {}) {
         if (!(orig instanceof HTMLElement)) {
             throw 'Invalid element';
         }
@@ -69,10 +69,10 @@ export default class Editor {
         /**
          * Configuration
          *
-         * @type {EditorConfig}
+         * @type {Config}
          * @readonly
          */
-        this.config = new EditorConfig(config);
+        this.config = new Config(cfg);
 
         /**
          * Corresponding DOM element of the editor

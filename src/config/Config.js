@@ -1,7 +1,7 @@
 /**
  * Editor Config
  */
-export default class EditorConfig {
+export default class Config {
     /**
      * Creates a new instance of editor config with given defaults
      *
