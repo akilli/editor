@@ -1,9 +1,9 @@
-import Command from './Command.js';
+import EditableCommand from './EditableCommand.js';
 
 /**
  * Text Command
  */
-export default class TextCommand extends Command {
+export default class TextCommand extends EditableCommand {
     /**
      * @inheritDoc
      */
