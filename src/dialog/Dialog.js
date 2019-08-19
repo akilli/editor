@@ -49,16 +49,19 @@ export default class Dialog {
     open(oldData = {}) {
         this.editor.document.querySelectorAll('dialog.editor-dialog').forEach(node => node.parentElement.removeChild(node));
 
-        const range = this.editor.window.getSelection().getRangeAt(0);
+        const sel = this.editor.window.getSelection();
+        const range = sel.rangeCount > 0 ? sel.getRangeAt(0) : null;
         const dialog = this.editor.document.createElement('dialog');
         const form = this.editor.document.createElement('form');
         const fieldset = this.editor.document.createElement('fieldset');
         const cancel = this.editor.document.createElement('button');
         const save = this.editor.document.createElement('button');
         const close = () => {
-            const sel = this.editor.window.getSelection();
-            sel.removeAllRanges();
-            sel.addRange(range);
+            if (range) {
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+
             dialog.parentElement.removeChild(dialog);
         };
 
