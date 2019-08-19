@@ -12,8 +12,8 @@ export default [
     {name: 'h2', group: 'heading', editable: true, enter: 'p'},
     {name: 'h3', group: 'heading', editable: true, enter: 'p'},
     // List
-    {name: 'ol', group: 'list', children: ['li']},
     {name: 'ul', group: 'list', children: ['li']},
+    {name: 'ol', group: 'list', children: ['li']},
     {name: 'li', children: ['br', 'text'], editable: true, enter: 'li'},
     // Figure
     {name: 'figure', attributes: ['class'], children: ['blockquote', 'figcaption', 'media', 'table']},
@@ -21,18 +21,18 @@ export default [
     // Blockquote
     {name: 'blockquote', children: ['p']},
     // Media
-    {name: 'audio', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true},
-    {name: 'iframe', group: 'media', attributes: ['allowfullscreen', 'height', 'src', 'width'], empty: true},
     {name: 'img', group: 'media', attributes: ['alt', 'height', 'src', 'width'], empty: true},
     {name: 'video', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true},
+    {name: 'audio', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true},
+    {name: 'iframe', group: 'media', attributes: ['allowfullscreen', 'height', 'src', 'width'], empty: true},
     // Table
     {name: 'table', children: ['tablesection']},
-    {name: 'tbody', group: 'tablesection', children: ['tr']},
-    {name: 'td', group: 'tablecell', children: ['br', 'text'], editable: true},
-    {name: 'tfoot', group: 'tablesection', children: ['tr']},
-    {name: 'th', group: 'tablecell', children: ['br', 'text'], editable: true},
     {name: 'thead', group: 'tablesection', children: ['tr']},
+    {name: 'tbody', group: 'tablesection', children: ['tr']},
+    {name: 'tfoot', group: 'tablesection', children: ['tr']},
     {name: 'tr', children: ['tablecell']},
+    {name: 'th', group: 'tablecell', children: ['br', 'text'], editable: true},
+    {name: 'td', group: 'tablecell', children: ['br', 'text'], editable: true},
     // Details
     {name: 'details', children: ['figure', 'list', 'p', 'summary']},
     {name: 'summary', editable: true, enter: 'p'},
