@@ -4,6 +4,7 @@
 :root {
     --editor-border: lightgrey;
     --editor-drag: darkgreen;
+    --editor-focus: orange;
     --editor-outline: yellow;
     --editor-placeholder: 'Gimme some text!';
 }
@@ -48,6 +49,10 @@
 
 .editor-content > :hover {
     outline: 0.25rem solid var(--editor-border);
+}
+
+.editor-content > :focus {
+    outline: 0.25rem dashed var(--editor-focus);
 }
 
 /**
