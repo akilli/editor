@@ -491,7 +491,7 @@ export default class Editor {
     }
 
     /**
-     * Returns tag name from element considering execption for root element
+     * Returns tag name from element considering exception for root element
      *
      * @param {HTMLElement} element
      *
