@@ -373,7 +373,7 @@ export default class Editor {
             throw 'Element is not allowed here';
         }
 
-        parent.insertBefore(element, ref ? ref.nextElementSibling : null)
+        parent.insertBefore(element, ref ? ref.nextElementSibling : null);
     }
 
     /**
