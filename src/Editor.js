@@ -481,6 +481,25 @@ export default class Editor {
     }
 
     /**
+     * Focus end of contents
+     *
+     * @param {HTMLElement} element
+     */
+    focusEnd(element) {
+        if (!(element instanceof HTMLElement)) {
+            throw 'No HTML element';
+        }
+
+        const range = this.document.createRange();
+        const sel = this.window.getSelection();
+        element.focus();
+        range.selectNodeContents(element);
+        range.collapse();
+        sel.removeAllRanges();
+        sel.addRange(range);
+    }
+
+    /**
      * Filters element
      *
      * @param {HTMLElement} parent

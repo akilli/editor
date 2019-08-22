@@ -59,10 +59,12 @@ export default class EditableObserver extends Observer {
                 const target = widget.isSameNode(node) || allowed && !node.matches(':only-child') ? node : widget;
 
                 if (target.previousElementSibling) {
-                    target.previousElementSibling.focus();
+                    this.editor.focusEnd(target.previousElementSibling);
                 }
 
                 target.parentElement.removeChild(target);
+                ev.preventDefault();
+                ev.cancelBubble = true;
             }
         });
         node.addEventListener('keyup', ev => {
