@@ -9,8 +9,8 @@ import WidgetObserver from '../src/observer/WidgetObserver.js';
  * @type {Observer[]}
  */
 export default [
-    WidgetObserver,
     EditableObserver,
-    SummaryObserver,
     FigureObserver,
+    SummaryObserver,
+    WidgetObserver,
 ]
