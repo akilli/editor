@@ -9,9 +9,7 @@ export default class SummaryObserver extends Observer {
      */
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && node.tagName.toLowerCase() === 'summary'
-                || node instanceof HTMLDetailsElement && (node = node.querySelector('summary'))
-            ) {
+            if (node instanceof HTMLElement && node.tagName.toLowerCase() === 'summary' || node instanceof HTMLDetailsElement && (node = node.querySelector('summary'))) {
                 const call = () => {
                     if (!node.innerText.trim()) {
                         node.innerText = 'Details';
