@@ -9,34 +9,40 @@ export default class TableObserver extends Observer {
      */
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
-            let table;
-            let tr;
-
             if (node instanceof HTMLTableElement) {
-                table = node;
+                this.initTable(node)
             } else if (node instanceof HTMLElement) {
-                table = node.querySelector(':scope > table');
-            }
-
-            if (table && (tr = table.querySelector('tbody > tr:first-child'))) {
-                const length = tr.cells.length;
-
-                if (!table.tHead) {
-                    tr = table.createTHead().insertRow(-1);
-
-                    for (let i = 0; i < length; i++) {
-                        tr.appendChild(this.editor.document.createElement('th'));
-                    }
-                }
-
-                if (!table.tFoot) {
-                    tr = table.createTFoot().insertRow(-1);
-
-                    for (let i = 0; i < length; i++) {
-                        tr.appendChild(this.editor.document.createElement('td'));
-                    }
-                }
+                node.querySelectorAll('table').forEach(item => this.initTable(item));
             }
         }));
+    }
+
+    /**
+     * Initializes table
+     *
+     * @param {HTMLTableElement} node
+     */
+    initTable(node) {
+        let tr = node.querySelector('tbody > tr:first-child');
+
+        if (tr) {
+            const length = tr.cells.length;
+
+            if (!node.tHead) {
+                tr = node.createTHead().insertRow(-1);
+
+                for (let i = 0; i < length; i++) {
+                    tr.appendChild(this.editor.document.createElement('th'));
+                }
+            }
+
+            if (!node.tFoot) {
+                tr = node.createTFoot().insertRow(-1);
+
+                for (let i = 0; i < length; i++) {
+                    tr.appendChild(this.editor.document.createElement('td'));
+                }
+            }
+        }
     }
 }
