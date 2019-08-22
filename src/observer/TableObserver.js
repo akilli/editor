@@ -23,10 +23,9 @@ export default class TableObserver extends Observer {
      * @param {HTMLTableElement} node
      */
     initTable(node) {
-        let tr = node.querySelector('tbody > tr:first-child');
-
-        if (tr) {
-            const length = tr.cells.length;
+        if (node.tBodies.length > 0 && node.tBodies[0].rows[0] && (!node.tHead || !node.tFoot)) {
+            const length = node.tBodies[0].rows[0].cells.length;
+            let tr;
 
             if (!node.tHead) {
                 tr = node.createTHead().insertRow(-1);
