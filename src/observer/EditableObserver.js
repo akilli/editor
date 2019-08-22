@@ -49,11 +49,20 @@ export default class EditableObserver extends Observer {
         node.contentEditable = 'true';
         node.focus();
         node.addEventListener('keydown', ev => {
+            const widget = this.editor.getSelectedWidget();
+            const allowed = ['blockquote', 'ol', 'ul'].includes(node.parentElement.tagName.toLowerCase());
+
             if (ev.key === 'Enter' && (!ev.shiftKey || !this.editor.allowed('br', node.tagName))) {
                 ev.preventDefault();
                 ev.cancelBubble = true;
-            } else if (ev.key === 'Backspace' && !ev.shiftKey && !node.textContent && node.parentElement.isSameNode(this.editor.content)) {
-                node.parentElement.removeChild(node);
+            } else if (ev.key === 'Backspace' && !ev.shiftKey && !node.textContent && widget && (widget.isSameNode(node) || allowed)) {
+                const target = widget.isSameNode(node) || allowed && !node.matches(':only-child') ? node : widget;
+
+                if (target.previousElementSibling) {
+                    target.previousElementSibling.focus();
+                }
+
+                target.parentElement.removeChild(target);
             }
         });
         node.addEventListener('keyup', ev => {
