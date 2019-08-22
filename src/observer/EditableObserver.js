@@ -49,44 +49,70 @@ export default class EditableObserver extends Observer {
         node.contentEditable = 'true';
         node.focus();
         node.addEventListener('keydown', ev => {
-            const widget = this.editor.getSelectedWidget();
-            const allowed = ['blockquote', 'ol', 'ul'].includes(node.parentElement.tagName.toLowerCase());
+            this.onKeyDownEnter(ev);
+            this.onKeyDownBackspace(ev);
+        });
+        node.addEventListener('keyup', ev => this.onKeyUpEnter(ev));
+    }
 
-            if (ev.key === 'Enter' && (!ev.shiftKey || !this.editor.allowed('br', node.tagName))) {
-                ev.preventDefault();
-                ev.cancelBubble = true;
-            } else if (ev.key === 'Backspace' && !ev.shiftKey && !node.textContent && widget && (widget.isSameNode(node) || allowed)) {
-                const target = widget.isSameNode(node) || allowed && !node.matches(':only-child') ? node : widget;
+    /**
+     * Handles enter keydown event
+     *
+     * @param {KeyboardEvent} ev
+     */
+    onKeyDownEnter(ev) {
+        if (ev.key === 'Enter' && (!ev.shiftKey || !this.editor.allowed('br', ev.target.tagName))) {
+            ev.preventDefault();
+            ev.cancelBubble = true;
+        }
+    }
 
-                if (target.previousElementSibling) {
-                    this.editor.focusEnd(target.previousElementSibling);
+    /**
+     * Handles enter keyup event
+     *
+     * @param {KeyboardEvent} ev
+     */
+    onKeyUpEnter(ev) {
+        let tag;
+
+        if (ev.key === 'Enter' && !ev.shiftKey && (tag = this.editor.getTag(ev.target.tagName)) && tag.enter) {
+            let current = ev.target;
+            let parentName;
+
+            ev.preventDefault();
+            ev.cancelBubble = true;
+
+            do {
+                parentName = this.editor.getTagName(current.parentElement);
+
+                if (this.editor.allowed(tag.enter, parentName)) {
+                    const newElement = this.editor.document.createElement(tag.enter);
+                    this.editor.insert(newElement, current);
+                    break;
                 }
+            } while ((current = current.parentElement) && this.editor.content.contains(current) && !this.editor.content.isSameNode(current));
+        }
+    }
 
-                target.parentElement.removeChild(target);
-                ev.preventDefault();
-                ev.cancelBubble = true;
+    /**
+     * Handles backspace keydown event
+     *
+     * @param {KeyboardEvent} ev
+     */
+    onKeyDownBackspace(ev) {
+        const widget = this.editor.getSelectedWidget();
+        const allowed = ['blockquote', 'ol', 'ul'].includes(ev.target.parentElement.tagName.toLowerCase());
+
+        if (ev.key === 'Backspace' && !ev.shiftKey && !ev.target.textContent && widget && (widget.isSameNode(ev.target) || allowed)) {
+            const target = widget.isSameNode(ev.target) || allowed && !ev.target.matches(':only-child') ? ev.target : widget;
+
+            if (target.previousElementSibling) {
+                this.editor.focusEnd(target.previousElementSibling);
             }
-        });
-        node.addEventListener('keyup', ev => {
-            let tag;
 
-            if (ev.key === 'Enter' && !ev.shiftKey && (tag = this.editor.getTag(node.tagName)) && tag.enter) {
-                let current = node;
-                let parentName;
-
-                ev.preventDefault();
-                ev.cancelBubble = true;
-
-                do {
-                    parentName = this.editor.getTagName(current.parentElement);
-
-                    if (this.editor.allowed(tag.enter, parentName)) {
-                        const newElement = this.editor.document.createElement(tag.enter);
-                        this.editor.insert(newElement, current);
-                        break;
-                    }
-                } while ((current = current.parentElement) && this.editor.content.contains(current) && !this.editor.content.isSameNode(current));
-            }
-        });
+            target.parentElement.removeChild(target);
+            ev.preventDefault();
+            ev.cancelBubble = true;
+        }
     }
 }
