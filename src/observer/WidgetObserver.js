@@ -27,7 +27,7 @@ export default class WidgetObserver extends Observer {
     keyboard(node) {
         node.addEventListener('keyup', ev => {
             if (this.editor.document.activeElement.isSameNode(node)) {
-                if (ev.key === 'Delete') {
+                if (ev.key === 'Delete' && !node.isContentEditable) {
                     node.parentElement.removeChild(node);
                     ev.preventDefault();
                     ev.cancelBubble = true;
