@@ -25,6 +25,48 @@ export default class TableObserver extends Observer {
      * @param {HTMLTableElement} table
      */
     initTable(table) {
+        this.sections(table);
+        this.keyboard(table);
+    }
+
+    /**
+     * Creates missing table sections
+     *
+     * @private
+     *
+     * @param {HTMLTableElement} table
+     */
+    sections(table) {
+        if (table.tBodies.length > 0 && table.tBodies[0].rows[0] && (!table.tHead || !table.tFoot)) {
+            const length = table.tBodies[0].rows[0].cells.length;
+            let row;
+
+            if (!table.tHead) {
+                row = table.createTHead().insertRow();
+
+                for (let i = 0; i < length; i++) {
+                    row.appendChild(this.editor.document.createElement('th'));
+                }
+            }
+
+            if (!table.tFoot) {
+                row = table.createTFoot().insertRow();
+
+                for (let i = 0; i < length; i++) {
+                    row.insertCell();
+                }
+            }
+        }
+    }
+
+    /**
+     * Handles keyboard events
+     *
+     * @private
+     *
+     * @param {HTMLTableElement} table
+     */
+    keyboard(table) {
         table.addEventListener('keydown', ev => {
             const cell = ev.target;
             const row = cell.parentElement;
