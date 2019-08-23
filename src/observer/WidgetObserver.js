@@ -32,12 +32,12 @@ export default class WidgetObserver extends Observer {
                 node.parentElement.removeChild(node);
                 ev.preventDefault();
                 ev.cancelBubble = true;
-            } else if (ev.key === 'ArrowUp' && node.previousElementSibling) {
+            } else if (node.draggable && ev.key === 'ArrowUp' && node.previousElementSibling) {
                 node.previousElementSibling.insertAdjacentHTML('beforebegin', node.outerHTML);
                 node.parentElement.removeChild(node);
                 ev.preventDefault();
                 ev.cancelBubble = true;
-            } else if (ev.key === 'ArrowDown' && node.nextElementSibling) {
+            } else if (node.draggable && ev.key === 'ArrowDown' && node.nextElementSibling) {
                 node.nextElementSibling.insertAdjacentHTML('afterend', node.outerHTML);
                 node.parentElement.removeChild(node);
                 ev.preventDefault();
@@ -58,7 +58,7 @@ export default class WidgetObserver extends Observer {
         const keyName = 'text/x-editor-name';
         const keyHtml = 'text/x-editor-html';
         const toggle = () => {
-            const isDraggable = node.hasAttribute('draggable');
+            const hasDraggable = node.hasAttribute('draggable');
 
             this.editor.content.querySelectorAll('[draggable]').forEach(item => {
                 item.removeAttribute('draggable');
@@ -68,7 +68,7 @@ export default class WidgetObserver extends Observer {
                 }
             });
 
-            if (!isDraggable) {
+            if (!hasDraggable) {
                 node.setAttribute('draggable', 'true');
 
                 if (node.hasAttribute('contenteditable')) {
