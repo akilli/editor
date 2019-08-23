@@ -9,7 +9,7 @@ export default class WidgetObserver extends Observer {
      */
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && node.parentElement.isSameNode(this.editor.content)) {
+            if (node instanceof HTMLElement && node.parentElement instanceof HTMLElement && node.parentElement.isSameNode(this.editor.content)) {
                 node.tabIndex = 0;
                 this.keyboard(node);
                 this.dragndrop(node);
