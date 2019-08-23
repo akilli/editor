@@ -33,7 +33,7 @@ export default class TableObserver extends Observer {
             if (cell instanceof HTMLTableCellElement
                 && row instanceof HTMLTableRowElement
                 && (base instanceof HTMLTableElement || base instanceof HTMLTableSectionElement)
-                && (ev.shiftKey || ev.ctrlKey)
+                && (ev.altKey || ev.ctrlKey)
                 && ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(ev.key)
             ) {
                 const length = row.cells.length;
@@ -41,10 +41,10 @@ export default class TableObserver extends Observer {
                 const rowIndex = base instanceof HTMLTableElement ? row.rowIndex : row.sectionRowIndex;
                 let index;
 
-                if (ev.shiftKey && (ev.key === 'ArrowLeft' && cell.cellIndex > 0 || ev.key === 'ArrowRight' && cell.cellIndex < length - 1)) {
+                if (ev.altKey && (ev.key === 'ArrowLeft' && cell.cellIndex > 0 || ev.key === 'ArrowRight' && cell.cellIndex < length - 1)) {
                     index = cell.cellIndex + (ev.key === 'ArrowLeft' ? -1 : 1);
                     Array.from(table.rows).forEach(item => item.deleteCell(index));
-                } else if (ev.shiftKey && (ev.key === 'ArrowUp' && rowIndex > 0 || ev.key === 'ArrowDown' && rowIndex < rowLength - 1)) {
+                } else if (ev.altKey && (ev.key === 'ArrowUp' && rowIndex > 0 || ev.key === 'ArrowDown' && rowIndex < rowLength - 1)) {
                     index = rowIndex + (ev.key === 'ArrowUp' ? -1 : 1);
                     base.deleteRow(index)
                 } else if (ev.ctrlKey && (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight')) {
