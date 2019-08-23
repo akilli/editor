@@ -11,28 +11,39 @@ export default class WidgetObserver extends Observer {
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLElement && node.parentElement.isSameNode(this.editor.content)) {
                 node.tabIndex = 0;
-                node.addEventListener('keyup', ev => {
-                    if (this.editor.document.activeElement.isSameNode(node)) {
-                        if (ev.key === 'Delete') {
-                            node.parentElement.removeChild(node);
-                            ev.preventDefault();
-                            ev.cancelBubble = true;
-                        } else if (node.draggable && ev.key === 'ArrowUp' && node.previousElementSibling) {
-                            node.previousElementSibling.insertAdjacentHTML('beforebegin', node.outerHTML);
-                            node.parentElement.removeChild(node);
-                            ev.preventDefault();
-                            ev.cancelBubble = true;
-                        } else if (node.draggable && ev.key === 'ArrowDown' && node.nextElementSibling) {
-                            node.nextElementSibling.insertAdjacentHTML('afterend', node.outerHTML);
-                            node.parentElement.removeChild(node);
-                            ev.preventDefault();
-                            ev.cancelBubble = true;
-                        }
-                    }
-                });
+                this.keyboard(node);
                 this.dragndrop(node);
             }
         }));
+    }
+
+    /**
+     * Handles keyboard events
+     *
+     * @private
+     *
+     * @param {HTMLElement} node
+     */
+    keyboard(node) {
+        node.addEventListener('keyup', ev => {
+            if (this.editor.document.activeElement.isSameNode(node)) {
+                if (ev.key === 'Delete') {
+                    node.parentElement.removeChild(node);
+                    ev.preventDefault();
+                    ev.cancelBubble = true;
+                } else if (node.draggable && ev.key === 'ArrowUp' && node.previousElementSibling) {
+                    node.previousElementSibling.insertAdjacentHTML('beforebegin', node.outerHTML);
+                    node.parentElement.removeChild(node);
+                    ev.preventDefault();
+                    ev.cancelBubble = true;
+                } else if (node.draggable && ev.key === 'ArrowDown' && node.nextElementSibling) {
+                    node.nextElementSibling.insertAdjacentHTML('afterend', node.outerHTML);
+                    node.parentElement.removeChild(node);
+                    ev.preventDefault();
+                    ev.cancelBubble = true;
+                }
+            }
+        });
     }
 
     /**
