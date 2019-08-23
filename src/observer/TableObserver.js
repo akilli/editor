@@ -28,9 +28,11 @@ export default class TableObserver extends Observer {
         table.addEventListener('keydown', ev => {
             const cell = ev.target;
             const row = cell.parentElement;
+            const base = row.parentElement;
 
             if (cell instanceof HTMLTableCellElement
                 && row instanceof HTMLTableRowElement
+                && (base instanceof HTMLTableElement || base instanceof HTMLTableSectionElement)
                 && ev.ctrlKey
                 && ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(ev.key)
             ) {
@@ -39,10 +41,16 @@ export default class TableObserver extends Observer {
 
                 if (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight') {
                     index = cell.cellIndex + (ev.key === 'ArrowLeft' ? 0 : 1);
-                    Array.from(table.rows).forEach(item => item.insertCell(index));
+                    Array.from(table.rows).forEach(item => {
+                        if (!item.querySelector(':scope > td')) {
+                            item.insertBefore(this.editor.document.createElement('th'), item.cells[index]);
+                        } else {
+                            item.insertCell(index);
+                        }
+                    });
                 } else {
-                    index = row.rowIndex + (ev.key === 'ArrowUp' ? 0 : 1);
-                    const r = table.insertRow(index);
+                    index = (base instanceof HTMLTableElement ? row.rowIndex : row.sectionRowIndex) + (ev.key === 'ArrowUp' ? 0 : 1);
+                    const r = base.insertRow(index);
 
                     for (let i = 0; i < length; i++) {
                         r.insertCell();
