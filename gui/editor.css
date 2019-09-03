@@ -4,6 +4,7 @@
 :root {
     --editor-border: lightgrey;
     --editor-drag: darkgreen;
+    --editor-empty: 'No content :-( ... click a button in the toolbar to add some :-)';
     --editor-focus: orange;
     --editor-outline: yellow;
     --editor-placeholder: 'Gimme some text!';
@@ -62,6 +63,11 @@
     display: table;
     content: ' ';
     clear: both;
+}
+
+.editor-content:empty::after {
+    content: var(--editor-empty);
+    color: var(--editor-border);
 }
 
 /**
