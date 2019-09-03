@@ -1,5 +1,6 @@
 import BlockquoteCommand from '../src/command/BlockquoteCommand.js';
 import DetailsCommand from '../src/command/DetailsCommand.js';
+import FullscreenCommand from '../src/command/FullscreenCommand.js';
 import HeadingCommand from '../src/command/HeadingCommand.js';
 import LinkCommand from '../src/command/LinkCommand.js';
 import ListCommand from '../src/command/ListCommand.js';
@@ -15,6 +16,7 @@ import TextCommand from '../src/command/TextCommand.js';
  * @type {Object.<String, Function>}
  */
 export default {
+    fullscreen: editor => new FullscreenCommand(editor),
     bold: editor => new TextCommand(editor, 'strong'),
     italic: editor => new TextCommand(editor, 'i'),
     definition: editor => new TextCommand(editor, 'dfn'),

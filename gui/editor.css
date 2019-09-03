@@ -20,6 +20,30 @@
 }
 
 /**
+ * Editor Fullscreen
+ */
+.editor-fullscreen {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+}
+
+.editor-fullscreen .editor-content {
+    flex: 1;
+    min-height: 0;
+    max-height: none;
+    overflow-y: scroll;
+}
+
+/**
  * Editor Content
  */
 .editor-content {
@@ -170,6 +194,10 @@
     content: '\f150';
 }
 
+.editor-toolbar [data-cmd=fullscreen]::before {
+    content: '\f0b2';
+}
+
 .editor-toolbar [data-cmd=heading]::before {
     content: '\f1dc';
 }
@@ -245,7 +273,7 @@ dialog.editor-dialog[open] {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.8);
 }
 
