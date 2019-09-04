@@ -62,11 +62,13 @@ export default class DetailsObserver extends Observer {
         node.addEventListener('keydown', ev => {
             if (ev.key === ' ') {
                 ev.preventDefault();
+                ev.cancelBubble = true;
             }
         });
         node.addEventListener('keyup', ev => {
             if (ev.key === ' ') {
                 ev.preventDefault();
+                ev.cancelBubble = true;
                 this.editor.insertText(' ');
             }
         });
