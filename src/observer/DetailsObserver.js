@@ -11,6 +11,8 @@ export default class DetailsObserver extends Observer {
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLDetailsElement) {
                 this.initDetails(node);
+            } else if (node instanceof HTMLElement && node.tagName.toLowerCase() === 'summary') {
+                this.initSummary(node);
             } else if (node instanceof HTMLElement) {
                 node.querySelectorAll('details').forEach(item => this.initDetails(item));
             }
