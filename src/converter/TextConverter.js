@@ -16,6 +16,6 @@ export default class TextConverter extends Converter {
             throw 'Invalid element';
         }
 
-        return element.ownerDocument.createTextNode(element.innerText);
+        return element.ownerDocument.createTextNode(element.textContent);
     }
 }

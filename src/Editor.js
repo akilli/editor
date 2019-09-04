@@ -285,7 +285,7 @@ export default class Editor {
             item.setAttribute('type', 'button');
             item.setAttribute('data-cmd', cmd[0]);
             item.setAttribute('title', cmd[0]);
-            item.innerText = cmd[0];
+            item.textContent = cmd[0];
             item.addEventListener('click', () => {
                 if (!this.window.getSelection().containsNode(this.content, true)) {
                     this.content.focus();
@@ -419,13 +419,13 @@ export default class Editor {
         const selText = range.toString();
         const selNodes = range.cloneContents().childNodes;
         let same = Array.from(selNodes).every(item => {
-            return item instanceof Text && !item.nodeValue.trim() || item instanceof HTMLElement && item.tagName === element.tagName;
+            return item instanceof Text && !item.textContent.trim() || item instanceof HTMLElement && item.tagName === element.tagName;
         });
 
         range.deleteContents();
 
         if (parent.isContentEditable && this.allowed(element.tagName, parent.tagName) && selText.trim() && (!tag || !same)) {
-            element.innerText = selText;
+            element.textContent = selText;
             range.insertNode(element);
         } else {
             range.insertNode(this.document.createTextNode(selText));

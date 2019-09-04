@@ -23,7 +23,7 @@ export default class SubscriptConverter extends Converter {
             throw 'Invalid element';
         }
 
-        let text = element.innerText.trim();
+        let text = element.textContent.trim();
 
         if (!isNaN(text)) {
             text = text.replace(/[0-9]/g, n => map[n]);

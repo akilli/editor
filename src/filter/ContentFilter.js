@@ -21,7 +21,7 @@ export default class ContentFilter extends Filter {
                 node = this.editor.convert(node);
                 const name = node.tagName;
                 const tag = this.editor.getTag(name);
-                const text = node.innerText.trim();
+                const text = node.textContent.trim();
 
                 if (!tag) {
                     parent.removeChild(node);
@@ -45,7 +45,7 @@ export default class ContentFilter extends Filter {
                     }
                 } else if (isRoot && text) {
                     const p = this.editor.document.createElement('p');
-                    p.innerText = text;
+                    p.textContent = text;
                     parent.replaceChild(p, node);
                 } else if (text) {
                     parent.replaceChild(this.editor.document.createTextNode(text), node);
@@ -53,9 +53,9 @@ export default class ContentFilter extends Filter {
                     parent.removeChild(node);
                 }
             } else if (node instanceof Text) {
-                if (isRoot && node.nodeValue.trim()) {
+                if (isRoot && node.textContent.trim()) {
                     const p = this.editor.document.createElement('p');
-                    p.innerText = node.nodeValue.trim();
+                    p.textContent = node.textContent.trim();
                     parent.replaceChild(p, node);
                 } else if (isRoot) {
                     parent.removeChild(node);

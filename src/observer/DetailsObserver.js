@@ -52,8 +52,8 @@ export default class DetailsObserver extends Observer {
     initSummary(node) {
         // Ensure summary is not empty
         const call = () => {
-            if (!node.innerText.trim()) {
-                node.innerText = 'Details';
+            if (!node.textContent.trim()) {
+                node.textContent = 'Details';
             }
         };
         call();
