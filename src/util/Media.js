@@ -66,7 +66,7 @@ export default class Media {
      * @return {?MediaTypeElement}
      */
     static fromElement(element) {
-        const ids = this.ids();
+        const ids = Media.ids();
 
         for (let i = 0; i < ids.length; ++i) {
             if (types[ids[i]].element === element) {
@@ -95,7 +95,7 @@ export default class Media {
 
         if (response.ok) {
             const mime = response.headers.get('content-type').split(';')[0].trim();
-            const ids = this.ids();
+            const ids = Media.ids();
 
             for (let i = 0; i < ids.length; ++i) {
                 if (types[ids[i]].mime.includes(mime)) {
