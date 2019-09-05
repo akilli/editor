@@ -576,7 +576,7 @@ export default class Editor {
      *
      * @param {HTMLElement} element
      *
-     * @return {Node}
+     * @return {HTMLElement|Text}
      */
     convert(element) {
         if (!(element instanceof HTMLElement)) {
