@@ -6,7 +6,7 @@ import TableFilter from '../src/filter/TableFilter.js';
 /**
  * Filter configuration
  *
- * @type {Filter[]}
+ * @type {Function[]}
  */
 export default [
     ContentFilter,

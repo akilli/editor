@@ -7,7 +7,7 @@ import WidgetObserver from '../src/observer/WidgetObserver.js';
 /**
  * Observer configuration
  *
- * @type {Observer[]}
+ * @type {Function[]}
  */
 export default [
     EditableObserver,
