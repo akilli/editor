@@ -126,6 +126,7 @@ export default class Editor {
          * Commands
          *
          * @type {Map<String, Command>}
+         * @readonly
          */
         this.commands = this.createCommands(configCommand);
 
@@ -133,6 +134,7 @@ export default class Editor {
          * Observers
          *
          * @type {Observer[]}
+         * @readonly
          */
         this.observers = this.create(configObserver, Observer);
 
@@ -140,8 +142,17 @@ export default class Editor {
          * Filters
          *
          * @type {Filter[]}
+         * @readonly
          */
         this.filters = this.create(configFilter, Filter);
+
+        /**
+         * Translations
+         *
+         * @type {Object}
+         * @readonly
+         */
+        this.i18n = {};
     }
 
     /**
@@ -586,6 +597,24 @@ export default class Editor {
         element.parentElement.replaceChild(newNode, element);
 
         return newNode;
+    }
+
+    /**
+     * Translates given string
+     *
+     * @param {String} key
+     * @param {...String} args
+     *
+     * @return {String}
+     */
+    t(key, ...args) {
+        key = this.i18n[key] ? this.i18n[key] : key;
+
+        for (let i = 0; i < args.length; i++) {
+            key = key.replace(/%s/, args[i]);
+        }
+
+        return key;
     }
 
     /**
