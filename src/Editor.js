@@ -509,6 +509,10 @@ export default class Editor {
      * @param {Boolean} [forceRoot = false]
      */
     filter(parent, forceRoot = false) {
+        if (!(parent instanceof HTMLElement)) {
+            throw 'No HTML element';
+        }
+
         this.filters.forEach(item => item.filter(parent, forceRoot));
     }
 
