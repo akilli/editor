@@ -63,7 +63,7 @@ export default class Command {
     /**
      * Returns old data for dialog
      *
-     * @returns {Object}
+     * @return {Object}
      */
     oldData() {
         return {};
