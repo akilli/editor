@@ -7,6 +7,7 @@ export default {
     'Alternative text': 'Alternativtext',
     'Cancel': 'Abbrechen',
     'Columns': 'Spalten',
+    'Details': 'Details',
     'Element is not allowed here': 'Element ist hier nicht erlaubt',
     'Height': 'Höhe',
     'Insert URL to add a link or leave empty to unlink': 'URL eingeben um zu verlinken oder leer lassen um Link zu entfernen',
