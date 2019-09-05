@@ -8,10 +8,6 @@ export default class ContentFilter extends Filter {
      * @inheritDoc
      */
     filter(parent, forceRoot = false) {
-        if (!(parent instanceof HTMLElement)) {
-            throw 'No HTML element';
-        }
-
         const isRoot = forceRoot || this.editor.content.isSameNode(parent);
         const parentName = forceRoot ? 'root' : this.editor.getTagName(parent);
 

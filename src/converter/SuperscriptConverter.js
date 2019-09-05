@@ -19,10 +19,6 @@ export default class SuperscriptConverter extends Converter {
      * @return {Text}
      */
     convert(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'No HTML element';
-        }
-
         let text = element.textContent.trim();
 
         if (!isNaN(text)) {

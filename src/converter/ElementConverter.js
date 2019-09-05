@@ -33,10 +33,6 @@ export default class ElementConverter extends Converter {
      * @return {HTMLElement}
      */
     convert(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'No HTML element';
-        }
-
         const newElement = element.ownerDocument.createElement(this.name);
         newElement.innerHTML = element.innerHTML;
 

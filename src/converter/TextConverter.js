@@ -12,10 +12,6 @@ export default class TextConverter extends Converter {
      * @return {Text}
      */
     convert(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'No HTML element';
-        }
-
         return element.ownerDocument.createTextNode(element.textContent);
     }
 }
