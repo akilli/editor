@@ -15,6 +15,9 @@ export default class ContentFilter extends Filter {
         Array.from(parent.childNodes).forEach(node => {
             if (node instanceof HTMLElement) {
                 node = this.editor.convert(node);
+            }
+
+            if (node instanceof HTMLElement) {
                 const name = node.tagName;
                 const tag = this.editor.getTag(name);
                 const text = node.textContent.trim();
