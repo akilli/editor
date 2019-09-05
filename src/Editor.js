@@ -145,14 +145,6 @@ export default class Editor {
          * @readonly
          */
         this.filters = this.create(configFilter, Filter);
-
-        /**
-         * Translations
-         *
-         * @type {Object}
-         * @readonly
-         */
-        this.i18n = {};
     }
 
     /**
@@ -607,8 +599,8 @@ export default class Editor {
      *
      * @return {String}
      */
-    t(key, ...args) {
-        key = this.i18n[key] ? this.i18n[key] : key;
+    i18n(key, ...args) {
+        key = this.config.i18n[key] ? this.config.i18n[key] : key;
 
         for (let i = 0; i < args.length; i++) {
             key = key.replace(/%s/, args[i]);
@@ -625,7 +617,12 @@ export default class Editor {
      *
      * @return {Editor}
      */
-    static create(element, config = {}) {
+    static async create(element, config = {}) {
+        if (config.lang) {
+            const i18n = await import(`../cfg/i18n/${config.lang}.js`);
+            config.i18n = i18n.default || {};
+        }
+
         const editor = new Editor(element, config);
         editor.init();
 

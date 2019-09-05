@@ -25,6 +25,14 @@ export default class Config {
         this.lang = opts.lang;
 
         /**
+         * Translations
+         *
+         * @type {Object}
+         * @readonly
+         */
+        this.i18n = opts.i18n || {};
+
+        /**
          * Media
          *
          * @type {Object}
