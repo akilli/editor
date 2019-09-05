@@ -34,7 +34,7 @@ export default class ElementConverter extends Converter {
      */
     convert(element) {
         if (!(element instanceof HTMLElement)) {
-            throw 'Invalid element';
+            throw 'No HTML element';
         }
 
         const newElement = element.ownerDocument.createElement(this.name);

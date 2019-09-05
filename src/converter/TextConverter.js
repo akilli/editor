@@ -13,7 +13,7 @@ export default class TextConverter extends Converter {
      */
     convert(element) {
         if (!(element instanceof HTMLElement)) {
-            throw 'Invalid element';
+            throw 'No HTML element';
         }
 
         return element.ownerDocument.createTextNode(element.textContent);

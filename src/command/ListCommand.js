@@ -11,7 +11,7 @@ export default class ListCommand extends Command {
         super(editor, tagName);
 
         if (!this.tag || this.tag.group !== 'list') {
-            throw 'Invalid list element';
+            throw 'No list element';
         }
     }
 

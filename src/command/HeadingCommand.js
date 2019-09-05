@@ -11,7 +11,7 @@ export default class HeadingCommand extends Command {
         super(editor, tagName);
 
         if (!this.tag || this.tag.group !== 'heading') {
-            throw 'Invalid heading element';
+            throw 'No heading element';
         }
     }
 

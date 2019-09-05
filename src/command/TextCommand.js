@@ -11,7 +11,7 @@ export default class TextCommand extends Command {
         super(editor, tagName, dialog);
 
         if (!this.tag || this.tag.group !== 'text') {
-            throw 'Invalid text element';
+            throw 'No text element';
         }
     }
 

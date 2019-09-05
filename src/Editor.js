@@ -23,7 +23,7 @@ export default class Editor {
      */
     constructor(orig, cfg = {}) {
         if (!(orig instanceof HTMLElement)) {
-            throw 'Invalid element';
+            throw 'No HTML element';
         }
 
         const element = orig.ownerDocument.createElement('div');
@@ -168,7 +168,7 @@ export default class Editor {
     create(config, constructor) {
         return config.map(item => {
             if (typeof item !== 'function' || !(item = new item(this)) || !(item instanceof constructor)) {
-                throw 'Invalid item';
+                throw 'Invalid constructor';
             }
 
             return item;

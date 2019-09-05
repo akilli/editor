@@ -20,7 +20,7 @@ export default class SuperscriptConverter extends Converter {
      */
     convert(element) {
         if (!(element instanceof HTMLElement)) {
-            throw 'Invalid element';
+            throw 'No HTML element';
         }
 
         let text = element.textContent.trim();
