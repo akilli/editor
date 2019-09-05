@@ -1,4 +1,9 @@
 /**
+ * Default options
+ */
+const defaults = `alwaysRaised=yes,dependent=yes,height=${window.screen.height},location=no,menubar=no,minimizable=no,modal=yes,resizable=yes,scrollbars=yes,toolbar=no,width=${window.screen.width}`;
+
+/**
  * Browser
  */
 export default class Browser {
@@ -16,7 +21,7 @@ export default class Browser {
             return;
         }
 
-        opts = opts || `alwaysRaised=yes,dependent=yes,height=${window.screen.height},location=no,menubar=no,minimizable=no,modal=yes,resizable=yes,scrollbars=yes,toolbar=no,width=${window.screen.width}`;
+        opts = opts || defaults;
 
         const document = window.document;
         const win = window.open(url, name, opts);
