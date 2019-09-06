@@ -113,7 +113,7 @@
     outline: 0.25rem dashed var(--editor-border);
 }
 
-.editor-content [data-editor-dragover] {
+.editor-content [data-dragover] {
     outline: 0.25rem dashed var(--editor-drag);
 }
 
