@@ -47,7 +47,6 @@ export default class EditableObserver extends Observer {
      */
     toEditable(node) {
         node.contentEditable = 'true';
-        node.focus();
         node.addEventListener('keydown', ev => {
             this.onKeyDownEnter(ev);
             this.onKeyDownBackspace(ev);
