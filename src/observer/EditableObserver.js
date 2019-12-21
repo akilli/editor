@@ -52,6 +52,11 @@ export default class EditableObserver extends Observer {
             this.onKeyDownBackspace(ev);
         });
         node.addEventListener('keyup', ev => this.onKeyUpEnter(ev));
+
+        if (node.hasAttribute('data-editor-focus')) {
+            node.focus();
+            node.removeAttribute('data-editor-focus');
+        }
     }
 
     /**
@@ -90,6 +95,7 @@ export default class EditableObserver extends Observer {
 
                 if (this.editor.allowed(tag.enter, parentName)) {
                     const newElement = this.editor.document.createElement(tag.enter);
+                    newElement.setAttribute('data-editor-focus', '');
                     this.editor.insert(newElement, current);
                     break;
                 }
