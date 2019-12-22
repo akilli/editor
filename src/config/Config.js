@@ -39,13 +39,5 @@ export default class Config {
          * @readonly
          */
         this.media = opts.media || {};
-
-        /**
-         * Section
-         *
-         * @type {Object}
-         * @readonly
-         */
-        this.section = opts.section || {};
     }
 }

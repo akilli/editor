@@ -244,10 +244,6 @@
     content: '\f10d';
 }
 
-.editor-toolbar [data-cmd=section]::before {
-    content: '\f2c2';
-}
-
 .editor-toolbar [data-cmd=subheading]::before {
     content: '\f0fd';
 }

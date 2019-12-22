@@ -107,7 +107,7 @@ export default class EditableObserver extends Observer {
      */
     onKeyDownBackspace(ev) {
         const widget = this.editor.getSelectedWidget();
-        const allowed = ['blockquote', 'details', 'ol', 'ul', 'section'].includes(ev.target.parentElement.tagName.toLowerCase());
+        const allowed = ['blockquote', 'details', 'ol', 'ul'].includes(ev.target.parentElement.tagName.toLowerCase());
 
         if (ev.key === 'Backspace' && !ev.shiftKey && !ev.target.textContent && widget && (widget.isSameNode(ev.target) || allowed)) {
             const target = widget.isSameNode(ev.target) || allowed && !ev.target.matches(':only-child') ? ev.target : widget;

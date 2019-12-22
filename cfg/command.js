@@ -6,7 +6,6 @@ import LinkCommand from '../src/command/LinkCommand.js';
 import ListCommand from '../src/command/ListCommand.js';
 import MediaCommand from '../src/command/MediaCommand.js';
 import ParagraphCommand from '../src/command/ParagraphCommand.js';
-import SectionCommand from '../src/command/SectionCommand.js';
 import TableCommand from '../src/command/TableCommand.js';
 import TextCommand from '../src/command/TextCommand.js';
 
@@ -37,5 +36,4 @@ export default {
     iframe: editor => new MediaCommand(editor, 'iframe'),
     table: editor => new TableCommand(editor),
     details: editor => new DetailsCommand(editor),
-    section: editor => new SectionCommand(editor),
 }

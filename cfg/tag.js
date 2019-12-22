@@ -5,7 +5,7 @@
  */
 export default [
     // Root
-    {name: 'root', children: ['details', 'figure', 'heading', 'list', 'p', 'section']},
+    {name: 'root', children: ['details', 'figure', 'heading', 'list', 'p']},
     // Paragraph
     {name: 'p', children: ['br', 'text'], editable: true, enter: 'p'},
     // Heading
@@ -36,8 +36,6 @@ export default [
     // Details
     {name: 'details', children: ['figure', 'list', 'p', 'summary']},
     {name: 'summary', editable: true, enter: 'p'},
-    // Section
-    {name: 'section', attributes: ['class'], children: ['details', 'figure', 'list', 'heading', 'p']},
     // Text
     {name: 'strong', group: 'text'},
     {name: 'i', group: 'text'},
