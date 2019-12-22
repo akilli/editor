@@ -9,14 +9,6 @@ export default class Config {
      */
     constructor(opts = {}) {
         /**
-         * Block
-         *
-         * @type {Object}
-         * @readonly
-         */
-        this.block = opts.block || {};
-
-        /**
          * Language
          *
          * @type {String}
