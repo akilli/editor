@@ -20,4 +20,6 @@ You can also use the `Backspace`key inside editables to delete the widget, if th
 
 The table widget additionally allows to add and remove rows and columns before or after the currently focused table cell by combining the `Control` key (add) or `Alt` key (remove) with one of the arrow keys (`ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown`).
 
+## Demo
 
+https://akilli.github.io/editor/demo

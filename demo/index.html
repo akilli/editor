@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+        <title>akilli editor</title>
+        <link rel="stylesheet" href="/cms/gui/base.css" />
+        <link rel="stylesheet" href="/demo-browser/page.css" />
+        <link rel="stylesheet" href="/cms/gui/editor/gui/editor.css" />
+        <script type="module" src="index.js"></script>
+    </head>
+    <body>
+        <form>
+            <textarea id="rte"></textarea>
+            <button id="save" type="button">Log editor data to console</button>
+        </form>
+        <footer>
+            <p>Please add a widget from the <dfn>widget toolbar</dfn> on top. Each widget has one or more editable elements that allow adding and maybe formatting text. The <dfn>editable toolbar</dfn> will appear when you select some text in an editable element that allows text formatting, p.e. paragraphs, list items, table cells. Be aware of the fact that current configuration p.e. does not allow nesting of text formatting elements.</p>
+            <p>After adding the first widget, you can also use the <kbd>Enter</kbd> key to add a new paragraph. Depending on the widget, this new paragraph will be created inside the widget itself or on top-level. Within lists, the <kbd>Enter</kbd> key will add a new list item.</p>
+            <p>You can reorder the widgets in the editor content by drag'n'drop. As <dfn>draggable</dfn> and <dfn>contenteditable</dfn> do not play nice with each other, drag'n'drop is disabled per default. If you doubleclick on a widget you can toggle <dfn>draggable</dfn> and <dfn>contenteditable</dfn> states. After dropping the widget the states are toggled automatically.</p>
+            <p>As this project is in a very early state, some features are missing.</p>
+        </footer>
+    </body>
+</html>
