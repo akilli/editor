@@ -1,0 +1,28 @@
+version: "3.7"
+networks:
+  default:
+    external:
+      name: proxy
+services:
+  editor:
+    container_name: editor
+    image: akilli/nginx
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rte.entrypoints=https"
+      - "traefik.http.routers.rte.rule=host(`editor.app.loc`)"
+      - "traefik.http.routers.rte.tls=true"
+      - "traefik.http.services.rte.loadbalancer.server.port=80"
+    extra_hosts:
+      - "editor.app.loc:127.0.0.1"
+    volumes:
+      - source: .
+        target: /app
+        type: bind
+      - source: ../cms
+        target: /opt/cms
+        type: bind
+      - source: ../demo-browser
+        target: /opt/demo-browser
+        type: bind
