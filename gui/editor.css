@@ -3,11 +3,15 @@
  */
 :root {
     --editor-border: lightgrey;
+    --editor-cancel-background: darkgrey;
+    --editor-cancel-color: white;
     --editor-drag: darkgreen;
     --editor-empty: 'No content :-( ... click a button in the toolbar to add some :-)';
     --editor-focus: orange;
     --editor-outline: yellow;
     --editor-placeholder: 'Gimme some text!';
+    --editor-save-background: darkgreen;
+    --editor-save-color: white;
 }
 
 /**
@@ -125,6 +129,72 @@
 .editor-content img,
 .editor-content video {
     pointer-events: none;
+}
+
+/**
+ * Dialog
+ */
+dialog.editor-dialog[open] {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+dialog.editor-dialog form {
+    min-width: 40rem;
+    min-height: 20rem;
+    padding: 0.75rem;
+    background: #fff;
+}
+
+dialog.editor-dialog fieldset > * {
+    margin-bottom: 1.5rem;
+}
+
+dialog.editor-dialog legend {
+    font-size: 1.25rem;
+}
+
+dialog.editor-dialog label {
+    display: block;
+}
+
+dialog.editor-dialog button {
+    padding: 0.75rem;
+}
+
+dialog.editor-dialog button[data-action=cancel] {
+    margin-right: 1.5rem;
+    color: var(--editor-cancel-color);
+    background: var(--editor-cancel-background);
+}
+
+dialog.editor-dialog button[data-action=save] {
+    color: var(--editor-save-color);
+    background: var(--editor-save-background);
+}
+
+dialog.editor-dialog input[type=email],
+dialog.editor-dialog input[type=number],
+dialog.editor-dialog input[type=password],
+dialog.editor-dialog input[type=search],
+dialog.editor-dialog input[type=tel],
+dialog.editor-dialog input[type=text],
+dialog.editor-dialog input[type=url],
+dialog.editor-dialog select {
+    width: 100%;
+    padding: 0.71875rem 0;
+    border-bottom: 0.0625rem solid var(--editor-border);
 }
 
 /**
@@ -258,34 +328,4 @@
 
 .editor-toolbar [data-cmd=video]::before {
     content: '\e80b';
-}
-
-/**
- * Dialog
- */
-dialog.editor-dialog[open] {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.8);
-}
-
-dialog.editor-dialog form {
-    min-width: 40rem;
-    min-height: 20rem;
-    padding: 0.75rem;
-    background: #fff;
-}
-
-dialog.editor-dialog form [data-action=cancel] {
-    margin-right: 1.5rem;
 }
