@@ -72,6 +72,22 @@ export default class Dialog {
                 close();
             }
         });
+        // Polyfill
+        if (typeof dialog.open !== 'boolean') {
+            Object.defineProperty(dialog, 'open', {
+                get: function () {
+                    return this.hasAttribute('open');
+                },
+                set: function (state) {
+                    if (state) {
+                        this.setAttribute('open', '');
+                    } else {
+                        this.removeAttribute('open');
+                    }
+                }
+            });
+        }
+
         dialog.open = true;
         fieldset.insertAdjacentHTML('beforeend', this.html);
         Object.getOwnPropertyNames(oldData).forEach(item => {
