@@ -1,0 +1,33 @@
+{
+  "name": "@akilli/editor",
+  "version": "0.0.0",
+  "description": "Minimal rich text editor",
+  "keywords": [
+    "editor",
+    "rte",
+    "rich-text",
+    "rich-text-editor",
+    "wysiwyg",
+    "wysiwyg-editor",
+    "wysiwym",
+    "wysiwym-editor",
+    "contenteditable"
+  ],
+  "author": "Ayhan Akilli",
+  "license": "MIT",
+  "bugs": "https://github.com/akilli/editor/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akilli/editor.git"
+  },
+  "main": "./dist/editor.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "servor --reload"
+  },
+  "devDependencies": {
+    "servor": "^3.1.0"
+  }
+}
