@@ -25,15 +25,9 @@ export default class Browser {
 
         const document = window.document;
         const win = window.open(url, name, opts);
-        let origin;
-
-        try {
-            origin = win.origin || win.location.origin;
-        } catch (e) {
-            const a = document.createElement('a');
-            a.href = url;
-            origin = a.origin;
-        }
+        const a = document.createElement('a');
+        a.href = url;
+        const origin = a.origin;
 
         window.addEventListener('message', ev => {
             if (ev.origin === origin && ev.source === win) {
