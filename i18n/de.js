@@ -1,5 +1,5 @@
 /**
- * German translations
+ * German Translations
  *
  * @type {Object}
  */
@@ -25,7 +25,7 @@ export default {
     'No HTML element': 'Kein HTML-Element',
     'No list element': 'Kein Listenelement',
     'No media element': 'Kein Medienelement',
-    'No text element':  'Kein Textelement',
+    'No text element': 'Kein Textelement',
     'Not implemented': 'Nicht implementiert',
     'Replacement text for use when media elements are not available': 'Ersatztext, falls Medienelemente nicht verfügbar sind',
     'Rows': 'Zeilen',

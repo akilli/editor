@@ -10,6 +10,7 @@ import configConverter from '../cfg/converter.js';
 import configFilter from '../cfg/filter.js';
 import configObserver from '../cfg/observer.js';
 import configTag from '../cfg/tag.js';
+import i18n from '../cfg/i18n.js';
 
 /**
  * Editor
@@ -621,10 +622,9 @@ export default class Editor {
      *
      * @return {Editor}
      */
-    static async create(element, config = {}) {
+    static create(element, config = {}) {
         if (config.lang) {
-            const i18n = await import(`../cfg/i18n/${config.lang}.js`);
-            config.i18n = i18n.default || {};
+            config.i18n = i18n[config.lang] || {};
         }
 
         const editor = new Editor(element, config);

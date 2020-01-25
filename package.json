@@ -9,8 +9,6 @@
     "rich-text-editor",
     "wysiwyg",
     "wysiwyg-editor",
-    "wysiwym",
-    "wysiwym-editor",
     "contenteditable"
   ],
   "author": "Ayhan Akilli",
@@ -20,14 +18,17 @@
     "type": "git",
     "url": "https://github.com/akilli/editor.git"
   },
-  "main": "./dist/editor.js",
+  "browser": "./dist/editor.js",
+  "module": "./dist/editor.js",
   "files": [
     "dist"
   ],
   "scripts": {
-    "start": "servor --reload"
+    "build": "rollup --config",
+    "start": "npx servor --reload"
   },
   "devDependencies": {
-    "servor": "^3.1.0"
+    "rollup": "^1.29.1",
+    "rollup-plugin-terser": "^5.2.0"
   }
 }
