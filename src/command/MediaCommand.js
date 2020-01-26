@@ -1,4 +1,3 @@
-import Browser from '../util/Browser.js';
 import Command from './Command.js';
 import MediaDialog from '../dialog/MediaDialog.js';
 
@@ -34,7 +33,7 @@ export default class MediaCommand extends Command {
         const browser = this.editor.config.media[this.type.id];
 
         if (browser) {
-            Browser.open(this.editor.window, browser, data => this.insert(data));
+            this.editor.browser(browser, data => this.insert(data));
         } else {
             super.execute();
         }
