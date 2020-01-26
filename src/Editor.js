@@ -2,12 +2,14 @@ import Command from './command/Command.js';
 import Config from './config/Config.js';
 import Converter from './converter/Converter.js';
 import Filter from './filter/Filter.js';
+import Media from './util/Media.js';
 import Observer from './observer/Observer.js';
 import Tag from './config/Tag.js';
 import TextCommand from './command/TextCommand.js';
 import configCommand from '../cfg/command.js';
 import configConverter from '../cfg/converter.js';
 import configFilter from '../cfg/filter.js';
+import configMedia from '../cfg/media.js';
 import configObserver from '../cfg/observer.js';
 import configTag from '../cfg/tag.js';
 import i18n from '../cfg/i18n.js';
@@ -146,6 +148,14 @@ export default class Editor {
          * @readonly
          */
         this.filters = this.create(configFilter, Filter);
+
+        /**
+         * Media
+         *
+         * @type {Media}
+         * @readonly
+         */
+        this.media = new Media(configMedia);
     }
 
     /**

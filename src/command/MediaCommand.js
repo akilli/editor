@@ -1,6 +1,5 @@
 import Browser from '../util/Browser.js';
 import Command from './Command.js';
-import Media from '../util/Media.js';
 import MediaDialog from '../dialog/MediaDialog.js';
 
 /**
@@ -15,7 +14,7 @@ export default class MediaCommand extends Command {
 
         let type;
 
-        if (!this.tag || this.tag.group !== 'media' || !(type = Media.fromElement(this.tag.name))) {
+        if (!this.tag || this.tag.group !== 'media' || !(type = this.editor.media.fromElement(this.tag.name))) {
             throw 'No media element';
         }
 
@@ -56,7 +55,10 @@ export default class MediaCommand extends Command {
         a.href = data.src;
         data.src = a.origin === origin ? a.pathname : a.href;
 
-        if (data.type && data.type === this.type.id || (type = await Media.fromUrl(data.src)) && type.id === this.type.id || !type && a.origin !== origin) {
+        if (data.type && data.type === this.type.id
+            || (type = await this.editor.media.fromUrl(data.src)) && type.id === this.type.id
+            || !type && a.origin !== origin
+        ) {
             const figure = this.editor.document.createElement('figure');
             const media = this.editor.document.createElement(this.type.element);
             const figcaption = this.editor.document.createElement('figcaption');

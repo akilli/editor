@@ -1,50 +1,28 @@
 /**
- * Media types
- *
- * @typedef {Object} MediaTypeElement
- * @property {String}   id      Media type ID
- * @property {String}   element The corresponding HTML element name
- * @property {String[]} mime    Supported MIME types
- *
- * @type {Object.<String, MediaTypeElement>}
- */
-const types = {
-    audio: {
-        id: 'audio',
-        element: 'audio',
-        mime: [
-            'audio/aac', 'audio/flac', 'audio/mp3', 'audio/mpeg', 'audio/mpeg3', 'audio/ogg', 'audio/wav', 'audio/wave', 'audio/webm',
-            'audio/x-aac', 'audio/x-flac', 'audio/x-mp3', 'audio/x-mpeg', 'audio/x-mpeg3', 'audio/x-pn-wav', 'audio/x-wav'
-        ]
-    },
-    iframe: {
-        id: 'iframe',
-        element: 'iframe',
-        mime: ['text/html']
-    },
-    image: {
-        id: 'image',
-        element: 'img',
-        mime: ['image/gif', 'image/jpeg', 'image/png', 'image/svg+xml', 'image/webp']
-    },
-    video: {
-        id: 'video',
-        element: 'video',
-        mime: ['video/mp4', 'video/ogg', 'video/webm']
-    }
-};
-
-/**
  * Media
  */
 export default class Media {
+    /**
+     * Initializes media service with given types configuration
+     *
+     * @param {Object.<String, MediaTypeElement>} types
+     */
+    constructor(types) {
+        /**
+         * Media type configuration
+         *
+         * @type {Object<String, MediaTypeElement>}
+         */
+        this.types = types;
+    }
+
     /**
      * Returns all media types IDs
      *
      * @return {String[]}
      */
-    static ids() {
-        return Object.getOwnPropertyNames(types);
+    ids() {
+        return Object.getOwnPropertyNames(this.types);
     }
 
     /**
@@ -54,8 +32,8 @@ export default class Media {
      *
      * @return {?MediaTypeElement}
      */
-    static get(type) {
-        return types[type] || null;
+    get(type) {
+        return this.types[type] || null;
     }
 
     /**
@@ -65,12 +43,12 @@ export default class Media {
      *
      * @return {?MediaTypeElement}
      */
-    static fromElement(element) {
-        const ids = Media.ids();
+    fromElement(element) {
+        const ids = this.ids();
 
         for (let i = 0; i < ids.length; ++i) {
-            if (types[ids[i]].element === element) {
-                return types[ids[i]];
+            if (this.types[ids[i]].element === element) {
+                return this.types[ids[i]];
             }
         }
 
@@ -84,7 +62,7 @@ export default class Media {
      *
      * @return {Promise<MediaTypeElement>}
      */
-    static async fromUrl(url) {
+    async fromUrl(url) {
         let response;
 
         try {
@@ -95,11 +73,11 @@ export default class Media {
 
         if (response.ok) {
             const mime = response.headers.get('content-type').split(';')[0].trim();
-            const ids = Media.ids();
+            const ids = this.ids();
 
             for (let i = 0; i < ids.length; ++i) {
-                if (types[ids[i]].mime.includes(mime)) {
-                    return types[ids[i]];
+                if (this.types[ids[i]].mime.includes(mime)) {
+                    return this.types[ids[i]];
                 }
             }
         }
