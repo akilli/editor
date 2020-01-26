@@ -1,4 +1,4 @@
-import de from '../i18n/de.js';
+import de from './i18n/de.js';
 
 /**
  * Translations
@@ -6,5 +6,5 @@ import de from '../i18n/de.js';
  * @type {Object}
  */
 export default {
-    'de': de
+    de
 }
