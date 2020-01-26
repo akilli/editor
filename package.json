@@ -24,11 +24,14 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup --config",
+    "build": "npm run clean && rollup --config",
+    "clean": "rm -rf dist/*",
     "start": "npx servor --reload"
   },
   "devDependencies": {
+    "@rollup/plugin-url": "^4.0.1",
     "rollup": "^1.29.1",
+    "rollup-plugin-css-porter": "^1.0.2",
     "rollup-plugin-terser": "^5.2.0"
   }
 }
