@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "build": "npm run clean && rollup --config",
-    "clean": "rm -rf dist/*",
+    "clean": "rm -rf dist",
     "start": "npx servor --reload"
   },
   "devDependencies": {
