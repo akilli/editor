@@ -333,21 +333,6 @@ export default class Editor {
     }
 
     /**
-     * Execute command
-     *
-     * @param {String} name
-     */
-    execute(name) {
-        const command = this.commands.get(name);
-
-        if (!command) {
-            throw 'Invalid command';
-        }
-
-        command.execute();
-    }
-
-    /**
      * Returns editor element's innerHTML
      *
      * @return {String}
