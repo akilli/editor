@@ -23,15 +23,14 @@ export default class TableCommand extends Command {
             return;
         }
 
-        const figure = this.editor.document.createElement('figure');
-        const table = this.editor.document.createElement('table');
+        const figure = this.editor.createElement('figure', {class: 'table'});
+        const table = this.editor.createElement('table');
 
-        figure.classList.add('table');
         figure.appendChild(table);
-        figure.appendChild(this.editor.document.createElement('figcaption'));
+        figure.appendChild(this.editor.createElement('figcaption'));
 
         ['thead', 'tbody', 'tfoot'].forEach(section => {
-            const item = this.editor.document.createElement(section);
+            const item = this.editor.createElement(section);
             const cell = section === 'thead' ? 'th' : 'td';
             const r = section === 'tbody' ? rows : 1;
             let tr;
@@ -39,11 +38,11 @@ export default class TableCommand extends Command {
             table.appendChild(item);
 
             for (let i = 0; i < r; i++) {
-                tr = this.editor.document.createElement('tr');
+                tr = this.editor.createElement('tr');
                 item.appendChild(tr);
 
                 for (let j = 0; j < cols; ++j) {
-                    tr.appendChild(this.editor.document.createElement(cell));
+                    tr.appendChild(this.editor.createElement(cell));
                 }
             }
         });

@@ -24,8 +24,7 @@ export default class LinkCommand extends TextCommand {
         if (!!href && !!old) {
             old.setAttribute('href', href);
         } else if (!!href) {
-            const a = this.editor.document.createElement(this.tag.name);
-            a.setAttribute('href', href);
+            const a = this.editor.createElement(this.tag.name, {href: href});
             this.editor.formatText(a);
         } else if (!!old) {
             old.parentElement.replaceChild(this.editor.document.createTextNode(old.textContent), old);

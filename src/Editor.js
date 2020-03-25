@@ -296,10 +296,11 @@ export default class Editor {
         });
 
         for (let cmd of this.commands.entries()) {
-            const item = this.document.createElement('button');
-            item.setAttribute('type', 'button');
-            item.setAttribute('data-cmd', cmd[0]);
-            item.setAttribute('title', cmd[0]);
+            const item = this.createElement('button', {
+                type: 'button',
+                'data-cmd': cmd[0],
+                title: cmd[0],
+            });
             item.textContent = cmd[0];
             item.addEventListener('click', () => {
                 if (!this.window.getSelection().containsNode(this.content, true)) {
@@ -432,6 +433,24 @@ export default class Editor {
         }
 
         parent.normalize();
+    }
+
+    /**
+     * Creates HTML element
+     *
+     * @param {String} name
+     * @param {Object.<String, String>} [attributes = {}]
+     *
+     * @return {HTMLElement}
+     */
+    createElement(name, attributes = {}) {
+        const el = this.document.createElement(name);
+
+        for (let [key, val] of Object.entries(attributes)) {
+            el.setAttribute(key, `${val}`);
+        }
+
+        return el;
     }
 
     /**
@@ -627,8 +646,7 @@ export default class Editor {
         const merged = Object.assign(base, configBrowser, opts);
         const features = Object.entries(merged).map(x => `${x[0]}=${x[1]}`).join(',');
         const win = this.window.open(url, name, features);
-        const a = this.document.createElement('a');
-        a.href = url;
+        const a = this.createElement('a', {href: url});
         const origin = a.origin;
 
         this.window.addEventListener('message', ev => {

@@ -47,20 +47,19 @@ export default class MediaCommand extends Command {
             return;
         }
 
-        const a = this.editor.document.createElement('a');
+        const a = this.editor.createElement('a', {href: data.src});
         const origin = this.editor.window.origin || this.editor.window.location.origin;
         let type;
 
-        a.href = data.src;
         data.src = a.origin === origin ? a.pathname : a.href;
 
         if (data.type && data.type === this.type.id
             || (type = await this.editor.media.fromUrl(data.src)) && type.id === this.type.id
             || !type && a.origin !== origin
         ) {
-            const figure = this.editor.document.createElement('figure');
-            const media = this.editor.document.createElement(this.type.element);
-            const figcaption = this.editor.document.createElement('figcaption');
+            const figure = this.editor.createElement('figure');
+            const media = this.editor.createElement(this.type.element);
+            const figcaption = this.editor.createElement('figcaption');
 
             figure.classList.add(this.type.id);
             figure.appendChild(media);

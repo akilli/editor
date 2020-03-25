@@ -45,7 +45,7 @@ export default class TableObserver extends Observer {
                 row = table.createTHead().insertRow();
 
                 for (let i = 0; i < length; i++) {
-                    row.appendChild(this.editor.document.createElement('th'));
+                    row.appendChild(this.editor.createElement('th'));
                 }
             }
 
@@ -93,7 +93,7 @@ export default class TableObserver extends Observer {
                     index = cell.cellIndex + (ev.key === 'ArrowLeft' ? 0 : 1);
                     Array.from(table.rows).forEach(item => {
                         if (!item.querySelector(':scope > td')) {
-                            item.insertBefore(this.editor.document.createElement('th'), item.cells[index]);
+                            item.insertBefore(this.editor.createElement('th'), item.cells[index]);
                         } else {
                             item.insertCell(index);
                         }

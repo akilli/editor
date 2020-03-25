@@ -10,7 +10,7 @@ export default class FigureObserver extends Observer {
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLElement && node.tagName.toLowerCase() === 'figure' && !node.querySelector(':scope > figcaption')) {
-                node.appendChild(this.editor.document.createElement('figcaption'));
+                node.appendChild(this.editor.createElement('figcaption'));
             }
         }));
     }

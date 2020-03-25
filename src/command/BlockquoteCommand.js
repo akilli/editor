@@ -8,13 +8,13 @@ export default class BlockquoteCommand extends Command {
      * @inheritDoc
      */
     insert(data = {}) {
-        const figure = this.editor.document.createElement('figure');
-        const blockquote = this.editor.document.createElement('blockquote');
+        const figure = this.editor.createElement('figure');
+        const blockquote = this.editor.createElement('blockquote');
 
         figure.classList.add('quote');
         figure.appendChild(blockquote);
-        figure.appendChild(this.editor.document.createElement('figcaption'));
-        blockquote.appendChild(this.editor.document.createElement('p'));
+        figure.appendChild(this.editor.createElement('figcaption'));
+        blockquote.appendChild(this.editor.createElement('p'));
 
         this.editor.insert(figure);
     }

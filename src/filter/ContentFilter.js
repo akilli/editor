@@ -38,12 +38,12 @@ export default class ContentFilter extends Filter {
                     if (!node.hasChildNodes() && !tag.empty && !(node instanceof HTMLTableCellElement)) {
                         parent.removeChild(node);
                     } else if (isRoot && tag.group === 'text') {
-                        const p = this.editor.document.createElement('p');
+                        const p = this.editor.createElement('p');
                         p.innerHTML = node.outerHTML;
                         parent.replaceChild(p, node);
                     }
                 } else if (isRoot && text) {
-                    const p = this.editor.document.createElement('p');
+                    const p = this.editor.createElement('p');
                     p.textContent = text;
                     parent.replaceChild(p, node);
                 } else if (text) {
@@ -53,7 +53,7 @@ export default class ContentFilter extends Filter {
                 }
             } else if (node instanceof Text) {
                 if (isRoot && node.textContent.trim()) {
-                    const p = this.editor.document.createElement('p');
+                    const p = this.editor.createElement('p');
                     p.textContent = node.textContent.trim();
                     parent.replaceChild(p, node);
                 } else if (isRoot) {

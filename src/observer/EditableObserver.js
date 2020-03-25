@@ -90,7 +90,7 @@ export default class EditableObserver extends Observer {
                 parentName = this.editor.getTagName(current.parentElement);
 
                 if (this.editor.allowed(tag.enter, parentName)) {
-                    const newElement = this.editor.document.createElement(tag.enter);
+                    const newElement = this.editor.createElement(tag.enter);
                     this.editor.insert(newElement, current);
                     break;
                 }

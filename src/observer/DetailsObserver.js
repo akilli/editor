@@ -33,10 +33,10 @@ export default class DetailsObserver extends Observer {
             this.initSummary(first);
 
             if (node.childElementCount === 1) {
-                node.appendChild(this.editor.document.createElement('p'));
+                node.appendChild(this.editor.createElement('p'));
             }
         } else if (first instanceof HTMLElement) {
-            const summary = this.editor.document.createElement('summary');
+            const summary = this.editor.createElement('summary');
             node.insertBefore(summary, first);
             this.initSummary(summary);
         }
