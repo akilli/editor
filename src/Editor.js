@@ -641,7 +641,7 @@ export default class Editor {
         const base = {height: `${this.window.screen.height}`, width: `${this.window.screen.width}`};
         const merged = Object.assign(base, configBrowser, opts);
         const features = Object.entries(merged).map(x => `${x[0]}=${x[1]}`).join(',');
-        const win = this.window.open(url, name, opts);
+        const win = this.window.open(url, name, features);
         const a = this.document.createElement('a');
         a.href = url;
         const origin = a.origin;
