@@ -429,14 +429,14 @@ export default class Editor {
             element.textContent = selText;
             range.insertNode(element);
         } else {
-            range.insertNode(this.document.createTextNode(selText));
+            range.insertNode(this.createText(selText));
         }
 
         parent.normalize();
     }
 
     /**
-     * Creates HTML element
+     * Creates HTML element in editor document
      *
      * @param {String} name
      * @param {Object.<String, String>} [attributes = {}]
@@ -451,6 +451,17 @@ export default class Editor {
         }
 
         return el;
+    }
+
+    /**
+     * Creates text node in editor document
+     *
+     * @param {String} content
+     *
+     * @return {Text}
+     */
+    createText(content) {
+        return this.document.createTextNode(content);
     }
 
     /**

@@ -47,7 +47,7 @@ export default class ContentFilter extends Filter {
                     p.textContent = text;
                     parent.replaceChild(p, node);
                 } else if (text) {
-                    parent.replaceChild(this.editor.document.createTextNode(text), node);
+                    parent.replaceChild(this.editor.createText(text), node);
                 } else {
                     parent.removeChild(node);
                 }
