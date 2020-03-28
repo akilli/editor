@@ -145,10 +145,10 @@ export default class Editor {
         /**
          * Observers
          *
-         * @type {Observer[]}
+         * @type {Map<String, Observer>}
          * @readonly
          */
-        this.observers = this.configArray(configObserver, Observer);
+        this.observers = this.configMap(configObserver, Observer);
 
         /**
          * Filters
@@ -229,9 +229,18 @@ export default class Editor {
      * Init editor
      */
     init() {
-        this.observers.forEach(item => this.register(ev => item.observe(ev)));
+        this.initObserver();
         this.initContent();
         this.initToolbar();
+    }
+
+    /**
+     * Init observer
+     *
+     * @private
+     */
+    initObserver() {
+        this.observers.forEach(item => this.register(ev => item.observe(ev)));
     }
 
     /**
