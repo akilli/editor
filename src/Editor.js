@@ -60,7 +60,7 @@ export default class Editor {
          * @type {Document}
          * @readonly
          */
-        this.document = orig.ownerDocument;
+        this.document = this.orig.ownerDocument;
 
         /**
          * Corresponding Window object
@@ -69,14 +69,6 @@ export default class Editor {
          * @readonly
          */
         this.window = this.document.defaultView;
-
-        /**
-         * Configuration
-         *
-         * @type {Config}
-         * @readonly
-         */
-        this.config = new Config(cfg);
 
         /**
          * Corresponding DOM element of the editor
@@ -109,6 +101,14 @@ export default class Editor {
          * @readonly
          */
         this.toolbarEditable = toolbarEditable;
+
+        /**
+         * Configuration
+         *
+         * @type {Config}
+         * @readonly
+         */
+        this.config = new Config(cfg);
 
         /**
          * Media
