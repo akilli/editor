@@ -12,6 +12,6 @@ export default class TextConverter extends Converter {
      * @return {Text}
      */
     convert(element) {
-        return element.ownerDocument.createTextNode(element.textContent);
+        return this.editor.createText(element.textContent);
     }
 }

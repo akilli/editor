@@ -124,7 +124,7 @@ export default class Editor {
          * @type {Map<String, Tag>}
          * @readonly
          */
-        this.tags = this.createTags(configTag);
+        this.tags = this.configTags(configTag);
 
         /**
          * Element converters
@@ -132,7 +132,7 @@ export default class Editor {
          * @type {Map<String, Converter>}
          * @readonly
          */
-        this.converters = this.createConverters(configConverter);
+        this.converters = this.configMap(configConverter, Converter);
 
         /**
          * Commands
@@ -140,7 +140,7 @@ export default class Editor {
          * @type {Map<String, Command>}
          * @readonly
          */
-        this.commands = this.createCommands(configCommand);
+        this.commands = this.configMap(configCommand, Command);
 
         /**
          * Observers
@@ -148,7 +148,7 @@ export default class Editor {
          * @type {Observer[]}
          * @readonly
          */
-        this.observers = this.create(configObserver, Observer);
+        this.observers = this.configArray(configObserver, Observer);
 
         /**
          * Filters
@@ -156,7 +156,7 @@ export default class Editor {
          * @type {Filter[]}
          * @readonly
          */
-        this.filters = this.create(configFilter, Filter);
+        this.filters = this.configArray(configFilter, Filter);
     }
 
     /**
@@ -169,7 +169,7 @@ export default class Editor {
      *
      * @return {Array}
      */
-    create(config, constructor) {
+    configArray(config, constructor) {
         return config.map(item => {
             if (typeof item !== 'function' || !(item = new item(this)) || !(item instanceof constructor)) {
                 throw 'Invalid constructor';
@@ -177,6 +177,32 @@ export default class Editor {
 
             return item;
         });
+    }
+
+    /**
+     * Creates map
+     *
+     * @private
+     *
+     * @param {Object.<String, Function>} config
+     * @param {Function} constructor
+     *
+     * @return {Map<String, Object>}
+     */
+    configMap(config, constructor) {
+        const map = new Map();
+
+        Object.getOwnPropertyNames(config).forEach(key => {
+            let item;
+
+            if (typeof config[key] !== 'function' || !(item = config[key](this)) || !(item instanceof constructor)) {
+                throw 'Invalid constructor';
+            }
+
+            map.set(key, item);
+        });
+
+        return map;
     }
 
     /**
@@ -188,60 +214,12 @@ export default class Editor {
      *
      * @return {Map<String, Tag>}
      */
-    createTags(config) {
+    configTags(config) {
         const map = new Map();
 
         config.forEach(item => {
             const tag = new Tag(item);
-            return map.set(tag.name, tag);
-        });
-
-        return map;
-    }
-
-    /**
-     * Creates converters map
-     *
-     * @private
-     *
-     * @param {Object.<String, Converter>} config
-     *
-     * @return {Map<String, Converter>}
-     */
-    createConverters(config) {
-        const map = new Map();
-
-        Object.getOwnPropertyNames(config).forEach(key => {
-            if (!(config[key] instanceof Converter)) {
-                throw 'Invalid converter';
-            }
-
-            map.set(key, config[key]);
-        });
-
-        return map;
-    }
-
-    /**
-     * Creates commands map
-     *
-     * @private
-     *
-     * @param {Object.<String, Function>} config
-     *
-     * @return {Map<String, Command>}
-     */
-    createCommands(config) {
-        const map = new Map();
-
-        Object.getOwnPropertyNames(config).forEach(key => {
-            let command;
-
-            if (typeof config[key] !== 'function' || !(command = config[key](this)) || !(command instanceof Command)) {
-                throw 'Invalid command';
-            }
-
-            return map.set(key, command);
+            map.set(tag.name, tag);
         });
 
         return map;

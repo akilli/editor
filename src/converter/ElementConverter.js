@@ -1,4 +1,5 @@
 import Converter from './Converter.js';
+import Editor from '../Editor.js';
 
 /**
  * HTML Element-to-Element Converter
@@ -7,22 +8,25 @@ export default class ElementConverter extends Converter {
     /**
      * Initializes a new element converter and with given tag name
      *
-     * @param {String} name
+     * @param {Editor} editor
+     * @param {String} tagName
      */
-    constructor(name) {
-        super();
+    constructor(editor, tagName) {
+        super(editor);
 
-        if (!name) {
-            throw 'Missing replacement tag';
+        const tag = editor.getTag(tagName);
+
+        if (!tag) {
+            throw 'Invalid argument';
         }
 
         /**
-         * The new tag name of the converted element
+         * The new tag of the converted element
          *
-         * @type {String}
+         * @type {?Tag}
          * @readonly
          */
-        this.name = name;
+        this.tag = tag;
     }
 
     /**
@@ -33,7 +37,7 @@ export default class ElementConverter extends Converter {
      * @return {HTMLElement}
      */
     convert(element) {
-        const newElement = element.ownerDocument.createElement(this.name);
+        const newElement = this.editor.createElement(this.tag.name);
         newElement.innerHTML = element.innerHTML;
 
         return newElement;
