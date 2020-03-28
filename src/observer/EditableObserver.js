@@ -49,10 +49,10 @@ export default class EditableObserver extends Observer {
         node.contentEditable = 'true';
         node.focus();
         node.addEventListener('keydown', ev => {
-            this.onKeyDownEnter(ev);
-            this.onKeyDownBackspace(ev);
+            this.onKeydownEnter(ev);
+            this.onKeydownBackspace(ev);
         });
-        node.addEventListener('keyup', ev => this.onKeyUpEnter(ev));
+        node.addEventListener('keyup', ev => this.onKeyupEnter(ev));
     }
 
     /**
@@ -62,7 +62,7 @@ export default class EditableObserver extends Observer {
      *
      * @param {KeyboardEvent} ev
      */
-    onKeyDownEnter(ev) {
+    onKeydownEnter(ev) {
         if (ev.key === 'Enter' && (!ev.shiftKey || !this.editor.allowed('br', ev.target.tagName))) {
             ev.preventDefault();
             ev.cancelBubble = true;
@@ -76,7 +76,7 @@ export default class EditableObserver extends Observer {
      *
      * @param {KeyboardEvent} ev
      */
-    onKeyUpEnter(ev) {
+    onKeyupEnter(ev) {
         let tag;
 
         if (ev.key === 'Enter' && !ev.shiftKey && (tag = this.editor.getTag(ev.target.tagName)) && tag.enter) {
@@ -105,7 +105,7 @@ export default class EditableObserver extends Observer {
      *
      * @param {KeyboardEvent} ev
      */
-    onKeyDownBackspace(ev) {
+    onKeydownBackspace(ev) {
         const widget = this.editor.getSelectedWidget();
         const allowed = ['blockquote', 'details', 'ol', 'ul'].includes(ev.target.parentElement.tagName.toLowerCase());
 
