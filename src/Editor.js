@@ -153,30 +153,10 @@ export default class Editor {
         /**
          * Filters
          *
-         * @type {Filter[]}
+         * @type {Map<String, Filter>}
          * @readonly
          */
-        this.filters = this.configArray(configFilter, Filter);
-    }
-
-    /**
-     * Instantiates each element in given array with this editor instance
-     *
-     * @private
-     *
-     * @param {Function[]} config
-     * @param {Function} constructor
-     *
-     * @return {Array}
-     */
-    configArray(config, constructor) {
-        return config.map(item => {
-            if (typeof item !== 'function' || !(item = new item(this)) || !(item instanceof constructor)) {
-                throw 'Invalid constructor';
-            }
-
-            return item;
-        });
+        this.filters = this.configMap(configFilter, Filter);
     }
 
     /**

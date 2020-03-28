@@ -6,11 +6,11 @@ import TableFilter from '../src/filter/TableFilter.js';
 /**
  * Filter configuration
  *
- * @type {Function[]}
+ * @type {Object.<String, Filter>}
  */
-export default [
-    ContentFilter,
-    BrFilter,
-    FigureFilter,
-    TableFilter,
-]
+export default {
+    content: editor => new ContentFilter(editor),
+    br: editor => new BrFilter(editor),
+    figure: editor => new FigureFilter(editor),
+    table: editor => new TableFilter(editor),
+}
