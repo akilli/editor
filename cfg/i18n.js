@@ -6,5 +6,5 @@ import de from './i18n/de.js';
  * @type {Object}
  */
 export default {
-    de
+    de,
 }
