@@ -570,18 +570,11 @@ export default class Editor {
      * Translates given string
      *
      * @param {String} key
-     * @param {...String} args
      *
      * @return {String}
      */
-    t(key, ...args) {
-        key = this.i18n[key] || key;
-
-        for (let i = 0; i < args.length; i++) {
-            key = key.replace(/%s/, args[i]);
-        }
-
-        return key;
+    t(key) {
+        return this.i18n[key] || key;
     }
 
     /**
