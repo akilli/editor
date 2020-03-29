@@ -103,12 +103,12 @@ export default class Dialog {
             Array.from(fieldset.elements).forEach(item => data[item.name] = item.value);
             this.save(data);
         });
-        cancel.textContent = this.editor.i18n('Cancel');
+        cancel.textContent = this.editor.t('Cancel');
         cancel.type = 'button';
         cancel.setAttribute('data-action', 'cancel');
         cancel.addEventListener('click', close);
         form.appendChild(cancel);
-        save.textContent = this.editor.i18n('Save');
+        save.textContent = this.editor.t('Save');
         save.setAttribute('data-action', 'save');
         form.appendChild(save);
 

@@ -1,7 +1,7 @@
 /**
  * German Translations
  *
- * @type {Object}
+ * @type {Object.<String, String>}
  */
 export default {
     'Alternative text': 'Alternativtext',

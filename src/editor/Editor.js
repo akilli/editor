@@ -108,6 +108,14 @@ export default class Editor {
         this.config = new Config(cfg);
 
         /**
+         * Translations
+         *
+         * @type {Object.<String, String>}
+         * @readonly
+         */
+        this.i18n = i18n[this.config.lang] || {};
+
+        /**
          * Tags
          *
          * @type {Map<String, Tag>}
@@ -566,8 +574,8 @@ export default class Editor {
      *
      * @return {String}
      */
-    i18n(key, ...args) {
-        key = this.config.i18n[key] ? this.config.i18n[key] : key;
+    t(key, ...args) {
+        key = this.i18n[key] || key;
 
         for (let i = 0; i < args.length; i++) {
             key = key.replace(/%s/, args[i]);
@@ -585,10 +593,6 @@ export default class Editor {
      * @return {Editor}
      */
     static create(element, config = {}) {
-        if (config.lang) {
-            config.i18n = i18n[config.lang] || {};
-        }
-
         const editor = new Editor(element, config);
         editor.init();
 
