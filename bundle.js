@@ -1,4 +1,4 @@
-import Editor from './src/Editor.js';
+import Editor from './src/editor/Editor.js';
 import './gui/editor.css';
 import './gui/editor.woff2';
 

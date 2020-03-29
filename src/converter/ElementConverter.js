@@ -1,5 +1,5 @@
-import Converter from './Converter.js';
-import Editor from '../Editor.js';
+import Converter from '../editor/Converter.js';
+import Editor from '../editor/Editor.js';
 
 /**
  * HTML Element-to-Element Converter

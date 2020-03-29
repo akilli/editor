@@ -7,7 +7,7 @@ import ListCommand from '../src/command/ListCommand.js';
 import MediaCommand from '../src/command/MediaCommand.js';
 import ParagraphCommand from '../src/command/ParagraphCommand.js';
 import TableCommand from '../src/command/TableCommand.js';
-import TextCommand from '../src/command/TextCommand.js';
+import TextCommand from '../src/editor/TextCommand.js';
 
 /**
  * Commands configuration

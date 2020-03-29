@@ -1,11 +1,11 @@
-import Editor from '../Editor.js';
+import Editor from './Editor.js';
 
 /**
- * Filter
+ * Observer
  */
-export default class Filter {
+export default class Observer {
     /**
-     * Initializes a new editor filter
+     * Initializes a new editor observer
      *
      * @param {Editor} editor
      */
@@ -24,12 +24,11 @@ export default class Filter {
     }
 
     /**
-     * Filters element
+     * Observes editor content mutatations
      *
-     * @param {HTMLElement} parent
-     * @param {Boolean} [forceRoot = false]
+     * @param {MutationRecord[]} ev
      */
-    filter(parent, forceRoot = false) {
+    observe(ev) {
         throw 'Not implemented';
     }
 }

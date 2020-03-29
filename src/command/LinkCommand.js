@@ -1,5 +1,5 @@
 import LinkDialog from '../dialog/LinkDialog.js';
-import TextCommand from './TextCommand.js';
+import TextCommand from '../editor/TextCommand.js';
 
 /**
  * Link Command

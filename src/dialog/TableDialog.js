@@ -1,4 +1,4 @@
-import Dialog from './Dialog.js';
+import Dialog from '../editor/Dialog.js';
 
 /**
  * Table Dialog

@@ -1,5 +1,5 @@
-import Dialog from '../dialog/Dialog.js';
-import Editor from '../Editor.js';
+import Dialog from './Dialog.js';
+import Editor from './Editor.js';
 
 /**
  * Command

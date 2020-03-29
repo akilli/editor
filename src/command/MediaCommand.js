@@ -1,4 +1,4 @@
-import Command from './Command.js';
+import Command from '../editor/Command.js';
 import MediaDialog from '../dialog/MediaDialog.js';
 
 /**

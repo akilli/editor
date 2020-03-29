@@ -1,11 +1,11 @@
-import Editor from '../Editor.js';
+import Editor from './Editor.js';
 
 /**
- * Observer
+ * HTML Element Converter
  */
-export default class Observer {
+export default class Converter {
     /**
-     * Initializes a new editor observer
+     * Initializes a new editor converter
      *
      * @param {Editor} editor
      */
@@ -24,11 +24,13 @@ export default class Observer {
     }
 
     /**
-     * Observes editor content mutatations
+     * Converts an HTML element to another or to a text node
      *
-     * @param {MutationRecord[]} ev
+     * @param {HTMLElement} element
+     *
+     * @return {HTMLElement|Text}
      */
-    observe(ev) {
+    convert(element) {
         throw 'Not implemented';
     }
 }

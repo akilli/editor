@@ -1,4 +1,4 @@
-import Editor from '../Editor.js';
+import Editor from './Editor.js';
 
 /**
  * Dialog

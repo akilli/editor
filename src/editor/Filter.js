@@ -1,11 +1,11 @@
-import Editor from '../Editor.js';
+import Editor from './Editor.js';
 
 /**
- * HTML Element Converter
+ * Filter
  */
-export default class Converter {
+export default class Filter {
     /**
-     * Initializes a new editor converter
+     * Initializes a new editor filter
      *
      * @param {Editor} editor
      */
@@ -24,13 +24,12 @@ export default class Converter {
     }
 
     /**
-     * Converts an HTML element to another or to a text node
+     * Filters element
      *
-     * @param {HTMLElement} element
-     *
-     * @return {HTMLElement|Text}
+     * @param {HTMLElement} parent
+     * @param {Boolean} [forceRoot = false]
      */
-    convert(element) {
+    filter(parent, forceRoot = false) {
         throw 'Not implemented';
     }
 }

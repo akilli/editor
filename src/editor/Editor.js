@@ -1,19 +1,19 @@
-import Command from './command/Command.js';
-import Config from './config/Config.js';
-import Converter from './converter/Converter.js';
-import Filter from './filter/Filter.js';
-import Media from './util/Media.js';
-import Observer from './observer/Observer.js';
-import Tag from './config/Tag.js';
-import TextCommand from './command/TextCommand.js';
-import configBrowser from '../cfg/browser.js';
-import configCommand from '../cfg/command.js';
-import configConverter from '../cfg/converter.js';
-import configFilter from '../cfg/filter.js';
-import configMedia from '../cfg/media.js';
-import configObserver from '../cfg/observer.js';
-import configTag from '../cfg/tag.js';
-import i18n from '../cfg/i18n.js';
+import Command from './Command.js';
+import Config from './Config.js';
+import Converter from './Converter.js';
+import Filter from './Filter.js';
+import Media from './Media.js';
+import Observer from './Observer.js';
+import Tag from './Tag.js';
+import TextCommand from './TextCommand.js';
+import configBrowser from '../../cfg/browser.js';
+import configCommand from '../../cfg/command.js';
+import configConverter from '../../cfg/converter.js';
+import configFilter from '../../cfg/filter.js';
+import configMedia from '../../cfg/media.js';
+import configObserver from '../../cfg/observer.js';
+import configTag from '../../cfg/tag.js';
+import i18n from '../../cfg/i18n.js';
 
 /**
  * Editor
