@@ -1,50 +1,52 @@
+import Tag from '../src/editor/Tag.js';
+
 /**
  * Tag configuration
  *
- * @type {Object[]}
+ * @type {Object.<String, Function>}
  */
-export default [
+export default {
     // Root
-    {name: 'root', children: ['details', 'figure', 'heading', 'list', 'p']},
+    root: () => new Tag({name: 'root', children: ['details', 'figure', 'heading', 'list', 'p']}),
     // Paragraph
-    {name: 'p', children: ['br', 'text'], editable: true, enter: 'p'},
+    p: () => new Tag({name: 'p', children: ['br', 'text'], editable: true, enter: 'p'}),
     // Heading
-    {name: 'h2', group: 'heading', editable: true, enter: 'p'},
-    {name: 'h3', group: 'heading', editable: true, enter: 'p'},
+    h2: () => new Tag({name: 'h2', group: 'heading', editable: true, enter: 'p'}),
+    h3: () => new Tag({name: 'h3', group: 'heading', editable: true, enter: 'p'}),
     // List
-    {name: 'ul', group: 'list', children: ['li']},
-    {name: 'ol', group: 'list', children: ['li']},
-    {name: 'li', children: ['br', 'text'], editable: true, enter: 'li'},
+    ul: () => new Tag({name: 'ul', group: 'list', children: ['li']}),
+    ol: () => new Tag({name: 'ol', group: 'list', children: ['li']}),
+    li: () => new Tag({name: 'li', children: ['br', 'text'], editable: true, enter: 'li'}),
     // Figure
-    {name: 'figure', attributes: ['class'], children: ['blockquote', 'figcaption', 'media', 'table']},
-    {name: 'figcaption', children: ['text'], editable: true, enter: 'p'},
+    figure: () => new Tag({name: 'figure', attributes: ['class'], children: ['blockquote', 'figcaption', 'media', 'table']}),
+    figcaption: () => new Tag({name: 'figcaption', children: ['text'], editable: true, enter: 'p'}),
     // Blockquote
-    {name: 'blockquote', children: ['p']},
+    blockquote: () => new Tag({name: 'blockquote', children: ['p']}),
     // Media
-    {name: 'img', group: 'media', attributes: ['alt', 'height', 'src', 'width'], empty: true},
-    {name: 'video', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true},
-    {name: 'audio', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true},
-    {name: 'iframe', group: 'media', attributes: ['allowfullscreen', 'height', 'src', 'width'], empty: true},
+    img: () => new Tag({name: 'img', group: 'media', attributes: ['alt', 'height', 'src', 'width'], empty: true}),
+    video: () => new Tag({name: 'video', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true}),
+    audio: () => new Tag({name: 'audio', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true}),
+    iframe: () => new Tag({name: 'iframe', group: 'media', attributes: ['allowfullscreen', 'height', 'src', 'width'], empty: true}),
     // Table
-    {name: 'table', children: ['tablesection']},
-    {name: 'thead', group: 'tablesection', children: ['tr']},
-    {name: 'tbody', group: 'tablesection', children: ['tr']},
-    {name: 'tfoot', group: 'tablesection', children: ['tr']},
-    {name: 'tr', children: ['tablecell']},
-    {name: 'th', group: 'tablecell', children: ['br', 'text'], editable: true},
-    {name: 'td', group: 'tablecell', children: ['br', 'text'], editable: true},
+    table: () => new Tag({name: 'table', children: ['tablesection']}),
+    thead: () => new Tag({name: 'thead', group: 'tablesection', children: ['tr']}),
+    tbody: () => new Tag({name: 'tbody', group: 'tablesection', children: ['tr']}),
+    tfoot: () => new Tag({name: 'tfoot', group: 'tablesection', children: ['tr']}),
+    tr: () => new Tag({name: 'tr', children: ['tablecell']}),
+    th: () => new Tag({name: 'th', group: 'tablecell', children: ['br', 'text'], editable: true}),
+    td: () => new Tag({name: 'td', group: 'tablecell', children: ['br', 'text'], editable: true}),
     // Details
-    {name: 'details', children: ['figure', 'list', 'p', 'summary']},
-    {name: 'summary', editable: true, enter: 'p'},
+    details: () => new Tag({name: 'details', children: ['figure', 'list', 'p', 'summary']}),
+    summary: () => new Tag({name: 'summary', editable: true, enter: 'p'}),
     // Text
-    {name: 'strong', group: 'text'},
-    {name: 'i', group: 'text'},
-    {name: 'dfn', group: 'text'},
-    {name: 'kbd', group: 'text'},
-    {name: 'mark', group: 'text'},
-    {name: 'q', group: 'text'},
-    {name: 'cite', group: 'text'},
-    {name: 'a', group: 'text', attributes: ['href']},
+    strong: () => new Tag({name: 'strong', group: 'text'}),
+    i: () => new Tag({name: 'i', group: 'text'}),
+    dfn: () => new Tag({name: 'dfn', group: 'text'}),
+    kbd: () => new Tag({name: 'kbd', group: 'text'}),
+    mark: () => new Tag({name: 'mark', group: 'text'}),
+    q: () => new Tag({name: 'q', group: 'text'}),
+    cite: () => new Tag({name: 'cite', group: 'text'}),
+    a: () => new Tag({name: 'a', group: 'text', attributes: ['href']}),
     // Break
-    {name: 'br', empty: true},
-]
+    br: () => new Tag({name: 'br', empty: true}),
+}

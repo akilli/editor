@@ -124,7 +124,7 @@ export default class Editor {
          * @type {Map<String, Tag>}
          * @readonly
          */
-        this.tags = this.configTags(configTag);
+        this.tags = this.configMap(configTag, Tag);
 
         /**
          * Element converters
@@ -180,26 +180,6 @@ export default class Editor {
             }
 
             map.set(key, item);
-        });
-
-        return map;
-    }
-
-    /**
-     * Creates tags map
-     *
-     * @private
-     *
-     * @param {Object[]} config
-     *
-     * @return {Map<String, Tag>}
-     */
-    configTags(config) {
-        const map = new Map();
-
-        config.forEach(item => {
-            const tag = new Tag(item);
-            map.set(tag.name, tag);
         });
 
         return map;
