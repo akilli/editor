@@ -35,6 +35,25 @@ const types = {
 };
 
 /**
+ * Element to type cache
+ *
+ * @type {Object.<String, MediaTypeElement>}
+ */
+const elements = {};
+
+/**
+ * Mime to type cache
+ *
+ * @type {Object.<String, MediaTypeElement>}
+ */
+const mimes = {};
+
+for (let [, type] of Object.entries(types)) {
+    elements[type.element] = type;
+    type.mime.forEach(mime => mimes[mime] = type);
+}
+
+/**
  * Media
  */
 export default class Media {
@@ -46,13 +65,7 @@ export default class Media {
      * @return {?MediaTypeElement}
      */
     static fromElement(element) {
-        for (let [, type] of Object.entries(types)) {
-            if (type.element === element) {
-                return type;
-            }
-        }
-
-        return null;
+        return elements[element] || null;
     }
 
     /**
@@ -63,22 +76,15 @@ export default class Media {
      * @return {Promise<MediaTypeElement>}
      */
     static async fromUrl(url) {
-        let response;
-
         try {
-            response = await fetch(url, {method: 'HEAD', mode: 'no-cors'});
-        } catch (e) {
-            return null;
-        }
+            const response = await fetch(url, {method: 'HEAD', mode: 'no-cors'});
 
-        if (response.ok) {
-            const mime = response.headers.get('content-type').split(';')[0].trim();
-
-            for (let [, type] of Object.entries(types)) {
-                if (type.mime.includes(mime)) {
-                    return type;
-                }
+            if (response.ok) {
+                const mime = response.headers.get('content-type').split(';')[0].trim();
+                return mimes[mime] || null;
             }
+        } catch (e) {
+            console.error(e);
         }
 
         return null;
