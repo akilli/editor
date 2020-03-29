@@ -8,7 +8,10 @@ import MediaDialog from '../dialog/MediaDialog.js';
  */
 export default class MediaCommand extends Command {
     /**
-     * @inheritDoc
+     * Initializes a new editor media command with given tag name
+     *
+     * @param {Editor} editor
+     * @param {String} tagName
      */
     constructor(editor, tagName) {
         super(editor, tagName, MediaDialog);

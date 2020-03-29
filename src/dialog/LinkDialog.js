@@ -5,7 +5,10 @@ import Dialog from '../editor/Dialog.js';
  */
 export default class LinkDialog extends Dialog {
     /**
-     * @inheritDoc
+     * Initializes a new editor link dialog
+     *
+     * @param {Editor} editor
+     * @param {Function} save
      */
     constructor(editor, save) {
         super(editor, save);

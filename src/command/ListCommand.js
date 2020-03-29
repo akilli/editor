@@ -5,7 +5,10 @@ import Command from '../editor/Command.js';
  */
 export default class ListCommand extends Command {
     /**
-     * @inheritDoc
+     * Initializes a new editor list command with given tag name
+     *
+     * @param {Editor} editor
+     * @param {String} tagName
      */
     constructor(editor, tagName) {
         super(editor, tagName);

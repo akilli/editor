@@ -22,7 +22,13 @@ const defaultOpts = {
  */
 export default class BrowserDialog extends Dialog {
     /**
-     * @inheritDoc
+     * Initializes a new editor browser dialog
+     *
+     * @param {Editor} editor
+     * @param {Function} save
+     * @param {String} url
+     * @param {String} [name = 'browser']
+     * @param {Object.<String, String>} [opts = {}]
      */
     constructor(editor, save, url, name = 'browser', opts = {}) {
         super(editor, save);

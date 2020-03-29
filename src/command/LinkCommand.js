@@ -6,7 +6,9 @@ import TextCommand from '../editor/TextCommand.js';
  */
 export default class LinkCommand extends TextCommand {
     /**
-     * @inheritDoc
+     * Initializes a new editor link command
+     *
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor, 'a', LinkDialog);

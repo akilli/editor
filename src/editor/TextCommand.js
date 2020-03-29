@@ -5,7 +5,11 @@ import Command from './Command.js';
  */
 export default class TextCommand extends Command {
     /**
-     * @inheritDoc
+     * Initializes a new editor text command with given tag name
+     *
+     * @param {Editor} editor
+     * @param {String} tagName
+     * @param {?Function} [dialog = null]
      */
     constructor(editor, tagName, dialog = null) {
         super(editor, tagName, dialog);

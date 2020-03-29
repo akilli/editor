@@ -5,7 +5,10 @@ import Dialog from '../editor/Dialog.js';
  */
 export default class TableDialog extends Dialog {
     /**
-     * @inheritDoc
+     * Initializes a new editor table dialog
+     *
+     * @param {Editor} editor
+     * @param {Function} save
      */
     constructor(editor, save) {
         super(editor, save);

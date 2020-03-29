@@ -6,7 +6,9 @@ import TableDialog from '../dialog/TableDialog.js';
  */
 export default class TableCommand extends Command {
     /**
-     * @inheritDoc
+     * Initializes a new editor table command
+     *
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor, null, TableDialog);

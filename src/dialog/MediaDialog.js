@@ -5,7 +5,10 @@ import Dialog from '../editor/Dialog.js';
  */
 export default class MediaDialog extends Dialog {
     /**
-     * @inheritDoc
+     * Initializes a new editor media dialog
+     *
+     * @param {Editor} editor
+     * @param {Function} save
      */
     constructor(editor, save) {
         super(editor, save);
