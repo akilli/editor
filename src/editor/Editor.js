@@ -5,7 +5,6 @@ import Filter from './Filter.js';
 import Observer from './Observer.js';
 import Tag from './Tag.js';
 import TextCommand from './TextCommand.js';
-import configBrowser from '../../cfg/browser.js';
 import configCommand from '../../cfg/command.js';
 import configConverter from '../../cfg/converter.js';
 import configFilter from '../../cfg/filter.js';
@@ -575,34 +574,6 @@ export default class Editor {
         }
 
         return key;
-    }
-
-    /**
-     * Opens a media browser window and registers a listener for communication between editor and browser windows
-     *
-     * @param {String} url
-     * @param {Function} call
-     * @param {String} [name = 'browser']
-     * @param {Object.<String, String>} [opts = {}]
-     */
-    browser(url, call, name = 'browser', opts = {}) {
-        if (!url || typeof call !== 'function' || !name) {
-            return;
-        }
-
-        const base = {height: `${this.window.screen.height}`, width: `${this.window.screen.width}`};
-        const merged = Object.assign(base, configBrowser, opts);
-        const features = Object.entries(merged).map(x => `${x[0]}=${x[1]}`).join(',');
-        const win = this.window.open(url, name, features);
-        const a = this.createElement('a', {href: url});
-        const origin = a.origin;
-
-        this.window.addEventListener('message', ev => {
-            if (ev.origin === origin && ev.source === win) {
-                call(ev.data);
-                win.close();
-            }
-        }, false);
     }
 
     /**

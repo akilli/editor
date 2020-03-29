@@ -1,3 +1,4 @@
+import BrowserDialog from '../dialog/BrowserDialog.js';
 import Command from '../editor/Command.js';
 import Media from '../media/Media.js';
 import MediaDialog from '../dialog/MediaDialog.js';
@@ -18,6 +19,10 @@ export default class MediaCommand extends Command {
             throw 'No media element';
         }
 
+        if (this.editor.config.media[type.id]) {
+            this.dialog = new BrowserDialog(this.editor, data => this.insert(data), this.editor.config.media[type.id]);
+        }
+
         /**
          * Type
          *
@@ -25,19 +30,6 @@ export default class MediaCommand extends Command {
          * @readonly
          */
         this.type = type;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    execute() {
-        const browser = this.editor.config.media[this.type.id];
-
-        if (browser) {
-            this.editor.browser(browser, data => this.insert(data));
-        } else {
-            super.execute();
-        }
     }
 
     /**
