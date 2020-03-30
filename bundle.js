@@ -1,5 +1,5 @@
 import Editor from './src/editor/Editor.js';
-import './gui/editor.css';
-import './gui/editor.woff2';
+import './src/gui/editor.css';
+import './src/gui/editor.woff2';
 
 export default Editor;
