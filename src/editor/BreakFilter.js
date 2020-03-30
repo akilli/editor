@@ -8,10 +8,14 @@ export default class BreakFilter extends Filter {
      * @inheritDoc
      */
     filter(parent, forceRoot = false) {
-        let br;
+        parent.querySelectorAll(':scope > br ').forEach(node => {
+            if (parent.firstChild.isSameNode(node) || node.previousSibling instanceof HTMLBRElement || parent.lastChild.isSameNode(node)) {
+                parent.removeChild(node);
+            }
+        });
 
-        while ((br = parent.firstChild) && br instanceof HTMLBRElement || (br = parent.lastChild) && br instanceof HTMLBRElement) {
-            parent.removeChild(br);
+        if (parent.lastChild instanceof HTMLBRElement) {
+            parent.removeChild(parent.lastChild);
         }
     }
 }
