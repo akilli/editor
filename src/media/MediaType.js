@@ -54,9 +54,9 @@ for (let [, type] of Object.entries(types)) {
 }
 
 /**
- * Media
+ * Media Type
  */
-export default class Media {
+export default class MediaType {
     /**
      * Returns given media type from given element or null
      *
