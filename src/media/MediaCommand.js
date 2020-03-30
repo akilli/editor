@@ -1,7 +1,7 @@
-import BrowserDialog from '../dialog/BrowserDialog.js';
+import BrowserDialog from '../browser/BrowserDialog.js';
 import Command from '../editor/Command.js';
-import Media from '../media/Media.js';
-import MediaDialog from '../dialog/MediaDialog.js';
+import Media from './Media.js';
+import MediaDialog from './MediaDialog.js';
 
 /**
  * Media Command

@@ -1,5 +1,5 @@
-import ElementConverter from '../src/converter/ElementConverter.js';
-import TextConverter from '../src/converter/TextConverter.js';
+import ElementConverter from '../src/editor/ElementConverter.js';
+import TextConverter from '../src/editor/TextConverter.js';
 
 /**
  * Tag converter configuration

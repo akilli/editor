@@ -1,12 +1,12 @@
-import BlockquoteCommand from '../src/command/BlockquoteCommand.js';
-import DetailsCommand from '../src/command/DetailsCommand.js';
-import FullscreenCommand from '../src/command/FullscreenCommand.js';
-import HeadingCommand from '../src/command/HeadingCommand.js';
-import LinkCommand from '../src/command/LinkCommand.js';
-import ListCommand from '../src/command/ListCommand.js';
-import MediaCommand from '../src/command/MediaCommand.js';
-import ParagraphCommand from '../src/command/ParagraphCommand.js';
-import TableCommand from '../src/command/TableCommand.js';
+import BlockquoteCommand from '../src/blockquote/BlockquoteCommand.js';
+import DetailsCommand from '../src/details/DetailsCommand.js';
+import FullscreenCommand from '../src/fullscreen/FullscreenCommand.js';
+import HeadingCommand from '../src/heading/HeadingCommand.js';
+import LinkCommand from '../src/link/LinkCommand.js';
+import ListCommand from '../src/list/ListCommand.js';
+import MediaCommand from '../src/media/MediaCommand.js';
+import ParagraphCommand from '../src/paragraph/ParagraphCommand.js';
+import TableCommand from '../src/table/TableCommand.js';
 import TextCommand from '../src/editor/TextCommand.js';
 
 /**

@@ -1,7 +1,7 @@
-import BrFilter from '../src/filter/BrFilter.js';
-import ContentFilter from '../src/filter/ContentFilter.js';
-import FigureFilter from '../src/filter/FigureFilter.js';
-import TableFilter from '../src/filter/TableFilter.js';
+import BreakFilter from '../src/editor/BreakFilter.js';
+import ContentFilter from '../src/editor/ContentFilter.js';
+import FigureFilter from '../src/figure/FigureFilter.js';
+import TableFilter from '../src/table/TableFilter.js';
 
 /**
  * Filter configuration
@@ -10,7 +10,7 @@ import TableFilter from '../src/filter/TableFilter.js';
  */
 export default {
     content: editor => new ContentFilter(editor),
-    br: editor => new BrFilter(editor),
+    break: editor => new BreakFilter(editor),
     figure: editor => new FigureFilter(editor),
     table: editor => new TableFilter(editor),
 }

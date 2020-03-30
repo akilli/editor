@@ -1,9 +1,9 @@
-import Filter from '../editor/Filter.js';
+import Filter from './Filter.js';
 
 /**
  * Trims br elements
  */
-export default class BrFilter extends Filter {
+export default class BreakFilter extends Filter {
     /**
      * @inheritDoc
      */

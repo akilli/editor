@@ -1,4 +1,4 @@
-import Filter from '../editor/Filter.js';
+import Filter from './Filter.js';
 
 /**
  * Content filter

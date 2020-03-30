@@ -1,4 +1,4 @@
-import LinkDialog from '../dialog/LinkDialog.js';
+import LinkDialog from './LinkDialog.js';
 import TextCommand from '../editor/TextCommand.js';
 
 /**

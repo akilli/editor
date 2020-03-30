@@ -1,4 +1,4 @@
-import Converter from '../editor/Converter.js';
+import Converter from './Converter.js';
 
 /**
  * HTML Element-to-Text Converter

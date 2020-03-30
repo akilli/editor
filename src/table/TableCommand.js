@@ -1,5 +1,5 @@
 import Command from '../editor/Command.js';
-import TableDialog from '../dialog/TableDialog.js';
+import TableDialog from './TableDialog.js';
 
 /**
  * Table Command
