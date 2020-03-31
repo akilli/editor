@@ -2,7 +2,6 @@ import BlockquoteCommand from '../src/blockquote/BlockquoteCommand.js';
 import Command from '../src/editor/Command.js';
 import DetailsCommand from '../src/details/DetailsCommand.js';
 import FullscreenCommand from '../src/fullscreen/FullscreenCommand.js';
-import HeadingCommand from '../src/heading/HeadingCommand.js';
 import LinkCommand from '../src/link/LinkCommand.js';
 import ListCommand from '../src/list/ListCommand.js';
 import MediaCommand from '../src/media/MediaCommand.js';
@@ -24,8 +23,8 @@ export default {
     keyboard: editor => new Command(editor, 'kbd'),
     link: editor => new LinkCommand(editor),
     paragraph: editor => new Command(editor, 'p'),
-    heading: editor => new HeadingCommand(editor, 'h2'),
-    subheading: editor => new HeadingCommand(editor, 'h3'),
+    heading: editor => new Command(editor, 'h2'),
+    subheading: editor => new Command(editor, 'h3'),
     unorderedlist: editor => new ListCommand(editor, 'ul'),
     orderedlist: editor => new ListCommand(editor, 'ol'),
     blockquote: editor => new BlockquoteCommand(editor),
