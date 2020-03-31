@@ -18,7 +18,7 @@ export default class MediaCommand extends Command {
 
         let type;
 
-        if (!this.tag || this.tag.group !== 'media' || !(type = MediaType.fromElement(this.tag.name))) {
+        if (!this.tag || !(type = MediaType.fromElement(this.tag.name))) {
             throw 'No media element';
         }
 
