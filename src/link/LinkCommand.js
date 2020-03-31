@@ -1,10 +1,10 @@
+import Command from '../editor/Command.js';
 import LinkDialog from './LinkDialog.js';
-import TextCommand from '../editor/TextCommand.js';
 
 /**
  * Link Command
  */
-export default class LinkCommand extends TextCommand {
+export default class LinkCommand extends Command {
     /**
      * Initializes a new editor link command
      *
@@ -17,7 +17,7 @@ export default class LinkCommand extends TextCommand {
     /**
      * Inserts, updates or removes link element
      *
-     * @param {String} url
+     * @param {String} href
      */
     insert({href = null} = {}) {
         const sel = this.editor.getSelectedElement();

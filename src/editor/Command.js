@@ -57,7 +57,11 @@ export default class Command {
       * @param {Object} [data = {}]
       */
     insert(data = {}) {
-        throw 'Not implemented';
+        if (this.tag && this.tag.group === 'text') {
+            this.editor.formatText(this.editor.createElement(this.tag.name));
+        } else if (this.tag) {
+            this.editor.insert(this.editor.createElement(this.tag.name));
+        }
     }
 
     /**

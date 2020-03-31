@@ -1,4 +1,5 @@
 import BlockquoteCommand from '../src/blockquote/BlockquoteCommand.js';
+import Command from '../src/editor/Command.js';
 import DetailsCommand from '../src/details/DetailsCommand.js';
 import FullscreenCommand from '../src/fullscreen/FullscreenCommand.js';
 import HeadingCommand from '../src/heading/HeadingCommand.js';
@@ -7,7 +8,6 @@ import ListCommand from '../src/list/ListCommand.js';
 import MediaCommand from '../src/media/MediaCommand.js';
 import ParagraphCommand from '../src/paragraph/ParagraphCommand.js';
 import TableCommand from '../src/table/TableCommand.js';
-import TextCommand from '../src/editor/TextCommand.js';
 
 /**
  * Commands configuration
@@ -16,13 +16,13 @@ import TextCommand from '../src/editor/TextCommand.js';
  */
 export default {
     fullscreen: editor => new FullscreenCommand(editor),
-    bold: editor => new TextCommand(editor, 'strong'),
-    italic: editor => new TextCommand(editor, 'i'),
-    definition: editor => new TextCommand(editor, 'dfn'),
-    quote: editor => new TextCommand(editor, 'q'),
-    cite: editor => new TextCommand(editor, 'cite'),
-    mark: editor => new TextCommand(editor, 'mark'),
-    keyboard: editor => new TextCommand(editor, 'kbd'),
+    bold: editor => new Command(editor, 'strong'),
+    italic: editor => new Command(editor, 'i'),
+    definition: editor => new Command(editor, 'dfn'),
+    quote: editor => new Command(editor, 'q'),
+    cite: editor => new Command(editor, 'cite'),
+    mark: editor => new Command(editor, 'mark'),
+    keyboard: editor => new Command(editor, 'kbd'),
     link: editor => new LinkCommand(editor),
     paragraph: editor => new ParagraphCommand(editor),
     heading: editor => new HeadingCommand(editor, 'h2'),

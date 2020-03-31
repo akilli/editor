@@ -4,7 +4,6 @@ import Converter from './Converter.js';
 import Filter from './Filter.js';
 import Observer from './Observer.js';
 import Tag from './Tag.js';
-import TextCommand from './TextCommand.js';
 import configCommand from '../../cfg/command.js';
 import configConverter from '../../cfg/converter.js';
 import configFilter from '../../cfg/filter.js';
@@ -254,7 +253,7 @@ export default class Editor {
                 cmd[1].execute();
             });
 
-            if (cmd[1] instanceof TextCommand) {
+            if (cmd[1].tag && cmd[1].tag.group === 'text') {
                 this.toolbarEditable.appendChild(item);
             } else {
                 this.toolbarMain.appendChild(item);
