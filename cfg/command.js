@@ -6,7 +6,6 @@ import HeadingCommand from '../src/heading/HeadingCommand.js';
 import LinkCommand from '../src/link/LinkCommand.js';
 import ListCommand from '../src/list/ListCommand.js';
 import MediaCommand from '../src/media/MediaCommand.js';
-import ParagraphCommand from '../src/paragraph/ParagraphCommand.js';
 import TableCommand from '../src/table/TableCommand.js';
 
 /**
@@ -24,7 +23,7 @@ export default {
     mark: editor => new Command(editor, 'mark'),
     keyboard: editor => new Command(editor, 'kbd'),
     link: editor => new LinkCommand(editor),
-    paragraph: editor => new ParagraphCommand(editor),
+    paragraph: editor => new Command(editor, 'p'),
     heading: editor => new HeadingCommand(editor, 'h2'),
     subheading: editor => new HeadingCommand(editor, 'h3'),
     unorderedlist: editor => new ListCommand(editor, 'ul'),
