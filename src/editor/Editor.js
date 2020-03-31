@@ -26,22 +26,6 @@ export default class Editor {
             throw 'No HTML element';
         }
 
-        const element = orig.ownerDocument.createElement('div');
-        const content = orig.ownerDocument.createElement('div');
-        const toolbarMain = orig.ownerDocument.createElement('div');
-        const toolbarEditable = orig.ownerDocument.createElement('div');
-
-        element.classList.add('editor');
-        content.classList.add('editor-content');
-        toolbarMain.classList.add('editor-toolbar', 'editor-toolbar-main');
-        toolbarEditable.classList.add('editor-toolbar', 'editor-toolbar-editable');
-
-        orig.hidden = true;
-        orig.insertAdjacentElement('afterend', element);
-        element.appendChild(toolbarMain);
-        element.appendChild(content);
-        element.appendChild(toolbarEditable);
-
         /**
          * Corresponding DOM element of the source
          *
@@ -69,34 +53,41 @@ export default class Editor {
         /**
          * Corresponding DOM element of the editor
          *
-         * @type {HTMLDivElement}
+         * @type {HTMLElement}
          * @readonly
          */
-        this.element = element;
+        this.element = this.createElement('div', {class: 'editor'});
 
         /**
          * Corresponding DOM element of the editor content
          *
-         * @type {HTMLDivElement}
+         * @type {HTMLElement}
          * @readonly
          */
-        this.content = content;
+        this.content = this.createElement('div', {class: 'editor-content'});
 
         /**
          * Corresponding DOM element of the main toolbar
          *
-         * @type {HTMLDivElement}
+         * @type {HTMLElement}
          * @readonly
          */
-        this.toolbarMain = toolbarMain;
+        this.toolbarMain = this.createElement('div', {class: 'editor-toolbar editor-toolbar-main'});
 
         /**
          * Corresponding DOM element of the editable toolbar
          *
-         * @type {HTMLDivElement}
+         * @type {HTMLElement}
          * @readonly
          */
-        this.toolbarEditable = toolbarEditable;
+        this.toolbarEditable = this.createElement('div', {class: 'editor-toolbar editor-toolbar-editable'});
+
+        // Add elements
+        this.orig.hidden = true;
+        this.orig.insertAdjacentElement('afterend', this.element);
+        this.element.appendChild(this.toolbarMain);
+        this.element.appendChild(this.content);
+        this.element.appendChild(this.toolbarEditable);
 
         /**
          * Configuration

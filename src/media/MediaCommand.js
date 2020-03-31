@@ -53,11 +53,10 @@ export default class MediaCommand extends Command {
             || (type = await MediaType.fromUrl(data.src)) && type.id === this.type.id
             || !type && a.origin !== origin
         ) {
-            const figure = this.editor.createElement('figure');
+            const figure = this.editor.createElement('figure', {class: this.type.id});
             const media = this.editor.createElement(this.type.element);
             const figcaption = this.editor.createElement('figcaption');
 
-            figure.classList.add(this.type.id);
             figure.appendChild(media);
             this.tag.attributes.forEach(item => {
                 if (['allowfullscreen', 'controls'].includes(item)) {

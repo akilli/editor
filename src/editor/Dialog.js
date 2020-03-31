@@ -51,11 +51,11 @@ export default class Dialog {
 
         const sel = this.editor.window.getSelection();
         const range = sel.rangeCount > 0 ? sel.getRangeAt(0) : null;
-        const dialog = this.editor.createElement('dialog');
+        const dialog = this.editor.createElement('dialog', {class: 'editor-dialog'});
         const form = this.editor.createElement('form');
         const fieldset = this.editor.createElement('fieldset');
-        const cancel = this.editor.createElement('button');
-        const save = this.editor.createElement('button');
+        const cancel = this.editor.createElement('button', {type: 'button', 'data-action': 'cancel'});
+        const save = this.editor.createElement('button', {'data-action': 'save'});
         const close = () => {
             if (range) {
                 sel.removeAllRanges();
@@ -66,7 +66,6 @@ export default class Dialog {
         };
 
         dialog.appendChild(form);
-        dialog.classList.add('editor-dialog');
         dialog.addEventListener('click', ev => {
             if (ev.target === dialog) {
                 close();
@@ -104,12 +103,9 @@ export default class Dialog {
             this.save(data);
         });
         cancel.textContent = this.editor.t('Cancel');
-        cancel.type = 'button';
-        cancel.setAttribute('data-action', 'cancel');
         cancel.addEventListener('click', close);
         form.appendChild(cancel);
         save.textContent = this.editor.t('Save');
-        save.setAttribute('data-action', 'save');
         form.appendChild(save);
 
         this.editor.element.appendChild(dialog);
