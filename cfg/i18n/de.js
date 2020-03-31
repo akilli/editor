@@ -18,7 +18,6 @@ export default {
     'Invalid observer': 'Ungültiger Beobachter',
     'Link': 'Link',
     'Media element': 'Medienelement',
-    'No heading element': 'Kein Überschriftenelement',
     'No HTML element': 'Kein HTML-Element',
     'No list element': 'Kein Listenelement',
     'No media element': 'Kein Medienelement',
