@@ -294,21 +294,15 @@ export default class Editor {
      * Inserts an element at the editor element or optionally after given reference element
      *
      * @param {HTMLElement} element
-     * @param {?HTMLElement} [ref = null]
      */
-    insert(element, ref = null) {
-        if (!(element instanceof HTMLElement) || ref && !(ref instanceof HTMLElement)) {
+    insert(element) {
+        if (!(element instanceof HTMLElement)) {
             throw 'Invalid HTML element';
-        }
-
-        const parent = ref ? ref.parentElement : this.content;
-        const parentName = this.getTagName(parent);
-
-        if (!this.content.contains(parent) || !this.allowed(element.tagName, parentName)) {
+        } else if (!this.allowed(element.tagName, 'root')) {
             throw 'Element is not allowed here';
         }
 
-        parent.insertBefore(element, ref ? ref.nextElementSibling : null);
+        this.content.appendChild(element);
     }
 
     /**
