@@ -110,7 +110,7 @@ export default class EditableObserver extends Observer {
         const allowed = ['blockquote', 'details', 'ol', 'ul'].includes(ev.target.parentElement.tagName.toLowerCase());
 
         if (ev.key === 'Backspace' && !ev.shiftKey && !ev.target.textContent && widget && (widget.isSameNode(ev.target) || allowed)) {
-            const target = widget.isSameNode(ev.target) || !ev.target.matches(':only-child') ? ev.target : widget;
+            const target = widget.isSameNode(ev.target) || ev.target.matches(':only-child') ? widget : ev.target;
 
             if (target.previousElementSibling) {
                 this.editor.focusEnd(target.previousElementSibling);
