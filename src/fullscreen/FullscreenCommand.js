@@ -10,10 +10,8 @@ export default class FullscreenCommand extends Command {
     execute() {
         if (this.editor.element.classList.contains('editor-fullscreen')) {
             this.editor.element.classList.remove('editor-fullscreen');
-            this.editor.document.documentElement.removeAttribute('data-fullscreen');
         } else {
             this.editor.element.classList.add('editor-fullscreen');
-            this.editor.document.documentElement.setAttribute('data-fullscreen', '');
         }
     }
 }
