@@ -291,11 +291,40 @@ export default class Editor {
     }
 
     /**
-     * Inserts an element as last child of editor element
+     * Insert text
+     *
+     * @param {String} text
+     */
+    insertText(text) {
+        this.document.execCommand('inserttext', false, text);
+    }
+
+    /**
+     * Inserts widget element or adds or removes text formatting element
+     *
+     * @see insertWidget()
+     * @see formatText()
      *
      * @param {HTMLElement} element
      */
     insert(element) {
+        let tag;
+
+        if (!(element instanceof HTMLElement) || !(tag = this.getTag(element.tagName))) {
+            throw 'Invalid HTML element';
+        }
+
+        tag.group === 'text' ? this.formatText(element) : this.insertWidget(element);
+    }
+
+    /**
+     * Inserts a widget element as last child of editor element
+     *
+     * @private
+     *
+     * @param {HTMLElement} element
+     */
+    insertWidget(element) {
         if (!(element instanceof HTMLElement)) {
             throw 'Invalid HTML element';
         } else if (!this.allowed(element.tagName, 'root')) {
@@ -306,16 +335,9 @@ export default class Editor {
     }
 
     /**
-     * Insert text
-     *
-     * @param {String} text
-     */
-    insertText(text) {
-        this.document.execCommand('inserttext', false, text);
-    }
-
-    /**
      * Adds or removes formatting to/from selected text
+     *
+     * @private
      *
      * @param {HTMLElement} element
      */
