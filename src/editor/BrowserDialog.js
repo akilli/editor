@@ -1,4 +1,4 @@
-import Dialog from '../editor/Dialog.js';
+import Dialog from './Dialog.js';
 
 /**
  * Default browser window configuration
