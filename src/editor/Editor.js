@@ -291,7 +291,7 @@ export default class Editor {
     }
 
     /**
-     * Inserts an element at the editor element or optionally after given reference element
+     * Inserts an element as last child of editor element
      *
      * @param {HTMLElement} element
      */
