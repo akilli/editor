@@ -67,6 +67,13 @@ export default class Command {
      * @return {Object}
      */
     oldData() {
-        return {};
+        const attributes = {};
+        const sel = this.editor.getSelectedElement();
+
+        if (sel instanceof HTMLElement && sel.tagName.toLowerCase() === this.element.name) {
+            Array.from(sel.attributes).forEach(attribute => attributes[attribute.nodeName] = attribute.nodeValue);
+        }
+
+        return attributes;
     }
 }

@@ -32,13 +32,4 @@ export default class LinkCommand extends Command {
             old.parentElement.replaceChild(this.editor.createText(old.textContent), old);
         }
     }
-
-    /**
-     * @inheritDoc
-     */
-    oldData() {
-        const sel = this.editor.getSelectedElement();
-
-        return sel instanceof HTMLAnchorElement ? {href: sel.getAttribute('href')} : {};
-    }
 }
