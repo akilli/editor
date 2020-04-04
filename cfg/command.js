@@ -3,7 +3,6 @@ import AudioElement from '../src/audio/AudioElement.js';
 import BlockquoteElement from '../src/blockquote/BlockquoteElement.js';
 import Command from '../src/editor/Command.js';
 import DetailsElement from '../src/details/DetailsElement.js';
-import FullscreenCommand from '../src/fullscreen/FullscreenCommand.js';
 import Element from '../src/editor/Element.js';
 import IframeDialog from '../src/iframe/IframeDialog.js';
 import IframeElement from '../src/iframe/IframeElement.js';
@@ -22,7 +21,6 @@ import VideoElement from '../src/video/VideoElement.js';
  * @type {Object.<String, Function>}
  */
 export default {
-    fullscreen: editor => new FullscreenCommand(editor),
     bold: editor => new Command(editor, new Element(editor, 'strong')),
     italic: editor => new Command(editor, new Element(editor, 'i')),
     definition: editor => new Command(editor, new Element(editor, 'dfn')),
