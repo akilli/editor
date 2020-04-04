@@ -36,22 +36,26 @@ export default class MediaCommand extends Command {
     }
 
     /**
-     * @inheritDoc
+     * Insert media
+     *
+     * @param {?String} [type = null]
+     * @param {String} [caption = '']
+     * @param {Object.<String, String>} atttibutes
      */
-    async insert(data = {}) {
-        if (!data.src) {
+    async insert({type = null, caption = '', ...attributes} = {}) {
+        if (!attributes.src) {
             return;
         }
 
-        const a = this.editor.createElement('a', {href: data.src});
+        const a = this.editor.createElement('a', {href: attributes.src});
         const origin = this.editor.window.origin || this.editor.window.location.origin;
-        let type;
+        let mediaType;
 
-        data.src = a.origin === origin ? a.pathname : a.href;
+        attributes.src = a.origin === origin ? a.pathname : a.href;
 
-        if (data.type && data.type === this.type.id
-            || (type = await MediaType.fromUrl(data.src)) && type.id === this.type.id
-            || !type && a.origin !== origin
+        if (type && type === this.type.id
+            || (mediaType = await MediaType.fromUrl(attributes.src)) && mediaType.id === this.type.id
+            || !mediaType && a.origin !== origin
         ) {
             const figure = this.editor.createElement('figure', {class: this.type.id});
             const media = this.editor.createElement(this.type.element);
@@ -61,11 +65,11 @@ export default class MediaCommand extends Command {
             this.tag.attributes.forEach(item => {
                 if (['allowfullscreen', 'controls'].includes(item)) {
                     media.setAttribute(item, item);
-                } else if (data[item]) {
-                    media.setAttribute(item, data[item]);
+                } else if (attributes[item]) {
+                    media.setAttribute(item, attributes[item]);
                 }
             });
-            figcaption.innerHTML = data.caption || '';
+            figcaption.innerHTML = caption;
             figure.appendChild(figcaption);
 
             this.editor.insert(figure);
