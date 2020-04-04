@@ -163,7 +163,7 @@ export default class Editor {
             let item;
 
             if (typeof config[key] !== 'function' || !(item = config[key](this)) || !(item instanceof constructor)) {
-                throw 'Invalid constructor';
+                throw 'Invalid argument';
             }
 
             map.set(key, item);
@@ -260,7 +260,7 @@ export default class Editor {
      */
     register(call, config = {childList: true, subtree: true}) {
         if (typeof call !== 'function') {
-            throw 'Invalid observer';
+            throw 'Invalid argument';
         }
 
         const mutation = new MutationObserver(call);

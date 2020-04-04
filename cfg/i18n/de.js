@@ -13,8 +13,6 @@ export default {
     'Insert URL to add a link or leave empty to unlink': 'URL eingeben um zu verlinken oder leer lassen um Link zu entfernen',
     'Insert URL to media element': 'URL zum Medienelement eingeben',
     'Invalid argument': 'Ungültiges Argument',
-    'Invalid constructor': 'Ungültiger Konstruktor',
-    'Invalid observer': 'Ungültiger Beobachter',
     'Link': 'Link',
     'Media element': 'Medienelement',
     'No HTML element': 'Kein HTML-Element',
