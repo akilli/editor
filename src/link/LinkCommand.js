@@ -17,7 +17,7 @@ export default class LinkCommand extends Command {
     /**
      * Inserts, updates or removes link element
      *
-     * @param {String} href
+     * @param {?String} href
      */
     insert({href = null} = {}) {
         const sel = this.editor.getSelectedElement();
