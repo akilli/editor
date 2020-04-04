@@ -201,25 +201,13 @@ dialog.editor-dialog select {
  * Toolbar
  */
 .editor-toolbar {
+    position: sticky;
+    top: 0;
     display: flex;
     padding: 0.6875rem;
     color: #000;
     background: #fff;
     border: 0.0625rem solid var(--editor-border);
-}
-
-.editor-toolbar-main {
-    position: sticky;
-    top: 0;
-}
-
-.editor-toolbar-editable {
-    position: absolute;
-    display: none;
-}
-
-.editor-toolbar-editable.editor-toolbar-active {
-    display: flex;
 }
 
 /**
@@ -235,10 +223,6 @@ dialog.editor-dialog select {
 }
 
 .editor-toolbar [data-cmd]::before {
-    font-size: 1rem;
-}
-
-.editor-toolbar-main [data-cmd]::before {
     font-size: 1.5rem;
 }
 

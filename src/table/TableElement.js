@@ -1,35 +1,30 @@
-import Command from '../editor/Command.js';
-import TableDialog from './TableDialog.js';
+import Element from '../editor/Element.js';
 
 /**
- * Table Command
+ * Table Element
  */
-export default class TableCommand extends Command {
+export default class TableElement extends Element {
     /**
-     * Initializes a new editor table command
-     *
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, null, TableDialog);
-    }
-
-    /**
-     * Inserts table
+     * Creates table element
      *
      * @param {Number} rows
      * @param {Number} cols
+     * @param {String} [caption = '']
+     *
+     * @return {HTMLElement}
      */
-    insert({rows = 1, cols = 1} = {}) {
+    create({rows = 1, cols = 1, caption = ''} = {}) {
         if (rows <= 0 || cols <= 0) {
-            return;
+            throw 'Invalid argument';
         }
 
         const figure = this.editor.createElement('figure', {class: 'table'});
         const table = this.editor.createElement('table');
+        const figcaption = this.editor.createElement('figcaption');
 
         figure.appendChild(table);
-        figure.appendChild(this.editor.createElement('figcaption'));
+        figcaption.innerHTML = caption;
+        figure.appendChild(figcaption);
 
         ['thead', 'tbody', 'tfoot'].forEach(section => {
             const item = this.editor.createElement(section);
@@ -49,6 +44,6 @@ export default class TableCommand extends Command {
             }
         });
 
-        this.editor.insert(figure);
+        return figure;
     }
 }

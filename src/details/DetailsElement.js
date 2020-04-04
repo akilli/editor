@@ -1,16 +1,17 @@
-import Command from '../editor/Command.js';
+import Element from '../editor/Element.js';
 
 /**
- * Details Command
+ * Details Element
  */
-export default class DetailsCommand extends Command {
+export default class DetailsElement extends Element {
     /**
      * @inheritDoc
      */
-    insert(data = {}) {
+    create(attributes = {}) {
         const details = this.editor.createElement('details');
         details.appendChild(this.editor.createElement('summary'));
         details.appendChild(this.editor.createElement('p'));
-        this.editor.insert(details);
+
+        return details;
     }
 }

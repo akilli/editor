@@ -1,21 +1,20 @@
 import Dialog from './Dialog.js';
 import Editor from './Editor.js';
+import Element from './Element.js';
 
 /**
  * Command
  */
 export default class Command {
     /**
-     * Initializes a new editor command optionally with given tag name
+     * Initializes a new editor command optionally with given element and dialog
      *
      * @param {Editor} editor
-     * @param {?String} [tagName = null]
+     * @param {?Element} [element = null]
      * @param {?Function} [dialog = null]
      */
-    constructor(editor, tagName = null, dialog = null) {
-        let tag;
-
-        if (!(editor instanceof Editor) || tagName && !(tag = editor.getTag(tagName)) || dialog && !(dialog instanceof Dialog.constructor)) {
+    constructor(editor, element = null, dialog = null) {
+        if (!(editor instanceof Editor) || element && !(element instanceof Element) || dialog && !(dialog instanceof Dialog.constructor)) {
             throw 'Invalid argument';
         }
 
@@ -28,12 +27,12 @@ export default class Command {
         this.editor = editor;
 
         /**
-         * Tag
+         * Element
          *
-         * @type {?Tag}
+         * @type {?Element}
          * @readonly
          */
-        this.tag = tag;
+        this.element = element;
 
         /**
          * Dialog
@@ -54,11 +53,11 @@ export default class Command {
      /**
       * Insert
       *
-      * @param {Object} [data = {}]
+      * @param {Object.<String, String>} [attributes = {}]
       */
-    insert(data = {}) {
-        if (this.tag) {
-            this.editor.insert(this.editor.createElement(this.tag.name));
+    insert(attributes = {}) {
+        if (this.element) {
+            this.element.insert(attributes);
         }
     }
 

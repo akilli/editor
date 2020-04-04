@@ -1,4 +1,5 @@
 import Command from '../editor/Command.js';
+import Element from '../editor/Element.js';
 import LinkDialog from './LinkDialog.js';
 
 /**
@@ -11,7 +12,7 @@ export default class LinkCommand extends Command {
      * @param {Editor} editor
      */
     constructor(editor) {
-        super(editor, 'a', LinkDialog);
+        super(editor, new Element(editor, 'a'), LinkDialog);
     }
 
     /**
@@ -23,11 +24,11 @@ export default class LinkCommand extends Command {
         const sel = this.editor.getSelectedElement();
         const old = sel instanceof HTMLAnchorElement ? sel : null;
 
-        if (!!href && !!old) {
+        if (href && old) {
             old.setAttribute('href', href);
-        } else if (!!href) {
-            this.editor.insert(this.editor.createElement(this.tag.name, {href: href}));
-        } else if (!!old) {
+        } else if (href) {
+            this.element.insert({href: href});
+        } else if (old) {
             old.parentElement.replaceChild(this.editor.createText(old.textContent), old);
         }
     }

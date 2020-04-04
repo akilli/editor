@@ -72,22 +72,13 @@ export default class Editor {
          * @type {HTMLElement}
          * @readonly
          */
-        this.toolbarMain = this.createElement('div', {class: 'editor-toolbar editor-toolbar-main'});
-
-        /**
-         * Corresponding DOM element of the editable toolbar
-         *
-         * @type {HTMLElement}
-         * @readonly
-         */
-        this.toolbarEditable = this.createElement('div', {class: 'editor-toolbar editor-toolbar-editable'});
+        this.toolbar = this.createElement('div', {class: 'editor-toolbar'});
 
         // Add elements
         this.orig.hidden = true;
         this.orig.insertAdjacentElement('afterend', this.element);
-        this.element.appendChild(this.toolbarMain);
+        this.element.appendChild(this.toolbar);
         this.element.appendChild(this.content);
-        this.element.appendChild(this.toolbarEditable);
 
         /**
          * Configuration
@@ -212,23 +203,6 @@ export default class Editor {
      * @private
      */
     initToolbar() {
-        this.content.addEventListener('selectstart', () => {
-            const active = this.document.activeElement;
-
-            if (active.isContentEditable && this.allowedGroup('text', active.tagName)) {
-                this.toolbarEditable.classList.add('editor-toolbar-active');
-                this.toolbarEditable.style.top = (active.offsetTop + active.offsetParent.offsetTop - this.toolbarEditable.clientHeight) + 'px';
-            }
-        });
-        this.document.addEventListener('selectionchange', () => {
-            const active = this.document.activeElement;
-
-            if (this.window.getSelection().isCollapsed || !active.isContentEditable || !this.content.contains(active)) {
-                this.toolbarEditable.classList.remove('editor-toolbar-active');
-                this.toolbarEditable.removeAttribute('style');
-            }
-        });
-
         for (let cmd of this.commands.entries()) {
             const item = this.createElement('button', {type: 'button', 'data-cmd': cmd[0], title: cmd[0]}, cmd[0]);
             item.addEventListener('click', () => {
@@ -238,12 +212,7 @@ export default class Editor {
 
                 cmd[1].execute();
             });
-
-            if (cmd[1].tag && cmd[1].tag.group === 'text') {
-                this.toolbarEditable.appendChild(item);
-            } else {
-                this.toolbarMain.appendChild(item);
-            }
+            this.toolbar.appendChild(item);
         }
     }
 
