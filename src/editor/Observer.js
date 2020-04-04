@@ -11,7 +11,7 @@ export default class Observer {
      */
     constructor(editor) {
         if (!(editor instanceof Editor)) {
-            throw 'Invalid editor';
+            throw 'Invalid argument';
         }
 
         /**

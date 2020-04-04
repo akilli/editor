@@ -14,7 +14,6 @@ export default {
     'Insert URL to media element': 'URL zum Medienelement eingeben',
     'Invalid argument': 'Ungültiges Argument',
     'Invalid constructor': 'Ungültiger Konstruktor',
-    'Invalid editor': 'Ungültiger Editor',
     'Invalid observer': 'Ungültiger Beobachter',
     'Link': 'Link',
     'Media element': 'Medienelement',
