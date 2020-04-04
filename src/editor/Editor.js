@@ -51,6 +51,14 @@ export default class Editor {
         this.window = this.document.defaultView;
 
         /**
+         * Window origin
+         *
+         * @type {String}
+         * @readonly
+         */
+        this.origin = this.window.origin || this.window.location.origin;
+
+        /**
          * Corresponding DOM element of the editor
          *
          * @type {HTMLElement}
@@ -363,7 +371,9 @@ export default class Editor {
         el.textContent = text;
 
         for (let [key, val] of Object.entries(attributes)) {
-            el.setAttribute(key, `${val}`);
+            if (val) {
+                el.setAttribute(key, `${val}`);
+            }
         }
 
         return el;

@@ -1,9 +1,9 @@
 import Dialog from '../editor/Dialog.js';
 
 /**
- * Media Dialog
+ * Image Dialog
  */
-export default class MediaDialog extends Dialog {
+export default class ImageDialog extends Dialog {
     /**
      * Initializes a new editor media dialog
      *
@@ -13,7 +13,7 @@ export default class MediaDialog extends Dialog {
     constructor(editor, save) {
         super(editor, save);
         this.html = `
-            <legend>${this.editor.t('Media element')}</legend>
+            <legend>${this.editor.t('Image')}</legend>
             <div data-attr="src">
                 <label for="editor-src">${this.editor.t('URL')}</label>
                 <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this.editor.t('Insert URL to media element')}" />

@@ -17,17 +17,13 @@ export default class IframeElement extends Element {
             throw 'No media element';
         }
 
-        const figure = this.editor.createElement('figure', {class: 'iframe'});
-        const media = this.editor.createElement('iframe');
-        const figcaption = this.editor.createElement('figcaption');
         const a = this.editor.createElement('a', {href: attributes.src});
-        const origin = this.editor.window.origin || this.editor.window.location.origin;
-        attributes.src = a.origin === origin ? a.pathname : a.href;
+        attributes.src = a.origin === this.editor.origin ? a.pathname : a.href;
         attributes.allowfullscreen = 'allowfullscreen';
 
-        for (let [key, val] of Object.entries(attributes)) {
-            media.setAttribute(key, `${val}`);
-        }
+        const figure = this.editor.createElement('figure', {class: 'iframe'});
+        const media = this.editor.createElement('iframe', attributes);
+        const figcaption = this.editor.createElement('figcaption');
 
         figure.appendChild(media);
         figcaption.innerHTML = caption;
