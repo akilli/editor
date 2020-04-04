@@ -58,6 +58,17 @@ for (let [, type] of Object.entries(types)) {
  */
 export default class MediaType {
     /**
+     * Returns given media type from given type ID or null
+     *
+     * @param {String} id
+     *
+     * @return {?MediaTypeElement}
+     */
+    static get(id) {
+        return types[id] || null;
+    }
+
+    /**
      * Returns given media type from given element or null
      *
      * @param {String} element
