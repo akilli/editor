@@ -230,12 +230,7 @@ export default class Editor {
         });
 
         for (let cmd of this.commands.entries()) {
-            const item = this.createElement('button', {
-                type: 'button',
-                'data-cmd': cmd[0],
-                title: cmd[0],
-            });
-            item.textContent = cmd[0];
+            const item = this.createElement('button', {type: 'button', 'data-cmd': cmd[0], title: cmd[0]}, cmd[0]);
             item.addEventListener('click', () => {
                 if (!this.window.getSelection().containsNode(this.content, true)) {
                     this.content.focus();
@@ -390,11 +385,13 @@ export default class Editor {
      *
      * @param {String} name
      * @param {Object.<String, String>} [attributes = {}]
+     * @param {String} [text = '']
      *
      * @return {HTMLElement}
      */
-    createElement(name, attributes = {}) {
+    createElement(name, attributes = {}, text = '') {
         const el = this.document.createElement(name);
+        el.textContent = text;
 
         for (let [key, val] of Object.entries(attributes)) {
             el.setAttribute(key, `${val}`);

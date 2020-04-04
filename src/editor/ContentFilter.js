@@ -43,9 +43,7 @@ export default class ContentFilter extends Filter {
                         parent.replaceChild(p, node);
                     }
                 } else if (isRoot && text) {
-                    const p = this.editor.createElement('p');
-                    p.textContent = text;
-                    parent.replaceChild(p, node);
+                    parent.replaceChild(this.editor.createElement('p', {}, text), node);
                 } else if (text) {
                     parent.replaceChild(this.editor.createText(text), node);
                 } else {
@@ -53,9 +51,7 @@ export default class ContentFilter extends Filter {
                 }
             } else if (node instanceof Text) {
                 if (isRoot && node.textContent.trim()) {
-                    const p = this.editor.createElement('p');
-                    p.textContent = node.textContent.trim();
-                    parent.replaceChild(p, node);
+                    parent.replaceChild(this.editor.createElement('p', {}, node.textContent.trim()), node);
                 } else if (isRoot) {
                     parent.removeChild(node);
                 }
