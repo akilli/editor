@@ -261,7 +261,7 @@ export default class Editor {
     }
 
     /**
-     * Returns editor element's innerHTML
+     * Returns editor content element's innerHTML
      *
      * @return {String}
      */
@@ -383,13 +383,13 @@ export default class Editor {
      *
      * @param {String} name
      * @param {Object.<String, String>} [attributes = {}]
-     * @param {String} [text = '']
+     * @param {String} [html = '']
      *
      * @return {HTMLElement}
      */
-    createElement(name, attributes = {}, text = '') {
+    createElement(name, attributes = {}, html = '') {
         const el = this.document.createElement(name);
-        el.textContent = text;
+        el.innerHTML = html;
 
         for (let [key, val] of Object.entries(attributes)) {
             if (val) {

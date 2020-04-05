@@ -29,10 +29,9 @@ export default class TableElement extends Element {
 
         const figure = this.editor.createElement('figure', {class: 'table'});
         const table = this.editor.createElement('table');
-        const figcaption = this.editor.createElement('figcaption');
+        const figcaption = this.editor.createElement('figcaption', {}, caption);
 
         figure.appendChild(table);
-        figcaption.innerHTML = caption;
         figure.appendChild(figcaption);
 
         ['thead', 'tbody', 'tfoot'].forEach(section => {

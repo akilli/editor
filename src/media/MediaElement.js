@@ -32,10 +32,9 @@ export default class MediaElement extends Element {
 
         const figure = this.editor.createElement('figure', {class: this.name});
         const media = this.editor.createElement(this.tagName, attributes);
-        const figcaption = this.editor.createElement('figcaption');
+        const figcaption = this.editor.createElement('figcaption', {}, caption);
 
         figure.appendChild(media);
-        figcaption.innerHTML = caption;
         figure.appendChild(figcaption);
 
         return figure;

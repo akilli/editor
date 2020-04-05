@@ -36,9 +36,6 @@ export default class ElementConverter extends Converter {
      * @return {HTMLElement}
      */
     convert(element) {
-        const newElement = this.editor.createElement(this.target);
-        newElement.innerHTML = element.innerHTML;
-
-        return newElement;
+        return this.editor.createElement(this.target, {}, element.innerHTML);
     }
 }

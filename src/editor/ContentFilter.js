@@ -38,9 +38,7 @@ export default class ContentFilter extends Filter {
                     if (!node.hasChildNodes() && !tag.empty && !(node instanceof HTMLTableCellElement)) {
                         parent.removeChild(node);
                     } else if (isRoot && tag.group === 'text') {
-                        const p = this.editor.createElement('p');
-                        p.innerHTML = node.outerHTML;
-                        parent.replaceChild(p, node);
+                        parent.replaceChild(this.editor.createElement('p', {}, node.outerHTML), node);
                     }
                 } else if (isRoot && text) {
                     parent.replaceChild(this.editor.createElement('p', {}, text), node);
