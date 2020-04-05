@@ -23,7 +23,7 @@ export default [
     editor => new Command(editor, 'cite', new Element(editor, 'cite')),
     editor => new Command(editor, 'mark', new Element(editor, 'mark')),
     editor => new Command(editor, 'keyboard', new Element(editor, 'kbd')),
-    editor => new LinkCommand(editor, 'link'),
+    editor => new LinkCommand(editor),
     editor => new Command(editor, 'paragraph', new Element(editor, 'p')),
     editor => new Command(editor, 'heading', new Element(editor, 'h2')),
     editor => new Command(editor, 'subheading', new Element(editor, 'h3')),

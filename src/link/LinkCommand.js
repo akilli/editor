@@ -9,10 +9,9 @@ export default class LinkCommand extends Command {
      * Initializes a new editor link command
      *
      * @param {Editor} editor
-     * @param {String} name
      */
-    constructor(editor, name) {
-        super(editor, name, new Element(editor, 'a'));
+    constructor(editor) {
+        super(editor, 'link', new Element(editor, 'a'));
     }
 
     /**
