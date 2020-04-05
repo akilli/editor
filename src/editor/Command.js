@@ -45,13 +45,13 @@ export default class Command extends EditorObject {
     }
 
      /**
-      * Insert
+      * Insert element
       *
-      * @param {Object.<String, String>} [attributes = {}]
+      * @param {Object.<String, String>} [data = {}]
       */
-    insert(attributes = {}) {
+    insert(data = {}) {
         if (this.element) {
-            this.element.insert(attributes);
+            this.element.insert(data);
         }
     }
 
@@ -61,13 +61,13 @@ export default class Command extends EditorObject {
      * @return {Object}
      */
     oldData() {
-        const attributes = {};
+        const data = {};
         const sel = this.editor.getSelectedElement();
 
         if (sel instanceof HTMLElement && sel.tagName.toLowerCase() === this.element.name) {
-            Array.from(sel.attributes).forEach(attribute => attributes[attribute.nodeName] = attribute.nodeValue);
+            Array.from(sel.attributes).forEach(attribute => data[attribute.nodeName] = attribute.nodeValue);
         }
 
-        return attributes;
+        return data;
     }
 }
