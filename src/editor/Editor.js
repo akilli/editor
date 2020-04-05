@@ -532,20 +532,6 @@ export default class Editor {
     }
 
     /**
-     * Checks if given group is allowed inside given parent element
-     *
-     * @param {String} group
-     * @param {String} parentName
-     *
-     * @return {Boolean}
-     */
-    allowedGroup(group, parentName) {
-        const parentTag = this.getTag(parentName);
-
-        return parentTag && parentTag.children.includes(group);
-    }
-
-    /**
      * Converts element
      *
      * @param {HTMLElement} element
