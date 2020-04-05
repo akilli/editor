@@ -7,12 +7,12 @@ import WidgetObserver from '../src/editor/WidgetObserver.js';
 /**
  * Observer configuration
  *
- * @type {Object.<String, Observer>}
+ * @type {Function[]}
  */
-export default {
-    editable: editor => new EditableObserver(editor),
-    details: editor => new DetailsObserver(editor),
-    figure: editor => new FigureObserver(editor),
-    table: editor => new TableObserver(editor),
-    widget: editor => new WidgetObserver(editor),
-}
+export default [
+    editor => new EditableObserver(editor, 'editable'),
+    editor => new DetailsObserver(editor, 'details'),
+    editor => new FigureObserver(editor, 'figure'),
+    editor => new TableObserver(editor, 'table'),
+    editor => new WidgetObserver(editor, 'widget'),
+]

@@ -1,30 +1,25 @@
 import Dialog from './Dialog.js';
-import Editor from './Editor.js';
+import EditorObject from './EditorObject.js';
 import Element from './Element.js';
 
 /**
  * Command
  */
-export default class Command {
+export default class Command extends EditorObject {
     /**
      * Initializes a new editor command optionally with given element and dialog
      *
      * @param {Editor} editor
+     * @param {String} name
      * @param {?Element} [element = null]
      * @param {?Function} [dialog = null]
      */
-    constructor(editor, element = null, dialog = null) {
-        if (!(editor instanceof Editor) || element && !(element instanceof Element) || dialog && !(dialog instanceof Dialog.constructor)) {
+    constructor(editor, name, element = null, dialog = null) {
+        super(editor, name);
+
+        if (element && !(element instanceof Element) || dialog && !(dialog instanceof Dialog.constructor)) {
             throw 'Invalid argument';
         }
-
-        /**
-         * Editor
-         *
-         * @type {Editor}
-         * @readonly
-         */
-        this.editor = editor;
 
         /**
          * Element

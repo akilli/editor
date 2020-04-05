@@ -1,28 +1,9 @@
-import Editor from './Editor.js';
+import EditorObject from './EditorObject.js';
 
 /**
  * Filter
  */
-export default class Filter {
-    /**
-     * Initializes a new editor filter
-     *
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        if (!(editor instanceof Editor)) {
-            throw 'Invalid argument';
-        }
-
-        /**
-         * Editor
-         *
-         * @type {Editor}
-         * @readonly
-         */
-        this.editor = editor;
-    }
-
+export default class Filter extends EditorObject {
     /**
      * Filters element
      *

@@ -9,24 +9,23 @@ export default class ElementConverter extends Converter {
      * Initializes a new element converter and with given tag name
      *
      * @param {Editor} editor
-     * @param {String} tagName
+     * @param {String} name
+     * @param {String} target
      */
-    constructor(editor, tagName) {
-        super(editor);
+    constructor(editor, name, target) {
+        super(editor, name);
 
-        const tag = editor.getTag(tagName);
-
-        if (!tag) {
+        if (!target || typeof target !== 'string') {
             throw 'Invalid argument';
         }
 
         /**
-         * The new tag of the converted element
+         * The new tag name of the converted element
          *
-         * @type {?Tag}
+         * @type {String}
          * @readonly
          */
-        this.tag = tag;
+        this.target = target;
     }
 
     /**
@@ -37,7 +36,7 @@ export default class ElementConverter extends Converter {
      * @return {HTMLElement}
      */
     convert(element) {
-        const newElement = this.editor.createElement(this.tag.name);
+        const newElement = this.editor.createElement(this.target);
         newElement.innerHTML = element.innerHTML;
 
         return newElement;

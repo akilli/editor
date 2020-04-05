@@ -18,27 +18,27 @@ import VideoElement from '../src/video/VideoElement.js';
 /**
  * Commands configuration
  *
- * @type {Object.<String, Function>}
+ * @type {Function[]}
  */
-export default {
-    bold: editor => new Command(editor, new Element(editor, 'strong')),
-    italic: editor => new Command(editor, new Element(editor, 'i')),
-    definition: editor => new Command(editor, new Element(editor, 'dfn')),
-    quote: editor => new Command(editor, new Element(editor, 'q')),
-    cite: editor => new Command(editor, new Element(editor, 'cite')),
-    mark: editor => new Command(editor, new Element(editor, 'mark')),
-    keyboard: editor => new Command(editor, new Element(editor, 'kbd')),
-    link: editor => new LinkCommand(editor),
-    paragraph: editor => new Command(editor, new Element(editor, 'p')),
-    heading: editor => new Command(editor, new Element(editor, 'h2')),
-    subheading: editor => new Command(editor, new Element(editor, 'h3')),
-    unorderedlist: editor => new Command(editor, new ListElement(editor, 'ul')),
-    orderedlist: editor => new Command(editor, new ListElement(editor, 'ol')),
-    blockquote: editor => new Command(editor, new BlockquoteElement(editor)),
-    image: editor => new Command(editor, new ImageElement(editor), ImageDialog),
-    video: editor => new Command(editor, new VideoElement(editor), VideoDialog),
-    audio: editor => new Command(editor, new AudioElement(editor), AudioDialog),
-    iframe: editor => new Command(editor, new IframeElement(editor), IframeDialog),
-    table: editor => new Command(editor, new TableElement(editor), TableDialog),
-    details: editor => new Command(editor, new DetailsElement(editor)),
-}
+export default [
+    editor => new Command(editor, 'bold', new Element(editor, 'strong')),
+    editor => new Command(editor, 'italic', new Element(editor, 'i')),
+    editor => new Command(editor, 'definition', new Element(editor, 'dfn')),
+    editor => new Command(editor, 'quote', new Element(editor, 'q')),
+    editor => new Command(editor, 'cite', new Element(editor, 'cite')),
+    editor => new Command(editor, 'mark', new Element(editor, 'mark')),
+    editor => new Command(editor, 'keyboard', new Element(editor, 'kbd')),
+    editor => new LinkCommand(editor, 'link'),
+    editor => new Command(editor, 'paragraph', new Element(editor, 'p')),
+    editor => new Command(editor, 'heading', new Element(editor, 'h2')),
+    editor => new Command(editor, 'subheading', new Element(editor, 'h3')),
+    editor => new Command(editor, 'unorderedlist', new ListElement(editor, 'ul')),
+    editor => new Command(editor, 'orderedlist', new ListElement(editor, 'ol')),
+    editor => new Command(editor, 'blockquote', new BlockquoteElement(editor)),
+    editor => new Command(editor, 'image', new ImageElement(editor), ImageDialog),
+    editor => new Command(editor, 'video', new VideoElement(editor), VideoDialog),
+    editor => new Command(editor, 'audio', new AudioElement(editor), AudioDialog),
+    editor => new Command(editor, 'iframe', new IframeElement(editor), IframeDialog),
+    editor => new Command(editor, 'table', new TableElement(editor), TableDialog),
+    editor => new Command(editor, 'details', new DetailsElement(editor)),
+]

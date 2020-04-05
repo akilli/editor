@@ -4,20 +4,20 @@ import TextConverter from '../src/editor/TextConverter.js';
 /**
  * Tag converter configuration
  *
- * @type {Object.<String, Converter>}
+ * @type {Function[]}
  */
-export default {
-    abbr: editor => new TextConverter(editor),
-    b: editor => new ElementConverter(editor, 'strong'),
-    code: editor => new TextConverter(editor),
-    data: editor => new TextConverter(editor),
-    div: editor => new ElementConverter(editor, 'p'),
-    em: editor => new ElementConverter(editor, 'i'),
-    ins: editor => new TextConverter(editor),
-    samp: editor => new TextConverter(editor),
-    small: editor => new TextConverter(editor),
-    span: editor => new TextConverter(editor),
-    time: editor => new TextConverter(editor),
-    u: editor => new TextConverter(editor),
-    var: editor => new ElementConverter(editor, 'i'),
-}
+export default [
+    editor => new TextConverter(editor, 'abbr'),
+    editor => new ElementConverter(editor, 'b', 'strong'),
+    editor => new TextConverter(editor, 'code'),
+    editor => new TextConverter(editor, 'data'),
+    editor => new ElementConverter(editor, 'div', 'p'),
+    editor => new ElementConverter(editor, 'em', 'i'),
+    editor => new TextConverter(editor, 'ins'),
+    editor => new TextConverter(editor, 'samp'),
+    editor => new TextConverter(editor, 'small'),
+    editor => new TextConverter(editor, 'span'),
+    editor => new TextConverter(editor, 'time'),
+    editor => new TextConverter(editor, 'u'),
+    editor => new ElementConverter(editor, 'var', 'i'),
+]

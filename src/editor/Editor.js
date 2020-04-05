@@ -1,5 +1,6 @@
 import Command from './Command.js';
 import Converter from './Converter.js';
+import EditorObject from './EditorObject.js';
 import Filter from './Filter.js';
 import Observer from './Observer.js';
 import Tag from './Tag.js';
@@ -149,22 +150,23 @@ export default class Editor {
      *
      * @private
      *
-     * @param {Object.<String, Function>} config
+     * @param {Function[]} data
      * @param {Function} constructor
      *
-     * @return {Map<String, Object>}
+     * @return {Map<String, EditorObject>}
      */
-    configMap(config, constructor) {
+    configMap(data, constructor) {
+        if (!Array.isArray(data)) {
+            throw 'Invalid argument';
+        }
+
         const map = new Map();
-
-        Object.getOwnPropertyNames(config).forEach(key => {
-            let item;
-
-            if (typeof config[key] !== 'function' || !(item = config[key](this)) || !(item instanceof constructor)) {
+        data.forEach(item => {
+            if (typeof item !== 'function' || !(item = item(this)) || !(item instanceof constructor) || !(item instanceof EditorObject)) {
                 throw 'Invalid argument';
             }
 
-            map.set(key, item);
+            map.set(item.name, item);
         });
 
         return map;

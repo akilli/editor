@@ -1,28 +1,9 @@
-import Editor from './Editor.js';
+import EditorObject from './EditorObject.js';
 
 /**
  * HTML Element Converter
  */
-export default class Converter {
-    /**
-     * Initializes a new editor converter
-     *
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        if (!(editor instanceof Editor)) {
-            throw 'Invalid argument';
-        }
-
-        /**
-         * Editor
-         *
-         * @type {Editor}
-         * @readonly
-         */
-        this.editor = editor;
-    }
-
+export default class Converter extends EditorObject {
     /**
      * Converts an HTML element to another or to a text node
      *

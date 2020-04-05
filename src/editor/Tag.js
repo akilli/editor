@@ -1,10 +1,13 @@
+import EditorObject from './EditorObject.js'
+
 /**
  * Tag
  */
-export default class Tag {
+export default class Tag extends EditorObject {
     /**
      * Defines a new tag
      *
+     * @param {Editor} editor
      * @param {String} name
      * @param {String} group
      * @param {String[]} [attributes = []]
@@ -13,18 +16,12 @@ export default class Tag {
      * @param {Boolean} [empty = false]
      * @param {?String} [enter = null]
      */
-    constructor({name, group, attributes = [], children = [], editable = false, empty = false, enter = null} = {}) {
-        if (!name || typeof name !== 'string' || !group || typeof group !== 'string') {
-            throw 'Invalid tag';
-        }
+    constructor(editor, name, {group, attributes = [], children = [], editable = false, empty = false, enter = null} = {}) {
+        super(editor, name);
 
-        /**
-         * Tag name
-         *
-         * @type {String}
-         * @readonly
-         */
-        this.name = name;
+        if (!group || typeof group !== 'string') {
+            throw 'Invalid argument';
+        }
 
         /**
          * Name of the tag group
