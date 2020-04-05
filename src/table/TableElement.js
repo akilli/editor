@@ -5,6 +5,15 @@ import Element from '../editor/Element.js';
  */
 export default class TableElement extends Element {
     /**
+     * Initializes a new table element
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'table', 'table');
+    }
+
+    /**
      * Creates table element
      *
      * @param {Number} rows
@@ -18,8 +27,8 @@ export default class TableElement extends Element {
             throw 'Invalid argument';
         }
 
-        const figure = this.editor.createElement('figure', {class: 'table'});
-        const table = this.editor.createElement('table');
+        const figure = this.editor.createElement('figure', {class: this.name});
+        const table = this.editor.createElement(this.tagName);
         const figcaption = this.editor.createElement('figcaption');
 
         figure.appendChild(table);

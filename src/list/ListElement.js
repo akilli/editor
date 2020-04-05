@@ -8,7 +8,7 @@ export default class ListElement extends Element {
      * @inheritDoc
      */
     create(attributes = {}) {
-        const list = this.editor.createElement(this.name);
+        const list = this.editor.createElement(this.tagName);
         list.appendChild(this.editor.createElement('li'));
 
         return list;
