@@ -5,14 +5,10 @@ import Dialog from '../editor/Dialog.js';
  */
 export default class TableDialog extends Dialog {
     /**
-     * Initializes a new editor table dialog
-     *
-     * @param {Editor} editor
-     * @param {Function} save
+     * @inheritDoc
      */
-    constructor(editor, save) {
-        super(editor, save);
-        this.html = `
+    getFieldsetHtml() {
+        return `
             <legend>${this.editor.t('Table')}</legend>
             <div data-attr="rows" data-required>
                 <label for="editor-rows">${this.editor.t('Rows')}</label>

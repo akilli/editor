@@ -1,6 +1,5 @@
 import Command from '../editor/Command.js';
 import Element from '../editor/Element.js';
-import LinkDialog from './LinkDialog.js';
 
 /**
  * Link Command
@@ -13,7 +12,7 @@ export default class LinkCommand extends Command {
      * @param {String} name
      */
     constructor(editor, name) {
-        super(editor, name, new Element(editor, 'a'), LinkDialog);
+        super(editor, name, new Element(editor, 'a'));
     }
 
     /**

@@ -12,12 +12,11 @@ export default class Command extends EditorObject {
      * @param {Editor} editor
      * @param {String} name
      * @param {?Element} [element = null]
-     * @param {?Function} [dialog = null]
      */
-    constructor(editor, name, element = null, dialog = null) {
+    constructor(editor, name, element = null) {
         super(editor, name);
 
-        if (element && !(element instanceof Element) || dialog && !(dialog instanceof Dialog.constructor)) {
+        if (element && !(element instanceof Element)) {
             throw 'Invalid argument';
         }
 
@@ -35,14 +34,14 @@ export default class Command extends EditorObject {
          * @type {?Dialog}
          * @readonly
          */
-        this.dialog = dialog ? new dialog(this.editor, data => this.insert(data)) : null;
+        this.dialog = this.editor.dialogs.get(this.name) || null;
     }
 
     /**
      * Execute command
      */
     execute() {
-        this.dialog ? this.dialog.open(this.oldData()) : this.insert();
+        this.dialog ? this.dialog.open(data => this.insert(data), this.oldData()) : this.insert();
     }
 
      /**

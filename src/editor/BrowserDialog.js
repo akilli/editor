@@ -1,23 +1,6 @@
 import Dialog from './Dialog.js';
 
 /**
- * Default browser window configuration
- *
- * @type {Object.<String, String>}
- */
-const defaultOpts = {
-    alwaysRaised: 'yes',
-    dependent: 'yes',
-    location: 'no',
-    menubar: 'no',
-    minimizable: 'no',
-    modal: 'yes',
-    resizable: 'yes',
-    scrollbars: 'yes',
-    toolbar: 'no',
-};
-
-/**
  * Browser Dialog
  */
 export default class BrowserDialog extends Dialog {
@@ -25,40 +8,40 @@ export default class BrowserDialog extends Dialog {
      * Initializes a new editor browser dialog
      *
      * @param {Editor} editor
-     * @param {Function} save
-     * @param {String} url
-     * @param {String} [name = 'browser']
-     * @param {Object.<String, String>} [opts = {}]
+     * @param {String} name
      */
-    constructor(editor, save, url, name = 'browser', opts = {}) {
-        super(editor, save);
+    constructor(editor, name) {
+        super(editor, name);
 
-        if (!url || !name) {
+        if (!this.editor.config[this.name].browser) {
             throw 'Invalid argument';
         }
-
-        const baseOpts = {height: `${this.editor.window.screen.height}`, width: `${this.editor.window.screen.width}`};
 
         /**
          * Browser URL
          *
          * @type {String}
          */
-        this.url = url;
-
-        /**
-         * Browser window name
-         *
-         * @type {String}
-         */
-        this.name = name;
+        this.url = this.editor.config[this.name].browser;
 
         /**
          * Browser window configuration
          *
          * @type {Object.<String, String>}
          */
-        this.opts = Object.assign(baseOpts, defaultOpts, opts);
+        this.opts = Object.assign({
+            alwaysRaised: 'yes',
+            dependent: 'yes',
+            height: `${this.editor.window.screen.height}`,
+            location: 'no',
+            menubar: 'no',
+            minimizable: 'no',
+            modal: 'yes',
+            resizable: 'yes',
+            scrollbars: 'yes',
+            toolbar: 'no',
+            width: `${this.editor.window.screen.width}`,
+        }, this.editor.config.browser || {});
     }
 
     /**
@@ -66,14 +49,14 @@ export default class BrowserDialog extends Dialog {
      *
      * @inheritDoc
      */
-    open(oldData = {}) {
+    open(save, oldData = {}) {
         const features = Object.entries(this.opts).map(x => `${x[0]}=${x[1]}`).join(',');
         const win = this.editor.window.open(this.url, this.name, features);
         const a = this.editor.createElement('a', {href: this.url});
 
         this.editor.window.addEventListener('message', ev => {
             if (ev.origin === a.origin && ev.source === win) {
-                this.save(ev.data);
+                save(ev.data);
                 win.close();
             }
         }, false);

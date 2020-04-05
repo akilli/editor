@@ -1,11 +1,13 @@
 import Command from './Command.js';
 import Converter from './Converter.js';
+import Dialog from './Dialog.js';
 import EditorObject from './EditorObject.js';
 import Filter from './Filter.js';
 import Observer from './Observer.js';
 import Tag from './Tag.js';
 import configCommand from '../../cfg/command.js';
 import configConverter from '../../cfg/converter.js';
+import configDialog from '../../cfg/dialog.js';
 import configFilter from '../../cfg/filter.js';
 import configObserver from '../../cfg/observer.js';
 import configTag from '../../cfg/tag.js';
@@ -119,6 +121,14 @@ export default class Editor {
          * @readonly
          */
         this.converters = this.configMap(configConverter, Converter);
+
+        /**
+         * Dialogs
+         *
+         * @type {Map<String, Dialog>}
+         * @readonly
+         */
+        this.dialogs = this.configMap(configDialog, Dialog);
 
         /**
          * Commands

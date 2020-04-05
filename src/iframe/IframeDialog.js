@@ -5,14 +5,10 @@ import Dialog from '../editor/Dialog.js';
  */
 export default class IframeDialog extends Dialog {
     /**
-     * Initializes a new editor media dialog
-     *
-     * @param {Editor} editor
-     * @param {Function} save
+     * @inheritDoc
      */
-    constructor(editor, save) {
-        super(editor, save);
-        this.html = `
+    getFieldsetHtml() {
+        return `
             <legend>${this.editor.t('Iframe')}</legend>
             <div data-attr="src">
                 <label for="editor-src">${this.editor.t('URL')}</label>

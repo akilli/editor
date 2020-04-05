@@ -5,14 +5,10 @@ import Dialog from '../editor/Dialog.js';
  */
 export default class LinkDialog extends Dialog {
     /**
-     * Initializes a new editor link dialog
-     *
-     * @param {Editor} editor
-     * @param {Function} save
+     * @inheritDoc
      */
-    constructor(editor, save) {
-        super(editor, save);
-        this.html = `
+    getFieldsetHtml() {
+        return `
             <legend>${this.editor.t('Link')}</legend>
             <div data-attr="href">
                 <label for="editor-href">${this.editor.t('URL')}</label>
