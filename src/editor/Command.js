@@ -1,6 +1,4 @@
-import Dialog from './Dialog.js';
 import EditorObject from './EditorObject.js';
-import Element from './Element.js';
 
 /**
  * Command
@@ -11,14 +9,9 @@ export default class Command extends EditorObject {
      *
      * @param {Editor} editor
      * @param {String} name
-     * @param {?Element} [element = null]
      */
-    constructor(editor, name, element = null) {
+    constructor(editor, name) {
         super(editor, name);
-
-        if (element && !(element instanceof Element)) {
-            throw 'Invalid argument';
-        }
 
         /**
          * Element
@@ -26,7 +19,7 @@ export default class Command extends EditorObject {
          * @type {?Element}
          * @readonly
          */
-        this.element = element;
+        this.element = this.editor.elements.get(this.name) || null;
 
         /**
          * Dialog

@@ -1,5 +1,4 @@
 import Command from '../editor/Command.js';
-import Element from '../editor/Element.js';
 
 /**
  * Link Command
@@ -11,7 +10,7 @@ export default class LinkCommand extends Command {
      * @param {Editor} editor
      */
     constructor(editor) {
-        super(editor, 'link', new Element(editor, 'link', 'a'));
+        super(editor, 'link');
     }
 
     /**
