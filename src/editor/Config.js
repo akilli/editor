@@ -17,11 +17,35 @@ export default class Config {
         this.lang = opts.lang || 'en';
 
         /**
-         * Media
+         * Audio
          *
          * @type {Object}
          * @readonly
          */
-        this.media = opts.media || {};
+        this.audio = opts.audio || {};
+
+        /**
+         * Iframe
+         *
+         * @type {Object}
+         * @readonly
+         */
+        this.iframe = opts.iframe || {};
+
+        /**
+         * Image
+         *
+         * @type {Object}
+         * @readonly
+         */
+        this.image = opts.image || {};
+
+        /**
+         * Video
+         *
+         * @type {Object}
+         * @readonly
+         */
+        this.video = opts.video || {};
     }
 }
