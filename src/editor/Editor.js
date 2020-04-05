@@ -19,9 +19,9 @@ export default class Editor {
      * Creates a new instance of editor with given configuration
      *
      * @param {HTMLElement} orig
-     * @param {Object} [cfg = {}]
+     * @param {Object} [config = {}]
      */
-    constructor(orig, cfg = {}) {
+    constructor(orig, config = {}) {
         if (!(orig instanceof HTMLElement)) {
             throw 'No HTML element';
         }
@@ -94,7 +94,7 @@ export default class Editor {
          * @type {Config}
          * @readonly
          */
-        this.config = new Config(cfg);
+        this.config = new Config(config);
 
         /**
          * Translations
