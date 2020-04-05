@@ -17,7 +17,7 @@ export default class DetailsElement extends Element {
      * @inheritDoc
      */
     create(attributes = {}) {
-        const details = this.editor.createElement(this.tagName);
+        const details = this.editor.createElement('details');
         details.appendChild(this.editor.createElement('summary'));
         details.appendChild(this.editor.createElement('p'));
 
