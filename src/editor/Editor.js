@@ -1,5 +1,4 @@
 import Command from './Command.js';
-import Config from './Config.js';
 import Converter from './Converter.js';
 import Filter from './Filter.js';
 import Observer from './Observer.js';
@@ -91,10 +90,10 @@ export default class Editor {
         /**
          * Configuration
          *
-         * @type {Config}
+         * @type {Object}
          * @readonly
          */
-        this.config = new Config(config);
+        this.config = config;
 
         /**
          * Translations
