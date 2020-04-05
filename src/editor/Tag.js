@@ -16,7 +16,7 @@ export default class Tag extends EditorObject {
      * @param {Boolean} [empty = false]
      * @param {?String} [enter = null]
      */
-    constructor(editor, name, {group, attributes = [], children = [], editable = false, empty = false, enter = null} = {}) {
+    constructor(editor, name, group, {attributes = [], children = [], editable = false, empty = false, enter = null} = {}) {
         super(editor, name);
 
         if (!group || typeof group !== 'string') {
