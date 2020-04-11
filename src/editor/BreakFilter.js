@@ -11,9 +11,9 @@ export default class BreakFilter extends Filter {
         parent.innerHTML = parent.innerHTML.replace(/^\s*(<br\s*\/?>\s*)+/gi, '').replace(/\s*(<br\s*\/?>\s*)+$/gi, '');
 
         if (parent instanceof HTMLParagraphElement) {
-            parent.outerHTML = parent.outerHTML.replace(/\s*(<br\s*\/?>\s*)+/gi, '</p><p>');
+            parent.outerHTML = parent.outerHTML.replace(/\s*(<br\s*\/?>\s*){2,}/gi, '</p><p>');
         } else{
-            parent.innerHTML = parent.innerHTML.replace(/\s*(<br\s*\/?>\s*)+/gi, '<br>');
+            parent.innerHTML = parent.innerHTML.replace(/\s*(<br\s*\/?>\s*){2,}/gi, '<br>');
         }
     }
 }
