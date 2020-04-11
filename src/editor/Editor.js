@@ -284,15 +284,6 @@ export default class Editor {
     }
 
     /**
-     * Insert text
-     *
-     * @param {String} text
-     */
-    insertText(text) {
-        this.document.execCommand('inserttext', false, text);
-    }
-
-    /**
      * Inserts widget element or adds or removes text formatting element
      *
      * @see insertWidget()
@@ -325,6 +316,15 @@ export default class Editor {
         }
 
         this.content.appendChild(element);
+    }
+
+    /**
+     * Insert text
+     *
+     * @param {String} text
+     */
+    insertText(text) {
+        this.document.execCommand('inserttext', false, text);
     }
 
     /**
