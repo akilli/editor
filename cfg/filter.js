@@ -10,7 +10,7 @@ import TableFilter from '../src/table/TableFilter.js';
  */
 export default [
     editor => new ContentFilter(editor, 'content'),
-    editor => new BreakFilter(editor, 'break'),
     editor => new FigureFilter(editor, 'figure'),
     editor => new TableFilter(editor, 'table'),
+    editor => new BreakFilter(editor, 'break'),
 ]
