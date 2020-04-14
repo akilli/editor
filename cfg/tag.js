@@ -41,7 +41,6 @@ export default [
     // Text
     editor => new Tag(editor, 'strong', 'text'),
     editor => new Tag(editor, 'i', 'text'),
-    editor => new Tag(editor, 'mark', 'text'),
     editor => new Tag(editor, 'a', 'text', {attributes: ['href']}),
     // Break
     editor => new Tag(editor, 'br', 'br', {empty: true}),

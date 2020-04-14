@@ -13,7 +13,6 @@ import TableElement from '../src/table/TableElement.js';
 export default [
     editor => new Element(editor, 'bold', 'strong'),
     editor => new Element(editor, 'italic', 'i'),
-    editor => new Element(editor, 'mark', 'mark'),
     editor => new Element(editor, 'link', 'a'),
     editor => new Element(editor, 'paragraph', 'p'),
     editor => new Element(editor, 'heading', 'h2'),

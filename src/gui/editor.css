@@ -242,10 +242,6 @@ dialog.editor-dialog select {
     content: '\e803';
 }
 
-.editor-toolbar [data-cmd=mark]::before {
-    content: '\e809';
-}
-
 .editor-toolbar [data-cmd=orderedlist]::before {
     content: '\f0cb';
 }
