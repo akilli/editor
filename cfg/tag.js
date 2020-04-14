@@ -41,7 +41,6 @@ export default [
     // Text
     editor => new Tag(editor, 'strong', 'text'),
     editor => new Tag(editor, 'i', 'text'),
-    editor => new Tag(editor, 'dfn', 'text'),
     editor => new Tag(editor, 'kbd', 'text'),
     editor => new Tag(editor, 'mark', 'text'),
     editor => new Tag(editor, 'q', 'text'),
