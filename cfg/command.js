@@ -11,7 +11,6 @@ export default [
     editor => new Command(editor, 'italic'),
     editor => new Command(editor, 'definition'),
     editor => new Command(editor, 'quote'),
-    editor => new Command(editor, 'cite'),
     editor => new Command(editor, 'mark'),
     editor => new Command(editor, 'keyboard'),
     editor => new LinkCommand(editor),

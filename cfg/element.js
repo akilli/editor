@@ -15,7 +15,6 @@ export default [
     editor => new Element(editor, 'italic', 'i'),
     editor => new Element(editor, 'definition', 'dfn'),
     editor => new Element(editor, 'quote', 'q'),
-    editor => new Element(editor, 'cite', 'cite'),
     editor => new Element(editor, 'mark', 'mark'),
     editor => new Element(editor, 'keyboard', 'kbd'),
     editor => new Element(editor, 'link', 'a'),

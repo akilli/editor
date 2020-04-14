@@ -214,10 +214,6 @@ dialog.editor-dialog select {
     content: '\e801';
 }
 
-.editor-toolbar [data-cmd=cite]::before {
-    content: '\e807';
-}
-
 .editor-toolbar [data-cmd=definition]::before {
     content: '\f129';
 }
