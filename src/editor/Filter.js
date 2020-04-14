@@ -8,9 +8,8 @@ export default class Filter extends EditorObject {
      * Filters element
      *
      * @param {HTMLElement} parent
-     * @param {Boolean} [forceRoot = false]
      */
-    filter(parent, forceRoot = false) {
+    filter(parent) {
         throw 'Not implemented';
     }
 }

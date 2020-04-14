@@ -1,18 +1,14 @@
 import Command from './Command.js';
 import Converter from './Converter.js';
 import Dialog from './Dialog.js';
-import EditorObject from './EditorObject.js';
 import Element from './Element.js';
 import Filter from './Filter.js';
 import Observer from './Observer.js';
+import Plugin from './Plugin.js';
 import Tag from './Tag.js';
-import configCommand from '../../cfg/command.js';
-import configConverter from '../../cfg/converter.js';
-import configDialog from '../../cfg/dialog.js';
-import configElement from '../../cfg/element.js';
-import configFilter from '../../cfg/filter.js';
-import configObserver from '../../cfg/observer.js';
+import configPlugin from '../../cfg/plugin.js'
 import configTag from '../../cfg/tag.js';
+import configToolbar from '../../cfg/toolbar.js';
 import i18n from '../../cfg/i18n.js';
 
 /**
@@ -114,7 +110,7 @@ export default class Editor {
          * @type {Map<String, Tag>}
          * @readonly
          */
-        this.tags = this.configMap(configTag, Tag);
+        this.tags = this.mapTags(configTag);
 
         /**
          * Elements
@@ -122,7 +118,7 @@ export default class Editor {
          * @type {Map<String, Element>}
          * @readonly
          */
-        this.elements = this.configMap(configElement, Element);
+        this.elements = new Map();
 
         /**
          * Element converters
@@ -130,31 +126,7 @@ export default class Editor {
          * @type {Map<String, Converter>}
          * @readonly
          */
-        this.converters = this.configMap(configConverter, Converter);
-
-        /**
-         * Dialogs
-         *
-         * @type {Map<String, Dialog>}
-         * @readonly
-         */
-        this.dialogs = this.configMap(configDialog, Dialog);
-
-        /**
-         * Commands
-         *
-         * @type {Map<String, Command>}
-         * @readonly
-         */
-        this.commands = this.configMap(configCommand, Command);
-
-        /**
-         * Observers
-         *
-         * @type {Map<String, Observer>}
-         * @readonly
-         */
-        this.observers = this.configMap(configObserver, Observer);
+        this.converters = new Map();
 
         /**
          * Filters
@@ -162,31 +134,70 @@ export default class Editor {
          * @type {Map<String, Filter>}
          * @readonly
          */
-        this.filters = this.configMap(configFilter, Filter);
+        this.filters = new Map();
+
+        /**
+         * Dialogs
+         *
+         * @type {Map<String, Dialog>}
+         * @readonly
+         */
+        this.dialogs = new Map();
+
+        /**
+         * Commands
+         *
+         * @type {Map<String, Command>}
+         * @readonly
+         */
+        this.commands = new Map();
+
+        /**
+         * Plugins
+         *
+         * @type {Map<String, Plugin>}
+         * @readonly
+         */
+        this.plugins = this.mapPlugins(configPlugin);
     }
 
     /**
-     * Creates map
+     * Creates tag map
      *
      * @private
      *
-     * @param {Function[]} data
-     * @param {Function} constructor
+     * @param {Object[]} config
      *
-     * @return {Map<String, EditorObject>}
+     * @return {Map<String, Tag>}
      */
-    configMap(data, constructor) {
-        if (!Array.isArray(data)) {
-            throw 'Invalid argument';
-        }
-
+    mapTags(config) {
         const map = new Map();
-        data.forEach(item => {
-            if (typeof item !== 'function' || !(item = item(this)) || !(item instanceof constructor) || !(item instanceof EditorObject)) {
+        config.forEach(item => {
+            const tag = new Tag(item);
+            map.set(tag.name, tag);
+        });
+
+        return map;
+    }
+
+    /**
+     * Creates plugin map
+     *
+     * @private
+     *
+     * @param {Plugin[]} config
+     *
+     * @return {Map<String, Plugin>}
+     */
+    mapPlugins(config) {
+        const map = new Map();
+        config.forEach(item => {
+            if (!(item instanceof Plugin.constructor)) {
                 throw 'Invalid argument';
             }
 
-            map.set(item.name, item);
+            const plugin = new item(this);
+            map.set(plugin.name, plugin);
         });
 
         return map;
@@ -196,18 +207,18 @@ export default class Editor {
      * Initializes editor
      */
     init() {
-        this.initObserver();
+        this.initPlugin();
         this.initContent();
         this.initToolbar();
     }
 
     /**
-     * Initializes observers
+     * Initializes plugins
      *
      * @private
      */
-    initObserver() {
-        this.observers.forEach(item => this.register(ev => item.observe(ev)));
+    initPlugin() {
+        this.plugins.forEach(item => item.init());
     }
 
     /**
@@ -232,32 +243,21 @@ export default class Editor {
      * @private
      */
     initToolbar() {
-        for (let cmd of this.commands.entries()) {
-            const item = this.createElement('button', {type: 'button', 'data-cmd': cmd[0], title: cmd[0]}, cmd[0]);
+        configToolbar.forEach(cmd => {
+            if (!this.commands.has(cmd)) {
+                throw 'Invalid argument';
+            }
+
+            const item = this.createElement('button', {type: 'button', 'data-cmd': cmd, title: cmd}, cmd);
             item.addEventListener('click', () => {
                 if (!this.window.getSelection().containsNode(this.content, true)) {
                     this.content.focus();
                 }
 
-                cmd[1].execute();
+                this.commands.get(cmd).execute();
             });
             this.toolbar.appendChild(item);
-        }
-    }
-
-    /**
-     * Short-cut method to register a mutation observer
-     *
-     * @param {Function} call
-     * @param {Object} [config = {childList: true, subtree: true}]
-     */
-    register(call, config = {childList: true, subtree: true}) {
-        if (typeof call !== 'function') {
-            throw 'Invalid argument';
-        }
-
-        const mutation = new MutationObserver(call);
-        mutation.observe(this.content, config);
+        });
     }
 
     /**
@@ -476,6 +476,21 @@ export default class Editor {
     }
 
     /**
+     * Short-cut method to register a mutation observer
+     *
+     * @param {Observer} observer
+     * @param {Object} [config = {childList: true, subtree: true}]
+     */
+    observe(observer, config = {childList: true, subtree: true}) {
+        if (!(observer instanceof Observer)) {
+            throw 'Invalid argument';
+        }
+
+        const mutation = new MutationObserver(ev => observer.observe(ev));
+        mutation.observe(this.content, config);
+    }
+
+    /**
      * Filters element
      *
      * @param {HTMLElement} parent
@@ -486,7 +501,71 @@ export default class Editor {
             throw 'No HTML element';
         }
 
-        this.filters.forEach(item => item.filter(parent, forceRoot));
+        // Prefilter content
+        const isRoot = forceRoot || this.content.isSameNode(parent);
+        const parentName = forceRoot ? 'root' : this.getTagName(parent);
+        parent.normalize();
+        Array.from(parent.childNodes).forEach(node => {
+            if (node instanceof HTMLElement) {
+                node = this.convert(node);
+            }
+
+            if (node instanceof HTMLElement) {
+                const name = node.tagName;
+                const tag = this.getTag(name);
+                const text = node.textContent.trim();
+
+                if (tag && (this.allowed(name, parentName) || isRoot && tag.group === 'text' && this.allowed('p', parentName))) {
+                    Array.from(node.attributes).forEach(item => {
+                        if (!tag.attributes.includes(item.name)) {
+                            node.removeAttribute(item.name);
+                        }
+                    });
+
+                    if (node.hasChildNodes()) {
+                        this.filter(node);
+                    }
+
+                    if (!node.hasChildNodes() && !tag.empty) {
+                        parent.removeChild(node);
+                    } else if (!this.allowed(name, parentName)) {
+                        parent.replaceChild(this.createElement('p', {}, node.outerHTML), node);
+                    }
+                } else if (isRoot && text && this.allowed('p', parentName)) {
+                    parent.replaceChild(this.createElement('p', {}, text), node);
+                } else if (text && this.allowed('text', parentName)) {
+                    parent.replaceChild(this.createText(text), node);
+                } else {
+                    parent.removeChild(node);
+                }
+            } else if (node instanceof Text) {
+                const text = node.textContent.trim();
+
+                if (isRoot && text && this.allowed('p', parentName)) {
+                    parent.replaceChild(this.createElement('p', {}, text), node);
+                } else if (isRoot) {
+                    parent.removeChild(node);
+                }
+            } else {
+                parent.removeChild(node);
+            }
+        });
+
+        // Apply filters
+        this.filters.forEach(item => {
+            parent.normalize();
+            item.filter(parent)
+        });
+
+        // Handle linebreaks
+        parent.normalize();
+        parent.innerHTML = parent.innerHTML.replace(/^\s*(<br\s*\/?>\s*)+/gi, '').replace(/\s*(<br\s*\/?>\s*)+$/gi, '');
+
+        if (parent instanceof HTMLParagraphElement) {
+            parent.outerHTML = parent.outerHTML.replace(/\s*(<br\s*\/?>\s*){2,}/gi, '</p><p>');
+        } else{
+            parent.innerHTML = parent.innerHTML.replace(/\s*(<br\s*\/?>\s*){2,}/gi, '<br>');
+        }
     }
 
     /**
@@ -516,7 +595,7 @@ export default class Editor {
     }
 
     /**
-     * Checks if given element is allowed inside given parent element
+     * Checks if given element or group is allowed inside given parent element
      *
      * @param {String} name
      * @param {String} parentName
@@ -525,9 +604,10 @@ export default class Editor {
      */
     allowed(name, parentName) {
         const tag = this.getTag(name);
+        const group = tag ? tag.group : name;
         const parentTag = this.getTag(parentName);
 
-        return tag && parentTag && parentTag.children.includes(tag.group);
+        return parentTag && parentTag.children.includes(group);
     }
 
     /**

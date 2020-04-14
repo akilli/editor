@@ -7,7 +7,7 @@ export default class FigureFilter extends Filter {
     /**
      * @inheritDoc
      */
-    filter(parent, forceRoot = false) {
+    filter(parent) {
         parent.querySelectorAll('figure > figcaption:only-child').forEach(node => node.parentElement.removeChild(node));
     }
 }

@@ -53,7 +53,7 @@ export default class DetailsObserver extends Observer {
         // Ensure summary is not empty
         const call = () => {
             if (!node.textContent.trim()) {
-                node.textContent = this.editor.t('Details');
+                node.textContent = this.t('Details');
             }
         };
         call();

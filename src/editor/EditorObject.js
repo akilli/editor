@@ -31,4 +31,15 @@ export default class EditorObject {
          */
         this.name = name;
     }
+
+    /**
+     * Translates given string
+     *
+     * @param {String} key
+     *
+     * @return {String}
+     */
+    t(key) {
+        return this.editor.t(key);
+    }
 }

@@ -9,17 +9,17 @@ export default class VideoDialog extends Dialog {
      */
     getFieldsetHtml() {
         return `
-            <legend>${this.editor.t('Video')}</legend>
+            <legend>${this.t('Video')}</legend>
             <div data-attr="src">
-                <label for="editor-src">${this.editor.t('URL')}</label>
-                <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this.editor.t('Insert URL to media element')}" />
+                <label for="editor-src">${this.t('URL')}</label>
+                <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this.t('Insert URL to media element')}" />
             </div>
             <div data-attr="width">
-                <label for="editor-width">${this.editor.t('Width')}</label>
+                <label for="editor-width">${this.t('Width')}</label>
                 <input id="editor-width" name="width" type="number" />
             </div>
             <div data-attr="height">
-                <label for="editor-height">${this.editor.t('Height')}</label>
+                <label for="editor-height">${this.t('Height')}</label>
                 <input id="editor-height" name="height" type="number" />
             </div>
         `;

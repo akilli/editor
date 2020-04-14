@@ -1,47 +1,45 @@
-import Tag from '../src/editor/Tag.js';
-
 /**
  * Tag configuration
  *
- * @type {Function[]}
+ * @type {Object[]}
  */
 export default [
     // Root
-    editor => new Tag(editor, 'root', 'root', {children: ['details', 'figure', 'heading', 'list', 'p']}),
+    {name: 'root', group: 'root', children: ['details', 'figure', 'heading', 'list', 'paragraph']},
     // Paragraph
-    editor => new Tag(editor, 'p', 'p', {children: ['br', 'text'], editable: true, enter: 'p'}),
+    {name: 'p', group: 'paragraph', children: ['break', 'text'], editable: true, enter: 'p'},
     // Heading
-    editor => new Tag(editor, 'h2', 'heading', {editable: true, enter: 'p'}),
-    editor => new Tag(editor, 'h3', 'heading', {editable: true, enter: 'p'}),
+    {name: 'h2', group: 'heading', editable: true, enter: 'p'},
+    {name: 'h3', group: 'heading', editable: true, enter: 'p'},
     // List
-    editor => new Tag(editor, 'ul', 'list', {children: ['li']}),
-    editor => new Tag(editor, 'ol', 'list', {children: ['li']}),
-    editor => new Tag(editor, 'li', 'li', {children: ['br', 'text'], editable: true, enter: 'li'}),
+    {name: 'ul', group: 'list', children: ['listitem']},
+    {name: 'ol', group: 'list', children: ['listitem']},
+    {name: 'li', group: 'listitem', children: ['break', 'text'], editable: true, enter: 'li'},
     // Figure
-    editor => new Tag(editor, 'figure', 'figure', {attributes: ['class'], children: ['blockquote', 'figcaption', 'media', 'table']}),
-    editor => new Tag(editor, 'figcaption', 'figcaption', {children: ['text'], editable: true, enter: 'p'}),
+    {name: 'figure', group: 'figure', attributes: ['class'], children: ['blockquote', 'caption', 'media', 'table']},
+    {name: 'figcaption', group: 'caption', children: ['text'], editable: true, enter: 'p'},
     // Blockquote
-    editor => new Tag(editor, 'blockquote', 'blockquote', {children: ['p']}),
+    {name: 'blockquote', group: 'blockquote', children: ['paragraph']},
     // Media
-    editor => new Tag(editor, 'img', 'media', {attributes: ['alt', 'height', 'src', 'width'], empty: true}),
-    editor => new Tag(editor, 'video', 'media', {attributes: ['controls', 'height', 'src', 'width'], empty: true}),
-    editor => new Tag(editor, 'audio', 'media', {attributes: ['controls', 'height', 'src', 'width'], empty: true}),
-    editor => new Tag(editor, 'iframe', 'media', {attributes: ['allowfullscreen', 'height', 'src', 'width'], empty: true}),
+    {name: 'img', group: 'media', attributes: ['alt', 'height', 'src', 'width'], empty: true},
+    {name: 'video', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true},
+    {name: 'audio', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true},
+    {name: 'iframe', group: 'media', attributes: ['allowfullscreen', 'height', 'src', 'width'], empty: true},
     // Table
-    editor => new Tag(editor, 'table', 'table', {children: ['tablesection']}),
-    editor => new Tag(editor, 'thead', 'tablesection', {children: ['tr']}),
-    editor => new Tag(editor, 'tbody', 'tablesection', {children: ['tr']}),
-    editor => new Tag(editor, 'tfoot', 'tablesection', {children: ['tr']}),
-    editor => new Tag(editor, 'tr', 'tr', {children: ['tablecell']}),
-    editor => new Tag(editor, 'th', 'tablecell', {children: ['br', 'text'], editable: true}),
-    editor => new Tag(editor, 'td', 'tablecell', {children: ['br', 'text'], editable: true}),
+    {name: 'table', group: 'table', children: ['tablesection']},
+    {name: 'thead', group: 'tablesection', children: ['tablerow']},
+    {name: 'tbody', group: 'tablesection', children: ['tablerow']},
+    {name: 'tfoot', group: 'tablesection', children: ['tablerow']},
+    {name: 'tr', group: 'tablerow', children: ['tablecell']},
+    {name: 'th', group: 'tablecell', children: ['break', 'text'], editable: true, empty: true},
+    {name: 'td', group: 'tablecell', children: ['break', 'text'], editable: true, empty: true},
     // Details
-    editor => new Tag(editor, 'details', 'details', {children: ['figure', 'list', 'p', 'summary']}),
-    editor => new Tag(editor, 'summary', 'summary', {editable: true, enter: 'p'}),
+    {name: 'details', group: 'details', children: ['figure', 'list', 'paragraph', 'summary']},
+    {name: 'summary', group: 'summary', editable: true, enter: 'p'},
     // Text
-    editor => new Tag(editor, 'strong', 'text'),
-    editor => new Tag(editor, 'i', 'text'),
-    editor => new Tag(editor, 'a', 'text', {attributes: ['href']}),
+    {name: 'strong', group: 'text'},
+    {name: 'i', group: 'text'},
+    {name: 'a', group: 'text', attributes: ['href']},
     // Break
-    editor => new Tag(editor, 'br', 'br', {empty: true}),
+    {name: 'br', group: 'break', empty: true},
 ]
