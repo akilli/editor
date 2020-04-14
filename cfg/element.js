@@ -17,7 +17,7 @@ export default [
     editor => new Element(editor, 'paragraph', 'p'),
     editor => new Element(editor, 'heading', 'h2'),
     editor => new Element(editor, 'subheading', 'h3'),
-    editor => new ListElement(editor, 'subheading', 'ul'),
+    editor => new ListElement(editor, 'unorderedlist', 'ul'),
     editor => new ListElement(editor, 'orderedlist', 'ol'),
     editor => new BlockquoteElement(editor),
     editor => new MediaElement(editor, 'image', 'img'),

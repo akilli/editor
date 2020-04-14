@@ -57,7 +57,7 @@ export default class Command extends EditorObject {
         const data = {};
         const sel = this.editor.getSelectedElement();
 
-        if (sel instanceof HTMLElement && sel.tagName.toLowerCase() === this.element.name) {
+        if (sel instanceof HTMLElement && sel.tagName.toLowerCase() === this.element.tagName) {
             Array.from(sel.attributes).forEach(attribute => data[attribute.nodeName] = attribute.nodeValue);
         }
 
