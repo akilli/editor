@@ -9,7 +9,6 @@ import LinkCommand from '../src/link/LinkCommand.js';
 export default [
     editor => new Command(editor, 'bold'),
     editor => new Command(editor, 'italic'),
-    editor => new Command(editor, 'quote'),
     editor => new Command(editor, 'mark'),
     editor => new Command(editor, 'keyboard'),
     editor => new LinkCommand(editor),

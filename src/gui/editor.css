@@ -258,10 +258,6 @@ dialog.editor-dialog select {
     content: '\f1dd';
 }
 
-.editor-toolbar [data-cmd=quote]::before {
-    content: '\f10d';
-}
-
 .editor-toolbar [data-cmd=subheading]::before {
     content: '\f0fd';
 }
