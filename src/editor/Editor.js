@@ -193,7 +193,7 @@ export default class Editor {
     }
 
     /**
-     * Init editor
+     * Initializes editor
      */
     init() {
         this.initObserver();
@@ -202,7 +202,7 @@ export default class Editor {
     }
 
     /**
-     * Init observer
+     * Initializes observers
      *
      * @private
      */
@@ -211,7 +211,7 @@ export default class Editor {
     }
 
     /**
-     * Init content
+     * Initializes content
      *
      * @private
      */
@@ -227,7 +227,7 @@ export default class Editor {
     }
 
     /**
-     * Init Toolbar
+     * Initializes Toolbar
      *
      * @private
      */
