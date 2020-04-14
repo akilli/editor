@@ -238,10 +238,6 @@ dialog.editor-dialog select {
     content: '\e802';
 }
 
-.editor-toolbar [data-cmd=keyboard]::before {
-    content: '\f11c';
-}
-
 .editor-toolbar [data-cmd=link]::before {
     content: '\e803';
 }
