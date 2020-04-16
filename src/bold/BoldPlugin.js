@@ -1,7 +1,7 @@
-import Command from '../editor/Command.js';
-import Converter from '../editor/Converter.js';
-import Element from '../editor/Element.js';
-import Plugin from '../editor/Plugin.js';
+import Command from '../base/Command.js';
+import Converter from '../base/Converter.js';
+import Element from '../base/Element.js';
+import Plugin from '../base/Plugin.js';
 
 /**
  * Bold Plugin

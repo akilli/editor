@@ -1,6 +1,6 @@
 import FigureFilter from './FigureFilter.js';
 import FigureObserver from './FigureObserver.js';
-import Plugin from '../editor/Plugin.js';
+import Plugin from '../base/Plugin.js';
 
 /**
  * Figure Plugin

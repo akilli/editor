@@ -194,8 +194,8 @@ export default class Editor {
      * @private
      */
     initPlugin() {
-        if (Array.isArray(this.config.editor.plugins)) {
-            this.config.editor.plugins.forEach(item => {
+        if (Array.isArray(this.config.base.plugins)) {
+            this.config.base.plugins.forEach(item => {
                 if (!(item instanceof Plugin.constructor)) {
                     throw 'Invalid argument';
                 }
@@ -230,11 +230,11 @@ export default class Editor {
      * @private
      */
     initToolbar() {
-        if (!Array.isArray(this.config.editor.toolbar)) {
+        if (!Array.isArray(this.config.base.toolbar)) {
             return;
         }
 
-        this.config.editor.toolbar.forEach(cmd => {
+        this.config.base.toolbar.forEach(cmd => {
             if (!this.commands.has(cmd)) {
                 throw 'Invalid argument';
             }

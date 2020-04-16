@@ -1,4 +1,4 @@
-import Element from '../editor/Element.js';
+import Element from '../base/Element.js';
 
 /**
  * Details Element

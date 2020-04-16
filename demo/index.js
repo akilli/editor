@@ -1,4 +1,4 @@
-import Editor from '../src/editor/Editor.js';
+import Editor from '../src/base/Editor.js';
 
 (function (document, Editor) {
     document.addEventListener('DOMContentLoaded', () => {
@@ -6,7 +6,7 @@ import Editor from '../src/editor/Editor.js';
             audio: {
                 browser: 'https://akilli.github.io/demo-browser/media.html#audio',
             },
-            editor: {
+            base: {
                 lang: 'de',
             },
             iframe: {

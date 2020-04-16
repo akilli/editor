@@ -1,4 +1,4 @@
-import Filter from '../editor/Filter.js';
+import Filter from '../base/Filter.js';
 
 /**
  * Filters empty tables and table sections

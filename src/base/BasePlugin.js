@@ -5,7 +5,7 @@ import WidgetObserver from './WidgetObserver.js';
 /**
  * Editor Plugin
  */
-export default class EditorPlugin extends Plugin {
+export default class BasePlugin extends Plugin {
     /**
      * Initializes a new editor plugin
      *

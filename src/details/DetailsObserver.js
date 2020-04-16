@@ -1,4 +1,4 @@
-import Observer from '../editor/Observer.js';
+import Observer from '../base/Observer.js';
 
 /**
  * Handles details and summary elements

@@ -1,6 +1,6 @@
 import BlockquoteElement from './BlockquoteElement.js';
-import Command from '../editor/Command.js';
-import Plugin from '../editor/Plugin.js';
+import Command from '../base/Command.js';
+import Plugin from '../base/Plugin.js';
 
 /**
  * Blockquote Plugin

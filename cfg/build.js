@@ -1,8 +1,8 @@
 import AudioPlugin from '../src/audio/AudioPlugin.js';
+import BasePlugin from '../src/base/BasePlugin.js';
 import BlockquotePlugin from '../src/blockquote/BlockquotePlugin.js';
 import BoldPlugin from '../src/bold/BoldPlugin.js';
 import DetailsPlugin from '../src/details/DetailsPlugin.js';
-import EditorPlugin from '../src/editor/EditorPlugin.js';
 import FigurePlugin from '../src/figure/FigurePlugin.js';
 import HeadingPlugin from '../src/heading/HeadingPlugin.js';
 import IframePlugin from '../src/iframe/IframePlugin.js';
@@ -22,13 +22,13 @@ import VideoPlugin from '../src/video/VideoPlugin.js';
  * @type {Object.<String, Array>}
  */
 export default {
-    editor: {
+    base: {
         plugins: [
             AudioPlugin,
+            BasePlugin,
             BlockquotePlugin,
             BoldPlugin,
             DetailsPlugin,
-            EditorPlugin,
             FigurePlugin,
             HeadingPlugin,
             IframePlugin,

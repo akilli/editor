@@ -1,6 +1,6 @@
-import Command from '../editor/Command.js';
+import Command from '../base/Command.js';
 import ListElement from '../list/ListElement.js';
-import Plugin from '../editor/Plugin.js';
+import Plugin from '../base/Plugin.js';
 
 /**
  * Ordered List Plugin

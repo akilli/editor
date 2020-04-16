@@ -1,6 +1,6 @@
-import Command from '../editor/Command.js';
-import Element from '../editor/Element.js';
-import Plugin from '../editor/Plugin.js';
+import Command from '../base/Command.js';
+import Element from '../base/Element.js';
+import Plugin from '../base/Plugin.js';
 
 /**
  * Italic Plugin

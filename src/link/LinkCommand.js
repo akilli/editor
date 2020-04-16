@@ -1,4 +1,4 @@
-import Command from '../editor/Command.js';
+import Command from '../base/Command.js';
 
 /**
  * Link Command
