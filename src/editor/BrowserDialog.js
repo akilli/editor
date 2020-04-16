@@ -13,7 +13,7 @@ export default class BrowserDialog extends Dialog {
     constructor(editor, name) {
         super(editor, name);
 
-        if (!this.editor.config[this.name] || !this.editor.config[this.name].browser) {
+        if (!this.editor.config[this.name]?.browser) {
             throw 'Invalid argument';
         }
 
