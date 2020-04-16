@@ -1,17 +1,10 @@
-import Command from './Command.js';
-import Converter from './Converter.js';
-import Dialog from './Dialog.js';
-import Element from './Element.js';
-import Filter from './Filter.js';
 import Observer from './Observer.js';
 import Plugin from './Plugin.js';
 import Tag from './Tag.js';
-import Translator from './Translator.js';
-import configBuild from '../../cfg/build.js';
 import configTag from '../../cfg/tag.js';
 
 /**
- * Editor
+ * Base Editor
  */
 export default class Editor {
     /**
@@ -23,6 +16,10 @@ export default class Editor {
     constructor(orig, config = {}) {
         if (!(orig instanceof HTMLElement)) {
             throw 'No HTML element';
+        }
+
+        for (let [key, val] of Object.entries(this.constructor.defaultConfig || {})) {
+            config[key] = Object.assign(config[key] || {}, val);
         }
 
         /**
@@ -627,10 +624,6 @@ export default class Editor {
      * @return {Editor}
      */
     static create(element, config = {}) {
-        for (let [key, val] of Object.entries(configBuild)) {
-            config[key] = Object.assign(config[key] || {}, val);
-        }
-
         const editor = new this(element, config);
         editor.init();
 
