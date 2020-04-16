@@ -23,9 +23,9 @@ export default class IframePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.translators.set(this.name, new Translator(this.name, i18n[this.editor.config.editor.lang] || {}));
+        this.editor.translators.set(this.name, new Translator(this.name, i18n[this.editor.config.editor?.lang] || {}));
         this.editor.elements.set(this.name, new MediaElement(this.editor, this.name, 'iframe'));
-        const dialog = this.editor.config[this.name].browser ? BrowserDialog : IframeDialog;
+        const dialog = this.editor.config[this.name]?.browser ? BrowserDialog : IframeDialog;
         this.editor.dialogs.set(this.name, new dialog(this.editor, this.name));
         this.editor.commands.set(this.name, new Command(this.editor, this.name));
     }
