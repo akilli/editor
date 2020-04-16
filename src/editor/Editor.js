@@ -311,7 +311,7 @@ export default class Editor {
     insertWidget(element) {
         if (!(element instanceof HTMLElement)) {
             throw 'Invalid HTML element';
-        } else if (!this.allowed(element.tagName, 'root')) {
+        } else if (!this.allowed(element.tagName.toLowerCase(), 'root')) {
             throw 'Element is not allowed here';
         }
 
@@ -367,7 +367,11 @@ export default class Editor {
 
         range.deleteContents();
 
-        if (parent.isContentEditable && this.allowed(element.tagName, parent.tagName) && selText.trim() && (!tag || !same)) {
+        if (parent.isContentEditable
+            && this.allowed(element.tagName.toLowerCase(), parent.tagName.toLowerCase())
+            && selText.trim()
+            && (!tag || !same)
+        ) {
             element.textContent = selText;
             range.insertNode(element);
         } else {
@@ -592,9 +596,9 @@ export default class Editor {
      * @return {Boolean}
      */
     allowed(name, parentName) {
-        const tag = this.tags.get(name.toLowerCase());
+        const tag = this.tags.get(name);
         const group = tag ? tag.group : name;
-        const parentTag = this.tags.get(parentName.toLowerCase());
+        const parentTag = this.tags.get(parentName);
 
         return parentTag && parentTag.children.includes(group);
     }

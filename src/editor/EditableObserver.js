@@ -63,7 +63,7 @@ export default class EditableObserver extends Observer {
      * @param {KeyboardEvent} ev
      */
     onKeydownEnter(ev) {
-        if (ev.key === 'Enter' && (!ev.shiftKey || !this.editor.allowed('br', ev.target.tagName))) {
+        if (ev.key === 'Enter' && (!ev.shiftKey || !this.editor.allowed('br', ev.target.tagName.toLowerCase()))) {
             ev.preventDefault();
             ev.cancelBubble = true;
         }
