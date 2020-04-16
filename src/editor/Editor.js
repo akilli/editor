@@ -580,7 +580,7 @@ export default class Editor {
             throw 'No HTML element';
         }
 
-        return this.content.isSameNode(element) ? 'root' : element.tagName;
+        return this.content.isSameNode(element) ? 'root' : element.tagName.toLowerCase();
     }
 
     /**
