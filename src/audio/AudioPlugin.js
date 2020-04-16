@@ -1,5 +1,5 @@
 import AudioDialog from './AudioDialog.js';
-import BrowserDialog from '../editor/BrowserDialog.js';
+import BrowserDialog from '../browser/BrowserDialog.js';
 import Command from '../editor/Command.js';
 import MediaElement from '../media/MediaElement.js';
 import Plugin from '../editor/Plugin.js';
