@@ -7,9 +7,8 @@ import Observer from './Observer.js';
 import Plugin from './Plugin.js';
 import Tag from './Tag.js';
 import Translator from './Translator.js';
-import configPlugin from '../../cfg/plugin.js'
+import configBuild from '../../cfg/build.js';
 import configTag from '../../cfg/tag.js';
-import configToolbar from '../../cfg/toolbar.js';
 
 /**
  * Editor
@@ -158,7 +157,7 @@ export default class Editor {
          * @type {Map<String, Plugin>}
          * @readonly
          */
-        this.plugins = this.mapPlugins(configPlugin);
+        this.plugins = new Map();
     }
 
     /**
@@ -181,29 +180,6 @@ export default class Editor {
     }
 
     /**
-     * Creates plugin map
-     *
-     * @private
-     *
-     * @param {Plugin[]} config
-     *
-     * @return {Map<String, Plugin>}
-     */
-    mapPlugins(config) {
-        const map = new Map();
-        config.forEach(item => {
-            if (!(item instanceof Plugin.constructor)) {
-                throw 'Invalid argument';
-            }
-
-            const plugin = new item(this);
-            map.set(plugin.name, plugin);
-        });
-
-        return map;
-    }
-
-    /**
      * Initializes editor
      */
     init() {
@@ -218,6 +194,17 @@ export default class Editor {
      * @private
      */
     initPlugin() {
+        if (Array.isArray(this.config.editor.plugins)) {
+            this.config.editor.plugins.forEach(item => {
+                if (!(item instanceof Plugin.constructor)) {
+                    throw 'Invalid argument';
+                }
+
+                const plugin = new item(this);
+                this.plugins.set(plugin.name, plugin);
+            });
+        }
+
         this.plugins.forEach(item => item.init());
     }
 
@@ -243,7 +230,11 @@ export default class Editor {
      * @private
      */
     initToolbar() {
-        configToolbar.forEach(cmd => {
+        if (!Array.isArray(this.config.editor.toolbar)) {
+            return;
+        }
+
+        this.config.editor.toolbar.forEach(cmd => {
             if (!this.commands.has(cmd)) {
                 throw 'Invalid argument';
             }
@@ -636,6 +627,10 @@ export default class Editor {
      * @return {Editor}
      */
     static create(element, config = {}) {
+        for (let [key, val] of Object.entries(configBuild)) {
+            config[key] = Object.assign(config[key] || {}, val);
+        }
+
         const editor = new Editor(element, config);
         editor.init();
 

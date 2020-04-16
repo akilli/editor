@@ -17,26 +17,47 @@ import UnorderedListPlugin from '../src/unorderedlist/UnorderedListPlugin.js';
 import VideoPlugin from '../src/video/VideoPlugin.js';
 
 /**
- * Plugins configuration
+ * Editor configuration
  *
- * @type {Plugin[]}
+ * @type {Object.<String, Array>}
  */
-export default [
-    AudioPlugin,
-    BlockquotePlugin,
-    BoldPlugin,
-    DetailsPlugin,
-    EditorPlugin,
-    FigurePlugin,
-    HeadingPlugin,
-    IframePlugin,
-    ImagePlugin,
-    ItalicPlugin,
-    LinkPlugin,
-    OrderedListPlugin,
-    ParagraphPlugin,
-    SubheadingPlugin,
-    TablePlugin,
-    UnorderedListPlugin,
-    VideoPlugin,
-]
+export default {
+    editor: {
+        plugins: [
+            AudioPlugin,
+            BlockquotePlugin,
+            BoldPlugin,
+            DetailsPlugin,
+            EditorPlugin,
+            FigurePlugin,
+            HeadingPlugin,
+            IframePlugin,
+            ImagePlugin,
+            ItalicPlugin,
+            LinkPlugin,
+            OrderedListPlugin,
+            ParagraphPlugin,
+            SubheadingPlugin,
+            TablePlugin,
+            UnorderedListPlugin,
+            VideoPlugin,
+        ],
+        toolbar: [
+            'bold',
+            'italic',
+            'link',
+            'paragraph',
+            'heading',
+            'subheading',
+            'unorderedlist',
+            'orderedlist',
+            'blockquote',
+            'image',
+            'video',
+            'audio',
+            'iframe',
+            'table',
+            'details',
+        ],
+    },
+}
