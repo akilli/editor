@@ -12,7 +12,7 @@ export default class BasePlugin extends Plugin {
      * @param {Editor} editor
      */
     constructor(editor) {
-        super(editor, 'editor');
+        super(editor, 'base');
     }
 
     /**
