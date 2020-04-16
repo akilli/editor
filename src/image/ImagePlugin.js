@@ -23,9 +23,10 @@ export default class ImagePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.translators.set(this.name, new Translator(this.name, i18n[this.editor.config.base?.lang] || {}));
+        const data = this.editor.config.base && i18n[this.editor.config.base.lang] ? i18n[this.editor.config.base.lang] : {};
+        this.editor.translators.set(this.name, new Translator(this.name, data));
         this.editor.elements.set(this.name, new MediaElement(this.editor, this.name, 'img'));
-        const dialog = this.editor.config[this.name]?.browser ? BrowserDialog : ImageDialog;
+        const dialog = this.editor.config[this.name] && this.editor.config[this.name].browser ? BrowserDialog : ImageDialog;
         this.editor.dialogs.set(this.name, new dialog(this.editor, this.name));
         this.editor.commands.set(this.name, new Command(this.editor, this.name));
     }

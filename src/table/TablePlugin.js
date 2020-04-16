@@ -24,7 +24,8 @@ export default class TablePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.translators.set(this.name, new Translator(this.name, i18n[this.editor.config.base?.lang] || {}));
+        const data = this.editor.config.base && i18n[this.editor.config.base.lang] ? i18n[this.editor.config.base.lang] : {};
+        this.editor.translators.set(this.name, new Translator(this.name, data));
         this.editor.observe(new TableObserver(this.editor, 'table'));
         this.editor.elements.set(this.name, new TableElement(this.editor));
         this.editor.filters.set(this.name, new TableFilter(this.editor, this.name));
