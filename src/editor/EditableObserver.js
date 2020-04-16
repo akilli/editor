@@ -79,7 +79,7 @@ export default class EditableObserver extends Observer {
     onKeyupEnter(ev) {
         let tag;
 
-        if (ev.key === 'Enter' && !ev.shiftKey && (tag = this.editor.getTag(ev.target.tagName)) && tag.enter) {
+        if (ev.key === 'Enter' && !ev.shiftKey && (tag = this.editor.tags.get(ev.target.tagName.toLowerCase())) && tag.enter) {
             let current = ev.target;
             let parentName;
 

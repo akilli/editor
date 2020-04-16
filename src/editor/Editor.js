@@ -294,7 +294,7 @@ export default class Editor {
     insert(element) {
         let tag;
 
-        if (!(element instanceof HTMLElement) || !(tag = this.getTag(element.tagName))) {
+        if (!(element instanceof HTMLElement) || !(tag = this.tags.get(element.tagName.toLowerCase()))) {
             throw 'Invalid HTML element';
         }
 
@@ -348,7 +348,7 @@ export default class Editor {
         }
 
         const range = sel.getRangeAt(0);
-        const tag = this.getTag(anc.tagName);
+        const tag = this.tags.get(anc.tagName.toLowerCase());
         const parent = !tag || tag.group === 'text' ? anc.parentElement : anc;
 
         if (range.startContainer instanceof Text && !range.startContainer.parentElement.isSameNode(parent)) {
@@ -511,8 +511,8 @@ export default class Editor {
             }
 
             if (node instanceof HTMLElement) {
-                const name = node.tagName;
-                const tag = this.getTag(name);
+                const name = node.tagName.toLowerCase();
+                const tag = this.tags.get(name);
                 const text = node.textContent.trim();
 
                 if (tag && (this.allowed(name, parentName) || isRoot && tag.group === 'text' && this.allowed('p', parentName))) {
@@ -584,17 +584,6 @@ export default class Editor {
     }
 
     /**
-     * Returns tag configuration vor given tag name
-     *
-     * @param {String} name
-     *
-     * @return {?Tag}
-     */
-    getTag(name) {
-        return this.tags.get(name.toLowerCase()) || null;
-    }
-
-    /**
      * Checks if given element or group is allowed inside given parent element
      *
      * @param {String} name
@@ -603,9 +592,9 @@ export default class Editor {
      * @return {Boolean}
      */
     allowed(name, parentName) {
-        const tag = this.getTag(name);
+        const tag = this.tags.get(name.toLowerCase());
         const group = tag ? tag.group : name;
-        const parentTag = this.getTag(parentName);
+        const parentTag = this.tags.get(parentName.toLowerCase());
 
         return parentTag && parentTag.children.includes(group);
     }
