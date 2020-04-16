@@ -6,10 +6,10 @@ import Filter from './Filter.js';
 import Observer from './Observer.js';
 import Plugin from './Plugin.js';
 import Tag from './Tag.js';
+import Translator from './Translator.js';
 import configPlugin from '../../cfg/plugin.js'
 import configTag from '../../cfg/tag.js';
 import configToolbar from '../../cfg/toolbar.js';
-import i18n from '../../cfg/i18n.js';
 
 /**
  * Editor
@@ -97,12 +97,12 @@ export default class Editor {
         this.config = config;
 
         /**
-         * Translations
+         * Translators
          *
-         * @type {Object.<String, String>}
+         * @type {Map<String, Translator>}
          * @readonly
          */
-        this.i18n = i18n[this.config.lang] || {};
+        this.translators = new Map();
 
         /**
          * Tags
@@ -632,17 +632,6 @@ export default class Editor {
         element.parentElement.replaceChild(newNode, element);
 
         return newNode;
-    }
-
-    /**
-     * Translates given string
-     *
-     * @param {String} key
-     *
-     * @return {String}
-     */
-    t(key) {
-        return this.i18n[key] || key;
     }
 
     /**

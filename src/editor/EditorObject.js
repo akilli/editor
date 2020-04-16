@@ -1,4 +1,5 @@
 import Editor from './Editor.js';
+import Translator from './Translator.js';
 
 /**
  * Editor Object
@@ -30,16 +31,12 @@ export default class EditorObject {
          * @readonly
          */
         this.name = name;
-    }
 
-    /**
-     * Translates given string
-     *
-     * @param {String} key
-     *
-     * @return {String}
-     */
-    t(key) {
-        return this.editor.t(key);
+        /**
+         * Translator
+         *
+         * @type {Translator}
+         */
+        this.translator = this.editor.translators.get(this.name) || new Translator(this.name, {});
     }
 }

@@ -9,13 +9,13 @@ export default class TableDialog extends Dialog {
      */
     getFieldsetHtml() {
         return `
-            <legend>${this.t('Table')}</legend>
+            <legend>${this.translator.get('Table')}</legend>
             <div data-attr="rows" data-required>
-                <label for="editor-rows">${this.t('Rows')}</label>
+                <label for="editor-rows">${this.translator.get('Rows')}</label>
                 <input id="editor-rows" name="rows" type="number" value="1" required="required" min="1" />
             </div>
             <div data-attr="cols" data-required>
-                <label for="editor-cols">${this.t('Columns')}</label>
+                <label for="editor-cols">${this.translator.get('Columns')}</label>
                 <input id="editor-cols" name="cols" type="number" value="1" required="required" min="1" />
             </div>
         `;

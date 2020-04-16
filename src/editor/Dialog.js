@@ -18,8 +18,8 @@ export default class Dialog extends EditorObject {
         const dialog = this.editor.createElement('dialog', {class: 'editor-dialog'});
         const form = this.editor.createElement('form');
         const fieldset = this.editor.createElement('fieldset');
-        const cancelButton = this.editor.createElement('button', {type: 'button', 'data-action': 'cancel'}, this.t('Cancel'));
-        const saveButton = this.editor.createElement('button', {'data-action': 'save'}, this.t('Save'));
+        const cancelButton = this.editor.createElement('button', {type: 'button', 'data-action': 'cancel'}, this.translator.get('Cancel'));
+        const saveButton = this.editor.createElement('button', {'data-action': 'save'}, this.translator.get('Save'));
         const close = () => {
             if (range) {
                 sel.removeAllRanges();

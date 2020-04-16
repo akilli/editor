@@ -6,6 +6,9 @@ import Editor from '../src/editor/Editor.js';
             audio: {
                 browser: 'https://akilli.github.io/demo-browser/media.html#audio',
             },
+            editor: {
+                lang: 'de',
+            },
             iframe: {
                 browser: 'https://akilli.github.io/demo-browser/media.html#iframe',
             },
