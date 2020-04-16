@@ -631,7 +631,7 @@ export default class Editor {
             config[key] = Object.assign(config[key] || {}, val);
         }
 
-        const editor = new Editor(element, config);
+        const editor = new this(element, config);
         editor.init();
 
         return editor;
