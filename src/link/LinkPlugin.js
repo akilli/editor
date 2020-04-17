@@ -23,9 +23,9 @@ export default class LinkPlugin extends Plugin {
      */
     init() {
         const data = this.editor.config.base && i18n[this.editor.config.base.lang] ? i18n[this.editor.config.base.lang] : {};
-        this.editor.translators.set(this.name, new Translator(this.name, data));
-        this.editor.elements.set(this.name, new Element(this.editor, this.name, 'a'));
-        this.editor.dialogs.set(this.name, new LinkDialog(this.editor, this.name));
-        this.editor.commands.set(this.name, new LinkCommand(this.editor));
+        this.editor.translators.set(new Translator(this.name, data));
+        this.editor.elements.set(new Element(this.editor, this.name, 'a'));
+        this.editor.dialogs.set(new LinkDialog(this.editor, this.name));
+        this.editor.commands.set(new LinkCommand(this.editor));
     }
 }

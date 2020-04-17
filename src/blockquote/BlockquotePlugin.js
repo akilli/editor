@@ -19,7 +19,7 @@ export default class BlockquotePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.elements.set(this.name, new BlockquoteElement(this.editor));
-        this.editor.commands.set(this.name, new Command(this.editor, this.name));
+        this.editor.elements.set(new BlockquoteElement(this.editor));
+        this.editor.commands.set(new Command(this.editor, this.name));
     }
 }

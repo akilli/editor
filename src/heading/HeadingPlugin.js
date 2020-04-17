@@ -19,7 +19,7 @@ export default class HeadingPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.elements.set(this.name, new Element(this.editor, this.name, 'h2'));
-        this.editor.commands.set(this.name, new Command(this.editor, this.name));
+        this.editor.elements.set(new Element(this.editor, this.name, 'h2'));
+        this.editor.commands.set(new Command(this.editor, this.name));
     }
 }

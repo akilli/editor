@@ -1,6 +1,13 @@
+import Command from './Command.js';
+import Converter from './Converter.js';
+import Dialog from './Dialog.js';
+import Element from './Element.js';
+import Filter from './Filter.js';
 import Observer from './Observer.js';
 import Plugin from './Plugin.js';
 import Tag from './Tag.js';
+import Translator from './Translator.js';
+import TypedMap from './TypedMap.js';
 
 /**
  * Base Editor
@@ -94,114 +101,75 @@ export default class Editor {
         /**
          * Translators
          *
-         * @type {Map<String, Translator>}
+         * @type {TypedMap<String, Translator>}
          * @readonly
          */
-        this.translators = new Map();
+        this.translators = new TypedMap(Translator);
 
         /**
          * Tags
          *
-         * @type {Map<String, Tag>}
+         * @type {TypedMap<String, Tag>}
          * @readonly
          */
-        this.tags = this.mapTags(this.config.base.tags || []);
+        this.tags = new TypedMap(Tag, this.config.base.tags.map(item => new Tag(item)));
 
         /**
          * Elements
          *
-         * @type {Map<String, Element>}
+         * @type {TypedMap<String, Element>}
          * @readonly
          */
-        this.elements = new Map();
+        this.elements = new TypedMap(Element);
 
         /**
          * Element converters
          *
-         * @type {Map<String, Converter>}
+         * @type {TypedMap<String, Converter>}
          * @readonly
          */
-        this.converters = new Map();
+        this.converters = new TypedMap(Converter);
 
         /**
          * Filters
          *
-         * @type {Map<String, Filter>}
+         * @type {TypedMap<String, Filter>}
          * @readonly
          */
-        this.filters = new Map();
+        this.filters = new TypedMap(Filter);
 
         /**
          * Dialogs
          *
-         * @type {Map<String, Dialog>}
+         * @type {TypedMap<String, Dialog>}
          * @readonly
          */
-        this.dialogs = new Map();
+        this.dialogs = new TypedMap(Dialog);
 
         /**
          * Commands
          *
-         * @type {Map<String, Command>}
+         * @type {TypedMap<String, Command>}
          * @readonly
          */
-        this.commands = new Map();
+        this.commands = new TypedMap(Command);
 
         /**
          * Plugins
          *
-         * @type {Map<String, Plugin>}
+         * @type {TypedMap<String, Plugin>}
          * @readonly
          */
-        this.plugins = new Map();
-    }
-
-    /**
-     * Creates tag map
-     *
-     * @private
-     *
-     * @param {Object[]} config
-     *
-     * @return {Map<String, Tag>}
-     */
-    mapTags(config) {
-        const map = new Map();
-        config.forEach(item => {
-            const tag = new Tag(item);
-            map.set(tag.name, tag);
-        });
-
-        return map;
+        this.plugins = new TypedMap(Plugin, this.config.base.plugins.map(item => new item(this)));
     }
 
     /**
      * Initializes editor
      */
     init() {
-        this.initPlugin();
+        this.plugins.forEach(item => item.init());
         this.initContent();
         this.initToolbar();
-    }
-
-    /**
-     * Initializes plugins
-     *
-     * @private
-     */
-    initPlugin() {
-        if (Array.isArray(this.config.base.plugins)) {
-            this.config.base.plugins.forEach(item => {
-                if (!(item instanceof Plugin.constructor)) {
-                    throw 'Invalid argument';
-                }
-
-                const plugin = new item(this);
-                this.plugins.set(plugin.name, plugin);
-            });
-        }
-
-        this.plugins.forEach(item => item.init());
     }
 
     /**

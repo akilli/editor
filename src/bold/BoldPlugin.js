@@ -20,8 +20,8 @@ export default class BoldPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.elements.set(this.name, new Element(this.editor, this.name, 'strong'));
-        this.editor.commands.set(this.name, new Command(this.editor, this.name));
-        this.editor.converters.set('b', new Converter(this.editor, 'b', 'strong'))
+        this.editor.elements.set(new Element(this.editor, this.name, 'strong'));
+        this.editor.commands.set(new Command(this.editor, this.name));
+        this.editor.converters.set(new Converter(this.editor, 'b', 'strong'))
     }
 }

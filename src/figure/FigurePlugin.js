@@ -20,6 +20,6 @@ export default class FigurePlugin extends Plugin {
      */
     init() {
         this.editor.observe(new FigureObserver(this.editor));
-        this.editor.filters.set(this.name, new FigureFilter(this.editor, this.name));
+        this.editor.filters.set(new FigureFilter(this.editor, this.name));
     }
 }

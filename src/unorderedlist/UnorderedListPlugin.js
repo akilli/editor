@@ -19,7 +19,7 @@ export default class UnorderedListPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.elements.set(this.name, new ListElement(this.editor, this.name, 'ul'));
-        this.editor.commands.set(this.name, new Command(this.editor, this.name));
+        this.editor.elements.set(new ListElement(this.editor, this.name, 'ul'));
+        this.editor.commands.set(new Command(this.editor, this.name));
     }
 }
