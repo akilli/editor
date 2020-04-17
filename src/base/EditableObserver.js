@@ -7,8 +7,8 @@ export default class EditableObserver extends Observer {
     /**
      * @inheritDoc
      */
-    constructor(editor, name) {
-        super(editor, name);
+    constructor(editor) {
+        super(editor);
 
         /**
          * Editables

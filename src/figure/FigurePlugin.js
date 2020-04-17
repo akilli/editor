@@ -19,7 +19,7 @@ export default class FigurePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.observe(new FigureObserver(this.editor, 'figure'));
+        this.editor.observe(new FigureObserver(this.editor));
         this.editor.filters.set(this.name, new FigureFilter(this.editor, this.name));
     }
 }

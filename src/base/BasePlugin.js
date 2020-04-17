@@ -19,7 +19,7 @@ export default class BasePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.observe(new EditableObserver(this.editor, 'editable'));
-        this.editor.observe(new WidgetObserver(this.editor, 'widget'));
+        this.editor.observe(new EditableObserver(this.editor));
+        this.editor.observe(new WidgetObserver(this.editor));
     }
 }

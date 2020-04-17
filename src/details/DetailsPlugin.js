@@ -22,9 +22,9 @@ export default class DetailsPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
+        this.editor.observe(new DetailsObserver(this.editor));
         const data = this.editor.config.base && i18n[this.editor.config.base.lang] ? i18n[this.editor.config.base.lang] : {};
         this.editor.translators.set(this.name, new Translator(this.name, data));
-        this.editor.observe(new DetailsObserver(this.editor, 'details'));
         this.editor.elements.set(this.name, new DetailsElement(this.editor));
         this.editor.commands.set(this.name, new Command(this.editor, this.name));
     }
