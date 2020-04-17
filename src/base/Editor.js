@@ -1,7 +1,6 @@
 import Observer from './Observer.js';
 import Plugin from './Plugin.js';
 import Tag from './Tag.js';
-import configTag from '../../cfg/tag.js';
 
 /**
  * Base Editor
@@ -106,7 +105,7 @@ export default class Editor {
          * @type {Map<String, Tag>}
          * @readonly
          */
-        this.tags = this.mapTags(configTag);
+        this.tags = this.mapTags(this.config.base.tags || []);
 
         /**
          * Elements
