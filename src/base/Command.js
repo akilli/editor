@@ -49,7 +49,7 @@ export default class Command {
     }
 
     /**
-     * Execute command
+     * Executes the command
      */
     execute() {
         this.dialog ? this.dialog.open(data => this.insert(data), this.oldData()) : this.insert();
