@@ -1,9 +1,9 @@
-import EditorObject from './EditorObject.js';
+import Editor from './Editor.js';
 
 /**
  * Element
  */
-export default class Element extends EditorObject {
+export default class Element {
     /**
      * Initializes a new editor element
      *
@@ -12,11 +12,25 @@ export default class Element extends EditorObject {
      * @param {String} tagName
      */
     constructor(editor, name, tagName) {
-        super(editor, name);
-
-        if (!tagName || typeof tagName !== 'string') {
+        if (!(editor instanceof Editor) || !name || typeof name !== 'string' || !tagName || typeof tagName !== 'string') {
             throw 'Invalid argument';
         }
+
+        /**
+         * Editor
+         *
+         * @type {Editor}
+         * @readonly
+         */
+        this.editor = editor;
+
+        /**
+         * Name
+         *
+         * @type {String}
+         * @readonly
+         */
+        this.name = name;
 
         /**
          * Tag name

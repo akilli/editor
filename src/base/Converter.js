@@ -1,9 +1,9 @@
-import EditorObject from './EditorObject.js';
+import Editor from './Editor.js';
 
 /**
  * HTML Element Converter
  */
-export default class Converter extends EditorObject {
+export default class Converter {
     /**
      * Initializes a new element converter and with given tag name and target name
      *
@@ -12,11 +12,25 @@ export default class Converter extends EditorObject {
      * @param {String} target
      */
     constructor(editor, name, target) {
-        super(editor, name);
-
-        if (!target || typeof target !== 'string') {
+        if (!(editor instanceof Editor) || !name || typeof name !== 'string' || !target || typeof target !== 'string') {
             throw 'Invalid argument';
         }
+
+        /**
+         * Editor
+         *
+         * @type {Editor}
+         * @readonly
+         */
+        this.editor = editor;
+
+        /**
+         * Name
+         *
+         * @type {String}
+         * @readonly
+         */
+        this.name = name;
 
         /**
          * The new tag name of the converted element

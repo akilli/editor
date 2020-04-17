@@ -1,9 +1,9 @@
-import EditorObject from './EditorObject.js';
+import Editor from './Editor.js';
 
 /**
  * Command
  */
-export default class Command extends EditorObject {
+export default class Command {
     /**
      * Initializes a new editor command optionally with given element and dialog
      *
@@ -11,7 +11,25 @@ export default class Command extends EditorObject {
      * @param {String} name
      */
     constructor(editor, name) {
-        super(editor, name);
+        if (!(editor instanceof Editor) || !name || typeof name !== 'string') {
+            throw 'Invalid argument';
+        }
+
+        /**
+         * Editor
+         *
+         * @type {Editor}
+         * @readonly
+         */
+        this.editor = editor;
+
+        /**
+         * Name
+         *
+         * @type {String}
+         * @readonly
+         */
+        this.name = name;
 
         /**
          * Element
