@@ -52,7 +52,7 @@ export default class Command {
      * Executes the command
      */
     execute() {
-        this.dialog ? this.dialog.open(data => this.insert(data), this.oldData()) : this.insert();
+        this.dialog ? this.dialog.open(attributes => this.insert(attributes), this.selectedAttributes()) : this.insert();
     }
 
      /**
@@ -67,18 +67,18 @@ export default class Command {
     }
 
     /**
-     * Returns old data for dialog
+     * Returns attributes from selected element if it is the same kind of element
      *
      * @return {Object}
      */
-    oldData() {
-        const data = {};
+    selectedAttributes() {
+        const attributes = {};
         const sel = this.editor.getSelectedElement();
 
         if (sel instanceof HTMLElement && sel.tagName.toLowerCase() === this.element.tagName) {
-            Array.from(sel.attributes).forEach(attribute => data[attribute.nodeName] = attribute.nodeValue);
+            Array.from(sel.attributes).forEach(attribute => attributes[attribute.nodeName] = attribute.nodeValue);
         }
 
-        return data;
+        return attributes;
     }
 }

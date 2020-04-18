@@ -44,9 +44,9 @@ export default class Dialog {
      * Opens a dialog and executes given callback on save
      *
      * @param {Function} save
-     * @param {Object} [oldData = {}]
+     * @param {Object} [attributes = {}]
      */
-    open(save, oldData = {}) {
+    open(save, attributes = {}) {
         this.editor.document.querySelectorAll('dialog.editor-dialog').forEach(node => node.parentElement.removeChild(node));
 
         const sel = this.editor.window.getSelection();
@@ -80,7 +80,7 @@ export default class Dialog {
         dialog.open = true;
         fieldset.insertAdjacentHTML('beforeend', this.getFieldsetHtml());
 
-        for (let [key, val] of Object.entries(oldData)) {
+        for (let [key, val] of Object.entries(attributes)) {
             if (fieldset.elements[key]) {
                 fieldset.elements[key].value = val;
             }
