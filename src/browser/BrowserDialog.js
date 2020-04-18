@@ -13,7 +13,7 @@ export default class BrowserDialog extends Dialog {
     constructor(editor, name) {
         super(editor, name);
 
-        if (!this.editor.config[this.name] || !this.editor.config[this.name].browser) {
+        if (!this.editor.config[this.name].browserUrl) {
             throw 'Invalid argument';
         }
 
@@ -22,7 +22,7 @@ export default class BrowserDialog extends Dialog {
          *
          * @type {String}
          */
-        this.url = this.editor.config[this.name].browser;
+        this.url = this.editor.config[this.name].browserUrl;
 
         /**
          * Browser window configuration
@@ -41,7 +41,7 @@ export default class BrowserDialog extends Dialog {
             scrollbars: 'yes',
             toolbar: 'no',
             width: `${this.editor.window.screen.width}`,
-        }, this.editor.config.browser || {});
+        }, this.editor.config[this.name].browserOpts);
     }
 
     /**

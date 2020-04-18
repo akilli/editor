@@ -25,8 +25,7 @@ export default class TablePlugin extends Plugin {
      */
     init() {
         this.editor.observe(new TableObserver(this.editor));
-        const data = this.editor.config.base && i18n[this.editor.config.base.lang] ? i18n[this.editor.config.base.lang] : {};
-        this.editor.translators.set(new Translator(this.name, data));
+        this.editor.translators.set(new Translator(this.name, i18n[this.editor.config.base.lang] || {}));
         this.editor.elements.set(new TableElement(this.editor));
         this.editor.filters.set(new TableFilter(this.editor, this.name));
         this.editor.dialogs.set(new TableDialog(this.editor, this.name));

@@ -22,11 +22,17 @@ export default class IframePlugin extends Plugin {
     /**
      * @inheritDoc
      */
+    config() {
+        return {browserUrl: null, browserOpts: {}};
+    }
+
+    /**
+     * @inheritDoc
+     */
     init() {
-        const data = this.editor.config.base && i18n[this.editor.config.base.lang] ? i18n[this.editor.config.base.lang] : {};
-        this.editor.translators.set(new Translator(this.name, data));
+        this.editor.translators.set(new Translator(this.name, i18n[this.editor.config.base.lang] || {}));
         this.editor.elements.set(new MediaElement(this.editor, this.name, 'iframe'));
-        const dialog = this.editor.config[this.name] && this.editor.config[this.name].browser ? BrowserDialog : IframeDialog;
+        const dialog = this.editor.config[this.name].browserUrl ? BrowserDialog : IframeDialog;
         this.editor.dialogs.set(new dialog(this.editor, this.name));
         this.editor.commands.set(new Command(this.editor, this.name));
     }

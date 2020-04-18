@@ -13,6 +13,8 @@ export default class Plugin {
     constructor(editor, name) {
         if (!(editor instanceof Editor) || !name || typeof name !== 'string') {
             throw 'Invalid argument';
+        } else if (this.config()) {
+            editor.config[name] = Object.assign({}, this.config(), editor.config[name] || {});
         }
 
         /**
@@ -30,6 +32,15 @@ export default class Plugin {
          * @readonly
          */
         this.name = name;
+    }
+
+    /**
+     * Returns default configuration of the plugin if any
+     *
+     * @return {?Object}
+     */
+    config() {
+        return null;
     }
 
     /**

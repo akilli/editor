@@ -19,6 +19,13 @@ export default class BasePlugin extends Plugin {
     /**
      * @inheritDoc
      */
+    config() {
+        return {lang: null, plugins: [], tags: [], toolbar: []};
+    }
+
+    /**
+     * @inheritDoc
+     */
     init() {
         this.editor.observe(new EditableObserver(this.editor));
         this.editor.observe(new WidgetObserver(this.editor));
