@@ -54,6 +54,7 @@ export default class BrowserDialog extends Dialog {
         const win = this.editor.window.open(this.url, this.name, features);
         const a = this.editor.createElement('a', {href: this.url});
 
+        win.postMessage(oldData, a.origin);
         this.editor.window.addEventListener('message', ev => {
             if (ev.origin === a.origin && ev.source === win) {
                 save(ev.data);
