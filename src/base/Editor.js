@@ -25,7 +25,7 @@ export default class Editor {
         }
 
         for (let [key, val] of Object.entries(this.constructor.defaultConfig || {})) {
-            config[key] = Object.assign(config[key] || {}, val);
+            config[key] = Object.assign({}, val, config[key] || {});
         }
 
         /**
