@@ -51,13 +51,4 @@ export default class Element {
     create(attributes = {}) {
         return this.editor.createElement(this.tagName, attributes);
     }
-
-    /**
-     * Inserts element
-     *
-     * @param {Object.<String, String>} [attributes = {}]
-     */
-    insert(attributes = {}) {
-        this.editor.insert(this.create(attributes));
-    }
 }

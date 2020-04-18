@@ -58,11 +58,11 @@ export default class Command {
      /**
       * Insert element
       *
-      * @param {Object.<String, String>} [data = {}]
+      * @param {Object.<String, String>} [attributes = {}]
       */
-    insert(data = {}) {
+    insert(attributes = {}) {
         if (this.element) {
-            this.element.insert(data);
+            this.editor.insert(this.element.create(attributes));
         }
     }
 

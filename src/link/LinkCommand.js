@@ -25,7 +25,7 @@ export default class LinkCommand extends Command {
         if (href && old) {
             old.setAttribute('href', href);
         } else if (href) {
-            this.element.insert({href: href});
+            super.insert({href: href});
         } else if (old) {
             old.parentElement.replaceChild(this.editor.createText(old.textContent), old);
         }
