@@ -26,7 +26,6 @@ export default class IframeElement extends Element {
             throw 'No media element';
         }
 
-        attributes.src = this.editor.url(attributes.src);
         attributes.allowfullscreen = 'allowfullscreen';
 
         const figure = this.editor.createElement('figure', {class: 'iframe'});

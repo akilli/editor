@@ -26,7 +26,6 @@ export default class VideoElement extends Element {
             throw 'No media element';
         }
 
-        attributes.src = this.editor.url(attributes.src);
         attributes.controls = 'controls';
 
         const figure = this.editor.createElement('figure', {class: 'video'});

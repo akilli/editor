@@ -26,8 +26,6 @@ export default class ImageElement extends Element {
             throw 'No media element';
         }
 
-        attributes.src = this.editor.url(attributes.src);
-
         const figure = this.editor.createElement('figure', {class: 'image'});
         const media = this.editor.createElement('img', attributes);
         const figcaption = this.editor.createElement('figcaption', {}, caption);
