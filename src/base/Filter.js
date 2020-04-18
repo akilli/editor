@@ -35,9 +35,9 @@ export default class Filter {
     /**
      * Filters element
      *
-     * @param {HTMLElement} parent
+     * @param {HTMLElement} element
      */
-    filter(parent) {
+    filter(element) {
         throw 'Not implemented';
     }
 }

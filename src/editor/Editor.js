@@ -30,8 +30,8 @@ export default class Editor extends BaseEditor {}
 Editor.defaultConfig = {
     base: {
         plugins: [
-            AudioPlugin,
             BasePlugin,
+            AudioPlugin,
             BlockquotePlugin,
             BoldPlugin,
             DetailsPlugin,

@@ -7,13 +7,13 @@ export default class TableFilter extends Filter {
     /**
      * @inheritDoc
      */
-    filter(parent) {
-        if (parent instanceof HTMLTableRowElement && !parent.querySelector('th:not(:empty), td:not(:empty)')
-            || parent instanceof HTMLTableSectionElement && parent.rows.length <= 0
-            || parent instanceof HTMLTableElement && parent.querySelector('thead, tfoot') && !parent.querySelector('tbody')
+    filter(element) {
+        if (element instanceof HTMLTableRowElement && !element.querySelector('th:not(:empty), td:not(:empty)')
+            || element instanceof HTMLTableSectionElement && element.rows.length <= 0
+            || element instanceof HTMLTableElement && element.querySelector('thead, tfoot') && !element.querySelector('tbody')
         ) {
-            while (parent.firstChild) {
-                parent.removeChild(parent.firstChild);
+            while (element.firstChild) {
+                element.removeChild(element.firstChild);
             }
         }
     }

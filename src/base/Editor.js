@@ -1,6 +1,4 @@
-import BreakFilter from './BreakFilter.js';
 import Command from './Command.js';
-import ContentFilter from './ContentFilter.js';
 import Converter from './Converter.js';
 import Dialog from './Dialog.js';
 import Element from './Element.js';
@@ -169,9 +167,7 @@ export default class Editor {
      * Initializes editor
      */
     init() {
-        this.filters.set(new ContentFilter(this, 'content'));
         this.plugins.forEach(item => item.init());
-        this.filters.set(new BreakFilter(this, 'break'));
         this.initContent();
         this.initToolbar();
     }
@@ -456,16 +452,16 @@ export default class Editor {
     /**
      * Filters element
      *
-     * @param {HTMLElement} parent
+     * @param {HTMLElement} element
      */
-    filter(parent) {
-        if (!(parent instanceof HTMLElement)) {
+    filter(element) {
+        if (!(element instanceof HTMLElement)) {
             throw 'No HTML element';
         }
 
         this.filters.forEach(item => {
-            parent.normalize();
-            item.filter(parent)
+            element.normalize();
+            item.filter(element)
         });
     }
 
