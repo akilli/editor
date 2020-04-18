@@ -222,7 +222,7 @@ export default class Editor {
      */
     getData() {
         const content = this.content.cloneNode(true);
-        this.filter(content, true);
+        this.filter(content);
 
         return content.innerHTML;
     }
@@ -453,16 +453,15 @@ export default class Editor {
      * Filters element
      *
      * @param {HTMLElement} parent
-     * @param {Boolean} [forceRoot = false]
      */
-    filter(parent, forceRoot = false) {
+    filter(parent) {
         if (!(parent instanceof HTMLElement)) {
             throw 'No HTML element';
         }
 
         // Prefilter content
-        const isRoot = forceRoot || this.content.isSameNode(parent);
-        const parentName = forceRoot ? 'root' : this.getTagName(parent);
+        const parentName = this.getTagName(parent);
+        const isRoot = this.isRoot(parent);
         parent.normalize();
         Array.from(parent.childNodes).forEach(node => {
             if (node instanceof HTMLElement) {
@@ -528,6 +527,21 @@ export default class Editor {
     }
 
     /**
+     * Indicates if given element is the editor content aka root element
+     *
+     * @param {HTMLElement} element
+     *
+     * @return {Boolean}
+     */
+    isRoot(element) {
+        if (!(element instanceof HTMLElement)) {
+            throw 'No HTML element';
+        }
+
+        return this.content.isSameNode(element) || element.getAttribute('class') === 'editor-content';
+    }
+
+    /**
      * Returns tag name from element considering exception for root element
      *
      * @param {HTMLElement} element
@@ -535,11 +549,7 @@ export default class Editor {
      * @return {String}
      */
     getTagName(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'No HTML element';
-        }
-
-        return this.content.isSameNode(element) ? 'root' : element.tagName.toLowerCase();
+        return this.isRoot(element) ? 'root' : element.tagName.toLowerCase();
     }
 
     /**

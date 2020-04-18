@@ -93,7 +93,7 @@ export default class EditableObserver extends Observer {
                     current.insertAdjacentElement('afterend', this.editor.createElement(tag.enter));
                     break;
                 }
-            } while ((current = current.parentElement) && this.editor.content.contains(current) && !this.editor.content.isSameNode(current));
+            } while ((current = current.parentElement) && this.editor.content.contains(current) && !this.editor.isRoot(current));
         }
     }
 
