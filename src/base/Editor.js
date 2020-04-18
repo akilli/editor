@@ -466,6 +466,30 @@ export default class Editor {
     }
 
     /**
+     * Converts element
+     *
+     * @param {HTMLElement} element
+     *
+     * @return {HTMLElement|Text}
+     */
+    convert(element) {
+        if (!(element instanceof HTMLElement)) {
+            throw 'No HTML element';
+        }
+
+        const converter = this.converters.get(element.tagName.toLowerCase());
+
+        if (!converter) {
+            return element;
+        }
+
+        const newNode = converter.convert(element);
+        element.parentElement.replaceChild(newNode, element);
+
+        return newNode;
+    }
+
+    /**
      * Indicates if given element is the editor content aka root element
      *
      * @param {HTMLElement} element
@@ -505,30 +529,6 @@ export default class Editor {
         const parentTag = this.tags.get(parentName);
 
         return parentTag && parentTag.children.includes(group);
-    }
-
-    /**
-     * Converts element
-     *
-     * @param {HTMLElement} element
-     *
-     * @return {HTMLElement|Text}
-     */
-    convert(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'No HTML element';
-        }
-
-        const converter = this.converters.get(element.tagName.toLowerCase());
-
-        if (!converter) {
-            return element;
-        }
-
-        const newNode = converter.convert(element);
-        element.parentElement.replaceChild(newNode, element);
-
-        return newNode;
     }
 
     /**
