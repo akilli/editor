@@ -1,6 +1,6 @@
 import AudioDialog from './AudioDialog.js';
 import AudioElement from './AudioElement.js';
-import BrowserDialog from '../browser/BrowserDialog.js';
+import BrowserDialog from '../base/BrowserDialog.js';
 import Command from '../base/Command.js';
 import Plugin from '../base/Plugin.js';
 import Translator from '../base/Translator.js';

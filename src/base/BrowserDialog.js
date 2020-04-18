@@ -1,4 +1,4 @@
-import Dialog from '../base/Dialog.js';
+import Dialog from './Dialog.js';
 
 /**
  * Browser Dialog

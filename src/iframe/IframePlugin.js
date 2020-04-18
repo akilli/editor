@@ -1,4 +1,4 @@
-import BrowserDialog from '../browser/BrowserDialog.js';
+import BrowserDialog from '../base/BrowserDialog.js';
 import Command from '../base/Command.js';
 import IframeDialog from './IframeDialog.js';
 import IframeElement from './IframeElement.js';
