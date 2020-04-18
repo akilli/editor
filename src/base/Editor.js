@@ -1,4 +1,6 @@
+import BreakFilter from './BreakFilter.js';
 import Command from './Command.js';
+import ContentFilter from './ContentFilter.js';
 import Converter from './Converter.js';
 import Dialog from './Dialog.js';
 import Element from './Element.js';
@@ -167,7 +169,9 @@ export default class Editor {
      * Initializes editor
      */
     init() {
+        this.filters.set(new ContentFilter(this, 'content'));
         this.plugins.forEach(item => item.init());
+        this.filters.set(new BreakFilter(this, 'break'));
         this.initContent();
         this.initToolbar();
     }
@@ -459,71 +463,10 @@ export default class Editor {
             throw 'No HTML element';
         }
 
-        // Prefilter content
-        const parentName = this.getTagName(parent);
-        const isRoot = this.isRoot(parent);
-        parent.normalize();
-        Array.from(parent.childNodes).forEach(node => {
-            if (node instanceof HTMLElement) {
-                node = this.convert(node);
-            }
-
-            if (node instanceof HTMLElement) {
-                const name = node.tagName.toLowerCase();
-                const tag = this.tags.get(name);
-                const text = node.textContent.trim();
-
-                if (tag && (this.allowed(name, parentName) || isRoot && tag.group === 'text' && this.allowed('p', parentName))) {
-                    Array.from(node.attributes).forEach(item => {
-                        if (!tag.attributes.includes(item.name)) {
-                            node.removeAttribute(item.name);
-                        }
-                    });
-
-                    if (node.hasChildNodes()) {
-                        this.filter(node);
-                    }
-
-                    if (!node.hasChildNodes() && !tag.empty) {
-                        parent.removeChild(node);
-                    } else if (!this.allowed(name, parentName)) {
-                        parent.replaceChild(this.createElement('p', {}, node.outerHTML), node);
-                    }
-                } else if (isRoot && text && this.allowed('p', parentName)) {
-                    parent.replaceChild(this.createElement('p', {}, text), node);
-                } else if (text && this.allowed('text', parentName)) {
-                    parent.replaceChild(this.createText(text), node);
-                } else {
-                    parent.removeChild(node);
-                }
-            } else if (node instanceof Text) {
-                const text = node.textContent.trim();
-
-                if (isRoot && text && this.allowed('p', parentName)) {
-                    parent.replaceChild(this.createElement('p', {}, text), node);
-                } else if (isRoot) {
-                    parent.removeChild(node);
-                }
-            } else {
-                parent.removeChild(node);
-            }
-        });
-
-        // Apply filters
         this.filters.forEach(item => {
             parent.normalize();
             item.filter(parent)
         });
-
-        // Handle linebreaks
-        parent.normalize();
-        parent.innerHTML = parent.innerHTML.replace(/^\s*(<br\s*\/?>\s*)+/gi, '').replace(/\s*(<br\s*\/?>\s*)+$/gi, '');
-
-        if (parent instanceof HTMLParagraphElement) {
-            parent.outerHTML = parent.outerHTML.replace(/\s*(<br\s*\/?>\s*){2,}/gi, '</p><p>');
-        } else{
-            parent.innerHTML = parent.innerHTML.replace(/\s*(<br\s*\/?>\s*){2,}/gi, '<br>');
-        }
     }
 
     /**
