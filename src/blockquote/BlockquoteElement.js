@@ -14,6 +14,8 @@ export default class BlockquoteElement extends Element {
     }
 
     /**
+     * Creates blockquote element
+     *
      * @param {String} [caption = '']
      */
     create({caption = ''} = {}) {
