@@ -26,8 +26,7 @@ export default class MediaElement extends Element {
             throw 'No media element';
         }
 
-        const a = this.editor.createElement('a', {href: attributes.src});
-        attributes.src = a.origin === this.editor.origin ? a.pathname : a.href;
+        attributes.src = this.editor.url(attributes.src);
         Object.assign(attributes, defaultAttributes[this.tagName] || {});
 
         const figure = this.editor.createElement('figure', {class: this.name});
