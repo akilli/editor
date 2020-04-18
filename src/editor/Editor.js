@@ -25,7 +25,7 @@ export default class Editor extends BaseEditor {}
 /**
  * Default configuration
  *
- * @type {Object.<String, Array>}
+ * @type {Object.<String, Object>}
  */
 Editor.defaultConfig = {
     base: {
