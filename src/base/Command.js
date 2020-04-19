@@ -5,13 +5,14 @@ import Editor from './Editor.js';
  */
 export default class Command {
     /**
-     * Initializes a new editor command optionally with given element and dialog
+     * Initializes a new editor command optionally with given tag name
      *
      * @param {Editor} editor
      * @param {String} name
+     * @param {?String} tagName
      */
-    constructor(editor, name) {
-        if (!(editor instanceof Editor) || !name || typeof name !== 'string') {
+    constructor(editor, name, tagName = null) {
+        if (!(editor instanceof Editor) || !name || typeof name !== 'string' || tagName && typeof tagName !== 'string') {
             throw 'Invalid argument';
         }
 
@@ -32,12 +33,12 @@ export default class Command {
         this.name = name;
 
         /**
-         * Element
+         * Name of the tag to insert
          *
-         * @type {?Element}
+         * @type {?String}
          * @readonly
          */
-        this.element = this.editor.elements.get(this.name) || null;
+        this.tagName = tagName ? tagName.toLowerCase() : null;
 
         /**
          * Dialog
@@ -56,13 +57,13 @@ export default class Command {
     }
 
      /**
-      * Insert element
+      * Inserts element
       *
       * @param {Object.<String, String>} [attributes = {}]
       */
     insert(attributes = {}) {
-        if (this.element) {
-            this.editor.insert(this.element.create(attributes));
+        if (this.tagName) {
+            this.editor.insert(this.editor.createElement(this.tagName, {attributes: attributes}));
         }
     }
 
@@ -75,7 +76,7 @@ export default class Command {
         const attributes = {};
         const sel = this.editor.getSelectedElement();
 
-        if (sel instanceof HTMLElement && sel.tagName.toLowerCase() === this.element.tagName) {
+        if (sel instanceof HTMLElement && sel.tagName.toLowerCase() === this.tagName) {
             Array.from(sel.attributes).forEach(attribute => attributes[attribute.nodeName] = attribute.nodeValue);
         }
 

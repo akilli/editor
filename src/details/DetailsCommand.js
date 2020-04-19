@@ -1,11 +1,11 @@
-import Element from '../base/Element.js';
+import Command from '../base/Command.js';
 
 /**
- * Details Element
+ * Details Command
  */
-export default class DetailsElement extends Element {
+export default class DetailsCommand extends Command {
     /**
-     * Initializes a new details element
+     * Initializes a new details command
      *
      * @param {Editor} editor
      */
@@ -16,11 +16,11 @@ export default class DetailsElement extends Element {
     /**
      * @inheritDoc
      */
-    create(attributes = {}) {
+    insert(attributes = {}) {
         const details = this.editor.createElement('details');
         details.appendChild(this.editor.createElement('summary'));
         details.appendChild(this.editor.createElement('p'));
 
-        return details;
+        this.editor.insert(details);
     }
 }

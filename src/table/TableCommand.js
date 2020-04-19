@@ -1,11 +1,11 @@
-import Element from '../base/Element.js';
+import Command from '../base/Command.js';
 
 /**
- * Table Element
+ * Table Command
  */
-export default class TableElement extends Element {
+export default class TableCommand extends Command {
     /**
-     * Initializes a new table element
+     * Initializes a new table command
      *
      * @param {Editor} editor
      */
@@ -14,15 +14,13 @@ export default class TableElement extends Element {
     }
 
     /**
-     * Creates table element
+     * Inserts table element
      *
      * @param {Number} rows
      * @param {Number} cols
      * @param {String} [caption = '']
-     *
-     * @return {HTMLElement}
      */
-    create({rows = 1, cols = 1, caption = ''} = {}) {
+    insert({rows = 1, cols = 1, caption = ''} = {}) {
         if (rows <= 0 || cols <= 0) {
             throw 'Invalid argument';
         }
@@ -52,6 +50,6 @@ export default class TableElement extends Element {
             }
         });
 
-        return figure;
+        this.editor.insert(figure);
     }
 }

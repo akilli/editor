@@ -1,11 +1,11 @@
-import Element from '../base/Element.js';
+import Command from '../base/Command.js';
 
 /**
- * Blockquote Element
+ * Ordered List Command
  */
-export default class BlockquoteElement extends Element {
+export default class BlockquoteCommand extends Command {
     /**
-     * Initializes a new blockquote element
+     * Initializes a new blockquote command
      *
      * @param {Editor} editor
      */
@@ -14,11 +14,11 @@ export default class BlockquoteElement extends Element {
     }
 
     /**
-     * Creates blockquote element
+     * Inserts blockquote element
      *
      * @param {String} [caption = '']
      */
-    create({caption = ''} = {}) {
+    insert({caption = ''} = {}) {
         const figure = this.editor.createElement('figure', {attributes: {class: 'quote'}});
         const blockquote = this.editor.createElement('blockquote');
         const figcaption = this.editor.createElement('figcaption', {content: caption, html: true});
@@ -27,6 +27,6 @@ export default class BlockquoteElement extends Element {
         figure.appendChild(blockquote);
         figure.appendChild(figcaption);
 
-        return figure;
+        this.editor.insert(figure);
     }
 }

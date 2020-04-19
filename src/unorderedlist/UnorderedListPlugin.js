@@ -1,6 +1,5 @@
-import Command from '../base/Command.js';
 import Plugin from '../base/Plugin.js';
-import UnorderedListElement from './UnorderedListElement.js';
+import UnorderedListCommand from './UnorderedListCommand.js';
 
 /**
  * Unordered List Plugin
@@ -19,7 +18,6 @@ export default class UnorderedListPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.elements.set(new UnorderedListElement(this.editor));
-        this.editor.commands.set(new Command(this.editor, this.name));
+        this.editor.commands.set(new UnorderedListCommand(this.editor));
     }
 }

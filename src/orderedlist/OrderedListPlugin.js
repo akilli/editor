@@ -1,5 +1,4 @@
-import Command from '../base/Command.js';
-import OrderedListElement from './OrderedListElement.js';
+import OrderedListCommand from './OrderedListCommand.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -19,7 +18,6 @@ export default class OrderedListPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.elements.set(new OrderedListElement(this.editor));
-        this.editor.commands.set(new Command(this.editor, this.name));
+        this.editor.commands.set(new OrderedListCommand(this.editor));
     }
 }

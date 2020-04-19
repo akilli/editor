@@ -1,11 +1,11 @@
-import Element from '../base/Element.js';
+import Command from '../base/Command.js';
 
 /**
- * Iframe Element
+ * Iframe Command
  */
-export default class IframeElement extends Element {
+export default class IframeCommand extends Command {
     /**
-     * Initializes a new iframe element
+     * Initializes a new iframe command
      *
      * @param {Editor} editor
      */
@@ -14,14 +14,12 @@ export default class IframeElement extends Element {
     }
 
     /**
-     * Creates iframe element
+     * Inserts iframe element
      *
      * @param {String} [caption = '']
      * @param {Object.<String, String>} atttibutes
-     *
-     * @return {HTMLElement}
      */
-    create({caption = '', ...attributes} = {}) {
+    insert({caption = '', ...attributes} = {}) {
         if (!attributes.src) {
             throw 'No media element';
         }
@@ -35,6 +33,6 @@ export default class IframeElement extends Element {
         figure.appendChild(media);
         figure.appendChild(figcaption);
 
-        return figure;
+        this.editor.insert(figure);
     }
 }

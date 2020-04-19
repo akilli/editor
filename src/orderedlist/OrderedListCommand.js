@@ -1,11 +1,11 @@
-import Element from '../base/Element.js';
+import Command from '../base/Command.js';
 
 /**
- * Ordered List Element
+ * Ordered List Command
  */
-export default class OrderedListElement extends Element {
+export default class OrderedListCommand extends Command {
     /**
-     * Initializes a new ordered list element
+     * Initializes a new ordered list command
      *
      * @param {Editor} editor
      */
@@ -16,10 +16,10 @@ export default class OrderedListElement extends Element {
     /**
      * @inheritDoc
      */
-    create(attributes = {}) {
+    insert(attributes = {}) {
         const list = this.editor.createElement('ol');
         list.appendChild(this.editor.createElement('li'));
 
-        return list;
+        this.editor.insert(list);
     }
 }

@@ -1,6 +1,5 @@
 import Command from '../base/Command.js';
 import Converter from '../base/Converter.js';
-import Element from '../base/Element.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -20,8 +19,7 @@ export default class BoldPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.elements.set(new Element(this.editor, this.name, 'strong'));
-        this.editor.commands.set(new Command(this.editor, this.name));
+        this.editor.commands.set(new Command(this.editor, this.name, 'strong'));
         this.editor.converters.set(new Converter(this.editor, 'b', 'strong'))
     }
 }

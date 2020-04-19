@@ -1,11 +1,11 @@
-import Element from '../base/Element.js';
+import Command from '../base/Command.js';
 
 /**
- * Unordered List Element
+ * Unordered List Command
  */
-export default class UnorderedListElement extends Element {
+export default class UnorderedListCommand extends Command {
     /**
-     * Initializes a new unordered list element
+     * Initializes a new unordered list command
      *
      * @param {Editor} editor
      */
@@ -16,10 +16,10 @@ export default class UnorderedListElement extends Element {
     /**
      * @inheritDoc
      */
-    create(attributes = {}) {
+    insert(attributes = {}) {
         const list = this.editor.createElement('ul');
         list.appendChild(this.editor.createElement('li'));
 
-        return list;
+        this.editor.insert(list);
     }
 }

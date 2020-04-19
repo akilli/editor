@@ -1,5 +1,4 @@
-import BlockquoteElement from './BlockquoteElement.js';
-import Command from '../base/Command.js';
+import BlockquoteCommand from './BlockquoteCommand.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -19,7 +18,6 @@ export default class BlockquotePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.elements.set(new BlockquoteElement(this.editor));
-        this.editor.commands.set(new Command(this.editor, this.name));
+        this.editor.commands.set(new BlockquoteCommand(this.editor));
     }
 }

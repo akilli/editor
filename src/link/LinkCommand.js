@@ -5,12 +5,12 @@ import Command from '../base/Command.js';
  */
 export default class LinkCommand extends Command {
     /**
-     * Initializes a new editor link command
+     * Initializes a new link command
      *
      * @param {Editor} editor
      */
     constructor(editor) {
-        super(editor, 'link');
+        super(editor, 'link', 'a');
     }
 
     /**

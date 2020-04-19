@@ -1,4 +1,3 @@
-import Element from '../base/Element.js';
 import LinkCommand from './LinkCommand.js';
 import LinkDialog from './LinkDialog.js';
 import Plugin from '../base/Plugin.js';
@@ -23,7 +22,6 @@ export default class LinkPlugin extends Plugin {
      */
     init() {
         this.editor.translators.set(new Translator(this.name, i18n[this.editor.config.base.lang] || {}));
-        this.editor.elements.set(new Element(this.editor, this.name, 'a'));
         this.editor.dialogs.set(new LinkDialog(this.editor, this.name));
         this.editor.commands.set(new LinkCommand(this.editor));
     }

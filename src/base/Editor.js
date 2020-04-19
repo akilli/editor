@@ -1,7 +1,6 @@
 import Command from './Command.js';
 import Converter from './Converter.js';
 import Dialog from './Dialog.js';
-import Element from './Element.js';
 import Filter from './Filter.js';
 import Observer from './Observer.js';
 import Plugin from './Plugin.js';
@@ -113,14 +112,6 @@ export default class Editor {
          * @readonly
          */
         this.tags = new TypedMap(Tag, this.config.base.tags.map(item => new Tag(item)));
-
-        /**
-         * Elements
-         *
-         * @type {TypedMap<String, Element>}
-         * @readonly
-         */
-        this.elements = new TypedMap(Element);
 
         /**
          * Element converters

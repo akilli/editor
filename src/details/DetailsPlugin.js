@@ -1,5 +1,4 @@
-import Command from '../base/Command.js';
-import DetailsElement from './DetailsElement.js';
+import DetailsCommand from './DetailsCommand.js';
 import DetailsObserver from './DetailsObserver.js';
 import Plugin from '../base/Plugin.js';
 import Translator from '../base/Translator.js';
@@ -24,7 +23,6 @@ export default class DetailsPlugin extends Plugin {
     init() {
         this.editor.observe(new DetailsObserver(this.editor));
         this.editor.translators.set(new Translator(this.name, i18n[this.editor.config.base.lang] || {}));
-        this.editor.elements.set(new DetailsElement(this.editor));
-        this.editor.commands.set(new Command(this.editor, this.name));
+        this.editor.commands.set(new DetailsCommand(this.editor));
     }
 }

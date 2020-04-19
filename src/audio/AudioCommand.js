@@ -1,11 +1,11 @@
-import Element from '../base/Element.js';
+import Command from '../base/Command.js';
 
 /**
- * Audio Element
+ * Audio Command
  */
-export default class AudioElement extends Element {
+export default class AudioCommand extends Command {
     /**
-     * Initializes a new audio element
+     * Initializes a new audio command
      *
      * @param {Editor} editor
      */
@@ -14,14 +14,12 @@ export default class AudioElement extends Element {
     }
 
     /**
-     * Creates audio element
+     * Inserts audio element
      *
      * @param {String} [caption = '']
      * @param {Object.<String, String>} atttibutes
-     *
-     * @return {HTMLElement}
      */
-    create({caption = '', ...attributes} = {}) {
+    insert({caption = '', ...attributes} = {}) {
         if (!attributes.src) {
             throw 'No media element';
         }
@@ -35,6 +33,6 @@ export default class AudioElement extends Element {
         figure.appendChild(media);
         figure.appendChild(figcaption);
 
-        return figure;
+        this.editor.insert(figure);
     }
 }
