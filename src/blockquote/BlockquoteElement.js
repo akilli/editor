@@ -19,9 +19,9 @@ export default class BlockquoteElement extends Element {
      * @param {String} [caption = '']
      */
     create({caption = ''} = {}) {
-        const figure = this.editor.createElement('figure', {class: 'quote'});
+        const figure = this.editor.createElement('figure', {attributes: {class: 'quote'}});
         const blockquote = this.editor.createElement('blockquote');
-        const figcaption = this.editor.createElement('figcaption', {}, caption);
+        const figcaption = this.editor.createElement('figcaption', {content: caption, html: true});
 
         blockquote.appendChild(this.editor.createElement('p'));
         figure.appendChild(blockquote);

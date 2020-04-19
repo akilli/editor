@@ -35,10 +35,10 @@ export default class BaseFilter extends Filter {
                     if (!child.hasChildNodes() && !tag.empty) {
                         element.removeChild(child);
                     } else if (!this.editor.allowed(name, elementName)) {
-                        element.replaceChild(this.editor.createElement('p', {}, child.outerHTML), child);
+                        element.replaceChild(this.editor.createElement('p', {content: child.outerHTML, html: true}), child);
                     }
                 } else if (isRoot && text && this.editor.allowed('p', elementName)) {
-                    element.replaceChild(this.editor.createElement('p', {}, text), child);
+                    element.replaceChild(this.editor.createElement('p', {content: text}), child);
                 } else if (text && this.editor.allowed('text', elementName)) {
                     element.replaceChild(this.editor.createText(text), child);
                 } else {
@@ -48,7 +48,7 @@ export default class BaseFilter extends Filter {
                 const text = child.textContent.trim();
 
                 if (isRoot && text && this.editor.allowed('p', elementName)) {
-                    element.replaceChild(this.editor.createElement('p', {}, text), child);
+                    element.replaceChild(this.editor.createElement('p', {content: text}), child);
                 } else if (!text || !this.editor.allowed('text', elementName)) {
                     element.removeChild(child);
                 }

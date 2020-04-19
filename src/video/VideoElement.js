@@ -28,9 +28,9 @@ export default class VideoElement extends Element {
 
         attributes.controls = 'controls';
 
-        const figure = this.editor.createElement('figure', {class: 'video'});
-        const media = this.editor.createElement('video', attributes);
-        const figcaption = this.editor.createElement('figcaption', {}, caption);
+        const figure = this.editor.createElement('figure', {attributes: {class: 'video'}});
+        const media = this.editor.createElement('video', {attributes: attributes});
+        const figcaption = this.editor.createElement('figcaption', {content: caption, html: true});
 
         figure.appendChild(media);
         figure.appendChild(figcaption);

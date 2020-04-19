@@ -28,9 +28,9 @@ export default class IframeElement extends Element {
 
         attributes.allowfullscreen = 'allowfullscreen';
 
-        const figure = this.editor.createElement('figure', {class: 'iframe'});
-        const media = this.editor.createElement('iframe', attributes);
-        const figcaption = this.editor.createElement('figcaption', {}, caption);
+        const figure = this.editor.createElement('figure', {attributes: {class: 'iframe'}});
+        const media = this.editor.createElement('iframe', {attributes: attributes});
+        const figcaption = this.editor.createElement('figcaption', {content: caption, html: true});
 
         figure.appendChild(media);
         figure.appendChild(figcaption);

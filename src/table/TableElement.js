@@ -27,9 +27,9 @@ export default class TableElement extends Element {
             throw 'Invalid argument';
         }
 
-        const figure = this.editor.createElement('figure', {class: 'table'});
+        const figure = this.editor.createElement('figure', {attributes: {class: 'table'}});
         const table = this.editor.createElement('table');
-        const figcaption = this.editor.createElement('figcaption', {}, caption);
+        const figcaption = this.editor.createElement('figcaption', {content: caption, html: true});
 
         figure.appendChild(table);
         figure.appendChild(figcaption);

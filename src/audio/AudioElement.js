@@ -28,9 +28,9 @@ export default class AudioElement extends Element {
 
         attributes.controls = 'controls';
 
-        const figure = this.editor.createElement('figure', {class: 'audio'});
-        const media = this.editor.createElement('audio', attributes);
-        const figcaption = this.editor.createElement('figcaption', {}, caption);
+        const figure = this.editor.createElement('figure', {attributes: {class: 'audio'}});
+        const media = this.editor.createElement('audio', {attributes: attributes});
+        const figcaption = this.editor.createElement('figcaption', {content: caption, html: true});
 
         figure.appendChild(media);
         figure.appendChild(figcaption);

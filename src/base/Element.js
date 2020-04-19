@@ -49,6 +49,6 @@ export default class Element {
      * @return {HTMLElement}
      */
     create(attributes = {}) {
-        return this.editor.createElement(this.tagName, attributes);
+        return this.editor.createElement(this.tagName, {attributes: attributes});
     }
 }

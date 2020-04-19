@@ -66,7 +66,7 @@ export default class Editor {
          * @type {HTMLElement}
          * @readonly
          */
-        this.element = this.createElement('div', {class: 'editor'});
+        this.element = this.createElement('div', {attributes: {class: 'editor'}});
 
         /**
          * Corresponding DOM element of the editor content
@@ -74,7 +74,7 @@ export default class Editor {
          * @type {HTMLElement}
          * @readonly
          */
-        this.content = this.createElement('div', {class: 'editor-content'});
+        this.content = this.createElement('div', {attributes: {class: 'editor-content'}});
 
         /**
          * Corresponding DOM element of the main toolbar
@@ -82,7 +82,7 @@ export default class Editor {
          * @type {HTMLElement}
          * @readonly
          */
-        this.toolbar = this.createElement('div', {class: 'editor-toolbar'});
+        this.toolbar = this.createElement('div', {attributes: {class: 'editor-toolbar'}});
 
         // Add elements
         this.orig.hidden = true;
@@ -203,7 +203,7 @@ export default class Editor {
                 throw 'Invalid argument';
             }
 
-            const item = this.createElement('button', {type: 'button', 'data-cmd': cmd, title: cmd}, cmd);
+            const item = this.createElement('button', {attributes: {type: 'button', 'data-cmd': cmd, title: cmd}, content: cmd});
             item.addEventListener('click', () => {
                 if (!this.window.getSelection().containsNode(this.content, true)) {
                     this.content.focus();
@@ -341,24 +341,28 @@ export default class Editor {
      *
      * @param {String} name
      * @param {Object.<String, String>} [attributes = {}]
-     * @param {String} [html = '']
+     * @param {String} [content = '']
+     * @param {Boolean} [html = false]
+     * @param {Object.<String, String>} [opts = {}]
      *
      * @return {HTMLElement}
      */
-    createElement(name, attributes = {}, html = '') {
-        const el = this.document.createElement(name);
+    createElement(name, {attributes = {}, content = '', html = false, opts = {}} = {}) {
+        const element = this.document.createElement(name, opts);
 
-        if (html) {
-            el.innerHTML = html;
+        if (content && html) {
+            element.innerHTML = content;
+        } else if (content) {
+            element.textContent = content;
         }
 
         for (let [key, val] of Object.entries(attributes)) {
             if (val) {
-                el.setAttribute(key, `${val}`);
+                element.setAttribute(key, `${val}`);
             }
         }
 
-        return el;
+        return element;
     }
 
     /**

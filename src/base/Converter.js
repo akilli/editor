@@ -49,6 +49,6 @@ export default class Converter {
      * @return {HTMLElement}
      */
     convert(element) {
-        return this.editor.createElement(this.target, {}, element.innerHTML);
+        return this.editor.createElement(this.target, {content: element.innerHTML, html: true});
     }
 }

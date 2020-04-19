@@ -51,11 +51,14 @@ export default class Dialog {
 
         const sel = this.editor.window.getSelection();
         const range = sel.rangeCount > 0 ? sel.getRangeAt(0) : null;
-        const dialog = this.editor.createElement('dialog', {class: 'editor-dialog'});
+        const dialog = this.editor.createElement('dialog', {attributes: {class: 'editor-dialog'}});
         const form = this.editor.createElement('form');
         const fieldset = this.editor.createElement('fieldset');
-        const cancelButton = this.editor.createElement('button', {type: 'button', 'data-action': 'cancel'}, this.translator.get('Cancel'));
-        const saveButton = this.editor.createElement('button', {'data-action': 'save'}, this.translator.get('Save'));
+        const cancelButton = this.editor.createElement('button', {
+            attributes: {type: 'button', 'data-action': 'cancel'},
+            content: this.translator.get('Cancel'),
+        });
+        const saveButton = this.editor.createElement('button', {attributes: {'data-action': 'save'}, content: this.translator.get('Save')});
         const close = () => {
             if (range) {
                 sel.removeAllRanges();
