@@ -347,7 +347,10 @@ export default class Editor {
      */
     createElement(name, attributes = {}, html = '') {
         const el = this.document.createElement(name);
-        el.innerHTML = html;
+
+        if (html) {
+            el.innerHTML = html;
+        }
 
         for (let [key, val] of Object.entries(attributes)) {
             if (val) {
