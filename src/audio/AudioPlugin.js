@@ -25,8 +25,13 @@ export default class AudioPlugin extends Plugin {
     init() {
         this.editor.tags.set(new Tag({name: 'audio', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true}));
         this.editor.translators.set(new Translator(this.name, i18n[this.editor.config.base.lang] || {}));
-        const dialog = this.editor.config[this.name].browserUrl ? BrowserDialog : AudioDialog;
-        this.editor.dialogs.set(new dialog(this.editor, this.name));
+
+        if (this.editor.config[this.name].browser) {
+            this.editor.dialogs.set(new BrowserDialog(this.editor, this.name, this.editor.config[this.name].browser));
+        } else {
+            this.editor.dialogs.set(new AudioDialog(this.editor, this.name));
+        }
+
         this.editor.commands.set(new AudioCommand(this.editor));
     }
 
@@ -34,6 +39,6 @@ export default class AudioPlugin extends Plugin {
      * @inheritDoc
      */
     static defaultConfig() {
-        return {browserUrl: null};
+        return {browser: null};
     }
 }

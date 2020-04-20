@@ -4,19 +4,19 @@ import Editor from '../src/editor/Editor.js';
     document.addEventListener('DOMContentLoaded', () => {
         const editor = Editor.create(document.getElementById('rte'), {
             audio: {
-                browserUrl: 'https://akilli.github.io/demo-browser/media.html#audio',
+                browser: 'https://akilli.github.io/demo-browser/media.html#audio',
             },
             base: {
                 lang: 'de',
             },
             iframe: {
-                browserUrl: 'https://akilli.github.io/demo-browser/media.html#iframe',
+                browser: 'https://akilli.github.io/demo-browser/media.html#iframe',
             },
             image: {
-                browserUrl: 'https://akilli.github.io/demo-browser/media.html#image',
+                browser: 'https://akilli.github.io/demo-browser/media.html#image',
             },
             video: {
-                browserUrl: 'https://akilli.github.io/demo-browser/media.html#video',
+                browser: 'https://akilli.github.io/demo-browser/media.html#video',
             },
         });
         console.log(editor);

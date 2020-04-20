@@ -9,11 +9,12 @@ export default class BrowserDialog extends Dialog {
      *
      * @param {Editor} editor
      * @param {String} name
+     * @param {String} url
      */
-    constructor(editor, name) {
+    constructor(editor, name, url) {
         super(editor, name);
 
-        if (!this.editor.config[this.name].browserUrl) {
+        if (!url || typeof url !== 'string') {
             throw 'Invalid argument';
         }
 
@@ -22,7 +23,7 @@ export default class BrowserDialog extends Dialog {
          *
          * @type {String}
          */
-        this.url = this.editor.config[this.name].browserUrl;
+        this.url = url;
 
         /**
          * Browser window configuration
