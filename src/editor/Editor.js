@@ -2,16 +2,15 @@ import AudioPlugin from '../audio/AudioPlugin.js';
 import BaseEditor from '../base/Editor.js';
 import BasePlugin from '../base/BasePlugin.js';
 import BlockquotePlugin from '../blockquote/BlockquotePlugin.js';
-import BoldPlugin from '../bold/BoldPlugin.js';
 import DetailsPlugin from '../details/DetailsPlugin.js';
 import HeadingPlugin from '../heading/HeadingPlugin.js';
 import IframePlugin from '../iframe/IframePlugin.js';
 import ImagePlugin from '../image/ImagePlugin.js';
-import ItalicPlugin from '../italic/ItalicPlugin.js';
 import LinkPlugin from '../link/LinkPlugin.js';
 import ListPlugin from '../list/ListPlugin.js';
 import ParagraphPlugin from '../paragraph/ParagraphPlugin.js';
 import TablePlugin from '../table/TablePlugin.js';
+import TextPlugin from '../text/TextPlugin.js';
 import VideoPlugin from '../video/VideoPlugin.js';
 
 /**
@@ -28,16 +27,15 @@ export default class Editor extends BaseEditor {
                     BasePlugin,
                     AudioPlugin,
                     BlockquotePlugin,
-                    BoldPlugin,
                     DetailsPlugin,
                     HeadingPlugin,
                     IframePlugin,
                     ImagePlugin,
-                    ItalicPlugin,
                     LinkPlugin,
                     ListPlugin,
                     ParagraphPlugin,
                     TablePlugin,
+                    TextPlugin,
                     VideoPlugin,
                 ],
                 tags: [
