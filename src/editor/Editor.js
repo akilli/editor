@@ -11,7 +11,6 @@ import ItalicPlugin from '../italic/ItalicPlugin.js';
 import LinkPlugin from '../link/LinkPlugin.js';
 import ListPlugin from '../list/ListPlugin.js';
 import ParagraphPlugin from '../paragraph/ParagraphPlugin.js';
-import SubheadingPlugin from '../subheading/SubheadingPlugin.js';
 import TablePlugin from '../table/TablePlugin.js';
 import VideoPlugin from '../video/VideoPlugin.js';
 
@@ -38,7 +37,6 @@ export default class Editor extends BaseEditor {
                     LinkPlugin,
                     ListPlugin,
                     ParagraphPlugin,
-                    SubheadingPlugin,
                     TablePlugin,
                     VideoPlugin,
                 ],

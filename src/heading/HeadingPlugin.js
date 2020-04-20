@@ -19,5 +19,6 @@ export default class HeadingPlugin extends Plugin {
      */
     init() {
         this.editor.commands.set(new Command(this.editor, this.name, 'h2'));
+        this.editor.commands.set(new Command(this.editor, 'subheading', 'h3'));
     }
 }
