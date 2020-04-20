@@ -9,11 +9,10 @@ import IframePlugin from '../iframe/IframePlugin.js';
 import ImagePlugin from '../image/ImagePlugin.js';
 import ItalicPlugin from '../italic/ItalicPlugin.js';
 import LinkPlugin from '../link/LinkPlugin.js';
-import OrderedListPlugin from '../orderedlist/OrderedListPlugin.js';
+import ListPlugin from '../list/ListPlugin.js';
 import ParagraphPlugin from '../paragraph/ParagraphPlugin.js';
 import SubheadingPlugin from '../subheading/SubheadingPlugin.js';
 import TablePlugin from '../table/TablePlugin.js';
-import UnorderedListPlugin from '../unorderedlist/UnorderedListPlugin.js';
 import VideoPlugin from '../video/VideoPlugin.js';
 
 /**
@@ -37,11 +36,10 @@ export default class Editor extends BaseEditor {
                     ImagePlugin,
                     ItalicPlugin,
                     LinkPlugin,
-                    OrderedListPlugin,
+                    ListPlugin,
                     ParagraphPlugin,
                     SubheadingPlugin,
                     TablePlugin,
-                    UnorderedListPlugin,
                     VideoPlugin,
                 ],
                 tags: [
