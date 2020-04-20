@@ -19,12 +19,8 @@ export default class Editor {
      * @param {Object} [config = {}]
      */
     constructor(orig, config = {}) {
-        if (!(orig instanceof HTMLElement)) {
-            throw 'No HTML element';
-        }
-
-        for (let [key, val] of Object.entries(this.constructor.defaultConfig || {})) {
-            config[key] = Object.assign({}, val, config[key] || {});
+        if (!(orig instanceof HTMLElement) || config && typeof config !== 'object') {
+            throw 'Invalid argument';
         }
 
         /**
@@ -83,12 +79,6 @@ export default class Editor {
          */
         this.toolbar = this.createElement('div', {attributes: {class: 'editor-toolbar'}});
 
-        // Add elements
-        this.orig.hidden = true;
-        this.orig.insertAdjacentElement('afterend', this.element);
-        this.element.appendChild(this.toolbar);
-        this.element.appendChild(this.content);
-
         /**
          * Configuration
          *
@@ -111,7 +101,7 @@ export default class Editor {
          * @type {TypedMap<String, Tag>}
          * @readonly
          */
-        this.tags = new TypedMap(Tag, this.config.base.tags.map(item => new Tag(item)));
+        this.tags = new TypedMap(Tag);
 
         /**
          * Element converters
@@ -151,16 +141,70 @@ export default class Editor {
          * @type {TypedMap<String, Plugin>}
          * @readonly
          */
-        this.plugins = new TypedMap(Plugin, this.config.base.plugins.map(item => new item(this)));
+        this.plugins = new TypedMap(Plugin);
     }
 
     /**
      * Initializes editor
      */
     init() {
-        this.plugins.forEach(item => item.init());
+        this.initDom();
+        this.initConfig();
+        this.initTags();
+        this.initPlugins();
         this.initContent();
         this.initToolbar();
+    }
+
+    /**
+     * Initializes editor elements
+     *
+     * @private
+     */
+    initDom() {
+        this.orig.hidden = true;
+        this.orig.insertAdjacentElement('afterend', this.element);
+        this.element.appendChild(this.toolbar);
+        this.element.appendChild(this.content);
+    }
+
+    /**
+     * Initializes configuration
+     *
+     * @private
+     */
+    initConfig() {
+        for (let [key, val] of Object.entries(this.constructor.defaultConfig())) {
+            this.config[key] = Object.assign({}, val, this.config[key] || {});
+        }
+    }
+
+    /**
+     * Initializes tags
+     *
+     * @private
+     */
+    initTags() {
+        this.config.base.tags.map(item => this.tags.set(new Tag(item)));
+    }
+
+    /**
+     * Initializes plugins
+     *
+     * @private
+     */
+    initPlugins() {
+        this.config.base.plugins.map(item => {
+            const config = item.defaultConfig();
+            const plugin = new item(this);
+
+            if (Object.keys(config).length > 0) {
+                this.config[plugin.name] = Object.assign({}, config, this.config[plugin.name] || {});
+            }
+
+            this.plugins.set(plugin);
+        });
+        this.plugins.forEach(item => item.init());
     }
 
     /**
@@ -185,10 +229,6 @@ export default class Editor {
      * @private
      */
     initToolbar() {
-        if (!Array.isArray(this.config.base.toolbar)) {
-            return;
-        }
-
         this.config.base.toolbar.forEach(cmd => {
             if (!this.commands.has(cmd)) {
                 throw 'Invalid argument';
@@ -241,7 +281,7 @@ export default class Editor {
         let tag;
 
         if (!(element instanceof HTMLElement) || !(tag = this.tags.get(element.tagName.toLowerCase()))) {
-            throw 'Invalid HTML element';
+            throw 'Invalid argument';
         }
 
         tag.group === 'text' ? this.formatText(element) : this.insertWidget(element);
@@ -255,10 +295,8 @@ export default class Editor {
      * @param {HTMLElement} element
      */
     insertWidget(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'Invalid HTML element';
-        } else if (!this.allowed(element.tagName.toLowerCase(), 'root')) {
-            throw 'Element is not allowed here';
+        if (!(element instanceof HTMLElement) || !this.allowed(element.tagName.toLowerCase(), 'root')) {
+            throw 'Invalid argument';
         }
 
         this.content.appendChild(element);
@@ -282,7 +320,7 @@ export default class Editor {
      */
     formatText(element) {
         if (!(element instanceof HTMLElement)) {
-            throw 'Invalid HTML element';
+            throw 'Invalid argument';
         }
 
         const sel = this.window.getSelection();
@@ -420,7 +458,7 @@ export default class Editor {
      */
     focusEnd(element) {
         if (!(element instanceof HTMLElement)) {
-            throw 'No HTML element';
+            throw 'Invalid argument';
         }
 
         const range = this.document.createRange();
@@ -454,7 +492,7 @@ export default class Editor {
      */
     filter(element) {
         if (!(element instanceof HTMLElement)) {
-            throw 'No HTML element';
+            throw 'Invalid argument';
         }
 
         this.filters.forEach(item => {
@@ -472,7 +510,7 @@ export default class Editor {
      */
     convert(element) {
         if (!(element instanceof HTMLElement)) {
-            throw 'No HTML element';
+            throw 'Invalid argument';
         }
 
         const converter = this.converters.get(element.tagName.toLowerCase());
@@ -496,7 +534,7 @@ export default class Editor {
      */
     isRoot(element) {
         if (!(element instanceof HTMLElement)) {
-            throw 'No HTML element';
+            throw 'Invalid argument';
         }
 
         return this.content.isSameNode(element) || element.getAttribute('class') === 'editor-content';
@@ -527,6 +565,15 @@ export default class Editor {
         const parentTag = this.tags.get(parentName);
 
         return parentTag && parentTag.children.includes(group);
+    }
+
+    /**
+     * Returns default configuration
+     *
+     * @return {Object.<String, Object>}
+     */
+    static defaultConfig() {
+        return {};
     }
 
     /**

@@ -21,18 +21,18 @@ export default class BasePlugin extends Plugin {
     /**
      * @inheritDoc
      */
-    config() {
-        return {lang: null, plugins: [], tags: [], toolbar: []};
-    }
-
-    /**
-     * @inheritDoc
-     */
     init() {
         this.editor.observe(new EditableObserver(this.editor));
         this.editor.observe(new WidgetObserver(this.editor));
         this.editor.observe(new FigureObserver(this.editor));
         this.editor.filters.set(new BaseFilter(this.editor, this.name));
         this.editor.filters.set(new FigureFilter(this.editor, this.name));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static defaultConfig() {
+        return {lang: null, plugins: [], tags: [], toolbar: []};
     }
 }

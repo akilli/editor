@@ -21,17 +21,17 @@ export default class ImagePlugin extends Plugin {
     /**
      * @inheritDoc
      */
-    config() {
-        return {browserUrl: null, browserOpts: {}};
-    }
-
-    /**
-     * @inheritDoc
-     */
     init() {
         this.editor.translators.set(new Translator(this.name, i18n[this.editor.config.base.lang] || {}));
         const dialog = this.editor.config[this.name].browserUrl ? BrowserDialog : ImageDialog;
         this.editor.dialogs.set(new dialog(this.editor, this.name));
         this.editor.commands.set(new ImageCommand(this.editor));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static defaultConfig() {
+        return {browserUrl: null, browserOpts: {}};
     }
 }
