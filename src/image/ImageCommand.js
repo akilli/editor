@@ -21,7 +21,7 @@ export default class ImageCommand extends Command {
      */
     insert({caption = '', ...attributes} = {}) {
         if (!attributes.src) {
-            throw 'No media element';
+            throw 'Invalid argument';
         }
 
         const figure = this.editor.createElement('figure', {attributes: {class: 'image'}});

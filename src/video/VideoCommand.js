@@ -21,7 +21,7 @@ export default class VideoCommand extends Command {
      */
     insert({caption = '', ...attributes} = {}) {
         if (!attributes.src) {
-            throw 'No media element';
+            throw 'Invalid argument';
         }
 
         attributes.controls = 'controls';

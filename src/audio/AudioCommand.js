@@ -21,7 +21,7 @@ export default class AudioCommand extends Command {
      */
     insert({caption = '', ...attributes} = {}) {
         if (!attributes.src) {
-            throw 'No media element';
+            throw 'Invalid argument';
         }
 
         attributes.controls = 'controls';
