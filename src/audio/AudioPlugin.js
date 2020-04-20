@@ -34,6 +34,6 @@ export default class AudioPlugin extends Plugin {
      * @inheritDoc
      */
     static defaultConfig() {
-        return {browserUrl: null, browserOpts: {}};
+        return {browserUrl: null};
     }
 }

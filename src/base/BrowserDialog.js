@@ -41,7 +41,7 @@ export default class BrowserDialog extends Dialog {
             scrollbars: 'yes',
             toolbar: 'no',
             width: `${this.editor.window.screen.width}`,
-        }, this.editor.config[this.name].browserOpts);
+        }, this.editor.config.browser);
     }
 
     /**

@@ -34,6 +34,6 @@ export default class IframePlugin extends Plugin {
      * @inheritDoc
      */
     static defaultConfig() {
-        return {browserUrl: null, browserOpts: {}};
+        return {browserUrl: null};
     }
 }

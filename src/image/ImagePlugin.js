@@ -34,6 +34,6 @@ export default class ImagePlugin extends Plugin {
      * @inheritDoc
      */
     static defaultConfig() {
-        return {browserUrl: null, browserOpts: {}};
+        return {browserUrl: null};
     }
 }
