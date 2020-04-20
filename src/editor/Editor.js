@@ -4,7 +4,6 @@ import BasePlugin from '../base/BasePlugin.js';
 import BlockquotePlugin from '../blockquote/BlockquotePlugin.js';
 import BoldPlugin from '../bold/BoldPlugin.js';
 import DetailsPlugin from '../details/DetailsPlugin.js';
-import FigurePlugin from '../figure/FigurePlugin.js';
 import HeadingPlugin from '../heading/HeadingPlugin.js';
 import IframePlugin from '../iframe/IframePlugin.js';
 import ImagePlugin from '../image/ImagePlugin.js';
@@ -35,7 +34,6 @@ Editor.defaultConfig = {
             BlockquotePlugin,
             BoldPlugin,
             DetailsPlugin,
-            FigurePlugin,
             HeadingPlugin,
             IframePlugin,
             ImagePlugin,

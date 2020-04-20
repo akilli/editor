@@ -1,4 +1,4 @@
-import Filter from '../base/Filter.js';
+import Filter from './Filter.js';
 
 /**
  * Filters out figure elements with figcaption elements as only child
