@@ -1,30 +1,30 @@
 import Command from '../base/Command.js';
 
 /**
- * Ordered List Command
+ * Quote Command
  */
-export default class BlockquoteCommand extends Command {
+export default class QuoteCommand extends Command {
     /**
-     * Initializes a new blockquote command
+     * Initializes a new quote command
      *
      * @param {Editor} editor
      */
     constructor(editor) {
-        super(editor, 'blockquote', 'blockquote');
+        super(editor, 'quote', 'blockquote');
     }
 
     /**
-     * Inserts blockquote element
+     * Inserts quote element
      *
      * @param {String} [caption = '']
      */
     insert({caption = ''} = {}) {
         const figure = this.editor.createElement('figure', {attributes: {class: 'quote'}});
-        const blockquote = this.editor.createElement('blockquote');
+        const quote = this.editor.createElement('blockquote');
         const figcaption = this.editor.createElement('figcaption', {content: caption, html: true});
 
-        blockquote.appendChild(this.editor.createElement('p'));
-        figure.appendChild(blockquote);
+        quote.appendChild(this.editor.createElement('p'));
+        figure.appendChild(quote);
         figure.appendChild(figcaption);
 
         this.editor.insert(figure);

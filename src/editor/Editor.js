@@ -1,7 +1,6 @@
 import AudioPlugin from '../audio/AudioPlugin.js';
 import BaseEditor from '../base/Editor.js';
 import BasePlugin from '../base/BasePlugin.js';
-import BlockquotePlugin from '../blockquote/BlockquotePlugin.js';
 import DetailsPlugin from '../details/DetailsPlugin.js';
 import HeadingPlugin from '../heading/HeadingPlugin.js';
 import IframePlugin from '../iframe/IframePlugin.js';
@@ -9,6 +8,7 @@ import ImagePlugin from '../image/ImagePlugin.js';
 import LinkPlugin from '../link/LinkPlugin.js';
 import ListPlugin from '../list/ListPlugin.js';
 import ParagraphPlugin from '../paragraph/ParagraphPlugin.js';
+import QuotePlugin from '../quote/QuotePlugin.js';
 import TablePlugin from '../table/TablePlugin.js';
 import TextPlugin from '../text/TextPlugin.js';
 import VideoPlugin from '../video/VideoPlugin.js';
@@ -26,7 +26,6 @@ export default class Editor extends BaseEditor {
                 plugins: [
                     BasePlugin,
                     AudioPlugin,
-                    BlockquotePlugin,
                     DetailsPlugin,
                     HeadingPlugin,
                     IframePlugin,
@@ -34,6 +33,7 @@ export default class Editor extends BaseEditor {
                     LinkPlugin,
                     ListPlugin,
                     ParagraphPlugin,
+                    QuotePlugin,
                     TablePlugin,
                     TextPlugin,
                     VideoPlugin,
@@ -46,9 +46,9 @@ export default class Editor extends BaseEditor {
                     {name: 'ul', group: 'list', children: ['listitem']},
                     {name: 'ol', group: 'list', children: ['listitem']},
                     {name: 'li', group: 'listitem', children: ['break', 'text'], editable: true, enter: 'li'},
-                    {name: 'figure', group: 'figure', attributes: ['class'], children: ['blockquote', 'caption', 'media', 'table']},
+                    {name: 'figure', group: 'figure', attributes: ['class'], children: ['caption', 'media', 'quote', 'table']},
                     {name: 'figcaption', group: 'caption', children: ['text'], editable: true, enter: 'p'},
-                    {name: 'blockquote', group: 'blockquote', children: ['paragraph']},
+                    {name: 'blockquote', group: 'quote', children: ['paragraph']},
                     {name: 'img', group: 'media', attributes: ['alt', 'height', 'src', 'width'], empty: true},
                     {name: 'video', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true},
                     {name: 'audio', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true},
@@ -76,7 +76,7 @@ export default class Editor extends BaseEditor {
                     'subheading',
                     'unorderedlist',
                     'orderedlist',
-                    'blockquote',
+                    'quote',
                     'image',
                     'video',
                     'audio',

@@ -206,10 +206,6 @@ dialog.editor-dialog select {
     content: '\e80c';
 }
 
-.editor-toolbar [data-cmd=blockquote]::before {
-    content: '\e805';
-}
-
 .editor-toolbar [data-cmd=bold]::before {
     content: '\e801';
 }
@@ -244,6 +240,10 @@ dialog.editor-dialog select {
 
 .editor-toolbar [data-cmd=paragraph]::before {
     content: '\f1dd';
+}
+
+.editor-toolbar [data-cmd=quote]::before {
+    content: '\e805';
 }
 
 .editor-toolbar [data-cmd=subheading]::before {
