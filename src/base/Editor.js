@@ -150,7 +150,6 @@ export default class Editor {
     init() {
         this.initDom();
         this.initConfig();
-        this.initTags();
         this.initPlugins();
         this.initContent();
         this.initToolbar();
@@ -177,15 +176,6 @@ export default class Editor {
         for (let [key, val] of Object.entries(this.constructor.defaultConfig())) {
             this.config[key] = Object.assign({}, val, this.config[key] || {});
         }
-    }
-
-    /**
-     * Initializes tags
-     *
-     * @private
-     */
-    initTags() {
-        this.config.base.tags.map(item => this.tags.set(new Tag(item)));
     }
 
     /**

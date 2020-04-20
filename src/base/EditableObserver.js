@@ -7,35 +7,32 @@ export default class EditableObserver extends Observer {
     /**
      * @inheritDoc
      */
-    constructor(editor) {
-        super(editor);
+    observe(ev) {
+        const editables = this.editables();
+        const selector = editables.join(', ');
 
-        /**
-         * Editables
-         *
-         * @type {String[]}
-         * @readonly
-         */
-        this.editables = [...this.editor.tags].reduce((result, item) => {
+        ev.forEach(item => item.addedNodes.forEach(node => {
+            if (node instanceof HTMLElement && editables.includes(node.tagName.toLowerCase())) {
+                this.toEditable(node);
+            } else if (selector && node instanceof HTMLElement) {
+                node.querySelectorAll(selector).forEach(item => this.toEditable(item))
+            }
+        }));
+    }
+
+    /**
+     * Editable tags
+     *
+     * @return {String[]}
+     */
+    editables() {
+        return [...this.editor.tags].reduce((result, item) => {
             if (item[1].editable) {
                 result.push(item[1].name);
             }
 
             return result;
-        }, []);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    observe(ev) {
-        ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && this.editables.includes(node.tagName.toLowerCase())) {
-                this.toEditable(node);
-            } else if (node instanceof HTMLElement) {
-                node.querySelectorAll(this.editables.join(', ')).forEach(ed => this.toEditable(ed))
-            }
-        }));
+        }, [])
     }
 
     /**
