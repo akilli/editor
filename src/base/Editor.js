@@ -356,6 +356,17 @@ export default class Editor {
     }
 
     /**
+     * Registers custom element
+     *
+     * @param {String} name
+     * @param {Function} constructor
+     * @param {?String} [parentName = null]
+     */
+    registerElement(name, constructor, parentName = null) {
+        this.window.customElements.define(name, constructor, parentName ? {extends: parentName} : null);
+    }
+
+    /**
      * Creates HTML element in editor document
      *
      * @param {String} name
