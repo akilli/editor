@@ -362,12 +362,12 @@ export default class Editor {
      * @param {Object.<String, String>} [attributes = {}]
      * @param {String} [content = '']
      * @param {Boolean} [html = false]
-     * @param {Object.<String, String>} [opts = {}]
+     * @param {String} [is = null]
      *
      * @return {HTMLElement}
      */
-    createElement(name, {attributes = {}, content = '', html = false, opts = {}} = {}) {
-        const element = this.document.createElement(name, opts);
+    createElement(name, {attributes = {}, content = '', html = false, is = null} = {}) {
+        const element = this.document.createElement(name, is ? {is: is} : null);
 
         if (content && html) {
             element.innerHTML = content;
