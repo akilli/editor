@@ -16,20 +16,19 @@ export default class ImageCommand extends Command {
     /**
      * Inserts image element
      *
-     * @param {String} [caption = '']
-     * @param {Object.<String, String>} atttibutes
+     * @param {String} src
+     * @param {String} [width = '']
+     * @param {String} [height = '']
+     * @param {String} [alt = '']
      */
-    insert({caption = '', ...attributes} = {}) {
-        if (!attributes.src) {
+    insert({src, width = '', height = '', alt = ''} = {}) {
+        if (!src) {
             throw 'Invalid argument';
         }
 
         const figure = this.editor.createElement('figure', {attributes: {class: 'image'}});
-        const media = this.editor.createElement('img', {attributes: attributes});
-        const figcaption = this.editor.createElement('figcaption', {content: caption, html: true});
-
-        figure.appendChild(media);
-        figure.appendChild(figcaption);
+        figure.appendChild(this.editor.createElement('img', {attributes: {src, width, height, alt}}));
+        figure.appendChild(this.editor.createElement('figcaption'));
 
         this.editor.insert(figure);
     }

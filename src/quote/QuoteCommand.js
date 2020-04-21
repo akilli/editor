@@ -14,18 +14,15 @@ export default class QuoteCommand extends Command {
     }
 
     /**
-     * Inserts quote element
-     *
-     * @param {String} [caption = '']
+     * @inheritDoc
      */
-    insert({caption = ''} = {}) {
-        const figure = this.editor.createElement('figure', {attributes: {class: 'quote'}});
+    insert(attributes = {}) {
         const quote = this.editor.createElement('blockquote');
-        const figcaption = this.editor.createElement('figcaption', {content: caption, html: true});
-
         quote.appendChild(this.editor.createElement('p'));
+
+        const figure = this.editor.createElement('figure', {attributes: {class: 'quote'}});
         figure.appendChild(quote);
-        figure.appendChild(figcaption);
+        figure.appendChild(this.editor.createElement('figcaption'));
 
         this.editor.insert(figure);
     }

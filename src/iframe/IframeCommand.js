@@ -16,22 +16,19 @@ export default class IframeCommand extends Command {
     /**
      * Inserts iframe element
      *
-     * @param {String} [caption = '']
-     * @param {Object.<String, String>} atttibutes
+     * @param {String} src
+     * @param {String} [width = '']
+     * @param {String} [height = '']
+     * @param {String} [allowfullscreen = 'allowfullscreen']
      */
-    insert({caption = '', ...attributes} = {}) {
-        if (!attributes.src) {
+    insert({src, width = '', height = '', allowfullscreen = 'allowfullscreen'} = {}) {
+        if (!src) {
             throw 'Invalid argument';
         }
 
-        attributes.allowfullscreen = 'allowfullscreen';
-
         const figure = this.editor.createElement('figure', {attributes: {class: 'iframe'}});
-        const media = this.editor.createElement('iframe', {attributes: attributes});
-        const figcaption = this.editor.createElement('figcaption', {content: caption, html: true});
-
-        figure.appendChild(media);
-        figure.appendChild(figcaption);
+        figure.appendChild(this.editor.createElement('iframe', {attributes: {src, width, height, allowfullscreen}}));
+        figure.appendChild(this.editor.createElement('figcaption'));
 
         this.editor.insert(figure);
     }

@@ -18,20 +18,13 @@ export default class TableCommand extends Command {
      *
      * @param {Number} rows
      * @param {Number} cols
-     * @param {String} [caption = '']
      */
-    insert({rows = 1, cols = 1, caption = ''} = {}) {
+    insert({rows = 1, cols = 1} = {}) {
         if (rows <= 0 || cols <= 0) {
             throw 'Invalid argument';
         }
 
-        const figure = this.editor.createElement('figure', {attributes: {class: 'table'}});
         const table = this.editor.createElement('table');
-        const figcaption = this.editor.createElement('figcaption', {content: caption, html: true});
-
-        figure.appendChild(table);
-        figure.appendChild(figcaption);
-
         ['thead', 'tbody', 'tfoot'].forEach(section => {
             const item = this.editor.createElement(section);
             const cell = section === 'thead' ? 'th' : 'td';
@@ -49,6 +42,10 @@ export default class TableCommand extends Command {
                 }
             }
         });
+
+        const figure = this.editor.createElement('figure', {attributes: {class: 'table'}});
+        figure.appendChild(table);
+        figure.appendChild(this.editor.createElement('figcaption'));
 
         this.editor.insert(figure);
     }

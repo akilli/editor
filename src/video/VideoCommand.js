@@ -16,22 +16,19 @@ export default class VideoCommand extends Command {
     /**
      * Inserts video element
      *
-     * @param {String} [caption = '']
-     * @param {Object.<String, String>} atttibutes
+     * @param {String} src
+     * @param {String} [width = '']
+     * @param {String} [height = '']
+     * @param {String} [controls = 'controls']
      */
-    insert({caption = '', ...attributes} = {}) {
-        if (!attributes.src) {
+    insert({src, width = '', height = '', controls = 'controls'} = {}) {
+        if (!src) {
             throw 'Invalid argument';
         }
 
-        attributes.controls = 'controls';
-
         const figure = this.editor.createElement('figure', {attributes: {class: 'video'}});
-        const media = this.editor.createElement('video', {attributes: attributes});
-        const figcaption = this.editor.createElement('figcaption', {content: caption, html: true});
-
-        figure.appendChild(media);
-        figure.appendChild(figcaption);
+        figure.appendChild(this.editor.createElement('video', {attributes: {src, width, height, controls}}));
+        figure.appendChild(this.editor.createElement('figcaption'));
 
         this.editor.insert(figure);
     }
