@@ -31,7 +31,7 @@ export default class BasePlugin extends Plugin {
         this.editor.observe(new WidgetObserver(this.editor));
         this.editor.observe(new FigureObserver(this.editor));
         this.editor.filters.set(new BaseFilter(this.editor, this.name));
-        this.editor.filters.set(new FigureFilter(this.editor, this.name));
+        this.editor.filters.set(new FigureFilter(this.editor, 'figure'));
     }
 
     /**
