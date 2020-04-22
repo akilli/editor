@@ -23,7 +23,7 @@ export default class BasePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.set(new Tag({name: 'root', group: 'root', children: ['details', 'figure', 'heading', 'list', 'paragraph']}));
+        this.editor.tags.set(new Tag({name: 'root', group: 'root', children: ['details', 'figure', 'heading', 'list', 'paragraph', 'section']}));
         this.editor.tags.set(new Tag({name: 'br', group: 'break', empty: true},));
         this.editor.tags.set(new Tag({name: 'figure', group: 'figure', attributes: ['class'], children: ['caption', 'media', 'quote', 'table']},));
         this.editor.tags.set(new Tag({name: 'figcaption', group: 'caption', children: ['text'], editable: true, enter: 'p'},));
