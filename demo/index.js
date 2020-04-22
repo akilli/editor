@@ -5,24 +5,24 @@ import Editor from '../src/editor/Editor.js';
         const textarea = document.getElementById('rte');
         const editor = Editor.create(textarea, {
             audio: {
-                browser: '/demo/media.html#audio',
+                browser: 'media.html#audio',
             },
             base: {
                 lang: 'de',
             },
             block: {
-                api: '/demo/api/{id}.html',
-                browser: '/demo/block.html',
-                css: '/demo/base.css,/demo/index.css',
+                api: 'api/{id}.html',
+                browser: 'block.html',
+                css: 'base.css,index.css',
             },
             iframe: {
-                browser: '/demo/media.html#iframe',
+                browser: 'media.html#iframe',
             },
             image: {
-                browser: '/demo/media.html#image',
+                browser: 'media.html#image',
             },
             video: {
-                browser: '/demo/media.html#video',
+                browser: 'media.html#video',
             },
         });
         console.log(editor);
