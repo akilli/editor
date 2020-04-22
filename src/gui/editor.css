@@ -4,6 +4,7 @@
 :root {
     --editor-block-background: hotpink;
     --editor-block-color: black;
+    --editor-block-placeholder: "Block: " attr(id) " ";
     --editor-border: lightgrey;
     --editor-cancel-background: darkgrey;
     --editor-cancel-color: white;
@@ -281,7 +282,7 @@ editor-block {
 
 editor-block::before {
     display: block;
-    content: "Block: " attr(id) " ";
+    content: var(--editor-block-placeholder);
     margin: -0.25rem -0.25rem 0.5rem;
     padding: 0.125rem 0.25rem;
     color: var(--editor-block-color);
