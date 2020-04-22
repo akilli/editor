@@ -5,19 +5,19 @@ import Editor from '../src/editor/Editor.js';
         const textarea = document.getElementById('rte');
         const editor = Editor.create(textarea, {
             audio: {
-                browser: 'https://akilli.github.io/demo-browser/media.html#audio',
+                browser: '/demo/media.html#audio',
             },
             base: {
                 lang: 'de',
             },
             iframe: {
-                browser: 'https://akilli.github.io/demo-browser/media.html#iframe',
+                browser: '/demo/media.html#iframe',
             },
             image: {
-                browser: 'https://akilli.github.io/demo-browser/media.html#image',
+                browser: '/demo/media.html#image',
             },
             video: {
-                browser: 'https://akilli.github.io/demo-browser/media.html#video',
+                browser: '/demo/media.html#video',
             },
         });
         console.log(editor);

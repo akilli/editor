@@ -1,0 +1,10 @@
+<section class="block-content">
+    <h2>Der Cottbuser Postkutschkutscher</h2>
+    <figure class="audio">
+        <audio src="https://akilli.github.io/demo-browser/file/sample.aac" controls="controls"></audio>
+        <figcaption>Sample AAC</figcaption>
+    </figure>
+    <div class="content">
+        <p>Der Cottbuser Postkutschkutscher putzt den Cottbuser Postkutschkasten.</p>
+    </div>
+</section>

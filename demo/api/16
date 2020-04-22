@@ -1,0 +1,10 @@
+<section class="block-content">
+    <h2>Am zehnten Zehnten</h2>
+    <figure class="iframe">
+        <iframe src="https://www.youtube-nocookie.com/embed/DhKHAopx7D0" width="560" height="315"></iframe>
+        <figcaption>Sample Youtube</figcaption>
+    </figure>
+    <div class="content">
+        <p>Am zehnten Zehnten zehn Uhr zehn zogen zehn zahme Ziegen zehn Zentner Zucker zum Zoo.</p>
+    </div>
+</section>

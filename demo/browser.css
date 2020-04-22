@@ -1,0 +1,47 @@
+body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1.5rem;
+    align-items: end;
+    min-height: 0;
+    padding: 1.5rem;
+}
+
+body > * {
+    box-shadow: 0.25rem 0.25rem 0.25rem darkgrey;
+    cursor: pointer;
+}
+
+body > :hover {
+    box-shadow: 0.25rem 0.25rem 0.25rem black;
+}
+
+section {
+    align-self: start;
+    padding: 0.75rem;
+}
+
+section > :not(:last-child) {
+    margin-bottom: 0.75rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+}
+
+figcaption {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+    color: white;
+    background: black;
+}
+
+audio,
+iframe,
+img,
+video {
+    width: 100%;
+    max-height: 14rem;
+    object-fit: cover;
+    pointer-events: none;
+}

@@ -1,0 +1,10 @@
+<section class="block-info">
+    <h2>In Ulm</h2>
+    <figure class="image">
+        <img src="https://akilli.github.io/demo-browser/file/sample.gif" alt="Sample GIF" />
+        <figcaption>Sample GIF</figcaption>
+    </figure>
+    <div class="content">
+        <p>In Ulm, um Ulm und um Ulm herum.</p>
+    </div>
+</section>

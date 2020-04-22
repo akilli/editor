@@ -1,0 +1,10 @@
+<section class="block-info">
+    <h2>Der Fliesenleger</h2>
+    <figure class="video">
+        <video src="https://akilli.github.io/demo-browser/file/sample.mp4" controls="controls"></video>
+        <figcaption>Sample MP4</figcaption>
+    </figure>
+    <div class="content">
+        <p>Der fiese friesische Fliesenleger fliest mit fiesem, friesischem Fliesenkleber.</p>
+    </div>
+</section>
