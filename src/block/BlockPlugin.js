@@ -3,7 +3,6 @@ import BlockDialog from './BlockDialog.js';
 import BlockElement from './BlockElement.js';
 import BrowserDialog from '../base/BrowserDialog.js';
 import Plugin from '../base/Plugin.js';
-import Tag from '../base/Tag.js';
 import i18n from '../iframe/i18n.js';
 
 /**
@@ -25,7 +24,7 @@ export default class BlockPlugin extends Plugin {
     init() {
         const tagName = 'editor-block';
         this.editor.registerElement(tagName, BlockElement);
-        this.editor.tags.set(new Tag({name: tagName, group: 'section', attributes: ['id'], empty: true}));
+        this.registerTag({name: tagName, group: 'section', attributes: ['id'], empty: true});
         this.registerTranslator(i18n);
 
         if (this.editor.config[this.name].browser) {

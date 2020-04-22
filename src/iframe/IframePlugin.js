@@ -2,7 +2,6 @@ import BrowserDialog from '../base/BrowserDialog.js';
 import IframeCommand from './IframeCommand.js';
 import IframeDialog from './IframeDialog.js';
 import Plugin from '../base/Plugin.js';
-import Tag from '../base/Tag.js';
 import i18n from './i18n.js';
 
 /**
@@ -23,7 +22,7 @@ export default class IframePlugin extends Plugin {
      */
     init() {
         const tagName = 'iframe';
-        this.editor.tags.set(new Tag({name: tagName, group: 'media', attributes: ['allowfullscreen', 'height', 'src', 'width'], empty: true}));
+        this.registerTag({name: tagName, group: 'media', attributes: ['allowfullscreen', 'height', 'src', 'width'], empty: true});
         this.registerTranslator(i18n);
 
         if (this.editor.config[this.name].browser) {

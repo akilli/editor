@@ -2,7 +2,6 @@ import BrowserDialog from '../base/BrowserDialog.js';
 import ImageCommand from './ImageCommand.js';
 import ImageDialog from './ImageDialog.js';
 import Plugin from '../base/Plugin.js';
-import Tag from '../base/Tag.js';
 import i18n from './i18n.js';
 
 /**
@@ -23,7 +22,7 @@ export default class ImagePlugin extends Plugin {
      */
     init() {
         const tagName = 'img';
-        this.editor.tags.set(new Tag({name: tagName, group: 'media', attributes: ['alt', 'height', 'src', 'width'], empty: true}));
+        this.registerTag({name: tagName, group: 'media', attributes: ['alt', 'height', 'src', 'width'], empty: true});
         this.registerTranslator(i18n);
 
         if (this.editor.config[this.name].browser) {

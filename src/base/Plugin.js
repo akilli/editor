@@ -1,5 +1,6 @@
 import Editor from './Editor.js';
 import Translator from './Translator.js';
+import Tag from './Tag.js';
 
 /**
  * Plugin
@@ -47,6 +48,15 @@ export default class Plugin {
      */
     registerTranslator(i18n) {
         this.editor.translators.set(new Translator(this.name, i18n[this.editor.config.base.lang] || {}));
+    }
+
+    /**
+     * Registers a tag with given parameters
+     *
+     * @param {Object} params
+     */
+    registerTag(params) {
+        this.editor.tags.set(new Tag(params));
     }
 
     /**

@@ -1,7 +1,6 @@
 import DetailsCommand from './DetailsCommand.js';
 import DetailsObserver from './DetailsObserver.js';
 import Plugin from '../base/Plugin.js';
-import Tag from '../base/Tag.js';
 import i18n from './i18n.js';
 
 /**
@@ -22,8 +21,8 @@ export default class DetailsPlugin extends Plugin {
      */
     init() {
         const tagName = 'details';
-        this.editor.tags.set(new Tag({name: tagName, group: 'details', children: ['figure', 'list', 'paragraph', 'summary']}));
-        this.editor.tags.set(new Tag({name: 'summary', group: 'summary', editable: true, enter: 'p'}));
+        this.registerTag({name: tagName, group: 'details', children: ['figure', 'list', 'paragraph', 'summary']});
+        this.registerTag({name: 'summary', group: 'summary', editable: true, enter: 'p'});
         this.editor.observe(new DetailsObserver(this.editor));
         this.registerTranslator(i18n);
         this.editor.commands.set(new DetailsCommand(this.editor, this.name, tagName));
