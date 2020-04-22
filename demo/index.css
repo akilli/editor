@@ -1,0 +1,169 @@
+body {
+    max-width: 66rem;
+    margin: 1rem auto;
+    line-height: 1.5rem;
+    font-family: sans-serif;
+    color: #000;
+    background: #fff;
+}
+
+details:not(:last-child),
+figure:not(:last-child),
+h2:not(:last-child),
+h3:not(:last-child),
+ol:not(:last-child),
+p:not(:last-child),
+section:not(:last-child),
+ul:not(:last-child) {
+    margin-bottom: 1.5rem;
+}
+
+footer {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+}
+
+h3 {
+    font-size: 1.125rem;
+}
+
+ol,
+ul {
+    padding-left: 2rem;
+}
+
+a {
+    color: #900;
+    text-decoration: underline;
+}
+
+mark {
+    padding: 0.125rem 0.25rem;
+    background: #ff0;
+}
+
+kbd {
+    padding: 0.125rem 0.25rem;
+    color: #fff;
+    background: #333;
+    border-radius: 0.125rem;
+    box-shadow: inset 0 -0.0625rem 0 rgba(0, 0, 0, 0.25);
+}
+
+/**
+ * Figure
+ */
+figure {
+    text-align: center;
+}
+
+figure.left {
+    float: left;
+    margin-right: 0.75rem;
+    text-align: left;
+}
+
+figure.right {
+    float: right;
+    margin-left: 0.75rem;
+    text-align: left;
+}
+
+figcaption {
+    font-size: 0.875rem;
+}
+
+/**
+ * Media
+ */
+audio,
+iframe,
+img,
+video {
+    margin: 0 auto;
+}
+
+/**
+ * Blockquote
+ */
+figure.quote {
+    padding: 2.25rem 0.75rem 0.75rem;
+    color: #fff;
+    background: #4adfcc;
+    box-shadow: 0.125rem 0.125rem 0.125rem #e0e0e0;
+}
+
+figure.quote > blockquote {
+    margin-bottom: 0.75rem;
+}
+
+figure.quote > blockquote::before {
+    display: block;
+    content: '🙷';
+    font-family: serif;
+    font-size: 6rem;
+}
+
+figure.quote > figcaption {
+    padding-top: 0.75rem;
+    border-top: 0.0625rem solid;
+}
+
+/**
+ * Table
+ */
+table {
+    width: 100%;
+    font-size: 0.875rem;
+}
+
+figure.table > table {
+    width: auto;
+    margin: 0 auto;
+}
+
+td,
+th {
+    min-height: 1.5rem;
+    border: solid 0.0625rem #e4e7ea;
+}
+
+td,
+th {
+    border: solid 0.0625rem #e4e7ea;
+}
+
+thead tr:last-child td,
+thead tr:last-child th,
+tbody tr:last-child td,
+tbody tr:last-child th {
+    border-bottom-color: #000;
+}
+
+/**
+ * Editor
+ */
+#rte {
+    width: 100%;
+    min-height: 15rem;
+    max-height: 45rem;
+    overflow-y: scroll;
+}
+
+button#save {
+    display: block;
+    line-height: 1.5rem;
+    margin-top: 1.5rem;
+    padding: 0.75rem;
+    color: #fff;
+    background: green;
+    border: 0;
+}

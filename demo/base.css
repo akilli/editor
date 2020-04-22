@@ -1,0 +1,246 @@
+:root,
+address, article, aside, body, footer, h1, h2, h3, h4, h5, h6, header, nav, section,
+blockquote, dd, div, dl, dt, figcaption, figure, hr, li, main, ol, p, pre, ul,
+a, abbr, b, cite, code, data, dfn, em, i, kbd, mark, q, s, samp, small, span, strong, sub, sup, time, u, var,
+del, ins,
+audio, canvas, embed, iframe, img, object, picture, video,
+caption, table, tbody, td, tfoot, th, thead, tr,
+button, fieldset, form, input, label, legend, output, select, textarea,
+details, dialog, menu, summary {
+    vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    outline: 0 none;
+}
+
+/**
+ * Box sizing
+ */
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+/**
+ * Box shadow
+ */
+:invalid {
+  box-shadow: none;
+}
+
+/**
+ * Vertical align
+ */
+a[role=button],
+audio, canvas, embed, iframe, img, object, picture, video,
+th, thead td,
+button, input, label, select, textarea {
+    vertical-align: middle;
+}
+
+sub {
+    vertical-align: sub;
+}
+
+sup {
+    vertical-align: super;
+}
+
+td {
+    vertical-align: top;
+}
+
+/**
+ * Display
+ */
+main,
+dialog[open] {
+    display: block;
+}
+
+a[role=button],
+audio,
+canvas,
+embed,
+iframe,
+img,
+object,
+picture,
+video {
+    display: inline-block;
+    max-width: 100%;
+}
+
+[hidden],
+dialog {
+    display: none;
+}
+
+/**
+ * Font
+ */
+blockquote,
+cite,
+dfn,
+em,
+optgroup,
+q,
+i,
+var {
+    font-style: italic;
+}
+
+b,
+em,
+optgroup,
+option[selected],
+strong,
+th,
+thead td {
+    font-weight: bold;
+}
+
+/**
+ * Cursor
+ */
+a,
+button,
+input[type=button],
+input[type=reset],
+input[type=submit],
+input[type=checkbox],
+input[type=radio],
+label,
+select,
+summary {
+    cursor: pointer;
+}
+
+abbr[title],
+del[title],
+dfn[title],
+ins[title] {
+    cursor: help;
+}
+
+[draggable=true] {
+    cursor: move;
+}
+
+/**
+ * Global
+ */
+:root {
+    width: 100%;
+    overflow-y: scroll;
+    font-size: 16px;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+main {
+    hyphens: auto;
+}
+
+/**
+ * Nav
+ */
+nav ul {
+    list-style: none;
+}
+
+/**
+ * Text
+ */
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+q {
+    quotes: '“' '”' '‘' '’';
+}
+
+s,
+del {
+    text-decoration: line-through;
+}
+
+u,
+ins {
+    text-decoration: underline;
+}
+
+abbr[title],
+dfn[title] {
+    border-bottom: thin dotted;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+hr {
+    clear: both;
+}
+
+/**
+ * Figure
+ */
+img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/**
+ * Table
+ */
+table {
+    empty-cells: show;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th,
+td {
+    text-align: left;
+}
+
+th,
+thead td {
+    white-space: nowrap;
+}
+
+/**
+ * Form
+ */
+select[multiple],
+textarea {
+    resize: both;
+}
+
+/**
+ * Print
+ */
+@media print {
+    dialog[open] {
+        display: none;
+    }
+}
