@@ -27,7 +27,7 @@ export default class IframeCommand extends Command {
         }
 
         const figure = this.editor.createElement('figure', {attributes: {class: 'iframe'}});
-        figure.appendChild(this.editor.createElement('iframe', {attributes: {src, width, height, allowfullscreen}}));
+        figure.appendChild(this.editor.createElement('iframe', {attributes: {src: this.editor.url(src), width, height, allowfullscreen}}));
         figure.appendChild(this.editor.createElement('figcaption'));
 
         this.editor.insert(figure);

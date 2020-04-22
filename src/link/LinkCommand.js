@@ -23,9 +23,9 @@ export default class LinkCommand extends Command {
         const old = sel instanceof HTMLAnchorElement ? sel : null;
 
         if (href && old) {
-            old.setAttribute('href', href);
+            old.setAttribute('href', this.editor.url(href));
         } else if (href) {
-            super.insert({href: href});
+            super.insert({href: this.editor.url(href)});
         } else if (old) {
             old.parentElement.replaceChild(this.editor.createText(old.textContent), old);
         }

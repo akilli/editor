@@ -583,6 +583,19 @@ export default class Editor {
     }
 
     /**
+     * Returns relative or absolute URL depending on its origin
+     *
+     * @param {String} url
+     *
+     * @return {String}
+     */
+    url(url) {
+        const a = this.createElement('a', {attributes: {href: url}});
+
+        return a.origin === this.origin ? a.pathname : a.href;
+    }
+
+    /**
      * Returns default configuration
      *
      * @return {Object.<String, Object>}
