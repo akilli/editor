@@ -1,7 +1,6 @@
 import BrowserDialog from '../base/BrowserDialog.js';
 import Plugin from '../base/Plugin.js';
 import Tag from '../base/Tag.js';
-import Translator from '../base/Translator.js';
 import VideoCommand from './VideoCommand.js';
 import VideoDialog from './VideoDialog.js';
 import i18n from './i18n.js';
@@ -24,7 +23,7 @@ export default class VideoPlugin extends Plugin {
      */
     init() {
         this.editor.tags.set(new Tag({name: 'video', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true}));
-        this.editor.translators.set(new Translator(this.name, i18n[this.editor.config.base.lang] || {}));
+        this.registerTranslator(i18n);
 
         if (this.editor.config[this.name].browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, this.name, this.editor.config[this.name].browser));
