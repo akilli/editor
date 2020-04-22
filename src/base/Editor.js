@@ -61,7 +61,7 @@ export default class Editor {
          * @type {HTMLElement}
          * @readonly
          */
-        this.element = null;
+        this.element = this.createElement('div', {attributes: {class: 'editor'}});
 
         /**
          * Corresponding DOM element of the editor content
@@ -69,7 +69,7 @@ export default class Editor {
          * @type {HTMLElement}
          * @readonly
          */
-        this.content = null;
+        this.content = this.createElement('div', {attributes: {class: 'editor-content'}});
 
         /**
          * Corresponding DOM element of the main toolbar
@@ -77,7 +77,7 @@ export default class Editor {
          * @type {HTMLElement}
          * @readonly
          */
-        this.toolbar = null;
+        this.toolbar = this.createElement('div', {attributes: {class: 'editor-toolbar'}});
 
         /**
          * Configuration
@@ -148,26 +148,15 @@ export default class Editor {
      * Initializes editor
      */
     init() {
-        this.initDom();
-        this.initConfig();
-        this.initPlugins();
-        this.initContent();
-        this.initToolbar();
-    }
-
-    /**
-     * Initializes editor elements
-     *
-     * @private
-     */
-    initDom() {
-        this.content = this.createElement('div', {attributes: {class: 'editor-content'}});
-        this.toolbar = this.createElement('div', {attributes: {class: 'editor-toolbar'}});
-        this.element = this.createElement('div', {attributes: {class: 'editor'}});
-        this.element.appendChild(this.toolbar);
-        this.element.appendChild(this.content);
-        this.orig.hidden = true;
-        this.orig.insertAdjacentElement('afterend', this.element);
+        if (this.plugins.size > 0) {
+            this.initDom();
+        } else {
+            this.initConfig();
+            this.initPlugins();
+            this.initToolbar();
+            this.initContent();
+            this.initDom();
+        }
     }
 
     /**
@@ -201,22 +190,6 @@ export default class Editor {
     }
 
     /**
-     * Initializes content
-     *
-     * @private
-     */
-    initContent() {
-        if (this.orig instanceof HTMLTextAreaElement) {
-            this.content.innerHTML = this.orig.value.replace('/&nbsp;/g', ' ');
-            this.orig.form.addEventListener('submit', () => this.save());
-        } else {
-            this.content.innerHTML = this.orig.innerHTML;
-        }
-
-        this.filter(this.content);
-    }
-
-    /**
      * Initializes Toolbar
      *
      * @private
@@ -237,18 +210,41 @@ export default class Editor {
             });
             this.toolbar.appendChild(item);
         });
+        this.element.appendChild(this.toolbar);
+    }
+
+    /**
+     * Initializes content
+     *
+     * @private
+     */
+    initContent() {
+        if (this.orig instanceof HTMLTextAreaElement) {
+            this.content.innerHTML = this.orig.value.replace('/&nbsp;/g', ' ');
+            this.orig.form.addEventListener('submit', () => this.save());
+        } else {
+            this.content.innerHTML = this.orig.innerHTML;
+        }
+
+        this.filter(this.content);
+        this.element.appendChild(this.content);
+    }
+
+    /**
+     * Initializes editor element
+     *
+     * @private
+     */
+    initDom() {
+        this.orig.insertAdjacentElement('afterend', this.element);
+        this.orig.hidden = true;
     }
 
     /**
      * Removes editor element from DOM
      */
     destroy() {
-        this.element.removeChild(this.content);
-        this.content = null;
-        this.element.removeChild(this.toolbar);
-        this.toolbar = null;
         this.element.parentElement.removeChild(this.element);
-        this.element = null;
         this.orig.hidden = false;
     }
 
