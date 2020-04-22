@@ -25,7 +25,6 @@ import Editor from '../src/editor/Editor.js';
         const button = document.getElementById('save');
         button.textContent = textarea.hidden ? 'Save' : 'Edit';
         button.addEventListener('click', () => {
-            console.log(textarea.hidden);
             if (textarea.hidden) {
                 editor.save();
                 editor.destroy();
