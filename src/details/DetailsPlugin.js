@@ -21,10 +21,11 @@ export default class DetailsPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.set(new Tag({name: 'details', group: 'details', children: ['figure', 'list', 'paragraph', 'summary']}));
+        const tagName = 'details';
+        this.editor.tags.set(new Tag({name: tagName, group: 'details', children: ['figure', 'list', 'paragraph', 'summary']}));
         this.editor.tags.set(new Tag({name: 'summary', group: 'summary', editable: true, enter: 'p'}));
         this.editor.observe(new DetailsObserver(this.editor));
         this.registerTranslator(i18n);
-        this.editor.commands.set(new DetailsCommand(this.editor));
+        this.editor.commands.set(new DetailsCommand(this.editor, this.name, tagName));
     }
 }

@@ -5,15 +5,6 @@ import Command from '../base/Command.js';
  */
 export default class TableCommand extends Command {
     /**
-     * Initializes a new table command
-     *
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, 'table', 'table');
-    }
-
-    /**
      * Inserts table element
      *
      * @param {Number} rows
@@ -24,7 +15,7 @@ export default class TableCommand extends Command {
             throw 'Invalid argument';
         }
 
-        const table = this.editor.createElement('table');
+        const table = this.editor.createElement(this.tagName);
         ['thead', 'tbody', 'tfoot'].forEach(section => {
             const item = this.editor.createElement(section);
             const cell = section === 'thead' ? 'th' : 'td';
@@ -43,7 +34,7 @@ export default class TableCommand extends Command {
             }
         });
 
-        const figure = this.editor.createElement('figure', {attributes: {class: 'table'}});
+        const figure = this.editor.createElement('figure', {attributes: {class: this.name}});
         figure.appendChild(table);
         figure.appendChild(this.editor.createElement('figcaption'));
 

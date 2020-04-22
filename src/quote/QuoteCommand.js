@@ -5,22 +5,13 @@ import Command from '../base/Command.js';
  */
 export default class QuoteCommand extends Command {
     /**
-     * Initializes a new quote command
-     *
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, 'quote', 'blockquote');
-    }
-
-    /**
      * @inheritDoc
      */
     insert(attributes = {}) {
-        const quote = this.editor.createElement('blockquote');
+        const quote = this.editor.createElement(this.tagName);
         quote.appendChild(this.editor.createElement('p'));
 
-        const figure = this.editor.createElement('figure', {attributes: {class: 'quote'}});
+        const figure = this.editor.createElement('figure', {attributes: {class: this.name}});
         figure.appendChild(quote);
         figure.appendChild(this.editor.createElement('figcaption'));
 

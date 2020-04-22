@@ -22,7 +22,8 @@ export default class VideoPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.set(new Tag({name: 'video', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true}));
+        const tagName = 'video';
+        this.editor.tags.set(new Tag({name: tagName, group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true}));
         this.registerTranslator(i18n);
 
         if (this.editor.config[this.name].browser) {
@@ -31,7 +32,7 @@ export default class VideoPlugin extends Plugin {
             this.editor.dialogs.set(new VideoDialog(this.editor, this.name));
         }
 
-        this.editor.commands.set(new VideoCommand(this.editor));
+        this.editor.commands.set(new VideoCommand(this.editor, this.name, tagName));
     }
 
     /**

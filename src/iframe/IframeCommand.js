@@ -5,15 +5,6 @@ import Command from '../base/Command.js';
  */
 export default class IframeCommand extends Command {
     /**
-     * Initializes a new iframe command
-     *
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, 'iframe', 'iframe');
-    }
-
-    /**
      * Inserts iframe element
      *
      * @param {String} src
@@ -27,8 +18,8 @@ export default class IframeCommand extends Command {
             throw 'Invalid argument';
         }
 
-        const figure = this.editor.createElement('figure', {attributes: {class: 'iframe'}});
-        figure.appendChild(this.editor.createElement('iframe', {attributes: {src: this.editor.url(src), width, height, allowfullscreen}}));
+        const figure = this.editor.createElement('figure', {attributes: {class: this.name}});
+        figure.appendChild(this.editor.createElement(this.tagName, {attributes: {src: this.editor.url(src), width, height, allowfullscreen}}));
         figure.appendChild(this.editor.createElement('figcaption', {content: caption, html: true}));
 
         this.editor.insert(figure);

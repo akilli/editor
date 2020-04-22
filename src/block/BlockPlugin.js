@@ -23,8 +23,9 @@ export default class BlockPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.registerElement('editor-block', BlockElement);
-        this.editor.tags.set(new Tag({name: 'editor-block', group: 'section', attributes: ['id'], empty: true}));
+        const tagName = 'editor-block';
+        this.editor.registerElement(tagName, BlockElement);
+        this.editor.tags.set(new Tag({name: tagName, group: 'section', attributes: ['id'], empty: true}));
         this.registerTranslator(i18n);
 
         if (this.editor.config[this.name].browser) {
@@ -33,7 +34,7 @@ export default class BlockPlugin extends Plugin {
             this.editor.dialogs.set(new BlockDialog(this.editor, this.name));
         }
 
-        this.editor.commands.set(new BlockCommand(this.editor));
+        this.editor.commands.set(new BlockCommand(this.editor, this.name, tagName));
     }
 
     /**

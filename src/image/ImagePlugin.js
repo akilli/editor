@@ -22,7 +22,8 @@ export default class ImagePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.set(new Tag({name: 'img', group: 'media', attributes: ['alt', 'height', 'src', 'width'], empty: true}));
+        const tagName = 'img';
+        this.editor.tags.set(new Tag({name: tagName, group: 'media', attributes: ['alt', 'height', 'src', 'width'], empty: true}));
         this.registerTranslator(i18n);
 
         if (this.editor.config[this.name].browser) {
@@ -31,7 +32,7 @@ export default class ImagePlugin extends Plugin {
             this.editor.dialogs.set(new ImageDialog(this.editor, this.name));
         }
 
-        this.editor.commands.set(new ImageCommand(this.editor));
+        this.editor.commands.set(new ImageCommand(this.editor, this.name, tagName));
     }
 
     /**

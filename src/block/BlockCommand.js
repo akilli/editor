@@ -5,15 +5,6 @@ import Command from '../base/Command.js';
  */
 export default class BlockCommand extends Command {
     /**
-     * Initializes a new block command
-     *
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, 'block', 'editor-block');
-    }
-
-    /**
      * Inserts block element
      *
      * @param {String} id
@@ -23,7 +14,7 @@ export default class BlockCommand extends Command {
             throw 'Invalid argument';
         }
 
-        this.editor.insert(this.editor.createElement('editor-block', {attributes: {
+        this.editor.insert(this.editor.createElement(this.tagName, {attributes: {
             api: this.editor.config.block.api,
             css: this.editor.config.block.css,
             id,

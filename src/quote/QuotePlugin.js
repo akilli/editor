@@ -19,7 +19,8 @@ export default class QuotePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.set(new Tag({name: 'blockquote', group: 'quote', children: ['paragraph']}));
-        this.editor.commands.set(new QuoteCommand(this.editor));
+        const tagName = 'blockquote';
+        this.editor.tags.set(new Tag({name: tagName, group: 'quote', children: ['paragraph']}));
+        this.editor.commands.set(new QuoteCommand(this.editor, this.name, tagName));
     }
 }

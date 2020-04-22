@@ -5,15 +5,6 @@ import Command from '../base/Command.js';
  */
 export default class LinkCommand extends Command {
     /**
-     * Initializes a new link command
-     *
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, 'link', 'a');
-    }
-
-    /**
      * Inserts, updates or removes link element
      *
      * @param {?String} href
