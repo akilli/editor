@@ -8,7 +8,7 @@ As this project is in an early state, some planned features are not finished yet
 
 ## Usage
 
-You can add widgets from the _main toolbar_ on top. Each widget has one or more editable elements that allow adding and maybe formatting text. The _editable toolbar_ will appear when you select some text in an editable element that allows text formatting, p.e. paragraphs, list items, table cells. Be aware of the fact that current configuration p.e. does not allow nesting of text formatting elements.
+You can add widgets from the toolbar on top. Each widget has one or more editable elements that allow adding and maybe formatting text. Be aware of the fact that current configuration p.e. does not allow nesting of text formatting elements.
 
 After adding the first widget, you can also use the `Enter` key to add a new paragraph. Depending on the widget, this new paragraph will be created inside the widget itself or on top-level. Within lists, the `Enter` key will add a new list item.
 
