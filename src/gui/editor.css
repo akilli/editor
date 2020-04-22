@@ -12,6 +12,8 @@
     --editor-placeholder: 'Gimme some text!';
     --editor-save-background: darkgreen;
     --editor-save-color: white;
+    --editor-toolbar-background: white;
+    --editor-toolbar-color: black;
 }
 
 /**
@@ -181,6 +183,8 @@ dialog.editor-dialog select {
     top: 0;
     display: flex;
     padding: 0.6875rem;
+    color: var(--editor-toolbar-color);
+    background: var(--editor-toolbar-background);
     border: 0.0625rem solid var(--editor-border);
 }
 
