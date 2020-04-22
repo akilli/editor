@@ -154,7 +154,7 @@ section div.content {
 /**
  * Editor
  */
-#rte {
+textarea#rte {
     width: 100%;
     min-height: 15rem;
     max-height: 45rem;
