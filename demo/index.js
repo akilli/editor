@@ -12,6 +12,7 @@ import Editor from '../src/editor/Editor.js';
             },
             block: {
                 browser: '/demo/block.html',
+                css: '/demo/base.css,/demo/index.css',
             },
             iframe: {
                 browser: '/demo/media.html#iframe',

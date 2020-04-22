@@ -1,7 +1,7 @@
+import BlockCommand from './BlockCommand.js';
 import BlockDialog from './BlockDialog.js';
 import BlockElement from './BlockElement.js';
 import BrowserDialog from '../base/BrowserDialog.js';
-import Command from '../base/Command.js';
 import Plugin from '../base/Plugin.js';
 import Tag from '../base/Tag.js';
 import i18n from '../iframe/i18n.js';
@@ -33,13 +33,13 @@ export default class BlockPlugin extends Plugin {
             this.editor.dialogs.set(new BlockDialog(this.editor, this.name));
         }
 
-        this.editor.commands.set(new Command(this.editor, 'block', 'editor-block'));
+        this.editor.commands.set(new BlockCommand(this.editor));
     }
 
     /**
      * @inheritDoc
      */
     static defaultConfig() {
-        return {browser: null};
+        return {browser: null, css: null};
     }
 }
