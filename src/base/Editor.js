@@ -148,15 +148,25 @@ export default class Editor {
      * Initializes editor
      */
     init() {
-        if (this.plugins.size > 0) {
-            this.initDom();
-        } else {
+        if (this.plugins.size === 0) {
+            this.initChildren();
             this.initConfig();
             this.initPlugins();
             this.initToolbar();
-            this.initContent();
-            this.initDom();
         }
+
+        this.initContent();
+        this.initDom();
+    }
+
+    /**
+     * Appends toolbar and content elements to editor element
+     *
+     * @private
+     */
+    initChildren() {
+        this.element.appendChild(this.toolbar);
+        this.element.appendChild(this.content);
     }
 
     /**
@@ -210,7 +220,6 @@ export default class Editor {
             });
             this.toolbar.appendChild(item);
         });
-        this.element.appendChild(this.toolbar);
     }
 
     /**
@@ -227,11 +236,10 @@ export default class Editor {
         }
 
         this.filter(this.content);
-        this.element.appendChild(this.content);
     }
 
     /**
-     * Initializes editor element
+     * Adds editor element to DOM
      *
      * @private
      */
