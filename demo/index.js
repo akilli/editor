@@ -11,6 +11,7 @@ import Editor from '../src/editor/Editor.js';
                 lang: 'de',
             },
             block: {
+                api: '/demo/api/{id}.html',
                 browser: '/demo/block.html',
                 css: '/demo/base.css,/demo/index.css',
             },

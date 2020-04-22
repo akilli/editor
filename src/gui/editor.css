@@ -275,15 +275,14 @@ dialog.editor-dialog select {
  */
 editor-block {
     display: block;
-    min-height: 1.5rem;
-    padding: 0 0.25rem;
+    padding: 0.25rem;
     border: 0.0625rem solid var(--editor-block-background);
 }
 
 editor-block::before {
     display: block;
     content: "Block: " attr(id) " ";
-    margin: 0 -0.25rem;
+    margin: -0.25rem -0.25rem 0.5rem;
     padding: 0.125rem 0.25rem;
     color: var(--editor-block-color);
     background: var(--editor-block-background);

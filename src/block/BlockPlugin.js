@@ -40,6 +40,6 @@ export default class BlockPlugin extends Plugin {
      * @inheritDoc
      */
     static defaultConfig() {
-        return {browser: null, css: null};
+        return {api: null, browser: null, css: null};
     }
 }

@@ -17,17 +17,16 @@ export default class BlockCommand extends Command {
      * Inserts block element
      *
      * @param {String} id
-     * @param {String} [content = '']
      */
-    insert({id, content = ''} = {}) {
+    insert({id} = {}) {
         if (!id) {
             throw 'Invalid argument';
         }
 
-        const block = this.editor.createElement('editor-block', {attributes: {id}});
-        block.content = content;
-        block.css = this.editor.config.block.css;
-
-        this.editor.insert(block);
+        this.editor.insert(this.editor.createElement('editor-block', {attributes: {
+            api: this.editor.config.block.api,
+            css: this.editor.config.block.css,
+            id,
+        }}));
     }
 }
