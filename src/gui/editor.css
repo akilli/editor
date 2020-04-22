@@ -2,6 +2,8 @@
  * Variable
  */
 :root {
+    --editor-block-background: hotpink;
+    --editor-block-color: black;
     --editor-border: lightgrey;
     --editor-cancel-background: darkgrey;
     --editor-cancel-color: white;
@@ -273,15 +275,16 @@ dialog.editor-dialog select {
  */
 editor-block {
     display: block;
+    min-height: 1.5rem;
+    padding: 0 0.25rem;
+    border: 0.0625rem solid var(--editor-block-background);
 }
 
-editor-block:empty {
-    line-height: 6rem;
-    text-align: center;
-    border: 0.0625rem dotted var(--editor-border);
-}
-
-editor-block:empty::after {
-    content: "Block-ID: " attr(id) " ";
-    color: var(--editor-border);
+editor-block::before {
+    display: block;
+    content: "Block: " attr(id) " ";
+    margin: 0 -0.25rem;
+    padding: 0.125rem 0.25rem;
+    color: var(--editor-block-color);
+    background: var(--editor-block-background);
 }
