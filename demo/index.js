@@ -10,6 +10,9 @@ import Editor from '../src/editor/Editor.js';
             base: {
                 lang: 'de',
             },
+            block: {
+                browser: '/demo/block.html',
+            },
             iframe: {
                 browser: '/demo/media.html#iframe',
             },

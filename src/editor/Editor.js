@@ -1,6 +1,7 @@
 import AudioPlugin from '../audio/AudioPlugin.js';
 import BaseEditor from '../base/Editor.js';
 import BasePlugin from '../base/BasePlugin.js';
+import BlockPlugin from '../block/BlockPlugin.js';
 import DetailsPlugin from '../details/DetailsPlugin.js';
 import HeadingPlugin from '../heading/HeadingPlugin.js';
 import IframePlugin from '../iframe/IframePlugin.js';
@@ -26,6 +27,7 @@ export default class Editor extends BaseEditor {
                 plugins: [
                     BasePlugin,
                     AudioPlugin,
+                    BlockPlugin,
                     DetailsPlugin,
                     HeadingPlugin,
                     IframePlugin,
@@ -54,6 +56,7 @@ export default class Editor extends BaseEditor {
                     'iframe',
                     'table',
                     'details',
+                    'block',
                 ],
             },
         };

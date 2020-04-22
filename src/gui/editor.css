@@ -208,6 +208,10 @@ dialog.editor-dialog select {
     content: '\e80c';
 }
 
+.editor-toolbar [data-cmd=block]::before {
+    content: '\f2bc';
+}
+
 .editor-toolbar [data-cmd=bold]::before {
     content: '\e801';
 }
@@ -262,4 +266,22 @@ dialog.editor-dialog select {
 
 .editor-toolbar [data-cmd=video]::before {
     content: '\e80b';
+}
+
+/**
+ * Block
+ */
+editor-block {
+    display: block;
+}
+
+editor-block:empty {
+    line-height: 6rem;
+    text-align: center;
+    border: 0.0625rem dotted var(--editor-border);
+}
+
+editor-block:empty::after {
+    content: "Block-ID: " attr(id) " ";
+    color: var(--editor-border);
 }
