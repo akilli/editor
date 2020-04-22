@@ -61,7 +61,7 @@ export default class Editor {
          * @type {HTMLElement}
          * @readonly
          */
-        this.element = this.createElement('div', {attributes: {class: 'editor'}});
+        this.element = null;
 
         /**
          * Corresponding DOM element of the editor content
@@ -69,7 +69,7 @@ export default class Editor {
          * @type {HTMLElement}
          * @readonly
          */
-        this.content = this.createElement('div', {attributes: {class: 'editor-content'}});
+        this.content = null;
 
         /**
          * Corresponding DOM element of the main toolbar
@@ -77,7 +77,7 @@ export default class Editor {
          * @type {HTMLElement}
          * @readonly
          */
-        this.toolbar = this.createElement('div', {attributes: {class: 'editor-toolbar'}});
+        this.toolbar = null;
 
         /**
          * Configuration
@@ -161,10 +161,13 @@ export default class Editor {
      * @private
      */
     initDom() {
-        this.orig.hidden = true;
-        this.orig.insertAdjacentElement('afterend', this.element);
+        this.content = this.createElement('div', {attributes: {class: 'editor-content'}});
+        this.toolbar = this.createElement('div', {attributes: {class: 'editor-toolbar'}});
+        this.element = this.createElement('div', {attributes: {class: 'editor'}});
         this.element.appendChild(this.toolbar);
         this.element.appendChild(this.content);
+        this.orig.hidden = true;
+        this.orig.insertAdjacentElement('afterend', this.element);
     }
 
     /**
@@ -234,6 +237,19 @@ export default class Editor {
             });
             this.toolbar.appendChild(item);
         });
+    }
+
+    /**
+     * Removes editor element from DOM
+     */
+    destroy() {
+        this.element.removeChild(this.content);
+        this.content = null;
+        this.element.removeChild(this.toolbar);
+        this.toolbar = null;
+        this.element.parentElement.removeChild(this.element);
+        this.element = null;
+        this.orig.hidden = false;
     }
 
     /**
@@ -363,7 +379,9 @@ export default class Editor {
      * @param {?String} [parentName = null]
      */
     registerElement(name, constructor, parentName = null) {
-        this.window.customElements.define(name, constructor, parentName ? {extends: parentName} : null);
+        if (typeof this.window.customElements.get(name) === 'undefined') {
+            this.window.customElements.define(name, constructor, parentName ? {extends: parentName} : null);
+        }
     }
 
     /**
