@@ -14,10 +14,6 @@ export default class BlockCommand extends Command {
             throw 'Invalid argument';
         }
 
-        this.editor.insert(this.editor.createElement(this.tagName, {attributes: {
-            api: this.editor.config.block.api,
-            css: this.editor.config.block.css,
-            id,
-        }}));
+        this.editor.insert(this.editor.createElement(this.tagName, {attributes: {id}}));
     }
 }

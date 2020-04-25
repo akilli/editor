@@ -1,6 +1,7 @@
 import BlockCommand from './BlockCommand.js';
 import BlockDialog from './BlockDialog.js';
 import BlockElement from './BlockElement.js';
+import BlockObserver from './BlockObserver.js';
 import BrowserDialog from '../base/BrowserDialog.js';
 import Plugin from '../base/Plugin.js';
 import i18n from '../iframe/i18n.js';
@@ -26,6 +27,7 @@ export default class BlockPlugin extends Plugin {
         this.editor.registerElement(tagName, BlockElement);
         this.registerTag({name: tagName, group: 'section', attributes: ['id'], empty: true});
         this.registerTranslator(i18n);
+        this.editor.observe(new BlockObserver(this.editor));
 
         if (this.editor.config[this.name].browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, this.name, this.editor.config[this.name].browser));
