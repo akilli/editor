@@ -3,6 +3,7 @@ import BaseEditor from '../base/Editor.js';
 import BasePlugin from '../base/BasePlugin.js';
 import BlockPlugin from '../block/BlockPlugin.js';
 import DetailsPlugin from '../details/DetailsPlugin.js';
+import FullscreenPlugin from '../fullscreen/FullscreenPlugin.js';
 import HeadingPlugin from '../heading/HeadingPlugin.js';
 import IframePlugin from '../iframe/IframePlugin.js';
 import ImagePlugin from '../image/ImagePlugin.js';
@@ -29,6 +30,7 @@ export default class Editor extends BaseEditor {
                     AudioPlugin,
                     BlockPlugin,
                     DetailsPlugin,
+                    FullscreenPlugin,
                     HeadingPlugin,
                     IframePlugin,
                     ImagePlugin,
@@ -41,6 +43,7 @@ export default class Editor extends BaseEditor {
                     VideoPlugin,
                 ],
                 toolbar: [
+                    'fullscreen',
                     'bold',
                     'italic',
                     'link',
