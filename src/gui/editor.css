@@ -274,13 +274,13 @@ dialog.editor-dialog select {
 /**
  * Block
  */
-editor-block {
+app-block {
     display: block;
     padding: 0.25rem;
     border: 0.0625rem solid var(--editor-block-background);
 }
 
-editor-block::before {
+app-block::before {
     display: block;
     content: var(--editor-block-placeholder);
     margin: -0.25rem -0.25rem 0.5rem;

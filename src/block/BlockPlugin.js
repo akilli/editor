@@ -23,7 +23,7 @@ export default class BlockPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        const tagName = 'editor-block';
+        const tagName = 'app-block';
         this.editor.registerElement(tagName, BlockElement);
         this.registerTag({name: tagName, group: 'section', attributes: ['id'], empty: true});
         this.registerTranslator(i18n);
