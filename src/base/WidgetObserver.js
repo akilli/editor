@@ -27,15 +27,15 @@ export default class WidgetObserver extends Observer {
     keyboard(node) {
         node.addEventListener('keyup', ev => {
             if (this.editor.document.activeElement.isSameNode(node)) {
-                if (ev.key === 'Delete' && !node.isContentEditable) {
+                if (ev.ctrlKey && ev.key === 'Delete') {
                     node.parentElement.removeChild(node);
                     ev.preventDefault();
                     ev.cancelBubble = true;
-                } else if (node.draggable && ev.key === 'ArrowUp' && node.previousElementSibling) {
+                } else if (ev.ctrlKey && ev.key === 'ArrowUp' && node.previousElementSibling) {
                     node.parentElement.insertBefore(node, node.previousElementSibling);
                     ev.preventDefault();
                     ev.cancelBubble = true;
-                } else if (node.draggable && ev.key === 'ArrowDown' && node.nextElementSibling) {
+                } else if (ev.ctrlKey && ev.key === 'ArrowDown' && node.nextElementSibling) {
                     node.parentElement.insertBefore(node.nextElementSibling, node);
                     ev.preventDefault();
                     ev.cancelBubble = true;
