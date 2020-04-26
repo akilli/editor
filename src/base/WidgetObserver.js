@@ -32,13 +32,11 @@ export default class WidgetObserver extends Observer {
                     ev.preventDefault();
                     ev.cancelBubble = true;
                 } else if (node.draggable && ev.key === 'ArrowUp' && node.previousElementSibling) {
-                    node.previousElementSibling.insertAdjacentHTML('beforebegin', node.outerHTML);
-                    node.parentElement.removeChild(node);
+                    node.parentElement.insertBefore(node, node.previousElementSibling);
                     ev.preventDefault();
                     ev.cancelBubble = true;
                 } else if (node.draggable && ev.key === 'ArrowDown' && node.nextElementSibling) {
-                    node.nextElementSibling.insertAdjacentHTML('afterend', node.outerHTML);
-                    node.parentElement.removeChild(node);
+                    node.parentElement.insertBefore(node.nextElementSibling, node);
                     ev.preventDefault();
                     ev.cancelBubble = true;
                 }
