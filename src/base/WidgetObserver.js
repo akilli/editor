@@ -11,6 +11,7 @@ export default class WidgetObserver extends Observer {
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLElement && node.parentElement instanceof HTMLElement && this.editor.isRoot(node.parentElement)) {
                 node.tabIndex = 0;
+                node.focus();
                 this.keyboard(node);
                 this.dragndrop(node);
             }
@@ -26,20 +27,19 @@ export default class WidgetObserver extends Observer {
      */
     keyboard(node) {
         node.addEventListener('keyup', ev => {
-            if (this.editor.document.activeElement.isSameNode(node)) {
-                if (ev.ctrlKey && ev.key === 'Delete') {
+            if (this.editor.document.activeElement.isSameNode(node) && ev.ctrlKey && ['ArrowUp', 'ArrowDown', 'Delete'].includes(ev.key)) {
+                if (ev.key === 'ArrowUp' && node.previousElementSibling) {
+                    node.previousElementSibling.insertAdjacentHTML('beforebegin', node.outerHTML);
                     node.parentElement.removeChild(node);
-                    ev.preventDefault();
-                    ev.cancelBubble = true;
-                } else if (ev.ctrlKey && ev.key === 'ArrowUp' && node.previousElementSibling) {
-                    node.parentElement.insertBefore(node, node.previousElementSibling);
-                    ev.preventDefault();
-                    ev.cancelBubble = true;
-                } else if (ev.ctrlKey && ev.key === 'ArrowDown' && node.nextElementSibling) {
-                    node.parentElement.insertBefore(node.nextElementSibling, node);
-                    ev.preventDefault();
-                    ev.cancelBubble = true;
+                } else if (ev.key === 'ArrowDown' && node.nextElementSibling) {
+                    node.nextElementSibling.insertAdjacentHTML('afterend', node.outerHTML);
+                    node.parentElement.removeChild(node);
+                } else if (ev.key === 'Delete') {
+                    node.parentElement.removeChild(node);
                 }
+
+                ev.preventDefault();
+                ev.cancelBubble = true;
             }
         });
     }

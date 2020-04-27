@@ -14,6 +14,10 @@ export default class EditableObserver extends Observer {
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLElement && editables.includes(node.tagName.toLowerCase())) {
                 this.toEditable(node);
+
+                if (!this.editor.isRoot(node.parentElement)) {
+                    node.focus();
+                }
             } else if (selector && node instanceof HTMLElement) {
                 node.querySelectorAll(selector).forEach(item => this.toEditable(item))
             }
@@ -44,7 +48,6 @@ export default class EditableObserver extends Observer {
      */
     toEditable(node) {
         node.contentEditable = 'true';
-        node.focus();
         node.addEventListener('keydown', ev => {
             this.onKeydownEnter(ev);
             this.onKeydownBackspace(ev);
