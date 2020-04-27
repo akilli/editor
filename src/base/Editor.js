@@ -318,17 +318,7 @@ export default class Editor {
      * @param {String} text
      */
     insertText(text) {
-        const sel = this.window.getSelection();
-        const editable = this.getSelectedEditable();
-
-        if (!editable) {
-            return;
-        }
-
-        const range = sel.getRangeAt(0);
-        range.deleteContents();
-        range.insertNode(this.createText(text));
-        range.collapse();
+        this.document.execCommand('inserttext', false, text);
     }
 
     /**
