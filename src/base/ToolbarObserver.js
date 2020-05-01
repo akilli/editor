@@ -13,7 +13,7 @@ export default class ToolbarObserver extends Observer {
                 let cmd;
                 let command;
 
-                if (node instanceof HTMLElement && (cmd = node.getAttribute('data-cmd')) && (command = this.editor.commands.get(cmd))) {
+                if ((cmd = node.getAttribute('data-cmd')) && (command = this.editor.commands.get(cmd))) {
                     node.addEventListener('click', () => command.execute());
                 }
 
