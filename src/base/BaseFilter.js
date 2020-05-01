@@ -8,7 +8,7 @@ export default class BaseFilter extends Filter {
      * @inheritDoc
      */
     filter(element) {
-        const elementName = this.editor.getTagName(element);
+        const name = this.editor.getTagName(element);
         const isRoot = this.editor.isRoot(element);
 
         Array.from(element.childNodes).forEach(child => {
@@ -17,11 +17,11 @@ export default class BaseFilter extends Filter {
             }
 
             if (child instanceof HTMLElement) {
-                const name = child.tagName.toLowerCase();
-                const tag = this.editor.tags.get(name);
+                const childName = child.tagName.toLowerCase();
+                const tag = this.editor.tags.get(childName);
                 const text = child.textContent.trim();
 
-                if (tag && (this.editor.allowed(name, elementName) || isRoot && tag.group === 'text' && this.editor.allowed('p', elementName))) {
+                if (tag && (this.editor.allowed(childName, name) || isRoot && tag.group === 'text' && this.editor.allowed('p', name))) {
                     Array.from(child.attributes).forEach(item => {
                         if (!tag.attributes.includes(item.name)) {
                             child.removeAttribute(item.name);
@@ -34,12 +34,12 @@ export default class BaseFilter extends Filter {
 
                     if (!child.hasChildNodes() && !tag.empty) {
                         element.removeChild(child);
-                    } else if (!this.editor.allowed(name, elementName)) {
+                    } else if (!this.editor.allowed(childName, name)) {
                         element.replaceChild(this.editor.createElement('p', {content: child.outerHTML, html: true}), child);
                     }
-                } else if (isRoot && text && this.editor.allowed('p', elementName)) {
+                } else if (isRoot && text && this.editor.allowed('p', name)) {
                     element.replaceChild(this.editor.createElement('p', {content: text}), child);
-                } else if (text && this.editor.allowed('text', elementName)) {
+                } else if (text && this.editor.allowed('text', name)) {
                     element.replaceChild(this.editor.createText(text), child);
                 } else {
                     element.removeChild(child);
@@ -47,9 +47,9 @@ export default class BaseFilter extends Filter {
             } else if (child instanceof Text) {
                 const text = child.textContent.trim();
 
-                if (isRoot && text && this.editor.allowed('p', elementName)) {
+                if (isRoot && text && this.editor.allowed('p', name)) {
                     element.replaceChild(this.editor.createElement('p', {content: text}), child);
-                } else if (!text || !this.editor.allowed('text', elementName)) {
+                } else if (!text || !this.editor.allowed('text', name)) {
                     element.removeChild(child);
                 }
             } else {
