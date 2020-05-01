@@ -10,17 +10,10 @@ export default class ToolbarObserver extends Observer {
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
             let cmd;
+            let command;
 
-            if (node instanceof HTMLElement && (cmd = node.getAttribute('data-cmd'))) {
-                node.addEventListener('click', () => {
-                    if (!this.editor.commands.has(cmd)) {
-                        throw 'Invalid argument';
-                    } else if (!this.editor.window.getSelection().containsNode(this.editor.content, true)) {
-                        this.editor.content.focus();
-                    }
-
-                    this.editor.commands.get(cmd).execute();
-                });
+            if (node instanceof HTMLElement && (cmd = node.getAttribute('data-cmd')) && (command = this.editor.commands.get(cmd))) {
+                node.addEventListener('click', () => command.execute());
             }
         }));
     }
