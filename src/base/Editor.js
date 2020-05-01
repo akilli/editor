@@ -77,7 +77,7 @@ export default class Editor {
          * @type {HTMLElement}
          * @readonly
          */
-        this.toolbar = this.createElement('div', {attributes: {class: 'editor-toolbar'}});
+        this.toolbar = this.createElement('div', {attributes: {class: 'editor-toolbar', role: 'toolbar'}});
 
         /**
          * Configuration
