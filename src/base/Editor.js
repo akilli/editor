@@ -205,21 +205,10 @@ export default class Editor {
      * @private
      */
     initToolbar() {
-        this.config.base.toolbar.forEach(cmd => {
-            if (!this.commands.has(cmd)) {
-                throw 'Invalid argument';
-            }
-
-            const item = this.createElement('button', {attributes: {type: 'button', 'data-cmd': cmd, title: cmd}, content: cmd});
-            item.addEventListener('click', () => {
-                if (!this.window.getSelection().containsNode(this.content, true)) {
-                    this.content.focus();
-                }
-
-                this.commands.get(cmd).execute();
-            });
-            this.toolbar.appendChild(item);
-        });
+        this.config.base.toolbar.forEach(cmd => this.toolbar.appendChild(this.createElement('button', {
+            attributes: {type: 'button', 'data-cmd': cmd, title: cmd},
+            content: cmd,
+        })));
     }
 
     /**
@@ -497,15 +486,16 @@ export default class Editor {
      * Short-cut method to register a mutation observer
      *
      * @param {Observer} observer
+     * @param {HTMLElement} [target = null]
      * @param {Object} [config = {childList: true, subtree: true}]
      */
-    observe(observer, config = {childList: true, subtree: true}) {
-        if (!(observer instanceof Observer)) {
+    observe(observer, target = null, config = {childList: true, subtree: true}) {
+        if (!(observer instanceof Observer) || target && !(target instanceof HTMLElement)) {
             throw 'Invalid argument';
         }
 
         const mutation = new MutationObserver(ev => observer.observe(ev));
-        mutation.observe(this.content, config);
+        mutation.observe(target || this.content, config);
     }
 
     /**
