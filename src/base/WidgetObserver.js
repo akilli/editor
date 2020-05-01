@@ -27,31 +27,37 @@ export default class WidgetObserver extends Observer {
      */
     keyboard(node) {
         node.addEventListener('keyup', ev => {
-            if (this.editor.document.activeElement.isSameNode(node) && ['ArrowUp', 'ArrowDown', 'Home', 'End', 'Delete'].includes(ev.key)) {
+            if (!this.editor.document.activeElement.isSameNode(node)) {
+                return;
+            }
+
+            if (ev.ctrlKey && ev.key === 'Delete') {
+                node.parentElement.removeChild(node);
+                ev.preventDefault();
+                ev.cancelBubble = true;
+            } else if (['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(ev.key)) {
                 const isFirst = node.parentElement.firstElementChild.isSameNode(node);
                 const isLast = node.parentElement.lastElementChild.isSameNode(node);
 
-                if (ev.key === 'Delete') {
-                    node.parentElement.removeChild(node);
-                } else if (ev.ctrlKey && ev.key === 'ArrowUp' && !isFirst) {
+                if (ev.ctrlKey && ev.key === 'ArrowUp' && !isFirst) {
                     node.previousElementSibling.insertAdjacentHTML('beforebegin', node.outerHTML);
                     node.parentElement.removeChild(node);
                 } else if (ev.ctrlKey && ev.key === 'ArrowDown' && !isLast) {
                     node.nextElementSibling.insertAdjacentHTML('afterend', node.outerHTML);
                     node.parentElement.removeChild(node);
-                } else if (ev.ctrlKey && ev.key === 'Home' && !isFirst || ev.ctrlKey && ev.key === 'ArrowDown' && isLast) {
+                } else if (ev.ctrlKey && (ev.key === 'Home' && !isFirst || ev.key === 'ArrowDown' && isLast)) {
                     node.parentElement.firstElementChild.insertAdjacentHTML('beforebegin', node.outerHTML);
                     node.parentElement.removeChild(node);
-                } else if (ev.ctrlKey && ev.key === 'End' && !isLast || ev.ctrlKey && ev.key === 'ArrowUp' && isFirst) {
+                } else if (ev.ctrlKey && (ev.key === 'End' && !isLast || ev.key === 'ArrowUp' && isFirst)) {
                     node.parentElement.lastElementChild.insertAdjacentHTML('afterend', node.outerHTML);
                     node.parentElement.removeChild(node);
-                } else if (!ev.ctrlKey && ev.key === 'ArrowUp') {
-                    node.previousElementSibling ? node.previousElementSibling.focus() : node.parentElement.lastElementChild.focus();
-                } else if (!ev.ctrlKey && ev.key === 'ArrowDown') {
-                    node.nextElementSibling ? node.nextElementSibling.focus() : node.parentElement.firstElementChild.focus();
-                } else if (!ev.ctrlKey && ev.key === 'Home') {
+                } else if (ev.key === 'ArrowUp' && !isFirst) {
+                    node.previousElementSibling.focus();
+                } else if (ev.key === 'ArrowDown' && !isLast) {
+                    node.nextElementSibling.focus();
+                } else if (ev.key === 'Home' || ev.key === 'ArrowDown' && isLast) {
                     node.parentElement.firstElementChild.focus();
-                } else if (!ev.ctrlKey && ev.key === 'End') {
+                } else if (ev.key === 'End' || ev.key === 'ArrowUp' && isFirst) {
                     node.parentElement.lastElementChild.focus();
                 }
 

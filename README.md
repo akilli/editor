@@ -30,7 +30,7 @@ If one of the widgets is focused, you can use the arrow (`ArrowLeft`, `ArrowRigh
 
 You can move the focused widget to first or last position or before its previous or after its next sibling by combining the `Control` key with one of the `Home`, `End`, `ArrowUp` or `ArrowDown` keys.
 
-You can delete the focused widget by pressing the `Delete` key. Inside editable elements, you can also use the `Backspace` key to delete a widget, if the editable is empty and is either the widget element itself or the main editable of the widget.
+You can delete the focused widget by combining the `Control` key with the `Delete` key. Inside editable elements, you can also use the `Backspace` key to delete a widget, if the editable is empty and is either the widget element itself or the main editable of the widget.
 
 Figure widgets like quote, table or media elements allow changing or toggling alignment, i.e. adding or removing CSS class `left` or `right`, by combining the `Control` key with the `ArrowLeft` or `ArrowRight` keys.
 
