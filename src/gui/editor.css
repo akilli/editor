@@ -8,10 +8,11 @@
     --editor-border: lightgrey;
     --editor-cancel-background: darkgrey;
     --editor-cancel-color: white;
+    --editor-cmd-focus: steelblue;
     --editor-drag: darkgreen;
     --editor-empty: 'No content :-( ... click a button in the toolbar to add some :-)';
-    --editor-focus: orange;
-    --editor-outline: yellow;
+    --editor-focus: darkorange;
+    --editor-outline: gold;
     --editor-placeholder: 'Gimme some text!';
     --editor-save-background: darkgreen;
     --editor-save-color: white;
@@ -225,6 +226,10 @@ dialog.editor-dialog select {
     padding: 0;
     font-family: editor;
     font-size: 0;
+}
+
+.editor-toolbar [data-cmd]:focus {
+    color: var(--editor-cmd-focus);
 }
 
 .editor-toolbar [data-cmd]::before {
