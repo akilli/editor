@@ -10,9 +10,9 @@ export default class TableObserver extends Observer {
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLTableElement) {
-                this.initTable(node)
+                this.init(node)
             } else if (node instanceof HTMLElement) {
-                node.querySelectorAll('table').forEach(table => this.initTable(table));
+                node.querySelectorAll('table').forEach(table => this.init(table));
             }
         }));
     }
@@ -24,7 +24,7 @@ export default class TableObserver extends Observer {
      *
      * @param {HTMLTableElement} table
      */
-    initTable(table) {
+    init(table) {
         this.sections(table);
         this.keyboard(table);
     }

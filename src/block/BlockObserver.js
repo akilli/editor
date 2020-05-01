@@ -11,7 +11,9 @@ export default class BlockObserver extends Observer {
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof BlockElement && node.id && this.editor.config.block.api) {
-                this.initBlock(node);
+                this.init(node);
+            } else if (node instanceof HTMLElement) {
+                node.querySelectorAll('app-block').forEach(block => this.init(block));
             }
         }));
     }
@@ -19,11 +21,15 @@ export default class BlockObserver extends Observer {
     /**
      * Sets block content from API
      *
-     * @param {BlockElement} node
-     *
      * @private
+     *
+     * @param {BlockElement} node
      */
-    async initBlock(node) {
+    async init(node) {
+        if (!node.id || !this.editor.config.block.api) {
+            return;
+        }
+
         try {
             const response = await fetch(this.editor.config.block.api.replace('{id}', node.id), {mode: 'no-cors'});
 

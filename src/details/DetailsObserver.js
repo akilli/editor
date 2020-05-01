@@ -1,7 +1,7 @@
 import Observer from '../base/Observer.js';
 
 /**
- * Handles details and summary elements
+ * Handles details elements
  */
 export default class DetailsObserver extends Observer {
     /**
@@ -10,11 +10,9 @@ export default class DetailsObserver extends Observer {
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLDetailsElement) {
-                this.initDetails(node);
-            } else if (node instanceof HTMLElement && node.tagName.toLowerCase() === 'summary') {
-                this.initSummary(node);
+                this.init(node);
             } else if (node instanceof HTMLElement) {
-                node.querySelectorAll('details').forEach(details => this.initDetails(details));
+                node.querySelectorAll('details').forEach(details => this.init(details));
             }
         }));
     }
@@ -26,51 +24,13 @@ export default class DetailsObserver extends Observer {
      *
      * @param {HTMLDetailsElement} node
      */
-    initDetails(node) {
-        let first = node.firstElementChild;
-
-        if (first instanceof HTMLElement && first.tagName.toLowerCase() === 'summary') {
-            this.initSummary(first);
-
-            if (node.childElementCount === 1) {
-                node.appendChild(this.editor.createElement('p'));
-            }
-        } else if (first instanceof HTMLElement) {
-            const summary = this.editor.createElement('summary');
-            node.insertBefore(summary, first);
-            this.initSummary(summary);
+    init(node) {
+        if (!node.querySelector(':scope > summary:first-child')) {
+            node.insertAdjacentElement('afterbegin', this.editor.createElement('summary'));
         }
-    }
 
-    /**
-     * Initializes summary element
-     *
-     * @private
-     *
-     * @param {HTMLElement} node
-     */
-    initSummary(node) {
-        // Ensure summary is not empty
-        const call = () => {
-            if (!node.textContent.trim()) {
-                node.textContent = this.editor.translators.get('details').get('Details');
-            }
-        };
-        call();
-        node.addEventListener('blur', call);
-        // Fix space key for editable summary elements
-        node.addEventListener('keydown', ev => {
-            if (ev.key === ' ') {
-                ev.preventDefault();
-                ev.cancelBubble = true;
-            }
-        });
-        node.addEventListener('keyup', ev => {
-            if (ev.key === ' ') {
-                ev.preventDefault();
-                ev.cancelBubble = true;
-                this.editor.insertText(' ');
-            }
-        });
+        if (node.childElementCount === 1) {
+            node.appendChild(this.editor.createElement('p'));
+        }
     }
 }
