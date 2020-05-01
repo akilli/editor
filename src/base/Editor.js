@@ -444,7 +444,7 @@ export default class Editor {
             const ancEdit = anc.closest('[contenteditable=true]');
             const focEdit = foc.closest('[contenteditable=true]');
 
-            if (ancEdit instanceof HTMLElement && focEdit instanceof HTMLElement && ancEdit.isSameNode(focEdit) && this.content.contains(ancEdit)) {
+            if (ancEdit && focEdit && ancEdit.isSameNode(focEdit) && this.content.contains(ancEdit)) {
                 return ancEdit;
             }
         }
@@ -487,9 +487,9 @@ export default class Editor {
      *
      * @param {Observer} observer
      * @param {HTMLElement} [target = null]
-     * @param {Object} [config = {childList: true, subtree: true}]
+     * @param {Object.<String, Boolean|String[]>} [config = {childList: true, subtree: true}]
      */
-    observe(observer, target = null, config = {childList: true, subtree: true}) {
+    observe(observer, {target = null, config = {childList: true, subtree: true}} = {}) {
         if (!(observer instanceof Observer) || target && !(target instanceof HTMLElement)) {
             throw 'Invalid argument';
         }

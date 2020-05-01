@@ -27,7 +27,7 @@ export default class BasePlugin extends Plugin {
         this.registerTag({name: 'br', group: 'break', empty: true});
         this.registerTag({name: 'figure', group: 'figure', attributes: ['class'], children: ['caption', 'media', 'quote', 'table']});
         this.registerTag({name: 'figcaption', group: 'caption', children: ['text'], editable: true, enter: 'p'});
-        this.editor.observe(new ToolbarObserver(this.editor), this.editor.toolbar);
+        this.editor.observe(new ToolbarObserver(this.editor), {target: this.editor.toolbar});
         this.editor.observe(new EditableObserver(this.editor));
         this.editor.observe(new WidgetObserver(this.editor));
         this.editor.observe(new FigureObserver(this.editor));
