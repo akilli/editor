@@ -19,7 +19,7 @@ export default class EditableObserver extends Observer {
                     node.focus();
                 }
             } else if (selector && node instanceof HTMLElement) {
-                node.querySelectorAll(selector).forEach(item => this.toEditable(item))
+                node.querySelectorAll(selector).forEach(editable => this.toEditable(editable))
             }
         }));
     }

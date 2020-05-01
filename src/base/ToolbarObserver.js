@@ -10,11 +10,10 @@ export default class ToolbarObserver extends Observer {
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
-                let cmd;
-                let command;
-
-                if ((cmd = node.getAttribute('data-cmd')) && (command = this.editor.commands.get(cmd))) {
-                    node.addEventListener('click', () => command.execute());
+                if (node.hasAttribute('data-cmd')) {
+                    this.click(node);
+                } else {
+                    node.querySelectorAll('[data-cmd]').forEach(cmd => this.click(cmd));
                 }
 
                 if (this.editor.toolbar.isSameNode(node.parentElement)) {
@@ -23,6 +22,17 @@ export default class ToolbarObserver extends Observer {
                 }
             }
         }));
+    }
+
+    /**
+     * Handles click events
+     *
+     * @private
+     *
+     * @param {HTMLElement} node
+     */
+    click(node) {
+        node.addEventListener('click', () => this.editor.commands.get(node.getAttribute('data-cmd')).execute())
     }
 
     /**

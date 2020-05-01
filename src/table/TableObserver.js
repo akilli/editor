@@ -12,7 +12,7 @@ export default class TableObserver extends Observer {
             if (node instanceof HTMLTableElement) {
                 this.initTable(node)
             } else if (node instanceof HTMLElement) {
-                node.querySelectorAll('table').forEach(item => this.initTable(item));
+                node.querySelectorAll('table').forEach(table => this.initTable(table));
             }
         }));
     }
