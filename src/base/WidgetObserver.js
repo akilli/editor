@@ -27,15 +27,32 @@ export default class WidgetObserver extends Observer {
      */
     keyboard(node) {
         node.addEventListener('keyup', ev => {
-            if (this.editor.document.activeElement.isSameNode(node) && ev.ctrlKey && ['ArrowUp', 'ArrowDown', 'Delete'].includes(ev.key)) {
-                if (ev.key === 'ArrowUp' && node.previousElementSibling) {
+            if (this.editor.document.activeElement.isSameNode(node) && ['ArrowUp', 'ArrowDown', 'Home', 'End', 'Delete'].includes(ev.key)) {
+                const isFirst = node.parentElement.firstElementChild.isSameNode(node);
+                const isLast = node.parentElement.lastElementChild.isSameNode(node);
+
+                if (ev.key === 'Delete') {
+                    node.parentElement.removeChild(node);
+                } else if (ev.ctrlKey && ev.key === 'ArrowUp' && !isFirst) {
                     node.previousElementSibling.insertAdjacentHTML('beforebegin', node.outerHTML);
                     node.parentElement.removeChild(node);
-                } else if (ev.key === 'ArrowDown' && node.nextElementSibling) {
+                } else if (ev.ctrlKey && ev.key === 'ArrowDown' && !isLast) {
                     node.nextElementSibling.insertAdjacentHTML('afterend', node.outerHTML);
                     node.parentElement.removeChild(node);
-                } else if (ev.key === 'Delete') {
+                } else if (ev.ctrlKey && ev.key === 'Home' && !isFirst || ev.ctrlKey && ev.key === 'ArrowDown' && isLast) {
+                    node.parentElement.firstElementChild.insertAdjacentHTML('beforebegin', node.outerHTML);
                     node.parentElement.removeChild(node);
+                } else if (ev.ctrlKey && ev.key === 'End' && !isLast || ev.ctrlKey && ev.key === 'ArrowUp' && isFirst) {
+                    node.parentElement.lastElementChild.insertAdjacentHTML('afterend', node.outerHTML);
+                    node.parentElement.removeChild(node);
+                } else if (!ev.ctrlKey && ev.key === 'ArrowUp') {
+                    node.previousElementSibling ? node.previousElementSibling.focus() : node.parentElement.lastElementChild.focus();
+                } else if (!ev.ctrlKey && ev.key === 'ArrowDown') {
+                    node.nextElementSibling ? node.nextElementSibling.focus() : node.parentElement.firstElementChild.focus();
+                } else if (!ev.ctrlKey && ev.key === 'Home') {
+                    node.parentElement.firstElementChild.focus();
+                } else if (!ev.ctrlKey && ev.key === 'End') {
+                    node.parentElement.lastElementChild.focus();
                 }
 
                 ev.preventDefault();

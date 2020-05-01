@@ -42,7 +42,7 @@ export default class ToolbarObserver extends Observer {
      */
     keyboard(node) {
         node.addEventListener('keyup', ev => {
-            if (this.editor.document.activeElement.isSameNode(node) && ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(ev.key)) {
+            if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(ev.key)) {
                 if (ev.key === 'ArrowLeft') {
                     node.previousElementSibling ? node.previousElementSibling.focus() : node.parentElement.lastElementChild.focus();
                 } else if (ev.key === 'ArrowRight') {
