@@ -269,10 +269,7 @@ export default class Editor {
     }
 
     /**
-     * Inserts widget element or adds or removes text formatting element
-     *
-     * @see insertWidget()
-     * @see format()
+     * Inserts element or formats text
      *
      * @param {HTMLElement} element
      */
@@ -283,22 +280,13 @@ export default class Editor {
             throw 'Invalid argument';
         }
 
-        tag.group === 'format' ? this.format(element) : this.insertWidget(element);
-    }
-
-    /**
-     * Inserts a widget element as last child of editor element
-     *
-     * @private
-     *
-     * @param {HTMLElement} element
-     */
-    insertWidget(element) {
-        if (!(element instanceof HTMLElement) || !this.allowed(element.tagName.toLowerCase(), 'root')) {
+        if (tag.group === 'format') {
+            this.format(element);
+        } else if (!this.allowed(element.tagName.toLowerCase(), 'root')) {
             throw 'Invalid argument';
+        } else {
+            this.content.appendChild(element);
         }
-
-        this.content.appendChild(element);
     }
 
     /**
@@ -311,7 +299,7 @@ export default class Editor {
     }
 
     /**
-     * Adds or removes formatting to/from selected text
+     * Adds/removes formatting to/from selected text
      *
      * @private
      *
