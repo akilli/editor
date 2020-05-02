@@ -21,7 +21,7 @@ export default class BaseFilter extends Filter {
                 const tag = this.editor.tags.get(childName);
                 const text = child.textContent.trim();
 
-                if (tag && (this.editor.allowed(childName, name) || isRoot && tag.group === 'text' && this.editor.allowed('p', name))) {
+                if (tag && (this.editor.allowed(childName, name) || isRoot && tag.group === 'format' && this.editor.allowed('p', name))) {
                     Array.from(child.attributes).forEach(item => {
                         if (!tag.attributes.includes(item.name)) {
                             child.removeAttribute(item.name);

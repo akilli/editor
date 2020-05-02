@@ -3,24 +3,24 @@ import Converter from '../base/Converter.js';
 import Plugin from '../base/Plugin.js';
 
 /**
- * Text Plugin
+ * Format Plugin
  */
-export default class TextPlugin extends Plugin {
+export default class FormatPlugin extends Plugin {
     /**
-     * Initializes a new text plugin
+     * Initializes a new format plugin
      *
      * @param {Editor} editor
      */
     constructor(editor) {
-        super(editor, 'text');
+        super(editor, 'format');
     }
 
     /**
      * @inheritDoc
      */
     init() {
-        this.registerTag({name: 'strong', group: 'text'});
-        this.registerTag({name: 'i', group: 'text'});
+        this.registerTag({name: 'strong', group: 'format'});
+        this.registerTag({name: 'i', group: 'format'});
         this.editor.commands.set(new Command(this.editor, 'bold', 'strong'));
         this.editor.converters.set(new Converter(this.editor, 'b', 'strong'))
         this.editor.commands.set(new Command(this.editor, 'italic', 'i'));

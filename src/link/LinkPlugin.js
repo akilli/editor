@@ -21,7 +21,7 @@ export default class LinkPlugin extends Plugin {
      */
     init() {
         const tagName = 'a';
-        this.registerTag({name: tagName, group: 'text', attributes: ['href']});
+        this.registerTag({name: tagName, group: 'format', attributes: ['href']});
         this.registerTranslator(i18n);
         this.editor.dialogs.set(new LinkDialog(this.editor, this.name));
         this.editor.commands.set(new LinkCommand(this.editor, this.name, tagName));

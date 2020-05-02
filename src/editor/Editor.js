@@ -3,6 +3,7 @@ import BaseEditor from '../base/Editor.js';
 import BasePlugin from '../base/BasePlugin.js';
 import BlockPlugin from '../block/BlockPlugin.js';
 import DetailsPlugin from '../details/DetailsPlugin.js';
+import FormatPlugin from '../format/FormatPlugin.js';
 import FullscreenPlugin from '../fullscreen/FullscreenPlugin.js';
 import HeadingPlugin from '../heading/HeadingPlugin.js';
 import IframePlugin from '../iframe/IframePlugin.js';
@@ -12,7 +13,6 @@ import ListPlugin from '../list/ListPlugin.js';
 import ParagraphPlugin from '../paragraph/ParagraphPlugin.js';
 import QuotePlugin from '../quote/QuotePlugin.js';
 import TablePlugin from '../table/TablePlugin.js';
-import TextPlugin from '../text/TextPlugin.js';
 import VideoPlugin from '../video/VideoPlugin.js';
 
 /**
@@ -30,6 +30,7 @@ export default class Editor extends BaseEditor {
                     AudioPlugin,
                     BlockPlugin,
                     DetailsPlugin,
+                    FormatPlugin,
                     FullscreenPlugin,
                     HeadingPlugin,
                     IframePlugin,
@@ -39,7 +40,6 @@ export default class Editor extends BaseEditor {
                     ParagraphPlugin,
                     QuotePlugin,
                     TablePlugin,
-                    TextPlugin,
                     VideoPlugin,
                 ],
                 toolbar: [

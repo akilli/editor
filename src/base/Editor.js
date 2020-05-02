@@ -283,7 +283,7 @@ export default class Editor {
             throw 'Invalid argument';
         }
 
-        tag.group === 'text' ? this.formatText(element) : this.insertWidget(element);
+        tag.group === 'format' ? this.formatText(element) : this.insertWidget(element);
     }
 
     /**
@@ -332,7 +332,7 @@ export default class Editor {
 
         const range = sel.getRangeAt(0);
         const tag = this.tags.get(anc.tagName.toLowerCase());
-        const parent = !tag || tag.group === 'text' ? anc.parentElement : anc;
+        const parent = !tag || tag.group === 'format' ? anc.parentElement : anc;
 
         if (range.startContainer instanceof Text && !range.startContainer.parentElement.isSameNode(parent)) {
             range.setStartBefore(range.startContainer.parentElement);
