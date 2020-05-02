@@ -14,7 +14,7 @@ export default class FigureObserver extends Observer {
                     node.appendChild(this.editor.createElement('figcaption'));
                 }
 
-                if (this.editor.isRoot(node.parentElement)) {
+                if (node.parentElement instanceof HTMLElement && this.editor.isRoot(node.parentElement)) {
                     this.keyboard(node);
                 }
             }
