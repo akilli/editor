@@ -67,10 +67,8 @@ export default class Editor extends BaseEditor {
                 ],
             },
             format: {
-                elements: {
-                    bold: 'strong',
-                    italic: 'i',
-                },
+                bold: 'strong',
+                italic: 'i',
             },
         };
     }

@@ -18,16 +18,9 @@ export default class FormatPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        for (let [key, val] of Object.entries(this.editor.config.format.elements)) {
+        for (let [key, val] of Object.entries(this.editor.config.format || {})) {
             this.registerTag({name: val, group: 'format'});
             this.editor.commands.set(new FormatCommand(this.editor, key, val));
         }
-    }
-
-    /**
-     * @inheritDoc
-     */
-    static defaultConfig() {
-        return {elements: {}};
     }
 }
