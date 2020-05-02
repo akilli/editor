@@ -72,6 +72,8 @@ export default class Plugin {
     }
 
     /**
+     * Registers a converter with given parameters
+     *
      * @param {String} name
      * @param {String} target
      */
@@ -82,7 +84,7 @@ export default class Plugin {
     /**
      * Returns plugin default configuration
      *
-     * @return {Object}
+     * @return {Object.<String, {*}>}
      */
     static defaultConfig() {
         return {};

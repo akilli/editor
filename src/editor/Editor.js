@@ -25,6 +25,10 @@ export default class Editor extends BaseEditor {
     static defaultConfig() {
         return {
             base: {
+                converters: {
+                    b: 'strong',
+                    em: 'i',
+                },
                 plugins: [
                     BasePlugin,
                     AudioPlugin,
@@ -61,6 +65,12 @@ export default class Editor extends BaseEditor {
                     'details',
                     'block',
                 ],
+            },
+            format: {
+                elements: {
+                    bold: 'strong',
+                    italic: 'i',
+                },
             },
         };
     }

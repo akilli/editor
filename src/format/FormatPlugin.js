@@ -1,3 +1,4 @@
+import FormatCommand from './FormatCommand.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -17,10 +18,16 @@ export default class FormatPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.registerTag({name: 'strong', group: 'format'});
-        this.registerTag({name: 'i', group: 'format'});
-        this.registerCommand('bold', 'strong');
-        this.registerConverter('b', 'strong');
-        this.registerCommand('italic', 'i');
+        for (let [key, val] of Object.entries(this.editor.config.format.elements)) {
+            this.registerTag({name: val, group: 'format'});
+            this.editor.commands.set(new FormatCommand(this.editor, key, val));
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static defaultConfig() {
+        return {elements: {}};
     }
 }

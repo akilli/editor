@@ -269,28 +269,20 @@ export default class Editor {
     }
 
     /**
-     * Inserts element or formats text
+     * Inserts element
      *
      * @param {HTMLElement} element
      */
     insert(element) {
-        let tag;
-
-        if (!(element instanceof HTMLElement) || !(tag = this.tags.get(element.tagName.toLowerCase()))) {
+        if (!(element instanceof HTMLElement) || !this.allowed(element.tagName.toLowerCase(), 'root')) {
             throw 'Invalid argument';
         }
 
-        if (tag.group === 'format') {
-            this.format(element);
-        } else if (!this.allowed(element.tagName.toLowerCase(), 'root')) {
-            throw 'Invalid argument';
-        } else {
-            this.content.appendChild(element);
-        }
+        this.content.appendChild(element);
     }
 
     /**
-     * Insert text
+     * Inserts text
      *
      * @param {String} text
      */
@@ -300,8 +292,6 @@ export default class Editor {
 
     /**
      * Adds/removes formatting to/from selected text
-     *
-     * @private
      *
      * @param {HTMLElement} element
      */

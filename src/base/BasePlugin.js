@@ -33,12 +33,16 @@ export default class BasePlugin extends Plugin {
         this.editor.observe(new FigureObserver(this.editor));
         this.editor.filters.set(new BaseFilter(this.editor, this.name));
         this.editor.filters.set(new FigureFilter(this.editor, 'figure'));
+
+        for (let [key, val] of Object.entries(this.editor.config.base.converters)) {
+            this.registerConverter(key, val);
+        }
     }
 
     /**
      * @inheritDoc
      */
     static defaultConfig() {
-        return {browser: {}, lang: null, plugins: [], tags: [], toolbar: []};
+        return {browser: {}, converters: {}, lang: null, plugins: [], tags: [], toolbar: []};
     }
 }
