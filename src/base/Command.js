@@ -41,6 +41,14 @@ export default class Command {
         this.tagName = tagName ? tagName.toLowerCase() : null;
 
         /**
+         * Tag configuration
+         *
+         * @type {?Tag}
+         * @readonly
+         */
+        this.tag = this.editor.tags.get(this.tagName) || null;
+
+        /**
          * Dialog
          *
          * @type {?Dialog}
@@ -62,8 +70,10 @@ export default class Command {
       * @param {Object.<String, String>} [attributes = {}]
       */
     insert(attributes = {}) {
-        if (this.tagName) {
-            this.editor.insert(this.editor.createElement(this.tagName, {attributes: attributes}));
+        if (this.tagName && this.tag) {
+            Object.keys(attributes).forEach(item => this.tag.attributes.includes(item) || delete attributes[item]);
+            const element = this.editor.createElement(this.tagName, {attributes: attributes});
+            this.tag.group === 'format' ? this.editor.format(element) : this.editor.insert(element);
         }
     }
 
