@@ -272,7 +272,7 @@ export default class Editor {
      * Inserts widget element or adds or removes text formatting element
      *
      * @see insertWidget()
-     * @see formatText()
+     * @see format()
      *
      * @param {HTMLElement} element
      */
@@ -283,7 +283,7 @@ export default class Editor {
             throw 'Invalid argument';
         }
 
-        tag.group === 'format' ? this.formatText(element) : this.insertWidget(element);
+        tag.group === 'format' ? this.format(element) : this.insertWidget(element);
     }
 
     /**
@@ -317,7 +317,7 @@ export default class Editor {
      *
      * @param {HTMLElement} element
      */
-    formatText(element) {
+    format(element) {
         if (!(element instanceof HTMLElement)) {
             throw 'Invalid argument';
         }
