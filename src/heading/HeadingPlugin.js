@@ -1,4 +1,3 @@
-import Command from '../base/Command.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -19,7 +18,7 @@ export default class HeadingPlugin extends Plugin {
      */
     init() {
         ['h2', 'h3'].forEach(item => this.registerTag({name: item, group: 'heading', children: ['text'], editable: true, enter: 'p'}));
-        this.editor.commands.set(new Command(this.editor, this.name, 'h2'));
-        this.editor.commands.set(new Command(this.editor, 'subheading', 'h3'));
+        this.registerCommand(this.name, 'h2');
+        this.registerCommand('subheading', 'h3');
     }
 }

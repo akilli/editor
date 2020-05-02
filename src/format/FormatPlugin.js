@@ -1,5 +1,3 @@
-import Command from '../base/Command.js';
-import Converter from '../base/Converter.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -21,8 +19,8 @@ export default class FormatPlugin extends Plugin {
     init() {
         this.registerTag({name: 'strong', group: 'format'});
         this.registerTag({name: 'i', group: 'format'});
-        this.editor.commands.set(new Command(this.editor, 'bold', 'strong'));
-        this.editor.converters.set(new Converter(this.editor, 'b', 'strong'))
-        this.editor.commands.set(new Command(this.editor, 'italic', 'i'));
+        this.registerCommand('bold', 'strong');
+        this.registerConverter('b', 'strong');
+        this.registerCommand('italic', 'i');
     }
 }

@@ -1,3 +1,5 @@
+import Command from './Command.js';
+import Converter from './Converter.js';
 import Editor from './Editor.js';
 import Translator from './Translator.js';
 import Tag from './Tag.js';
@@ -57,6 +59,24 @@ export default class Plugin {
      */
     registerTag(params) {
         this.editor.tags.set(new Tag(params));
+    }
+
+    /**
+     * Registers a command with given parameters
+     *
+     * @param {String} name
+     * @param {?String} tagName
+     */
+    registerCommand(name, tagName = null) {
+        this.editor.commands.set(new Command(this.editor, name, tagName));
+    }
+
+    /**
+     * @param {String} name
+     * @param {String} target
+     */
+    registerConverter(name, target) {
+        this.editor.converters.set(new Converter(this.editor, name, target));
     }
 
     /**
