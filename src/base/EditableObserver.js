@@ -16,6 +16,10 @@ export default class EditableObserver extends Observer {
                 this.toEditable(node);
 
                 if (node.parentElement instanceof HTMLElement && !this.editor.isRoot(node.parentElement)) {
+                    if (node.parentElement instanceof HTMLDetailsElement) {
+                        node.parentElement.open = true;
+                    }
+
                     node.focus();
                 }
             } else if (selector && node instanceof HTMLElement) {
@@ -87,7 +91,7 @@ export default class EditableObserver extends Observer {
             ev.cancelBubble = true;
 
             do {
-                parentName = this.editor.getTagName(current.parentElement);
+                parentName = current.parentElement.tagName.toLowerCase();
 
                 if (this.editor.allowed(tag.enter, parentName)) {
                     current.insertAdjacentElement('afterend', this.editor.createElement(tag.enter));

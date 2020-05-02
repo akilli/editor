@@ -532,17 +532,6 @@ export default class Editor {
     }
 
     /**
-     * Returns tag name from element considering exception for root element
-     *
-     * @param {HTMLElement} element
-     *
-     * @return {String}
-     */
-    getTagName(element) {
-        return this.isRoot(element) ? 'root' : element.tagName.toLowerCase();
-    }
-
-    /**
      * Checks if given element or group is allowed inside given parent element
      *
      * @param {String} name
