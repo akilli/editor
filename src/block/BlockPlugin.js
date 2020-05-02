@@ -23,19 +23,18 @@ export default class BlockPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        const tagName = 'app-block';
-        this.editor.registerElement(tagName, BlockElement);
-        this.registerTag({name: tagName, group: 'section', attributes: ['id'], empty: true});
+        this.editor.registerElement('app-block', BlockElement);
+        this.registerTag({name: 'app-block', group: 'section', attributes: ['id'], empty: true});
         this.registerTranslator(i18n);
         this.editor.observe(new BlockObserver(this.editor));
 
-        if (this.editor.config[this.name].browser) {
-            this.editor.dialogs.set(new BrowserDialog(this.editor, this.name, this.editor.config[this.name].browser));
+        if (this.editor.config.block.browser) {
+            this.editor.dialogs.set(new BrowserDialog(this.editor, 'block', this.editor.config.block.browser));
         } else {
-            this.editor.dialogs.set(new BlockDialog(this.editor, this.name));
+            this.editor.dialogs.set(new BlockDialog(this.editor, 'block'));
         }
 
-        this.editor.commands.set(new BlockCommand(this.editor, this.name, tagName));
+        this.editor.commands.set(new BlockCommand(this.editor, 'block', 'app-block'));
     }
 
     /**

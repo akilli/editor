@@ -22,8 +22,7 @@ export default class TablePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        const tagName = 'table';
-        this.registerTag({name: tagName, group: 'table', children: ['tablesection']});
+        this.registerTag({name: 'table', group: 'table', children: ['tablesection']});
         ['thead', 'tbody', 'tfoot'].forEach(item => this.registerTag({name: item, group: 'tablesection', children: ['tablerow']}));
         this.registerTag({name: 'tr', group: 'tablerow', children: ['tablecell']});
         ['td', 'th'].forEach(item => {
@@ -31,8 +30,8 @@ export default class TablePlugin extends Plugin {
         });
         this.editor.observe(new TableObserver(this.editor));
         this.registerTranslator(i18n);
-        this.editor.filters.set(new TableFilter(this.editor, this.name));
-        this.editor.dialogs.set(new TableDialog(this.editor, this.name));
-        this.editor.commands.set(new TableCommand(this.editor, this.name, tagName));
+        this.editor.filters.set(new TableFilter(this.editor, 'table'));
+        this.editor.dialogs.set(new TableDialog(this.editor, 'table'));
+        this.editor.commands.set(new TableCommand(this.editor, 'table', 'table'));
     }
 }

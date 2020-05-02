@@ -21,17 +21,16 @@ export default class AudioPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        const tagName = 'audio';
-        this.registerTag({name: tagName, group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true});
+        this.registerTag({name: 'audio', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true});
         this.registerTranslator(i18n);
 
-        if (this.editor.config[this.name].browser) {
-            this.editor.dialogs.set(new BrowserDialog(this.editor, this.name, this.editor.config[this.name].browser));
+        if (this.editor.config.audio.browser) {
+            this.editor.dialogs.set(new BrowserDialog(this.editor, 'audio', this.editor.config.audio.browser));
         } else {
-            this.editor.dialogs.set(new AudioDialog(this.editor, this.name));
+            this.editor.dialogs.set(new AudioDialog(this.editor, 'audio'));
         }
 
-        this.editor.commands.set(new AudioCommand(this.editor, this.name, tagName));
+        this.editor.commands.set(new AudioCommand(this.editor, 'audio', 'audio'));
     }
 
     /**

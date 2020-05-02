@@ -21,17 +21,16 @@ export default class IframePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        const tagName = 'iframe';
-        this.registerTag({name: tagName, group: 'media', attributes: ['allowfullscreen', 'height', 'src', 'width'], empty: true});
+        this.registerTag({name: 'iframe', group: 'media', attributes: ['allowfullscreen', 'height', 'src', 'width'], empty: true});
         this.registerTranslator(i18n);
 
-        if (this.editor.config[this.name].browser) {
-            this.editor.dialogs.set(new BrowserDialog(this.editor, this.name, this.editor.config[this.name].browser));
+        if (this.editor.config.iframe.browser) {
+            this.editor.dialogs.set(new BrowserDialog(this.editor, 'iframe', this.editor.config.iframe.browser));
         } else {
-            this.editor.dialogs.set(new IframeDialog(this.editor, this.name));
+            this.editor.dialogs.set(new IframeDialog(this.editor, 'iframe'));
         }
 
-        this.editor.commands.set(new IframeCommand(this.editor, this.name, tagName));
+        this.editor.commands.set(new IframeCommand(this.editor, 'iframe', 'iframe'));
     }
 
     /**

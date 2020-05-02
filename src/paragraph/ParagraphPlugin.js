@@ -17,8 +17,7 @@ export default class ParagraphPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        const tagName = 'p';
-        this.registerTag({name: tagName, group: 'paragraph', children: ['break', 'format', 'text'], editable: true, enter: 'p'});
-        this.registerCommand(this.name, tagName);
+        this.registerTag({name: 'p', group: 'paragraph', children: ['break', 'format', 'text'], editable: true, enter: 'p'});
+        this.registerCommand('paragraph', 'p');
     }
 }
