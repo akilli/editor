@@ -18,8 +18,7 @@ export default class ListPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.registerTag({name: 'ul', group: 'list', children: ['listitem']});
-        this.registerTag({name: 'ol', group: 'list', children: ['listitem']});
+        ['ul', 'ol'].forEach(item => this.registerTag({name: item, group: 'list', children: ['listitem']}));
         this.registerTag({name: 'li', group: 'listitem', children: ['break', 'format', 'text'], editable: true, enter: 'li'});
         this.editor.commands.set(new ListCommand(this.editor, 'orderedlist', 'ol'));
         this.editor.commands.set(new ListCommand(this.editor, 'unorderedlist', 'ul'));
