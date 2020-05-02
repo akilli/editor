@@ -15,7 +15,7 @@ export default class TableCommand extends Command {
             throw 'Invalid argument';
         }
 
-        const table = this.editor.createElement(this.tagName);
+        const table = this.editor.createElement('table');
         ['thead', 'tbody', 'tfoot'].forEach(section => {
             const item = this.editor.createElement(section);
             const cell = section === 'thead' ? 'th' : 'td';
@@ -34,7 +34,7 @@ export default class TableCommand extends Command {
             }
         });
 
-        const figure = this.editor.createElement('figure', {attributes: {class: this.name}});
+        const figure = this.editor.createElement('figure', {attributes: {class: 'table'}});
         figure.appendChild(table);
         figure.appendChild(this.editor.createElement('figcaption'));
 

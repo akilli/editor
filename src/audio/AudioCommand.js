@@ -18,8 +18,8 @@ export default class AudioCommand extends Command {
             throw 'Invalid argument';
         }
 
-        const figure = this.editor.createElement('figure', {attributes: {class: this.name}});
-        figure.appendChild(this.editor.createElement(this.tagName, {attributes: {src: this.editor.url(src), width, height, controls}}));
+        const figure = this.editor.createElement('figure', {attributes: {class: 'audio'}});
+        figure.appendChild(this.editor.createElement('audio', {attributes: {src: this.editor.url(src), width, height, controls}}));
         figure.appendChild(this.editor.createElement('figcaption', {content: caption, html: true}));
 
         this.editor.insert(figure);
