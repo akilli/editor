@@ -8,7 +8,7 @@ export default class BaseFilter extends Filter {
      * @inheritDoc
      */
     filter(element) {
-        const name = this.editor.isRoot(element) ? 'root' : element.tagName.toLowerCase();
+        const name = this.editor.getTagName(element);
         const isRoot = this.editor.isRoot(element);
 
         Array.from(element.childNodes).forEach(child => {
