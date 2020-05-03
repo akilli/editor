@@ -154,19 +154,17 @@ section div.content {
 /**
  * Editor
  */
-textarea#rte {
-    width: 100%;
-    min-height: 15rem;
-    max-height: 45rem;
-    overflow-y: scroll;
-}
-
-button#save {
+button#button {
     display: block;
+    width: 100%;
     line-height: 1.5rem;
     margin-top: 1.5rem;
     padding: 0.75rem;
     color: #fff;
-    background: green;
+    background: darkred;
     border: 0;
+}
+
+#rte[hidden] ~ button#button {
+    background: darkgreen;
 }

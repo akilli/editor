@@ -2,8 +2,8 @@ import Editor from '../src/editor/Editor.js';
 
 (function (document, Editor) {
     document.addEventListener('DOMContentLoaded', () => {
-        const textarea = document.getElementById('rte');
-        const editor = Editor.create(textarea, {
+        const rte = document.getElementById('rte');
+        const editor = Editor.create(rte, {
             audio: {
                 browser: 'media.html#audio',
             },
@@ -27,10 +27,10 @@ import Editor from '../src/editor/Editor.js';
         });
         console.log(editor);
 
-        const button = document.getElementById('save');
-        button.textContent = textarea.hidden ? 'Save' : 'Edit';
+        const button = document.getElementById('button');
+        button.textContent = rte.hidden ? 'Save' : 'Edit';
         button.addEventListener('click', () => {
-            if (textarea.hidden) {
+            if (rte.hidden) {
                 editor.save();
                 editor.destroy();
                 button.textContent = 'Edit';
