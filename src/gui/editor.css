@@ -47,13 +47,13 @@
 
 .editor-content::after {
     display: table;
-    content: ' ';
     clear: both;
+    content: ' ';
 }
 
 .editor-content:empty::after {
-    content: var(--editor-empty);
     color: var(--editor-border);
+    content: var(--editor-empty);
 }
 
 /**
@@ -88,8 +88,8 @@
 }
 
 .editor-content [contenteditable=true]:empty::after {
-    content: var(--editor-placeholder);
     color: var(--editor-border);
+    content: var(--editor-placeholder);
 }
 
 /**
@@ -111,6 +111,24 @@
 .editor-content img,
 .editor-content video {
     pointer-events: none;
+}
+
+/**
+ * Block
+ */
+app-block {
+    display: block;
+    padding: 0.25rem;
+    border: 0.0625rem solid var(--editor-block-background);
+}
+
+app-block::before {
+    display: block;
+    margin: -0.25rem -0.25rem 0.5rem;
+    padding: 0.125rem 0.25rem;
+    color: var(--editor-block-color);
+    background: var(--editor-block-background);
+    content: var(--editor-block-placeholder);
 }
 
 /**
@@ -302,22 +320,4 @@ dialog.editor-dialog select {
 
 .editor-toolbar [data-cmd=video]::before {
     content: '\e80b';
-}
-
-/**
- * Block
- */
-app-block {
-    display: block;
-    padding: 0.25rem;
-    border: 0.0625rem solid var(--editor-block-background);
-}
-
-app-block::before {
-    display: block;
-    content: var(--editor-block-placeholder);
-    margin: -0.25rem -0.25rem 0.5rem;
-    padding: 0.125rem 0.25rem;
-    color: var(--editor-block-color);
-    background: var(--editor-block-background);
 }

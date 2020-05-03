@@ -42,9 +42,9 @@ export default class SummaryObserver extends Observer {
         });
         node.addEventListener('keyup', ev => {
             if (ev.key === ' ') {
+                this.editor.insertText(' ');
                 ev.preventDefault();
                 ev.cancelBubble = true;
-                this.editor.insertText(' ');
             }
         });
     }
