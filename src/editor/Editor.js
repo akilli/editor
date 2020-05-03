@@ -28,8 +28,8 @@ export default class Editor extends BaseEditor {
         return {
             base: {
                 converters: {
-                    b: 'strong',
                     em: 'i',
+                    strong: 'b',
                 },
                 plugins: [
                     BasePlugin,

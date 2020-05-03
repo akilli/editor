@@ -17,7 +17,7 @@ export default class BoldPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.registerTag({name: 'b', group: 'format'});
+        this.registerTag({name: 'b', group: 'format', children: ['text']});
         this.registerCommand('bold', 'b')
     }
 }
