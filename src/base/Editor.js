@@ -218,13 +218,11 @@ export default class Editor {
      */
     initContent() {
         if (this.orig instanceof HTMLTextAreaElement) {
-            this.content.innerHTML = this.orig.value.replace('/&nbsp;/g', ' ');
             this.orig.form.addEventListener('submit', () => this.save());
+            this.setHtml(this.orig.value.replace('/&nbsp;/g', ' '));
         } else {
-            this.content.innerHTML = this.orig.innerHTML;
+            this.setHtml(this.orig.innerHTML);
         }
-
-        this.filter(this.content);
     }
 
     /**
@@ -250,7 +248,7 @@ export default class Editor {
      *
      * @return {String}
      */
-    getData() {
+    getHtml() {
         const content = this.content.cloneNode(true);
         this.filter(content);
 
@@ -258,13 +256,25 @@ export default class Editor {
     }
 
     /**
+     * Sets editor content element's innerHTML
+     *
+     * @param {String} html
+     */
+    setHtml(html) {
+        const content = this.content.cloneNode(false);
+        content.innerHTML = html;
+        this.filter(content);
+        this.content.innerHTML = content.innerHTML;
+    }
+
+    /**
      * Saves editor data to source element
      */
     save() {
         if (this.orig instanceof HTMLTextAreaElement) {
-            this.orig.value = this.getData();
+            this.orig.value = this.getHtml();
         } else {
-            this.orig.innerHTML = this.getData();
+            this.orig.innerHTML = this.getHtml();
         }
     }
 
