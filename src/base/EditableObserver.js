@@ -15,7 +15,7 @@ export default class EditableObserver extends Observer {
             if (node instanceof HTMLElement && editables.includes(node.tagName.toLowerCase())) {
                 this.toEditable(node);
 
-                if (node.parentElement instanceof HTMLElement && !this.editor.isRoot(node.parentElement)) {
+                if (node.parentElement instanceof HTMLElement && !this.editor.isContent(node.parentElement)) {
                     if (node.parentElement instanceof HTMLDetailsElement) {
                         node.parentElement.open = true;
                     }
@@ -97,7 +97,7 @@ export default class EditableObserver extends Observer {
                     current.insertAdjacentElement('afterend', this.editor.createElement(tag.enter));
                     break;
                 }
-            } while ((current = current.parentElement) && this.editor.content.contains(current) && !this.editor.isRoot(current));
+            } while ((current = current.parentElement) && this.editor.content.contains(current) && !this.editor.isContent(current));
         }
     }
 

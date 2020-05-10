@@ -9,7 +9,7 @@ export default class BaseFilter extends Filter {
      */
     filter(element) {
         const name = this.editor.getTagName(element);
-        const isRoot = this.editor.isRoot(element);
+        const isRoot = this.editor.isContent(element);
 
         Array.from(element.childNodes).forEach(child => {
             if (child instanceof HTMLElement) {

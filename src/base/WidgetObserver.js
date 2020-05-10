@@ -9,7 +9,7 @@ export default class WidgetObserver extends Observer {
      */
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && node.parentElement instanceof HTMLElement && this.editor.isRoot(node.parentElement)) {
+            if (node instanceof HTMLElement && node.parentElement instanceof HTMLElement && this.editor.isContent(node.parentElement)) {
                 node.tabIndex = 0;
                 node.focus();
                 this.keyboard(node);

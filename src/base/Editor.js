@@ -527,13 +527,13 @@ export default class Editor {
     }
 
     /**
-     * Indicates if given element is the editor content aka root element
+     * Indicates if given element is the editor content element
      *
      * @param {HTMLElement} element
      *
      * @return {Boolean}
      */
-    isRoot(element) {
+    isContent(element) {
         if (!(element instanceof HTMLElement)) {
             throw 'Invalid argument';
         }
@@ -549,7 +549,7 @@ export default class Editor {
      * @return {String}
      */
     getTagName(element) {
-        return this.isRoot(element) ? 'root' : element.tagName.toLowerCase();
+        return this.isContent(element) ? 'root' : element.tagName.toLowerCase();
     }
 
     /**
