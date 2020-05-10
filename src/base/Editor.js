@@ -64,20 +64,22 @@ export default class Editor {
         this.element = this.createElement('akilli-editor');
 
         /**
-         * Corresponding DOM element of the editor content
-         *
-         * @type {HTMLElement}
-         * @readonly
-         */
-        this.content = this.createElement('editor-content');
-
-        /**
          * Corresponding DOM element of the main toolbar
          *
          * @type {HTMLElement}
          * @readonly
          */
         this.toolbar = this.createElement('editor-toolbar', {attributes: {role: 'toolbar'}});
+        this.element.appendChild(this.toolbar);
+
+        /**
+         * Corresponding DOM element of the editor content
+         *
+         * @type {HTMLElement}
+         * @readonly
+         */
+        this.content = this.createElement('editor-content');
+        this.element.appendChild(this.content);
 
         /**
          * Configuration
@@ -149,7 +151,6 @@ export default class Editor {
      */
     init() {
         if (this.plugins.size === 0) {
-            this.initChildren();
             this.initConfig();
             this.initPlugins();
             this.initToolbar();
@@ -157,16 +158,6 @@ export default class Editor {
 
         this.initContent();
         this.initDom();
-    }
-
-    /**
-     * Appends toolbar and content elements to editor element
-     *
-     * @private
-     */
-    initChildren() {
-        this.element.appendChild(this.toolbar);
-        this.element.appendChild(this.content);
     }
 
     /**
