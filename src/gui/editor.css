@@ -116,13 +116,13 @@
 /**
  * Block
  */
-app-block {
+editor-block {
     display: block;
     padding: 0.25rem;
     border: 0.0625rem solid var(--editor-block-background);
 }
 
-app-block::before {
+editor-block::before {
     display: block;
     margin: -0.25rem -0.25rem 0.5rem;
     padding: 0.125rem 0.25rem;

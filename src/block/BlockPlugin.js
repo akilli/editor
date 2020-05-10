@@ -23,8 +23,8 @@ export default class BlockPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.registerElement('app-block', BlockElement);
-        this.registerTag({name: 'app-block', group: 'section', attributes: ['id'], empty: true});
+        this.editor.registerElement('editor-block', BlockElement);
+        this.registerTag({name: 'editor-block', group: 'section', attributes: ['id'], empty: true});
         this.registerTranslator(i18n);
         this.editor.observe(new BlockObserver(this.editor));
 
@@ -34,7 +34,7 @@ export default class BlockPlugin extends Plugin {
             this.editor.dialogs.set(new BlockDialog(this.editor, 'block'));
         }
 
-        this.editor.commands.set(new BlockCommand(this.editor, 'block', 'app-block'));
+        this.editor.commands.set(new BlockCommand(this.editor, 'block', 'editor-block'));
     }
 
     /**
