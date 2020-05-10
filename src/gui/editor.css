@@ -33,25 +33,26 @@
 /**
  * Editor Content
  */
-.editor-content {
+editor-content {
+    display: block;
     width: 100%;
     padding: 0.75rem 0.6875rem 0.6875rem;
     border: 0.0625rem solid var(--editor-border);
     border-top: 0;
 }
 
-.editor-content::before {
+editor-content::before {
     display: table;
     content: ' ';
 }
 
-.editor-content::after {
+editor-content::after {
     display: table;
     clear: both;
     content: ' ';
 }
 
-.editor-content:empty::after {
+editor-content:empty::after {
     color: var(--editor-border);
     content: var(--editor-empty);
 }
@@ -59,35 +60,35 @@
 /**
  * Widgets
  */
-.editor-content > :not(:first-child) {
+editor-content > :not(:first-child) {
     margin-top: 1.5rem;
 }
 
-.editor-content > :hover {
+editor-content > :hover {
     outline: 0.25rem solid var(--editor-border);
 }
 
-.editor-content > :focus {
+editor-content > :focus {
     outline: 0.25rem dashed var(--editor-focus);
 }
 
 /**
  * Editable
  */
-.editor-content [contenteditable] {
+editor-content [contenteditable] {
     min-height: 1.5rem;
 }
 
-.editor-content td[contenteditable],
-.editor-content th[contenteditable] {
+editor-content td[contenteditable],
+editor-content th[contenteditable] {
     height: 1.5rem;
 }
 
-.editor-content [contenteditable=true]:hover {
+editor-content [contenteditable=true]:hover {
     outline: 0.25rem solid var(--editor-outline);
 }
 
-.editor-content [contenteditable=true]:empty::after {
+editor-content [contenteditable=true]:empty::after {
     color: var(--editor-border);
     content: var(--editor-placeholder);
 }
@@ -95,21 +96,21 @@
 /**
  * Draggable
  */
-.editor-content [draggable=true]:hover {
+editor-content [draggable=true]:hover {
     outline: 0.25rem dashed var(--editor-border);
 }
 
-.editor-content [data-dragover] {
+editor-content [data-dragover] {
     outline: 0.25rem dashed var(--editor-drag);
 }
 
 /**
  * Media
  */
-.editor-content audio,
-.editor-content iframe,
-.editor-content img,
-.editor-content video {
+editor-content audio,
+editor-content iframe,
+editor-content img,
+editor-content video {
     pointer-events: none;
 }
 
@@ -148,7 +149,7 @@ editor-block::before {
     background: #fff;
 }
 
-.editor-fullscreen .editor-content {
+.editor-fullscreen editor-content {
     flex: 1;
     min-height: 0;
     max-height: none;

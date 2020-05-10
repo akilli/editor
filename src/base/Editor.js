@@ -69,7 +69,7 @@ export default class Editor {
          * @type {HTMLElement}
          * @readonly
          */
-        this.content = this.createElement('div', {attributes: {class: 'editor-content'}});
+        this.content = this.createElement('editor-content');
 
         /**
          * Corresponding DOM element of the main toolbar
@@ -448,7 +448,7 @@ export default class Editor {
     getSelectedWidget() {
         const el = this.getSelectedElement();
 
-        return el ? el.closest('div.editor-content > *') : null;
+        return el ? el.closest('editor-content > *') : null;
     }
 
     /**
@@ -538,7 +538,7 @@ export default class Editor {
             throw 'Invalid argument';
         }
 
-        return this.content.isSameNode(element) || element.getAttribute('class') === 'editor-content';
+        return this.content.isSameNode(element) || element.tagName.toLowerCase() === 'editor-content';
     }
 
     /**
