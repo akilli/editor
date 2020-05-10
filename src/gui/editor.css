@@ -149,7 +149,7 @@ editor-block::before {
     background: #fff;
 }
 
-.editor-fullscreen editor-content {
+.editor-fullscreen > editor-content {
     flex: 1;
     min-height: 0;
     max-height: none;
