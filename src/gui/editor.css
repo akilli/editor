@@ -235,7 +235,7 @@ dialog.editor-dialog select {
 editor-toolbar {
     position: sticky;
     top: 0;
-    display: flex;
+    display: block;
     padding: 0.6875rem;
     color: var(--editor-toolbar-color);
     background: var(--editor-toolbar-background);
@@ -246,7 +246,7 @@ editor-toolbar {
  * Toolbar Buttons
  */
 editor-toolbar [data-cmd] {
-    display: block;
+    display: inline-block;
     line-height: 1;
     margin-right: 0.75rem;
     padding: 0;
