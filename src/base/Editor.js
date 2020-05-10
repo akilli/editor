@@ -61,7 +61,7 @@ export default class Editor {
          * @type {HTMLElement}
          * @readonly
          */
-        this.element = this.createElement('div', {attributes: {class: 'editor'}});
+        this.element = this.createElement('akilli-editor');
 
         /**
          * Corresponding DOM element of the editor content
