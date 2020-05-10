@@ -284,7 +284,7 @@ export default class Editor {
      * @param {HTMLElement} element
      */
     insert(element) {
-        if (!(element instanceof HTMLElement) || !this.allowed(element.tagName.toLowerCase(), 'root')) {
+        if (!(element instanceof HTMLElement) || !this.allowed(element.tagName.toLowerCase(), 'editor-content')) {
             throw 'Invalid argument';
         }
 
@@ -539,17 +539,6 @@ export default class Editor {
         }
 
         return this.content.isSameNode(element) || element.tagName.toLowerCase() === 'editor-content';
-    }
-
-    /**
-     * Returns tag name from element considering exception for root element
-     *
-     * @param {HTMLElement} element
-     *
-     * @return {String}
-     */
-    getTagName(element) {
-        return this.isContent(element) ? 'root' : element.tagName.toLowerCase();
     }
 
     /**

@@ -75,7 +75,7 @@ export default class WidgetObserver extends Observer {
      * @param {HTMLElement} node
      */
     dragndrop(node) {
-        const parentName = 'root';
+        const parentName = node.parentElement.tagName.toLowerCase();
         const keyName = 'text/x-editor-name';
         const keyHtml = 'text/x-editor-html';
         const toggle = () => {

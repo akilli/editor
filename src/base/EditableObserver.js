@@ -91,7 +91,7 @@ export default class EditableObserver extends Observer {
             ev.cancelBubble = true;
 
             do {
-                parentName = this.editor.getTagName(current.parentElement);
+                parentName = current.parentElement.tagName.toLowerCase();
 
                 if (this.editor.allowed(tag.enter, parentName)) {
                     current.insertAdjacentElement('afterend', this.editor.createElement(tag.enter));
