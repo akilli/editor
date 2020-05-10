@@ -225,7 +225,7 @@ dialog.editor-dialog select {
 /**
  * Toolbar
  */
-.editor-toolbar {
+editor-toolbar {
     position: sticky;
     top: 0;
     display: flex;
@@ -238,7 +238,7 @@ dialog.editor-dialog select {
 /**
  * Toolbar Buttons
  */
-.editor-toolbar [data-cmd] {
+editor-toolbar [data-cmd] {
     display: block;
     line-height: 1;
     margin-right: 0.75rem;
@@ -247,78 +247,78 @@ dialog.editor-dialog select {
     font-size: 0;
 }
 
-.editor-toolbar [data-cmd]:focus {
+editor-toolbar [data-cmd]:focus {
     color: var(--editor-cmd-focus);
 }
 
-.editor-toolbar [data-cmd]::before {
+editor-toolbar [data-cmd]::before {
     font-size: 1.5rem;
 }
 
-.editor-toolbar [data-cmd=audio]::before {
+editor-toolbar [data-cmd=audio]::before {
     content: '\e80c';
 }
 
-.editor-toolbar [data-cmd=block]::before {
+editor-toolbar [data-cmd=block]::before {
     content: '\f2bc';
 }
 
-.editor-toolbar [data-cmd=bold]::before {
+editor-toolbar [data-cmd=bold]::before {
     content: '\e801';
 }
 
-.editor-toolbar [data-cmd=details]::before {
+editor-toolbar [data-cmd=details]::before {
     content: '\f150';
 }
 
-.editor-toolbar [data-cmd=fullscreen]::before {
+editor-toolbar [data-cmd=fullscreen]::before {
     content: '\f0b2';
 }
 
-.editor-toolbar [data-cmd=heading]::before {
+editor-toolbar [data-cmd=heading]::before {
     content: '\f1dc';
 }
 
-.editor-toolbar [data-cmd=iframe]::before {
+editor-toolbar [data-cmd=iframe]::before {
     content: '\f1c9';
 }
 
-.editor-toolbar [data-cmd=image]::before {
+editor-toolbar [data-cmd=image]::before {
     content: '\e800';
 }
 
-.editor-toolbar [data-cmd=italic]::before {
+editor-toolbar [data-cmd=italic]::before {
     content: '\e802';
 }
 
-.editor-toolbar [data-cmd=link]::before {
+editor-toolbar [data-cmd=link]::before {
     content: '\e803';
 }
 
-.editor-toolbar [data-cmd=orderedlist]::before {
+editor-toolbar [data-cmd=orderedlist]::before {
     content: '\f0cb';
 }
 
-.editor-toolbar [data-cmd=paragraph]::before {
+editor-toolbar [data-cmd=paragraph]::before {
     content: '\f1dd';
 }
 
-.editor-toolbar [data-cmd=quote]::before {
+editor-toolbar [data-cmd=quote]::before {
     content: '\e805';
 }
 
-.editor-toolbar [data-cmd=subheading]::before {
+editor-toolbar [data-cmd=subheading]::before {
     content: '\f0fd';
 }
 
-.editor-toolbar [data-cmd=table]::before {
+editor-toolbar [data-cmd=table]::before {
     content: '\f0ce';
 }
 
-.editor-toolbar [data-cmd=unorderedlist]::before {
+editor-toolbar [data-cmd=unorderedlist]::before {
     content: '\f0ca';
 }
 
-.editor-toolbar [data-cmd=video]::before {
+editor-toolbar [data-cmd=video]::before {
     content: '\e80b';
 }
