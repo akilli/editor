@@ -20,7 +20,6 @@ export default class Converter {
          * Editor
          *
          * @type {Editor}
-         * @readonly
          */
         this.editor = editor;
 
@@ -28,7 +27,6 @@ export default class Converter {
          * Name
          *
          * @type {String}
-         * @readonly
          */
         this.name = name;
 
@@ -36,7 +34,6 @@ export default class Converter {
          * The new tag name of the converted element
          *
          * @type {String}
-         * @readonly
          */
         this.target = target;
     }
@@ -45,7 +42,6 @@ export default class Converter {
      * Converts an HTML element to another
      *
      * @param {HTMLElement} element
-     *
      * @return {HTMLElement}
      */
     convert(element) {

@@ -23,7 +23,6 @@ export default class Plugin {
          * Editor
          *
          * @type {Editor}
-         * @readonly
          */
         this.editor = editor;
 
@@ -31,7 +30,6 @@ export default class Plugin {
          * Name
          *
          * @type {String}
-         * @readonly
          */
         this.name = name;
     }

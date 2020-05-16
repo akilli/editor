@@ -19,7 +19,6 @@ export default class Filter {
          * Editor
          *
          * @type {Editor}
-         * @readonly
          */
         this.editor = editor;
 
@@ -27,7 +26,6 @@ export default class Filter {
          * Name
          *
          * @type {String}
-         * @readonly
          */
         this.name = name;
     }

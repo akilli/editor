@@ -22,7 +22,6 @@ export default class Tag {
          * Name
          *
          * @type {String}
-         * @readonly
          */
         this.name = name;
 
@@ -30,7 +29,6 @@ export default class Tag {
          * Name of the tag group
          *
          * @type {String}
-         * @readonly
          */
         this.group = group;
 
@@ -38,7 +36,6 @@ export default class Tag {
          * Allowed groups of child elements
          *
          * @type {String[]}
-         * @readonly
          */
         this.children = Array.isArray(children) ? children : [];
 
@@ -46,7 +43,6 @@ export default class Tag {
          * Allowed attributes
          *
          * @type {String[]}
-         * @readonly
          */
         this.attributes = Array.isArray(attributes) ? attributes : [];
 
@@ -54,7 +50,6 @@ export default class Tag {
          * Is element editable
          *
          * @type {Boolean}
-         * @readonly
          */
         this.editable = Boolean(editable);
 
@@ -62,7 +57,6 @@ export default class Tag {
          * Is element empty or allowed to be empty
          *
          * @type {Boolean}
-         * @readonly
          */
         this.empty = Boolean(empty);
 
@@ -70,7 +64,6 @@ export default class Tag {
          * Element to insert when ENTER-key is pressed
          *
          * @type {?String}
-         * @readonly
          */
         this.enter = enter && typeof enter === 'string' ? enter : null;
     }

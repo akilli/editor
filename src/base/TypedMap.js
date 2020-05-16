@@ -19,7 +19,6 @@ export default class TypedMap extends Map {
          * Type class constructor
          *
          * @type {V}
-         * @readonly
          */
         this.type = type;
 

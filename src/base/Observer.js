@@ -18,7 +18,6 @@ export default class Observer {
          * Editor
          *
          * @type {Editor}
-         * @readonly
          */
         this.editor = editor;
     }

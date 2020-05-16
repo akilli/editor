@@ -20,7 +20,6 @@ export default class Dialog {
          * Editor
          *
          * @type {Editor}
-         * @readonly
          */
         this.editor = editor;
 
@@ -28,7 +27,6 @@ export default class Dialog {
          * Name
          *
          * @type {String}
-         * @readonly
          */
         this.name = name;
 
@@ -117,7 +115,6 @@ export default class Dialog {
      * Minimal dialog polyfill
      *
      * @private
-     *
      * @param {HTMLElement} dialog
      */
     polyfill(dialog) {

@@ -21,7 +21,6 @@ export default class SummaryObserver extends Observer {
      * Initializes summary element
      *
      * @private
-     *
      * @param {HTMLElement} node
      */
     init(node) {

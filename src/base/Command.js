@@ -20,7 +20,6 @@ export default class Command {
          * Editor
          *
          * @type {Editor}
-         * @readonly
          */
         this.editor = editor;
 
@@ -28,7 +27,6 @@ export default class Command {
          * Name
          *
          * @type {String}
-         * @readonly
          */
         this.name = name;
 
@@ -36,7 +34,6 @@ export default class Command {
          * Name of the tag to insert
          *
          * @type {?String}
-         * @readonly
          */
         this.tagName = tagName ? tagName.toLowerCase() : null;
 
@@ -44,7 +41,6 @@ export default class Command {
          * Tag configuration
          *
          * @type {?Tag}
-         * @readonly
          */
         this.tag = this.editor.tags.get(this.tagName) || null;
 
@@ -52,7 +48,6 @@ export default class Command {
          * Dialog
          *
          * @type {?Dialog}
-         * @readonly
          */
         this.dialog = this.editor.dialogs.get(this.name) || null;
     }

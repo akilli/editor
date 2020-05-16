@@ -21,7 +21,6 @@ export default class DetailsObserver extends Observer {
      * Initializes details element
      *
      * @private
-     *
      * @param {HTMLDetailsElement} node
      */
     init(node) {

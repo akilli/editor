@@ -22,7 +22,6 @@ export default class WidgetObserver extends Observer {
      * Handles keyboard events
      *
      * @private
-     *
      * @param {HTMLElement} node
      */
     keyboard(node) {
@@ -71,7 +70,6 @@ export default class WidgetObserver extends Observer {
      * Adds drag'n'drop support
      *
      * @private
-     *
      * @param {HTMLElement} node
      */
     dragndrop(node) {

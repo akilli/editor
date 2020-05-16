@@ -25,7 +25,6 @@ export default class FigureObserver extends Observer {
      * Handles keyboard events
      *
      * @private
-     *
      * @param {HTMLElement} node
      */
     keyboard(node) {

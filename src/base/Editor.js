@@ -27,7 +27,6 @@ export default class Editor {
          * Corresponding DOM element of the source
          *
          * @type {HTMLElement}
-         * @readonly
          */
         this.orig = orig;
 
@@ -35,7 +34,6 @@ export default class Editor {
          * Correspondig DOM Document
          *
          * @type {Document}
-         * @readonly
          */
         this.document = this.orig.ownerDocument;
 
@@ -43,7 +41,6 @@ export default class Editor {
          * Corresponding Window object
          *
          * @type {Window}
-         * @readonly
          */
         this.window = this.document.defaultView;
 
@@ -51,7 +48,6 @@ export default class Editor {
          * Window origin
          *
          * @type {String}
-         * @readonly
          */
         this.origin = this.window.origin || this.window.location.origin;
 
@@ -59,7 +55,6 @@ export default class Editor {
          * Corresponding DOM element of the editor
          *
          * @type {HTMLElement}
-         * @readonly
          */
         this.element = this.createElement('akilli-editor');
 
@@ -67,7 +62,6 @@ export default class Editor {
          * Corresponding DOM element of the main toolbar
          *
          * @type {HTMLElement}
-         * @readonly
          */
         this.toolbar = this.createElement('editor-toolbar', {attributes: {role: 'toolbar'}});
         this.element.appendChild(this.toolbar);
@@ -76,7 +70,6 @@ export default class Editor {
          * Corresponding DOM element of the editor content
          *
          * @type {HTMLElement}
-         * @readonly
          */
         this.content = this.createElement('editor-content');
         this.element.appendChild(this.content);
@@ -85,7 +78,6 @@ export default class Editor {
          * Configuration
          *
          * @type {Object}
-         * @readonly
          */
         this.config = config;
 
@@ -93,7 +85,6 @@ export default class Editor {
          * Translators
          *
          * @type {TypedMap<String, Translator>}
-         * @readonly
          */
         this.translators = new TypedMap(Translator);
 
@@ -101,7 +92,6 @@ export default class Editor {
          * Tags
          *
          * @type {TypedMap<String, Tag>}
-         * @readonly
          */
         this.tags = new TypedMap(Tag);
 
@@ -109,7 +99,6 @@ export default class Editor {
          * Element converters
          *
          * @type {TypedMap<String, Converter>}
-         * @readonly
          */
         this.converters = new TypedMap(Converter);
 
@@ -117,7 +106,6 @@ export default class Editor {
          * Filters
          *
          * @type {TypedMap<String, Filter>}
-         * @readonly
          */
         this.filters = new TypedMap(Filter);
 
@@ -125,7 +113,6 @@ export default class Editor {
          * Dialogs
          *
          * @type {TypedMap<String, Dialog>}
-         * @readonly
          */
         this.dialogs = new TypedMap(Dialog);
 
@@ -133,7 +120,6 @@ export default class Editor {
          * Commands
          *
          * @type {TypedMap<String, Command>}
-         * @readonly
          */
         this.commands = new TypedMap(Command);
 
@@ -141,7 +127,6 @@ export default class Editor {
          * Plugins
          *
          * @type {TypedMap<String, Plugin>}
-         * @readonly
          */
         this.plugins = new TypedMap(Plugin);
     }
@@ -364,7 +349,6 @@ export default class Editor {
      * @param {String} [content = '']
      * @param {Boolean} [html = false]
      * @param {String} [is = null]
-     *
      * @return {HTMLElement}
      */
     createElement(name, {attributes = {}, content = '', html = false, is = null} = {}) {
@@ -389,7 +373,6 @@ export default class Editor {
      * Creates text node in editor document
      *
      * @param {String} content
-     *
      * @return {Text}
      */
     createText(content) {
@@ -498,7 +481,7 @@ export default class Editor {
      *
      * @param {HTMLElement} element
      *
-     * @return {HTMLElement|Text}
+     * @return {HTMLElement}
      */
     convert(element) {
         if (!(element instanceof HTMLElement)) {
@@ -512,6 +495,11 @@ export default class Editor {
         }
 
         const newNode = converter.convert(element);
+
+        if (!(newNode instanceof HTMLElement)) {
+            throw 'Invalid element';
+        }
+
         element.parentElement.replaceChild(newNode, element);
 
         return newNode;
@@ -521,7 +509,6 @@ export default class Editor {
      * Indicates if given element is the editor content element
      *
      * @param {HTMLElement} element
-     *
      * @return {Boolean}
      */
     isContent(element) {
@@ -537,7 +524,6 @@ export default class Editor {
      *
      * @param {String} name
      * @param {String} parentName
-     *
      * @return {Boolean}
      */
     allowed(name, parentName) {
@@ -552,7 +538,6 @@ export default class Editor {
      * Returns relative or absolute URL depending on its origin
      *
      * @param {String} url
-     *
      * @return {String}
      */
     url(url) {
@@ -575,7 +560,6 @@ export default class Editor {
      *
      * @param {HTMLElement} element
      * @param {Object} [config = {}]
-     *
      * @return {Editor}
      */
     static create(element, config = {}) {

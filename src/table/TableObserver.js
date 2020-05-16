@@ -21,7 +21,6 @@ export default class TableObserver extends Observer {
      * Initializes table
      *
      * @private
-     *
      * @param {HTMLTableElement} table
      */
     init(table) {
@@ -33,7 +32,6 @@ export default class TableObserver extends Observer {
      * Creates missing table sections
      *
      * @private
-     *
      * @param {HTMLTableElement} table
      */
     sections(table) {
@@ -63,7 +61,6 @@ export default class TableObserver extends Observer {
      * Handles keyboard events
      *
      * @private
-     *
      * @param {HTMLTableElement} table
      */
     keyboard(table) {

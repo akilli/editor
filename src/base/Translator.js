@@ -17,7 +17,6 @@ export default class Translator {
          * Name
          *
          * @type {String}
-         * @readonly
          */
         this.name = name;
 
@@ -25,7 +24,6 @@ export default class Translator {
          * Translation data
          *
          * @type {Object.<String, String>}
-         * @readonly
          */
         this.data = data;
     }
@@ -34,7 +32,6 @@ export default class Translator {
      * Translates given string
      *
      * @param {String} key
-     *
      * @return {String}
      */
     get(key) {

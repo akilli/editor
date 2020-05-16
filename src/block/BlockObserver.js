@@ -22,7 +22,6 @@ export default class BlockObserver extends Observer {
      * Sets block content from API
      *
      * @private
-     *
      * @param {BlockElement} node
      */
     async init(node) {

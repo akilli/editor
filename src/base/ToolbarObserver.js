@@ -26,7 +26,6 @@ export default class ToolbarObserver extends Observer {
      * Handles click events
      *
      * @private
-     *
      * @param {HTMLElement} node
      */
     click(node) {
@@ -37,7 +36,6 @@ export default class ToolbarObserver extends Observer {
      * Handles keyboard events
      *
      * @private
-     *
      * @param {HTMLElement} node
      */
     keyboard(node) {

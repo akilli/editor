@@ -47,7 +47,6 @@ export default class EditableObserver extends Observer {
      * Editable element callback
      *
      * @private
-     *
      * @param {HTMLElement} node
      */
     toEditable(node) {
@@ -63,7 +62,6 @@ export default class EditableObserver extends Observer {
      * Handles enter keydown event
      *
      * @private
-     *
      * @param {KeyboardEvent} ev
      */
     onKeydownEnter(ev) {
@@ -77,7 +75,6 @@ export default class EditableObserver extends Observer {
      * Handles enter keyup event
      *
      * @private
-     *
      * @param {KeyboardEvent} ev
      */
     onKeyupEnter(ev) {
@@ -105,7 +102,6 @@ export default class EditableObserver extends Observer {
      * Handles backspace keydown event
      *
      * @private
-     *
      * @param {KeyboardEvent} ev
      */
     onKeydownBackspace(ev) {
