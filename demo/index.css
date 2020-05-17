@@ -79,10 +79,6 @@ figure.quote {
     box-shadow: 0.125rem 0.125rem 0.125rem #e0e0e0;
 }
 
-figure.quote > blockquote {
-    margin-bottom: 0.75rem;
-}
-
 figure.quote > blockquote::before {
     display: block;
     content: '🙷';
@@ -91,6 +87,7 @@ figure.quote > blockquote::before {
 }
 
 figure.quote > figcaption {
+    margin-top: 0.75rem;
     padding-top: 0.75rem;
     border-top: 0.0625rem solid;
 }

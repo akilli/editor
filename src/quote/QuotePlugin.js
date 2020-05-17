@@ -18,7 +18,7 @@ export default class QuotePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.registerTag({name: 'blockquote', group: 'quote', children: ['paragraph']});
+        this.registerTag({name: 'blockquote', group: 'quote', children: ['break', 'format', 'text'], editable: true, enter: 'p'});
         this.editor.commands.set(new QuoteCommand(this.editor));
     }
 }

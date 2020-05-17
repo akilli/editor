@@ -105,13 +105,9 @@ export default class EditableObserver extends Observer {
      * @param {KeyboardEvent} ev
      */
     onKeydownBackspace(ev) {
-        const widget = this.editor.getSelectedWidget();
-        const allowed = ['blockquote', 'details', 'ol', 'ul'].includes(ev.target.parentElement.tagName.toLowerCase())
-            && (ev.target.tagName.toLowerCase() !== 'summary' || ev.target.matches(':only-child'));
+        let target;
 
-        if (ev.key === 'Backspace' && !ev.shiftKey && !ev.target.textContent && widget && (widget.isSameNode(ev.target) || allowed)) {
-            const target = widget.isSameNode(ev.target) || ev.target.matches(':only-child') ? widget : ev.target;
-
+        if (ev.key === 'Backspace' && !ev.shiftKey && !ev.target.textContent && (target = this.getTarget(ev.target))) {
             if (target.previousElementSibling) {
                 this.editor.focusEnd(target.previousElementSibling);
             }
@@ -120,5 +116,34 @@ export default class EditableObserver extends Observer {
             ev.preventDefault();
             ev.cancelBubble = true;
         }
+    }
+
+    /**
+     * Returns backspace target
+     *
+     * @private
+     * @param {HTMLElement} node
+     * @return {?HTMLElement}
+     */
+    getTarget(node) {
+        const widget = this.editor.getSelectedWidget();
+
+        if (!widget) {
+            return null;
+        }
+
+        const name = node.tagName.toLowerCase();
+        const parentName = node.parentElement.tagName.toLowerCase();
+        const allowed = ['details', 'ol', 'ul'];
+
+        if (widget.isSameNode(node) || name === 'blockquote' || allowed.includes(parentName) && node.matches(':only-child')) {
+            return widget;
+        }
+
+        if (allowed.includes(parentName) && name !== 'summary') {
+            return node;
+        }
+
+        return null;
     }
 }
