@@ -5,6 +5,15 @@ import Command from '../base/Command.js';
  */
 export default class QuoteCommand extends Command {
     /**
+     * Initializes a new quote command
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'quote');
+    }
+
+    /**
      * @inheritDoc
      */
     insert(attributes = {}) {

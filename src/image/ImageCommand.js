@@ -5,6 +5,15 @@ import Command from '../base/Command.js';
  */
 export default class ImageCommand extends Command {
     /**
+     * Initializes a new image command
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'image');
+    }
+
+    /**
      * Inserts image element
      *
      * @param {String} src

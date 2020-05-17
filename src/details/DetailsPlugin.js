@@ -26,6 +26,6 @@ export default class DetailsPlugin extends Plugin {
         this.editor.observe(new DetailsObserver(this.editor));
         this.editor.observe(new SummaryObserver(this.editor));
         this.registerTranslator(i18n);
-        this.editor.commands.set(new DetailsCommand(this.editor, 'details', 'details'));
+        this.editor.commands.set(new DetailsCommand(this.editor));
     }
 }

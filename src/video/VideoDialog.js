@@ -5,6 +5,15 @@ import Dialog from '../base/Dialog.js';
  */
 export default class VideoDialog extends Dialog {
     /**
+     * Initializes a new video dialog
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'video');
+    }
+
+    /**
      * @inheritDoc
      */
     getFieldsetHtml() {

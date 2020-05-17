@@ -27,10 +27,10 @@ export default class ImagePlugin extends Plugin {
         if (this.editor.config.image.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'image', this.editor.config.image.browser));
         } else {
-            this.editor.dialogs.set(new ImageDialog(this.editor, 'image'));
+            this.editor.dialogs.set(new ImageDialog(this.editor));
         }
 
-        this.editor.commands.set(new ImageCommand(this.editor, 'image', 'img'));
+        this.editor.commands.set(new ImageCommand(this.editor));
     }
 
     /**

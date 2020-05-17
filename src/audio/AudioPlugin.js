@@ -27,10 +27,10 @@ export default class AudioPlugin extends Plugin {
         if (this.editor.config.audio.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'audio', this.editor.config.audio.browser));
         } else {
-            this.editor.dialogs.set(new AudioDialog(this.editor, 'audio'));
+            this.editor.dialogs.set(new AudioDialog(this.editor));
         }
 
-        this.editor.commands.set(new AudioCommand(this.editor, 'audio', 'audio'));
+        this.editor.commands.set(new AudioCommand(this.editor));
     }
 
     /**

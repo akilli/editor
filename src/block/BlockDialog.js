@@ -5,6 +5,15 @@ import Dialog from '../base/Dialog.js';
  */
 export default class BlockDialog extends Dialog {
     /**
+     * Initializes a new block dialog
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'block');
+    }
+
+    /**
      * @inheritDoc
      */
     getFieldsetHtml() {

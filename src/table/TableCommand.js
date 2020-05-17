@@ -5,6 +5,15 @@ import Command from '../base/Command.js';
  */
 export default class TableCommand extends Command {
     /**
+     * Initializes a new table command
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'table');
+    }
+
+    /**
      * Inserts table element
      *
      * @param {Number} rows

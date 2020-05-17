@@ -20,10 +20,9 @@ export default class LinkPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        const tagName = 'a';
-        this.registerTag({name: tagName, group: 'format', attributes: ['href']});
+        this.registerTag({name: 'a', group: 'format', attributes: ['href']});
         this.registerTranslator(i18n);
-        this.editor.dialogs.set(new LinkDialog(this.editor, this.name));
-        this.editor.commands.set(new LinkCommand(this.editor, this.name, tagName));
+        this.editor.dialogs.set(new LinkDialog(this.editor));
+        this.editor.commands.set(new LinkCommand(this.editor));
     }
 }

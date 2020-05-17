@@ -19,6 +19,6 @@ export default class QuotePlugin extends Plugin {
      */
     init() {
         this.registerTag({name: 'blockquote', group: 'quote', children: ['paragraph']});
-        this.editor.commands.set(new QuoteCommand(this.editor, 'quote', 'blockquote'));
+        this.editor.commands.set(new QuoteCommand(this.editor));
     }
 }

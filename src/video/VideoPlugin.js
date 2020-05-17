@@ -27,10 +27,10 @@ export default class VideoPlugin extends Plugin {
         if (this.editor.config.video.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'video', this.editor.config.video.browser));
         } else {
-            this.editor.dialogs.set(new VideoDialog(this.editor, 'video'));
+            this.editor.dialogs.set(new VideoDialog(this.editor));
         }
 
-        this.editor.commands.set(new VideoCommand(this.editor, 'video', 'video'));
+        this.editor.commands.set(new VideoCommand(this.editor));
     }
 
     /**

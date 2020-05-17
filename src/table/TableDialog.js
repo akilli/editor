@@ -5,6 +5,15 @@ import Dialog from '../base/Dialog.js';
  */
 export default class TableDialog extends Dialog {
     /**
+     * Initializes a new table dialog
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'table');
+    }
+
+    /**
      * @inheritDoc
      */
     getFieldsetHtml() {

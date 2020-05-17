@@ -18,6 +18,6 @@ export default class FullscreenPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.commands.set(new FullscreenCommand(this.editor, 'fullscreen'));
+        this.editor.commands.set(new FullscreenCommand(this.editor));
     }
 }

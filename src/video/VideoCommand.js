@@ -5,6 +5,15 @@ import Command from '../base/Command.js';
  */
 export default class VideoCommand extends Command {
     /**
+     * Initializes a new video command
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'video');
+    }
+
+    /**
      * Inserts video element
      *
      * @param {String} src

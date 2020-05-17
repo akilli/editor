@@ -5,6 +5,15 @@ import Dialog from '../base/Dialog.js';
  */
 export default class AudioDialog extends Dialog {
     /**
+     * Initializes a new audio dialog
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'audio');
+    }
+
+    /**
      * @inheritDoc
      */
     getFieldsetHtml() {

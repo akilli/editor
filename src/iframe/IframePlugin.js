@@ -27,10 +27,10 @@ export default class IframePlugin extends Plugin {
         if (this.editor.config.iframe.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'iframe', this.editor.config.iframe.browser));
         } else {
-            this.editor.dialogs.set(new IframeDialog(this.editor, 'iframe'));
+            this.editor.dialogs.set(new IframeDialog(this.editor));
         }
 
-        this.editor.commands.set(new IframeCommand(this.editor, 'iframe', 'iframe'));
+        this.editor.commands.set(new IframeCommand(this.editor));
     }
 
     /**

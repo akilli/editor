@@ -5,6 +5,15 @@ import Dialog from '../base/Dialog.js';
  */
 export default class LinkDialog extends Dialog {
     /**
+     * Initializes a new link dialog
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'link');
+    }
+
+    /**
      * @inheritDoc
      */
     getFieldsetHtml() {

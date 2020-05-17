@@ -5,6 +5,15 @@ import Filter from './Filter.js';
  */
 export default class FigureFilter extends Filter {
     /**
+     * Initializes a new figure filter
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'figure');
+    }
+
+    /**
      * @inheritDoc
      */
     filter(element) {

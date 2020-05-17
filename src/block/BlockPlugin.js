@@ -31,10 +31,10 @@ export default class BlockPlugin extends Plugin {
         if (this.editor.config.block.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'block', this.editor.config.block.browser));
         } else {
-            this.editor.dialogs.set(new BlockDialog(this.editor, 'block'));
+            this.editor.dialogs.set(new BlockDialog(this.editor));
         }
 
-        this.editor.commands.set(new BlockCommand(this.editor, 'block', 'editor-block'));
+        this.editor.commands.set(new BlockCommand(this.editor));
     }
 
     /**

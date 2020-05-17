@@ -5,6 +5,15 @@ import Command from '../base/Command.js';
  */
 export default class AudioCommand extends Command {
     /**
+     * Initializes a new audio command
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'audio');
+    }
+
+    /**
      * Inserts audio element
      *
      * @param {String} src

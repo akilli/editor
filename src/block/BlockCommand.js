@@ -5,6 +5,15 @@ import Command from '../base/Command.js';
  */
 export default class BlockCommand extends Command {
     /**
+     * Initializes a new block command
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'block');
+    }
+
+    /**
      * Inserts block element
      *
      * @param {String} id

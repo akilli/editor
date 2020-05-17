@@ -5,6 +5,15 @@ import Command from '../base/Command.js';
  */
 export default class IframeCommand extends Command {
     /**
+     * Initializes a new iframe command
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'iframe');
+    }
+
+    /**
      * Inserts iframe element
      *
      * @param {String} src

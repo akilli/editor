@@ -5,6 +5,15 @@ import Dialog from '../base/Dialog.js';
  */
 export default class ImageDialog extends Dialog {
     /**
+     * Initializes a new image dialog
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'image');
+    }
+
+    /**
      * @inheritDoc
      */
     getFieldsetHtml() {

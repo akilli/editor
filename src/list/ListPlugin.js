@@ -1,4 +1,5 @@
-import ListCommand from './ListCommand.js';
+import OrderedlistCommand from './OrderedlistCommand.js';
+import UnorderedlistCommand from './UnorderedlistCommand.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -19,9 +20,9 @@ export default class ListPlugin extends Plugin {
      */
     init() {
         this.registerTag({name: 'ul', group: 'list', children: ['listitem']})
-        this.editor.commands.set(new ListCommand(this.editor, 'unorderedlist', 'ul'));
+        this.editor.commands.set(new UnorderedlistCommand(this.editor));
         this.registerTag({name: 'ol', group: 'list', children: ['listitem']})
-        this.editor.commands.set(new ListCommand(this.editor, 'orderedlist', 'ol'));
+        this.editor.commands.set(new OrderedlistCommand(this.editor));
         this.registerTag({name: 'li', group: 'listitem', children: ['break', 'format', 'text'], editable: true, enter: 'li'});
     }
 }

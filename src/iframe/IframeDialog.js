@@ -5,6 +5,15 @@ import Dialog from '../base/Dialog.js';
  */
 export default class IframeDialog extends Dialog {
     /**
+     * Initializes a new iframe dialog
+     *
+     * @param {Editor} editor
+     */
+    constructor(editor) {
+        super(editor, 'iframe');
+    }
+
+    /**
      * @inheritDoc
      */
     getFieldsetHtml() {
