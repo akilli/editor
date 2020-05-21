@@ -23,9 +23,6 @@ export default class BaseFilter extends Filter {
         Array.from(element.childNodes).forEach(child => {
             if (child instanceof HTMLElement) {
                 child = this.editor.convert(child);
-            }
-
-            if (child instanceof HTMLElement) {
                 const childName = child.tagName.toLowerCase();
                 const tag = this.editor.tags.get(childName);
                 const text = child.textContent.trim();
