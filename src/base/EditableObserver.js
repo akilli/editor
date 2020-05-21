@@ -107,7 +107,7 @@ export default class EditableObserver extends Observer {
     onKeydownBackspace(ev) {
         let target;
 
-        if (ev.key === 'Backspace' && !ev.shiftKey && !ev.target.textContent && (target = this.getTarget(ev.target))) {
+        if (ev.key === 'Backspace' && !ev.shiftKey && !ev.target.textContent && (target = this.getBackspaceTarget(ev.target))) {
             if (target.previousElementSibling) {
                 this.editor.focusEnd(target.previousElementSibling);
             }
@@ -125,7 +125,7 @@ export default class EditableObserver extends Observer {
      * @param {HTMLElement} node
      * @return {?HTMLElement}
      */
-    getTarget(node) {
+    getBackspaceTarget(node) {
         const widget = this.editor.getSelectedWidget();
 
         if (!widget) {

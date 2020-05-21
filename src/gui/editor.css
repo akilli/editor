@@ -91,10 +91,6 @@ akilli-editor.editor-fullscreen > editor-content {
 /**
  * Widgets
  */
-editor-content > :not(:first-child) {
-    margin-top: 1.5rem;
-}
-
 editor-content > :hover {
     outline: 0.25rem solid var(--editor-border);
 }
@@ -189,8 +185,8 @@ dialog.editor-dialog form {
     background: #fff;
 }
 
-dialog.editor-dialog fieldset > * {
-    margin-bottom: 1.5rem;
+dialog.editor-dialog fieldset > :not(:first-child) {
+    margin-top: 1.5rem;
 }
 
 dialog.editor-dialog legend {
@@ -205,13 +201,13 @@ dialog.editor-dialog button {
     padding: 0.75rem;
 }
 
-dialog.editor-dialog button[data-action=cancel] {
+dialog.editor-dialog button.editor-cancel {
     margin-right: 1.5rem;
     color: var(--editor-cancel-color);
     background: var(--editor-cancel-background);
 }
 
-dialog.editor-dialog button[data-action=save] {
+dialog.editor-dialog button.editor-save {
     color: var(--editor-save-color);
     background: var(--editor-save-background);
 }

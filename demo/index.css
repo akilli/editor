@@ -1,21 +1,21 @@
 body {
     max-width: 66rem;
-    margin: 1rem auto;
+    margin: 1.5rem auto;
     line-height: 1.5rem;
     font-family: sans-serif;
     color: #000;
     background: #fff;
 }
 
-details:not(:last-child),
-figure:not(:last-child),
-h2:not(:last-child),
-h3:not(:last-child),
-ol:not(:last-child),
-p:not(:last-child),
-section:not(:last-child),
-ul:not(:last-child) {
-    margin-bottom: 1.5rem;
+body > :not(:first-child),
+editor-content > :not(:first-child),
+#rte > :not(:first-child) {
+    margin-top: 1.5rem;
+}
+
+details > :not(:first-child),
+figure > :not(:first-child) {
+    margin-top: 0.75rem;
 }
 
 h2 {
@@ -60,16 +60,6 @@ figcaption {
 }
 
 /**
- * Media
- */
-audio,
-iframe,
-img,
-video {
-    margin: 0 auto;
-}
-
-/**
  * Blockquote
  */
 figure.quote {
@@ -87,7 +77,6 @@ figure.quote > blockquote::before {
 }
 
 figure.quote > figcaption {
-    margin-top: 0.75rem;
     padding-top: 0.75rem;
     border-top: 0.0625rem solid;
 }
@@ -96,7 +85,8 @@ figure.quote > figcaption {
  * Table
  */
 table {
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     font-size: 0.875rem;
 }
 
@@ -155,7 +145,6 @@ button#button {
     display: block;
     width: 100%;
     line-height: 1.5rem;
-    margin-top: 1.5rem;
     padding: 0.75rem;
     color: #fff;
     background: darkred;
