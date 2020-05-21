@@ -16,6 +16,7 @@ export default class TableCommand extends Command {
     /**
      * Inserts table element
      *
+     * @protected
      * @param {Number} rows
      * @param {Number} cols
      */

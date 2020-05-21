@@ -105,10 +105,11 @@ export default class Dialog {
     /**
      * Returns dialogs fieldset HTML
      *
+     * @protected
      * @return {String}
      */
     getFieldsetHtml() {
-        throw 'Not implemented';
+        return '';
     }
 
     /**

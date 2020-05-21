@@ -25,6 +25,7 @@ export default class Observer {
     /**
      * Observes editor content mutatations
      *
+     * @abstract
      * @param {MutationRecord[]} ev
      */
     observe(ev) {

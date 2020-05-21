@@ -33,6 +33,7 @@ export default class Filter {
     /**
      * Filters element
      *
+     * @abstract
      * @param {HTMLElement} element
      */
     filter(element) {

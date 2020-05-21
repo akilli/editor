@@ -16,6 +16,7 @@ export default class IframeCommand extends Command {
     /**
      * Inserts iframe element
      *
+     * @protected
      * @param {String} src
      * @param {String} [caption = '']
      * @param {String} [width = '']

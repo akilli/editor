@@ -16,6 +16,7 @@ export default class BlockCommand extends Command {
     /**
      * Inserts block element
      *
+     * @protected
      * @param {String} id
      */
     insert({id} = {}) {

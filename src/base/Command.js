@@ -62,6 +62,7 @@ export default class Command {
      /**
       * Inserts element
       *
+      * @protected
       * @param {Object.<String, String>} [attributes = {}]
       */
     insert(attributes = {}) {
@@ -75,6 +76,7 @@ export default class Command {
     /**
      * Returns attributes from selected element if it is the same kind of element
      *
+     * @protected
      * @return {Object}
      */
     selectedAttributes() {

@@ -16,6 +16,7 @@ export default class AudioCommand extends Command {
     /**
      * Inserts audio element
      *
+     * @protected
      * @param {String} src
      * @param {String} [caption = '']
      * @param {String} [width = '']

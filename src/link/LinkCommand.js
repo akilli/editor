@@ -16,6 +16,7 @@ export default class LinkCommand extends Command {
     /**
      * Inserts, updates or removes link element
      *
+     * @protected
      * @param {?String} href
      */
     insert({href = null} = {}) {

@@ -36,6 +36,8 @@ export default class Plugin {
 
     /**
      * Initializes plugin
+     *
+     * @abstract
      */
     init() {
         throw 'Not implemented';
@@ -44,6 +46,7 @@ export default class Plugin {
     /**
      * Registers a translator for this plugin
      *
+     * @protected
      * @param {Object.<String, Object.<String, String>>} i18n
      */
     registerTranslator(i18n) {
@@ -53,6 +56,7 @@ export default class Plugin {
     /**
      * Registers a tag with given parameters
      *
+     * @protected
      * @param {Object} params
      */
     registerTag(params) {
@@ -62,6 +66,7 @@ export default class Plugin {
     /**
      * Registers a command with given parameters
      *
+     * @protected
      * @param {String} name
      * @param {?String} tagName
      */
@@ -72,6 +77,7 @@ export default class Plugin {
     /**
      * Registers a converter with given parameters
      *
+     * @protected
      * @param {String} name
      * @param {String} target
      */
