@@ -1,4 +1,5 @@
 import DetailsCommand from './DetailsCommand.js';
+import DetailsFilter from './DetailsFilter.js';
 import DetailsObserver from './DetailsObserver.js';
 import Plugin from '../base/Plugin.js';
 import SummaryObserver from './SummaryObserver.js';
@@ -27,5 +28,6 @@ export default class DetailsPlugin extends Plugin {
         this.editor.observe(new SummaryObserver(this.editor));
         this.registerTranslator(i18n);
         this.editor.commands.set(new DetailsCommand(this.editor));
+        this.editor.filters.set(new DetailsFilter(this.editor));
     }
 }
