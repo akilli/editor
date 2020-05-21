@@ -1,5 +1,4 @@
 import Command from './Command.js';
-import Converter from './Converter.js';
 import Dialog from './Dialog.js';
 import Filter from './Filter.js';
 import Observer from './Observer.js';
@@ -94,13 +93,6 @@ export default class Editor {
          * @type {TypedMap<String, Tag>}
          */
         this.tags = new TypedMap(Tag);
-
-        /**
-         * Element converters
-         *
-         * @type {TypedMap<String, Converter>}
-         */
-        this.converters = new TypedMap(Converter);
 
         /**
          * Filters
@@ -491,18 +483,13 @@ export default class Editor {
             throw 'Invalid argument';
         }
 
-        const converter = this.converters.get(element.tagName.toLowerCase());
+        const target = this.config.base.converters[element.tagName.toLowerCase()];
 
-        if (!converter) {
+        if (!target) {
             return element;
         }
 
-        const newNode = converter.convert(element);
-
-        if (!(newNode instanceof HTMLElement)) {
-            throw 'Invalid element';
-        }
-
+        const newNode = this.createElement(target, {content: element.innerHTML, html: true})
         element.parentElement.replaceChild(newNode, element);
 
         return newNode;
