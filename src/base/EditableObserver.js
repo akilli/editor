@@ -31,6 +31,7 @@ export default class EditableObserver extends Observer {
     /**
      * Editable tags
      *
+     * @private
      * @return {String[]}
      */
     editables() {
@@ -40,7 +41,7 @@ export default class EditableObserver extends Observer {
             }
 
             return result;
-        }, [])
+        }, []);
     }
 
     /**
@@ -140,7 +141,7 @@ export default class EditableObserver extends Observer {
             return widget;
         }
 
-        if (allowed.includes(parentName) && name !== 'summary') {
+        if (allowed.includes(parentName) && !['slot', 'summary'].includes(name)) {
             return node;
         }
 

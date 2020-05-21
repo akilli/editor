@@ -16,6 +16,8 @@
     --editor-placeholder: 'Gimme some text!';
     --editor-save-background: darkgreen;
     --editor-save-color: white;
+    --editor-slot-color: salmon;
+    --editor-slot-placeholder: 'Focus this slot and add a widget from the toolbar';
     --editor-toolbar-background: white;
     --editor-toolbar-color: black;
 }
@@ -129,6 +131,20 @@ editor-content [draggable=true]:hover {
 
 editor-content [data-dragover] {
     outline: 0.25rem dashed var(--editor-drag);
+}
+
+/**
+ * Slot
+ */
+editor-content slot {
+    display: block;
+    padding: 0.25rem;
+    outline: 0.25rem solid var(--editor-slot-color);
+}
+
+editor-content slot::after {
+    color: var(--editor-slot-color);
+    content: var(--editor-slot-placeholder) !important;
 }
 
 /**

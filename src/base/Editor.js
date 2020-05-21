@@ -260,11 +260,14 @@ export default class Editor {
      * @param {HTMLElement} element
      */
     insert(element) {
-        if (!(element instanceof HTMLElement) || !this.allowed(element.tagName.toLowerCase(), 'editor-content')) {
+        const editable = this.getSelectedEditable();
+        const parent = editable && editable instanceof HTMLSlotElement ? editable.parentElement : this.content;
+
+        if (!(element instanceof HTMLElement) || !this.allowed(element.tagName.toLowerCase(), parent.tagName.toLowerCase())) {
             throw 'Invalid argument';
         }
 
-        this.content.appendChild(element);
+        this.isContent(parent) ? parent.appendChild(element) : parent.insertBefore(element, editable);
     }
 
     /**

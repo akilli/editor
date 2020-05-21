@@ -22,7 +22,7 @@ export default class DetailsPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.registerTag({name: 'details', group: 'details', children: ['figure', 'list', 'paragraph', 'summary']});
+        this.registerTag({name: 'details', group: 'details', children: ['figure', 'list', 'paragraph', 'summary'], slotable: true});
         this.registerTag({name: 'summary', group: 'summary', children: ['text'], editable: true, enter: 'p'});
         this.editor.observe(new DetailsObserver(this.editor));
         this.editor.observe(new SummaryObserver(this.editor));

@@ -27,9 +27,5 @@ export default class DetailsObserver extends Observer {
         if (!node.querySelector(':scope > summary:first-child')) {
             node.insertAdjacentElement('afterbegin', this.editor.createElement('summary'));
         }
-
-        if (node.childElementCount === 1) {
-            node.appendChild(this.editor.createElement('p'));
-        }
     }
 }
