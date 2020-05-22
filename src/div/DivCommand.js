@@ -14,7 +14,7 @@ export default class DivCommand extends Command {
     }
 
     /**
-     * Inserts, updates or removes div element
+     * Inserts div element
      *
      * @protected
      * @param {String} css
