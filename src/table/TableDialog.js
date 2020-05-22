@@ -21,11 +21,11 @@ export default class TableDialog extends Dialog {
             <legend>${this.translator.get('Table')}</legend>
             <div data-attr="rows" data-required>
                 <label for="editor-rows">${this.translator.get('Rows')}</label>
-                <input id="editor-rows" name="rows" type="number" value="1" required="required" min="1" />
+                <input id="editor-rows" name="rows" type="number" value="1" min="1" required />
             </div>
             <div data-attr="cols" data-required>
                 <label for="editor-cols">${this.translator.get('Columns')}</label>
-                <input id="editor-cols" name="cols" type="number" value="1" required="required" min="1" />
+                <input id="editor-cols" name="cols" type="number" value="1" min="1" required />
             </div>
         `;
     }

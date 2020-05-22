@@ -19,9 +19,9 @@ export default class ImageDialog extends Dialog {
     getFieldsetHtml() {
         return `
             <legend>${this.translator.get('Image')}</legend>
-            <div data-attr="src">
+            <div data-attr="src" data-required>
                 <label for="editor-src">${this.translator.get('URL')}</label>
-                <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this.translator.get('Insert URL to media element')}" />
+                <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this.translator.get('Insert URL to media element')}" required />
             </div>
             <div data-attr="alt">
                 <label for="editor-alt">${this.translator.get('Alternative text')}</label>
