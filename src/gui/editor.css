@@ -11,6 +11,7 @@
     --editor-cmd-focus: steelblue;
     --editor-drag: darkgreen;
     --editor-empty: 'No content :-( ... click a button in the toolbar to add some :-)';
+    --editor-error: darkred;
     --editor-focus: darkorange;
     --editor-outline: gold;
     --editor-placeholder: 'Gimme some text!';
@@ -201,6 +202,7 @@ dialog.editor-dialog form {
     background: #fff;
 }
 
+dialog.editor-dialog form > :not(:first-child),
 dialog.editor-dialog fieldset > :not(:first-child) {
     margin-top: 1.5rem;
 }
@@ -239,6 +241,17 @@ dialog.editor-dialog select {
     width: 100%;
     padding: 0.71875rem 0;
     border-bottom: 0.0625rem solid var(--editor-border);
+}
+
+dialog.editor-dialog input[type=email]:invalid,
+dialog.editor-dialog input[type=number]:invalid,
+dialog.editor-dialog input[type=password]:invalid,
+dialog.editor-dialog input[type=search]:invalid,
+dialog.editor-dialog input[type=tel]:invalid,
+dialog.editor-dialog input[type=text]:invalid,
+dialog.editor-dialog input[type=url]:invalid,
+dialog.editor-dialog select:invalid {
+    border-color: var(--editor-error);
 }
 
 /**
@@ -288,6 +301,10 @@ editor-toolbar [data-cmd=bold]::before {
 
 editor-toolbar [data-cmd=details]::before {
     content: '\f150';
+}
+
+editor-toolbar [data-cmd=div]::before {
+    content: '\e804';
 }
 
 editor-toolbar [data-cmd=fullscreen]::before {

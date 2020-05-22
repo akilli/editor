@@ -9,7 +9,9 @@ body {
 
 body > :not(:first-child),
 editor-content > :not(:first-child),
-#rte > :not(:first-child) {
+editor-content div > :not(:first-child),
+#rte > :not(:first-child),
+#rte div > :not(:first-child) {
     margin-top: 1.5rem;
 }
 

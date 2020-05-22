@@ -4,6 +4,7 @@ import BasePlugin from '../base/BasePlugin.js';
 import BlockPlugin from '../block/BlockPlugin.js';
 import BoldPlugin from '../bold/BoldPlugin.js';
 import DetailsPlugin from '../details/DetailsPlugin.js';
+import DivPlugin from '../div/DivPlugin.js';
 import FullscreenPlugin from '../fullscreen/FullscreenPlugin.js';
 import HeadingPlugin from '../heading/HeadingPlugin.js';
 import IframePlugin from '../iframe/IframePlugin.js';
@@ -37,6 +38,7 @@ export default class Editor extends BaseEditor {
                     BlockPlugin,
                     BoldPlugin,
                     DetailsPlugin,
+                    DivPlugin,
                     FullscreenPlugin,
                     HeadingPlugin,
                     IframePlugin,
@@ -68,6 +70,7 @@ export default class Editor extends BaseEditor {
                     'table',
                     'details',
                     'block',
+                    'div',
                 ],
             },
         };

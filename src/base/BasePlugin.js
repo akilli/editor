@@ -24,7 +24,7 @@ export default class BasePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.registerTag({name: 'editor-content', group: 'root', children: ['details', 'figure', 'heading', 'list', 'paragraph', 'section']});
+        this.registerTag({name: 'editor-content', group: 'root', children: ['details', 'div', 'figure', 'heading', 'list', 'paragraph', 'section']});
         this.registerTag({name: 'br', group: 'break', empty: true});
         this.registerTag({name: 'figure', group: 'figure', attributes: ['class'], children: ['caption', 'media', 'quote', 'table']});
         this.registerTag({name: 'figcaption', group: 'caption', children: ['format', 'text'], editable: true, enter: 'p'});
