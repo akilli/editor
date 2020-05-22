@@ -343,6 +343,10 @@ editor-toolbar [data-cmd=quote]::before {
     content: '\e805';
 }
 
+editor-toolbar [data-cmd=section]::before {
+    content: '\f1ea';
+}
+
 editor-toolbar [data-cmd=subheading]::before {
     content: '\f0fd';
 }

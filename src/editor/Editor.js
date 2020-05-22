@@ -14,6 +14,7 @@ import LinkPlugin from '../link/LinkPlugin.js';
 import ListPlugin from '../list/ListPlugin.js';
 import ParagraphPlugin from '../paragraph/ParagraphPlugin.js';
 import QuotePlugin from '../quote/QuotePlugin.js';
+import SectionPlugin from '../section/SectionPlugin.js';
 import SubheadingPlugin from '../subheading/SubheadingPlugin.js';
 import TablePlugin from '../table/TablePlugin.js';
 import VideoPlugin from '../video/VideoPlugin.js';
@@ -48,6 +49,7 @@ export default class Editor extends BaseEditor {
                     ListPlugin,
                     ParagraphPlugin,
                     QuotePlugin,
+                    SectionPlugin,
                     SubheadingPlugin,
                     TablePlugin,
                     VideoPlugin,
@@ -68,6 +70,7 @@ export default class Editor extends BaseEditor {
                     'audio',
                     'iframe',
                     'table',
+                    'section',
                     'details',
                     'block',
                     'div',
