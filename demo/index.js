@@ -13,7 +13,7 @@ import Editor from '../src/editor/Editor.js';
             block: {
                 api: 'api/{id}.html',
                 browser: 'block.html',
-                css: 'base.css,index.css',
+                css: 'base.css,block.css',
             },
             iframe: {
                 browser: 'media.html#iframe',
