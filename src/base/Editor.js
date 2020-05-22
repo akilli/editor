@@ -252,14 +252,20 @@ export default class Editor {
      * @param {HTMLElement} element
      */
     insert(element) {
-        const editable = this.getSelectedEditable();
-        const parent = editable && editable instanceof HTMLSlotElement ? editable.parentElement : this.content;
-
-        if (!(element instanceof HTMLElement) || !this.allowed(element.tagName.toLowerCase(), parent.tagName.toLowerCase())) {
+        if (!(element instanceof HTMLElement)) {
             throw 'Invalid argument';
         }
 
-        this.isContent(parent) ? parent.appendChild(element) : parent.insertBefore(element, editable);
+        const name = element.tagName.toLowerCase();
+        const editable = this.getSelectedEditable();
+
+        if (editable && editable instanceof HTMLSlotElement && this.allowed(name, editable.parentElement.tagName.toLowerCase())) {
+            editable.parentElement.insertBefore(element, editable);
+        } else if (this.allowed(name, this.content.tagName.toLowerCase())) {
+            this.content.appendChild(element);
+        } else {
+            throw 'Invalid argument';
+        }
     }
 
     /**
