@@ -20,6 +20,8 @@ export default class SectionCommand extends Command {
      * @param {?String} css
      */
     insert({css = null} = {}) {
-        this.editor.insert(this.editor.createElement('section', {attributes: {class: css}}));
+        const section = this.editor.createElement('section', {attributes: {class: css}});
+        section.appendChild(this.editor.createElement('slot'));
+        this.editor.insert(section);
     }
 }

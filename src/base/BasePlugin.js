@@ -3,7 +3,7 @@ import EditableObserver from './EditableObserver.js';
 import FigureFilter from './FigureFilter.js';
 import FigureObserver from './FigureObserver.js';
 import Plugin from './Plugin.js';
-import SlotableObserver from './SlotableObserver.js';
+import SlotObserver from './SlotObserver.js';
 import ToolbarObserver from './ToolbarObserver.js';
 import WidgetObserver from './WidgetObserver.js';
 
@@ -30,7 +30,7 @@ export default class BasePlugin extends Plugin {
         this.registerTag({name: 'figcaption', group: 'caption', children: ['format', 'text'], editable: true, enter: 'p'});
         this.editor.observe(new ToolbarObserver(this.editor), {target: this.editor.toolbar});
         this.editor.observe(new EditableObserver(this.editor));
-        this.editor.observe(new SlotableObserver(this.editor));
+        this.editor.observe(new SlotObserver(this.editor));
         this.editor.observe(new WidgetObserver(this.editor));
         this.editor.observe(new FigureObserver(this.editor));
         this.editor.filters.set(new BaseFilter(this.editor));

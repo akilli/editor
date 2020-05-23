@@ -20,7 +20,7 @@ export default class SectionPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.registerTag({name: 'section', group: 'section', attributes: ['class'], children: ['figure', 'heading', 'list', 'paragraph'], slotable: true});
+        this.registerTag({name: 'section', group: 'section', attributes: ['class'], children: ['figure', 'heading', 'list', 'paragraph']});
         this.registerTranslator(i18n);
         this.editor.dialogs.set(new SectionDialog(this.editor));
         this.editor.commands.set(new SectionCommand(this.editor));

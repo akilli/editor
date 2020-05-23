@@ -20,6 +20,8 @@ export default class DivCommand extends Command {
      * @param {String} css
      */
     insert({css} = {}) {
-        this.editor.insert(this.editor.createElement('div', {attributes: {class: css}}));
+        const div = this.editor.createElement('div', {attributes: {class: css}});
+        div.appendChild(this.editor.createElement('slot'));
+        this.editor.insert(div);
     }
 }

@@ -12,9 +12,8 @@ export default class Tag {
      * @param {Boolean} [editable = false]
      * @param {Boolean} [empty = false]
      * @param {?String} [enter = null]
-     * @param {Boolean} [slotable = false]
      */
-    constructor({name, group, attributes = [], children = [], editable = false, empty = false, enter = null, slotable = false} = {}) {
+    constructor({name, group, attributes = [], children = [], editable = false, empty = false, enter = null} = {}) {
         if (!name || typeof name !== 'string' || !group || typeof group !== 'string') {
             throw 'Invalid argument';
         }
@@ -67,12 +66,5 @@ export default class Tag {
          * @type {?String}
          */
         this.enter = enter && typeof enter === 'string' ? enter : null;
-
-        /**
-         * Does element define a slot
-         *
-         * @type {Boolean}
-         */
-        this.slotable = Boolean(slotable);
     }
 }
