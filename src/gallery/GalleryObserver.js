@@ -25,7 +25,9 @@ export default class GalleryObserver extends Observer {
      */
     init(node) {
         if (!node.querySelector(':scope > slot')) {
-            node.insertAdjacentElement('afterbegin', this.editor.createElement('slot'));
+            const slot = this.editor.createElement('slot');
+            const caption = node.querySelector(':scope > figcaption');
+            caption ? caption.insertAdjacentElement('beforebegin', slot) : node.appendChild(slot);
         }
     }
 }
