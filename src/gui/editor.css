@@ -130,7 +130,7 @@ editor-content [draggable=true]:hover {
     outline: 0.25rem dashed var(--editor-border);
 }
 
-editor-content [data-dragover] {
+.editor-dragover {
     outline: 0.25rem dashed var(--editor-drag);
 }
 

@@ -100,7 +100,7 @@ export default class WidgetObserver extends Observer {
 
             if (name && this.editor.allowed(name, parentName)) {
                 ev.preventDefault();
-                node.setAttribute('data-dragover', '');
+                node.classList.add('editor-dragover');
                 ev.dataTransfer.dropEffect = 'move';
             }
         };
@@ -120,13 +120,12 @@ export default class WidgetObserver extends Observer {
         });
         node.addEventListener('dragenter', allowDrop);
         node.addEventListener('dragover', allowDrop);
-        node.addEventListener('dragleave', () => node.removeAttribute('data-dragover'));
+        node.addEventListener('dragleave', () => node.classList.remove('editor-dragover'));
         node.addEventListener('drop', ev => {
             const name = ev.dataTransfer.getData(keyName);
             const html = ev.dataTransfer.getData(keyHtml);
-
             ev.preventDefault();
-            node.removeAttribute('data-dragover');
+            node.classList.remove('editor-dragover');
 
             if (name && this.editor.allowed(name, parentName) && html) {
                 node.insertAdjacentHTML('beforebegin', html);
