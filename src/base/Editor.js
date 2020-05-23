@@ -174,7 +174,7 @@ export default class Editor {
      */
     initToolbar() {
         this.config.base.toolbar.forEach(cmd => this.toolbar.appendChild(this.createElement('button', {
-            attributes: {type: 'button', 'data-cmd': cmd, title: cmd},
+            attributes: {type: 'button', 'data-command': cmd, title: cmd},
             content: cmd,
         })));
     }

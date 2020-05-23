@@ -29,7 +29,7 @@ export default class ToolbarObserver extends Observer {
      * @param {HTMLElement} node
      */
     click(node) {
-        node.addEventListener('click', () => this.editor.commands.get(node.getAttribute('data-cmd')).execute())
+        node.addEventListener('click', () => this.editor.commands.get(node.getAttribute('data-command')).execute())
     }
 
     /**
