@@ -19,9 +19,9 @@ export default class SectionDialog extends Dialog {
     getFieldsetHtml() {
         return `
             <legend>${this.translator.get('Section')}</legend>
-            <div class="editor-required">
-                <label for="editor-css">${this.translator.get('CSS class')}</label>
-                <input id="editor-css" name="css" type="text" placeholder="${this.translator.get('Insert CSS class')}" required />
+            <div>
+                <label for="editor-class">${this.translator.get('CSS class')}</label>
+                <input id="editor-class" name="class" type="text" placeholder="${this.translator.get('Insert CSS class')}" />
             </div>
         `;
     }

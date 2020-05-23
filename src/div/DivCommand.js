@@ -14,14 +14,9 @@ export default class DivCommand extends Command {
     }
 
     /**
-     * Inserts div element
-     *
-     * @protected
-     * @param {String} css
+     * @inheritDoc
      */
-    insert({css} = {}) {
-        const div = this.editor.createElement('div', {attributes: {class: css}});
-        div.appendChild(this.editor.createElement('slot'));
-        this.editor.insert(div);
+    insert(attributes = {}) {
+        this.editor.insert(this.editor.createElement('div', {attributes: attributes}));
     }
 }

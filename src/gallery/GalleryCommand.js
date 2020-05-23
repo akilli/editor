@@ -17,9 +17,6 @@ export default class GalleryCommand extends Command {
      * @inheritDoc
      */
     insert(attributes = {}) {
-        const figure = this.editor.createElement('figure', {attributes: {class: 'gallery'}});
-        figure.appendChild(this.editor.createElement('slot'));
-        figure.appendChild(this.editor.createElement('figcaption'));
-        this.editor.insert(figure);
+        this.editor.insert(this.editor.createElement('figure', {attributes: {class: 'gallery'}}));
     }
 }

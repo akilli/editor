@@ -1,5 +1,6 @@
 import DivCommand from './DivCommand.js';
 import DivDialog from './DivDialog.js';
+import DivObserver from './DivObserver.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
 
@@ -21,6 +22,7 @@ export default class DivPlugin extends Plugin {
      */
     init() {
         this.registerTag({name: 'div', group: 'section', attributes: ['class'], children: ['block', 'figure']});
+        this.editor.observe(new DivObserver(this.editor));
         this.registerTranslator(i18n);
         this.editor.dialogs.set(new DivDialog(this.editor));
         this.editor.commands.set(new DivCommand(this.editor));

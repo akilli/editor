@@ -1,4 +1,5 @@
 import GalleryCommand from './GalleryCommand.js';
+import GalleryObserver from './GalleryObserver.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -18,6 +19,7 @@ export default class GalleryPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
+        this.editor.observe(new GalleryObserver(this.editor));
         this.editor.commands.set(new GalleryCommand(this.editor));
     }
 }
