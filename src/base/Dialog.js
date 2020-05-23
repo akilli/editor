@@ -1,5 +1,4 @@
 import Editor from './Editor.js';
-import Translator from './Translator.js';
 
 /**
  * Dialog
@@ -29,13 +28,6 @@ export default class Dialog {
          * @type {String}
          */
         this.name = name;
-
-        /**
-         * Translator
-         *
-         * @type {Translator}
-         */
-        this.translator = this.editor.translators.get(this.name) || new Translator(this.name, {});
     }
 
     /**
@@ -54,9 +46,9 @@ export default class Dialog {
         const fieldset = this.editor.createElement('fieldset');
         const cancelButton = this.editor.createElement('button', {
             attributes: {class: 'editor-cancel', type: 'button'},
-            content: this.translator.get('Cancel'),
+            content: this.t('Cancel'),
         });
-        const saveButton = this.editor.createElement('button', {attributes: {class: 'editor-save'}, content: this.translator.get('Save')});
+        const saveButton = this.editor.createElement('button', {attributes: {class: 'editor-save'}, content: this.t('Save')});
         const close = () => {
             if (range) {
                 sel.removeAllRanges();
@@ -110,6 +102,18 @@ export default class Dialog {
      */
     getFieldsetHtml() {
         return '';
+    }
+
+    /**
+     * Translates given string
+     *
+     * @protected
+     * @param {String} key
+     * @return {String}
+     */
+    t(key) {
+        const translator = this.editor.translators.get(this.name);
+        return translator ? translator.get(key) : key;
     }
 
     /**

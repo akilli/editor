@@ -18,9 +18,9 @@ export default class BlockDialog extends Dialog {
      */
     getFieldsetHtml() {
         return `
-            <legend>${this.translator.get('Block')}</legend>
+            <legend>${this.t('Block')}</legend>
             <div class="editor-required">
-                <label for="editor-id">${this.translator.get('ID')}</label>
+                <label for="editor-id">${this.t('ID')}</label>
                 <input id="editor-id" name="id" type="text" required />
             </div>
         `;

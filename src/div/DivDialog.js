@@ -18,10 +18,10 @@ export default class DivDialog extends Dialog {
      */
     getFieldsetHtml() {
         return `
-            <legend>${this.translator.get('Division')}</legend>
+            <legend>${this.t('Division')}</legend>
             <div>
-                <label for="editor-class">${this.translator.get('CSS class')}</label>
-                <input id="editor-class" name="class" type="text" placeholder="${this.translator.get('Insert CSS class')}" />
+                <label for="editor-class">${this.t('CSS class')}</label>
+                <input id="editor-class" name="class" type="text" placeholder="${this.t('Insert CSS class')}" />
             </div>
         `;
     }
