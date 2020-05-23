@@ -260,7 +260,7 @@ export default class Editor {
         const editable = this.getSelectedEditable();
 
         if (editable && editable instanceof HTMLSlotElement && this.allowed(name, editable.parentElement.tagName.toLowerCase())) {
-            editable.parentElement.insertBefore(element, editable);
+            editable.insertAdjacentElement('beforebegin', element);
         } else if (this.allowed(name, this.content.tagName.toLowerCase())) {
             this.content.appendChild(element);
         } else {
