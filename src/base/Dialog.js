@@ -112,8 +112,7 @@ export default class Dialog {
      * @return {String}
      */
     t(key) {
-        const translator = this.editor.translators.get(this.name);
-        return translator ? translator.get(key) : key;
+        return this.editor.translators.get(this.name).translate(key);
     }
 
     /**

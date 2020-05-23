@@ -34,7 +34,7 @@ export default class Translator {
      * @param {String} key
      * @return {String}
      */
-    get(key) {
+    translate(key) {
         return this.data[key] || key;
     }
 }
