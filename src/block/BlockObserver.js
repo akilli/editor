@@ -13,7 +13,7 @@ export default class BlockObserver extends Observer {
             if (node instanceof BlockElement && node.id && this.editor.config.block.api) {
                 this.init(node);
             } else if (node instanceof HTMLElement) {
-                node.querySelectorAll('editor-block').forEach(block => this.init(block));
+                node.querySelectorAll('app-block').forEach(block => this.init(block));
             }
         }));
     }
