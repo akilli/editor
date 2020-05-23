@@ -73,12 +73,10 @@ export default class WidgetObserver extends Observer {
      * @param {HTMLElement} node
      */
     dragndrop(node) {
-        const parentName = node.parentElement.tagName.toLowerCase();
         const keyName = 'text/x-editor-name';
         const keyHtml = 'text/x-editor-html';
+        const parentName = node.parentElement.tagName.toLowerCase();
         const toggle = () => {
-            const hasDraggable = node.hasAttribute('draggable');
-
             this.editor.content.querySelectorAll('[draggable]').forEach(item => {
                 item.removeAttribute('draggable');
 
@@ -87,7 +85,7 @@ export default class WidgetObserver extends Observer {
                 }
             });
 
-            if (!hasDraggable) {
+            if (!node.hasAttribute('draggable')) {
                 node.setAttribute('draggable', 'true');
 
                 if (node.hasAttribute('contenteditable')) {
@@ -100,6 +98,7 @@ export default class WidgetObserver extends Observer {
 
             if (name && this.editor.allowed(name, parentName)) {
                 ev.preventDefault();
+                ev.cancelBubble = true;
                 node.classList.add('editor-dragover');
                 ev.dataTransfer.dropEffect = 'move';
             }
@@ -125,6 +124,7 @@ export default class WidgetObserver extends Observer {
             const name = ev.dataTransfer.getData(keyName);
             const html = ev.dataTransfer.getData(keyHtml);
             ev.preventDefault();
+            ev.cancelBubble = true;
             node.classList.remove('editor-dragover');
 
             if (name && this.editor.allowed(name, parentName) && html) {
