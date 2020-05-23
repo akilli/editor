@@ -26,7 +26,7 @@ export default class BasePlugin extends Plugin {
     init() {
         this.registerTag({name: 'editor-content', group: 'root', children: ['figure', 'heading', 'list', 'paragraph', 'section']});
         this.registerTag({name: 'br', group: 'break', empty: true});
-        this.registerTag({name: 'figure', group: 'figure', attributes: ['class'], children: ['caption', 'media', 'quote', 'table']});
+        this.registerTag({name: 'figure', group: 'figure', attributes: ['class'], children: ['caption', 'figure', 'media', 'quote', 'table']});
         this.registerTag({name: 'figcaption', group: 'caption', children: ['format', 'text'], editable: true, enter: 'p'});
         this.editor.observe(new ToolbarObserver(this.editor), {target: this.editor.toolbar});
         this.editor.observe(new EditableObserver(this.editor));
