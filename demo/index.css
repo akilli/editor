@@ -112,6 +112,18 @@ tbody tr:last-child th {
 }
 
 /**
+ * Grid
+ */
+div.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1.5rem;
+    align-items: end;
+    min-height: 0;
+    padding: 1.5rem;
+}
+
+/**
  * Editor
  */
 button#button {
