@@ -28,7 +28,6 @@ export default class SlotObserver extends Observer {
             ev.preventDefault();
             ev.cancelBubble = true;
         };
-        node.contentEditable = 'true';
         node.addEventListener('keydown', call);
         node.addEventListener('keyup', call);
     }

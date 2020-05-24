@@ -9,13 +9,36 @@ export default class WidgetObserver extends Observer {
      */
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && node.parentElement instanceof HTMLElement && this.editor.isContent(node.parentElement)) {
-                node.tabIndex = 0;
-                node.focus();
-                this.keyboard(node);
-                this.dragndrop(node);
+            if (node instanceof HTMLElement) {
+                const allowed = item => {
+                    const tag = this.editor.tags.get(item.tagName.toLowerCase());
+                    return tag && tag.group !== 'format';
+                };
+
+                if (allowed(node)) {
+                    this.init(node);
+                }
+
+                Array.from(node.children).forEach(child => {
+                    if (allowed(child)) {
+                        this.init(child);
+                    }
+                });
             }
         }));
+    }
+
+    /**
+     * Initializes element
+     *
+     * @private
+     * @param {HTMLElement} node
+     */
+    init(node) {
+        node.tabIndex = 0;
+        node.focus();
+        this.keyboard(node);
+        this.dragndrop(node);
     }
 
     /**
@@ -76,6 +99,11 @@ export default class WidgetObserver extends Observer {
         const keyName = 'text/x-editor-name';
         const keyHtml = 'text/x-editor-html';
         const parentName = node.parentElement.tagName.toLowerCase();
+        const cleanup = () => {
+            this.editor.content.querySelectorAll('.editor-dragover').forEach(item => {
+                item.classList.length > 1 ? item.classList.remove('editor-dragover') : item.removeAttribute('class');
+            });
+        };
         const toggle = () => {
             this.editor.content.querySelectorAll('[draggable]').forEach(item => {
                 item.removeAttribute('draggable');
@@ -94,41 +122,56 @@ export default class WidgetObserver extends Observer {
             }
         };
         const allowDrop = ev => {
-            const name = ev.dataTransfer.getData(keyName);
+            if (ev.target.isSameNode(node)) {
+                const name = ev.dataTransfer.getData(keyName);
 
-            if (name && this.editor.allowed(name, parentName)) {
-                ev.preventDefault();
-                ev.cancelBubble = true;
-                node.classList.add('editor-dragover');
-                ev.dataTransfer.dropEffect = 'move';
+                if (name && this.editor.allowed(name, parentName)) {
+                    ev.preventDefault();
+                    ev.cancelBubble = true;
+                    node.classList.add('editor-dragover');
+                    ev.dataTransfer.dropEffect = 'move';
+                }
             }
         };
 
-        node.addEventListener('dblclick', toggle);
+        node.addEventListener('dblclick', ev => {
+            if (ev.target.isSameNode(node)) {
+                ev.preventDefault();
+                ev.cancelBubble = true;
+                toggle();
+            }
+        });
         node.addEventListener('dragstart', ev => {
-            ev.dataTransfer.effectAllowed = 'move';
-            ev.dataTransfer.setData(keyName, node.tagName.toLowerCase());
-            ev.dataTransfer.setData(keyHtml, node.outerHTML);
+            if (ev.target.isSameNode(node)) {
+                ev.dataTransfer.effectAllowed = 'move';
+                ev.dataTransfer.setData(keyName, node.tagName.toLowerCase());
+                ev.dataTransfer.setData(keyHtml, node.outerHTML);
+            }
         });
         node.addEventListener('dragend', ev => {
-            if (ev.dataTransfer.dropEffect === 'move') {
-                node.parentElement.removeChild(node);
-            }
+            if (ev.target.isSameNode(node)) {
+                if (ev.dataTransfer.dropEffect === 'move') {
+                    node.parentElement.removeChild(node);
+                }
 
-            toggle();
+                toggle();
+            }
         });
         node.addEventListener('dragenter', allowDrop);
         node.addEventListener('dragover', allowDrop);
-        node.addEventListener('dragleave', () => node.classList.remove('editor-dragover'));
+        node.addEventListener('dragleave', cleanup);
         node.addEventListener('drop', ev => {
-            const name = ev.dataTransfer.getData(keyName);
-            const html = ev.dataTransfer.getData(keyHtml);
-            ev.preventDefault();
-            ev.cancelBubble = true;
-            node.classList.remove('editor-dragover');
+            cleanup();
 
-            if (name && this.editor.allowed(name, parentName) && html) {
-                node.insertAdjacentHTML('beforebegin', html);
+            if (ev.target.isSameNode(node)) {
+                const name = ev.dataTransfer.getData(keyName);
+                const html = ev.dataTransfer.getData(keyHtml);
+                ev.preventDefault();
+                ev.cancelBubble = true;
+
+                if (name && this.editor.allowed(name, parentName) && html) {
+                    node.insertAdjacentHTML('beforebegin', html);
+                }
             }
         });
     }
