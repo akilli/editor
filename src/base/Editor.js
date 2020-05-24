@@ -175,7 +175,7 @@ export default class Editor {
     initToolbar() {
         this.config.base.toolbar.forEach(cmd => this.toolbar.appendChild(this.createElement('button', {
             attributes: {type: 'button', 'data-command': cmd, title: cmd},
-            content: cmd,
+            html: cmd,
         })));
     }
 
@@ -347,19 +347,13 @@ export default class Editor {
      *
      * @param {String} name
      * @param {Object.<String, String>} [attributes = {}]
-     * @param {String} [content = '']
-     * @param {Boolean} [html = false]
+     * @param {String} [html = '']
      * @param {String} [is = null]
      * @return {HTMLElement}
      */
-    createElement(name, {attributes = {}, content = '', html = false, is = null} = {}) {
+    createElement(name, {attributes = {}, html = '', is = null} = {}) {
         const element = this.document.createElement(name, is ? {is: is} : null);
-
-        if (content && html) {
-            element.innerHTML = content;
-        } else if (content) {
-            element.textContent = content;
-        }
+        element.innerHTML = html;
 
         for (let [key, val] of Object.entries(attributes)) {
             if (val) {
@@ -495,7 +489,7 @@ export default class Editor {
             return element;
         }
 
-        const newNode = this.createElement(target, {content: element.innerHTML, html: true})
+        const newNode = this.createElement(target, {html: element.innerHTML})
         element.parentElement.replaceChild(newNode, element);
 
         return newNode;

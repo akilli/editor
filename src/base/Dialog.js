@@ -44,11 +44,8 @@ export default class Dialog {
         const dialog = this.editor.createElement('dialog', {attributes: {class: 'editor-dialog'}});
         const form = this.editor.createElement('form');
         const fieldset = this.editor.createElement('fieldset');
-        const cancelButton = this.editor.createElement('button', {
-            attributes: {class: 'editor-cancel', type: 'button'},
-            content: this.t('Cancel'),
-        });
-        const saveButton = this.editor.createElement('button', {attributes: {class: 'editor-save'}, content: this.t('Save')});
+        const cancelButton = this.editor.createElement('button', {attributes: {class: 'editor-cancel', type: 'button'}, html: this.t('Cancel')});
+        const saveButton = this.editor.createElement('button', {attributes: {class: 'editor-save'}, html: this.t('Save')});
         const close = () => {
             if (range) {
                 sel.removeAllRanges();

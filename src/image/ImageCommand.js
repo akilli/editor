@@ -30,7 +30,7 @@ export default class ImageCommand extends Command {
 
         const figure = this.editor.createElement('figure', {attributes: {class: 'image'}});
         figure.appendChild(this.editor.createElement('img', {attributes: {src: this.editor.url(src), width, height, alt}}));
-        figure.appendChild(this.editor.createElement('figcaption', {content: caption, html: true}));
+        figure.appendChild(this.editor.createElement('figcaption', {html: caption}));
 
         this.editor.insert(figure);
     }

@@ -30,7 +30,7 @@ export default class VideoCommand extends Command {
 
         const figure = this.editor.createElement('figure', {attributes: {class: 'video'}});
         figure.appendChild(this.editor.createElement('video', {attributes: {src: this.editor.url(src), width, height, controls}}));
-        figure.appendChild(this.editor.createElement('figcaption', {content: caption, html: true}));
+        figure.appendChild(this.editor.createElement('figcaption', {html: caption}));
 
         this.editor.insert(figure);
     }
