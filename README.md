@@ -22,7 +22,7 @@ Each widget has one or more editable elements that allow adding and maybe format
 
 After adding the first widget, you can also use the `Enter` key to add a new paragraph. Depending on the widget, this new paragraph will be created inside the widget itself or on top-level. Within lists, the `Enter` key will add a new list item.
 
-You can reorder the widgets in the editor content either by drag'n'drop or by keyboard shortcuts. 
+You can reorder the widgets in the editor content either by drag'n'drop or by keyboard shortcuts. Note that not all elements are configured to be sortable.
 
 As `draggable` and `contenteditable` do not play nice with each other, drag'n'drop is disabled per default. If you doubleclick on a widget you can toggle `draggable` and `contenteditable` states. After dropping the widget the states are toggled automatically.
 

@@ -10,17 +10,12 @@ export default class WidgetObserver extends Observer {
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
-                const allowed = item => {
-                    const tag = this.editor.tags.get(item.tagName.toLowerCase());
-                    return tag && tag.group !== 'format';
-                };
-
-                if (allowed(node)) {
+                if (this.sortable(node)) {
                     this.init(node);
                 }
 
                 Array.from(node.children).forEach(child => {
-                    if (allowed(child)) {
+                    if (this.sortable(child)) {
                         this.init(child);
                     }
                 });
@@ -53,34 +48,40 @@ export default class WidgetObserver extends Observer {
                 return;
             }
 
+            const parent = node.parentElement
+
             if (ev.ctrlKey && ev.key === 'Delete') {
-                node.parentElement.removeChild(node);
+                parent.removeChild(node);
                 ev.preventDefault();
                 ev.cancelBubble = true;
             } else if (['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(ev.key)) {
-                const isFirst = node.parentElement.firstElementChild.isSameNode(node);
-                const isLast = node.parentElement.lastElementChild.isSameNode(node);
+                const prev = node.previousElementSibling;
+                const next = node.nextElementSibling;
+                const first = parent.firstElementChild;
+                const last = parent.lastElementChild;
+                const isFirst = first.isSameNode(node);
+                const isLast = last.isSameNode(node);
 
-                if (ev.ctrlKey && ev.key === 'ArrowUp' && !isFirst) {
-                    node.previousElementSibling.insertAdjacentHTML('beforebegin', node.outerHTML);
-                    node.parentElement.removeChild(node);
-                } else if (ev.ctrlKey && ev.key === 'ArrowDown' && !isLast) {
-                    node.nextElementSibling.insertAdjacentHTML('afterend', node.outerHTML);
-                    node.parentElement.removeChild(node);
-                } else if (ev.ctrlKey && (ev.key === 'Home' && !isFirst || ev.key === 'ArrowDown' && isLast)) {
-                    node.parentElement.firstElementChild.insertAdjacentHTML('beforebegin', node.outerHTML);
-                    node.parentElement.removeChild(node);
-                } else if (ev.ctrlKey && (ev.key === 'End' && !isLast || ev.key === 'ArrowUp' && isFirst)) {
-                    node.parentElement.lastElementChild.insertAdjacentHTML('afterend', node.outerHTML);
-                    node.parentElement.removeChild(node);
+                if (ev.ctrlKey && ev.key === 'ArrowUp' && !isFirst && this.sortable(prev)) {
+                    prev.insertAdjacentHTML('beforebegin', node.outerHTML);
+                    parent.removeChild(node);
+                } else if (ev.ctrlKey && ev.key === 'ArrowDown' && !isLast && this.sortable(next)) {
+                    next.insertAdjacentHTML('afterend', node.outerHTML);
+                    parent.removeChild(node);
+                } else if (ev.ctrlKey && (ev.key === 'Home' && !isFirst || ev.key === 'ArrowDown' && isLast) && this.sortable(first)) {
+                    first.insertAdjacentHTML('beforebegin', node.outerHTML);
+                    parent.removeChild(node);
+                } else if (ev.ctrlKey && (ev.key === 'End' && !isLast || ev.key === 'ArrowUp' && isFirst) && this.sortable(last)) {
+                    last.insertAdjacentHTML('afterend', node.outerHTML);
+                    parent.removeChild(node);
                 } else if (ev.key === 'ArrowUp' && !isFirst) {
-                    node.previousElementSibling.focus();
+                    prev.focus();
                 } else if (ev.key === 'ArrowDown' && !isLast) {
-                    node.nextElementSibling.focus();
+                    next.focus();
                 } else if (ev.key === 'Home' || ev.key === 'ArrowDown' && isLast) {
-                    node.parentElement.firstElementChild.focus();
+                    first.focus();
                 } else if (ev.key === 'End' || ev.key === 'ArrowUp' && isFirst) {
-                    node.parentElement.lastElementChild.focus();
+                    last.focus();
                 }
 
                 ev.preventDefault();
@@ -105,6 +106,7 @@ export default class WidgetObserver extends Observer {
             });
         };
         const toggle = () => {
+            const hasDraggable = node.hasAttribute('draggable');
             this.editor.content.querySelectorAll('[draggable]').forEach(item => {
                 item.removeAttribute('draggable');
 
@@ -113,7 +115,7 @@ export default class WidgetObserver extends Observer {
                 }
             });
 
-            if (!node.hasAttribute('draggable')) {
+            if (!hasDraggable) {
                 node.setAttribute('draggable', 'true');
 
                 if (node.hasAttribute('contenteditable')) {
@@ -174,5 +176,18 @@ export default class WidgetObserver extends Observer {
                 }
             }
         });
+    }
+
+    /**
+     * Indicates if element is sortable
+     *
+     * @private
+     * @param {HTMLElement} node
+     * @return {Boolean}
+     */
+    sortable(node) {
+        const tag = this.editor.tags.get(node.tagName.toLowerCase());
+
+        return tag && tag.sortable;
     }
 }
