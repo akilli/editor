@@ -1,7 +1,7 @@
 import ListObserver from './ListObserver.js';
 import OrderedlistCommand from './OrderedlistCommand.js';
-import UnorderedlistCommand from './UnorderedlistCommand.js';
 import Plugin from '../base/Plugin.js';
+import UnorderedlistCommand from './UnorderedlistCommand.js';
 
 /**
  * List Plugin
