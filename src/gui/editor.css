@@ -109,11 +109,6 @@ editor-content [contenteditable] {
     min-height: 1.5rem;
 }
 
-editor-content td[contenteditable],
-editor-content th[contenteditable] {
-    height: 1.5rem;
-}
-
 editor-content [contenteditable=true]:hover {
     outline: 0.25rem solid var(--editor-outline);
 }
@@ -121,6 +116,22 @@ editor-content [contenteditable=true]:hover {
 editor-content [contenteditable=true]:empty::after {
     color: var(--editor-border);
     content: var(--editor-placeholder);
+}
+
+editor-content td[contenteditable],
+editor-content th[contenteditable] {
+    height: 1.5rem;
+}
+
+editor-content slot[contenteditable] {
+    display: block;
+    padding: 0.25rem;
+    outline: 0.25rem solid var(--editor-slot-color);
+}
+
+editor-content slot[contenteditable=true]:empty::after {
+    color: var(--editor-slot-color);
+    content: var(--editor-slot-placeholder);
 }
 
 /**
@@ -132,20 +143,6 @@ editor-content [draggable=true]:hover {
 
 .editor-dragover {
     outline: 0.25rem dashed var(--editor-drag);
-}
-
-/**
- * Slot
- */
-editor-content slot {
-    display: block;
-    padding: 0.25rem;
-    outline: 0.25rem solid var(--editor-slot-color);
-}
-
-editor-content slot::after {
-    color: var(--editor-slot-color);
-    content: var(--editor-slot-placeholder) !important;
 }
 
 /**
