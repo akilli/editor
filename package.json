@@ -26,7 +26,7 @@
   "scripts": {
     "build": "npm run clean && rollup --config",
     "clean": "rm -rf dist",
-    "start": "npx servor --reload"
+    "start": "npx servor --reload . index.html 20000"
   },
   "devDependencies": {
     "@rollup/plugin-url": "^4.0.1",
