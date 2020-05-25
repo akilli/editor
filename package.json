@@ -1,6 +1,6 @@
 {
   "name": "@akilli/editor",
-  "version": "0.39.1",
+  "version": "0.40.0",
   "description": "Minimal rich text editor",
   "keywords": [
     "editor",
