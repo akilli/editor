@@ -34,7 +34,12 @@ You can delete the focused widget by combining the `Control` key with the `Delet
 
 Figure widgets like quote, table or media elements allow changing or toggling alignment, i.e. adding or removing CSS class `left` or `right`, by combining the `Control` key with the `ArrowLeft` or `ArrowRight` keys.
 
-The table widget additionally allows adding and removing rows and columns before or after the currently focused table cell by combining the `Control` key (add) or `Alt` key (remove) with one of the arrow keys (`ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown`).
+The table widget additionally allows adding and removing rows and columns before or after the currently focused table cell by combining the
+
+- `Alt` key (add) or
+- `Alt` and `Shift` keys (remove)
+
+with one of the arrow keys (`ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown`).
 
 ## Demo
 
