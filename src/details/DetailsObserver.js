@@ -13,6 +13,11 @@ export default class DetailsObserver extends Observer {
                 this.init(node);
             } else if (node instanceof HTMLElement) {
                 node.querySelectorAll('details').forEach(details => this.init(details));
+                const details = node.closest('details');
+
+                if (details && this.editor.content.contains(details)) {
+                    details.open = true;
+                }
             }
         }));
     }
@@ -24,6 +29,7 @@ export default class DetailsObserver extends Observer {
      * @param {HTMLDetailsElement} node
      */
     init(node) {
+        node.open = true;
         node.querySelectorAll(':scope > summary:not(:first-child)').forEach(summary => node.removeChild(summary));
 
         if (!node.querySelector(':scope > summary:first-child')) {
