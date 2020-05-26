@@ -13,7 +13,7 @@ export default class EditableObserver extends Observer {
 
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLElement && editables.includes(node.tagName.toLowerCase())) {
-                this.toEditable(node);
+                this.init(node);
 
                 if (node.parentElement instanceof HTMLElement && !this.editor.isContent(node.parentElement)) {
                     if (node.parentElement instanceof HTMLDetailsElement) {
@@ -23,7 +23,7 @@ export default class EditableObserver extends Observer {
                     node.focus();
                 }
             } else if (selector && node instanceof HTMLElement) {
-                node.querySelectorAll(selector).forEach(editable => this.toEditable(editable))
+                node.querySelectorAll(selector).forEach(editable => this.init(editable))
             }
         }));
     }
@@ -50,7 +50,7 @@ export default class EditableObserver extends Observer {
      * @private
      * @param {HTMLElement} node
      */
-    toEditable(node) {
+    init(node) {
         node.contentEditable = 'true';
         node.addEventListener('keydown', ev => {
             this.onKeydownEnter(ev);
