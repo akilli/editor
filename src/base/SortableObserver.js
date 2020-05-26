@@ -27,7 +27,6 @@ export default class SortableObserver extends Observer {
      * @param {HTMLElement} node
      */
     init(node) {
-        node.tabIndex = 0;
         this.keyboard(node);
         this.dragndrop(node);
     }

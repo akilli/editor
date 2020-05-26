@@ -3,6 +3,7 @@ import DeletableObserver from './DeletableObserver.js';
 import EditableObserver from './EditableObserver.js';
 import FigureFilter from './FigureFilter.js';
 import FigureObserver from './FigureObserver.js';
+import FocusObserver from './FocusObserver.js';
 import NavigableObserver from './NavigableObserver.js';
 import Plugin from './Plugin.js';
 import SlotObserver from './SlotObserver.js';
@@ -37,6 +38,7 @@ export default class BasePlugin extends Plugin {
         this.editor.observe(new DeletableObserver(this.editor));
         this.editor.observe(new NavigableObserver(this.editor));
         this.editor.observe(new SortableObserver(this.editor));
+        this.editor.observe(new FocusObserver(this.editor));
         this.editor.observe(new FigureObserver(this.editor));
         this.editor.filters.set(new BaseFilter(this.editor));
         this.editor.filters.set(new FigureFilter(this.editor));

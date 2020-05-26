@@ -15,12 +15,8 @@ export default class EditableObserver extends Observer {
             if (node instanceof HTMLElement && names.includes(node.tagName.toLowerCase())) {
                 this.init(node);
 
-                if (node.parentElement instanceof HTMLElement && !this.editor.isContent(node.parentElement)) {
-                    if (node.parentElement instanceof HTMLDetailsElement) {
-                        node.parentElement.open = true;
-                    }
-
-                    node.focus();
+                if (node.parentElement instanceof HTMLDetailsElement) {
+                    node.parentElement.open = true;
                 }
             } else if (node instanceof HTMLElement && selector) {
                 node.querySelectorAll(selector).forEach(item => this.init(item))
