@@ -1,4 +1,4 @@
-import ListObserver from './ListObserver.js';
+import ListitemObserver from './ListitemObserver.js';
 import OrderedlistCommand from './OrderedlistCommand.js';
 import Plugin from '../base/Plugin.js';
 import UnorderedlistCommand from './UnorderedlistCommand.js';
@@ -25,6 +25,6 @@ export default class ListPlugin extends Plugin {
         this.registerTag({name: 'ol', group: 'list', children: ['listitem'], deletable: true, sortable: true})
         this.editor.commands.set(new OrderedlistCommand(this.editor));
         this.registerTag({name: 'li', group: 'listitem', children: ['break', 'format', 'text'], deletable: true, editable: true, enter: 'li', sortable: true});
-        this.editor.observe(new ListObserver(this.editor));
+        this.editor.observe(new ListitemObserver(this.editor));
     }
 }

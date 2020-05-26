@@ -1,9 +1,9 @@
 import Observer from '../base/Observer.js';
 
 /**
- * Handles list elements
+ * Handles listitem elements
  */
-export default class ListObserver extends Observer {
+export default class ListitemObserver extends Observer {
     /**
      * @inheritDoc
      */
