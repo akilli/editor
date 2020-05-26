@@ -9,12 +9,13 @@ export default class Tag {
      * @param {String} group
      * @param {String[]} [attributes = []]
      * @param {String[]} [children = []]
+     * @param {Boolean} [deletable = false]
      * @param {Boolean} [editable = false]
      * @param {Boolean} [empty = false]
      * @param {?String} [enter = null]
      * @param {Boolean} [sortable = false]
      */
-    constructor({name, group, attributes = [], children = [], editable = false, empty = false, enter = null, sortable = false} = {}) {
+    constructor({name, group, attributes = [], children = [], deletable = false, editable = false, empty = false, enter = null, sortable = false} = {}) {
         if (!name || typeof name !== 'string' || !group || typeof group !== 'string') {
             throw 'Invalid argument';
         }
@@ -46,6 +47,13 @@ export default class Tag {
          * @type {String[]}
          */
         this.attributes = Array.isArray(attributes) ? attributes : [];
+
+        /**
+         * Is element deletable
+         *
+         * @type {Boolean}
+         */
+        this.deletable = Boolean(deletable);
 
         /**
          * Is element editable

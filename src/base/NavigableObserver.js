@@ -1,0 +1,61 @@
+import Observer from './Observer.js';
+
+/**
+ * Navigable Observer
+ */
+export default class NavigableObserver extends Observer {
+    /**
+     * @inheritDoc
+     */
+    observe(ev) {
+        ev.forEach(item => item.addedNodes.forEach(node => {
+            if (node instanceof HTMLElement) {
+                this.init(node);
+                Array.from(node.children).forEach(child => this.init(child));
+            }
+        }));
+    }
+
+    /**
+     * Initializes element
+     *
+     * @private
+     * @param {HTMLElement} node
+     */
+    init(node) {
+        node.tabIndex = 0;
+        this.keyboard(node);
+    }
+
+    /**
+     * Handles keyboard events
+     *
+     * @private
+     * @param {HTMLElement} node
+     */
+    keyboard(node) {
+        node.addEventListener('keyup', ev => {
+            if (this.editor.isActive(node) && !ev.ctrlKey && ['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(ev.key)) {
+                const prev = node.previousElementSibling;
+                const next = node.nextElementSibling;
+                const first = node.parentElement.firstElementChild;
+                const last = node.parentElement.lastElementChild;
+                const isFirst = first.isSameNode(node);
+                const isLast = last.isSameNode(node);
+
+                if (ev.key === 'ArrowUp' && !isFirst) {
+                    prev.focus();
+                } else if (ev.key === 'ArrowDown' && !isLast) {
+                    next.focus();
+                } else if (ev.key === 'Home' || ev.key === 'ArrowDown' && isLast) {
+                    first.focus();
+                } else if (ev.key === 'End' || ev.key === 'ArrowUp' && isFirst) {
+                    last.focus();
+                }
+
+                ev.preventDefault();
+                ev.cancelBubble = true;
+            }
+        });
+    }
+}

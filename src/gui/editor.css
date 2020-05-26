@@ -94,11 +94,11 @@ akilli-editor.editor-fullscreen > editor-content {
 /**
  * Widgets
  */
-editor-content > :hover {
+editor-content :hover {
     outline: 0.25rem solid var(--editor-border);
 }
 
-editor-content > :focus {
+editor-content :focus {
     outline: 0.25rem dashed var(--editor-focus);
 }
 

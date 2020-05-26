@@ -510,6 +510,20 @@ export default class Editor {
     }
 
     /**
+     * Indicates if given element is the active element
+     *
+     * @param {HTMLElement} element
+     * @return {Boolean}
+     */
+    isActive(element) {
+        if (!(element instanceof HTMLElement)) {
+            throw 'Invalid argument';
+        }
+
+        return this.document.activeElement.isSameNode(element);
+    }
+
+    /**
      * Checks if given element or group is allowed inside given parent element
      *
      * @param {String} name

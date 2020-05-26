@@ -22,7 +22,7 @@ export default class TablePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.registerTag({name: 'table', group: 'table', children: ['tablesection'], sortable: true});
+        this.registerTag({name: 'table', group: 'table', children: ['tablesection'], deletable: true, sortable: true});
         ['thead', 'tbody', 'tfoot'].forEach(item => this.registerTag({name: item, group: 'tablesection', children: ['tablerow']}));
         this.registerTag({name: 'tr', group: 'tablerow', children: ['tablecell']});
         ['td', 'th'].forEach(item => {

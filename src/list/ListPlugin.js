@@ -20,11 +20,11 @@ export default class ListPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.registerTag({name: 'ul', group: 'list', children: ['listitem'], sortable: true})
+        this.registerTag({name: 'ul', group: 'list', children: ['listitem'], deletable: true, sortable: true})
         this.editor.commands.set(new UnorderedlistCommand(this.editor));
-        this.registerTag({name: 'ol', group: 'list', children: ['listitem'], sortable: true})
+        this.registerTag({name: 'ol', group: 'list', children: ['listitem'], deletable: true, sortable: true})
         this.editor.commands.set(new OrderedlistCommand(this.editor));
-        this.registerTag({name: 'li', group: 'listitem', children: ['break', 'format', 'text'], editable: true, enter: 'li', sortable: true});
+        this.registerTag({name: 'li', group: 'listitem', children: ['break', 'format', 'text'], deletable: true, editable: true, enter: 'li', sortable: true});
         this.editor.observe(new ListObserver(this.editor));
     }
 }
