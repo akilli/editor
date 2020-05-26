@@ -21,7 +21,7 @@ export default class VideoPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.registerTag({name: 'video', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true});
+        this.editor.tags.create({name: 'video', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true});
         this.registerTranslator(i18n);
 
         if (this.editor.config.video.browser) {

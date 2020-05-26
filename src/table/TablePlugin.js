@@ -22,11 +22,11 @@ export default class TablePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.registerTag({name: 'table', group: 'table', children: ['tablesection'], deletable: true, sortable: true});
-        ['thead', 'tbody', 'tfoot'].forEach(item => this.registerTag({name: item, group: 'tablesection', children: ['tablerow']}));
-        this.registerTag({name: 'tr', group: 'tablerow', children: ['tablecell']});
+        this.editor.tags.create({name: 'table', group: 'table', children: ['tablesection'], deletable: true, sortable: true});
+        ['thead', 'tbody', 'tfoot'].forEach(item => this.editor.tags.create({name: item, group: 'tablesection', children: ['tablerow']}));
+        this.editor.tags.create({name: 'tr', group: 'tablerow', children: ['tablecell']});
         ['td', 'th'].forEach(item => {
-            this.registerTag({name: item, group: 'tablecell', children: ['break', 'format', 'text'], editable: true, empty: true})
+            this.editor.tags.create({name: item, group: 'tablecell', children: ['break', 'format', 'text'], editable: true, empty: true})
         });
         this.editor.observe(new TableObserver(this.editor));
         this.registerTranslator(i18n);

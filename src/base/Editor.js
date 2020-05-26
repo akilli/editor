@@ -3,7 +3,7 @@ import Dialog from './Dialog.js';
 import Filter from './Filter.js';
 import Observer from './Observer.js';
 import Plugin from './Plugin.js';
-import Tag from './Tag.js';
+import TagManager from './TagManager.js';
 import Translator from './Translator.js';
 import TypedMap from './TypedMap.js';
 
@@ -90,9 +90,9 @@ export default class Editor {
         /**
          * Tags
          *
-         * @type {TypedMap<String, Tag>}
+         * @type {TagManager}
          */
-        this.tags = new TypedMap(Tag);
+        this.tags = new TagManager();
 
         /**
          * Filters
@@ -259,9 +259,9 @@ export default class Editor {
         const name = element.tagName.toLowerCase();
         const editable = this.getSelectedEditable();
 
-        if (editable && editable instanceof HTMLSlotElement && this.allowed(name, editable.parentElement.tagName.toLowerCase())) {
+        if (editable && editable instanceof HTMLSlotElement && this.tags.isAllowed(name, editable.parentElement.tagName.toLowerCase())) {
             editable.insertAdjacentElement('beforebegin', element);
-        } else if (this.allowed(name, this.content.tagName.toLowerCase())) {
+        } else if (this.tags.isAllowed(name, this.content.tagName.toLowerCase())) {
             this.content.appendChild(element);
         } else {
             throw 'Invalid argument';
@@ -316,7 +316,7 @@ export default class Editor {
         range.deleteContents();
 
         if (parent.isContentEditable
-            && this.allowed(element.tagName.toLowerCase(), parent.tagName.toLowerCase())
+            && this.tags.isAllowed(element.tagName.toLowerCase(), parent.tagName.toLowerCase())
             && selText.trim()
             && (!tag || !same)
         ) {
@@ -521,21 +521,6 @@ export default class Editor {
         }
 
         return this.document.activeElement.isSameNode(element);
-    }
-
-    /**
-     * Checks if given element or group is allowed inside given parent element
-     *
-     * @param {String} name
-     * @param {String} parentName
-     * @return {Boolean}
-     */
-    allowed(name, parentName) {
-        const tag = this.tags.get(name);
-        const group = tag ? tag.group : name;
-        const parentTag = this.tags.get(parentName);
-
-        return parentTag && parentTag.children.includes(group);
     }
 
     /**

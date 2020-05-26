@@ -8,11 +8,11 @@ export default class EditableObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        const editables = this.editables();
-        const selector = editables.join(', ');
+        const names = this.editor.tags.editable();
+        const selector = names.join(', ');
 
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && editables.includes(node.tagName.toLowerCase())) {
+            if (node instanceof HTMLElement && names.includes(node.tagName.toLowerCase())) {
                 this.init(node);
 
                 if (node.parentElement instanceof HTMLElement && !this.editor.isContent(node.parentElement)) {
@@ -22,26 +22,10 @@ export default class EditableObserver extends Observer {
 
                     node.focus();
                 }
-            } else if (selector && node instanceof HTMLElement) {
-                node.querySelectorAll(selector).forEach(editable => this.init(editable))
+            } else if (node instanceof HTMLElement && selector) {
+                node.querySelectorAll(selector).forEach(item => this.init(item))
             }
         }));
-    }
-
-    /**
-     * Editable tags
-     *
-     * @private
-     * @return {String[]}
-     */
-    editables() {
-        return [...this.editor.tags].reduce((result, item) => {
-            if (item[1].editable) {
-                result.push(item[1].name);
-            }
-
-            return result;
-        }, []);
     }
 
     /**
@@ -66,7 +50,7 @@ export default class EditableObserver extends Observer {
      * @param {KeyboardEvent} ev
      */
     onKeydownEnter(ev) {
-        if (ev.key === 'Enter' && (!ev.shiftKey || !this.editor.allowed('br', ev.target.tagName.toLowerCase()))) {
+        if (ev.key === 'Enter' && (!ev.shiftKey || !this.editor.tags.isAllowed('br', ev.target.tagName.toLowerCase()))) {
             ev.preventDefault();
             ev.cancelBubble = true;
         }
@@ -91,7 +75,7 @@ export default class EditableObserver extends Observer {
             do {
                 parentName = current.parentElement.tagName.toLowerCase();
 
-                if (this.editor.allowed(tag.enter, parentName)) {
+                if (this.editor.tags.isAllowed(tag.enter, parentName)) {
                     current.insertAdjacentElement('afterend', this.editor.createElement(tag.enter));
                     break;
                 }

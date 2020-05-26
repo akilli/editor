@@ -24,7 +24,7 @@ export default class BlockPlugin extends Plugin {
      */
     init() {
         this.editor.registerElement('app-block', BlockElement);
-        this.registerTag({name: 'app-block', group: 'section', attributes: ['id'], deletable: true, empty: true, sortable: true});
+        this.editor.tags.create({name: 'app-block', group: 'section', attributes: ['id'], deletable: true, empty: true, sortable: true});
         this.registerTranslator(i18n);
         this.editor.observe(new BlockObserver(this.editor));
 

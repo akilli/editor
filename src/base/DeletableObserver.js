@@ -8,17 +8,14 @@ export default class DeletableObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement) {
-                if (this.deletable(node)) {
-                    this.init(node);
-                }
+        const names = this.editor.tags.deletable();
+        const selector = names.join(', ');
 
-                Array.from(node.children).forEach(child => {
-                    if (this.deletable(child)) {
-                        this.init(child);
-                    }
-                });
+        ev.forEach(item => item.addedNodes.forEach(node => {
+            if (node instanceof HTMLElement && names.includes(node.tagName.toLowerCase())) {
+                this.init(node);
+            } else if (node instanceof HTMLElement && selector) {
+                node.querySelectorAll(selector).forEach(item => this.init(item))
             }
         }));
     }
@@ -48,18 +45,5 @@ export default class DeletableObserver extends Observer {
                 ev.cancelBubble = true;
             }
         });
-    }
-
-    /**
-     * Indicates if element is deletable
-     *
-     * @private
-     * @param {HTMLElement} node
-     * @return {Boolean}
-     */
-    deletable(node) {
-        const tag = this.editor.tags.get(node.tagName.toLowerCase());
-
-        return tag && tag.deletable;
     }
 }

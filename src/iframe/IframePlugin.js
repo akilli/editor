@@ -21,7 +21,7 @@ export default class IframePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.registerTag({name: 'iframe', group: 'media', attributes: ['allowfullscreen', 'height', 'src', 'width'], empty: true});
+        this.editor.tags.create({name: 'iframe', group: 'media', attributes: ['allowfullscreen', 'height', 'src', 'width'], empty: true});
         this.registerTranslator(i18n);
 
         if (this.editor.config.iframe.browser) {

@@ -21,7 +21,7 @@ export default class AudioPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.registerTag({name: 'audio', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true});
+        this.editor.tags.create({name: 'audio', group: 'media', attributes: ['controls', 'height', 'src', 'width'], empty: true});
         this.registerTranslator(i18n);
 
         if (this.editor.config.audio.browser) {

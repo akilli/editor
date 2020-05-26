@@ -8,17 +8,14 @@ export default class SortableObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement) {
-                if (this.sortable(node)) {
-                    this.init(node);
-                }
+        const names = this.editor.tags.sortable();
+        const selector = names.join(', ');
 
-                Array.from(node.children).forEach(child => {
-                    if (this.sortable(child)) {
-                        this.init(child);
-                    }
-                });
+        ev.forEach(item => item.addedNodes.forEach(node => {
+            if (node instanceof HTMLElement && names.includes(node.tagName.toLowerCase())) {
+                this.init(node);
+            } else if (node instanceof HTMLElement && selector) {
+                node.querySelectorAll(selector).forEach(item => this.init(item))
             }
         }));
     }
@@ -52,16 +49,16 @@ export default class SortableObserver extends Observer {
                 const isFirst = first.isSameNode(node);
                 const isLast = last.isSameNode(node);
 
-                if (ev.key === 'ArrowUp' && !isFirst && this.sortable(prev)) {
+                if (ev.key === 'ArrowUp' && !isFirst && this.editor.tags.isElementSortable(prev)) {
                     prev.insertAdjacentHTML('beforebegin', node.outerHTML);
                     parent.removeChild(node);
-                } else if (ev.key === 'ArrowDown' && !isLast && this.sortable(next)) {
+                } else if (ev.key === 'ArrowDown' && !isLast && this.editor.tags.isElementSortable(next)) {
                     next.insertAdjacentHTML('afterend', node.outerHTML);
                     parent.removeChild(node);
-                } else if ((ev.key === 'Home' && !isFirst || ev.key === 'ArrowDown' && isLast) && this.sortable(first)) {
+                } else if ((ev.key === 'Home' && !isFirst || ev.key === 'ArrowDown' && isLast) && this.editor.tags.isElementSortable(first)) {
                     first.insertAdjacentHTML('beforebegin', node.outerHTML);
                     parent.removeChild(node);
-                } else if ((ev.key === 'End' && !isLast || ev.key === 'ArrowUp' && isFirst) && this.sortable(last)) {
+                } else if ((ev.key === 'End' && !isLast || ev.key === 'ArrowUp' && isFirst) && this.editor.tags.isElementSortable(last)) {
                     last.insertAdjacentHTML('afterend', node.outerHTML);
                     parent.removeChild(node);
                 }
@@ -109,7 +106,7 @@ export default class SortableObserver extends Observer {
             if (ev.target.isSameNode(node)) {
                 const name = ev.dataTransfer.getData(keyName);
 
-                if (name && this.editor.allowed(name, parentName)) {
+                if (name && this.editor.tags.isAllowed(name, parentName)) {
                     ev.preventDefault();
                     ev.cancelBubble = true;
                     node.classList.add('editor-dragover');
@@ -153,23 +150,10 @@ export default class SortableObserver extends Observer {
                 ev.preventDefault();
                 ev.cancelBubble = true;
 
-                if (name && this.editor.allowed(name, parentName) && html) {
+                if (name && this.editor.tags.isAllowed(name, parentName) && html) {
                     node.insertAdjacentHTML('beforebegin', html);
                 }
             }
         });
-    }
-
-    /**
-     * Indicates if element is sortable
-     *
-     * @private
-     * @param {HTMLElement} node
-     * @return {Boolean}
-     */
-    sortable(node) {
-        const tag = this.editor.tags.get(node.tagName.toLowerCase());
-
-        return tag && tag.sortable;
     }
 }

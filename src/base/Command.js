@@ -42,7 +42,7 @@ export default class Command {
          *
          * @type {?Tag}
          */
-        this.tag = this.editor.tags.get(this.tagName) || null;
+        this.tag = this.editor.tags.get(this.tagName);
 
         /**
          * Dialog

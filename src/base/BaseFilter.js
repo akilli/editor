@@ -27,7 +27,7 @@ export default class BaseFilter extends Filter {
                 const tag = this.editor.tags.get(childName);
                 const text = child.textContent.trim();
 
-                if (tag && (this.editor.allowed(childName, name) || isRoot && tag.group === 'format' && this.editor.allowed('p', name))) {
+                if (tag && (this.editor.tags.isAllowed(childName, name) || isRoot && tag.group === 'format' && this.editor.tags.isAllowed('p', name))) {
                     Array.from(child.attributes).forEach(item => {
                         if (!tag.attributes.includes(item.name)) {
                             child.removeAttribute(item.name);
@@ -40,12 +40,12 @@ export default class BaseFilter extends Filter {
 
                     if (!child.hasChildNodes() && !tag.empty) {
                         element.removeChild(child);
-                    } else if (!this.editor.allowed(childName, name)) {
+                    } else if (!this.editor.tags.isAllowed(childName, name)) {
                         element.replaceChild(this.editor.createElement('p', {html: child.outerHTML}), child);
                     }
-                } else if (isRoot && text && this.editor.allowed('p', name)) {
+                } else if (isRoot && text && this.editor.tags.isAllowed('p', name)) {
                     element.replaceChild(this.editor.createElement('p', {html: text}), child);
-                } else if (text && this.editor.allowed('text', name)) {
+                } else if (text && this.editor.tags.isAllowed('text', name)) {
                     element.replaceChild(this.editor.createText(text), child);
                 } else {
                     element.removeChild(child);
@@ -53,9 +53,9 @@ export default class BaseFilter extends Filter {
             } else if (child instanceof Text) {
                 const text = child.textContent.trim();
 
-                if (isRoot && text && this.editor.allowed('p', name)) {
+                if (isRoot && text && this.editor.tags.isAllowed('p', name)) {
                     element.replaceChild(this.editor.createElement('p', {html: text}), child);
-                } else if (!text || !this.editor.allowed('text', name)) {
+                } else if (!text || !this.editor.tags.isAllowed('text', name)) {
                     element.removeChild(child);
                 }
             } else {
