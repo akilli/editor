@@ -8,10 +8,14 @@ export default class NavigableObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
+        const names = this.editor.tags.navigable();
+        const selector = names.join(', ');
+
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement) {
+            if (node instanceof HTMLElement && names.includes(node.tagName.toLowerCase())) {
                 this.init(node);
-                Array.from(node.children).forEach(child => this.init(child));
+            } else if (node instanceof HTMLElement && selector) {
+                node.querySelectorAll(selector).forEach(item => this.init(item))
             }
         }));
     }

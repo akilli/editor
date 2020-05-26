@@ -1,6 +1,13 @@
 import Tag from './Tag.js';
 
 /**
+ * Non-navigable tag groups
+ *
+ * @type {String[]}
+ */
+const nonNavigable = ['break', 'format'];
+
+/**
  * Tag Manager
  */
 export default class TagManager {
@@ -122,6 +129,15 @@ export default class TagManager {
     }
 
     /**
+     * Returns names of all navigable tags
+     *
+     * @return {String[]}
+     */
+    navigable() {
+        return Array.from(this.tags.values()).filter(tag => !nonNavigable.includes(tag.group)).map(tag => tag.name);
+    }
+
+    /**
      * Returns names of all sortable tags
      *
      * @return {String[]}
@@ -158,6 +174,16 @@ export default class TagManager {
      */
     isEmpty(name) {
         return this.has(name) && this.get(name).empty;
+    }
+
+    /**
+     * Indicates if tag is navigable
+     *
+     * @param {String} name
+     * @return {Boolean}
+     */
+    isNavigable(name) {
+        return this.has(name) && !nonNavigable.includes(this.get(name).group);
     }
 
     /**
@@ -198,6 +224,16 @@ export default class TagManager {
      */
     isElementEditable(element) {
         return element instanceof HTMLElement && this.isEditable(element.tagName.toLowerCase());
+    }
+
+    /**
+     * Indicates if element is navigable
+     *
+     * @param {HTMLElement} element
+     * @return {Boolean}
+     */
+    isElementNavigable(element) {
+        return element instanceof HTMLElement && this.isNavigable(element.tagName.toLowerCase());
     }
 
     /**
