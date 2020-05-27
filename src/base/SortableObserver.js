@@ -45,8 +45,8 @@ export default class SortableObserver extends Observer {
                 const next = node.nextElementSibling;
                 const first = parent.firstElementChild;
                 const last = parent.lastElementChild;
-                const isFirst = first.isSameNode(node);
-                const isLast = last.isSameNode(node);
+                const isFirst = node === first;
+                const isLast = node === last;
 
                 if (ev.key === 'ArrowUp' && !isFirst && this.editor.tags.isElementSortable(prev)) {
                     prev.insertAdjacentHTML('beforebegin', node.outerHTML);
@@ -102,7 +102,7 @@ export default class SortableObserver extends Observer {
             }
         };
         const allowDrop = ev => {
-            if (ev.target.isSameNode(node)) {
+            if (ev.target === node) {
                 const name = ev.dataTransfer.getData(keyName);
 
                 if (name && this.editor.tags.isAllowed(name, parentName)) {
@@ -115,21 +115,21 @@ export default class SortableObserver extends Observer {
         };
 
         node.addEventListener('dblclick', ev => {
-            if (ev.target.isSameNode(node)) {
+            if (ev.target === node) {
                 ev.preventDefault();
                 ev.cancelBubble = true;
                 toggle();
             }
         });
         node.addEventListener('dragstart', ev => {
-            if (ev.target.isSameNode(node)) {
+            if (ev.target === node) {
                 ev.dataTransfer.effectAllowed = 'move';
                 ev.dataTransfer.setData(keyName, node.tagName.toLowerCase());
                 ev.dataTransfer.setData(keyHtml, node.outerHTML);
             }
         });
         node.addEventListener('dragend', ev => {
-            if (ev.target.isSameNode(node)) {
+            if (ev.target === node) {
                 if (ev.dataTransfer.dropEffect === 'move') {
                     node.parentElement.removeChild(node);
                 }
@@ -143,7 +143,7 @@ export default class SortableObserver extends Observer {
         node.addEventListener('drop', ev => {
             cleanup();
 
-            if (ev.target.isSameNode(node)) {
+            if (ev.target === node) {
                 const name = ev.dataTransfer.getData(keyName);
                 const html = ev.dataTransfer.getData(keyHtml);
                 ev.preventDefault();

@@ -15,7 +15,7 @@ export default class ToolbarObserver extends Observer {
                 node.querySelectorAll('button').forEach(button => this.click(button));
             }
 
-            if (node instanceof HTMLElement && this.editor.toolbar.isSameNode(node.parentElement)) {
+            if (node instanceof HTMLElement && this.editor.toolbar === node.parentElement) {
                 node.tabIndex = -1;
                 this.keyboard(node);
             }

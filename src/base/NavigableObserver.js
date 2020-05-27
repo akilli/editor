@@ -33,8 +33,8 @@ export default class NavigableObserver extends Observer {
                 const next = node.nextElementSibling;
                 const first = node.parentElement.firstElementChild;
                 const last = node.parentElement.lastElementChild;
-                const isFirst = first.isSameNode(node);
-                const isLast = last.isSameNode(node);
+                const isFirst = node === first;
+                const isLast = node === last;
 
                 if (ev.key === 'ArrowUp' && !isFirst) {
                     prev.focus();

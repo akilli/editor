@@ -299,11 +299,11 @@ export default class Editor {
         const tag = this.tags.get(anc.tagName.toLowerCase());
         const parent = !tag || tag.group === 'format' ? anc.parentElement : anc;
 
-        if (range.startContainer instanceof Text && !range.startContainer.parentElement.isSameNode(parent)) {
+        if (range.startContainer instanceof Text && range.startContainer.parentElement !== parent) {
             range.setStartBefore(range.startContainer.parentElement);
         }
 
-        if (range.endContainer instanceof Text && !range.endContainer.parentElement.isSameNode(parent)) {
+        if (range.endContainer instanceof Text && range.endContainer.parentElement !== parent) {
             range.setEndAfter(range.endContainer.parentElement);
         }
 
@@ -384,7 +384,7 @@ export default class Editor {
         const anc = sel.anchorNode instanceof Text ? sel.anchorNode.parentElement : sel.anchorNode;
         const foc = sel.focusNode instanceof Text ? sel.focusNode.parentElement : sel.focusNode;
 
-        return anc instanceof HTMLElement && foc instanceof HTMLElement && anc.isSameNode(foc) && this.content.contains(anc) ? anc : null;
+        return anc instanceof HTMLElement && foc instanceof HTMLElement && anc === foc && this.content.contains(anc) ? anc : null;
     }
 
     /**
@@ -401,7 +401,7 @@ export default class Editor {
             const ancEdit = anc.closest('[contenteditable=true]');
             const focEdit = foc.closest('[contenteditable=true]');
 
-            if (ancEdit && focEdit && ancEdit.isSameNode(focEdit) && this.content.contains(ancEdit)) {
+            if (ancEdit && focEdit && ancEdit === focEdit && this.content.contains(ancEdit)) {
                 return ancEdit;
             }
         }
@@ -506,7 +506,7 @@ export default class Editor {
             throw 'Invalid argument';
         }
 
-        return this.content.isSameNode(element) || element.tagName.toLowerCase() === 'editor-content';
+        return this.content === element || element.tagName.toLowerCase() === 'editor-content';
     }
 
     /**
@@ -520,7 +520,7 @@ export default class Editor {
             throw 'Invalid argument';
         }
 
-        return this.document.activeElement.isSameNode(element);
+        return this.document.activeElement === element;
     }
 
     /**

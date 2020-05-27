@@ -113,7 +113,7 @@ export default class EditableObserver extends Observer {
         const parentName = node.parentElement.tagName.toLowerCase();
         const allowed = ['details', 'ol', 'ul'];
 
-        if (widget.isSameNode(node) || name === 'blockquote' || allowed.includes(parentName) && node.matches(':only-child')) {
+        if (widget === node || name === 'blockquote' || allowed.includes(parentName) && node.matches(':only-child')) {
             return widget;
         }
 
