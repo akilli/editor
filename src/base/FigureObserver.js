@@ -10,15 +10,27 @@ export default class FigureObserver extends Observer {
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLElement && node.tagName.toLowerCase() === 'figure') {
-                if (!node.querySelector(':scope > figcaption')) {
-                    node.appendChild(this.editor.createElement('figcaption'));
-                }
-
-                if (node.parentElement instanceof HTMLElement && this.editor.isContent(node.parentElement)) {
-                    this.keyboard(node);
-                }
+                this.init(node);
+            } else if (node instanceof HTMLElement) {
+                node.querySelectorAll('figure').forEach(figure => this.init(figure));
             }
         }));
+    }
+
+    /**
+     * Initializes figure element
+     *
+     * @private
+     * @param {HTMLElement} node
+     */
+    init(node) {
+        if (!node.querySelector(':scope > figcaption')) {
+            node.appendChild(this.editor.createElement('figcaption'));
+        }
+
+        if (node.parentElement instanceof HTMLElement && this.editor.isContent(node.parentElement)) {
+            this.keyboard(node);
+        }
     }
 
     /**

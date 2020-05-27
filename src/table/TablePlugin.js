@@ -25,9 +25,7 @@ export default class TablePlugin extends Plugin {
         this.editor.tags.create({name: 'table', group: 'table', children: ['tablesection'], deletable: true, sortable: true});
         ['thead', 'tbody', 'tfoot'].forEach(item => this.editor.tags.create({name: item, group: 'tablesection', children: ['tablerow']}));
         this.editor.tags.create({name: 'tr', group: 'tablerow', children: ['tablecell']});
-        ['td', 'th'].forEach(item => {
-            this.editor.tags.create({name: item, group: 'tablecell', children: ['break', 'format', 'text'], editable: true, empty: true})
-        });
+        ['td', 'th'].forEach(item => this.editor.tags.create({name: item, group: 'tablecell', children: ['break', 'format', 'text'], editable: true, empty: true}));
         this.editor.observe(new TableObserver(this.editor));
         this.registerTranslator(i18n);
         this.editor.filters.set(new TableFilter(this.editor));
