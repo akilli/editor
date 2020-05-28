@@ -47,21 +47,21 @@ export default class Tag {
          *
          * @type {Boolean}
          */
-        this.deletable = Boolean(opts.deletable);
+        this.deletable = opts.deletable === true;
 
         /**
          * Is element editable
          *
          * @type {Boolean}
          */
-        this.editable = Boolean(opts.editable);
+        this.editable = opts.editable === true;
 
         /**
          * Is element empty or allowed to be empty
          *
          * @type {Boolean}
          */
-        this.empty = Boolean(opts.empty);
+        this.empty = opts.empty === true;
 
         /**
          * Element to insert when ENTER-key is pressed
@@ -75,6 +75,6 @@ export default class Tag {
          *
          * @type {Boolean}
          */
-        this.sortable = Boolean(opts.sortable);
+        this.sortable = opts.sortable === true;
     }
 }
