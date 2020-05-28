@@ -12,10 +12,14 @@ export default class NavigableObserver extends Observer {
         const selector = names.join(', ');
 
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && names.includes(node.tagName.toLowerCase())) {
-                this.keyboard(node);
-            } else if (node instanceof HTMLElement && selector) {
-                node.querySelectorAll(selector).forEach(item => this.keyboard(item))
+            if (node instanceof HTMLElement) {
+                if (names.includes(node.tagName.toLowerCase())) {
+                    this.keyboard(node);
+                }
+
+                if (selector) {
+                    node.querySelectorAll(selector).forEach(item => this.keyboard(item));
+                }
             }
         }));
     }

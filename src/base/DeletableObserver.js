@@ -17,7 +17,9 @@ export default class DeletableObserver extends Observer {
                     this.keyboard(node);
                 }
 
-                node.querySelectorAll(selector).forEach(item => this.keyboard(item));
+                if (selector) {
+                    node.querySelectorAll(selector).forEach(item => this.keyboard(item));
+                }
             }
         }));
     }

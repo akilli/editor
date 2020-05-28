@@ -12,10 +12,12 @@ export default class EditableObserver extends Observer {
         const selector = names.join(', ');
 
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && names.includes(node.tagName.toLowerCase())) {
-                this.init(node);
-            } else if (node instanceof HTMLElement && selector) {
-                node.querySelectorAll(selector).forEach(item => this.init(item))
+            if (node instanceof HTMLElement) {
+                if (names.includes(node.tagName.toLowerCase())) {
+                    this.init(node);
+                } else if (selector) {
+                    node.querySelectorAll(selector).forEach(item => this.init(item));
+                }
             }
         }));
     }
