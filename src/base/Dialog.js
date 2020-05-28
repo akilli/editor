@@ -121,13 +121,13 @@ export default class Dialog {
     polyfill(dialog) {
         Object.defineProperty(dialog, 'open', {
             get: function () {
-                return this.hasAttribute('open');
+                return dialog.hasAttribute('open');
             },
             set: function (state) {
                 if (state) {
-                    this.setAttribute('open', '');
+                    dialog.setAttribute('open', '');
                 } else {
-                    this.removeAttribute('open');
+                    dialog.removeAttribute('open');
                 }
             }
         });
