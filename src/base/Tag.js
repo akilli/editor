@@ -7,15 +7,9 @@ export default class Tag {
      *
      * @param {String} name
      * @param {String} group
-     * @param {String[]} [attributes = []]
-     * @param {String[]} [children = []]
-     * @param {Boolean} [deletable = false]
-     * @param {Boolean} [editable = false]
-     * @param {Boolean} [empty = false]
-     * @param {?String} [enter = null]
-     * @param {Boolean} [sortable = false]
+     * @param {Object.<String, {*}>} [opts = {}]
      */
-    constructor({name, group, attributes = [], children = [], deletable = false, editable = false, empty = false, enter = null, sortable = false} = {}) {
+    constructor({name, group, ...opts} = {}) {
         if (!name || typeof name !== 'string' || !group || typeof group !== 'string') {
             throw 'Invalid argument';
         }
@@ -39,48 +33,48 @@ export default class Tag {
          *
          * @type {String[]}
          */
-        this.children = Array.isArray(children) ? children : [];
+        this.children = Array.isArray(opts.children) ? opts.children : [];
 
         /**
          * Allowed attributes
          *
          * @type {String[]}
          */
-        this.attributes = Array.isArray(attributes) ? attributes : [];
+        this.attributes = Array.isArray(opts.attributes) ? opts.attributes : [];
 
         /**
          * Is element deletable
          *
          * @type {Boolean}
          */
-        this.deletable = Boolean(deletable);
+        this.deletable = Boolean(opts.deletable);
 
         /**
          * Is element editable
          *
          * @type {Boolean}
          */
-        this.editable = Boolean(editable);
+        this.editable = Boolean(opts.editable);
 
         /**
          * Is element empty or allowed to be empty
          *
          * @type {Boolean}
          */
-        this.empty = Boolean(empty);
+        this.empty = Boolean(opts.empty);
 
         /**
          * Element to insert when ENTER-key is pressed
          *
          * @type {?String}
          */
-        this.enter = enter && typeof enter === 'string' ? enter : null;
+        this.enter = opts.enter && typeof opts.enter === 'string' ? opts.enter : null;
 
         /**
          * Is element sortable
          *
          * @type {Boolean}
          */
-        this.sortable = Boolean(sortable);
+        this.sortable = Boolean(opts.sortable);
     }
 }

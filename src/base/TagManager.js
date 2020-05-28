@@ -64,14 +64,14 @@ export default class TagManager {
     /**
      * Creates a tag from given object
      *
-     * @param {Object} obj
+     * @param {Object} opts
      */
-    create(obj) {
-        if (!(obj instanceof Object)) {
+    create(opts) {
+        if (!(opts instanceof Object)) {
             throw 'Invalid argument';
         }
 
-        this.set(new Tag(obj));
+        this.set(new Tag(opts));
     }
 
     /**
