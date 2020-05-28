@@ -40,7 +40,7 @@ export default class DetailsPlugin extends Plugin {
         });
         this.editor.observe(new DetailsObserver(this.editor));
         this.editor.observe(new SummaryObserver(this.editor));
-        this.registerTranslator(i18n);
+        this.editor.translators.create(this.name, i18n[this.editor.config.base.lang] || {});
         this.editor.commands.set(new DetailsCommand(this.editor));
         this.editor.filters.set(new DetailsFilter(this.editor));
     }

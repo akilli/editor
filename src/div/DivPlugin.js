@@ -31,7 +31,7 @@ export default class DivPlugin extends Plugin {
             sortable: true,
         });
         this.editor.observe(new DivObserver(this.editor));
-        this.registerTranslator(i18n);
+        this.editor.translators.create(this.name, i18n[this.editor.config.base.lang] || {});
         this.editor.dialogs.set(new DivDialog(this.editor));
         this.editor.commands.set(new DivCommand(this.editor));
     }

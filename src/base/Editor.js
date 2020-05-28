@@ -4,7 +4,7 @@ import Filter from './Filter.js';
 import Observer from './Observer.js';
 import Plugin from './Plugin.js';
 import TagManager from './TagManager.js';
-import Translator from './Translator.js';
+import TranslatorManager from './TranslatorManager.js';
 import TypedMap from './TypedMap.js';
 
 /**
@@ -83,9 +83,9 @@ export default class Editor {
         /**
          * Translators
          *
-         * @type {TypedMap<String, Translator>}
+         * @type {TranslatorManager}
          */
-        this.translators = new TypedMap(Translator);
+        this.translators = new TranslatorManager();
 
         /**
          * Tags

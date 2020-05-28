@@ -1,6 +1,5 @@
 import Command from './Command.js';
 import Editor from './Editor.js';
-import Translator from './Translator.js';
 
 /**
  * Plugin
@@ -39,16 +38,6 @@ export default class Plugin {
      */
     init() {
         throw 'Not implemented';
-    }
-
-    /**
-     * Registers a translator for this plugin
-     *
-     * @protected
-     * @param {Object.<String, Object.<String, String>>} i18n
-     */
-    registerTranslator(i18n) {
-        this.editor.translators.set(new Translator(this.name, i18n[this.editor.config.base.lang] || {}));
     }
 
     /**

@@ -28,7 +28,7 @@ export default class VideoPlugin extends Plugin {
             empty: true,
             navigable: true,
         });
-        this.registerTranslator(i18n);
+        this.editor.translators.create(this.name, i18n[this.editor.config.base.lang] || {});
 
         if (this.editor.config.video.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'video', this.editor.config.video.browser));

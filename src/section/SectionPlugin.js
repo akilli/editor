@@ -31,7 +31,7 @@ export default class SectionPlugin extends Plugin {
             sortable: true,
         });
         this.editor.observe(new SectionObserver(this.editor));
-        this.registerTranslator(i18n);
+        this.editor.translators.create(this.name, i18n[this.editor.config.base.lang] || {});
         this.editor.dialogs.set(new SectionDialog(this.editor));
         this.editor.commands.set(new SectionCommand(this.editor));
     }
