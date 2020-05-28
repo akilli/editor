@@ -410,17 +410,6 @@ export default class Editor {
     }
 
     /**
-     * Returns current selected widget or null
-     *
-     * @return {?HTMLElement}
-     */
-    getSelectedWidget() {
-        const el = this.getSelectedElement();
-
-        return el ? el.closest('editor-content > *') : null;
-    }
-
-    /**
      * Focus end of contents
      *
      * @param {HTMLElement} element
