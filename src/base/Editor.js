@@ -256,12 +256,11 @@ export default class Editor {
             throw 'Invalid argument';
         }
 
-        const name = element.tagName.toLowerCase();
         const editable = this.getSelectedEditable();
 
-        if (editable && editable instanceof HTMLSlotElement && this.tags.isAllowed(name, editable.parentElement.tagName.toLowerCase())) {
+        if (editable && editable instanceof HTMLSlotElement && this.tags.isAllowedElement(element, editable.parentElement)) {
             editable.insertAdjacentElement('beforebegin', element);
-        } else if (this.tags.isAllowed(name, this.content.tagName.toLowerCase())) {
+        } else if (this.tags.isAllowedElement(element, this.content)) {
             this.content.appendChild(element);
         } else {
             throw 'Invalid argument';
@@ -315,11 +314,7 @@ export default class Editor {
 
         range.deleteContents();
 
-        if (parent.isContentEditable
-            && this.tags.isAllowed(element.tagName.toLowerCase(), parent.tagName.toLowerCase())
-            && selText.trim()
-            && (!tag || !same)
-        ) {
+        if (parent.isContentEditable && this.tags.isAllowedElement(element, parent) && selText.trim() && (!tag || !same)) {
             element.textContent = selText;
             range.insertNode(element);
         } else {
