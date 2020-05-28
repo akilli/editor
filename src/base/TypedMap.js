@@ -10,9 +10,8 @@ export default class TypedMap extends Map {
      * Initializes a new typed map
      *
      * @param {V} type
-     * @param {Array.<V>} items
      */
-    constructor(type, items = []) {
+    constructor(type) {
         super();
 
         /**
@@ -21,9 +20,6 @@ export default class TypedMap extends Map {
          * @type {V}
          */
         this.type = type;
-
-        // Initialize items
-        items.forEach(item => this.set(item));
     }
 
     /**
