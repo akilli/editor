@@ -29,18 +29,18 @@ export default class Tag {
         this.group = group;
 
         /**
-         * Allowed groups of child elements
-         *
-         * @type {String[]}
-         */
-        this.children = Array.isArray(opts.children) ? opts.children : [];
-
-        /**
          * Allowed attributes
          *
          * @type {String[]}
          */
         this.attributes = Array.isArray(opts.attributes) ? opts.attributes : [];
+
+        /**
+         * Allowed groups of child elements
+         *
+         * @type {String[]}
+         */
+        this.children = Array.isArray(opts.children) ? opts.children : [];
 
         /**
          * Is element deletable
