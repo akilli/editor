@@ -17,7 +17,7 @@ export default class ItalicPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'i',
             group: 'format',
             children: ['text'],

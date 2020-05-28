@@ -5,31 +5,12 @@ import Tag from './Tag.js';
  */
 export default class TagManager {
     /**
-     * Initializes a new tag manager
+     * Registered tags
      *
-     * @param {Tag[]} tags
+     * @private
+     * @type {Map<String, Tag>}
      */
-    constructor(tags = []) {
-        /**
-         * Registered tags
-         *
-         * @type {Map<String, Tag>}
-         */
-        this.tags = new Map();
-
-        // Initialize tags
-        tags.forEach(tag => this.set(tag));
-    }
-
-    /**
-     * Indicates if tag with given name is registered
-     *
-     * @param {String} name
-     * @return {Boolean}
-     */
-    has(name) {
-        return this.tags.has(name);
-    }
+    map = new Map();
 
     /**
      * Returns registered tag with given name or null
@@ -38,33 +19,22 @@ export default class TagManager {
      * @return {?Tag}
      */
     get(name) {
-        return this.tags.get(name) || null;
+        return this.map.get(name) || null;
     }
 
     /**
-     * Adds or updates a tag
-     *
-     * @param {Tag} tag
-     */
-    set(tag) {
-        if (!(tag instanceof Tag)) {
-            throw 'Invalid argument';
-        }
-
-        this.tags.set(tag.name, tag);
-    }
-
-    /**
-     * Creates a tag from given object
+     * Adds or updates a tag from given object
      *
      * @param {Object} opts
      */
-    create(opts) {
+    set(opts) {
         if (!(opts instanceof Object)) {
             throw 'Invalid argument';
         }
 
-        this.set(new Tag(opts));
+        const tag = new Tag(opts);
+
+        this.map.set(tag.name, tag);
     }
 
     /**
@@ -100,7 +70,7 @@ export default class TagManager {
      * @return {String[]}
      */
     deletable() {
-        return Array.from(this.tags.values()).filter(tag => tag.deletable).map(tag => tag.name);
+        return Array.from(this.map.values()).filter(tag => tag.deletable).map(tag => tag.name);
     }
 
     /**
@@ -109,7 +79,7 @@ export default class TagManager {
      * @return {String[]}
      */
     editable() {
-        return Array.from(this.tags.values()).filter(tag => tag.editable).map(tag => tag.name);
+        return Array.from(this.map.values()).filter(tag => tag.editable).map(tag => tag.name);
     }
 
     /**
@@ -118,7 +88,7 @@ export default class TagManager {
      * @return {String[]}
      */
     empty() {
-        return Array.from(this.tags.values()).filter(tag => tag.empty).map(tag => tag.name);
+        return Array.from(this.map.values()).filter(tag => tag.empty).map(tag => tag.name);
     }
 
     /**
@@ -127,7 +97,7 @@ export default class TagManager {
      * @return {String[]}
      */
     navigable() {
-        return Array.from(this.tags.values()).filter(tag => tag.navigable).map(tag => tag.name);
+        return Array.from(this.map.values()).filter(tag => tag.navigable).map(tag => tag.name);
     }
 
     /**
@@ -136,7 +106,7 @@ export default class TagManager {
      * @return {String[]}
      */
     sortable() {
-        return Array.from(this.tags.values()).filter(tag => tag.sortable).map(tag => tag.name);
+        return Array.from(this.map.values()).filter(tag => tag.sortable).map(tag => tag.name);
     }
 
     /**
@@ -146,7 +116,9 @@ export default class TagManager {
      * @return {Boolean}
      */
     isDeletable(name) {
-        return this.has(name) && this.get(name).deletable;
+        const tag = this.get(name);
+
+        return tag && tag.deletable;
     }
 
     /**
@@ -156,7 +128,9 @@ export default class TagManager {
      * @return {Boolean}
      */
     isEditable(name) {
-        return this.has(name) && this.get(name).editable;
+        const tag = this.get(name);
+
+        return tag && tag.editable;
     }
 
     /**
@@ -166,7 +140,9 @@ export default class TagManager {
      * @return {Boolean}
      */
     isEmpty(name) {
-        return this.has(name) && this.get(name).empty;
+        const tag = this.get(name);
+
+        return tag && tag.empty;
     }
 
     /**
@@ -176,7 +152,9 @@ export default class TagManager {
      * @return {Boolean}
      */
     isNavigable(name) {
-        return this.has(name) && this.get(name).navigable;
+        const tag = this.get(name);
+
+        return tag && tag.navigable;
     }
 
     /**
@@ -186,7 +164,9 @@ export default class TagManager {
      * @return {Boolean}
      */
     isSortable(name) {
-        return this.has(name) && this.get(name).sortable;
+        const tag = this.get(name);
+
+        return tag && tag.sortable;
     }
 
     /**

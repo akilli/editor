@@ -22,7 +22,7 @@ export default class TablePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'table',
             group: 'table',
             children: ['tablesection'],
@@ -30,17 +30,17 @@ export default class TablePlugin extends Plugin {
             navigable: true,
             sortable: true,
         });
-        ['thead', 'tbody', 'tfoot'].forEach(item => this.editor.tags.create({
+        ['thead', 'tbody', 'tfoot'].forEach(item => this.editor.tags.set({
             name: item,
             group: 'tablesection',
             children: ['tablerow'],
         }));
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'tr',
             group: 'tablerow',
             children: ['tablecell'],
         });
-        ['td', 'th'].forEach(item => this.editor.tags.create({
+        ['td', 'th'].forEach(item => this.editor.tags.set({
             name: item,
             group: 'tablecell',
             children: ['break', 'format', 'text'],

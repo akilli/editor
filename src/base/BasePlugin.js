@@ -27,23 +27,23 @@ export default class BasePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'editor-content',
             group: 'root',
             children: ['figure', 'heading', 'list', 'paragraph', 'section'],
         });
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'slot',
             group: 'slot',
             editable: true,
             navigable: true,
         });
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'br',
             group: 'break',
             empty: true,
         });
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'figure',
             group: 'figure',
             attributes: ['class'],
@@ -52,7 +52,7 @@ export default class BasePlugin extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'figcaption',
             group: 'caption',
             children: ['format', 'text'],

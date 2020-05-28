@@ -21,7 +21,7 @@ export default class ImagePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'img',
             group: 'media',
             attributes: ['alt', 'height', 'src', 'width'],

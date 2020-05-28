@@ -22,7 +22,7 @@ export default class DetailsPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'details',
             group: 'section',
             children: ['figure', 'list', 'paragraph', 'summary'],
@@ -30,7 +30,7 @@ export default class DetailsPlugin extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'summary',
             group: 'summary',
             children: ['text'],

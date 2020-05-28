@@ -20,7 +20,7 @@ export default class LinkPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'a',
             group: 'format',
             attributes: ['href'],

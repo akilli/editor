@@ -17,7 +17,7 @@ export default class BoldPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'b',
             group: 'format',
             children: ['text'],

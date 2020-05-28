@@ -21,7 +21,7 @@ export default class VideoPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'video',
             group: 'media',
             attributes: ['controls', 'height', 'src', 'width'],
