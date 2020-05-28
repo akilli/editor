@@ -27,7 +27,7 @@ export default class SummaryObserver extends Observer {
         // Ensure summary is not empty
         const call = () => {
             if (!node.textContent.trim()) {
-                node.textContent = this.editor.translators.translate('details', 'Details');
+                node.textContent = this.editor.translator.get('details', 'Details');
             }
         };
         call();

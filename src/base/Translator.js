@@ -3,38 +3,37 @@
  */
 export default class Translator {
     /**
-     * Initializes a new translator with given name and translation data
+     * Translation map
+     *
+     * @private
+     * @type {Map<String, Object.<String, String>>}
+     */
+    map = new Map();
+
+    /**
+     * Translates string with given translator
+     *
+     * @param {String} name
+     * @param {String} key
+     * @return {String}
+     */
+    get(name, key) {
+        const data = this.map.get(name);
+
+        return data && data[key] ? data[key] : key;
+    }
+
+    /**
+     * Registers translation data under given name
      *
      * @param {String} name
      * @param {Object.<String, String>} data
      */
-    constructor(name, data) {
-        if (!name || typeof name !== 'string') {
+    set(name, data) {
+        if (!name || typeof name !== 'string' || !(data instanceof Object)) {
             throw 'Invalid argument';
         }
 
-        /**
-         * Name
-         *
-         * @type {String}
-         */
-        this.name = name;
-
-        /**
-         * Translation data
-         *
-         * @type {Object.<String, String>}
-         */
-        this.data = data;
-    }
-
-    /**
-     * Translates given string
-     *
-     * @param {String} key
-     * @return {String}
-     */
-    translate(key) {
-        return this.data[key] || key;
+        this.map.set(name, data);
     }
 }

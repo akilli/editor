@@ -28,7 +28,7 @@ export default class ImagePlugin extends Plugin {
             empty: true,
             navigable: true,
         });
-        this.editor.translators.create(this.name, i18n[this.editor.config.base.lang] || {});
+        this.registerTranslator(i18n);
 
         if (this.editor.config.image.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'image', this.editor.config.image.browser));

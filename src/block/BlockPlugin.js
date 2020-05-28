@@ -33,7 +33,7 @@ export default class BlockPlugin extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this.editor.translators.create(this.name, i18n[this.editor.config.base.lang] || {});
+        this.registerTranslator(i18n);
         this.editor.observe(new BlockObserver(this.editor));
 
         if (this.editor.config.block.browser) {

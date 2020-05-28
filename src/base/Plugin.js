@@ -41,6 +41,18 @@ export default class Plugin {
     }
 
     /**
+     * Registers a translator for this plugin
+     *
+     * @protected
+     * @param {Object.<String, Object.<String, String>>} i18n
+     */
+    registerTranslator(i18n) {
+        if (i18n[this.editor.config.base.lang]) {
+            this.editor.translator.set(this.name, i18n[this.editor.config.base.lang]);
+        }
+    }
+
+    /**
      * Registers a command with given parameters
      *
      * @protected
