@@ -510,20 +510,6 @@ export default class Editor {
     }
 
     /**
-     * Indicates if given element is the active element
-     *
-     * @param {HTMLElement} element
-     * @return {Boolean}
-     */
-    isActive(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
-        }
-
-        return this.document.activeElement === element;
-    }
-
-    /**
      * Returns relative or absolute URL depending on its origin
      *
      * @param {String} url

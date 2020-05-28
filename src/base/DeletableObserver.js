@@ -28,7 +28,7 @@ export default class DeletableObserver extends Observer {
      */
     keyboard(node) {
         node.addEventListener('keyup', ev => {
-            if (this.editor.isActive(node) && ev.ctrlKey && ev.key === 'Delete') {
+            if (ev.target === node && ev.ctrlKey && ev.key === 'Delete') {
                 node.parentElement.removeChild(node);
                 ev.preventDefault();
                 ev.cancelBubble = true;
