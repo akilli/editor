@@ -12,10 +12,12 @@ export default class DeletableObserver extends Observer {
         const selector = names.join(', ');
 
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && names.includes(node.tagName.toLowerCase())) {
-                this.keyboard(node);
-            } else if (node instanceof HTMLElement && selector) {
-                node.querySelectorAll(selector).forEach(item => this.keyboard(item))
+            if (node instanceof HTMLElement) {
+                if (names.includes(node.tagName.toLowerCase())) {
+                    this.keyboard(node);
+                }
+
+                node.querySelectorAll(selector).forEach(item => this.keyboard(item));
             }
         }));
     }
@@ -29,6 +31,10 @@ export default class DeletableObserver extends Observer {
     keyboard(node) {
         node.addEventListener('keyup', ev => {
             if (ev.target === node && ev.ctrlKey && ev.key === 'Delete') {
+                if (node.previousElementSibling) {
+                    this.editor.focusEnd(node.previousElementSibling);
+                }
+
                 node.parentElement.removeChild(node);
                 ev.preventDefault();
                 ev.cancelBubble = true;

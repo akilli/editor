@@ -82,45 +82,14 @@ export default class EditableObserver extends Observer {
      * @param {KeyboardEvent} ev
      */
     onKeydownBackspace(ev) {
-        let target;
-
-        if (ev.key === 'Backspace' && !ev.shiftKey && !ev.target.textContent && (target = this.getBackspaceTarget(ev.target))) {
-            if (target.previousElementSibling) {
-                this.editor.focusEnd(target.previousElementSibling);
+        if (ev.key === 'Backspace' && !ev.shiftKey && !ev.target.textContent && this.editor.tags.isElementDeletable(ev.target)) {
+            if (ev.target.previousElementSibling) {
+                this.editor.focusEnd(ev.target.previousElementSibling);
             }
 
-            target.parentElement.removeChild(target);
+            ev.target.parentElement.removeChild(ev.target);
             ev.preventDefault();
             ev.cancelBubble = true;
         }
-    }
-
-    /**
-     * Returns backspace target
-     *
-     * @private
-     * @param {HTMLElement} node
-     * @return {?HTMLElement}
-     */
-    getBackspaceTarget(node) {
-        const widget = this.editor.getSelectedWidget();
-
-        if (!widget) {
-            return null;
-        }
-
-        const name = node.tagName.toLowerCase();
-        const parentName = node.parentElement.tagName.toLowerCase();
-        const allowed = ['details', 'ol', 'ul'];
-
-        if (widget === node || name === 'blockquote' || allowed.includes(parentName) && node.matches(':only-child')) {
-            return widget;
-        }
-
-        if (allowed.includes(parentName) && !['slot', 'summary'].includes(name)) {
-            return node;
-        }
-
-        return null;
     }
 }
