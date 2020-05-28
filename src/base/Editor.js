@@ -18,7 +18,7 @@ export default class Editor {
      * @param {Object} [config = {}]
      */
     constructor(orig, config = {}) {
-        if (!(orig instanceof HTMLElement) || config && typeof config !== 'object') {
+        if (!(orig instanceof HTMLElement) || !(config instanceof Object)) {
             throw 'Invalid argument';
         }
 
