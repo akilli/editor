@@ -22,8 +22,22 @@ export default class DetailsPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({name: 'details', group: 'section', children: ['figure', 'list', 'paragraph', 'summary'], deletable: true, sortable: true});
-        this.editor.tags.create({name: 'summary', group: 'summary', children: ['text'], editable: true, enter: 'p'});
+        this.editor.tags.create({
+            name: 'details',
+            group: 'section',
+            children: ['figure', 'list', 'paragraph', 'summary'],
+            deletable: true,
+            navigable: true,
+            sortable: true,
+        });
+        this.editor.tags.create({
+            name: 'summary',
+            group: 'summary',
+            children: ['text'],
+            editable: true,
+            enter: 'p',
+            navigable: true,
+        });
         this.editor.observe(new DetailsObserver(this.editor));
         this.editor.observe(new SummaryObserver(this.editor));
         this.registerTranslator(i18n);

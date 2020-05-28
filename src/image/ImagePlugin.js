@@ -21,7 +21,13 @@ export default class ImagePlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({name: 'img', group: 'media', attributes: ['alt', 'height', 'src', 'width'], empty: true});
+        this.editor.tags.create({
+            name: 'img',
+            group: 'media',
+            attributes: ['alt', 'height', 'src', 'width'],
+            empty: true,
+            navigable: true,
+        });
         this.registerTranslator(i18n);
 
         if (this.editor.config.image.browser) {

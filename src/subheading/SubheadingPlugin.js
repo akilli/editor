@@ -17,7 +17,16 @@ export default class SubheadingPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({name: 'h3', group: 'heading', children: ['text'], deletable: true, editable: true, enter: 'p', sortable: true})
+        this.editor.tags.create({
+            name: 'h3',
+            group: 'heading',
+            children: ['text'],
+            deletable: true,
+            editable: true,
+            enter: 'p',
+            navigable: true,
+            sortable: true,
+        });
         this.registerCommand('subheading', 'h3');
     }
 }

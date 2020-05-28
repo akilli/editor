@@ -21,7 +21,15 @@ export default class DivPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({name: 'div', group: 'section', attributes: ['class'], children: ['block', 'figure'], deletable: true, sortable: true});
+        this.editor.tags.create({
+            name: 'div',
+            group: 'section',
+            attributes: ['class'],
+            children: ['block', 'figure'],
+            deletable: true,
+            navigable: true,
+            sortable: true,
+        });
         this.editor.observe(new DivObserver(this.editor));
         this.registerTranslator(i18n);
         this.editor.dialogs.set(new DivDialog(this.editor));

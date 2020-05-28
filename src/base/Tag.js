@@ -71,6 +71,13 @@ export default class Tag {
         this.enter = opts.enter && typeof opts.enter === 'string' ? opts.enter : null;
 
         /**
+         * Is element navigable
+         *
+         * @type {Boolean}
+         */
+        this.navigable = opts.navigable === true;
+
+        /**
          * Is element sortable
          *
          * @type {Boolean}
