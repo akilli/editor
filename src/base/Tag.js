@@ -3,6 +3,76 @@
  */
 export default class Tag {
     /**
+     * Name
+     *
+     * @type {String}
+     */
+    name;
+
+    /**
+     * Name of the tag group
+     *
+     * @type {String}
+     */
+    group;
+
+    /**
+     * Allowed attributes
+     *
+     * @type {String[]}
+     */
+    attributes = [];
+
+    /**
+     * Allowed groups of child elements
+     *
+     * @type {String[]}
+     */
+    children = [];
+
+    /**
+     * Is element deletable
+     *
+     * @type {Boolean}
+     */
+    deletable = false;
+
+    /**
+     * Is element editable
+     *
+     * @type {Boolean}
+     */
+    editable = false;
+
+    /**
+     * Is element empty or allowed to be empty
+     *
+     * @type {Boolean}
+     */
+    empty = false;
+
+    /**
+     * Element to insert when ENTER-key is pressed
+     *
+     * @type {?String}
+     */
+    enter = null;
+
+    /**
+     * Is element navigable
+     *
+     * @type {Boolean}
+     */
+    navigable = false;
+
+    /**
+     * Is element sortable
+     *
+     * @type {Boolean}
+     */
+    sortable = false;
+
+    /**
      * Defines a new tag
      *
      * @param {String} name
@@ -14,74 +84,10 @@ export default class Tag {
             throw 'Invalid argument';
         }
 
-        /**
-         * Name
-         *
-         * @type {String}
-         */
         this.name = name;
-
-        /**
-         * Name of the tag group
-         *
-         * @type {String}
-         */
         this.group = group;
-
-        /**
-         * Allowed attributes
-         *
-         * @type {String[]}
-         */
-        this.attributes = Array.isArray(opts.attributes) ? opts.attributes : [];
-
-        /**
-         * Allowed groups of child elements
-         *
-         * @type {String[]}
-         */
-        this.children = Array.isArray(opts.children) ? opts.children : [];
-
-        /**
-         * Is element deletable
-         *
-         * @type {Boolean}
-         */
-        this.deletable = opts.deletable === true;
-
-        /**
-         * Is element editable
-         *
-         * @type {Boolean}
-         */
-        this.editable = opts.editable === true;
-
-        /**
-         * Is element empty or allowed to be empty
-         *
-         * @type {Boolean}
-         */
-        this.empty = opts.empty === true;
-
-        /**
-         * Element to insert when ENTER-key is pressed
-         *
-         * @type {?String}
-         */
         this.enter = opts.enter && typeof opts.enter === 'string' ? opts.enter : null;
-
-        /**
-         * Is element navigable
-         *
-         * @type {Boolean}
-         */
-        this.navigable = opts.navigable === true;
-
-        /**
-         * Is element sortable
-         *
-         * @type {Boolean}
-         */
-        this.sortable = opts.sortable === true;
+        ['attributes', 'children'].forEach(prop => this[prop] = Array.isArray(opts[prop]) ? opts[prop] : []);
+        ['deletable', 'editable', 'empty', 'navigable', 'sortable'].forEach(prop => this[prop] = opts[prop] === true);
     }
 }
