@@ -458,7 +458,7 @@ export default class Editor {
             throw 'Invalid argument';
         }
 
-        const target = this.config.base.converters[element.tagName.toLowerCase()];
+        const target = this.config.base.filter[element.tagName.toLowerCase()];
 
         if (!target) {
             return element;

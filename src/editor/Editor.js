@@ -30,7 +30,7 @@ export default class Editor extends BaseEditor {
     static defaultConfig() {
         return {
             base: {
-                converters: {
+                filter: {
                     em: 'i',
                     strong: 'b',
                 },

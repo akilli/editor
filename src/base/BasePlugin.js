@@ -76,6 +76,6 @@ export default class BasePlugin extends Plugin {
      * @inheritDoc
      */
     static defaultConfig() {
-        return {browser: {}, converters: {}, lang: null, plugins: [], tags: [], toolbar: []};
+        return {browser: {}, filter: {}, lang: null, plugins: [], tags: [], toolbar: []};
     }
 }
