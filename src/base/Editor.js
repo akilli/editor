@@ -126,7 +126,7 @@ export default class Editor {
      * Initializes editor
      */
     init() {
-        if (this.plugins.size() === 0) {
+        if (this.plugins.size === 0) {
             this.initConfig();
             this.initPlugins();
             this.initToolbar();
