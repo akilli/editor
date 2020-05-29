@@ -1,6 +1,6 @@
 import CommandMap from './CommandMap.js';
 import DialogMap from './DialogMap.js';
-import FilterManager from './FilterManager.js';
+import FilterMap from './FilterMap.js';
 import Observer from './Observer.js';
 import PluginManager from './PluginManager.js';
 import TagManager from './TagManager.js';
@@ -96,9 +96,9 @@ export default class Editor {
         /**
          * Filters
          *
-         * @type {FilterManager}
+         * @type {FilterMap}
          */
-        this.filters = new FilterManager();
+        this.filters = new FilterMap();
 
         /**
          * Dialogs

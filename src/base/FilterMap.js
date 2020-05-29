@@ -1,16 +1,30 @@
 import Filter from './Filter.js';
 
 /**
- * Filter Manager
+ * Filter Map
+ *
+ * @extends {Map<String, Filter>}
  */
-export default class FilterManager {
+export default class FilterMap extends Map {
     /**
-     * Registered filters
+     * Initializes a new filter map
      *
-     * @private
-     * @type {Map<String, Filter>}
+     * @param {Filter[]} [filters = []]
      */
-    map = new Map();
+    constructor(filters = []) {
+        super();
+        filters.forEach(filter => this.set(filter));
+    }
+
+    /**
+     * Returns registered filter with given name or null
+     *
+     * @param {String} name
+     * @return {?Filter}
+     */
+    get(name) {
+        return super.get(name) || null;
+    }
 
     /**
      * Adds or updates a filter
@@ -22,7 +36,7 @@ export default class FilterManager {
             throw 'Invalid argument';
         }
 
-        this.map.set(filter.name, filter);
+        super.set(filter.name, filter);
     }
 
     /**
@@ -35,7 +49,7 @@ export default class FilterManager {
             throw 'Invalid argument';
         }
 
-        this.map.forEach(filter => {
+        this.forEach(filter => {
             element.normalize();
             filter.filter(element)
         });
