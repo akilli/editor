@@ -74,7 +74,7 @@ export default class BaseFilter extends Filter {
      * @return {HTMLElement}
      */
     convert(element) {
-        const target = this.config.base.filter[element.tagName.toLowerCase()];
+        const target = this.editor.config.base.filter[element.tagName.toLowerCase()];
 
         if (!target) {
             return element;
