@@ -16,10 +16,10 @@ export default class BrowserDialog extends Dialog {
      *
      * @type {Object.<String, String>}
      */
-    opts = {
+    opts = Object.assign({
         alwaysRaised: 'yes',
         dependent: 'yes',
-        height: null,
+        height: `${this.editor.window.screen.height}`,
         location: 'no',
         menubar: 'no',
         minimizable: 'no',
@@ -27,8 +27,8 @@ export default class BrowserDialog extends Dialog {
         resizable: 'yes',
         scrollbars: 'yes',
         toolbar: 'no',
-        width: null,
-    };
+        width: `${this.editor.window.screen.width}`,
+    }, this.editor.config.base.browser);
 
     /**
      * Initializes a new editor browser dialog
@@ -45,9 +45,6 @@ export default class BrowserDialog extends Dialog {
         }
 
         this.url = url;
-        this.opts.height = `${this.editor.window.screen.height}`;
-        this.opts.width = `${this.editor.window.screen.width}`;
-        Object.assign(this.opts, this.editor.config.base.browser);
     }
 
     /**
