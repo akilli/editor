@@ -43,20 +43,14 @@ export default class Command {
          * @type {?Tag}
          */
         this.tag = this.editor.tags.get(this.tagName);
-
-        /**
-         * Dialog
-         *
-         * @type {?Dialog}
-         */
-        this.dialog = this.editor.dialogs.get(this.name);
     }
 
     /**
      * Executes the command
      */
     execute() {
-        this.dialog ? this.dialog.open(attributes => this.insert(attributes), this.selectedAttributes()) : this.insert();
+        const dialog = this.editor.dialogs.get(this.name);
+        dialog ? dialog.open(attributes => this.insert(attributes), this.selectedAttributes()) : this.insert();
     }
 
      /**
