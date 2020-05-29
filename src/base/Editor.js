@@ -2,10 +2,9 @@ import CommandManager from './CommandManager.js';
 import DialogManager from './DialogManager.js';
 import FilterManager from './FilterManager.js';
 import Observer from './Observer.js';
-import Plugin from './Plugin.js';
+import PluginManager from './PluginManager.js';
 import TagManager from './TagManager.js';
 import Translator from './Translator.js';
-import TypedMap from './TypedMap.js';
 
 /**
  * Base Editor
@@ -118,19 +117,27 @@ export default class Editor {
         /**
          * Plugins
          *
-         * @type {TypedMap<String, Plugin>}
+         * @type {PluginManager}
          */
-        this.plugins = new TypedMap(Plugin);
+        this.plugins = new PluginManager();
+
+        /**
+         * Initialized state
+         *
+         * @type {Boolean}
+         */
+        this.initialized = false;
     }
 
     /**
      * Initializes editor
      */
     init() {
-        if (this.plugins.size === 0) {
+        if (!this.initialized) {
             this.initConfig();
             this.initPlugins();
             this.initToolbar();
+            this.initialized = true;
         }
 
         this.initContent();
@@ -164,7 +171,7 @@ export default class Editor {
 
             this.plugins.set(plugin);
         });
-        this.plugins.forEach(item => item.init());
+        this.plugins.init();
     }
 
     /**
