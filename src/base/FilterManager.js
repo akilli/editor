@@ -5,7 +5,7 @@ import Filter from './Filter.js';
  */
 export default class FilterManager {
     /**
-     * Registered tags
+     * Registered filters
      *
      * @private
      * @type {Map<String, Filter>}
