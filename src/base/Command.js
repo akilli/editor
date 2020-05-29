@@ -57,7 +57,7 @@ export default class Command {
 
         if (tag) {
             Object.keys(attributes).forEach(item => tag.attributes.includes(item) || delete attributes[item]);
-            const element = this.editor.createElement(this.tagName, {attributes: attributes});
+            const element = this.editor.createElement(tag.name, {attributes: attributes});
             tag.group === 'format' ? this.editor.format(element) : this.editor.insert(element);
         }
     }
