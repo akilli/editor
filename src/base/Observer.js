@@ -5,6 +5,13 @@ import Editor from './Editor.js';
  */
 export default class Observer {
     /**
+     * Editor
+     *
+     * @type {Editor}
+     */
+    editor;
+
+    /**
      * Initializes a new editor observer
      *
      * @param {Editor} editor
@@ -14,11 +21,6 @@ export default class Observer {
             throw 'Invalid argument';
         }
 
-        /**
-         * Editor
-         *
-         * @type {Editor}
-         */
         this.editor = editor;
     }
 
