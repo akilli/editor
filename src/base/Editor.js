@@ -11,6 +11,104 @@ import TagMap from './TagMap.js';
  */
 export default class Editor {
     /**
+     * Corresponding DOM element of the source
+     *
+     * @type {HTMLElement}
+     */
+    orig;
+
+    /**
+     * Correspondig DOM Document
+     *
+     * @type {Document}
+     */
+    document;
+
+    /**
+     * Corresponding Window object
+     *
+     * @type {Window}
+     */
+    window;
+
+    /**
+     * Window origin
+     *
+     * @type {String}
+     */
+    origin;
+
+    /**
+     * Corresponding DOM element of the editor
+     *
+     * @type {HTMLElement}
+     */
+    element;
+
+    /**
+     * Corresponding DOM element of the main toolbar
+     *
+     * @type {HTMLElement}
+     */
+    toolbar;
+
+    /**
+     * Corresponding DOM element of the editor content
+     *
+     * @type {HTMLElement}
+     */
+    content;
+
+    /**
+     * Configuration
+     *
+     * @type {Object}
+     */
+    config = {};
+
+    /**
+     * I18n
+     *
+     * @type {I18nMap}
+     */
+    i18n = new I18nMap();
+
+    /**
+     * Tags
+     *
+     * @type {TagMap}
+     */
+    tags = new TagMap();
+
+    /**
+     * Filters
+     *
+     * @type {FilterMap}
+     */
+    filters = new FilterMap();
+
+    /**
+     * Dialogs
+     *
+     * @type {DialogMap}
+     */
+    dialogs = new DialogMap();
+
+    /**
+     * Commands
+     *
+     * @type {CommandMap}
+     */
+    commands = new CommandMap();
+
+    /**
+     * Plugins
+     *
+     * @type {PluginMap}
+     */
+    plugins = new PluginMap();
+
+    /**
      * Creates a new instance of editor with given configuration
      *
      * @param {HTMLElement} orig
@@ -21,105 +119,16 @@ export default class Editor {
             throw 'Invalid argument';
         }
 
-        /**
-         * Corresponding DOM element of the source
-         *
-         * @type {HTMLElement}
-         */
         this.orig = orig;
-
-        /**
-         * Correspondig DOM Document
-         *
-         * @type {Document}
-         */
         this.document = this.orig.ownerDocument;
-
-        /**
-         * Corresponding Window object
-         *
-         * @type {Window}
-         */
         this.window = this.document.defaultView;
-
-        /**
-         * Window origin
-         *
-         * @type {String}
-         */
         this.origin = this.window.origin || this.window.location.origin;
-
-        /**
-         * Corresponding DOM element of the editor
-         *
-         * @type {HTMLElement}
-         */
-        this.element = this.createElement('akilli-editor');
-
-        /**
-         * Corresponding DOM element of the main toolbar
-         *
-         * @type {HTMLElement}
-         */
         this.toolbar = this.createElement('editor-toolbar', {attributes: {role: 'toolbar'}});
-        this.element.appendChild(this.toolbar);
-
-        /**
-         * Corresponding DOM element of the editor content
-         *
-         * @type {HTMLElement}
-         */
         this.content = this.createElement('editor-content');
+        this.element = this.createElement('akilli-editor');
+        this.element.appendChild(this.toolbar);
         this.element.appendChild(this.content);
-
-        /**
-         * Configuration
-         *
-         * @type {Object}
-         */
         this.config = config;
-
-        /**
-         * I18n
-         *
-         * @type {I18nMap}
-         */
-        this.i18n = new I18nMap();
-
-        /**
-         * Tags
-         *
-         * @type {TagMap}
-         */
-        this.tags = new TagMap();
-
-        /**
-         * Filters
-         *
-         * @type {FilterMap}
-         */
-        this.filters = new FilterMap();
-
-        /**
-         * Dialogs
-         *
-         * @type {DialogMap}
-         */
-        this.dialogs = new DialogMap();
-
-        /**
-         * Commands
-         *
-         * @type {CommandMap}
-         */
-        this.commands = new CommandMap();
-
-        /**
-         * Plugins
-         *
-         * @type {PluginMap}
-         */
-        this.plugins = new PluginMap();
     }
 
     /**
