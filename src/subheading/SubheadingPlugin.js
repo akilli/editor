@@ -17,7 +17,7 @@ export default class SubheadingPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.set({
+        this.editor.tags.create({
             name: 'h3',
             group: 'heading',
             children: ['text'],

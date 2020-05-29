@@ -3,7 +3,7 @@ import DialogMap from './DialogMap.js';
 import FilterMap from './FilterMap.js';
 import Observer from './Observer.js';
 import PluginMap from './PluginMap.js';
-import TagManager from './TagManager.js';
+import TagMap from './TagMap.js';
 import Translator from './Translator.js';
 
 /**
@@ -89,9 +89,9 @@ export default class Editor {
         /**
          * Tags
          *
-         * @type {TagManager}
+         * @type {TagMap}
          */
-        this.tags = new TagManager();
+        this.tags = new TagMap();
 
         /**
          * Filters

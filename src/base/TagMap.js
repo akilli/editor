@@ -1,16 +1,20 @@
 import Tag from './Tag.js';
 
 /**
- * Tag Manager
+ * Tag Map
+ *
+ * @extends {Map<String, Tag>}
  */
-export default class TagManager {
+export default class  extends Map {
     /**
-     * Registered tags
+     * Initializes a new tag map
      *
-     * @private
-     * @type {Map<String, Tag>}
+     * @param {Tag[]} [tags = []]
      */
-    map = new Map();
+    constructor(tags = []) {
+        super();
+        tags.forEach(tag => this.set(tag));
+    }
 
     /**
      * Returns registered tag with given name or null
@@ -19,21 +23,29 @@ export default class TagManager {
      * @return {?Tag}
      */
     get(name) {
-        return this.map.get(name) || null;
+        return super.get(name) || null;
     }
 
     /**
-     * Adds or updates a tag from given object
+     * Adds or updates a tag
      *
-     * @param {Object} opts
+     * @param {Tag} tag
      */
-    set(opts) {
-        if (!(opts instanceof Object)) {
+    set(tag) {
+        if (!(tag instanceof Tag)) {
             throw 'Invalid argument';
         }
 
-        const tag = new Tag(opts);
-        this.map.set(tag.name, tag);
+        super.set(tag.name, tag);
+    }
+
+    /**
+     * Creates a tag from given object
+     *
+     * @param {Object} opts
+     */
+    create(opts) {
+        this.set(new Tag(opts));
     }
 
     /**
@@ -81,7 +93,7 @@ export default class TagManager {
      * @return {String[]}
      */
     deletable() {
-        return Array.from(this.map.values()).filter(tag => tag.deletable).map(tag => tag.name);
+        return Array.from(this.values()).filter(tag => tag.deletable).map(tag => tag.name);
     }
 
     /**
@@ -90,7 +102,7 @@ export default class TagManager {
      * @return {String[]}
      */
     editable() {
-        return Array.from(this.map.values()).filter(tag => tag.editable).map(tag => tag.name);
+        return Array.from(this.values()).filter(tag => tag.editable).map(tag => tag.name);
     }
 
     /**
@@ -99,7 +111,7 @@ export default class TagManager {
      * @return {String[]}
      */
     empty() {
-        return Array.from(this.map.values()).filter(tag => tag.empty).map(tag => tag.name);
+        return Array.from(this.values()).filter(tag => tag.empty).map(tag => tag.name);
     }
 
     /**
@@ -108,7 +120,7 @@ export default class TagManager {
      * @return {String[]}
      */
     navigable() {
-        return Array.from(this.map.values()).filter(tag => tag.navigable).map(tag => tag.name);
+        return Array.from(this.values()).filter(tag => tag.navigable).map(tag => tag.name);
     }
 
     /**
@@ -117,7 +129,7 @@ export default class TagManager {
      * @return {String[]}
      */
     sortable() {
-        return Array.from(this.map.values()).filter(tag => tag.sortable).map(tag => tag.name);
+        return Array.from(this.values()).filter(tag => tag.sortable).map(tag => tag.name);
     }
 
     /**

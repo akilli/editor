@@ -17,7 +17,7 @@ export default class HeadingPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.set({
+        this.editor.tags.create({
             name: 'h2',
             group: 'heading',
             children: ['text'],

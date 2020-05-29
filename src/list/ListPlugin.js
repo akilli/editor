@@ -20,7 +20,7 @@ export default class ListPlugin extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.set({
+        this.editor.tags.create({
             name: 'ul',
             group: 'list',
             children: ['listitem'],
@@ -28,7 +28,7 @@ export default class ListPlugin extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this.editor.tags.set({
+        this.editor.tags.create({
             name: 'ol',
             group: 'list',
             children: ['listitem'],
@@ -36,7 +36,7 @@ export default class ListPlugin extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this.editor.tags.set({
+        this.editor.tags.create({
             name: 'li',
             group: 'listitem',
             children: ['break', 'format', 'text'],
