@@ -22,7 +22,7 @@ export default class BaseFilter extends Filter {
 
         Array.from(element.childNodes).forEach(child => {
             if (child instanceof HTMLElement) {
-                child = this.editor.convert(child);
+                child = this.convert(child);
                 const childName = child.tagName.toLowerCase();
                 const tag = this.editor.tags.get(childName);
                 const text = child.textContent.trim();
@@ -71,5 +71,25 @@ export default class BaseFilter extends Filter {
         } else{
             element.innerHTML = element.innerHTML.replace(/\s*(<br\s*\/?>\s*){2,}/gi, '<br>');
         }
+    }
+
+    /**
+     * Converts element
+     *
+     * @private
+     * @param {HTMLElement} element
+     * @return {HTMLElement}
+     */
+    convert(element) {
+        const target = this.config.base.filter[element.tagName.toLowerCase()];
+
+        if (!target) {
+            return element;
+        }
+
+        const newNode = this.editor.createElement(target, {html: element.innerHTML})
+        element.parentElement.replaceChild(newNode, element);
+
+        return newNode;
     }
 }

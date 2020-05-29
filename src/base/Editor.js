@@ -447,30 +447,6 @@ export default class Editor {
     }
 
     /**
-     * Converts element
-     *
-     * @param {HTMLElement} element
-     *
-     * @return {HTMLElement}
-     */
-    convert(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
-        }
-
-        const target = this.config.base.filter[element.tagName.toLowerCase()];
-
-        if (!target) {
-            return element;
-        }
-
-        const newNode = this.createElement(target, {html: element.innerHTML})
-        element.parentElement.replaceChild(newNode, element);
-
-        return newNode;
-    }
-
-    /**
      * Indicates if given element is the editor content element
      *
      * @param {HTMLElement} element
