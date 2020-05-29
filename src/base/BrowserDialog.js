@@ -5,6 +5,32 @@ import Dialog from './Dialog.js';
  */
 export default class BrowserDialog extends Dialog {
     /**
+     * Browser URL
+     *
+     * @type {String}
+     */
+    url;
+
+    /**
+     * Browser window configuration
+     *
+     * @type {Object.<String, String>}
+     */
+    opts = {
+        alwaysRaised: 'yes',
+        dependent: 'yes',
+        height: null,
+        location: 'no',
+        menubar: 'no',
+        minimizable: 'no',
+        modal: 'yes',
+        resizable: 'yes',
+        scrollbars: 'yes',
+        toolbar: 'no',
+        width: null,
+    };
+
+    /**
      * Initializes a new editor browser dialog
      *
      * @param {Editor} editor
@@ -18,31 +44,10 @@ export default class BrowserDialog extends Dialog {
             throw 'Invalid argument';
         }
 
-        /**
-         * Browser URL
-         *
-         * @type {String}
-         */
         this.url = url;
-
-        /**
-         * Browser window configuration
-         *
-         * @type {Object.<String, String>}
-         */
-        this.opts = Object.assign({
-            alwaysRaised: 'yes',
-            dependent: 'yes',
-            height: `${this.editor.window.screen.height}`,
-            location: 'no',
-            menubar: 'no',
-            minimizable: 'no',
-            modal: 'yes',
-            resizable: 'yes',
-            scrollbars: 'yes',
-            toolbar: 'no',
-            width: `${this.editor.window.screen.width}`,
-        }, this.editor.config.browser);
+        this.opts.height = `${this.editor.window.screen.height}`;
+        this.opts.width = `${this.editor.window.screen.width}`;
+        Object.assign(this.opts, this.editor.config.base.browser);
     }
 
     /**
