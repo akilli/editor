@@ -5,6 +5,27 @@ import Editor from './Editor.js';
  */
 export default class Command {
     /**
+     * Editor
+     *
+     * @type {Editor}
+     */
+    editor;
+
+    /**
+     * Name
+     *
+     * @type {String}
+     */
+    name;
+
+    /**
+     * Name of the tag to insert
+     *
+     * @type {?String}
+     */
+    tagName = null;
+
+    /**
      * Initializes a new editor command optionally with given tag name
      *
      * @param {Editor} editor
@@ -16,26 +37,9 @@ export default class Command {
             throw 'Invalid argument';
         }
 
-        /**
-         * Editor
-         *
-         * @type {Editor}
-         */
         this.editor = editor;
-
-        /**
-         * Name
-         *
-         * @type {String}
-         */
         this.name = name;
-
-        /**
-         * Name of the tag to insert
-         *
-         * @type {?String}
-         */
-        this.tagName = tagName ? tagName.toLowerCase() : null;
+        this.tagName = tagName;
     }
 
     /**
