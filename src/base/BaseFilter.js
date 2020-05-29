@@ -63,14 +63,7 @@ export default class BaseFilter extends Filter {
             }
         });
 
-        // Filter linebreaks
-        element.innerHTML = element.innerHTML.replace(/^\s*(<br\s*\/?>\s*)+/gi, '').replace(/\s*(<br\s*\/?>\s*)+$/gi, '');
-
-        if (element instanceof HTMLParagraphElement) {
-            element.outerHTML = element.outerHTML.replace(/\s*(<br\s*\/?>\s*){2,}/gi, '</p><p>');
-        } else{
-            element.innerHTML = element.innerHTML.replace(/\s*(<br\s*\/?>\s*){2,}/gi, '<br>');
-        }
+        this.linebreaks(element);
     }
 
     /**
@@ -91,5 +84,21 @@ export default class BaseFilter extends Filter {
         element.parentElement.replaceChild(newNode, element);
 
         return newNode;
+    }
+
+    /**
+     * Filters linebreaks
+     *
+     * @private
+     * @param {HTMLElement} element
+     */
+    linebreaks(element) {
+        element.innerHTML = element.innerHTML.replace(/^\s*(<br\s*\/?>\s*)+/gi, '').replace(/\s*(<br\s*\/?>\s*)+$/gi, '');
+
+        if (element instanceof HTMLParagraphElement) {
+            element.outerHTML = element.outerHTML.replace(/\s*(<br\s*\/?>\s*){2,}/gi, '</p><p>');
+        } else{
+            element.innerHTML = element.innerHTML.replace(/\s*(<br\s*\/?>\s*){2,}/gi, '<br>');
+        }
     }
 }
