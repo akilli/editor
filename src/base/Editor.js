@@ -1,10 +1,10 @@
 import CommandMap from './CommandMap.js';
 import DialogMap from './DialogMap.js';
 import FilterMap from './FilterMap.js';
+import I18nMap from './I18nMap.js';
 import Observer from './Observer.js';
 import PluginMap from './PluginMap.js';
 import TagMap from './TagMap.js';
-import Translator from './Translator.js';
 
 /**
  * Base Editor
@@ -80,11 +80,11 @@ export default class Editor {
         this.config = config;
 
         /**
-         * Translator
+         * I18n
          *
-         * @type {Translator}
+         * @type {I18nMap}
          */
-        this.translator = new Translator();
+        this.i18n = new I18nMap();
 
         /**
          * Tags

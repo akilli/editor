@@ -48,7 +48,7 @@ export default class Plugin {
      */
     registerTranslator(i18n) {
         if (i18n[this.editor.config.base.lang]) {
-            this.editor.translator.set(this.name, i18n[this.editor.config.base.lang]);
+            this.editor.i18n.set(this.name, i18n[this.editor.config.base.lang]);
         }
     }
 

@@ -109,7 +109,7 @@ export default class Dialog {
      * @return {String}
      */
     t(key) {
-        return this.editor.translator.get(this.name, key);
+        return this.editor.i18n.translate(this.name, key);
     }
 
     /**
