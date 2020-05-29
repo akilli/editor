@@ -1,17 +1,11 @@
 import Dialog from './Dialog.js';
 
 /**
- * Dialog Manager
+ * Dialog Map
+ *
+ * @extends {Map<String, Dialog>}
  */
-export default class DialogManager {
-    /**
-     * Registered dialogs
-     *
-     * @private
-     * @type {Map<String, Dialog>}
-     */
-    map = new Map();
-
+export default class DialogMap extends Map {
     /**
      * Returns registered dialog with given name or null
      *
@@ -19,7 +13,7 @@ export default class DialogManager {
      * @return {?Dialog}
      */
     get(name) {
-        return this.map.get(name) || null;
+        return super.get(name) || null;
     }
 
     /**
@@ -32,6 +26,6 @@ export default class DialogManager {
             throw 'Invalid argument';
         }
 
-        this.map.set(dialog.name, dialog);
+        super.set(dialog.name, dialog);
     }
 }

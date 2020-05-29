@@ -1,5 +1,5 @@
 import CommandManager from './CommandManager.js';
-import DialogManager from './DialogManager.js';
+import DialogMap from './DialogMap.js';
 import FilterManager from './FilterManager.js';
 import Observer from './Observer.js';
 import PluginManager from './PluginManager.js';
@@ -103,9 +103,9 @@ export default class Editor {
         /**
          * Dialogs
          *
-         * @type {DialogManager}
+         * @type {DialogMap}
          */
-        this.dialogs = new DialogManager();
+        this.dialogs = new DialogMap();
 
         /**
          * Commands
