@@ -7,6 +7,16 @@ import Dialog from './Dialog.js';
  */
 export default class DialogMap extends Map {
     /**
+     * Initializes a new dialog map
+     *
+     * @param {Dialog[]} [items = []]
+     */
+    constructor(items = []) {
+        super();
+        items.forEach(item => this.set(item));
+    }
+
+    /**
      * Returns registered dialog with given name or null
      *
      * @param {String} name
