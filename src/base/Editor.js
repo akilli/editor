@@ -1,4 +1,4 @@
-import Command from './Command.js';
+import CommandManager from './CommandManager.js';
 import DialogManager from './DialogManager.js';
 import FilterManager from './FilterManager.js';
 import Observer from './Observer.js';
@@ -111,9 +111,9 @@ export default class Editor {
         /**
          * Commands
          *
-         * @type {TypedMap<String, Command>}
+         * @type {CommandManager}
          */
-        this.commands = new TypedMap(Command);
+        this.commands = new CommandManager();
 
         /**
          * Plugins
@@ -173,9 +173,9 @@ export default class Editor {
      * @private
      */
     initToolbar() {
-        this.config.base.toolbar.forEach(cmd => this.toolbar.appendChild(this.createElement('button', {
-            attributes: {type: 'button', 'data-command': cmd, title: cmd},
-            html: cmd,
+        this.config.base.toolbar.forEach(item => this.toolbar.appendChild(this.createElement('button', {
+            attributes: {type: 'button', 'data-command': item, title: item},
+            html: item,
         })));
     }
 
