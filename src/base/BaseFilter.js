@@ -45,7 +45,7 @@ export default class BaseFilter extends Filter {
                     }
                 } else if (isRoot && text && this.editor.tags.isAllowed('p', name)) {
                     element.replaceChild(this.editor.createElement('p', {html: text}), child);
-                } else if (text && this.editor.tags.isAllowed('text', name)) {
+                } else if (text && this.editor.tags.isAllowedText(name)) {
                     element.replaceChild(this.editor.createText(text), child);
                 } else {
                     element.removeChild(child);
@@ -55,7 +55,7 @@ export default class BaseFilter extends Filter {
 
                 if (isRoot && text && this.editor.tags.isAllowed('p', name)) {
                     element.replaceChild(this.editor.createElement('p', {html: text}), child);
-                } else if (!text || !this.editor.tags.isAllowed('text', name)) {
+                } else if (!text || !this.editor.tags.isAllowedText(name)) {
                     element.removeChild(child);
                 }
             } else {

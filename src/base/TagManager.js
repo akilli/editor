@@ -33,7 +33,6 @@ export default class TagManager {
         }
 
         const tag = new Tag(opts);
-
         this.map.set(tag.name, tag);
     }
 
@@ -62,6 +61,18 @@ export default class TagManager {
         return element instanceof HTMLElement
             && parent instanceof HTMLElement
             && this.isAllowed(element.tagName.toLowerCase(), parent.tagName.toLowerCase());
+    }
+
+    /**
+     * Checks if text is allowed inside given parent tag
+     *
+     * @param {String} parentName
+     * @return {Boolean}
+     */
+    isAllowedText(parentName) {
+        const parentTag = this.get(parentName);
+
+        return parentTag && parentTag.children.includes('text');
     }
 
     /**
