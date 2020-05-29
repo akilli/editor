@@ -49,7 +49,7 @@ export default class Command {
          *
          * @type {?Dialog}
          */
-        this.dialog = this.editor.dialogs.get(this.name) || null;
+        this.dialog = this.editor.dialogs.get(this.name);
     }
 
     /**
