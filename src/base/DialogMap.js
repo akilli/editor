@@ -9,11 +9,11 @@ export default class DialogMap extends Map {
     /**
      * Initializes a new dialog map
      *
-     * @param {Dialog[]} [items = []]
+     * @param {Dialog[]} [dialogs = []]
      */
-    constructor(items = []) {
+    constructor(dialogs = []) {
         super();
-        items.forEach(item => this.set(item));
+        dialogs.forEach(dialog => this.set(dialog));
     }
 
     /**

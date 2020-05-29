@@ -9,11 +9,11 @@ export default class CommandMap extends Map {
     /**
      * Initializes a new command map
      *
-     * @param {Command[]} [items = []]
+     * @param {Command[]} [commands = []]
      */
-    constructor(items = []) {
+    constructor(commands = []) {
         super();
-        items.forEach(item => this.set(item));
+        commands.forEach(command => this.set(command));
     }
 
     /**
