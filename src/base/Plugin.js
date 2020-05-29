@@ -6,6 +6,20 @@ import Editor from './Editor.js';
  */
 export default class Plugin {
     /**
+     * Editor
+     *
+     * @type {Editor}
+     */
+    editor;
+
+    /**
+     * Name
+     *
+     * @type {String}
+     */
+    name;
+
+    /**
      * Initializes a new plugin with given name
      *
      * @param {Editor} editor
@@ -16,18 +30,7 @@ export default class Plugin {
             throw 'Invalid argument';
         }
 
-        /**
-         * Editor
-         *
-         * @type {Editor}
-         */
         this.editor = editor;
-
-        /**
-         * Name
-         *
-         * @type {String}
-         */
         this.name = name;
     }
 
