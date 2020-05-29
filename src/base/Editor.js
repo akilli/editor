@@ -2,7 +2,7 @@ import CommandMap from './CommandMap.js';
 import DialogMap from './DialogMap.js';
 import FilterMap from './FilterMap.js';
 import Observer from './Observer.js';
-import PluginManager from './PluginManager.js';
+import PluginMap from './PluginMap.js';
 import TagManager from './TagManager.js';
 import Translator from './Translator.js';
 
@@ -117,27 +117,19 @@ export default class Editor {
         /**
          * Plugins
          *
-         * @type {PluginManager}
+         * @type {PluginMap}
          */
-        this.plugins = new PluginManager();
-
-        /**
-         * Initialized state
-         *
-         * @type {Boolean}
-         */
-        this.initialized = false;
+        this.plugins = new PluginMap();
     }
 
     /**
      * Initializes editor
      */
     init() {
-        if (!this.initialized) {
+        if (this.plugins.size() === 0) {
             this.initConfig();
             this.initPlugins();
             this.initToolbar();
-            this.initialized = true;
         }
 
         this.initContent();
