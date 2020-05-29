@@ -1,6 +1,6 @@
 import Command from './Command.js';
 import Dialog from './Dialog.js';
-import Filter from './Filter.js';
+import FilterManager from './FilterManager.js';
 import Observer from './Observer.js';
 import Plugin from './Plugin.js';
 import TagManager from './TagManager.js';
@@ -97,9 +97,9 @@ export default class Editor {
         /**
          * Filters
          *
-         * @type {TypedMap<String, Filter>}
+         * @type {FilterManager}
          */
-        this.filters = new TypedMap(Filter);
+        this.filters = new FilterManager();
 
         /**
          * Dialogs
@@ -218,7 +218,7 @@ export default class Editor {
      */
     getHtml() {
         const content = this.content.cloneNode(true);
-        this.filter(content);
+        this.filters.filter(content);
 
         return content.innerHTML;
     }
@@ -231,7 +231,7 @@ export default class Editor {
     setHtml(html) {
         const content = this.content.cloneNode(false);
         content.innerHTML = html;
-        this.filter(content);
+        this.filters.filter(content);
         this.content.innerHTML = content.innerHTML;
     }
 
@@ -437,22 +437,6 @@ export default class Editor {
 
         const mutation = new MutationObserver(ev => observer.observe(ev));
         mutation.observe(target || this.content, config);
-    }
-
-    /**
-     * Filters element
-     *
-     * @param {HTMLElement} element
-     */
-    filter(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
-        }
-
-        this.filters.forEach(item => {
-            element.normalize();
-            item.filter(element)
-        });
     }
 
     /**

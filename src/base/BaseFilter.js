@@ -35,7 +35,7 @@ export default class BaseFilter extends Filter {
                     });
 
                     if (child.hasChildNodes()) {
-                        this.editor.filter(child);
+                        this.editor.filters.filter(child);
                     }
 
                     if (!child.hasChildNodes() && !tag.empty) {
