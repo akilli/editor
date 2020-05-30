@@ -32,6 +32,6 @@
     "@rollup/plugin-url": "^5.0.0",
     "rollup": "^2.11.2",
     "rollup-plugin-css-porter": "^1.0.2",
-    "rollup-plugin-terser": "^6.1.0"
+    "rollup-plugin-esbuild": "^1.4.1"
   }
 }

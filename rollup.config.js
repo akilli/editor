@@ -1,6 +1,6 @@
 import css from 'rollup-plugin-css-porter';
+import esbuild from 'rollup-plugin-esbuild';
 import url from '@rollup/plugin-url';
-import {terser} from 'rollup-plugin-terser';
 
 export default {
     input: 'bundle.js',
@@ -8,7 +8,6 @@ export default {
         file: 'dist/editor.js',
         format: 'esm',
         preferConst: true,
-        plugins: [terser()],
     },
     plugins: [
         css({
@@ -20,6 +19,10 @@ export default {
             fileName: '[name][extname]',
             include: ['**/*.woff2'],
             limit: 0,
-        })
+        }),
+        esbuild({
+            minify: true,
+            target: 'es2020',
+        }),
     ]
 };
