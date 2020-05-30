@@ -5,7 +5,7 @@ import Tag from './Tag.js';
  *
  * @extends {Map<String, Tag>}
  */
-export default class  extends Map {
+export default class TagMap extends Map {
     /**
      * Initializes a new tag map
      *
@@ -56,10 +56,7 @@ export default class  extends Map {
      * @return {Boolean}
      */
     isAllowed(name, parentName) {
-        const tag = this.get(name);
-        const parentTag = this.get(parentName);
-
-        return tag && parentTag && parentTag.children.includes(tag.group);
+        return this.get(parentName)?.children.includes(this.get(name)?.group);
     }
 
     /**
@@ -82,9 +79,7 @@ export default class  extends Map {
      * @return {Boolean}
      */
     isAllowedText(parentName) {
-        const parentTag = this.get(parentName);
-
-        return parentTag && parentTag.children.includes('text');
+        return this.get(parentName)?.children.includes('text');
     }
 
     /**
@@ -139,9 +134,7 @@ export default class  extends Map {
      * @return {Boolean}
      */
     isDeletable(name) {
-        const tag = this.get(name);
-
-        return tag && tag.deletable;
+        return !!this.get(name)?.deletable;
     }
 
     /**
@@ -151,9 +144,7 @@ export default class  extends Map {
      * @return {Boolean}
      */
     isEditable(name) {
-        const tag = this.get(name);
-
-        return tag && tag.editable;
+        return !!this.get(name)?.editable;
     }
 
     /**
@@ -163,9 +154,7 @@ export default class  extends Map {
      * @return {Boolean}
      */
     isEmpty(name) {
-        const tag = this.get(name);
-
-        return tag && tag.empty;
+        return !!this.get(name)?.empty;
     }
 
     /**
@@ -175,9 +164,7 @@ export default class  extends Map {
      * @return {Boolean}
      */
     isNavigable(name) {
-        const tag = this.get(name);
-
-        return tag && tag.navigable;
+        return !!this.get(name)?.navigable;
     }
 
     /**
@@ -187,9 +174,7 @@ export default class  extends Map {
      * @return {Boolean}
      */
     isSortable(name) {
-        const tag = this.get(name);
-
-        return tag && tag.sortable;
+        return !!this.get(name)?.sortable;
     }
 
     /**
