@@ -36,8 +36,6 @@ export default class I18nMap extends Map {
      * @return {String}
      */
     translate(name, key) {
-        const i18n = this.get(name);
-
-        return i18n && i18n[key] ? i18n[key] : key;
+        return this.get(name)?.[key] || key;
     }
 }

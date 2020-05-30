@@ -82,11 +82,9 @@ export default class SortableObserver extends Observer {
         const keyName = 'text/x-editor-name';
         const keyHtml = 'text/x-editor-html';
         const parentName = node.parentElement.tagName.toLowerCase();
-        const cleanup = () => {
-            this.editor.content.querySelectorAll('.editor-dragover').forEach(item => {
+        const cleanup = () => this.editor.content.querySelectorAll('.editor-dragover').forEach(item => {
                 item.classList.length > 1 ? item.classList.remove('editor-dragover') : item.removeAttribute('class');
-            });
-        };
+        });
         const toggle = () => {
             const hasDraggable = node.hasAttribute('draggable');
             this.editor.content.querySelectorAll('[draggable]').forEach(item => {
