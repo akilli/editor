@@ -41,14 +41,21 @@ export default class ToolbarObserver extends Observer {
     keyboard(node) {
         node.addEventListener('keyup', ev => {
             if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(ev.key)) {
-                if (ev.key === 'ArrowLeft') {
-                    node.previousElementSibling ? node.previousElementSibling.focus() : node.parentElement.lastElementChild.focus();
-                } else if (ev.key === 'ArrowRight') {
-                    node.nextElementSibling ? node.nextElementSibling.focus() : node.parentElement.firstElementChild.focus();
-                } else if (ev.key === 'Home') {
-                    node.parentElement.firstElementChild.focus();
-                } else if (ev.key === 'End') {
-                    node.parentElement.lastElementChild.focus();
+                const prev = node.previousElementSibling;
+                const next = node.nextElementSibling;
+                const first = node.parentElement.firstElementChild;
+                const last = node.parentElement.lastElementChild;
+                const isFirst = node === first;
+                const isLast = node === last;
+
+                if (ev.key === 'ArrowLeft' && !isFirst) {
+                    prev.focus();
+                } else if (ev.key === 'ArrowRight' && !isLast) {
+                    next.focus();
+                } else if (ev.key === 'Home' || ev.key === 'ArrowRight' && isLast) {
+                    first.focus();
+                } else if (ev.key === 'End' || ev.key === 'ArrowLeft' && isFirst) {
+                    last.focus();
                 }
 
                 ev.preventDefault();
