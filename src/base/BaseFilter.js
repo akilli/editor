@@ -25,20 +25,10 @@ export default class BaseFilter extends Filter {
                 const tag = this.editor.tags.get(child);
                 const text = child.textContent.trim();
 
-                if (tag && (this.editor.tags.isAllowed(child, element) || isRoot && tag.group === 'format' && this.editor.tags.isAllowed('p', element))) {
-                    Array.from(child.attributes).forEach(item => {
-                        if (!tag.attributes.includes(item.name)) {
-                            child.removeAttribute(item.name);
-                        }
-                    });
-
-                    if (child.hasChildNodes()) {
-                        this.editor.filters.filter(child);
-                    }
-
-                    if (!child.hasChildNodes() && !tag.empty) {
-                        element.removeChild(child);
-                    } else if (!this.editor.tags.isAllowed(child, element)) {
+                if (tag && this.editor.tags.isAllowed(child, element)) {
+                    this.filterElement(child, tag);
+                } else if (tag && isRoot && tag.group === 'format' && this.editor.tags.isAllowed('p', element)) {
+                    if ((child = this.filterElement(child, tag))) {
                         element.replaceChild(this.editor.createElement('p', {html: child.outerHTML}), child);
                     }
                 } else if (isRoot && text && this.editor.tags.isAllowed('p', element)) {
@@ -61,7 +51,7 @@ export default class BaseFilter extends Filter {
             }
         });
 
-        this.linebreaks(element);
+        this.filterLinebreaks(element);
     }
 
     /**
@@ -85,12 +75,36 @@ export default class BaseFilter extends Filter {
     }
 
     /**
+     * Filters element
+     *
+     * @private
+     * @param {HTMLElement} element
+     * @param {Tag} tag
+     * @return {?HTMLElement}
+     */
+    filterElement(element, tag) {
+        Array.from(element.attributes).forEach(item => !tag.attributes.includes(item.name) && element.removeAttribute(item.name));
+
+        if (element.hasChildNodes()) {
+            this.editor.filters.filter(element);
+        }
+
+        if (element.hasChildNodes() || tag.empty) {
+            return element;
+        }
+
+        element.parentElement.removeChild(element);
+
+        return null;
+    }
+
+    /**
      * Filters linebreaks
      *
      * @private
      * @param {HTMLElement} element
      */
-    linebreaks(element) {
+    filterLinebreaks(element) {
         element.innerHTML = element.innerHTML.replace(/^\s*(<br\s*\/?>\s*)+/gi, '').replace(/\s*(<br\s*\/?>\s*)+$/gi, '');
 
         if (element instanceof HTMLParagraphElement) {
