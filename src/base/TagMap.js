@@ -96,16 +96,6 @@ export default class TagMap extends Map {
     }
 
     /**
-     * Indicates if tag is empty
-     *
-     * @param {String|HTMLElement} key
-     * @return {Boolean}
-     */
-    isEmpty(key) {
-        return !!this.get(key)?.empty;
-    }
-
-    /**
      * Indicates if tag is navigable
      *
      * @param {String|HTMLElement} key
