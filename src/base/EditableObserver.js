@@ -59,7 +59,7 @@ export default class EditableObserver extends Observer {
     onKeyupEnter(ev) {
         let tag;
 
-        if (ev.key === 'Enter' && !ev.shiftKey && (tag = this.editor.tags.get(ev.target.tagName.toLowerCase())) && tag.enter) {
+        if (ev.key === 'Enter' && !ev.shiftKey && (tag = this.editor.tags.get(ev.target)) && tag.enter) {
             let current = ev.target;
             let parentName;
 
@@ -84,7 +84,7 @@ export default class EditableObserver extends Observer {
      * @param {KeyboardEvent} ev
      */
     onKeydownBackspace(ev) {
-        if (ev.key === 'Backspace' && !ev.shiftKey && !ev.target.textContent && this.editor.tags.isElementDeletable(ev.target)) {
+        if (ev.key === 'Backspace' && !ev.shiftKey && !ev.target.textContent && this.editor.tags.isDeletable(ev.target)) {
             if (ev.target.previousElementSibling) {
                 this.editor.focusEnd(ev.target.previousElementSibling);
             }

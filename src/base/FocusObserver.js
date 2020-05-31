@@ -9,7 +9,7 @@ export default class FocusObserver extends Observer {
      */
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (this.editor.tags.isElementNavigable(node) || this.editor.tags.isElementEditable(node)) {
+            if (this.editor.tags.isNavigable(node) || this.editor.tags.isEditable(node)) {
                 node.tabIndex = 0;
                 node.focus();
             }

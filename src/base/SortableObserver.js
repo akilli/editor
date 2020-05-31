@@ -52,16 +52,16 @@ export default class SortableObserver extends Observer {
                 const isFirst = node === first;
                 const isLast = node === last;
 
-                if (ev.key === 'ArrowUp' && !isFirst && this.editor.tags.isElementSortable(prev)) {
+                if (ev.key === 'ArrowUp' && !isFirst && this.editor.tags.isSortable(prev)) {
                     prev.insertAdjacentHTML('beforebegin', node.outerHTML);
                     parent.removeChild(node);
-                } else if (ev.key === 'ArrowDown' && !isLast && this.editor.tags.isElementSortable(next)) {
+                } else if (ev.key === 'ArrowDown' && !isLast && this.editor.tags.isSortable(next)) {
                     next.insertAdjacentHTML('afterend', node.outerHTML);
                     parent.removeChild(node);
-                } else if ((ev.key === 'Home' && !isFirst || ev.key === 'ArrowDown' && isLast) && this.editor.tags.isElementSortable(first)) {
+                } else if ((ev.key === 'Home' && !isFirst || ev.key === 'ArrowDown' && isLast) && this.editor.tags.isSortable(first)) {
                     first.insertAdjacentHTML('beforebegin', node.outerHTML);
                     parent.removeChild(node);
-                } else if ((ev.key === 'End' && !isLast || ev.key === 'ArrowUp' && isFirst) && this.editor.tags.isElementSortable(last)) {
+                } else if ((ev.key === 'End' && !isLast || ev.key === 'ArrowUp' && isFirst) && this.editor.tags.isSortable(last)) {
                     last.insertAdjacentHTML('afterend', node.outerHTML);
                     parent.removeChild(node);
                 }

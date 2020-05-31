@@ -19,11 +19,11 @@ export default class TagMap extends Map {
     /**
      * Returns registered tag with given name or null
      *
-     * @param {String} name
+     * @param {String|HTMLElement} key
      * @return {?Tag}
      */
-    get(name) {
-        return super.get(name) || null;
+    get(key) {
+        return super.get(key instanceof HTMLElement ? key.tagName.toLowerCase() : key) || null;
     }
 
     /**
@@ -49,32 +49,6 @@ export default class TagMap extends Map {
     }
 
     /**
-     * Checks if given tag is allowed inside given parent tag
-     *
-     * @param {String} name
-     * @param {String} parentName
-     * @return {Boolean}
-     */
-    isAllowed(name, parentName) {
-        const group = name === 'text' ? 'text' : this.get(name)?.group;
-
-        return this.get(parentName)?.children.includes(group);
-    }
-
-    /**
-     * Checks if given element is allowed inside given parent element
-     *
-     * @param {HTMLElement} element
-     * @param {HTMLElement} parent
-     * @return {Boolean}
-     */
-    isAllowedElement(element, parent) {
-        return element instanceof HTMLElement
-            && parent instanceof HTMLElement
-            && this.isAllowed(element.tagName.toLowerCase(), parent.tagName.toLowerCase());
-    }
-
-    /**
      * Returns names of all tags after filtering with given callback function
      *
      * @param call
@@ -89,102 +63,65 @@ export default class TagMap extends Map {
     }
 
     /**
-     * Indicates if tag is deletable
+     * Checks if tag is allowed inside parent tag
      *
-     * @param {String} name
+     * @param {String|HTMLElement} key
+     * @param {String|HTMLElement} parentKey
      * @return {Boolean}
      */
-    isDeletable(name) {
-        return !!this.get(name)?.deletable;
+    isAllowed(key, parentKey) {
+        const group = key === 'text' ? 'text' : this.get(key)?.group;
+
+        return this.get(parentKey)?.children.includes(group);
+    }
+
+    /**
+     * Indicates if tag is deletable
+     *
+     * @param {String|HTMLElement} key
+     * @return {Boolean}
+     */
+    isDeletable(key) {
+        return !!this.get(key)?.deletable;
     }
 
     /**
      * Indicates if tag is editable
      *
-     * @param {String} name
+     * @param {String|HTMLElement} key
      * @return {Boolean}
      */
-    isEditable(name) {
-        return !!this.get(name)?.editable;
+    isEditable(key) {
+        return !!this.get(key)?.editable;
     }
 
     /**
      * Indicates if tag is empty
      *
-     * @param {String} name
+     * @param {String|HTMLElement} key
      * @return {Boolean}
      */
-    isEmpty(name) {
-        return !!this.get(name)?.empty;
+    isEmpty(key) {
+        return !!this.get(key)?.empty;
     }
 
     /**
      * Indicates if tag is navigable
      *
-     * @param {String} name
+     * @param {String|HTMLElement} key
      * @return {Boolean}
      */
-    isNavigable(name) {
-        return !!this.get(name)?.navigable;
+    isNavigable(key) {
+        return !!this.get(key)?.navigable;
     }
 
     /**
      * Indicates if tag is sortable
      *
-     * @param {String} name
+     * @param {String|HTMLElement} key
      * @return {Boolean}
      */
-    isSortable(name) {
-        return !!this.get(name)?.sortable;
-    }
-
-    /**
-     * Indicates if element is deletable
-     *
-     * @param {HTMLElement} element
-     * @return {Boolean}
-     */
-    isElementDeletable(element) {
-        return element instanceof HTMLElement && this.isDeletable(element.tagName.toLowerCase());
-    }
-
-    /**
-     * Indicates if element is empty
-     *
-     * @param {HTMLElement} element
-     * @return {Boolean}
-     */
-    isElementEmpty(element) {
-        return element instanceof HTMLElement && this.isEmpty(element.tagName.toLowerCase());
-    }
-
-    /**
-     * Indicates if element is editable
-     *
-     * @param {HTMLElement} element
-     * @return {Boolean}
-     */
-    isElementEditable(element) {
-        return element instanceof HTMLElement && this.isEditable(element.tagName.toLowerCase());
-    }
-
-    /**
-     * Indicates if element is navigable
-     *
-     * @param {HTMLElement} element
-     * @return {Boolean}
-     */
-    isElementNavigable(element) {
-        return element instanceof HTMLElement && this.isNavigable(element.tagName.toLowerCase());
-    }
-
-    /**
-     * Indicates if element is sortable
-     *
-     * @param {HTMLElement} element
-     * @return {Boolean}
-     */
-    isElementSortable(element) {
-        return element instanceof HTMLElement && this.isSortable(element.tagName.toLowerCase());
+    isSortable(key) {
+        return !!this.get(key)?.sortable;
     }
 }
