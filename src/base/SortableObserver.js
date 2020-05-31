@@ -8,7 +8,7 @@ export default class SortableObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        const names = this.editor.tags.sortable();
+        const names = this.editor.tags.filterKeys(tag => tag.sortable);
         const selector = names.join(', ');
 
         ev.forEach(item => item.addedNodes.forEach(node => {

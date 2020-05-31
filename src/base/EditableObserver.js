@@ -8,7 +8,7 @@ export default class EditableObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        const names = this.editor.tags.editable();
+        const names = this.editor.tags.filterKeys(tag => tag.editable);
         const selector = names.join(', ');
 
         ev.forEach(item => item.addedNodes.forEach(node => {

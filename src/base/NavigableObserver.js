@@ -8,7 +8,7 @@ export default class NavigableObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        const names = this.editor.tags.navigable();
+        const names = this.editor.tags.filterKeys(tag => tag.navigable);
         const selector = names.join(', ');
 
         ev.forEach(item => item.addedNodes.forEach(node => {

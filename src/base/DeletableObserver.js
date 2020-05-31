@@ -8,7 +8,7 @@ export default class DeletableObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        const names = this.editor.tags.deletable();
+        const names = this.editor.tags.filterKeys(tag => tag.deletable);
         const selector = names.join(', ');
 
         ev.forEach(item => item.addedNodes.forEach(node => {

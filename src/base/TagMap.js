@@ -75,48 +75,17 @@ export default class TagMap extends Map {
     }
 
     /**
-     * Returns names of all deletable tags
+     * Returns names of all tags after filtering with given callback function
      *
+     * @param call
      * @return {String[]}
      */
-    deletable() {
-        return Array.from(this.values()).filter(tag => tag.deletable).map(tag => tag.name);
-    }
+    filterKeys(call) {
+        if (typeof call !== 'function') {
+            throw 'Invalid argument';
+        }
 
-    /**
-     * Returns names of all editable tags
-     *
-     * @return {String[]}
-     */
-    editable() {
-        return Array.from(this.values()).filter(tag => tag.editable).map(tag => tag.name);
-    }
-
-    /**
-     * Returns names of all empty tags
-     *
-     * @return {String[]}
-     */
-    empty() {
-        return Array.from(this.values()).filter(tag => tag.empty).map(tag => tag.name);
-    }
-
-    /**
-     * Returns names of all navigable tags
-     *
-     * @return {String[]}
-     */
-    navigable() {
-        return Array.from(this.values()).filter(tag => tag.navigable).map(tag => tag.name);
-    }
-
-    /**
-     * Returns names of all sortable tags
-     *
-     * @return {String[]}
-     */
-    sortable() {
-        return Array.from(this.values()).filter(tag => tag.sortable).map(tag => tag.name);
+        return Array.from(this.values()).filter(call).map(tag => tag.name);
     }
 
     /**
