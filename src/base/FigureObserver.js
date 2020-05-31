@@ -9,7 +9,7 @@ export default class FigureObserver extends Observer {
      */
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && node.tagName.toLowerCase() === 'figure') {
+            if (node instanceof HTMLElement && node.localName === 'figure') {
                 this.init(node);
             } else if (node instanceof HTMLElement) {
                 node.querySelectorAll('figure').forEach(figure => this.init(figure));

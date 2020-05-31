@@ -9,7 +9,7 @@ export default class GalleryObserver extends Observer {
      */
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && node.tagName.toLowerCase() === 'figure' && node.classList.contains('gallery')) {
+            if (node instanceof HTMLElement && node.localName === 'figure' && node.classList.contains('gallery')) {
                 this.init(node);
             } else if (node instanceof HTMLElement) {
                 node.querySelectorAll('figure.gallery').forEach(gallery => this.init(gallery));

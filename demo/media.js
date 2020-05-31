@@ -10,8 +10,7 @@
         document.querySelectorAll('body > figure > audio, body > figure > iframe, body > figure > img, body > figure > video').forEach(media => {
             const figure = media.closest('figure');
             const caption = figure.querySelector(':scope > figcaption');
-            const tag = media.tagName.toLowerCase();
-            const type = tag === 'img' ? 'image' : tag;
+            const type = media.localName === 'img' ? 'image' : media.localName;
             figure.addEventListener('click', () => window.opener.postMessage({
                 alt: media.getAttribute('alt'),
                 caption: caption ? caption.innerHTML : null,

@@ -9,7 +9,7 @@ export default class SummaryObserver extends Observer {
      */
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && node.tagName.toLowerCase() === 'summary') {
+            if (node instanceof HTMLElement && node.localName === 'summary') {
                 this.init(node);
             } else if (node instanceof HTMLElement) {
                 node.querySelectorAll('summary').forEach(summary => this.init(summary));

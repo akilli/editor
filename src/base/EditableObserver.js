@@ -13,7 +13,7 @@ export default class EditableObserver extends Observer {
 
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
-                if (names.includes(node.tagName.toLowerCase())) {
+                if (names.includes(node.localName)) {
                     this.init(node);
                 } else if (selector) {
                     node.querySelectorAll(selector).forEach(item => this.init(item));
@@ -44,7 +44,7 @@ export default class EditableObserver extends Observer {
      * @param {KeyboardEvent} ev
      */
     onKeydownEnter(ev) {
-        if (ev.key === 'Enter' && (!ev.shiftKey || !this.editor.tags.isAllowed('br', ev.target.tagName.toLowerCase()))) {
+        if (ev.key === 'Enter' && (!ev.shiftKey || !this.editor.tags.isAllowed('br', ev.target))) {
             ev.preventDefault();
             ev.cancelBubble = true;
         }
@@ -61,15 +61,11 @@ export default class EditableObserver extends Observer {
 
         if (ev.key === 'Enter' && !ev.shiftKey && (tag = this.editor.tags.get(ev.target)) && tag.enter) {
             let current = ev.target;
-            let parentName;
-
             ev.preventDefault();
             ev.cancelBubble = true;
 
             do {
-                parentName = current.parentElement.tagName.toLowerCase();
-
-                if (this.editor.tags.isAllowed(tag.enter, parentName)) {
+                if (this.editor.tags.isAllowed(tag.enter, current.parentElement)) {
                     current.insertAdjacentElement('afterend', this.editor.createElement(tag.enter));
                     break;
                 }

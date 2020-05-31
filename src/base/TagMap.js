@@ -23,7 +23,7 @@ export default class TagMap extends Map {
      * @return {?Tag}
      */
     get(key) {
-        return super.get(key instanceof HTMLElement ? key.tagName.toLowerCase() : key) || null;
+        return super.get(key instanceof HTMLElement ? key.localName : key) || null;
     }
 
     /**

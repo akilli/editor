@@ -10,8 +10,8 @@ export default class QuoteObserver extends Observer {
     observe(ev) {
         ev.forEach(item => item.removedNodes.forEach(node => {
             if (node instanceof HTMLElement
-                && node.tagName.toLowerCase() === 'blockquote'
-                && item.target.tagName.toLowerCase() === 'figure'
+                && node.localName === 'blockquote'
+                && item.target.localName === 'figure'
                 && item.target.classList.contains('quote')
             ) {
                 item.target.parentElement.removeChild(item.target);

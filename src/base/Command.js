@@ -76,7 +76,7 @@ export default class Command {
         const attributes = {};
         const sel = this.editor.getSelectedElement();
 
-        if (sel instanceof HTMLElement && sel.tagName.toLowerCase() === this.tagName) {
+        if (sel instanceof HTMLElement && sel.localName === this.tagName) {
             Array.from(sel.attributes).forEach(attribute => attributes[attribute.nodeName] = attribute.nodeValue);
         }
 

@@ -316,9 +316,10 @@ export default class Editor {
 
         const selText = range.toString();
         const selNodes = range.cloneContents().childNodes;
-        let same = Array.from(selNodes).every(item => {
-            return item instanceof Text && !item.textContent.trim() || item instanceof HTMLElement && item.tagName === element.tagName;
-        });
+        let same = Array.from(selNodes).every(item =>
+            item instanceof Text && !item.textContent.trim()
+            || item instanceof HTMLElement && item.localName === element.localName
+        );
 
         range.deleteContents();
 
@@ -458,7 +459,7 @@ export default class Editor {
             throw 'Invalid argument';
         }
 
-        return this.content === element || element.tagName.toLowerCase() === 'editor-content';
+        return element === this.content || element.localName === this.content.localName;
     }
 
     /**

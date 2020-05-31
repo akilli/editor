@@ -13,7 +13,7 @@ export default class SortableObserver extends Observer {
 
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
-                if (names.includes(node.tagName.toLowerCase())) {
+                if (names.includes(node.localName)) {
                     this.init(node);
                 }
 
@@ -81,7 +81,6 @@ export default class SortableObserver extends Observer {
     dragndrop(node) {
         const keyName = 'text/x-editor-name';
         const keyHtml = 'text/x-editor-html';
-        const parentName = node.parentElement.tagName.toLowerCase();
         const cleanup = () => this.editor.content.querySelectorAll('.editor-dragover').forEach(item => {
                 item.classList.length > 1 ? item.classList.remove('editor-dragover') : item.removeAttribute('class');
         });
@@ -107,7 +106,7 @@ export default class SortableObserver extends Observer {
             if (ev.target === node) {
                 const name = ev.dataTransfer.getData(keyName);
 
-                if (name && this.editor.tags.isAllowed(name, parentName)) {
+                if (name && this.editor.tags.isAllowed(name, node.parentElement)) {
                     ev.preventDefault();
                     ev.cancelBubble = true;
                     node.classList.add('editor-dragover');
@@ -126,7 +125,7 @@ export default class SortableObserver extends Observer {
         node.addEventListener('dragstart', ev => {
             if (ev.target === node) {
                 ev.dataTransfer.effectAllowed = 'move';
-                ev.dataTransfer.setData(keyName, node.tagName.toLowerCase());
+                ev.dataTransfer.setData(keyName, node.localName);
                 ev.dataTransfer.setData(keyHtml, node.outerHTML);
             }
         });
@@ -151,7 +150,7 @@ export default class SortableObserver extends Observer {
                 ev.preventDefault();
                 ev.cancelBubble = true;
 
-                if (name && this.editor.tags.isAllowed(name, parentName) && html) {
+                if (name && this.editor.tags.isAllowed(name, node.parentElement) && html) {
                     node.insertAdjacentHTML('beforebegin', html);
                 }
             }

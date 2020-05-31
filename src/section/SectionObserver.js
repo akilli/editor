@@ -9,7 +9,7 @@ export default class SectionObserver extends Observer {
      */
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && node.tagName.toLowerCase() === 'section') {
+            if (node instanceof HTMLElement && node.localName === 'section') {
                 this.init(node);
             } else if (node instanceof HTMLElement) {
                 node.querySelectorAll('section').forEach(section => this.init(section));
