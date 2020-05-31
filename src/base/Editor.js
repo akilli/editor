@@ -405,7 +405,7 @@ export default class Editor {
             const ancEdit = anc.closest('[contenteditable=true]');
             const focEdit = foc.closest('[contenteditable=true]');
 
-            if (ancEdit && focEdit && ancEdit === focEdit && this.content.contains(ancEdit)) {
+            if (ancEdit instanceof HTMLElement && ancEdit === focEdit && this.content.contains(ancEdit)) {
                 return ancEdit;
             }
         }
