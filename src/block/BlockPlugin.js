@@ -26,7 +26,7 @@ export default class BlockPlugin extends Plugin {
         this.editor.registerElement('app-block', BlockElement);
         this.editor.tags.create({
             name: 'app-block',
-            group: 'section',
+            group: 'block',
             attributes: ['id'],
             deletable: true,
             empty: true,

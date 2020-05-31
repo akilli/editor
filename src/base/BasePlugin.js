@@ -30,7 +30,7 @@ export default class BasePlugin extends Plugin {
         this.editor.tags.create({
             name: 'editor-content',
             group: 'root',
-            children: ['figure', 'heading', 'list', 'paragraph', 'section'],
+            children: ['block', 'container', 'figure', 'heading', 'list', 'paragraph'],
         });
         this.editor.tags.create({
             name: 'slot',

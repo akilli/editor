@@ -23,7 +23,7 @@ export default class DivPlugin extends Plugin {
     init() {
         this.editor.tags.create({
             name: 'div',
-            group: 'section',
+            group: 'container',
             attributes: ['class'],
             children: ['block', 'figure'],
             deletable: true,

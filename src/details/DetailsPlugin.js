@@ -24,7 +24,7 @@ export default class DetailsPlugin extends Plugin {
     init() {
         this.editor.tags.create({
             name: 'details',
-            group: 'section',
+            group: 'container',
             children: ['figure', 'list', 'paragraph', 'summary'],
             deletable: true,
             navigable: true,

@@ -23,7 +23,7 @@ export default class SectionPlugin extends Plugin {
     init() {
         this.editor.tags.create({
             name: 'section',
-            group: 'section',
+            group: 'container',
             attributes: ['class'],
             children: ['figure', 'heading', 'list', 'paragraph'],
             deletable: true,
