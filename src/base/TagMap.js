@@ -56,7 +56,9 @@ export default class TagMap extends Map {
      * @return {Boolean}
      */
     isAllowed(name, parentName) {
-        return this.get(parentName)?.children.includes(this.get(name)?.group);
+        const group = name === 'text' ? 'text' : this.get(name)?.group;
+
+        return this.get(parentName)?.children.includes(group);
     }
 
     /**
@@ -70,16 +72,6 @@ export default class TagMap extends Map {
         return element instanceof HTMLElement
             && parent instanceof HTMLElement
             && this.isAllowed(element.tagName.toLowerCase(), parent.tagName.toLowerCase());
-    }
-
-    /**
-     * Checks if text is allowed inside given parent tag
-     *
-     * @param {String} parentName
-     * @return {Boolean}
-     */
-    isAllowedText(parentName) {
-        return this.get(parentName)?.children.includes('text');
     }
 
     /**
