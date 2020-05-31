@@ -32,7 +32,7 @@ You can move the focused widget to first or last position or before its previous
 
 You can delete the focused widget by combining the `Control` key with the `Delete` key. Inside editable elements, you can also use the `Backspace` key to delete a widget, if the editable is empty and is either the widget element itself or the main editable of the widget.
 
-Figure widgets like quote, table or media elements allow changing or toggling alignment, i.e. adding or removing CSS class `left` or `right`, by combining the `Control` key with the `ArrowLeft` or `ArrowRight` keys.
+Figure widgets like quote, table or media elements allow changing alignment by adding or removing the CSS class `left`, `center` or `right`. This is done by combining the `Shift` key with the `ArrowLeft` (`left`), `ArrowDown` (`center`) or `ArrowRight` (`right`) or `ArrowUp` (removes CSS classes) keys.
 
 The table widget additionally allows adding and removing rows and columns before or after the currently focused table cell by combining the
 

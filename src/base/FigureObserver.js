@@ -41,15 +41,14 @@ export default class FigureObserver extends Observer {
      */
     keyboard(node) {
         node.addEventListener('keyup', ev => {
-            const map = {ArrowLeft: 'left', ArrowRight: 'right'};
+            const map = {ArrowUp: null, ArrowLeft: 'left', ArrowDown: 'center', ArrowRight: 'right'};
 
-            if (ev.target === node && ev.ctrlKey && Object.keys(map).includes(ev.key)) {
+            if (ev.target === node && ev.shiftKey && Object.keys(map).includes(ev.key)) {
                 ev.preventDefault();
                 ev.cancelBubble = true;
-                const contains = map[ev.key] && node.classList.contains(map[ev.key]);
                 node.classList.remove(...Object.values(map));
 
-                if (!contains) {
+                if (map[ev.key]) {
                     node.classList.add(map[ev.key]);
                 }
             }
