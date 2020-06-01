@@ -40,13 +40,13 @@ export default class NavigableObserver extends Observer {
                 const isFirst = node === first;
                 const isLast = node === last;
 
-                if (ev.key === 'ArrowUp' && !isFirst) {
+                if (ev.key === 'ArrowUp' && !isFirst && this.editor.tags.isNavigable(prev)) {
                     prev.focus();
-                } else if (ev.key === 'ArrowDown' && !isLast) {
+                } else if (ev.key === 'ArrowDown' && !isLast && this.editor.tags.isNavigable(next)) {
                     next.focus();
-                } else if (ev.key === 'Home' || ev.key === 'ArrowDown' && isLast) {
+                } else if ((ev.key === 'Home' || ev.key === 'ArrowDown' && isLast) && this.editor.tags.isNavigable(first)) {
                     first.focus();
-                } else if (ev.key === 'End' || ev.key === 'ArrowUp' && isFirst) {
+                } else if ((ev.key === 'End' || ev.key === 'ArrowUp' && isFirst) && this.editor.tags.isNavigable(last)) {
                     last.focus();
                 }
 
