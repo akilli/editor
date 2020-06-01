@@ -9,15 +9,17 @@ export default class ToolbarObserver extends Observer {
      */
     observe(ev) {
         ev.forEach(item => item.addedNodes.forEach(node => {
-            if (node instanceof HTMLButtonElement) {
-                this.click(node);
-            } else if (node instanceof HTMLElement) {
-                node.querySelectorAll('button').forEach(button => this.click(button));
-            }
+            if (node instanceof HTMLElement) {
+                if (node.hasAttribute('data-command')) {
+                    this.click(node);
+                }
 
-            if (node instanceof HTMLElement && this.editor.toolbar === node.parentElement) {
-                node.tabIndex = -1;
-                this.keyboard(node);
+                if (this.editor.toolbar === node.parentElement) {
+                    node.tabIndex = -1;
+                    this.keyboard(node);
+                }
+
+                node.querySelectorAll('[data-command]').forEach(item => this.click(item));
             }
         }));
     }
