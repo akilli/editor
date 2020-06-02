@@ -43,7 +43,7 @@ export default class BaseFilter extends Filter {
             } else if (child instanceof Text) {
                 const text = child.textContent.trim();
 
-                if (isRoot && text && allowedParagraph) {
+                if (!allowedText && text && allowedParagraph) {
                     element.replaceChild(this.editor.createElement('p', {html: text}), child);
                 } else if (!text || !allowedText) {
                     element.removeChild(child);
