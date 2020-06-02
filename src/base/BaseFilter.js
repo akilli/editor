@@ -18,6 +18,8 @@ export default class BaseFilter extends Filter {
      */
     filter(element) {
         const isRoot = this.editor.isContent(element);
+        const allowedText = this.editor.tags.isAllowed('text', element);
+        const allowedParagraph = this.editor.tags.isAllowed('p', element);
 
         Array.from(element.childNodes).forEach(child => {
             if (child instanceof HTMLElement) {
@@ -27,13 +29,13 @@ export default class BaseFilter extends Filter {
 
                 if (tag && this.editor.tags.isAllowed(child, element)) {
                     this.filterElement(child, tag);
-                } else if (tag && isRoot && tag.group === 'format' && this.editor.tags.isAllowed('p', element)) {
+                } else if (tag && isRoot && tag.group === 'format' && allowedParagraph) {
                     if ((child = this.filterElement(child, tag))) {
                         element.replaceChild(this.editor.createElement('p', {html: child.outerHTML}), child);
                     }
-                } else if (isRoot && text && this.editor.tags.isAllowed('p', element)) {
+                } else if (isRoot && text && allowedParagraph) {
                     element.replaceChild(this.editor.createElement('p', {html: text}), child);
-                } else if (text && this.editor.tags.isAllowed('text', element)) {
+                } else if (text && allowedText) {
                     element.replaceChild(this.editor.createText(text), child);
                 } else {
                     element.removeChild(child);
@@ -41,9 +43,9 @@ export default class BaseFilter extends Filter {
             } else if (child instanceof Text) {
                 const text = child.textContent.trim();
 
-                if (isRoot && text && this.editor.tags.isAllowed('p', element)) {
+                if (isRoot && text && allowedParagraph) {
                     element.replaceChild(this.editor.createElement('p', {html: text}), child);
-                } else if (!text || !this.editor.tags.isAllowed('text', element)) {
+                } else if (!text || !allowedText) {
                     element.removeChild(child);
                 }
             } else {
