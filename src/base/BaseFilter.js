@@ -17,7 +17,6 @@ export default class BaseFilter extends Filter {
      * @inheritDoc
      */
     filter(element) {
-        const isRoot = this.editor.isContent(element);
         const allowedText = this.editor.tags.isAllowed('text', element);
         const allowedParagraph = this.editor.tags.isAllowed('p', element);
 
@@ -29,7 +28,7 @@ export default class BaseFilter extends Filter {
 
                 if (tag && this.editor.tags.isAllowed(child, element)) {
                     this.filterElement(child, tag);
-                } else if (tag && isRoot && tag.group === 'format' && allowedParagraph) {
+                } else if (tag && tag.group === 'format' && allowedParagraph) {
                     if ((child = this.filterElement(child, tag))) {
                         element.replaceChild(this.editor.createElement('p', {html: child.outerHTML}), child);
                     }
