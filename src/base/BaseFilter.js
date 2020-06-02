@@ -33,9 +33,9 @@ export default class BaseFilter extends Filter {
                     if ((child = this.filterElement(child, tag))) {
                         element.replaceChild(this.editor.createElement('p', {html: child.outerHTML}), child);
                     }
-                } else if (isRoot && text && allowedParagraph) {
+                } else if (!allowedText && text && allowedParagraph) {
                     element.replaceChild(this.editor.createElement('p', {html: text}), child);
-                } else if (text && allowedText) {
+                } else if (allowedText && text) {
                     element.replaceChild(this.editor.createText(text), child);
                 } else {
                     element.removeChild(child);
@@ -45,7 +45,7 @@ export default class BaseFilter extends Filter {
 
                 if (!allowedText && text && allowedParagraph) {
                     element.replaceChild(this.editor.createElement('p', {html: text}), child);
-                } else if (!text || !allowedText) {
+                } else if (!allowedText || !text) {
                     element.removeChild(child);
                 }
             } else {
