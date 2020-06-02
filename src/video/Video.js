@@ -11,17 +11,15 @@ export default class Video extends Plugin {
     /**
      * @inheritDoc
      */
-    static get defaultConfig() {
-        return {browser: null};
+    static get name() {
+        return 'video';
     }
 
     /**
-     * Initializes a new video plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'video');
+    static get defaultConfig() {
+        return {browser: null};
     }
 
     /**

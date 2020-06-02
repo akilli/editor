@@ -11,17 +11,15 @@ export default class Iframe extends Plugin {
     /**
      * @inheritDoc
      */
-    static get defaultConfig() {
-        return {browser: null};
+    static get name() {
+        return 'iframe';
     }
 
     /**
-     * Initializes a new iframe plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'iframe');
+    static get defaultConfig() {
+        return {browser: null};
     }
 
     /**

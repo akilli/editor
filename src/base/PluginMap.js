@@ -5,7 +5,7 @@ import Plugin from './Plugin.js';
  *
  * @extends {Map<String, Plugin>}
  */
-export default class  extends Map {
+export default class PluginMap extends Map {
     /**
      * Initializes a new plugin map
      *
@@ -36,7 +36,7 @@ export default class  extends Map {
             throw 'Invalid argument';
         }
 
-        super.set(plugin.name, plugin);
+        super.set(plugin.constructor.name, plugin);
     }
 
     /**

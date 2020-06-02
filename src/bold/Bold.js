@@ -5,12 +5,10 @@ import Plugin from '../base/Plugin.js';
  */
 export default class Bold extends Plugin {
     /**
-     * Initializes a new bold plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'bold');
+    static get name() {
+        return 'bold';
     }
 
     /**

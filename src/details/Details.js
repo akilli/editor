@@ -10,12 +10,10 @@ import i18n from './i18n.js';
  */
 export default class Details extends Plugin {
     /**
-     * Initializes a new details plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'details');
+    static get name() {
+        return 'details';
     }
 
     /**

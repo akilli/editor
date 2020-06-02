@@ -5,12 +5,10 @@ import Plugin from '../base/Plugin.js';
  */
 export default class Paragraph extends Plugin {
     /**
-     * Initializes a new paragraph plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'paragraph');
+    static get name() {
+        return 'paragraph';
     }
 
     /**

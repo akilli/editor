@@ -5,12 +5,10 @@ import Plugin from '../base/Plugin.js';
  */
 export default class Subheading extends Plugin {
     /**
-     * Initializes a new subheading plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'subheading');
+    static get name() {
+        return 'subheading';
     }
 
     /**

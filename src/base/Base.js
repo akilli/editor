@@ -16,17 +16,15 @@ export default class Base extends Plugin {
     /**
      * @inheritDoc
      */
-    static get defaultConfig() {
-        return {browser: {}, filter: {}, lang: null, plugins: [], tags: [], toolbar: []};
+    static get name() {
+        return 'base';
     }
 
     /**
-     * Initializes a new editor base plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'base');
+    static get defaultConfig() {
+        return {browser: {}, filter: {}, lang: null, plugins: [], tags: [], toolbar: []};
     }
 
     /**

@@ -6,12 +6,10 @@ import Plugin from '../base/Plugin.js';
  */
 export default class Fullscreen extends Plugin {
     /**
-     * Initializes a new fullscreen plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'fullscreen');
+    static get name() {
+        return 'fullscreen';
     }
 
     /**

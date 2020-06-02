@@ -10,12 +10,10 @@ import i18n from './i18n.js';
  */
 export default class Table extends Plugin {
     /**
-     * Initializes a new table plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'table');
+    static get name() {
+        return 'table';
     }
 
     /**

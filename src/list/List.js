@@ -8,12 +8,10 @@ import UnorderedlistCommand from './UnorderedlistCommand.js';
  */
 export default class List extends Plugin {
     /**
-     * Initializes a new list plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'list');
+    static get name() {
+        return 'list';
     }
 
     /**

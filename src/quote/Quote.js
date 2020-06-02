@@ -7,12 +7,10 @@ import QuoteObserver from './QuoteObserver.js';
  */
 export default class Quote extends Plugin {
     /**
-     * Initializes a new quote plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'quote');
+    static get name() {
+        return 'quote';
     }
 
     /**

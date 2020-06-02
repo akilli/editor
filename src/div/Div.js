@@ -9,12 +9,10 @@ import i18n from './i18n.js';
  */
 export default class Div extends Plugin {
     /**
-     * Initializes a new details plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'div');
+    static get name() {
+        return 'div';
     }
 
     /**

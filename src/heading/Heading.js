@@ -5,12 +5,10 @@ import Plugin from '../base/Plugin.js';
  */
 export default class Heading extends Plugin {
     /**
-     * Initializes a new heading plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'heading');
+    static get name() {
+        return 'heading';
     }
 
     /**

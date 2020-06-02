@@ -13,17 +13,15 @@ export default class Block extends Plugin {
     /**
      * @inheritDoc
      */
-    static get defaultConfig() {
-        return {api: null, browser: null, css: null};
+    static get name() {
+        return 'block';
     }
 
     /**
-     * Initializes a new block plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'block');
+    static get defaultConfig() {
+        return {api: null, browser: null, css: null};
     }
 
     /**

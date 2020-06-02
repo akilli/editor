@@ -17,7 +17,9 @@ export default class Plugin {
      *
      * @type {String}
      */
-    name;
+    static get name() {
+        throw 'Missing plugin name';
+    }
 
     /**
      * Returns plugin default configuration
@@ -29,18 +31,16 @@ export default class Plugin {
     }
 
     /**
-     * Initializes a new plugin with given name
+     * Initializes a new plugin
      *
      * @param {Editor} editor
-     * @param {String} name
      */
-    constructor(editor, name) {
-        if (!(editor instanceof Editor) || !name || typeof name !== 'string') {
+    constructor(editor) {
+        if (!(editor instanceof Editor)) {
             throw 'Invalid argument';
         }
 
         this.editor = editor;
-        this.name = name;
     }
 
     /**
@@ -60,7 +60,7 @@ export default class Plugin {
      */
     registerTranslator(i18n) {
         if (i18n[this.editor.config.base.lang]) {
-            this.editor.i18n.set(this.name, i18n[this.editor.config.base.lang]);
+            this.editor.i18n.set(this.constructor.name, i18n[this.editor.config.base.lang]);
         }
     }
 

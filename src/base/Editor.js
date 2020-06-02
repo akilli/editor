@@ -172,14 +172,11 @@ export default class Editor {
      */
     initPlugins() {
         this.config.base.plugins.map(item => {
-            const config = item.defaultConfig;
-            const plugin = new item(this);
-
-            if (Object.keys(config).length > 0) {
-                this.config[plugin.name] = Object.assign({}, config, this.config[plugin.name] || {});
+            if (Object.keys(item.defaultConfig).length > 0) {
+                this.config[item.name] = Object.assign({}, item.defaultConfig, this.config[item.name] || {});
             }
 
-            this.plugins.set(plugin);
+            this.plugins.set(new item(this));
         });
         this.plugins.init();
     }

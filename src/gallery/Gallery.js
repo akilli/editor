@@ -7,12 +7,10 @@ import Plugin from '../base/Plugin.js';
  */
 export default class Gallery extends Plugin {
     /**
-     * Initializes a new gallery plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'gallery');
+    static get name() {
+        return 'gallery';
     }
 
     /**

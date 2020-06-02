@@ -11,17 +11,15 @@ export default class Image extends Plugin {
     /**
      * @inheritDoc
      */
-    static get defaultConfig() {
-        return {browser: null};
+    static get name() {
+        return 'image';
     }
 
     /**
-     * Initializes a new image plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'image');
+    static get defaultConfig() {
+        return {browser: null};
     }
 
     /**

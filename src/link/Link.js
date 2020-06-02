@@ -8,12 +8,10 @@ import i18n from './i18n.js';
  */
 export default class Link extends Plugin {
     /**
-     * Initializes a new link plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'link');
+    static get name() {
+        return 'link';
     }
 
     /**

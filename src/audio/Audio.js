@@ -11,17 +11,15 @@ export default class Audio extends Plugin {
     /**
      * @inheritDoc
      */
-    static get defaultConfig() {
-        return {browser: null};
+    static get name() {
+        return 'audio';
     }
 
     /**
-     * Initializes a new audio plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'audio');
+    static get defaultConfig() {
+        return {browser: null};
     }
 
     /**

@@ -5,12 +5,10 @@ import Plugin from '../base/Plugin.js';
  */
 export default class Italic extends Plugin {
     /**
-     * Initializes a new italic plugin
-     *
-     * @param {Editor} editor
+     * @inheritDoc
      */
-    constructor(editor) {
-        super(editor, 'italic');
+    static get name() {
+        return 'italic';
     }
 
     /**
