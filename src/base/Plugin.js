@@ -26,7 +26,7 @@ export default class Plugin {
      *
      * @type {Object.<String, {*}>}
      */
-    static get defaultConfig() {
+    static get config() {
         return {};
     }
 

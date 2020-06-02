@@ -18,7 +18,7 @@ export default class Image extends Plugin {
     /**
      * @inheritDoc
      */
-    static get defaultConfig() {
+    static get config() {
         return {browser: null};
     }
 

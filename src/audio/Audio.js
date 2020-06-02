@@ -18,7 +18,7 @@ export default class Audio extends Plugin {
     /**
      * @inheritDoc
      */
-    static get defaultConfig() {
+    static get config() {
         return {browser: null};
     }
 

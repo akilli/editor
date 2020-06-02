@@ -23,7 +23,7 @@ export default class Base extends Plugin {
     /**
      * @inheritDoc
      */
-    static get defaultConfig() {
+    static get config() {
         return {browser: {}, filter: {}, lang: null, plugins: [], tags: [], toolbar: []};
     }
 
