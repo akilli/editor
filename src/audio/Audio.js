@@ -7,7 +7,7 @@ import i18n from './i18n.js';
 /**
  * Audio Plugin
  */
-export default class AudioPlugin extends Plugin {
+export default class Audio extends Plugin {
     /**
      * @inheritDoc
      */

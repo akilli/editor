@@ -3,7 +3,7 @@ import Plugin from '../base/Plugin.js';
 /**
  * Paragraph Plugin
  */
-export default class ParagraphPlugin extends Plugin {
+export default class Paragraph extends Plugin {
     /**
      * Initializes a new paragraph plugin
      *

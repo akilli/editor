@@ -7,7 +7,7 @@ import i18n from './i18n.js';
 /**
  * Div Plugin
  */
-export default class DivPlugin extends Plugin {
+export default class Div extends Plugin {
     /**
      * Initializes a new details plugin
      *

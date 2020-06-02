@@ -1,24 +1,24 @@
-import AudioPlugin from '../audio/AudioPlugin.js';
+import Audio from '../audio/Audio.js';
 import BaseEditor from '../base/Editor.js';
-import BasePlugin from '../base/BasePlugin.js';
-import BlockPlugin from '../block/BlockPlugin.js';
-import BoldPlugin from '../bold/BoldPlugin.js';
-import DetailsPlugin from '../details/DetailsPlugin.js';
-import DivPlugin from '../div/DivPlugin.js';
-import FullscreenPlugin from '../fullscreen/FullscreenPlugin.js';
-import GalleryPlugin from '../gallery/GalleryPlugin.js';
-import HeadingPlugin from '../heading/HeadingPlugin.js';
-import IframePlugin from '../iframe/IframePlugin.js';
-import ImagePlugin from '../image/ImagePlugin.js';
-import ItalicPlugin from '../italic/ItalicPlugin.js';
-import LinkPlugin from '../link/LinkPlugin.js';
-import ListPlugin from '../list/ListPlugin.js';
-import ParagraphPlugin from '../paragraph/ParagraphPlugin.js';
-import QuotePlugin from '../quote/QuotePlugin.js';
-import SectionPlugin from '../section/SectionPlugin.js';
-import SubheadingPlugin from '../subheading/SubheadingPlugin.js';
-import TablePlugin from '../table/TablePlugin.js';
-import VideoPlugin from '../video/VideoPlugin.js';
+import Base from '../base/Base.js';
+import Block from '../block/Block.js';
+import Bold from '../bold/Bold.js';
+import Details from '../details/Details.js';
+import Div from '../div/Div.js';
+import Fullscreen from '../fullscreen/Fullscreen.js';
+import Gallery from '../gallery/Gallery.js';
+import Heading from '../heading/Heading.js';
+import Iframe from '../iframe/Iframe.js';
+import Image from '../image/Image.js';
+import Italic from '../italic/Italic.js';
+import Link from '../link/Link.js';
+import List from '../list/List.js';
+import Paragraph from '../paragraph/Paragraph.js';
+import Quote from '../quote/Quote.js';
+import Section from '../section/Section.js';
+import Subheading from '../subheading/Subheading.js';
+import Table from '../table/Table.js';
+import Video from '../video/Video.js';
 
 /**
  * Editor
@@ -35,26 +35,26 @@ export default class Editor extends BaseEditor {
                     strong: 'b',
                 },
                 plugins: [
-                    BasePlugin,
-                    AudioPlugin,
-                    BlockPlugin,
-                    BoldPlugin,
-                    DetailsPlugin,
-                    DivPlugin,
-                    FullscreenPlugin,
-                    GalleryPlugin,
-                    HeadingPlugin,
-                    IframePlugin,
-                    ImagePlugin,
-                    ItalicPlugin,
-                    LinkPlugin,
-                    ListPlugin,
-                    ParagraphPlugin,
-                    QuotePlugin,
-                    SectionPlugin,
-                    SubheadingPlugin,
-                    TablePlugin,
-                    VideoPlugin,
+                    Base,
+                    Audio,
+                    Block,
+                    Bold,
+                    Details,
+                    Div,
+                    Fullscreen,
+                    Gallery,
+                    Heading,
+                    Iframe,
+                    Image,
+                    Italic,
+                    Link,
+                    List,
+                    Paragraph,
+                    Quote,
+                    Section,
+                    Subheading,
+                    Table,
+                    Video,
                 ],
                 toolbar: [
                     'fullscreen',

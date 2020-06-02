@@ -6,7 +6,7 @@ import UnorderedlistCommand from './UnorderedlistCommand.js';
 /**
  * List Plugin
  */
-export default class ListPlugin extends Plugin {
+export default class List extends Plugin {
     /**
      * Initializes a new list plugin
      *

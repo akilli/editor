@@ -5,7 +5,7 @@ import QuoteObserver from './QuoteObserver.js';
 /**
  * Quote Plugin
  */
-export default class QuotePlugin extends Plugin {
+export default class Quote extends Plugin {
     /**
      * Initializes a new quote plugin
      *

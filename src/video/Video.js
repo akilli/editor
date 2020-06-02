@@ -7,7 +7,7 @@ import i18n from './i18n.js';
 /**
  * Video Plugin
  */
-export default class VideoPlugin extends Plugin {
+export default class Video extends Plugin {
     /**
      * @inheritDoc
      */

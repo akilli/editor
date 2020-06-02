@@ -8,7 +8,7 @@ import i18n from './i18n.js';
 /**
  * Details Plugin
  */
-export default class DetailsPlugin extends Plugin {
+export default class Details extends Plugin {
     /**
      * Initializes a new details plugin
      *

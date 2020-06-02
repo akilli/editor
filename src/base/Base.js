@@ -12,7 +12,7 @@ import ToolbarObserver from './ToolbarObserver.js';
 /**
  * Base Plugin
  */
-export default class BasePlugin extends Plugin {
+export default class Base extends Plugin {
     /**
      * @inheritDoc
      */

@@ -7,7 +7,7 @@ import i18n from './i18n.js';
 /**
  * Iframe Plugin
  */
-export default class IframePlugin extends Plugin {
+export default class Iframe extends Plugin {
     /**
      * @inheritDoc
      */

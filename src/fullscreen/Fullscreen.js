@@ -4,7 +4,7 @@ import Plugin from '../base/Plugin.js';
 /**
  * Fullscreen Plugin
  */
-export default class FullscreenPlugin extends Plugin {
+export default class Fullscreen extends Plugin {
     /**
      * Initializes a new fullscreen plugin
      *

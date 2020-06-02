@@ -3,7 +3,7 @@ import Plugin from '../base/Plugin.js';
 /**
  * Subheading Plugin
  */
-export default class SubheadingPlugin extends Plugin {
+export default class Subheading extends Plugin {
     /**
      * Initializes a new subheading plugin
      *

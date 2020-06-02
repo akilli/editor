@@ -7,7 +7,7 @@ import i18n from './i18n.js';
 /**
  * Image Plugin
  */
-export default class ImagePlugin extends Plugin {
+export default class Image extends Plugin {
     /**
      * @inheritDoc
      */

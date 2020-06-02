@@ -9,7 +9,7 @@ import i18n from '../iframe/i18n.js';
 /**
  * Block Plugin
  */
-export default class BlockPlugin extends Plugin {
+export default class Block extends Plugin {
     /**
      * @inheritDoc
      */

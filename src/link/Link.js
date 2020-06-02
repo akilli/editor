@@ -6,7 +6,7 @@ import i18n from './i18n.js';
 /**
  * Link Plugin
  */
-export default class LinkPlugin extends Plugin {
+export default class Link extends Plugin {
     /**
      * Initializes a new link plugin
      *

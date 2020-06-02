@@ -8,7 +8,7 @@ import i18n from './i18n.js';
 /**
  * Table Plugin
  */
-export default class TablePlugin extends Plugin {
+export default class Table extends Plugin {
     /**
      * Initializes a new table plugin
      *

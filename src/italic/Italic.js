@@ -1,16 +1,16 @@
 import Plugin from '../base/Plugin.js';
 
 /**
- * Bold Plugin
+ * Italic Plugin
  */
-export default class BoldPlugin extends Plugin {
+export default class Italic extends Plugin {
     /**
-     * Initializes a new bold plugin
+     * Initializes a new italic plugin
      *
      * @param {Editor} editor
      */
     constructor(editor) {
-        super(editor, 'bold');
+        super(editor, 'italic');
     }
 
     /**
@@ -18,10 +18,10 @@ export default class BoldPlugin extends Plugin {
      */
     init() {
         this.editor.tags.create({
-            name: 'b',
+            name: 'i',
             group: 'format',
             children: ['text'],
         });
-        this.registerCommand('bold', 'b')
+        this.registerCommand('italic', 'i')
     }
 }

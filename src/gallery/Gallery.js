@@ -5,7 +5,7 @@ import Plugin from '../base/Plugin.js';
 /**
  * Gallery Plugin
  */
-export default class GalleryPlugin extends Plugin {
+export default class Gallery extends Plugin {
     /**
      * Initializes a new gallery plugin
      *

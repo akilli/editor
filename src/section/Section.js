@@ -7,7 +7,7 @@ import i18n from './i18n.js';
 /**
  * Section Plugin
  */
-export default class SectionPlugin extends Plugin {
+export default class Section extends Plugin {
     /**
      * Initializes a new details plugin
      *
