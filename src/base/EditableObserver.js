@@ -14,9 +14,8 @@ export default class EditableObserver extends Observer {
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
                 if (names.includes(node.localName)) {
-                    node.tabIndex = 0;
-                    node.focus();
                     this.init(node);
+                    node.focus();
                 } else if (selector) {
                     node.querySelectorAll(selector).forEach(item => this.init(item));
                 }
@@ -25,7 +24,7 @@ export default class EditableObserver extends Observer {
     }
 
     /**
-     * Editable element callback
+     * Initializes editable element
      *
      * @private
      * @param {HTMLElement} node

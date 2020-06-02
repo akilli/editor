@@ -14,16 +14,26 @@ export default class NavigableObserver extends Observer {
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
                 if (names.includes(node.localName)) {
-                    node.tabIndex = 0;
+                    this.init(node);
                     node.focus();
-                    this.keyboard(node);
                 }
 
                 if (selector) {
-                    node.querySelectorAll(selector).forEach(item => this.keyboard(item));
+                    node.querySelectorAll(selector).forEach(item => this.init(item));
                 }
             }
         }));
+    }
+
+    /**
+     * Initializes navigable element
+     *
+     * @private
+     * @param {HTMLElement} node
+     */
+    init(node) {
+        node.tabIndex = 0;
+        this.keyboard(node);
     }
 
     /**
