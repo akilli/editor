@@ -1,7 +1,8 @@
-import ListitemObserver from './ListitemObserver.js';
 import OrderedlistCommand from './OrderedlistCommand.js';
+import OrderedlistObserver from './OrderedlistObserver.js';
 import Plugin from '../base/Plugin.js';
 import UnorderedlistCommand from './UnorderedlistCommand.js';
+import UnorderedlistObserver from './UnorderedlistObserver.js';
 
 /**
  * List Plugin
@@ -19,7 +20,7 @@ export default class List extends Plugin {
      */
     init() {
         this.editor.tags.create({
-            name: 'ul',
+            name: 'ol',
             group: 'list',
             children: ['listitem'],
             deletable: true,
@@ -27,7 +28,7 @@ export default class List extends Plugin {
             sortable: true,
         });
         this.editor.tags.create({
-            name: 'ol',
+            name: 'ul',
             group: 'list',
             children: ['listitem'],
             deletable: true,
@@ -44,8 +45,9 @@ export default class List extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this.editor.commands.set(new UnorderedlistCommand(this.editor));
         this.editor.commands.set(new OrderedlistCommand(this.editor));
-        this.editor.observe(new ListitemObserver(this.editor));
+        this.editor.commands.set(new UnorderedlistCommand(this.editor));
+        this.editor.observe(new OrderedlistObserver(this.editor));
+        this.editor.observe(new UnorderedlistObserver(this.editor));
     }
 }
