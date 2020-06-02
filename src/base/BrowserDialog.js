@@ -54,9 +54,10 @@ export default class BrowserDialog extends Dialog {
      */
     open(save, attributes = {}) {
         const features = Object.entries(this.opts).map(x => `${x[0]}=${x[1]}`).join(',');
-        const win = this.editor.window.open(this.url, this.name, features);
         const a = this.editor.createElement('a', {attributes: {href: this.url}});
-
+        const url = new URL(a.href);
+        Object.entries(attributes).forEach(([key, val]) => url.searchParams.set(key, `${val}`));
+        const win = this.editor.window.open(url.toString(), this.name, features);
         this.editor.window.addEventListener('message', ev => {
             if (ev.origin === a.origin && ev.source === win) {
                 save(ev.data);
