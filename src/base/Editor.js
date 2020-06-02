@@ -155,6 +155,12 @@ export default class Editor {
         for (let [key, val] of Object.entries(this.constructor.defaultConfig)) {
             this.config[key] = Object.assign({}, val, this.config[key] || {});
         }
+
+        this.config.base.plugins.map(plugin => {
+            if (Object.keys(plugin.defaultConfig).length > 0) {
+                this.config[plugin.name] = Object.assign({}, plugin.defaultConfig, this.config[plugin.name] || {});
+            }
+        });
     }
 
     /**
@@ -163,13 +169,7 @@ export default class Editor {
      * @private
      */
     initPlugins() {
-        this.config.base.plugins.map(item => {
-            if (Object.keys(item.defaultConfig).length > 0) {
-                this.config[item.name] = Object.assign({}, item.defaultConfig, this.config[item.name] || {});
-            }
-
-            this.plugins.set(new item(this));
-        });
+        this.config.base.plugins.map(plugin => this.plugins.set(new plugin(this)));
         this.plugins.init();
     }
 
