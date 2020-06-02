@@ -20,6 +20,15 @@ export default class Plugin {
     name;
 
     /**
+     * Returns plugin default configuration
+     *
+     * @type {Object.<String, {*}>}
+     */
+    static get defaultConfig() {
+        return {};
+    }
+
+    /**
      * Initializes a new plugin with given name
      *
      * @param {Editor} editor
@@ -64,14 +73,5 @@ export default class Plugin {
      */
     registerCommand(name, tagName = null) {
         this.editor.commands.set(new Command(this.editor, name, tagName));
-    }
-
-    /**
-     * Returns plugin default configuration
-     *
-     * @return {Object.<String, {*}>}
-     */
-    static defaultConfig() {
-        return {};
     }
 }

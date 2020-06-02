@@ -11,6 +11,13 @@ import i18n from '../iframe/i18n.js';
  */
 export default class BlockPlugin extends Plugin {
     /**
+     * @inheritDoc
+     */
+    static get defaultConfig() {
+        return {api: null, browser: null, css: null};
+    }
+
+    /**
      * Initializes a new block plugin
      *
      * @param {Editor} editor
@@ -43,12 +50,5 @@ export default class BlockPlugin extends Plugin {
         }
 
         this.editor.commands.set(new BlockCommand(this.editor));
-    }
-
-    /**
-     * @inheritDoc
-     */
-    static defaultConfig() {
-        return {api: null, browser: null, css: null};
     }
 }

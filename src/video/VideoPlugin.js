@@ -9,6 +9,13 @@ import i18n from './i18n.js';
  */
 export default class VideoPlugin extends Plugin {
     /**
+     * @inheritDoc
+     */
+    static get defaultConfig() {
+        return {browser: null};
+    }
+
+    /**
      * Initializes a new video plugin
      *
      * @param {Editor} editor
@@ -37,12 +44,5 @@ export default class VideoPlugin extends Plugin {
         }
 
         this.editor.commands.set(new VideoCommand(this.editor));
-    }
-
-    /**
-     * @inheritDoc
-     */
-    static defaultConfig() {
-        return {browser: null};
     }
 }

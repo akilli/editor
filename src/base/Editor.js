@@ -109,6 +109,15 @@ export default class Editor {
     plugins = new PluginMap();
 
     /**
+     * Default configuration
+     *
+     * @type {Object.<String, Object>}
+     */
+    static get defaultConfig() {
+        return {};
+    }
+
+    /**
      * Creates a new instance of editor with given configuration
      *
      * @param {HTMLElement} orig
@@ -151,7 +160,7 @@ export default class Editor {
      * @private
      */
     initConfig() {
-        for (let [key, val] of Object.entries(this.constructor.defaultConfig())) {
+        for (let [key, val] of Object.entries(this.constructor.defaultConfig)) {
             this.config[key] = Object.assign({}, val, this.config[key] || {});
         }
     }
@@ -163,7 +172,7 @@ export default class Editor {
      */
     initPlugins() {
         this.config.base.plugins.map(item => {
-            const config = item.defaultConfig();
+            const config = item.defaultConfig;
             const plugin = new item(this);
 
             if (Object.keys(config).length > 0) {
@@ -472,15 +481,6 @@ export default class Editor {
         const a = this.createElement('a', {attributes: {href: url}});
 
         return a.origin === this.origin ? a.pathname : a.href;
-    }
-
-    /**
-     * Returns default configuration
-     *
-     * @return {Object.<String, Object>}
-     */
-    static defaultConfig() {
-        return {};
     }
 
     /**

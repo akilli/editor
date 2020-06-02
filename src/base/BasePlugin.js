@@ -14,6 +14,13 @@ import ToolbarObserver from './ToolbarObserver.js';
  */
 export default class BasePlugin extends Plugin {
     /**
+     * @inheritDoc
+     */
+    static get defaultConfig() {
+        return {browser: {}, filter: {}, lang: null, plugins: [], tags: [], toolbar: []};
+    }
+
+    /**
      * Initializes a new editor base plugin
      *
      * @param {Editor} editor
@@ -68,12 +75,5 @@ export default class BasePlugin extends Plugin {
         this.editor.observe(new FigureObserver(this.editor));
         this.editor.filters.set(new BaseFilter(this.editor));
         this.editor.filters.set(new FigureFilter(this.editor));
-    }
-
-    /**
-     * @inheritDoc
-     */
-    static defaultConfig() {
-        return {browser: {}, filter: {}, lang: null, plugins: [], tags: [], toolbar: []};
     }
 }

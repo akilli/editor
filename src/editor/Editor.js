@@ -27,7 +27,7 @@ export default class Editor extends BaseEditor {
     /**
      * @inheritDoc
      */
-    static defaultConfig() {
+    static get defaultConfig() {
         return {
             base: {
                 filter: {
