@@ -72,13 +72,11 @@ export default class Dialog {
 
         dialog.open = true;
         fieldset.insertAdjacentHTML('beforeend', this.getFieldsetHtml());
-
-        for (let [key, val] of Object.entries(attributes)) {
+        Object.entries(attributes).forEach(([key, val]) => {
             if (fieldset.elements[key]) {
                 fieldset.elements[key].value = val;
             }
-        }
-
+        });
         form.appendChild(fieldset);
         form.addEventListener('submit', ev => {
             ev.preventDefault();

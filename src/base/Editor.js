@@ -152,15 +152,16 @@ export default class Editor {
      * @private
      */
     initConfig() {
-        for (let [key, val] of Object.entries(this.constructor.defaultConfig)) {
-            this.config[key] = Object.assign({}, val, this.config[key] || {});
-        }
-
-        this.config.base.plugins.map(plugin => {
-            if (Object.keys(plugin.config).length > 0) {
-                this.config[plugin.name] = Object.assign({}, plugin.config, this.config[plugin.name] || {});
+        const config = this.config;
+        this.config = {};
+        const plugins = config.base?.plugins || this.constructor.defaultConfig.base?.plugins || [];
+        plugins.map(plugin => Object.entries(plugin.config).forEach(([key, val]) => {
+            if (!this.config.hasOwnProperty(plugin.name)) {
+                this.config[plugin.name] = {};
             }
-        });
+
+            this.config[plugin.name][key] = config[plugin.name]?.[key] || this.constructor.defaultConfig[plugin.name]?.[key] || val;
+        }));
     }
 
     /**
@@ -314,7 +315,7 @@ export default class Editor {
 
         const selText = range.toString();
         const selNodes = range.cloneContents().childNodes;
-        let same = Array.from(selNodes).every(item =>
+        const same = Array.from(selNodes).every(item =>
             item instanceof Text && !item.textContent.trim()
             || item instanceof HTMLElement && item.localName === element.localName
         );
@@ -356,12 +357,11 @@ export default class Editor {
     createElement(name, {attributes = {}, html = '', is = null} = {}) {
         const element = this.document.createElement(name, is ? {is: is} : null);
         element.innerHTML = html;
-
-        for (let [key, val] of Object.entries(attributes)) {
+        Object.entries(attributes).forEach(([key, val]) => {
             if (val) {
                 element.setAttribute(key, `${val}`);
             }
-        }
+        })
 
         return element;
     }
