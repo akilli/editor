@@ -17,7 +17,8 @@ export default class QuoteCommand extends Command {
      * @inheritDoc
      */
     insert(attributes = {}) {
-        const figure = this.editor.createElement('figure', {attributes: {class: 'quote'}});
+        attributes.class = 'quote';
+        const figure = this.editor.createElement('figure', {attributes: attributes});
         figure.appendChild(this.editor.createElement('blockquote'));
         figure.appendChild(this.editor.createElement('figcaption'));
 

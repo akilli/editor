@@ -17,7 +17,7 @@ export default class UnorderedlistCommand extends Command {
      * @inheritDoc
      */
     insert(attributes = {}) {
-        const list = this.editor.createElement('ul');
+        const list = this.editor.createElement('ul', {attributes: attributes});
         list.appendChild(this.editor.createElement('li'));
         this.editor.insert(list);
     }

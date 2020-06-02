@@ -17,7 +17,7 @@ export default class OrderedlistCommand extends Command {
      * @inheritDoc
      */
     insert(attributes = {}) {
-        const list = this.editor.createElement('ol');
+        const list = this.editor.createElement('ol', {attributes: attributes});
         list.appendChild(this.editor.createElement('li'));
         this.editor.insert(list);
     }
