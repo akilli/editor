@@ -14,6 +14,8 @@ export default class NavigableObserver extends Observer {
         ev.forEach(item => item.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
                 if (names.includes(node.localName)) {
+                    node.tabIndex = 0;
+                    node.focus();
                     this.keyboard(node);
                 }
 
