@@ -157,8 +157,8 @@ export default class Editor {
         }
 
         this.config.base.plugins.map(plugin => {
-            if (Object.keys(plugin.defaultConfig).length > 0) {
-                this.config[plugin.name] = Object.assign({}, plugin.defaultConfig, this.config[plugin.name] || {});
+            if (Object.keys(plugin.config).length > 0) {
+                this.config[plugin.name] = Object.assign({}, plugin.config, this.config[plugin.name] || {});
             }
         });
     }
