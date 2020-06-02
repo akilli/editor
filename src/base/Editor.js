@@ -32,13 +32,6 @@ export default class Editor {
     window;
 
     /**
-     * Window origin
-     *
-     * @type {String}
-     */
-    origin;
-
-    /**
      * Corresponding DOM element of the editor
      *
      * @type {HTMLElement}
@@ -131,7 +124,6 @@ export default class Editor {
         this.orig = orig;
         this.document = this.orig.ownerDocument;
         this.window = this.document.defaultView;
-        this.origin = this.window.origin || this.window.location.origin;
         this.toolbar = this.createElement('editor-toolbar', {attributes: {role: 'toolbar'}});
         this.content = this.createElement('editor-content');
         this.element = this.createElement('akilli-editor');
@@ -475,9 +467,10 @@ export default class Editor {
      * @return {String}
      */
     url(url) {
+        const origin = this.window.origin || this.window.location.origin;
         const a = this.createElement('a', {attributes: {href: url}});
 
-        return a.origin === this.origin ? a.pathname : a.href;
+        return origin === a.origin ? a.pathname : a.href;
     }
 
     /**
