@@ -86,16 +86,6 @@ export default class TagMap extends Map {
     }
 
     /**
-     * Indicates if tag is editable
-     *
-     * @param {String|HTMLElement} key
-     * @return {Boolean}
-     */
-    isEditable(key) {
-        return !!this.get(key)?.editable;
-    }
-
-    /**
      * Indicates if tag is navigable
      *
      * @param {String|HTMLElement} key
