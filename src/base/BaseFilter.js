@@ -23,13 +23,13 @@ export default class BaseFilter extends Filter {
         Array.from(element.childNodes).forEach(child => {
             if (child instanceof HTMLElement) {
                 child = this.convert(child);
-                const tag = this.editor.tags.get(child);
+                const childTag = this.editor.tags.get(child);
                 const text = child.textContent.trim();
 
-                if (tag && this.editor.tags.isAllowed(child, element)) {
-                    this.filterElement(child, tag);
-                } else if (tag && tag.group === 'format' && allowedParagraph) {
-                    if ((child = this.filterElement(child, tag))) {
+                if (childTag && this.editor.tags.isAllowed(child, element)) {
+                    this.filterElement(child, childTag);
+                } else if (childTag && childTag.group === 'format' && allowedParagraph) {
+                    if ((child = this.filterElement(child, childTag))) {
                         element.replaceChild(this.editor.createElement('p', {html: child.outerHTML}), child);
                     }
                 } else if (!allowedText && text && allowedParagraph) {
