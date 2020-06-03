@@ -45,10 +45,6 @@ export default class CommandMap extends Map {
      * @param {String} name
      */
     execute(name) {
-        if (!this.has(name)) {
-            throw 'Invalid argument';
-        }
-
         this.get(name).execute();
     }
 }
