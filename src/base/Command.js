@@ -26,6 +26,24 @@ export default class Command {
     tagName = null;
 
     /**
+     * Associated tag
+     *
+     * @return {?Tag}
+     */
+    get tag() {
+        return this.tagName ? this.editor.tags.get(this.tagName) : null;
+    }
+
+    /**
+     * Associated dialog
+     *
+     * @return {?Dialog}
+     */
+    get dialog() {
+        return this.editor.dialogs.get(this.name);
+    }
+
+    /**
      * Initializes a new editor command optionally with given tag name
      *
      * @param {Editor} editor
@@ -46,8 +64,7 @@ export default class Command {
      * Executes the command
      */
     execute() {
-        const dialog = this.editor.dialogs.get(this.name);
-        dialog ? dialog.open(attributes => this.insert(attributes), this.selectedAttributes()) : this.insert();
+        this.dialog ? this.dialog.open(attributes => this.insert(attributes), this.selectedAttributes()) : this.insert();
     }
 
      /**
@@ -57,12 +74,10 @@ export default class Command {
       * @param {Object.<String, String>} [attributes = {}]
       */
     insert(attributes = {}) {
-        const tag = this.tagName ? this.editor.tags.get(this.tagName) : null;
-
-        if (tag) {
-            Object.keys(attributes).forEach(item => tag.attributes.includes(item) || delete attributes[item]);
-            const element = this.editor.createElement(tag.name, {attributes: attributes});
-            tag.group === 'format' ? this.editor.format(element) : this.editor.insert(element);
+        if (this.tag) {
+            Object.keys(attributes).forEach(item => this.tag.attributes.includes(item) || delete attributes[item]);
+            const element = this.editor.createElement(this.tag.name, {attributes: attributes});
+            this.tag.group === 'format' ? this.editor.format(element) : this.editor.insert(element);
         }
     }
 
