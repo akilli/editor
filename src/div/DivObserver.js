@@ -8,11 +8,11 @@ export default class DivObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        ev.forEach(item => item.addedNodes.forEach(node => {
+        ev.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLDivElement) {
                 this.init(node);
             } else if (node instanceof HTMLElement) {
-                node.querySelectorAll('div').forEach(div => this.init(div));
+                node.querySelectorAll('div').forEach(item => this.init(item));
             }
         }));
     }

@@ -40,7 +40,7 @@ export default class Dialog {
      * @param {Object} [attributes = {}]
      */
     open(save, attributes = {}) {
-        this.editor.document.querySelectorAll('dialog.editor-dialog').forEach(node => node.parentElement.removeChild(node));
+        this.editor.document.querySelectorAll('dialog.editor-dialog').forEach(item => item.parentElement.removeChild(item));
 
         const sel = this.editor.window.getSelection();
         const range = sel.rangeCount > 0 ? sel.getRangeAt(0) : null;

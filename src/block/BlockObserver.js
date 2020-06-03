@@ -9,11 +9,11 @@ export default class BlockObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        ev.forEach(item => item.addedNodes.forEach(node => {
+        ev.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof BlockElement && node.id && this.editor.config.block.api) {
                 this.init(node);
             } else if (node instanceof HTMLElement) {
-                node.querySelectorAll('app-block').forEach(block => this.init(block));
+                node.querySelectorAll('app-block').forEach(item => this.init(item));
             }
         }));
     }

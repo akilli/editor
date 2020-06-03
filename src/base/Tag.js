@@ -87,7 +87,7 @@ export default class Tag {
         this.name = name;
         this.group = group;
         this.enter = opts.enter && typeof opts.enter === 'string' ? opts.enter : null;
-        ['attributes', 'children'].forEach(prop => this[prop] = Array.isArray(opts[prop]) ? opts[prop] : []);
-        ['deletable', 'editable', 'empty', 'navigable', 'sortable'].forEach(prop => this[prop] = opts[prop] === true);
+        ['attributes', 'children'].forEach(item => this[item] = Array.isArray(opts[item]) ? opts[item] : []);
+        ['deletable', 'editable', 'empty', 'navigable', 'sortable'].forEach(item => this[item] = opts[item] === true);
     }
 }

@@ -8,11 +8,11 @@ export default class SlotObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        ev.forEach(item => item.addedNodes.forEach(node => {
+        ev.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLSlotElement) {
                 this.init(node);
             } else if (node instanceof HTMLElement) {
-                node.querySelectorAll('slot').forEach(slot => this.init(slot));
+                node.querySelectorAll('slot').forEach(item => this.init(item));
             }
         }));
     }

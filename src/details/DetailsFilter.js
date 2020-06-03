@@ -17,6 +17,6 @@ export default class DetailsFilter extends Filter {
      * @inheritDoc
      */
     filter(element) {
-        element.querySelectorAll('details > summary:only-child').forEach(node => node.parentElement.removeChild(node));
+        element.querySelectorAll('details > summary:only-child').forEach(item => item.parentElement.removeChild(item));
     }
 }

@@ -8,11 +8,11 @@ export default class SummaryObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        ev.forEach(item => item.addedNodes.forEach(node => {
+        ev.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLElement && node.localName === 'summary') {
                 this.init(node);
             } else if (node instanceof HTMLElement) {
-                node.querySelectorAll('summary').forEach(summary => this.init(summary));
+                node.querySelectorAll('summary').forEach(item => this.init(item));
             }
         }));
     }

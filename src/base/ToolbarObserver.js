@@ -8,7 +8,7 @@ export default class ToolbarObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        ev.forEach(item => item.addedNodes.forEach(node => {
+        ev.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
                 if (node.hasAttribute('data-command')) {
                     this.click(node);

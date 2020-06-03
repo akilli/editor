@@ -7,14 +7,14 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('body > figure > audio, body > figure > iframe, body > figure > img, body > figure > video').forEach(media => {
-            const figure = media.closest('figure');
+        document.querySelectorAll('body > figure > audio, body > figure > iframe, body > figure > img, body > figure > video').forEach(item => {
+            const figure = item.closest('figure');
             const caption = figure.querySelector(':scope > figcaption');
-            const type = media.localName === 'img' ? 'image' : media.localName;
+            const type = item.localName === 'img' ? 'image' : item.localName;
             figure.addEventListener('click', () => window.opener.postMessage({
-                alt: media.getAttribute('alt'),
+                alt: item.getAttribute('alt'),
                 caption: caption ? caption.innerHTML : null,
-                src: media.src,
+                src: item.src,
                 type: type,
             }, window.opener.origin));
 

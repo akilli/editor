@@ -8,11 +8,11 @@ export default class SectionObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        ev.forEach(item => item.addedNodes.forEach(node => {
+        ev.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLElement && node.localName === 'section') {
                 this.init(node);
             } else if (node instanceof HTMLElement) {
-                node.querySelectorAll('section').forEach(section => this.init(section));
+                node.querySelectorAll('section').forEach(item => this.init(item));
             }
         }));
     }

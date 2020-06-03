@@ -8,11 +8,11 @@ export default class TableObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        ev.forEach(item => item.addedNodes.forEach(node => {
+        ev.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLTableElement) {
                 this.init(node)
             } else if (node instanceof HTMLElement) {
-                node.querySelectorAll('table').forEach(table => this.init(table));
+                node.querySelectorAll('table').forEach(item => this.init(item));
             }
         }));
     }

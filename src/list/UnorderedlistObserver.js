@@ -8,17 +8,17 @@ export default class UnorderedlistObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        ev.forEach(item => {
-            item.addedNodes.forEach(node => {
+        ev.forEach(record => {
+            record.addedNodes.forEach(node => {
                 if (node instanceof HTMLUListElement) {
                     this.init(node);
                 } else if (node instanceof HTMLElement) {
-                    node.querySelectorAll('ul').forEach(ul => this.init(ul));
+                    node.querySelectorAll('ul').forEach(item => this.init(item));
                 }
             });
 
-            if (item.removedNodes.length > 0 && item.target instanceof HTMLUListElement && item.target.children.length === 0) {
-                item.target.parentElement.removeChild(item.target);
+            if (record.removedNodes.length > 0 && record.target instanceof HTMLUListElement && record.target.children.length === 0) {
+                record.target.parentElement.removeChild(record.target);
             }
         });
     }

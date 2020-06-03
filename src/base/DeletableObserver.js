@@ -11,7 +11,7 @@ export default class DeletableObserver extends Observer {
         const names = this.editor.tags.filterKeys(tag => tag.deletable);
         const selector = names.join(', ');
 
-        ev.forEach(item => item.addedNodes.forEach(node => {
+        ev.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
                 if (names.includes(node.localName)) {
                     this.keyboard(node);
