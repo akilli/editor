@@ -84,12 +84,13 @@ export default class BaseFilter extends Filter {
      * @return {?HTMLElement}
      */
     filterElement(element, tag) {
+        Array.from(element.attributes).forEach(item => !tag.attributes.includes(item.name) && element.removeAttribute(item.name));
+
         if (element.hasChildNodes()) {
             this.editor.filters.filter(element);
         }
 
         if (element.hasChildNodes() || tag.empty) {
-            Array.from(element.attributes).forEach(item => !tag.attributes.includes(item.name) && element.removeAttribute(item.name));
             return element;
         }
 
