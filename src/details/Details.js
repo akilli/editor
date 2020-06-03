@@ -30,7 +30,6 @@ export default class Details extends Plugin {
         this.editor.tags.create({
             name: 'summary',
             group: 'summary',
-            children: ['text'],
             editable: true,
             enter: 'p',
             navigable: true,

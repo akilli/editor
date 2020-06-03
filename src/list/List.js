@@ -36,7 +36,7 @@ export default class List extends Plugin {
         this.editor.tags.create({
             name: 'li',
             group: 'listitem',
-            children: ['break', 'format', 'text'],
+            children: ['break', 'format'],
             deletable: true,
             editable: true,
             enter: 'li',

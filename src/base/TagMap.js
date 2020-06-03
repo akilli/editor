@@ -56,8 +56,6 @@ export default class TagMap extends Map {
      * @return {Boolean}
      */
     isAllowed(key, parentKey) {
-        const group = key === 'text' ? 'text' : this.get(key)?.group;
-
-        return this.get(parentKey)?.children.includes(group);
+        return this.get(parentKey)?.children.includes(this.get(key)?.group);
     }
 }

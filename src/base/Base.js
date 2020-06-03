@@ -60,7 +60,7 @@ export default class Base extends Plugin {
         this.editor.tags.create({
             name: 'figcaption',
             group: 'caption',
-            children: ['format', 'text'],
+            children: ['format'],
             editable: true,
             enter: 'p',
             navigable: true,

@@ -18,7 +18,6 @@ export default class Subheading extends Plugin {
         this.editor.tags.create({
             name: 'h3',
             group: 'heading',
-            children: ['text'],
             deletable: true,
             editable: true,
             enter: 'p',

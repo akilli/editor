@@ -18,7 +18,6 @@ export default class Heading extends Plugin {
         this.editor.tags.create({
             name: 'h2',
             group: 'heading',
-            children: ['text'],
             deletable: true,
             editable: true,
             enter: 'p',

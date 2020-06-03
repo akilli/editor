@@ -18,7 +18,6 @@ export default class Bold extends Plugin {
         this.editor.tags.create({
             name: 'b',
             group: 'format',
-            children: ['text'],
         });
         this.registerCommand('bold', 'b')
     }

@@ -41,7 +41,7 @@ export default class Table extends Plugin {
         ['td', 'th'].forEach(item => this.editor.tags.create({
             name: item,
             group: 'tablecell',
-            children: ['break', 'format', 'text'],
+            children: ['break', 'format'],
             editable: true,
             empty: true,
         }));

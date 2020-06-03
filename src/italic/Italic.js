@@ -18,7 +18,6 @@ export default class Italic extends Plugin {
         this.editor.tags.create({
             name: 'i',
             group: 'format',
-            children: ['text'],
         });
         this.registerCommand('italic', 'i')
     }

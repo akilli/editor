@@ -18,7 +18,7 @@ export default class Paragraph extends Plugin {
         this.editor.tags.create({
             name: 'p',
             group: 'paragraph',
-            children: ['break', 'format', 'text'],
+            children: ['break', 'format'],
             deletable: true,
             editable: true,
             enter: 'p',

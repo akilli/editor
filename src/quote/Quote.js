@@ -20,7 +20,7 @@ export default class Quote extends Plugin {
         this.editor.tags.create({
             name: 'blockquote',
             group: 'quote',
-            children: ['break', 'format', 'text'],
+            children: ['break', 'format'],
             deletable: true,
             editable: true,
             enter: 'p',

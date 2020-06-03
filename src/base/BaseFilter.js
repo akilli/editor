@@ -17,7 +17,7 @@ export default class BaseFilter extends Filter {
      * @inheritDoc
      */
     filter(element) {
-        const allowedText = this.editor.tags.isAllowed('text', element);
+        const tag = this.editor.tags.get(element);
         const allowedParagraph = this.editor.tags.isAllowed('p', element);
 
         Array.from(element.childNodes).forEach(child => {
@@ -32,9 +32,9 @@ export default class BaseFilter extends Filter {
                     if ((child = this.filterElement(child, childTag))) {
                         element.replaceChild(this.editor.createElement('p', {html: child.outerHTML}), child);
                     }
-                } else if (!allowedText && text && allowedParagraph) {
+                } else if (!tag.editable && text && allowedParagraph) {
                     element.replaceChild(this.editor.createElement('p', {html: text}), child);
-                } else if (allowedText && text) {
+                } else if (tag.editable && text) {
                     element.replaceChild(this.editor.createText(text), child);
                 } else {
                     element.removeChild(child);
@@ -42,9 +42,9 @@ export default class BaseFilter extends Filter {
             } else if (child instanceof Text) {
                 const text = child.textContent.trim();
 
-                if (!allowedText && text && allowedParagraph) {
+                if (!tag.editable && text && allowedParagraph) {
                     element.replaceChild(this.editor.createElement('p', {html: text}), child);
-                } else if (!allowedText || !text) {
+                } else if (!tag.editable || !text) {
                     element.removeChild(child);
                 }
             } else {
