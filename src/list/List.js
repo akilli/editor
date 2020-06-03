@@ -1,7 +1,5 @@
-import OrderedlistCommand from './OrderedlistCommand.js';
 import OrderedlistObserver from './OrderedlistObserver.js';
 import Plugin from '../base/Plugin.js';
-import UnorderedlistCommand from './UnorderedlistCommand.js';
 import UnorderedlistObserver from './UnorderedlistObserver.js';
 
 /**
@@ -45,9 +43,9 @@ export default class List extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this.editor.commands.set(new OrderedlistCommand(this.editor));
-        this.editor.commands.set(new UnorderedlistCommand(this.editor));
         this.editor.observe(new OrderedlistObserver(this.editor));
         this.editor.observe(new UnorderedlistObserver(this.editor));
+        this.registerCommand('orderedlist', 'ol');
+        this.registerCommand('unorderedlist', 'ul');
     }
 }
