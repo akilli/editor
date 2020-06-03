@@ -49,20 +49,6 @@ export default class TagMap extends Map {
     }
 
     /**
-     * Returns names of all tags after filtering with given callback function
-     *
-     * @param call
-     * @return {String[]}
-     */
-    filterKeys(call) {
-        if (typeof call !== 'function') {
-            throw 'Invalid argument';
-        }
-
-        return Array.from(this.values()).filter(call).map(tag => tag.name);
-    }
-
-    /**
      * Checks if tag is allowed inside parent tag
      *
      * @param {String|HTMLElement} key
@@ -73,35 +59,5 @@ export default class TagMap extends Map {
         const group = key === 'text' ? 'text' : this.get(key)?.group;
 
         return this.get(parentKey)?.children.includes(group);
-    }
-
-    /**
-     * Indicates if tag is deletable
-     *
-     * @param {String|HTMLElement} key
-     * @return {Boolean}
-     */
-    isDeletable(key) {
-        return !!this.get(key)?.deletable;
-    }
-
-    /**
-     * Indicates if tag is navigable
-     *
-     * @param {String|HTMLElement} key
-     * @return {Boolean}
-     */
-    isNavigable(key) {
-        return !!this.get(key)?.navigable;
-    }
-
-    /**
-     * Indicates if tag is sortable
-     *
-     * @param {String|HTMLElement} key
-     * @return {Boolean}
-     */
-    isSortable(key) {
-        return !!this.get(key)?.sortable;
     }
 }

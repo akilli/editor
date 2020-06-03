@@ -8,18 +8,13 @@ export default class DeletableObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        const names = this.editor.tags.filterKeys(tag => tag.deletable);
-        const selector = names.join(', ');
-
         ev.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
-                if (names.includes(node.localName)) {
+                if (node.hasAttribute('data-deletable')) {
                     this.keyboard(node);
                 }
 
-                if (selector) {
-                    node.querySelectorAll(selector).forEach(item => this.keyboard(item));
-                }
+                node.querySelectorAll('[data-deletable]').forEach(item => this.keyboard(item));
             }
         }));
     }

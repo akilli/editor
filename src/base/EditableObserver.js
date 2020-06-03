@@ -8,17 +8,14 @@ export default class EditableObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        const names = this.editor.tags.filterKeys(tag => tag.editable);
-        const selector = names.join(', ');
-
         ev.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
-                if (names.includes(node.localName)) {
+                if (node.isContentEditable) {
                     this.init(node);
                     node.focus();
-                } else if (selector) {
-                    node.querySelectorAll(selector).forEach(item => this.init(item));
                 }
+
+                node.querySelectorAll('[contenteditable=true]').forEach(item => this.init(item));
             }
         }));
     }
@@ -30,7 +27,6 @@ export default class EditableObserver extends Observer {
      * @param {HTMLElement} node
      */
     init(node) {
-        node.contentEditable = 'true';
         node.addEventListener('keydown', ev => {
             this.onKeydownEnter(ev);
             this.onKeydownBackspace(ev);
@@ -81,7 +77,7 @@ export default class EditableObserver extends Observer {
      * @param {KeyboardEvent} ev
      */
     onKeydownBackspace(ev) {
-        if (ev.key === 'Backspace' && !ev.shiftKey && !ev.target.textContent && this.editor.tags.isDeletable(ev.target)) {
+        if (ev.key === 'Backspace' && !ev.shiftKey && !ev.target.textContent && ev.target.hasAttribute('data-deletable')) {
             if (ev.target.previousElementSibling) {
                 this.editor.focusEnd(ev.target.previousElementSibling);
             }

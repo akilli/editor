@@ -8,18 +8,13 @@ export default class SortableObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        const names = this.editor.tags.filterKeys(tag => tag.sortable);
-        const selector = names.join(', ');
-
         ev.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
-                if (names.includes(node.localName)) {
+                if (node.hasAttribute('data-sortable')) {
                     this.init(node);
                 }
 
-                if (selector) {
-                    node.querySelectorAll(selector).forEach(item => this.init(item));
-                }
+                node.querySelectorAll('[data-sortable]').forEach(item => this.init(item));
             }
         }));
     }
@@ -52,16 +47,16 @@ export default class SortableObserver extends Observer {
                 const isFirst = node === first;
                 const isLast = node === last;
 
-                if (ev.key === 'ArrowUp' && !isFirst && this.editor.tags.isSortable(prev)) {
+                if (ev.key === 'ArrowUp' && !isFirst && prev.hasAttribute('data-sortable')) {
                     prev.insertAdjacentHTML('beforebegin', node.outerHTML);
                     parent.removeChild(node);
-                } else if (ev.key === 'ArrowDown' && !isLast && this.editor.tags.isSortable(next)) {
+                } else if (ev.key === 'ArrowDown' && !isLast && next.hasAttribute('data-sortable')) {
                     next.insertAdjacentHTML('afterend', node.outerHTML);
                     parent.removeChild(node);
-                } else if ((ev.key === 'Home' && !isFirst || ev.key === 'ArrowDown' && isLast) && this.editor.tags.isSortable(first)) {
+                } else if ((ev.key === 'Home' && !isFirst || ev.key === 'ArrowDown' && isLast) && first.hasAttribute('data-sortable')) {
                     first.insertAdjacentHTML('beforebegin', node.outerHTML);
                     parent.removeChild(node);
-                } else if ((ev.key === 'End' && !isLast || ev.key === 'ArrowUp' && isFirst) && this.editor.tags.isSortable(last)) {
+                } else if ((ev.key === 'End' && !isLast || ev.key === 'ArrowUp' && isFirst) && last.hasAttribute('data-sortable')) {
                     last.insertAdjacentHTML('afterend', node.outerHTML);
                     parent.removeChild(node);
                 }

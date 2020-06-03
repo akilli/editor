@@ -7,6 +7,7 @@ import NavigableObserver from './NavigableObserver.js';
 import Plugin from './Plugin.js';
 import SlotObserver from './SlotObserver.js';
 import SortableObserver from './SortableObserver.js';
+import TagObserver from './TagObserver.js';
 import ToolbarObserver from './ToolbarObserver.js';
 
 /**
@@ -64,6 +65,7 @@ export default class Base extends Plugin {
             enter: 'p',
             navigable: true,
         });
+        this.editor.observe(new TagObserver(this.editor));
         this.editor.observe(new ToolbarObserver(this.editor), {target: this.editor.toolbar});
         this.editor.observe(new EditableObserver(this.editor));
         this.editor.observe(new SlotObserver(this.editor));

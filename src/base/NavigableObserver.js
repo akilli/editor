@@ -8,19 +8,14 @@ export default class NavigableObserver extends Observer {
      * @inheritDoc
      */
     observe(ev) {
-        const names = this.editor.tags.filterKeys(tag => tag.navigable);
-        const selector = names.join(', ');
-
         ev.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
-                if (names.includes(node.localName)) {
+                if (node.hasAttribute('data-navigable')) {
                     this.init(node);
                     node.focus();
                 }
 
-                if (selector) {
-                    node.querySelectorAll(selector).forEach(item => this.init(item));
-                }
+                node.querySelectorAll('[data-navigable]').forEach(item => this.init(item));
             }
         }));
     }
@@ -52,13 +47,13 @@ export default class NavigableObserver extends Observer {
                 const isFirst = node === first;
                 const isLast = node === last;
 
-                if (ev.key === 'ArrowUp' && !isFirst && this.editor.tags.isNavigable(prev)) {
+                if (ev.key === 'ArrowUp' && !isFirst && prev.hasAttribute('data-navigable')) {
                     prev.focus();
-                } else if (ev.key === 'ArrowDown' && !isLast && this.editor.tags.isNavigable(next)) {
+                } else if (ev.key === 'ArrowDown' && !isLast && next.hasAttribute('data-navigable')) {
                     next.focus();
-                } else if ((ev.key === 'Home' || ev.key === 'ArrowDown' && isLast) && this.editor.tags.isNavigable(first)) {
+                } else if ((ev.key === 'Home' || ev.key === 'ArrowDown' && isLast) && first.hasAttribute('data-navigable')) {
                     first.focus();
-                } else if ((ev.key === 'End' || ev.key === 'ArrowUp' && isFirst) && this.editor.tags.isNavigable(last)) {
+                } else if ((ev.key === 'End' || ev.key === 'ArrowUp' && isFirst) && last.hasAttribute('data-navigable')) {
                     last.focus();
                 }
 
