@@ -1,4 +1,3 @@
-import DivCommand from './DivCommand.js';
 import DivDialog from './DivDialog.js';
 import DivObserver from './DivObserver.js';
 import Plugin from '../base/Plugin.js';
@@ -31,6 +30,6 @@ export default class Div extends Plugin {
         this.editor.observe(new DivObserver(this.editor));
         this.registerTranslator(i18n);
         this.editor.dialogs.set(new DivDialog(this.editor));
-        this.editor.commands.set(new DivCommand(this.editor));
+        this.registerCommand('div', 'div');
     }
 }
