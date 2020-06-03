@@ -447,20 +447,6 @@ export default class Editor {
     }
 
     /**
-     * Indicates if given element is the editor content element
-     *
-     * @param {HTMLElement} element
-     * @return {Boolean}
-     */
-    isContent(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
-        }
-
-        return element === this.content || element.localName === this.content.localName;
-    }
-
-    /**
      * Returns relative or absolute URL depending on its origin
      *
      * @param {String} url
