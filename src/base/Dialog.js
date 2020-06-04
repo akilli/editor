@@ -53,7 +53,7 @@ export default class Dialog {
         };
 
         cleanup();
-        const dialog = this.editor.createElement('dialog', {attributes: {class: 'editor-dialog'}});
+        const dialog = this.editor.createElement('dialog', {attributes: {class: 'editor-dialog', 'data-name': this.name}});
         typeof dialog.open === 'boolean' || this.polyfill(dialog);
         dialog.addEventListener('click', ev => {
             if (ev.target === dialog) {
