@@ -11,6 +11,11 @@ export default class BaseFilter extends Filter {
         const tag = this.editor.tags.get(element);
         const allowedParagraph = this.editor.tags.isAllowed('p', element);
         const allowedText = tag.editable || tag.group === 'format';
+        let p = [];
+        const wrap = (ref = null) => {
+            element.insertBefore(this.editor.createElement('p', {html: p.join(' ')}), ref);
+            p = [];
+        };
 
         Array.from(element.childNodes).forEach(child => {
             if (child instanceof HTMLElement) {
@@ -19,13 +24,19 @@ export default class BaseFilter extends Filter {
                 const text = child.textContent.trim();
 
                 if (childTag && this.editor.tags.isAllowed(child, element)) {
+                    if (allowedParagraph && p.length > 0) {
+                        wrap(child);
+                    }
+
                     this.filterElement(child, childTag);
                 } else if (childTag && childTag.group === 'format' && allowedParagraph) {
                     if ((child = this.filterElement(child, childTag))) {
-                        element.replaceChild(this.editor.createElement('p', {html: child.outerHTML}), child);
+                        p.push(child.outerHTML);
+                        element.removeChild(child);
                     }
                 } else if (!allowedText && text && allowedParagraph) {
-                    element.replaceChild(this.editor.createElement('p', {html: text}), child);
+                    p.push(text);
+                    element.removeChild(child);
                 } else if (allowedText && text) {
                     element.replaceChild(this.editor.createText(text), child);
                 } else {
@@ -35,14 +46,20 @@ export default class BaseFilter extends Filter {
                 const text = child.textContent.trim();
 
                 if (!allowedText && text && allowedParagraph) {
-                    element.replaceChild(this.editor.createElement('p', {html: text}), child);
-                } else if (!allowedText || !text) {
+                    p.push(text);
+                }
+
+                if (!allowedText || !text) {
                     element.removeChild(child);
                 }
             } else {
                 element.removeChild(child);
             }
         });
+
+        if (allowedParagraph && p.length > 0) {
+            wrap();
+        }
 
         this.filterLinebreaks(element);
     }
