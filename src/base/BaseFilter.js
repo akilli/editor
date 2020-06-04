@@ -13,8 +13,10 @@ export default class BaseFilter extends Filter {
         const allowedText = tag.editable || tag.group === 'format';
         let p = [];
         const wrap = (ref = null) => {
-            element.insertBefore(this.editor.createElement('p', {html: p.join(' ')}), ref);
-            p = [];
+            if (allowedParagraph && p.length > 0) {
+                element.insertBefore(this.editor.createElement('p', {html: p.join(' ')}), ref);
+                p = [];
+            }
         };
 
         Array.from(element.childNodes).forEach(child => {
@@ -24,10 +26,7 @@ export default class BaseFilter extends Filter {
                 const text = child.textContent.trim();
 
                 if (childTag && this.editor.tags.isAllowed(child, element)) {
-                    if (allowedParagraph && p.length > 0) {
-                        wrap(child);
-                    }
-
+                    wrap(child);
                     this.filterElement(child, childTag);
                 } else if (childTag && childTag.group === 'format' && allowedParagraph) {
                     if ((child = this.filterElement(child, childTag))) {
@@ -57,10 +56,7 @@ export default class BaseFilter extends Filter {
             }
         });
 
-        if (allowedParagraph && p.length > 0) {
-            wrap();
-        }
-
+        wrap();
         this.filterLinebreaks(element);
     }
 
