@@ -10,7 +10,7 @@ export default class BaseFilter extends Filter {
     filter(element) {
         const tag = this.editor.tags.get(element);
         const allowedParagraph = this.editor.tags.isAllowed('p', element);
-        const allowedText = tag.editable || tag.group === 'format';
+        const allowedText = tag.editable || tag.isFormat();
         let p = [];
         const wrap = (ref = null) => {
             if (allowedParagraph && p.length > 0) {
@@ -28,7 +28,7 @@ export default class BaseFilter extends Filter {
                 if (childTag && this.editor.tags.isAllowed(child, element)) {
                     wrap(child);
                     this.filterElement(child, childTag);
-                } else if (childTag && childTag.group === 'format' && allowedParagraph) {
+                } else if (childTag && childTag.isFormat() && allowedParagraph) {
                     if ((child = this.filterElement(child, childTag))) {
                         p.push(child.outerHTML);
                         element.removeChild(child);

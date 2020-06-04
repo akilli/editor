@@ -103,4 +103,13 @@ export default class Tag {
         this.navigable = opts.navigable === true;
         this.sortable = opts.sortable === true;
     }
+
+    /**
+     * Indicates if tag is a format element
+     *
+     * @return {Boolean}
+     */
+    isFormat() {
+        return this.group === 'format';
+    }
 }
