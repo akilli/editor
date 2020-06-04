@@ -26,11 +26,21 @@ export default class TagObserver extends Observer {
         const tag = this.editor.tags.get(node);
 
         if (tag) {
+            if (tag.deletable) {
+                node.dataset.deletable = '';
+            }
+
             if (tag.editable) {
                 node.contentEditable = 'true';
             }
 
-            ['deletable', 'empty', 'navigable', 'sortable'].forEach(item => tag[item] && (node.dataset[item] = ''));
+            if (tag.navigable) {
+                node.dataset.navigable = '';
+            }
+
+            if (tag.sortable) {
+                node.dataset.sortable = '';
+            }
         }
     }
 }
