@@ -93,8 +93,14 @@ export default class Tag {
 
         this.name = name;
         this.group = group;
+        this.alignable = opts.alignable === true;
+        this.attributes = Array.isArray(opts.attributes) ? opts.attributes : [];
+        this.children = Array.isArray(opts.children) ? opts.children : [];
+        this.deletable = opts.deletable === true;
+        this.editable = opts.editable === true;
+        this.empty = opts.empty === true;
         this.enter = opts.enter && typeof opts.enter === 'string' ? opts.enter : null;
-        ['attributes', 'children'].forEach(item => this[item] = Array.isArray(opts[item]) ? opts[item] : []);
-        ['alignable', 'deletable', 'editable', 'empty', 'navigable', 'sortable'].forEach(item => this[item] = opts[item] === true);
+        this.navigable = opts.navigable === true;
+        this.sortable = opts.sortable === true;
     }
 }
