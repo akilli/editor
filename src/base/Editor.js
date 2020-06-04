@@ -303,7 +303,7 @@ export default class Editor {
 
         const range = sel.getRangeAt(0);
         const tag = this.tags.get(anc);
-        const parent = !tag || tag.isFormat() ? anc.parentElement : anc;
+        const parent = !tag || tag.group === 'format' ? anc.parentElement : anc;
 
         if (range.startContainer instanceof Text && range.startContainer.parentElement !== parent) {
             range.setStartBefore(range.startContainer.parentElement);
