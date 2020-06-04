@@ -54,7 +54,7 @@ export default class Base extends Plugin {
             group: 'figure',
             alignable: true,
             attributes: ['class'],
-            children: ['caption', 'figure', 'media', 'quote', 'table'],
+            children: ['audio', 'caption', 'figure', 'iframe', 'image', 'quote', 'table', 'video'],
             deletable: true,
             navigable: true,
             sortable: true,

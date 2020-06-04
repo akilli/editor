@@ -28,7 +28,7 @@ export default class Audio extends Plugin {
     init() {
         this.editor.tags.create({
             name: 'audio',
-            group: 'media',
+            group: 'audio',
             attributes: ['controls', 'height', 'src', 'width'],
             empty: true,
             navigable: true,

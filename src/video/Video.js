@@ -28,7 +28,7 @@ export default class Video extends Plugin {
     init() {
         this.editor.tags.create({
             name: 'video',
-            group: 'media',
+            group: 'video',
             attributes: ['controls', 'height', 'src', 'width'],
             empty: true,
             navigable: true,

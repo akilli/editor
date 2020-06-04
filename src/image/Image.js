@@ -28,7 +28,7 @@ export default class Image extends Plugin {
     init() {
         this.editor.tags.create({
             name: 'img',
-            group: 'media',
+            group: 'image',
             attributes: ['alt', 'height', 'src', 'width'],
             empty: true,
             navigable: true,

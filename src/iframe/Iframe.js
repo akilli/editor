@@ -28,7 +28,7 @@ export default class Iframe extends Plugin {
     init() {
         this.editor.tags.create({
             name: 'iframe',
-            group: 'media',
+            group: 'iframe',
             attributes: ['allowfullscreen', 'height', 'src', 'width'],
             empty: true,
             navigable: true,
