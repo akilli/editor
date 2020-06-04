@@ -1,6 +1,6 @@
 import CommandMap from './CommandMap.js';
 import DialogMap from './DialogMap.js';
-import FilterMap from './FilterMap.js';
+import FilterSet from './FilterSet.js';
 import I18nMap from './I18nMap.js';
 import Observer from './Observer.js';
 import PluginMap from './PluginMap.js';
@@ -76,9 +76,9 @@ export default class Editor {
     /**
      * Filters
      *
-     * @type {FilterMap}
+     * @type {FilterSet}
      */
-    filters = new FilterMap();
+    filters = new FilterSet();
 
     /**
      * Dialogs

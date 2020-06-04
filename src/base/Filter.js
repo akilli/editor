@@ -12,25 +12,16 @@ export default class Filter {
     editor;
 
     /**
-     * Name
-     *
-     * @type {String}
-     */
-    name;
-
-    /**
-     * Initializes a new filter with given name
+     * Initializes a new filter
      *
      * @param {Editor} editor
-     * @param {String} name
      */
-    constructor(editor, name) {
-        if (!(editor instanceof Editor) || !name || typeof name !== 'string') {
+    constructor(editor) {
+        if (!(editor instanceof Editor)) {
             throw 'Invalid argument';
         }
 
         this.editor = editor;
-        this.name = name;
     }
 
     /**

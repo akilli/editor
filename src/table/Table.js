@@ -47,7 +47,7 @@ export default class Table extends Plugin {
         }));
         this.editor.observe(new TableObserver(this.editor));
         this.registerTranslator(i18n);
-        this.editor.filters.set(new TableFilter(this.editor));
+        this.editor.filters.add(new TableFilter(this.editor));
         this.editor.dialogs.set(new TableDialog(this.editor));
         this.editor.commands.set(new TableCommand(this.editor));
     }

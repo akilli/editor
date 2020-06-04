@@ -5,15 +5,6 @@ import Filter from '../base/Filter.js';
  */
 export default class DetailsFilter extends Filter {
     /**
-     * Initializes a new details filter
-     *
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, 'details');
-    }
-
-    /**
      * @inheritDoc
      */
     filter(element) {

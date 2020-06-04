@@ -5,15 +5,6 @@ import Filter from '../base/Filter.js';
  */
 export default class TableFilter extends Filter {
     /**
-     * Initializes a new table filter
-     *
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, 'table');
-    }
-
-    /**
      * @inheritDoc
      */
     filter(element) {

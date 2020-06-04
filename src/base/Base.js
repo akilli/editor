@@ -73,7 +73,7 @@ export default class Base extends Plugin {
         this.editor.observe(new NavigableObserver(this.editor));
         this.editor.observe(new SortableObserver(this.editor));
         this.editor.observe(new FigureObserver(this.editor));
-        this.editor.filters.set(new BaseFilter(this.editor));
-        this.editor.filters.set(new FigureFilter(this.editor));
+        this.editor.filters.add(new BaseFilter(this.editor));
+        this.editor.filters.add(new FigureFilter(this.editor));
     }
 }

@@ -38,6 +38,6 @@ export default class Details extends Plugin {
         this.editor.observe(new SummaryObserver(this.editor));
         this.registerTranslator(i18n);
         this.registerCommand('details', 'details');
-        this.editor.filters.set(new DetailsFilter(this.editor));
+        this.editor.filters.add(new DetailsFilter(this.editor));
     }
 }
