@@ -40,44 +40,40 @@ export default class Dialog {
      * @param {Object} [attributes = {}]
      */
     open(save, attributes = {}) {
-        this.editor.document.querySelectorAll('dialog.editor-dialog').forEach(item => item.parentElement.removeChild(item));
-
+        const cleanup = () => this.editor.document.querySelectorAll('dialog.editor-dialog').forEach(item => item.parentElement.removeChild(item));
         const sel = this.editor.window.getSelection();
         const range = sel.rangeCount > 0 ? sel.getRangeAt(0) : null;
-        const dialog = this.editor.createElement('dialog', {attributes: {class: 'editor-dialog'}});
-        const form = this.editor.createElement('form');
-        const fieldset = this.editor.createElement('fieldset');
-        const cancelButton = this.editor.createElement('button', {attributes: {class: 'editor-cancel', type: 'button'}, html: this.t('Cancel')});
-        const saveButton = this.editor.createElement('button', {attributes: {class: 'editor-save'}, html: this.t('Save')});
         const close = () => {
             if (range) {
                 sel.removeAllRanges();
                 sel.addRange(range);
             }
 
-            dialog.parentElement.removeChild(dialog);
+            cleanup();
         };
 
-        dialog.appendChild(form);
+        cleanup();
+        const dialog = this.editor.createElement('dialog', {attributes: {class: 'editor-dialog'}});
+        typeof dialog.open === 'boolean' || this.polyfill(dialog);
         dialog.addEventListener('click', ev => {
             if (ev.target === dialog) {
                 close();
             }
         });
 
-        // Polyfill
-        if (typeof dialog.open !== 'boolean') {
-            this.polyfill(dialog);
-        }
-
-        dialog.open = true;
+        const fieldset = this.editor.createElement('fieldset');
         fieldset.insertAdjacentHTML('beforeend', this.getFieldsetHtml());
         Object.entries(attributes).forEach(([key, val]) => {
             if (fieldset.elements[key]) {
                 fieldset.elements[key].value = val;
             }
         });
-        form.appendChild(fieldset);
+
+        const saveButton = this.editor.createElement('button', {attributes: {class: 'editor-save'}, html: this.t('Save')});
+        const cancelButton = this.editor.createElement('button', {attributes: {class: 'editor-cancel', type: 'button'}, html: this.t('Cancel')});
+        cancelButton.addEventListener('click', close);
+
+        const form = this.editor.createElement('form');
         form.addEventListener('submit', ev => {
             ev.preventDefault();
             close();
@@ -85,9 +81,12 @@ export default class Dialog {
             Array.from(fieldset.elements).forEach(item => data[item.name] = item.value);
             save(data);
         });
-        cancelButton.addEventListener('click', close);
+        form.appendChild(fieldset);
         form.appendChild(cancelButton);
         form.appendChild(saveButton);
+
+        dialog.appendChild(form);
+        dialog.open = true;
 
         this.editor.element.appendChild(dialog);
     }
