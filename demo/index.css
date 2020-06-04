@@ -42,20 +42,18 @@ a {
 /**
  * Figure
  */
-figure {
-    text-align: center;
-}
-
 figure.left {
     float: left;
     margin-right: 0.75rem;
-    text-align: left;
+}
+
+figure.center {
+    text-align: center;
 }
 
 figure.right {
     float: right;
     margin-left: 0.75rem;
-    text-align: left;
 }
 
 figcaption {
@@ -88,9 +86,12 @@ figure.quote > figcaption {
  * Table
  */
 table {
+    font-size: 0.875rem;
+}
+
+figure.table.center table {
     margin-left: auto;
     margin-right: auto;
-    font-size: 0.875rem;
 }
 
 td,
@@ -137,6 +138,7 @@ figure.gallery {
 
 figure.gallery > figcaption {
     grid-column: 1 / span 3;
+    text-align: center;
 }
 
 /**

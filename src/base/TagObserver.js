@@ -26,6 +26,10 @@ export default class TagObserver extends Observer {
         const tag = this.editor.tags.get(node);
 
         if (tag) {
+            if (tag.alignable) {
+                node.dataset.alignable = '';
+            }
+
             if (tag.deletable) {
                 node.dataset.deletable = '';
             }

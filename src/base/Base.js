@@ -1,3 +1,4 @@
+import AlignableObserver from './AlignableObserver.js';
 import BaseFilter from './BaseFilter.js';
 import DeletableObserver from './DeletableObserver.js';
 import EditableObserver from './EditableObserver.js';
@@ -51,6 +52,7 @@ export default class Base extends Plugin {
         this.editor.tags.create({
             name: 'figure',
             group: 'figure',
+            alignable: true,
             attributes: ['class'],
             children: ['caption', 'figure', 'media', 'quote', 'table'],
             deletable: true,
@@ -72,6 +74,7 @@ export default class Base extends Plugin {
         this.editor.observe(new DeletableObserver(this.editor));
         this.editor.observe(new NavigableObserver(this.editor));
         this.editor.observe(new SortableObserver(this.editor));
+        this.editor.observe(new AlignableObserver(this.editor));
         this.editor.observe(new FigureObserver(this.editor));
         this.editor.filters.add(new BaseFilter(this.editor));
         this.editor.filters.add(new FigureFilter(this.editor));

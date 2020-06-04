@@ -17,6 +17,13 @@ export default class Tag {
     group;
 
     /**
+     * Is element alignable
+     *
+     * @type {Boolean}
+     */
+    alignable = false;
+
+    /**
      * Allowed attributes
      *
      * @type {String[]}
@@ -88,6 +95,6 @@ export default class Tag {
         this.group = group;
         this.enter = opts.enter && typeof opts.enter === 'string' ? opts.enter : null;
         ['attributes', 'children'].forEach(item => this[item] = Array.isArray(opts[item]) ? opts[item] : []);
-        ['deletable', 'editable', 'empty', 'navigable', 'sortable'].forEach(item => this[item] = opts[item] === true);
+        ['alignable', 'deletable', 'editable', 'empty', 'navigable', 'sortable'].forEach(item => this[item] = opts[item] === true);
     }
 }
