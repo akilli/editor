@@ -25,7 +25,7 @@ export default class AlignableObserver extends Observer {
         node.addEventListener('keyup', ev => {
             const map = {ArrowUp: null, ArrowLeft: 'left', ArrowDown: 'center', ArrowRight: 'right'};
 
-            if (ev.target === node && ev.shiftKey && Object.keys(map).includes(ev.key)) {
+            if (ev.target === node && !ev.altKey && !ev.ctrlKey && ev.shiftKey && Object.keys(map).includes(ev.key)) {
                 ev.preventDefault();
                 ev.cancelBubble = true;
                 node.classList.remove(...Object.values(map));

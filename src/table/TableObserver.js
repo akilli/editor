@@ -73,6 +73,7 @@ export default class TableObserver extends Observer {
                 && row instanceof HTMLTableRowElement
                 && (base instanceof HTMLTableElement || base instanceof HTMLTableSectionElement)
                 && ev.altKey
+                && !ev.ctrlKey
                 && ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(ev.key)
             ) {
                 const length = row.cells.length;
