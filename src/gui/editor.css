@@ -113,6 +113,12 @@ editor-content [contenteditable=true]:hover {
     outline: 0.25rem solid var(--editor-hover);
 }
 
+editor-content [contenteditable=true] :hover {
+    text-decoration: underline;
+    outline: none;
+    cursor: context-menu;
+}
+
 editor-content [contenteditable=true]:empty::after {
     color: var(--editor-border);
     content: var(--editor-placeholder);
