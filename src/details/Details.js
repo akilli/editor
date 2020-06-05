@@ -24,6 +24,7 @@ export default class Details extends Plugin {
             group: 'container',
             children: ['figure', 'list', 'paragraph', 'summary'],
             deletable: true,
+            focusable: true,
             navigable: true,
             sortable: true,
         });

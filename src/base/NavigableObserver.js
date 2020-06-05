@@ -12,7 +12,6 @@ export default class NavigableObserver extends Observer {
             if (node instanceof HTMLElement) {
                 if (node.hasAttribute('data-navigable')) {
                     this.init(node);
-                    node.focus();
                 }
 
                 node.querySelectorAll('[data-navigable]').forEach(item => this.init(item));

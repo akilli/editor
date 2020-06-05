@@ -22,6 +22,7 @@ export default class Paragraph extends Plugin {
             deletable: true,
             editable: true,
             enter: 'p',
+            focusable: true,
             navigable: true,
             sortable: true,
         });

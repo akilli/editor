@@ -35,6 +35,7 @@ export default class Block extends Plugin {
             attributes: ['id'],
             deletable: true,
             empty: true,
+            focusable: true,
             navigable: true,
             sortable: true,
         });

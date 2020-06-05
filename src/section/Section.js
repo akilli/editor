@@ -24,6 +24,7 @@ export default class Section extends Plugin {
             attributes: ['class'],
             children: ['figure', 'heading', 'list', 'paragraph'],
             deletable: true,
+            focusable: true,
             navigable: true,
             sortable: true,
         });

@@ -38,6 +38,10 @@ export default class TagObserver extends Observer {
                 node.contentEditable = 'true';
             }
 
+            if (tag.focusable) {
+                node.dataset.focusable = '';
+            }
+
             if (tag.navigable) {
                 node.dataset.navigable = '';
             }

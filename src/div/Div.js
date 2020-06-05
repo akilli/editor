@@ -24,6 +24,7 @@ export default class Div extends Plugin {
             attributes: ['class'],
             children: ['block', 'figure'],
             deletable: true,
+            focusable: true,
             navigable: true,
             sortable: true,
         });

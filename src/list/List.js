@@ -22,6 +22,7 @@ export default class List extends Plugin {
             group: 'list',
             children: ['listitem'],
             deletable: true,
+            focusable: true,
             navigable: true,
             sortable: true,
         });
@@ -30,6 +31,7 @@ export default class List extends Plugin {
             group: 'list',
             children: ['listitem'],
             deletable: true,
+            focusable: true,
             navigable: true,
             sortable: true,
         });
@@ -40,6 +42,7 @@ export default class List extends Plugin {
             deletable: true,
             editable: true,
             enter: 'li',
+            focusable: true,
             navigable: true,
             sortable: true,
         });

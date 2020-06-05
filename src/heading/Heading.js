@@ -21,6 +21,7 @@ export default class Heading extends Plugin {
             deletable: true,
             editable: true,
             enter: 'p',
+            focusable: true,
             navigable: true,
             sortable: true,
         })

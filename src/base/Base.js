@@ -4,6 +4,7 @@ import DeletableObserver from './DeletableObserver.js';
 import EditableObserver from './EditableObserver.js';
 import FigureFilter from './FigureFilter.js';
 import FigureObserver from './FigureObserver.js';
+import FocusableObserver from './FocusableObserver.js';
 import NavigableObserver from './NavigableObserver.js';
 import Plugin from './Plugin.js';
 import SlotObserver from './SlotObserver.js';
@@ -42,6 +43,7 @@ export default class Base extends Plugin {
             name: 'slot',
             group: 'slot',
             editable: true,
+            focusable: true,
             navigable: true,
         });
         this.editor.tags.create({
@@ -56,6 +58,7 @@ export default class Base extends Plugin {
             attributes: ['class'],
             children: ['audio', 'caption', 'figure', 'iframe', 'image', 'quote', 'table', 'video'],
             deletable: true,
+            focusable: true,
             navigable: true,
             sortable: true,
         });
@@ -75,6 +78,7 @@ export default class Base extends Plugin {
         this.editor.observe(new NavigableObserver(this.editor));
         this.editor.observe(new SortableObserver(this.editor));
         this.editor.observe(new AlignableObserver(this.editor));
+        this.editor.observe(new FocusableObserver(this.editor));
         this.editor.observe(new FigureObserver(this.editor));
         this.editor.filters.add(new BaseFilter(this.editor));
         this.editor.filters.add(new FigureFilter(this.editor));

@@ -66,6 +66,13 @@ export default class Tag {
     enter = null;
 
     /**
+     * Should element be focused on insert
+     *
+     * @type {Boolean}
+     */
+    focusable = false;
+
+    /**
      * Is element navigable
      *
      * @type {Boolean}
@@ -100,6 +107,7 @@ export default class Tag {
         this.editable = opts.editable === true;
         this.empty = opts.empty === true;
         this.enter = opts.enter && typeof opts.enter === 'string' ? opts.enter : null;
+        this.focusable = opts.focusable === true;
         this.navigable = opts.navigable === true;
         this.sortable = opts.sortable === true;
     }

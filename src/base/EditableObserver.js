@@ -12,7 +12,6 @@ export default class EditableObserver extends Observer {
             if (node instanceof HTMLElement) {
                 if (node.isContentEditable) {
                     this.init(node);
-                    node.focus();
                 }
 
                 node.querySelectorAll('[contenteditable=true]').forEach(item => this.init(item));

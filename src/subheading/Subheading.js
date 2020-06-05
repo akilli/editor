@@ -21,6 +21,7 @@ export default class Subheading extends Plugin {
             deletable: true,
             editable: true,
             enter: 'p',
+            focusable: true,
             navigable: true,
             sortable: true,
         });
