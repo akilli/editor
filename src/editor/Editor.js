@@ -12,12 +12,14 @@ import Iframe from '../iframe/Iframe.js';
 import Image from '../image/Image.js';
 import Italic from '../italic/Italic.js';
 import Link from '../link/Link.js';
-import List from '../list/List.js';
+import Listitem from '../listitem/Listitem.js';
+import Orderedlist from '../orderedlist/Orderedlist.js';
 import Paragraph from '../paragraph/Paragraph.js';
 import Quote from '../quote/Quote.js';
 import Section from '../section/Section.js';
 import Subheading from '../subheading/Subheading.js';
 import Table from '../table/Table.js';
+import Unorderedlist from '../unorderedlist/Unorderedlist.js';
 import Video from '../video/Video.js';
 
 /**
@@ -48,12 +50,14 @@ export default class Editor extends BaseEditor {
                     Image,
                     Italic,
                     Link,
-                    List,
+                    Listitem,
+                    Orderedlist,
                     Paragraph,
                     Quote,
                     Section,
                     Subheading,
                     Table,
+                    Unorderedlist,
                     Video,
                 ],
                 toolbar: [
