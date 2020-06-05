@@ -64,8 +64,7 @@ export default class Command {
      * Executes the command
      */
     execute() {
-        const attributes = this.selectedAttributes();
-        this.dialog ? this.dialog.open(item => this.insert(item), attributes) : this.insert(attributes);
+        this.dialog ? this.openDialog() : this.insert(this.selectedAttributes());
     }
 
      /**
@@ -80,6 +79,15 @@ export default class Command {
             const element = this.editor.createElement(this.tag.name, {attributes: attributes});
             this.tag.group === 'format' ? this.editor.format(element) : this.editor.insert(element);
         }
+    }
+
+    /**
+     * Open dialog
+     *
+     * @protected
+     */
+    openDialog() {
+        this.dialog.open(attributes => this.insert(attributes), this.selectedAttributes())
     }
 
     /**
@@ -104,8 +112,12 @@ export default class Command {
         const element = this.selectedElement();
         const attributes = {};
 
-        if (element) {
-            Array.from(element.attributes).forEach(attribute => attributes[attribute.nodeName] = attribute.nodeValue);
+        if (element && this.tag) {
+            Array.from(element.attributes).forEach(item => {
+                if (this.tag.attributes.includes(item.nodeName)) {
+                    attributes[item.nodeName] = item.nodeValue;
+                }
+            });
         }
 
         return attributes;
