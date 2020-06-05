@@ -1,3 +1,4 @@
+import Base from '../base/Base.js';
 import DetailsFilter from './DetailsFilter.js';
 import DetailsObserver from './DetailsObserver.js';
 import Plugin from '../base/Plugin.js';
@@ -13,6 +14,13 @@ export default class Details extends Plugin {
      */
     static get name() {
         return 'details';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get dependencies() {
+        return [Base];
     }
 
     /**

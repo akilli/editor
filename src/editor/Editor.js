@@ -3,6 +3,7 @@ import BaseEditor from '../base/Editor.js';
 import Base from '../base/Base.js';
 import Block from '../block/Block.js';
 import Bold from '../bold/Bold.js';
+import Caption from '../caption/Caption.js';
 import Details from '../details/Details.js';
 import Div from '../div/Div.js';
 import Fullscreen from '../fullscreen/Fullscreen.js';
@@ -41,6 +42,7 @@ export default class Editor extends BaseEditor {
                     Audio,
                     Block,
                     Bold,
+                    Caption,
                     Details,
                     Div,
                     Fullscreen,

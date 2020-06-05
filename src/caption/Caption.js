@@ -2,14 +2,14 @@ import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 
 /**
- * Subheading Plugin
+ * Caption Plugin
  */
-export default class Subheading extends Plugin {
+export default class Caption extends Plugin {
     /**
      * @inheritDoc
      */
     static get name() {
-        return 'subheading';
+        return 'caption';
     }
 
     /**
@@ -24,15 +24,12 @@ export default class Subheading extends Plugin {
      */
     init() {
         this.editor.tags.create({
-            name: 'h3',
-            group: 'heading',
-            deletable: true,
+            name: 'figcaption',
+            group: 'caption',
+            children: ['format'],
             editable: true,
             enter: 'p',
-            focusable: true,
             navigable: true,
-            sortable: true,
         });
-        this.registerCommand('subheading', 'h3');
     }
 }

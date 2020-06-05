@@ -1,3 +1,4 @@
+import Base from '../base/Base.js';
 import FullscreenCommand from './FullscreenCommand.js';
 import Plugin from '../base/Plugin.js';
 
@@ -10,6 +11,13 @@ export default class Fullscreen extends Plugin {
      */
     static get name() {
         return 'fullscreen';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get dependencies() {
+        return [Base];
     }
 
     /**

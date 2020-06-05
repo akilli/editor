@@ -1,3 +1,5 @@
+import Base from '../base/Base.js';
+import Listitem from '../listitem/Listitem.js';
 import OrderedlistObserver from './OrderedlistObserver.js';
 import Plugin from '../base/Plugin.js';
 
@@ -10,6 +12,13 @@ export default class Orderedlist extends Plugin {
      */
     static get name() {
         return 'orderedlist';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get dependencies() {
+        return [Base, Listitem];
     }
 
     /**

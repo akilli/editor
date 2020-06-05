@@ -22,6 +22,15 @@ export default class Plugin {
     }
 
     /**
+     * Dependencies
+     *
+     * @type {Plugin[]}
+     */
+    static get dependencies() {
+        return [];
+    }
+
+    /**
      * Returns plugin default configuration
      *
      * @type {Object.<String, {*}>}

@@ -1,3 +1,4 @@
+import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -9,6 +10,13 @@ export default class Italic extends Plugin {
      */
     static get name() {
         return 'italic';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get dependencies() {
+        return [Base];
     }
 
     /**

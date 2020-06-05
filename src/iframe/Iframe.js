@@ -1,4 +1,6 @@
+import Base from '../base/Base.js';
 import BrowserDialog from '../base/BrowserDialog.js';
+import Caption from '../caption/Caption.js';
 import IframeCommand from './IframeCommand.js';
 import IframeDialog from './IframeDialog.js';
 import Plugin from '../base/Plugin.js';
@@ -13,6 +15,13 @@ export default class Iframe extends Plugin {
      */
     static get name() {
         return 'iframe';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get dependencies() {
+        return [Base, Caption];
     }
 
     /**

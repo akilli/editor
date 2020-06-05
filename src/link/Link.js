@@ -1,3 +1,4 @@
+import Base from '../base/Base.js';
 import LinkCommand from './LinkCommand.js';
 import LinkDialog from './LinkDialog.js';
 import Plugin from '../base/Plugin.js';
@@ -12,6 +13,13 @@ export default class Link extends Plugin {
      */
     static get name() {
         return 'link';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get dependencies() {
+        return [Base];
     }
 
     /**

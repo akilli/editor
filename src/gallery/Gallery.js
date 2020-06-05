@@ -1,3 +1,5 @@
+import Base from '../base/Base.js';
+import Caption from '../caption/Caption.js';
 import GalleryCommand from './GalleryCommand.js';
 import GalleryObserver from './GalleryObserver.js';
 import Plugin from '../base/Plugin.js';
@@ -11,6 +13,13 @@ export default class Gallery extends Plugin {
      */
     static get name() {
         return 'gallery';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get dependencies() {
+        return [Base, Caption];
     }
 
     /**

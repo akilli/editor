@@ -1,3 +1,5 @@
+import Base from '../base/Base.js';
+import Listitem from '../listitem/Listitem.js';
 import Plugin from '../base/Plugin.js';
 import UnorderedlistObserver from './UnorderedlistObserver.js';
 
@@ -10,6 +12,13 @@ export default class Unorderedlist extends Plugin {
      */
     static get name() {
         return 'unorderedlist';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get dependencies() {
+        return [Base, Listitem];
     }
 
     /**

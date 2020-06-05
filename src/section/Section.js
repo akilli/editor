@@ -1,3 +1,4 @@
+import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 import SectionDialog from './SectionDialog.js';
 import SectionObserver from './SectionObserver.js';
@@ -12,6 +13,13 @@ export default class Section extends Plugin {
      */
     static get name() {
         return 'section';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get dependencies() {
+        return [Base];
     }
 
     /**

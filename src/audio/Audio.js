@@ -1,6 +1,8 @@
 import AudioCommand from './AudioCommand.js';
 import AudioDialog from './AudioDialog.js';
+import Base from '../base/Base.js';
 import BrowserDialog from '../base/BrowserDialog.js';
+import Caption from '../caption/Caption.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
 
@@ -13,6 +15,13 @@ export default class Audio extends Plugin {
      */
     static get name() {
         return 'audio';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get dependencies() {
+        return [Base, Caption];
     }
 
     /**

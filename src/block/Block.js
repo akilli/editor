@@ -1,3 +1,4 @@
+import Base from '../base/Base.js';
 import BlockCommand from './BlockCommand.js';
 import BlockDialog from './BlockDialog.js';
 import BlockElement from './BlockElement.js';
@@ -15,6 +16,13 @@ export default class Block extends Plugin {
      */
     static get name() {
         return 'block';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get dependencies() {
+        return [Base];
     }
 
     /**

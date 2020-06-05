@@ -1,3 +1,4 @@
+import Base from '../base/Base.js';
 import DivDialog from './DivDialog.js';
 import DivObserver from './DivObserver.js';
 import Plugin from '../base/Plugin.js';
@@ -12,6 +13,13 @@ export default class Div extends Plugin {
      */
     static get name() {
         return 'div';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get dependencies() {
+        return [Base];
     }
 
     /**

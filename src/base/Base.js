@@ -62,14 +62,6 @@ export default class Base extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this.editor.tags.create({
-            name: 'figcaption',
-            group: 'caption',
-            children: ['format'],
-            editable: true,
-            enter: 'p',
-            navigable: true,
-        });
         this.editor.observe(new TagObserver(this.editor));
         this.editor.observe(new ToolbarObserver(this.editor), {target: this.editor.toolbar});
         this.editor.observe(new EditableObserver(this.editor));
