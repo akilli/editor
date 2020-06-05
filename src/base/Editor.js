@@ -137,7 +137,6 @@ export default class Editor {
      */
     init() {
         if (this.plugins.size === 0) {
-            this.initConfig();
             this.initPlugins();
             this.initToolbar();
         }
@@ -147,30 +146,33 @@ export default class Editor {
     }
 
     /**
-     * Initializes configuration
-     *
-     * @private
-     */
-    initConfig() {
-        const config = this.config;
-        this.config = {};
-        const plugins = config.base?.plugins || this.constructor.defaultConfig.base?.plugins || [];
-        plugins.map(plugin => Object.entries(plugin.config).forEach(([key, val]) => {
-            if (!this.config.hasOwnProperty(plugin.name)) {
-                this.config[plugin.name] = {};
-            }
-
-            this.config[plugin.name][key] = config[plugin.name]?.[key] || this.constructor.defaultConfig[plugin.name]?.[key] || val;
-        }));
-    }
-
-    /**
      * Initializes plugins
      *
      * @private
      */
     initPlugins() {
-        this.config.base.plugins.map(plugin => this.plugins.set(new plugin(this)));
+        const config = this.config;
+        const configPlugins = config.base?.plugins || this.constructor.defaultConfig.base?.plugins || [];
+        const plugins = new Set();
+        const add = item => {
+            if (item.dependencies) {
+                item.dependencies.forEach(add);
+            }
+
+            plugins.add(item);
+        };
+        this.config = {};
+        configPlugins.map(add);
+        plugins.forEach(item => {
+            Object.entries(item.config).forEach(([key, val]) => {
+                if (!this.config.hasOwnProperty(item.name)) {
+                    this.config[item.name] = {};
+                }
+
+                this.config[item.name][key] = config[item.name]?.[key] || this.constructor.defaultConfig[item.name]?.[key] || val;
+            });
+            this.plugins.set(new item(this));
+        });
         this.plugins.init();
     }
 
