@@ -2,25 +2,25 @@
  * Variable
  */
 :root {
-    --editor-block-background: hotpink;
-    --editor-block-color: black;
+    --editor-block-background: #191919;
+    --editor-block-color: #fff;
     --editor-block-placeholder: "Block: " attr(id) " ";
-    --editor-border: lightgrey;
-    --editor-cancel-background: darkgrey;
-    --editor-cancel-color: white;
-    --editor-cmd-focus: steelblue;
-    --editor-drag: darkgreen;
+    --editor-border: #19191933;
+    --editor-cancel-background: #f1c40f;
+    --editor-cancel-color: #191919;
+    --editor-cmd-focus: #f1c40f;
+    --editor-drag: #191919;
     --editor-empty: 'No content :-( ... click a button in the toolbar to add some :-)';
-    --editor-error: darkred;
-    --editor-focus: darkorange;
-    --editor-outline: gold;
+    --editor-error: #960200;
+    --editor-focus: #f1c40f;
+    --editor-hover: #f1c40f;
     --editor-placeholder: 'Gimme some text!';
-    --editor-save-background: darkgreen;
-    --editor-save-color: white;
-    --editor-slot-color: salmon;
+    --editor-save-background: #191919;
+    --editor-save-color: #fff;
+    --editor-slot-color: #54442b;
     --editor-slot-placeholder: 'Focus this slot and add a widget from the toolbar';
-    --editor-toolbar-background: white;
-    --editor-toolbar-color: black;
+    --editor-toolbar-background: #fff;
+    --editor-toolbar-color: #191919;
 }
 
 /**
@@ -95,7 +95,7 @@ akilli-editor.editor-fullscreen > editor-content {
  * Widgets
  */
 editor-content :hover {
-    outline: 0.25rem solid var(--editor-border);
+    outline: 0.25rem solid var(--editor-hover);
 }
 
 editor-content :focus {
@@ -110,7 +110,7 @@ editor-content [contenteditable] {
 }
 
 editor-content [contenteditable=true]:hover {
-    outline: 0.25rem solid var(--editor-outline);
+    outline: 0.25rem solid var(--editor-hover);
 }
 
 editor-content [contenteditable=true]:empty::after {
@@ -138,7 +138,7 @@ editor-content slot[contenteditable=true]:empty::after {
  * Draggable
  */
 editor-content [draggable=true]:hover {
-    outline: 0.25rem dashed var(--editor-border);
+    outline: 0.25rem dashed var(--editor-hover);
 }
 
 .editor-dragover {
