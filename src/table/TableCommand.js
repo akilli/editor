@@ -21,9 +21,8 @@ export default class TableCommand extends Command {
      * @param {Number} cols
      */
     insert({rows = 1, cols = 1} = {}) {
-        if (rows <= 0 || cols <= 0) {
-            throw 'Invalid argument';
-        }
+        rows = rows > 1 ? rows : 1;
+        cols = cols > 1 ? cols : 1;
 
         const figure = this.editor.createElement('figure', {attributes: {class: 'table'}});
         const table = this.editor.createElement('table');
