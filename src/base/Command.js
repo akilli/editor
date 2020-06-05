@@ -82,17 +82,29 @@ export default class Command {
     }
 
     /**
+     * Returns selected element if it is the same kind of element
+     *
+     * @protected
+     * @return {?HTMLElement}
+     */
+    selectedElement() {
+        const element = this.editor.getSelectedElement();
+
+        return element && element.localName === this.tagName ? element : null;
+    }
+
+    /**
      * Returns attributes from selected element if it is the same kind of element
      *
      * @protected
-     * @return {Object}
+     * @return {Object.<String, String>}
      */
     selectedAttributes() {
+        const element = this.selectedElement();
         const attributes = {};
-        const sel = this.editor.getSelectedElement();
 
-        if (sel instanceof HTMLElement && sel.localName === this.tagName) {
-            Array.from(sel.attributes).forEach(attribute => attributes[attribute.nodeName] = attribute.nodeValue);
+        if (element) {
+            Array.from(element.attributes).forEach(attribute => attributes[attribute.nodeName] = attribute.nodeValue);
         }
 
         return attributes;

@@ -10,7 +10,7 @@ export default class LinkCommand extends Command {
      * @param {Editor} editor
      */
     constructor(editor) {
-        super(editor, 'link');
+        super(editor, 'link', 'a');
     }
 
     /**
@@ -20,15 +20,14 @@ export default class LinkCommand extends Command {
      * @param {?String} href
      */
     insert({href = null} = {}) {
-        const sel = this.editor.getSelectedElement();
-        const old = sel instanceof HTMLAnchorElement ? sel : null;
+        const element = this.selectedElement();
 
-        if (href && old) {
-            old.setAttribute('href', this.editor.url(href));
+        if (element && href) {
+            element.setAttribute('href', this.editor.url(href));
+        } else if (element) {
+            element.parentElement.replaceChild(this.editor.createText(element.textContent), element);
         } else if (href) {
             this.editor.format(this.editor.createElement('a', {attributes: {href: this.editor.url(href)}}));
-        } else if (old) {
-            old.parentElement.replaceChild(this.editor.createText(old.textContent), old);
         }
     }
 }
