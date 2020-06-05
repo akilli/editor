@@ -64,7 +64,8 @@ export default class Command {
      * Executes the command
      */
     execute() {
-        this.dialog ? this.dialog.open(attributes => this.insert(attributes), this.selectedAttributes()) : this.insert();
+        const attributes = this.selectedAttributes();
+        this.dialog ? this.dialog.open(item => this.insert(item), attributes) : this.insert(attributes);
     }
 
      /**
