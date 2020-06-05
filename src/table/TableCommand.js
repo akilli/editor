@@ -25,29 +25,21 @@ export default class TableCommand extends Command {
             throw 'Invalid argument';
         }
 
-        const table = this.editor.createElement('table');
-        ['thead', 'tbody', 'tfoot'].forEach(section => {
-            const item = this.editor.createElement(section);
-            const cell = section === 'thead' ? 'th' : 'td';
-            const r = section === 'tbody' ? rows : 1;
-            let tr;
-
-            table.appendChild(item);
-
-            for (let i = 0; i < r; i++) {
-                tr = this.editor.createElement('tr');
-                item.appendChild(tr);
-
-                for (let j = 0; j < cols; ++j) {
-                    tr.appendChild(this.editor.createElement(cell));
-                }
-            }
-        });
-
         const figure = this.editor.createElement('figure', {attributes: {class: 'table'}});
-        figure.appendChild(table);
-        figure.appendChild(this.editor.createElement('figcaption'));
+        const table = this.editor.createElement('table');
+        const tbody = this.editor.createElement('tbody');
 
+        for (let i = 0; i < rows; i++) {
+            const tr = this.editor.createElement('tr');
+            tbody.appendChild(tr);
+
+            for (let j = 0; j < cols; ++j) {
+                tr.appendChild(this.editor.createElement('td'));
+            }
+        }
+
+        table.appendChild(tbody);
+        figure.appendChild(table);
         this.editor.insert(figure);
     }
 }
