@@ -89,7 +89,7 @@ export default class TableObserver extends Observer {
                 } else if (!ev.shiftKey && (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight')) {
                     index = cell.cellIndex + (ev.key === 'ArrowLeft' ? 0 : 1);
                     Array.from(table.rows).forEach(item => {
-                        if (!item.querySelector(':scope > td')) {
+                        if (item.parentElement.localName === 'thead') {
                             item.insertBefore(this.editor.createElement('th'), item.cells[index]);
                         } else {
                             item.insertCell(index);
