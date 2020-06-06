@@ -68,13 +68,12 @@ export default class TableObserver extends Observer {
             const cell = ev.target;
             const row = cell.parentElement;
             const base = row.parentElement;
+            const keys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
 
             if (cell instanceof HTMLTableCellElement
                 && row instanceof HTMLTableRowElement
                 && (base instanceof HTMLTableElement || base instanceof HTMLTableSectionElement)
-                && ev.altKey
-                && !ev.ctrlKey
-                && ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(ev.key)
+                && (this.editor.isKey(ev, keys, {alt: true}) || this.editor.isKey(ev, keys, {alt: true, shift: true}))
             ) {
                 const length = row.cells.length;
                 const rowLength = base.rows.length;

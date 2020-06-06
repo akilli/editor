@@ -42,7 +42,7 @@ export default class ToolbarObserver extends Observer {
      */
     keyboard(node) {
         node.addEventListener('keyup', ev => {
-            if (!ev.altKey && !ev.ctrlKey && !ev.shiftKey && ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(ev.key)) {
+            if (this.editor.isKey(ev, ['ArrowLeft', 'ArrowRight', 'Home', 'End'])) {
                 const prev = node.previousElementSibling;
                 const next = node.nextElementSibling;
                 const first = node.parentElement.firstElementChild;

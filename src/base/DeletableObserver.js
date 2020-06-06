@@ -27,8 +27,8 @@ export default class DeletableObserver extends Observer {
      */
     keyboard(node) {
         node.addEventListener('keyup', ev => {
-            if (ev.target === node && !ev.altKey && ev.ctrlKey && !ev.shiftKey && ev.key === 'Delete') {
-                if (node.previousElementSibling) {
+            if (ev.target === node && this.editor.isKey(ev, 'Delete', {ctrl: true})) {
+                if (node.previousElementSibling instanceof HTMLElement) {
                     this.editor.focusEnd(node.previousElementSibling);
                 }
 

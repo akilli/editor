@@ -38,7 +38,7 @@ export default class NavigableObserver extends Observer {
      */
     keyboard(node) {
         node.addEventListener('keyup', ev => {
-            if (ev.target === node && !ev.altKey && !ev.ctrlKey && !ev.shiftKey && ['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(ev.key)) {
+            if (ev.target === node && this.editor.isKey(ev, ['ArrowUp', 'ArrowDown', 'Home', 'End'])) {
                 const prev = node.previousElementSibling;
                 const next = node.nextElementSibling;
                 const first = node.parentElement.firstElementChild;

@@ -40,7 +40,7 @@ export default class EditableObserver extends Observer {
      * @param {KeyboardEvent} ev
      */
     onKeydownEnter(ev) {
-        if (ev.key === 'Enter' && (!ev.shiftKey || !this.editor.tags.isAllowed('br', ev.target))) {
+        if (this.editor.isKey(ev, 'Enter') || this.editor.isKey(ev, 'Enter', {shift: true}) && !this.editor.tags.isAllowed('br', ev.target)) {
             ev.preventDefault();
             ev.cancelBubble = true;
         }
@@ -55,7 +55,7 @@ export default class EditableObserver extends Observer {
     onKeyupEnter(ev) {
         let tag;
 
-        if (ev.key === 'Enter' && !ev.shiftKey && (tag = this.editor.tags.get(ev.target)) && tag.enter) {
+        if (this.editor.isKey(ev, 'Enter') && (tag = this.editor.tags.get(ev.target)) && tag.enter) {
             let current = ev.target;
             ev.preventDefault();
             ev.cancelBubble = true;
@@ -76,7 +76,7 @@ export default class EditableObserver extends Observer {
      * @param {KeyboardEvent} ev
      */
     onKeydownBackspace(ev) {
-        if (ev.key === 'Backspace' && !ev.shiftKey && !ev.target.textContent && ev.target.hasAttribute('data-deletable')) {
+        if (this.editor.isKey(ev, 'Backspace') && !ev.target.textContent && ev.target.hasAttribute('data-deletable')) {
             if (ev.target.previousElementSibling) {
                 this.editor.focusEnd(ev.target.previousElementSibling);
             }

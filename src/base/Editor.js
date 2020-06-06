@@ -449,6 +449,23 @@ export default class Editor {
     }
 
     /**
+     * Indicates if keyboard event was triggered for given key combination
+     *
+     * @param {KeyboardEvent} ev
+     * @param {String|String[]} key
+     * @param {Boolean} alt
+     * @param {Boolean} ctrl
+     * @param {Boolean} shift
+     * @return {Boolean}
+     */
+    isKey(ev, key, {alt = false, ctrl = false, shift = false} = {}) {
+        return (Array.isArray(key) && key.includes(ev.key) || ev.key === key)
+            && ev.altKey === alt
+            && ev.ctrlKey === ctrl
+            && ev.shiftKey === shift;
+    }
+
+    /**
      * Returns relative or absolute URL depending on its origin
      *
      * @param {String} url
