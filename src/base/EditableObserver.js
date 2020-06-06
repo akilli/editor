@@ -27,10 +27,23 @@ export default class EditableObserver extends Observer {
      */
     init(node) {
         node.addEventListener('keydown', ev => {
+            this.onKeydownBreak(ev);
             this.onKeydownEnter(ev);
             this.onKeydownBackspace(ev);
         });
-        node.addEventListener('keyup', ev => this.onKeyupEnter(ev));
+    }
+
+    /**
+     * Handles break aka shift + enter keydown event
+     *
+     * @private
+     * @param {KeyboardEvent} ev
+     */
+    onKeydownBreak(ev) {
+        if (this.editor.isKey(ev, 'Enter', {shift: true}) && !this.editor.tags.isAllowed('br', ev.target)) {
+            ev.preventDefault();
+            ev.cancelBubble = true;
+        }
     }
 
     /**
@@ -40,32 +53,22 @@ export default class EditableObserver extends Observer {
      * @param {KeyboardEvent} ev
      */
     onKeydownEnter(ev) {
-        if (this.editor.isKey(ev, 'Enter') || this.editor.isKey(ev, 'Enter', {shift: true}) && !this.editor.tags.isAllowed('br', ev.target)) {
-            ev.preventDefault();
-            ev.cancelBubble = true;
-        }
-    }
-
-    /**
-     * Handles enter keyup event
-     *
-     * @private
-     * @param {KeyboardEvent} ev
-     */
-    onKeyupEnter(ev) {
         let tag;
 
-        if (this.editor.isKey(ev, 'Enter') && (tag = this.editor.tags.get(ev.target)) && tag.enter) {
-            let current = ev.target;
+        if (this.editor.isKey(ev, 'Enter')) {
             ev.preventDefault();
             ev.cancelBubble = true;
 
-            do {
-                if (this.editor.tags.isAllowed(tag.enter, current.parentElement)) {
-                    current.insertAdjacentElement('afterend', this.editor.createElement(tag.enter));
-                    break;
-                }
-            } while ((current = current.parentElement) && this.editor.content.contains(current) && current !== this.editor.content);
+            if ((tag = this.editor.tags.get(ev.target)) && tag.enter) {
+                let current = ev.target;
+
+                do {
+                    if (this.editor.tags.isAllowed(tag.enter, current.parentElement)) {
+                        current.insertAdjacentElement('afterend', this.editor.createElement(tag.enter));
+                        break;
+                    }
+                } while ((current = current.parentElement) && this.editor.content.contains(current) && current !== this.editor.content);
+            }
         }
     }
 
