@@ -100,7 +100,11 @@ export default class TableObserver extends Observer {
                     const r = base.insertRow(index);
 
                     for (let i = 0; i < length; i++) {
-                        r.insertCell();
+                        if (r.parentElement.localName === 'thead') {
+                            r.appendChild(this.editor.createElement('th'));
+                        } else {
+                            r.insertCell();
+                        }
                     }
                 }
 
