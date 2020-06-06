@@ -1,5 +1,5 @@
 import Base from '../base/Base.js';
-import Caption from '../caption/Caption.js';
+import Figure from '../figure/Figure.js';
 import GalleryCommand from './GalleryCommand.js';
 import GalleryObserver from './GalleryObserver.js';
 import Plugin from '../base/Plugin.js';
@@ -19,7 +19,7 @@ export default class Gallery extends Plugin {
      * @inheritDoc
      */
     static get dependencies() {
-        return [Base, Caption];
+        return [Base, Figure];
     }
 
     /**

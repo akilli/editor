@@ -2,8 +2,6 @@ import AlignableObserver from './AlignableObserver.js';
 import BaseFilter from './BaseFilter.js';
 import DeletableObserver from './DeletableObserver.js';
 import EditableObserver from './EditableObserver.js';
-import FigureFilter from './FigureFilter.js';
-import FigureObserver from './FigureObserver.js';
 import FocusableObserver from './FocusableObserver.js';
 import NavigableObserver from './NavigableObserver.js';
 import Plugin from './Plugin.js';
@@ -51,17 +49,6 @@ export default class Base extends Plugin {
             group: 'break',
             empty: true,
         });
-        this.editor.tags.create({
-            name: 'figure',
-            group: 'figure',
-            alignable: true,
-            attributes: ['class'],
-            children: ['audio', 'caption', 'figure', 'iframe', 'image', 'quote', 'table', 'video'],
-            deletable: true,
-            focusable: true,
-            navigable: true,
-            sortable: true,
-        });
         this.editor.observe(new TagObserver(this.editor));
         this.editor.observe(new ToolbarObserver(this.editor), {target: this.editor.toolbar});
         this.editor.observe(new EditableObserver(this.editor));
@@ -71,8 +58,6 @@ export default class Base extends Plugin {
         this.editor.observe(new SortableObserver(this.editor));
         this.editor.observe(new AlignableObserver(this.editor));
         this.editor.observe(new FocusableObserver(this.editor));
-        this.editor.observe(new FigureObserver(this.editor));
         this.editor.filters.add(new BaseFilter(this.editor));
-        this.editor.filters.add(new FigureFilter(this.editor));
     }
 }

@@ -1,5 +1,5 @@
 import Base from '../base/Base.js';
-import Caption from '../caption/Caption.js';
+import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
 import QuoteCommand from './QuoteCommand.js';
 import QuoteObserver from './QuoteObserver.js';
@@ -19,7 +19,7 @@ export default class Quote extends Plugin {
      * @inheritDoc
      */
     static get dependencies() {
-        return [Base, Caption];
+        return [Base, Figure];
     }
 
     /**

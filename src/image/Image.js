@@ -1,6 +1,6 @@
 import Base from '../base/Base.js';
 import BrowserDialog from '../base/BrowserDialog.js';
-import Caption from '../caption/Caption.js';
+import Figure from '../figure/Figure.js';
 import ImageCommand from './ImageCommand.js';
 import ImageDialog from './ImageDialog.js';
 import Plugin from '../base/Plugin.js';
@@ -21,7 +21,7 @@ export default class Image extends Plugin {
      * @inheritDoc
      */
     static get dependencies() {
-        return [Base, Caption];
+        return [Base, Figure];
     }
 
     /**

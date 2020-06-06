@@ -1,5 +1,5 @@
 import Base from '../base/Base.js';
-import Caption from '../caption/Caption.js';
+import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
 import TableCommand from './TableCommand.js';
 import TableDialog from './TableDialog.js';
@@ -22,7 +22,7 @@ export default class Table extends Plugin {
      * @inheritDoc
      */
     static get dependencies() {
-        return [Base, Caption];
+        return [Base, Figure];
     }
 
     /**

@@ -1,4 +1,4 @@
-import Observer from './Observer.js';
+import Observer from '../base/Observer.js';
 
 /**
  * Figure observer to create missing figcaption elements
