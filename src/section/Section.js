@@ -2,7 +2,6 @@ import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 import SectionDialog from './SectionDialog.js';
 import SectionObserver from './SectionObserver.js';
-import Slot from '../slot/Slot.js';
 import i18n from './i18n.js';
 
 /**
@@ -20,7 +19,7 @@ export default class Section extends Plugin {
      * @inheritDoc
      */
     static get dependencies() {
-        return [Base, Slot];
+        return [Base];
     }
 
     /**

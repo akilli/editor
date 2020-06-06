@@ -1,4 +1,4 @@
-import Observer from '../base/Observer.js';
+import Observer from './Observer.js';
 
 /**
  * Slot Observer

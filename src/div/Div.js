@@ -2,7 +2,6 @@ import Base from '../base/Base.js';
 import DivDialog from './DivDialog.js';
 import DivObserver from './DivObserver.js';
 import Plugin from '../base/Plugin.js';
-import Slot from '../slot/Slot.js';
 import i18n from './i18n.js';
 
 /**
@@ -20,7 +19,7 @@ export default class Div extends Plugin {
      * @inheritDoc
      */
     static get dependencies() {
-        return [Base, Slot];
+        return [Base];
     }
 
     /**
