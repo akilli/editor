@@ -37,8 +37,8 @@ export default class NavigableObserver extends Observer {
      * @param {HTMLElement} node
      */
     keyboard(node) {
-        node.addEventListener('keyup', ev => {
-            if (ev.target === node && this.editor.isKey(ev, ['ArrowUp', 'ArrowDown', 'Home', 'End'])) {
+        node.addEventListener('keydown', ev => {
+            if (ev.target === node && this.editor.isKey(ev, ['ArrowUp', 'ArrowDown', 'Home', 'End']) && this.isAllowed(node)) {
                 const prev = node.previousElementSibling;
                 const next = node.nextElementSibling;
                 const first = node.parentElement.firstElementChild;
@@ -60,5 +60,24 @@ export default class NavigableObserver extends Observer {
                 ev.cancelBubble = true;
             }
         });
+    }
+
+    /**
+     * Enables or disables navigation for contenteditable elements
+     *
+     * @private
+     * @param {HTMLElement} node
+     * @return {Boolean}
+     */
+    isAllowed(node) {
+        if (!node.isContentEditable) {
+            return true;
+        }
+
+        const sel = this.editor.window.getSelection();
+        const editable = this.editor.getSelectedEditable();
+        const element = this.editor.getSelectedElement();
+
+        return sel.isCollapsed && sel.anchorOffset === 0 && [editable, node.firstChild].includes(element);
     }
 }
