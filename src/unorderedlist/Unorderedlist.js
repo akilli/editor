@@ -1,7 +1,6 @@
 import Base from '../base/Base.js';
-import Listitem from '../listitem/Listitem.js';
+import List from '../list/List.js';
 import Plugin from '../base/Plugin.js';
-import UnorderedlistObserver from './UnorderedlistObserver.js';
 
 /**
  * Unorderedlist Plugin
@@ -18,7 +17,7 @@ export default class Unorderedlist extends Plugin {
      * @inheritDoc
      */
     static get dependencies() {
-        return [Base, Listitem];
+        return [Base, List];
     }
 
     /**
@@ -34,7 +33,6 @@ export default class Unorderedlist extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this.editor.observe(new UnorderedlistObserver(this.editor));
         this.registerCommand('unorderedlist', 'ul');
     }
 }

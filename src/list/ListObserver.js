@@ -1,23 +1,26 @@
 import Observer from '../base/Observer.js';
 
 /**
- * Handles unorderedlist elements
+ * Handles list elements
  */
-export default class UnorderedlistObserver extends Observer {
+export default class ListObserver extends Observer {
     /**
      * @inheritDoc
      */
     observe(ev) {
         ev.forEach(record => {
             record.addedNodes.forEach(node => {
-                if (node instanceof HTMLUListElement) {
+                if (node instanceof HTMLOListElement || node instanceof HTMLUListElement) {
                     this.init(node);
                 } else if (node instanceof HTMLElement) {
-                    node.querySelectorAll('ul').forEach(item => this.init(item));
+                    node.querySelectorAll('ol, ul').forEach(item => this.init(item));
                 }
             });
 
-            if (record.removedNodes.length > 0 && record.target instanceof HTMLUListElement && record.target.children.length === 0) {
+            if (record.removedNodes.length > 0
+                && (record.target instanceof HTMLOListElement || record.target instanceof HTMLUListElement)
+                && record.target.children.length === 0
+            ) {
                 record.target.parentElement.removeChild(record.target);
             }
         });
@@ -27,7 +30,7 @@ export default class UnorderedlistObserver extends Observer {
      * Initializes orderedlist element
      *
      * @private
-     * @param {HTMLUListElement} node
+     * @param {HTMLOListElement|HTMLUListElement} node
      */
     init(node) {
         if (node.children.length === 0) {

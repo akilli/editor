@@ -1,15 +1,16 @@
 import Base from '../base/Base.js';
+import ListObserver from './ListObserver.js';
 import Plugin from '../base/Plugin.js';
 
 /**
- * Listitem Plugin
+ * List Plugin
  */
-export default class Listitem extends Plugin {
+export default class List extends Plugin {
     /**
      * @inheritDoc
      */
     static get name() {
-        return 'listitem';
+        return 'list';
     }
 
     /**
@@ -34,5 +35,6 @@ export default class Listitem extends Plugin {
             navigable: true,
             sortable: true,
         });
+        this.editor.observe(new ListObserver(this.editor));
     }
 }
