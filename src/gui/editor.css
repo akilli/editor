@@ -9,7 +9,8 @@
     --editor-cancel-background: #f1c40f;
     --editor-cancel-color: #191919;
     --editor-cmd-focus: #f1c40f;
-    --editor-drag: #191919;
+    --editor-draggable: #191919;
+    --editor-dragover: #19191933;
     --editor-empty: 'No content :-( ... click a button in the toolbar to add some :-)';
     --editor-error: #960200;
     --editor-focus: #f1c40f;
@@ -95,7 +96,7 @@ akilli-editor.editor-fullscreen > editor-content {
  * Widgets
  */
 editor-content :hover {
-    outline: 0.25rem solid var(--editor-hover);
+    outline: 0.25rem dotted var(--editor-hover);
 }
 
 editor-content :focus {
@@ -110,7 +111,7 @@ editor-content [contenteditable] {
 }
 
 editor-content [contenteditable=true]:hover {
-    outline: 0.25rem solid var(--editor-hover);
+    outline: 0.25rem dotted var(--editor-hover);
 }
 
 editor-content [contenteditable=true] :hover {
@@ -144,11 +145,11 @@ editor-content slot[contenteditable=true]:empty::after {
  * Draggable
  */
 editor-content [draggable=true]:hover {
-    outline: 0.25rem dashed var(--editor-hover);
+    outline: 0.25rem dashed var(--editor-draggable);
 }
 
 .editor-dragover {
-    outline: 0.25rem dashed var(--editor-drag);
+    outline: 0.25rem dashed var(--editor-dragover);
 }
 
 /**
