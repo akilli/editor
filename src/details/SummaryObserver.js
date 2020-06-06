@@ -37,13 +37,7 @@ export default class SummaryObserver extends Observer {
             if (ev.key === ' ') {
                 ev.preventDefault();
                 ev.cancelBubble = true;
-            }
-        });
-        node.addEventListener('keyup', ev => {
-            if (ev.key === ' ') {
                 this.editor.insertText(' ');
-                ev.preventDefault();
-                ev.cancelBubble = true;
             }
         });
     }
