@@ -37,7 +37,7 @@ export default class SortableObserver extends Observer {
      * @param {HTMLElement} node
      */
     keyboard(node) {
-        node.addEventListener('keyup', ev => {
+        node.addEventListener('keydown', ev => {
             if (ev.target === node && this.editor.isKey(ev, ['ArrowUp', 'ArrowDown', 'Home', 'End'], {ctrl: true})) {
                 const parent = node.parentElement;
                 const prev = node.previousElementSibling;

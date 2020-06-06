@@ -22,7 +22,7 @@ export default class AlignableObserver extends Observer {
      * @param {HTMLElement} node
      */
     keyboard(node) {
-        node.addEventListener('keyup', ev => {
+        node.addEventListener('keydown', ev => {
             const map = {ArrowUp: null, ArrowLeft: 'left', ArrowDown: 'center', ArrowRight: 'right'};
 
             if (ev.target === node && this.editor.isKey(ev, Object.keys(map), {shift: true})) {
