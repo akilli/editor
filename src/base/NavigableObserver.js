@@ -57,7 +57,7 @@ export default class NavigableObserver extends Observer {
                 }
 
                 ev.preventDefault();
-                ev.cancelBubble = true;
+                ev.stopPropagation();
             }
         });
     }

@@ -62,7 +62,7 @@ export default class SortableObserver extends Observer {
                 }
 
                 ev.preventDefault();
-                ev.cancelBubble = true;
+                ev.stopPropagation();
             }
         });
     }
@@ -103,7 +103,7 @@ export default class SortableObserver extends Observer {
 
                 if (name && this.editor.tags.isAllowed(name, node.parentElement)) {
                     ev.preventDefault();
-                    ev.cancelBubble = true;
+                    ev.stopPropagation();
                     node.classList.add('editor-dragover');
                     ev.dataTransfer.dropEffect = 'move';
                 }
@@ -113,7 +113,7 @@ export default class SortableObserver extends Observer {
         node.addEventListener('dblclick', ev => {
             if (ev.target === node) {
                 ev.preventDefault();
-                ev.cancelBubble = true;
+                ev.stopPropagation();
                 toggle();
             }
         });
@@ -143,7 +143,7 @@ export default class SortableObserver extends Observer {
                 const name = ev.dataTransfer.getData(keyName);
                 const html = ev.dataTransfer.getData(keyHtml);
                 ev.preventDefault();
-                ev.cancelBubble = true;
+                ev.stopPropagation();
 
                 if (name && this.editor.tags.isAllowed(name, node.parentElement) && html) {
                     node.insertAdjacentHTML('beforebegin', html);

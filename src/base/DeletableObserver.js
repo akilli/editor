@@ -34,7 +34,7 @@ export default class DeletableObserver extends Observer {
 
                 node.parentElement.removeChild(node);
                 ev.preventDefault();
-                ev.cancelBubble = true;
+                ev.stopPropagation();
             }
         });
     }

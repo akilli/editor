@@ -42,7 +42,7 @@ export default class EditableObserver extends Observer {
     onKeydownBreak(ev) {
         if (this.editor.isKey(ev, 'Enter', {shift: true}) && !this.editor.tags.isAllowed('br', ev.target)) {
             ev.preventDefault();
-            ev.cancelBubble = true;
+            ev.stopPropagation();
         }
     }
 
@@ -57,7 +57,7 @@ export default class EditableObserver extends Observer {
 
         if (this.editor.isKey(ev, 'Enter')) {
             ev.preventDefault();
-            ev.cancelBubble = true;
+            ev.stopPropagation();
 
             if ((tag = this.editor.tags.get(ev.target)) && tag.enter) {
                 let current = ev.target;
@@ -86,7 +86,7 @@ export default class EditableObserver extends Observer {
 
             ev.target.parentElement.removeChild(ev.target);
             ev.preventDefault();
-            ev.cancelBubble = true;
+            ev.stopPropagation();
         }
     }
 }

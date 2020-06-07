@@ -76,6 +76,7 @@ export default class Dialog {
         const form = this.editor.createElement('form');
         form.addEventListener('submit', ev => {
             ev.preventDefault();
+            ev.stopPropagation();
             close();
             const data = {};
             Array.from(fieldset.elements).forEach(item => data[item.name] = item.value);

@@ -109,7 +109,7 @@ export default class TableObserver extends Observer {
                 }
 
                 ev.preventDefault();
-                ev.cancelBubble = true;
+                ev.stopPropagation();
             }
         });
     }

@@ -36,7 +36,7 @@ export default class SummaryObserver extends Observer {
         node.addEventListener('keydown', ev => {
             if (ev.key === ' ') {
                 ev.preventDefault();
-                ev.cancelBubble = true;
+                ev.stopPropagation();
                 this.editor.insertText(' ');
             }
         });

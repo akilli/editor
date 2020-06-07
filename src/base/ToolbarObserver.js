@@ -61,7 +61,7 @@ export default class ToolbarObserver extends Observer {
                 }
 
                 ev.preventDefault();
-                ev.cancelBubble = true;
+                ev.stopPropagation();
             }
         });
     }

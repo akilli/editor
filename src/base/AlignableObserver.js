@@ -27,7 +27,7 @@ export default class AlignableObserver extends Observer {
 
             if (ev.target === node && this.editor.isKey(ev, Object.keys(map), {shift: true})) {
                 ev.preventDefault();
-                ev.cancelBubble = true;
+                ev.stopPropagation();
                 node.classList.remove(...Object.values(map));
 
                 if (map[ev.key]) {

@@ -26,7 +26,7 @@ export default class SlotObserver extends Observer {
     keyboard(node) {
         node.addEventListener('keydown', ev => {
             ev.preventDefault();
-            ev.cancelBubble = true;
+            ev.stopPropagation();
         });
     }
 }
