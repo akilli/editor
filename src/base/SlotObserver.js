@@ -10,23 +10,31 @@ export default class SlotObserver extends Observer {
     observe(records) {
         records.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLSlotElement) {
-                this.keyboard(node);
+                this.init(node);
             } else if (node instanceof HTMLElement) {
-                node.querySelectorAll('slot').forEach(item => this.keyboard(item));
+                node.querySelectorAll('slot').forEach(item => this.init(item));
             }
         }));
     }
 
     /**
-     * Handles keyboard events
+     * Initializes slot element
      *
      * @private
      * @param {HTMLSlotElement} node
      */
-    keyboard(node) {
-        node.addEventListener('keydown', event => {
-            event.preventDefault();
-            event.stopPropagation();
-        });
+    init(node) {
+        node.addEventListener('keydown', this);
+    }
+
+    /**
+     * Disables all keyboard events
+     *
+     * @private
+     * @param {KeyboardEvent} event
+     */
+    keydown(event) {
+        event.preventDefault();
+        event.stopPropagation();
     }
 }
