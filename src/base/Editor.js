@@ -452,7 +452,7 @@ export default class Editor {
             throw 'Invalid argument';
         }
 
-        const mutation = new MutationObserver(ev => observer.observe(ev));
+        const mutation = new MutationObserver(records => observer.observe(records));
         mutation.observe(target || this.content, config);
     }
 
