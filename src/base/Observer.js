@@ -2,6 +2,8 @@ import Editor from './Editor.js';
 
 /**
  * Observer
+ *
+ * @implements EventListener
  */
 export default class Observer {
     /**
@@ -32,5 +34,16 @@ export default class Observer {
      */
     observe(ev) {
         throw 'Not implemented';
+    }
+
+    /**
+     * Handles events
+     *
+     * @param {Event} ev
+     */
+    handleEvent(ev) {
+        if (typeof this[ev.type] === 'function') {
+            this[ev.type](ev);
+        }
     }
 }

@@ -25,8 +25,8 @@ export default class SummaryObserver extends Observer {
      */
     init(node) {
         this.empty(node);
-        node.addEventListener('blur', () => this.empty(node));
-        this.keyboard(node);
+        node.addEventListener('blur', this);
+        node.addEventListener('keydown', this);
     }
 
     /**
@@ -46,25 +46,33 @@ export default class SummaryObserver extends Observer {
     }
 
     /**
+     * Calls empty method on blur
+     *
+     * @private
+     * @param {FocusEvent} ev
+     * @param {HTMLElement} ev.target
+     */
+    blur(ev) {
+        this.empty(ev.target);
+    }
+
+    /**
      * Fixes space and enter key handling for editable summary elements
      *
      * @private
-     * @param {HTMLElement} node
+     * @param {KeyboardEvent} ev
+     * @param {HTMLElement} ev.target
      */
-    keyboard(node) {
-        node.addEventListener('keydown', ev => {
-            if (this.editor.isKey(ev, ' ')) {
-                ev.preventDefault();
-                ev.stopPropagation();
-                ev.stopImmediatePropagation();
-                this.editor.insertText(' ');
-            } else if (this.editor.isKey(ev, 'Enter')) {
-                ev.preventDefault();
-                ev.stopPropagation();
-                ev.stopImmediatePropagation();
-                node.parentElement.open = true;
-                node.insertAdjacentElement('afterend', this.editor.createElement('p'));
-            }
-        });
+    keydown(ev) {
+        if (this.editor.isKey(ev, ' ')) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            this.editor.insertText(' ');
+        } else if (this.editor.isKey(ev, 'Enter')) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            ev.target.parentElement.open = true;
+            ev.target.insertAdjacentElement('afterend', this.editor.createElement('p'));
+        }
     }
 }
