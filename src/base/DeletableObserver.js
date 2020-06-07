@@ -11,31 +11,40 @@ export default class DeletableObserver extends Observer {
         records.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
                 if (node.hasAttribute('data-deletable')) {
-                    this.keyboard(node);
+                    this.init(node);
                 }
 
-                node.querySelectorAll('[data-deletable]').forEach(item => this.keyboard(item));
+                node.querySelectorAll('[data-deletable]').forEach(item => this.init(item));
             }
         }));
     }
 
     /**
-     * Handles keyboard events
+     * Initializes deletable element
      *
      * @private
      * @param {HTMLElement} node
      */
-    keyboard(node) {
-        node.addEventListener('keydown', ev => {
-            if (ev.target === node && this.editor.isKey(ev, 'Delete', {ctrl: true})) {
-                if (node.previousElementSibling instanceof HTMLElement) {
-                    this.editor.focusEnd(node.previousElementSibling);
-                }
+    init(node) {
+        node.addEventListener('keydown', this);
+    }
 
-                node.parentElement.removeChild(node);
-                ev.preventDefault();
-                ev.stopPropagation();
+    /**
+     * Handles key combinations for delete
+     *
+     * @private
+     * @param {KeyboardEvent} event
+     * @param {HTMLElement} event.target
+     */
+    keydown(event) {
+        if (event.target === event.currentTarget && this.editor.isKey(event, 'Delete', {ctrl: true})) {
+            if (event.target.previousElementSibling instanceof HTMLElement) {
+                this.editor.focusEnd(event.target.previousElementSibling);
             }
-        });
+
+            event.target.parentElement.removeChild(event.target);
+            event.preventDefault();
+            event.stopPropagation();
+        }
     }
 }

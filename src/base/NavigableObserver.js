@@ -27,39 +27,41 @@ export default class NavigableObserver extends Observer {
      */
     init(node) {
         node.tabIndex = 0;
-        this.keyboard(node);
+        node.addEventListener('keydown', this);
     }
 
     /**
-     * Handles keyboard events
+     * Handles key combinations for navigation
      *
      * @private
-     * @param {HTMLElement} node
+     * @param {KeyboardEvent} event
+     * @param {HTMLElement} event.target
      */
-    keyboard(node) {
-        node.addEventListener('keydown', ev => {
-            if (ev.target === node && this.editor.isKey(ev, ['ArrowUp', 'ArrowDown', 'Home', 'End']) && this.isAllowed(node)) {
-                const prev = node.previousElementSibling;
-                const next = node.nextElementSibling;
-                const first = node.parentElement.firstElementChild;
-                const last = node.parentElement.lastElementChild;
-                const isFirst = node === first;
-                const isLast = node === last;
+    keydown(event) {
+        if (event.target === event.currentTarget
+            && this.editor.isKey(event, ['ArrowUp', 'ArrowDown', 'Home', 'End'])
+            && this.isAllowed(event.target)
+        ) {
+            const prev = event.target.previousElementSibling;
+            const next = event.target.nextElementSibling;
+            const first = event.target.parentElement.firstElementChild;
+            const last = event.target.parentElement.lastElementChild;
+            const isFirst = event.target === first;
+            const isLast = event.target === last;
 
-                if (ev.key === 'ArrowUp' && !isFirst && prev.hasAttribute('data-navigable')) {
-                    prev.focus();
-                } else if (ev.key === 'ArrowDown' && !isLast && next.hasAttribute('data-navigable')) {
-                    next.focus();
-                } else if ((ev.key === 'Home' || ev.key === 'ArrowDown' && isLast) && first.hasAttribute('data-navigable')) {
-                    first.focus();
-                } else if ((ev.key === 'End' || ev.key === 'ArrowUp' && isFirst) && last.hasAttribute('data-navigable')) {
-                    last.focus();
-                }
-
-                ev.preventDefault();
-                ev.stopPropagation();
+            if (event.key === 'ArrowUp' && !isFirst && prev.hasAttribute('data-navigable')) {
+                prev.focus();
+            } else if (event.key === 'ArrowDown' && !isLast && next.hasAttribute('data-navigable')) {
+                next.focus();
+            } else if ((event.key === 'Home' || event.key === 'ArrowDown' && isLast) && first.hasAttribute('data-navigable')) {
+                first.focus();
+            } else if ((event.key === 'End' || event.key === 'ArrowUp' && isFirst) && last.hasAttribute('data-navigable')) {
+                last.focus();
             }
-        });
+
+            event.preventDefault();
+            event.stopPropagation();
+        }
     }
 
     /**
