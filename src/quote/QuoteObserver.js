@@ -11,6 +11,7 @@ export default class QuoteObserver extends Observer {
         records.forEach(record => record.removedNodes.forEach(node => {
             if (node instanceof HTMLElement
                 && node.localName === 'blockquote'
+                && record.target instanceof HTMLElement
                 && record.target.localName === 'figure'
                 && record.target.classList.contains('quote')
             ) {
