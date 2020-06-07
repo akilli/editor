@@ -39,11 +39,11 @@ export default class Observer {
     /**
      * Handles events
      *
-     * @param {Event} ev
+     * @param {Event} event
      */
-    handleEvent(ev) {
-        if (typeof this[ev.type] === 'function') {
-            this[ev.type](ev);
+    handleEvent(event) {
+        if (typeof this[event.type] === 'function') {
+            this[event.type](event);
         }
     }
 }

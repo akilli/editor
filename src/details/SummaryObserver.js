@@ -49,30 +49,30 @@ export default class SummaryObserver extends Observer {
      * Calls empty method on blur
      *
      * @private
-     * @param {FocusEvent} ev
-     * @param {HTMLElement} ev.target
+     * @param {FocusEvent} event
+     * @param {HTMLElement} event.target
      */
-    blur(ev) {
-        this.empty(ev.target);
+    blur(event) {
+        this.empty(event.target);
     }
 
     /**
      * Fixes space and enter key handling for editable summary elements
      *
      * @private
-     * @param {KeyboardEvent} ev
-     * @param {HTMLElement} ev.target
+     * @param {KeyboardEvent} event
+     * @param {HTMLElement} event.target
      */
-    keydown(ev) {
-        if (this.editor.isKey(ev, ' ')) {
-            ev.preventDefault();
-            ev.stopPropagation();
+    keydown(event) {
+        if (this.editor.isKey(event, ' ')) {
+            event.preventDefault();
+            event.stopPropagation();
             this.editor.insertText(' ');
-        } else if (this.editor.isKey(ev, 'Enter')) {
-            ev.preventDefault();
-            ev.stopPropagation();
-            ev.target.parentElement.open = true;
-            ev.target.insertAdjacentElement('afterend', this.editor.createElement('p'));
+        } else if (this.editor.isKey(event, 'Enter')) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.target.parentElement.open = true;
+            event.target.insertAdjacentElement('afterend', this.editor.createElement('p'));
         }
     }
 }

@@ -459,18 +459,18 @@ export default class Editor {
     /**
      * Indicates if keyboard event was triggered for given key combination
      *
-     * @param {KeyboardEvent} ev
+     * @param {KeyboardEvent} event
      * @param {String|String[]} key
      * @param {Boolean} alt
      * @param {Boolean} ctrl
      * @param {Boolean} shift
      * @return {Boolean}
      */
-    isKey(ev, key, {alt = false, ctrl = false, shift = false} = {}) {
-        return (Array.isArray(key) && key.includes(ev.key) || ev.key === key)
-            && ev.altKey === alt
-            && ev.ctrlKey === ctrl
-            && ev.shiftKey === shift;
+    isKey(event, key, {alt = false, ctrl = false, shift = false} = {}) {
+        return (Array.isArray(key) && key.includes(event.key) || event.key === key)
+            && event.altKey === alt
+            && event.ctrlKey === ctrl
+            && event.shiftKey === shift;
     }
 
     /**
