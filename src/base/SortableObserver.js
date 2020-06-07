@@ -7,8 +7,8 @@ export default class SortableObserver extends Observer {
     /**
      * @inheritDoc
      */
-    observe(ev) {
-        ev.forEach(record => record.addedNodes.forEach(node => {
+    observe(records) {
+        records.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLElement) {
                 if (node.hasAttribute('data-sortable')) {
                     this.init(node);

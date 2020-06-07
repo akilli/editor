@@ -7,8 +7,8 @@ export default class ListObserver extends Observer {
     /**
      * @inheritDoc
      */
-    observe(ev) {
-        ev.forEach(record => {
+    observe(records) {
+        records.forEach(record => {
             record.addedNodes.forEach(node => {
                 if (node instanceof HTMLOListElement || node instanceof HTMLUListElement) {
                     this.init(node);

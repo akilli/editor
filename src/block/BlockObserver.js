@@ -8,8 +8,8 @@ export default class BlockObserver extends Observer {
     /**
      * @inheritDoc
      */
-    observe(ev) {
-        ev.forEach(record => record.addedNodes.forEach(node => {
+    observe(records) {
+        records.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof BlockElement && node.id && this.editor.config.block.api) {
                 this.init(node);
             } else if (node instanceof HTMLElement) {

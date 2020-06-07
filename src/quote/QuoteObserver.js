@@ -7,8 +7,8 @@ export default class QuoteObserver extends Observer {
     /**
      * @inheritDoc
      */
-    observe(ev) {
-        ev.forEach(record => record.removedNodes.forEach(node => {
+    observe(records) {
+        records.forEach(record => record.removedNodes.forEach(node => {
             if (node instanceof HTMLElement
                 && node.localName === 'blockquote'
                 && record.target.localName === 'figure'

@@ -7,8 +7,8 @@ export default class GalleryObserver extends Observer {
     /**
      * @inheritDoc
      */
-    observe(ev) {
-        ev.forEach(record => record.addedNodes.forEach(node => {
+    observe(records) {
+        records.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLElement && node.localName === 'figure' && node.classList.contains('gallery')) {
                 this.init(node);
             } else if (node instanceof HTMLElement) {

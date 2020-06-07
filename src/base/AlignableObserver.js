@@ -7,8 +7,8 @@ export default class AlignableObserver extends Observer {
     /**
      * @inheritDoc
      */
-    observe(ev) {
-        ev.forEach(record => record.addedNodes.forEach(node => {
+    observe(records) {
+        records.forEach(record => record.addedNodes.forEach(node => {
             if (node instanceof HTMLElement && node.parentElement === this.editor.content && node.hasAttribute('data-alignable')) {
                 this.keyboard(node);
             }
