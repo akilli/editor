@@ -282,7 +282,15 @@ export default class Editor {
      * @param {String} text
      */
     insertText(text) {
-        this.document.execCommand('inserttext', false, text);
+        const editable = this.getSelectedEditable();
+
+        if (editable) {
+            const range = this.window.getSelection().getRangeAt(0);
+            range.deleteContents();
+            range.insertNode(this.createText(text));
+            range.collapse();
+            editable.normalize();
+        }
     }
 
     /**

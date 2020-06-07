@@ -24,20 +24,46 @@ export default class SummaryObserver extends Observer {
      * @param {HTMLElement} node
      */
     init(node) {
-        // Ensure summary is not empty
-        const call = () => {
-            if (!node.textContent.trim()) {
-                node.textContent = this.editor.i18n.translate('details', 'Details');
-            }
-        };
-        call();
-        node.addEventListener('blur', call);
-        // Fix space key for editable summary elements
+        this.empty(node);
+        node.addEventListener('blur', () => this.empty(node));
+        this.keyboard(node);
+    }
+
+    /**
+     * Ensures summary element is not empty to avoid strange browser behaviour
+     *
+     * @private
+     * @param {HTMLElement} node
+     */
+    empty(node) {
+        if (!node.textContent.trim()) {
+            node.textContent = this.editor.i18n.translate('details', 'Details');
+        } else {
+            node.querySelectorAll('br:not(:last-child)').forEach(item => item.parentElement.removeChild(item));
+        }
+
+        node.lastElementChild instanceof HTMLBRElement || node.appendChild(this.editor.createElement('br'));
+    }
+
+    /**
+     * Fixes space and enter key handling for editable summary elements
+     *
+     * @private
+     * @param {HTMLElement} node
+     */
+    keyboard(node) {
         node.addEventListener('keydown', ev => {
-            if (ev.key === ' ') {
+            if (this.editor.isKey(ev, ' ')) {
                 ev.preventDefault();
                 ev.stopPropagation();
+                ev.stopImmediatePropagation();
                 this.editor.insertText(' ');
+            } else if (this.editor.isKey(ev, 'Enter')) {
+                ev.preventDefault();
+                ev.stopPropagation();
+                ev.stopImmediatePropagation();
+                node.parentElement.open = true;
+                node.insertAdjacentElement('afterend', this.editor.createElement('p'));
             }
         });
     }

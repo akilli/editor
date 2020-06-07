@@ -40,7 +40,6 @@ export default class Details extends Plugin {
             name: 'summary',
             group: 'summary',
             editable: true,
-            enter: 'p',
             navigable: true,
         });
         this.editor.observe(new DetailsObserver(this.editor));
