@@ -24,9 +24,9 @@ export default class SlotObserver extends Observer {
      * @param {HTMLSlotElement} node
      */
     keyboard(node) {
-        node.addEventListener('keydown', ev => {
-            ev.preventDefault();
-            ev.stopPropagation();
+        node.addEventListener('keydown', event => {
+            event.preventDefault();
+            event.stopPropagation();
         });
     }
 }

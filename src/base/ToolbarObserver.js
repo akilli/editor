@@ -41,8 +41,8 @@ export default class ToolbarObserver extends Observer {
      * @param {HTMLElement} node
      */
     keyboard(node) {
-        node.addEventListener('keydown', ev => {
-            if (this.editor.isKey(ev, ['ArrowLeft', 'ArrowRight', 'Home', 'End'])) {
+        node.addEventListener('keydown', event => {
+            if (this.editor.isKey(event, ['ArrowLeft', 'ArrowRight', 'Home', 'End'])) {
                 const prev = node.previousElementSibling;
                 const next = node.nextElementSibling;
                 const first = node.parentElement.firstElementChild;
@@ -50,18 +50,18 @@ export default class ToolbarObserver extends Observer {
                 const isFirst = node === first;
                 const isLast = node === last;
 
-                if (ev.key === 'ArrowLeft' && !isFirst) {
+                if (event.key === 'ArrowLeft' && !isFirst) {
                     prev.focus();
-                } else if (ev.key === 'ArrowRight' && !isLast) {
+                } else if (event.key === 'ArrowRight' && !isLast) {
                     next.focus();
-                } else if (ev.key === 'Home' || ev.key === 'ArrowRight' && isLast) {
+                } else if (event.key === 'Home' || event.key === 'ArrowRight' && isLast) {
                     first.focus();
-                } else if (ev.key === 'End' || ev.key === 'ArrowLeft' && isFirst) {
+                } else if (event.key === 'End' || event.key === 'ArrowLeft' && isFirst) {
                     last.focus();
                 }
 
-                ev.preventDefault();
-                ev.stopPropagation();
+                event.preventDefault();
+                event.stopPropagation();
             }
         });
     }

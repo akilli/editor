@@ -55,8 +55,8 @@ export default class Dialog {
         cleanup();
         const dialog = this.editor.createElement('dialog', {attributes: {class: 'editor-dialog', 'data-name': this.name}});
         typeof dialog.open === 'boolean' || this.polyfill(dialog);
-        dialog.addEventListener('click', ev => {
-            if (ev.target === dialog) {
+        dialog.addEventListener('click', event => {
+            if (event.target === dialog) {
                 close();
             }
         });
@@ -74,9 +74,9 @@ export default class Dialog {
         cancelButton.addEventListener('click', close);
 
         const form = this.editor.createElement('form');
-        form.addEventListener('submit', ev => {
-            ev.preventDefault();
-            ev.stopPropagation();
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            event.stopPropagation();
             close();
             const data = {};
             Array.from(fieldset.elements).forEach(item => data[item.name] = item.value);

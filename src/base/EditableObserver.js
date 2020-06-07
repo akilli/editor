@@ -26,10 +26,10 @@ export default class EditableObserver extends Observer {
      * @param {HTMLElement} node
      */
     init(node) {
-        node.addEventListener('keydown', ev => {
-            this.onKeydownBreak(ev);
-            this.onKeydownEnter(ev);
-            this.onKeydownBackspace(ev);
+        node.addEventListener('keydown', event => {
+            this.onKeydownBreak(event);
+            this.onKeydownEnter(event);
+            this.onKeydownBackspace(event);
         });
     }
 
@@ -37,13 +37,13 @@ export default class EditableObserver extends Observer {
      * Handles break aka shift + enter keydown event
      *
      * @private
-     * @param {KeyboardEvent} ev
-     * @param {HTMLElement} ev.target
+     * @param {KeyboardEvent} event
+     * @param {HTMLElement} event.target
      */
-    onKeydownBreak(ev) {
-        if (this.editor.isKey(ev, 'Enter', {shift: true}) && !this.editor.tags.isAllowed('br', ev.target)) {
-            ev.preventDefault();
-            ev.stopPropagation();
+    onKeydownBreak(event) {
+        if (this.editor.isKey(event, 'Enter', {shift: true}) && !this.editor.tags.isAllowed('br', event.target)) {
+            event.preventDefault();
+            event.stopPropagation();
         }
     }
 
@@ -51,18 +51,18 @@ export default class EditableObserver extends Observer {
      * Handles enter keydown event
      *
      * @private
-     * @param {KeyboardEvent} ev
-     * @param {HTMLElement} ev.target
+     * @param {KeyboardEvent} event
+     * @param {HTMLElement} event.target
      */
-    onKeydownEnter(ev) {
+    onKeydownEnter(event) {
         let tag;
 
-        if (this.editor.isKey(ev, 'Enter')) {
-            ev.preventDefault();
-            ev.stopPropagation();
+        if (this.editor.isKey(event, 'Enter')) {
+            event.preventDefault();
+            event.stopPropagation();
 
-            if ((tag = this.editor.tags.get(ev.target)) && tag.enter) {
-                let current = ev.target;
+            if ((tag = this.editor.tags.get(event.target)) && tag.enter) {
+                let current = event.target;
 
                 do {
                     if (this.editor.tags.isAllowed(tag.enter, current.parentElement)) {
@@ -78,18 +78,18 @@ export default class EditableObserver extends Observer {
      * Handles backspace keydown event
      *
      * @private
-     * @param {KeyboardEvent} ev
-     * @param {HTMLElement} ev.target
+     * @param {KeyboardEvent} event
+     * @param {HTMLElement} event.target
      */
-    onKeydownBackspace(ev) {
-        if (this.editor.isKey(ev, 'Backspace') && !ev.target.textContent && ev.target.hasAttribute('data-deletable')) {
-            if (ev.target.previousElementSibling instanceof HTMLElement) {
-                this.editor.focusEnd(ev.target.previousElementSibling);
+    onKeydownBackspace(event) {
+        if (this.editor.isKey(event, 'Backspace') && !event.target.textContent && event.target.hasAttribute('data-deletable')) {
+            if (event.target.previousElementSibling instanceof HTMLElement) {
+                this.editor.focusEnd(event.target.previousElementSibling);
             }
 
-            ev.target.parentElement.removeChild(ev.target);
-            ev.preventDefault();
-            ev.stopPropagation();
+            event.target.parentElement.removeChild(event.target);
+            event.preventDefault();
+            event.stopPropagation();
         }
     }
 }

@@ -58,9 +58,9 @@ export default class BrowserDialog extends Dialog {
         const url = new URL(a.href);
         Object.entries(attributes).forEach(([key, val]) => url.searchParams.set(key, `${val}`));
         const win = this.editor.window.open(url.toString(), this.name, features);
-        this.editor.window.addEventListener('message', ev => {
-            if (ev.origin === url.origin && ev.source === win) {
-                save(ev.data);
+        this.editor.window.addEventListener('message', event => {
+            if (event.origin === url.origin && event.source === win) {
+                save(event.data);
                 win.close();
             }
         }, false);
