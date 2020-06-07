@@ -26,38 +26,22 @@ export default class EditableObserver extends Observer {
      * @param {HTMLElement} node
      */
     init(node) {
-        node.addEventListener('keydown', event => {
-            this.onKeydownBreak(event);
-            this.onKeydownEnter(event);
-            this.onKeydownBackspace(event);
-        });
+        node.addEventListener('keydown', this);
     }
 
     /**
-     * Handles break aka shift + enter keydown event
+     * Handles enter and backspace keydown events
      *
      * @private
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
      */
-    onKeydownBreak(event) {
+    keydown(event) {
         if (this.editor.isKey(event, 'Enter', {shift: true}) && !this.editor.tags.isAllowed('br', event.target)) {
             event.preventDefault();
             event.stopPropagation();
-        }
-    }
-
-    /**
-     * Handles enter keydown event
-     *
-     * @private
-     * @param {KeyboardEvent} event
-     * @param {HTMLElement} event.target
-     */
-    onKeydownEnter(event) {
-        let tag;
-
-        if (this.editor.isKey(event, 'Enter')) {
+        } else if (this.editor.isKey(event, 'Enter')) {
+            let tag;
             event.preventDefault();
             event.stopPropagation();
 
@@ -71,18 +55,7 @@ export default class EditableObserver extends Observer {
                     }
                 } while ((current = current.parentElement) && this.editor.content.contains(current) && current !== this.editor.content);
             }
-        }
-    }
-
-    /**
-     * Handles backspace keydown event
-     *
-     * @private
-     * @param {KeyboardEvent} event
-     * @param {HTMLElement} event.target
-     */
-    onKeydownBackspace(event) {
-        if (this.editor.isKey(event, 'Backspace') && !event.target.textContent && event.target.hasAttribute('data-deletable')) {
+        } else if (this.editor.isKey(event, 'Backspace') && !event.target.textContent && event.target.hasAttribute('data-deletable')) {
             if (event.target.previousElementSibling instanceof HTMLElement) {
                 this.editor.focusEnd(event.target.previousElementSibling);
             }
