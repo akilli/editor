@@ -38,6 +38,7 @@ export default class EditableObserver extends Observer {
      *
      * @private
      * @param {KeyboardEvent} ev
+     * @param {HTMLElement} ev.target
      */
     onKeydownBreak(ev) {
         if (this.editor.isKey(ev, 'Enter', {shift: true}) && !this.editor.tags.isAllowed('br', ev.target)) {
@@ -51,6 +52,7 @@ export default class EditableObserver extends Observer {
      *
      * @private
      * @param {KeyboardEvent} ev
+     * @param {HTMLElement} ev.target
      */
     onKeydownEnter(ev) {
         let tag;
@@ -77,10 +79,11 @@ export default class EditableObserver extends Observer {
      *
      * @private
      * @param {KeyboardEvent} ev
+     * @param {HTMLElement} ev.target
      */
     onKeydownBackspace(ev) {
         if (this.editor.isKey(ev, 'Backspace') && !ev.target.textContent && ev.target.hasAttribute('data-deletable')) {
-            if (ev.target.previousElementSibling) {
+            if (ev.target.previousElementSibling instanceof HTMLElement) {
                 this.editor.focusEnd(ev.target.previousElementSibling);
             }
 
