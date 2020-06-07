@@ -30,6 +30,7 @@ export default class Observer {
      * Observes editor content mutatations
      *
      * @abstract
+     * @borrows this.handleEvent
      * @param {MutationRecord[]} records
      */
     observe(records) {

@@ -2,6 +2,7 @@ import css from 'rollup-plugin-css-porter';
 import esbuild from 'rollup-plugin-esbuild';
 import url from '@rollup/plugin-url';
 
+// noinspection JSUnusedGlobalSymbols
 export default {
     input: 'bundle.js',
     output: {
