@@ -20,10 +20,11 @@ export default class BaseFilter extends Filter {
         };
 
         Array.from(element.childNodes).forEach(child => {
+            const text = child.textContent.trim();
+
             if (child instanceof HTMLElement) {
                 child = this.convert(child);
                 const childTag = this.editor.tags.get(child);
-                const text = child.textContent.trim();
 
                 if (childTag && this.editor.tags.isAllowed(child, element)) {
                     wrap(child);
@@ -42,8 +43,6 @@ export default class BaseFilter extends Filter {
                     element.removeChild(child);
                 }
             } else if (child instanceof Text) {
-                const text = child.textContent.trim();
-
                 if (!allowedText && text && allowedParagraph) {
                     p.push(text);
                 }
