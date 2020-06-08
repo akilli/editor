@@ -69,8 +69,8 @@ export default class Editor extends BaseEditor {
                     'table',
                     'section',
                     'details',
-                    'block',
                     'div',
+                    'block',
                 ],
             },
         };
