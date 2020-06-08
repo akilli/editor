@@ -41,16 +41,16 @@ export default class EditableObserver extends Observer {
             event.preventDefault();
             event.stopPropagation();
         } else if (this.editor.isKey(event, 'Enter')) {
-            let tag;
             event.preventDefault();
             event.stopPropagation();
+            const enter = this.editor.tags.get(event.target)?.enter;
 
-            if ((tag = this.editor.tags.get(event.target)) && tag.enter) {
+            if (enter) {
                 let current = event.target;
 
                 do {
-                    if (this.editor.tags.isAllowed(tag.enter, current.parentElement)) {
-                        current.insertAdjacentElement('afterend', this.editor.createElement(tag.enter));
+                    if (this.editor.tags.isAllowed(enter, current.parentElement)) {
+                        current.insertAdjacentElement('afterend', this.editor.createElement(enter));
                         break;
                     }
                 } while ((current = current.parentElement) && this.editor.content.contains(current) && current !== this.editor.content);
