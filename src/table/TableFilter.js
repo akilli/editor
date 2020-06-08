@@ -1,7 +1,7 @@
 import Filter from '../base/Filter.js';
 
 /**
- * Filters empty tables and table sections
+ * Filters table figure, element, sections and rows
  */
 export default class TableFilter extends Filter {
     /**
@@ -14,28 +14,16 @@ export default class TableFilter extends Filter {
             && !element.querySelector(':scope > figcaption')
         ) {
             element.insertAdjacentElement('afterend', element.querySelector(':scope > table'));
-            this.removeChildren(element);
+            element.innerHTML = '';
         } else if (element instanceof HTMLTableElement
             && element.querySelector(':scope > thead, :scope > tfoot')
             && !element.querySelector(':scope > tbody')
         ) {
-            this.removeChildren(element);
+            element.innerHTML = '';
         } else if (element instanceof HTMLTableSectionElement && element.rows.length <= 0) {
-            this.removeChildren(element);
+            element.innerHTML = '';
         } else if (element instanceof HTMLTableRowElement && !element.querySelector(':scope > th:not(:empty), :scope > td:not(:empty)')) {
-            this.removeChildren(element);
-        }
-    }
-
-    /**
-     * Removes all children
-     *
-     * @private
-     * @param {HTMLElement} element
-     */
-    removeChildren(element) {
-        while (element.firstChild) {
-            element.removeChild(element.firstChild);
+            element.innerHTML = '';
         }
     }
 }
