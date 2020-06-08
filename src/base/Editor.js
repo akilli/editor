@@ -378,6 +378,25 @@ export default class Editor {
     }
 
     /**
+     * Wraps element with given parent if necessary and allowed
+     *
+     * @param {HTMLElement} element
+     * @param {String} name
+     * @param {Object} [opts = {}]
+     */
+    wrapElement(element, name, opts = {}) {
+        if (!(element instanceof HTMLElement)) {
+            throw 'Invalid argument';
+        }
+
+        if (element.parentElement.localName !== name && this.tags.isAllowed(name, element.parentElement)) {
+            const parent = this.createElement(name, opts);
+            element.insertAdjacentElement('beforebegin', parent);
+            parent.insertAdjacentElement('afterbegin', element);
+        }
+    }
+
+    /**
      * Creates text node in editor document
      *
      * @param {String} content
