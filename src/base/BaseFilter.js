@@ -50,7 +50,7 @@ export default class BaseFilter extends Filter {
                 if (!allowedText || !text) {
                     element.removeChild(child);
                 }
-            } else {
+            } else if (child instanceof Node) {
                 element.removeChild(child);
             }
         });
