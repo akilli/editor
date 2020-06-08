@@ -37,23 +37,40 @@ export default class Table extends Plugin {
             navigable: true,
             sortable: true,
         });
-        ['thead', 'tbody', 'tfoot'].forEach(item => this.editor.tags.create({
-            name: item,
+        this.editor.tags.create({
+            name: 'thead',
             group: 'tablesection',
             children: ['tablerow'],
-        }));
+        });
+        this.editor.tags.create({
+            name: 'tbody',
+            group: 'tablesection',
+            children: ['tablerow'],
+        });
+        this.editor.tags.create({
+            name: 'tfoot',
+            group: 'tablesection',
+            children: ['tablerow'],
+        });
         this.editor.tags.create({
             name: 'tr',
             group: 'tablerow',
             children: ['tablecell'],
         });
-        ['td', 'th'].forEach(item => this.editor.tags.create({
-            name: item,
+        this.editor.tags.create({
+            name: 'th',
             group: 'tablecell',
             children: ['break', 'format'],
             editable: true,
             empty: true,
-        }));
+        });
+        this.editor.tags.create({
+            name: 'td',
+            group: 'tablecell',
+            children: ['break', 'format'],
+            editable: true,
+            empty: true,
+        });
         this.editor.observe(new TableObserver(this.editor));
         this.registerTranslator(i18n);
         this.editor.filters.add(new TableFilter(this.editor));
