@@ -8,6 +8,16 @@ export default class QuoteObserver extends Observer {
      * @inheritDoc
      */
     observe(records) {
+        records.forEach(record => record.addedNodes.forEach(node => {
+            if (node instanceof HTMLElement) {
+                if (node.localName === 'blockquote') {
+                    this.init(node);
+                }
+
+                node.querySelectorAll('blockquote').forEach(item => this.init(item));
+            }
+        }));
+
         records.forEach(record => record.removedNodes.forEach(node => {
             if (node instanceof HTMLElement
                 && node.localName === 'blockquote'
@@ -18,5 +28,23 @@ export default class QuoteObserver extends Observer {
                 record.target.parentElement.removeChild(record.target);
             }
         }));
+    }
+
+    /**
+     * Initializes blockquote element
+     *
+     * @private
+     * @param {HTMLElement} node
+     */
+    init(node) {
+        const isFigure = node.parentElement instanceof HTMLElement && node.parentElement.localName === 'figure';
+
+        if (isFigure && !node.parentElement.classList.contains('quote')) {
+            node.parentElement.classList.add('quote');
+        } else if (!isFigure) {
+            const figure = this.editor.createElement('figure', {attributes: {class: 'quote'}});
+            node.insertAdjacentElement('beforebegin', figure);
+            figure.insertAdjacentElement('afterbegin', node);
+        }
     }
 }
