@@ -278,38 +278,6 @@ export default class Editor {
     }
 
     /**
-     * Wraps element with given parent if necessary and allowed
-     *
-     * @note Also called during gethtml and sethtml events where this.content.contains() will always be false, because
-     * a clone of this.content is used
-     * @param {HTMLElement} element
-     * @param {String} name
-     * @param {Object} [opts = {}]
-     */
-    wrap(element, name, opts = {}) {
-        const contains = item => this.content.contains(item) || item.closest(this.content.localName);
-
-        if (!(element instanceof HTMLElement) || !contains(element.parentElement)) {
-            throw 'Invalid argument';
-        } else if (element.parentElement.localName === name) {
-            return;
-        }
-
-        let current = element.parentElement;
-        let prev = null;
-
-        do {
-            if (this.tags.isAllowed(name, current)) {
-                const ref = prev ?? element;
-                const wrapper = this.createElement(name, opts);
-                ref.insertAdjacentElement('beforebegin', wrapper);
-                wrapper.appendChild(element);
-                break;
-            }
-        } while ((prev = current) && (current = current.parentElement) && contains(current));
-    }
-
-    /**
      * Inserts text
      *
      * @param {String} text
@@ -373,6 +341,38 @@ export default class Editor {
         }
 
         parent.normalize();
+    }
+
+    /**
+     * Wraps element with given parent if necessary and allowed
+     *
+     * @note Also called during gethtml and sethtml events where this.content.contains() will always be false, because
+     * a clone of this.content is used
+     * @param {HTMLElement} element
+     * @param {String} name
+     * @param {Object} [opts = {}]
+     */
+    wrap(element, name, opts = {}) {
+        const contains = item => this.content.contains(item) || item.closest(this.content.localName);
+
+        if (!(element instanceof HTMLElement) || !contains(element.parentElement)) {
+            throw 'Invalid argument';
+        } else if (element.parentElement.localName === name) {
+            return;
+        }
+
+        let current = element.parentElement;
+        let prev = null;
+
+        do {
+            if (this.tags.isAllowed(name, current)) {
+                const ref = prev ?? element;
+                const wrapper = this.createElement(name, opts);
+                ref.insertAdjacentElement('beforebegin', wrapper);
+                wrapper.appendChild(element);
+                break;
+            }
+        } while ((prev = current) && (current = current.parentElement) && contains(current));
     }
 
     /**
