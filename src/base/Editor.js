@@ -344,21 +344,19 @@ export default class Editor {
     }
 
     /**
-     * Wraps element with given parent if necessary and allowed
+     * Creates a new element with given name and options below first ancestor of given element that allows creating it
      *
-     * @note Also called during gethtml and sethtml events where this.content.contains() will always be false, because
-     * a clone of this.content is used
      * @param {HTMLElement} element
      * @param {String} name
      * @param {Object} [opts = {}]
+     * @return {?HTMLElement}
      */
-    wrap(element, name, opts = {}) {
+    closest(element, name, opts = {}) {
+        // Might be called with a clone of this.content during gethtml and sethtml events
         const contains = item => this.content.contains(item) || item.closest(this.content.localName);
 
         if (!(element instanceof HTMLElement) || !contains(element.parentElement)) {
             throw 'Invalid argument';
-        } else if (element.parentElement.localName === name) {
-            return;
         }
 
         let prev = element;
@@ -366,12 +364,30 @@ export default class Editor {
 
         do {
             if (this.tags.isAllowed(name, current)) {
-                const wrapper = this.createElement(name, opts);
-                prev.insertAdjacentElement('afterend', wrapper);
-                wrapper.appendChild(element);
-                break;
+                const target = this.createElement(name, opts);
+                prev.insertAdjacentElement('afterend', target);
+                return target;
             }
         } while ((prev = current) && (current = current.parentElement) && contains(current));
+
+        return null;
+    }
+
+    /**
+     * Wraps element with given parent if necessary and allowed
+     *
+     * @param {HTMLElement} element
+     * @param {String} name
+     * @param {Object} [opts = {}]
+     */
+    wrap(element, name, opts = {}) {
+        let target;
+
+        if (!(element instanceof HTMLElement)) {
+            throw 'Invalid argument';
+        } else if (element.parentElement.localName !== name && (target = this.closest(element, name, opts))) {
+            target.appendChild(element);
+        }
     }
 
     /**
