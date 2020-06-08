@@ -1,5 +1,6 @@
 import AudioCommand from './AudioCommand.js';
 import AudioDialog from './AudioDialog.js';
+import AudioObserver from './AudioObserver.js';
 import Base from '../base/Base.js';
 import BrowserDialog from '../base/BrowserDialog.js';
 import Figure from '../figure/Figure.js';
@@ -42,6 +43,7 @@ export default class Audio extends Plugin {
             empty: true,
             navigable: true,
         });
+        this.editor.observe(new AudioObserver(this.editor));
         this.registerTranslator(i18n);
 
         if (this.editor.config.audio.browser) {

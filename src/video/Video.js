@@ -4,6 +4,7 @@ import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
 import VideoCommand from './VideoCommand.js';
 import VideoDialog from './VideoDialog.js';
+import VideoObserver from './VideoObserver.js';
 import i18n from './i18n.js';
 
 /**
@@ -42,6 +43,7 @@ export default class Video extends Plugin {
             empty: true,
             navigable: true,
         });
+        this.editor.observe(new VideoObserver(this.editor));
         this.registerTranslator(i18n);
 
         if (this.editor.config.video.browser) {
