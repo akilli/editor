@@ -9,11 +9,13 @@ export default class TableObserver extends Observer {
      */
     observe(records) {
         records.forEach(record => record.addedNodes.forEach(node => {
-            if (node instanceof HTMLTableElement) {
-                this.initTable(node)
-            } else if (node instanceof HTMLTableCellElement) {
-                this.initCell(node);
-            } else if (node instanceof HTMLElement) {
+            if (node instanceof HTMLElement) {
+                if (node instanceof HTMLTableElement) {
+                    this.initTable(node);
+                } else if (node instanceof HTMLTableCellElement) {
+                    this.initCell(node);
+                }
+
                 node.querySelectorAll('table').forEach(item => this.initTable(item));
                 node.querySelectorAll('td, th').forEach(item => this.initCell(item));
             }

@@ -13,7 +13,7 @@ export default class TableFilter extends Filter {
             && element.querySelector(':scope > table')
             && !element.querySelector(':scope > figcaption')
         ) {
-            element.insertAdjacentElement('afterend', element.querySelector(':scope > table'));
+            element.insertAdjacentElement('beforebegin', element.querySelector(':scope > table'));
             element.innerHTML = '';
         } else if (element instanceof HTMLTableElement
             && element.querySelector(':scope > thead, :scope > tfoot')
