@@ -36,11 +36,6 @@ export default class Base extends Plugin {
             group: 'root',
             children: ['block', 'container', 'figure', 'heading', 'list', 'paragraph', 'quote', 'table'],
         });
-        this.editor.tags.create({
-            name: 'br',
-            group: 'break',
-            empty: true,
-        });
         this.editor.observe(new TagObserver(this.editor));
         this.editor.observe(new ToolbarObserver(this.editor), {target: this.editor.toolbar});
         this.editor.observe(new EditableObserver(this.editor));

@@ -1,4 +1,5 @@
 import Base from '../base/Base.js';
+import Break from '../break/Break.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -16,7 +17,7 @@ export default class Paragraph extends Plugin {
      * @inheritDoc
      */
     static get dependencies() {
-        return [Base];
+        return [Base, Break];
     }
 
     /**

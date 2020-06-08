@@ -1,4 +1,5 @@
 import Base from '../base/Base.js';
+import Break from '../break/Break.js';
 import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
 import TableCommand from './TableCommand.js';
@@ -22,7 +23,7 @@ export default class Table extends Plugin {
      * @inheritDoc
      */
     static get dependencies() {
-        return [Base, Figure];
+        return [Base, Break, Figure];
     }
 
     /**

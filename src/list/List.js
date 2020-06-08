@@ -1,4 +1,5 @@
 import Base from '../base/Base.js';
+import Break from '../break/Break.js';
 import ListObserver from './ListObserver.js';
 import Plugin from '../base/Plugin.js';
 
@@ -17,7 +18,7 @@ export default class List extends Plugin {
      * @inheritDoc
      */
     static get dependencies() {
-        return [Base];
+        return [Base, Break];
     }
 
     /**
