@@ -29,7 +29,7 @@ export default class TableObserver extends Observer {
      * @param {HTMLTableElement} node
      */
     initTable(node) {
-        this.editor.wrapElement(node, 'figure', {attributes: {class: 'table'}});
+        this.editor.wrap(node, 'figure', {attributes: {class: 'table'}});
 
         if (node.tBodies.length > 0 && node.tBodies[0].rows[0] && (!node.tHead || !node.tFoot)) {
             if (!node.tHead) {

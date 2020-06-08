@@ -35,7 +35,7 @@ export default class IframeObserver extends Observer {
      */
     init(node) {
         node.allowFullscreen = true;
-        this.editor.wrapElement(node, 'figure', {attributes: {class: 'iframe'}});
+        this.editor.wrap(node, 'figure', {attributes: {class: 'iframe'}});
     }
 
     /**

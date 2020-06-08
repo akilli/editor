@@ -37,6 +37,6 @@ export default class QuoteObserver extends Observer {
      * @param {HTMLElement} node
      */
     init(node) {
-        this.editor.wrapElement(node, 'figure', {attributes: {class: 'quote'}});
+        this.editor.wrap(node, 'figure', {attributes: {class: 'quote'}});
     }
 }

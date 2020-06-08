@@ -35,7 +35,7 @@ export default class VideoObserver extends Observer {
      */
     init(node) {
         node.controls = true;
-        this.editor.wrapElement(node, 'figure', {attributes: {class: 'video'}});
+        this.editor.wrap(node, 'figure', {attributes: {class: 'video'}});
     }
 
     /**

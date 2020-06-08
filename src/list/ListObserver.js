@@ -59,7 +59,7 @@ export default class ListObserver extends Observer {
      */
     initItem(node) {
         if (!(node.parentElement instanceof HTMLOListElement) && !(node.parentElement instanceof HTMLUListElement)) {
-            this.editor.wrapElement(node, 'ul');
+            this.editor.wrap(node, 'ul');
         }
     }
 

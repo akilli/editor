@@ -34,7 +34,7 @@ export default class ImageObserver extends Observer {
      * @param {HTMLImageElement} node
      */
     init(node) {
-        this.editor.wrapElement(node, 'figure', {attributes: {class: 'image'}});
+        this.editor.wrap(node, 'figure', {attributes: {class: 'image'}});
     }
 
     /**

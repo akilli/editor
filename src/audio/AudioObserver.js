@@ -35,7 +35,7 @@ export default class AudioObserver extends Observer {
      */
     init(node) {
         node.controls = true;
-        this.editor.wrapElement(node, 'figure', {attributes: {class: 'audio'}});
+        this.editor.wrap(node, 'figure', {attributes: {class: 'audio'}});
     }
 
     /**
