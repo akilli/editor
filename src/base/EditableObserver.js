@@ -46,14 +46,7 @@ export default class EditableObserver extends Observer {
             const enter = this.editor.tags.get(event.target)?.enter;
 
             if (enter) {
-                let current = event.target;
-
-                do {
-                    if (this.editor.tags.isAllowed(enter, current.parentElement)) {
-                        current.insertAdjacentElement('afterend', this.editor.createElement(enter));
-                        break;
-                    }
-                } while ((current = current.parentElement) && this.editor.content.contains(current) && current !== this.editor.content);
+                this.editor.closest(event.target, enter);
             }
         } else if (this.editor.isKey(event, 'Backspace') && !event.target.textContent && event.target.hasAttribute('data-deletable')) {
             if (event.target.previousElementSibling instanceof HTMLElement) {
