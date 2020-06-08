@@ -361,14 +361,13 @@ export default class Editor {
             return;
         }
 
+        let prev = element;
         let current = element.parentElement;
-        let prev = null;
 
         do {
             if (this.tags.isAllowed(name, current)) {
-                const ref = prev ?? element;
                 const wrapper = this.createElement(name, opts);
-                ref.insertAdjacentElement('afterend', wrapper);
+                prev.insertAdjacentElement('afterend', wrapper);
                 wrapper.appendChild(element);
                 break;
             }
