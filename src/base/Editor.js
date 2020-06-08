@@ -368,7 +368,7 @@ export default class Editor {
             if (this.tags.isAllowed(name, current)) {
                 const ref = prev ?? element;
                 const wrapper = this.createElement(name, opts);
-                ref.insertAdjacentElement('beforebegin', wrapper);
+                ref.insertAdjacentElement('afterend', wrapper);
                 wrapper.appendChild(element);
                 break;
             }
