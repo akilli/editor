@@ -1,6 +1,6 @@
 # akilli editor
 
-A minimal rich text editor.
+A HTML standards-compliant and dependency-free rich text editor.
 
 ## Note
 
