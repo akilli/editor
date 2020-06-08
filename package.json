@@ -1,6 +1,6 @@
 {
   "name": "@akilli/editor",
-  "version": "0.51.0",
+  "version": "0.52.0",
   "description": "Minimal rich text editor",
   "keywords": [
     "contenteditable",
