@@ -226,7 +226,7 @@ export default class Editor {
      * @return {String}
      */
     getHtml() {
-        const content = this.content.cloneNode(true);
+        const content = this.createElement(this.content.localName, {html: this.content.innerHTML});
         this.filters.filter(content);
 
         return content.innerHTML;
@@ -238,8 +238,7 @@ export default class Editor {
      * @param {String} html
      */
     setHtml(html) {
-        const content = this.content.cloneNode(false);
-        content.innerHTML = html;
+        const content = this.createElement(this.content.localName, {html: html});
         this.filters.filter(content);
         this.content.innerHTML = content.innerHTML;
     }
