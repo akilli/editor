@@ -227,6 +227,7 @@ export default class Editor {
      */
     getHtml() {
         const content = this.createElement(this.content.localName, {html: this.content.innerHTML});
+        this.dispatch('downcast', content);
         this.filters.filter(content);
 
         return content.innerHTML;
@@ -239,6 +240,7 @@ export default class Editor {
      */
     setHtml(html) {
         const content = this.createElement(this.content.localName, {html: html});
+        this.dispatch('upcast', content);
         this.filters.filter(content);
         this.content.innerHTML = content.innerHTML;
     }
@@ -483,6 +485,21 @@ export default class Editor {
         const a = this.createElement('a', {attributes: {href: url}});
 
         return origin === a.origin ? a.pathname : a.href;
+    }
+
+    /**
+     * Dispatches an editor event
+     *
+     * @private
+     * @param type
+     * @param element
+     */
+    dispatch(type, element = null) {
+        if (!type || typeof type !== 'string' || element && !(element instanceof HTMLElement)) {
+            throw 'Invalid argument';
+        }
+
+        this.content.dispatchEvent(new CustomEvent(type, {detail: element}));
     }
 
     /**
