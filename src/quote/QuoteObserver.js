@@ -37,11 +37,7 @@ export default class QuoteObserver extends Observer {
      * @param {HTMLElement} node
      */
     init(node) {
-        const isFigure = node.parentElement instanceof HTMLElement && node.parentElement.localName === 'figure';
-
-        if (isFigure && !node.parentElement.classList.contains('quote')) {
-            node.parentElement.classList.add('quote');
-        } else if (!isFigure) {
+        if (!(node.parentElement instanceof HTMLElement) || node.parentElement.localName !== 'figure') {
             const figure = this.editor.createElement('figure', {attributes: {class: 'quote'}});
             node.insertAdjacentElement('beforebegin', figure);
             figure.insertAdjacentElement('afterbegin', node);

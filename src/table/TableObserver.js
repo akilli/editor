@@ -29,11 +29,7 @@ export default class TableObserver extends Observer {
      * @param {HTMLTableElement} node
      */
     initTable(node) {
-        const isFigure = node.parentElement instanceof HTMLElement && node.parentElement.localName === 'figure';
-
-        if (isFigure && !node.parentElement.classList.contains('table')) {
-            node.parentElement.classList.add('table');
-        } else if (!isFigure) {
+        if (!(node.parentElement instanceof HTMLElement) || node.parentElement.localName !== 'figure') {
             const figure = this.editor.createElement('figure', {attributes: {class: 'table'}});
             node.insertAdjacentElement('beforebegin', figure);
             figure.insertAdjacentElement('afterbegin', node);
