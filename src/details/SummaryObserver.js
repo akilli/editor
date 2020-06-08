@@ -72,7 +72,6 @@ export default class SummaryObserver extends Observer {
             event.preventDefault();
             event.stopPropagation();
             event.target.parentElement.open = true;
-            event.target.insertAdjacentElement('afterend', this.editor.createElement('p'));
         }
     }
 }
