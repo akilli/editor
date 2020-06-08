@@ -315,10 +315,6 @@ editor-toolbar [data-command=fullscreen]::before {
     content: '\f0b2';
 }
 
-editor-toolbar [data-command=gallery]::before {
-    content: '\e806';
-}
-
 editor-toolbar [data-command=heading]::before {
     content: '\f1dc';
 }

@@ -5,7 +5,6 @@ import Bold from '../bold/Bold.js';
 import Details from '../details/Details.js';
 import Div from '../div/Div.js';
 import Fullscreen from '../fullscreen/Fullscreen.js';
-import Gallery from '../gallery/Gallery.js';
 import Heading from '../heading/Heading.js';
 import Iframe from '../iframe/Iframe.js';
 import Image from '../image/Image.js';
@@ -41,7 +40,6 @@ export default class Editor extends BaseEditor {
                     Details,
                     Div,
                     Fullscreen,
-                    Gallery,
                     Heading,
                     Iframe,
                     Image,
@@ -76,7 +74,6 @@ export default class Editor extends BaseEditor {
                     'details',
                     'block',
                     'div',
-                    'gallery',
                 ],
             },
         };

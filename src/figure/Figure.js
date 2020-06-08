@@ -30,7 +30,7 @@ export default class Figure extends Plugin {
             group: 'figure',
             alignable: true,
             attributes: ['class'],
-            children: ['audio', 'caption', 'figure', 'iframe', 'image', 'quote', 'table', 'video'],
+            children: ['audio', 'caption', 'iframe', 'image', 'quote', 'table', 'video'],
             deletable: true,
             focusable: true,
             navigable: true,

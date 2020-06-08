@@ -124,23 +124,6 @@ div.grid {
 }
 
 /**
- * Gallery
- */
-figure.gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1.5rem;
-    align-items: end;
-    min-height: 0;
-    padding: 1.5rem;
-}
-
-figure.gallery > figcaption {
-    grid-column: 1 / span 3;
-    text-align: center;
-}
-
-/**
  * Section
  */
 section.content,
