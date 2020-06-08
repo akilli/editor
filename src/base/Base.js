@@ -35,7 +35,7 @@ export default class Base extends Plugin {
         this.editor.tags.create({
             name: 'editor-content',
             group: 'root',
-            children: ['block', 'container', 'figure', 'heading', 'list', 'paragraph'],
+            children: ['block', 'container', 'figure', 'heading', 'list', 'paragraph', 'table'],
         });
         this.editor.tags.create({
             name: 'slot',
