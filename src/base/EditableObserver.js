@@ -43,10 +43,15 @@ export default class EditableObserver extends Observer {
         } else if (this.editor.isKey(event, 'Enter')) {
             event.preventDefault();
             event.stopPropagation();
-            const enter = this.editor.tags.get(event.target)?.enter;
+            let enter = this.editor.tags.get(event.target)?.enter;
 
             if (enter) {
-                this.editor.closest(event.target, enter);
+                if (event.target.textContent.trim() || !event.target.hasAttribute('data-deletable')) {
+                    this.editor.closest(event.target, enter);
+                } else if (!(event.target instanceof HTMLParagraphElement)) {
+                    this.editor.closest(event.target, 'p');
+                    event.target.parentElement.removeChild(event.target);
+                }
             }
         } else if (this.editor.isKey(event, 'Backspace') && !event.target.textContent && event.target.hasAttribute('data-deletable')) {
             if (event.target.previousElementSibling instanceof HTMLElement) {
