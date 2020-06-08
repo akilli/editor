@@ -37,7 +37,7 @@ export default class QuoteObserver extends Observer {
      * @param {HTMLElement} node
      */
     init(node) {
-        if (!(node.parentElement instanceof HTMLElement) || node.parentElement.localName !== 'figure') {
+        if (node.parentElement.localName !== 'figure' && this.editor.tags.isAllowed('figure', node.parentElement)) {
             const figure = this.editor.createElement('figure', {attributes: {class: 'quote'}});
             node.insertAdjacentElement('beforebegin', figure);
             figure.insertAdjacentElement('afterbegin', node);
