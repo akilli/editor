@@ -4,7 +4,6 @@ import Block from '../block/Block.js';
 import Bold from '../bold/Bold.js';
 import Details from '../details/Details.js';
 import Div from '../div/Div.js';
-import Fullscreen from '../fullscreen/Fullscreen.js';
 import Heading from '../heading/Heading.js';
 import Iframe from '../iframe/Iframe.js';
 import Image from '../image/Image.js';
@@ -39,7 +38,6 @@ export default class Editor extends BaseEditor {
                     Bold,
                     Details,
                     Div,
-                    Fullscreen,
                     Heading,
                     Iframe,
                     Image,
@@ -55,7 +53,6 @@ export default class Editor extends BaseEditor {
                     Video,
                 ],
                 toolbar: [
-                    'fullscreen',
                     'bold',
                     'italic',
                     'link',

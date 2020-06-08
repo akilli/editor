@@ -69,30 +69,6 @@ editor-content:empty::after {
 }
 
 /**
- * Editor Fullscreen
- */
-akilli-editor.editor-fullscreen {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100vh;
-    background: #fff;
-}
-
-akilli-editor.editor-fullscreen > editor-content {
-    flex: 1;
-    min-height: 0;
-    max-height: none;
-    overflow-y: scroll;
-}
-
-/**
  * Widgets
  */
 editor-content :hover {
@@ -309,10 +285,6 @@ editor-toolbar [data-command=details]::before {
 
 editor-toolbar [data-command=div]::before {
     content: '\e804';
-}
-
-editor-toolbar [data-command=fullscreen]::before {
-    content: '\f0b2';
 }
 
 editor-toolbar [data-command=heading]::before {
