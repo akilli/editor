@@ -227,7 +227,7 @@ export default class Editor {
      */
     getHtml() {
         const content = this.createElement(this.content.localName, {html: this.content.innerHTML});
-        this.dispatch('downcast', content);
+        this.dispatch('gethtml', content);
         this.filters.filter(content);
 
         return content.innerHTML;
@@ -240,7 +240,7 @@ export default class Editor {
      */
     setHtml(html) {
         const content = this.createElement(this.content.localName, {html: html});
-        this.dispatch('upcast', content);
+        this.dispatch('sethtml', content);
         this.filters.filter(content);
         this.content.innerHTML = content.innerHTML;
     }
@@ -380,20 +380,33 @@ export default class Editor {
     /**
      * Wraps element with given parent if necessary and allowed
      *
+     * @note Also called during gethtml and sethtml events where this.content.contains() will always be false, because
+     * a clone of this.content is used
      * @param {HTMLElement} element
      * @param {String} name
      * @param {Object} [opts = {}]
      */
     wrapElement(element, name, opts = {}) {
-        if (!(element instanceof HTMLElement)) {
+        const contains = item => this.content.contains(item) || item.closest(this.content.localName);
+
+        if (!(element instanceof HTMLElement) || !contains(element.parentElement)) {
             throw 'Invalid argument';
+        } else if (element.parentElement.localName === name) {
+            return;
         }
 
-        if (element.parentElement.localName !== name && this.tags.isAllowed(name, element.parentElement)) {
-            const parent = this.createElement(name, opts);
-            element.insertAdjacentElement('beforebegin', parent);
-            parent.insertAdjacentElement('afterbegin', element);
-        }
+        let current = element.parentElement;
+        let prev = null;
+
+        do {
+            if (this.tags.isAllowed(name, current)) {
+                const ref = prev ?? element;
+                const wrapper = this.createElement(name, opts);
+                ref.insertAdjacentElement('beforebegin', wrapper);
+                wrapper.appendChild(element);
+                break;
+            }
+        } while ((prev = current) && (current = current.parentElement) && contains(current));
     }
 
     /**
