@@ -352,10 +352,7 @@ export default class Editor {
      * @return {?HTMLElement}
      */
     closest(element, name, opts = {}) {
-        // Might be called with a clone of this.content during gethtml and sethtml events
-        const contains = item => this.content.contains(item) || item.closest(this.content.localName);
-
-        if (!(element instanceof HTMLElement) || !contains(element.parentElement)) {
+        if (!(element instanceof HTMLElement) || !this.contains(element.parentElement)) {
             throw 'Invalid argument';
         }
 
@@ -368,7 +365,7 @@ export default class Editor {
                 prev.insertAdjacentElement('afterend', target);
                 return target;
             }
-        } while ((prev = current) && (current = current.parentElement) && contains(current));
+        } while ((prev = current) && (current = current.parentElement) && this.contains(current));
 
         return null;
     }
@@ -388,6 +385,16 @@ export default class Editor {
         } else if (element.parentElement.localName !== name && (target = this.closest(element, name, opts))) {
             target.appendChild(element);
         }
+    }
+
+    /**
+     * Indicates if given element is contained by editor content or by a clone of it
+     *
+     * @param {HTMLElement} element
+     * @return {Boolean}
+     */
+    contains(element) {
+        return element instanceof HTMLElement && (this.content.contains(element) || element.closest(this.content.localName));
     }
 
     /**
@@ -444,7 +451,7 @@ export default class Editor {
         const anc = sel.anchorNode instanceof Text ? sel.anchorNode.parentElement : sel.anchorNode;
         const foc = sel.focusNode instanceof Text ? sel.focusNode.parentElement : sel.focusNode;
 
-        return anc instanceof HTMLElement && foc instanceof HTMLElement && anc === foc && this.content.contains(anc) ? anc : null;
+        return anc instanceof HTMLElement && foc instanceof HTMLElement && anc === foc && this.contains(anc) ? anc : null;
     }
 
     /**
@@ -461,7 +468,7 @@ export default class Editor {
             const ancEdit = anc.closest('[contenteditable=true]');
             const focEdit = foc.closest('[contenteditable=true]');
 
-            if (ancEdit instanceof HTMLElement && ancEdit === focEdit && this.content.contains(ancEdit)) {
+            if (ancEdit instanceof HTMLElement && ancEdit === focEdit && this.contains(ancEdit)) {
                 return ancEdit;
             }
         }

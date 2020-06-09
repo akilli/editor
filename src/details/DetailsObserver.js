@@ -15,7 +15,7 @@ export default class DetailsObserver extends Observer {
                 node.querySelectorAll('details').forEach(item => this.init(item));
                 const details = node.closest('details');
 
-                if (details && this.editor.content.contains(details)) {
+                if (details && this.editor.contains(details)) {
                     details.open = true;
                 }
             }
