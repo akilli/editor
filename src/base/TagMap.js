@@ -17,7 +17,17 @@ export default class TagMap extends Map {
     }
 
     /**
-     * Returns registered tag with given name or null
+     * Indicates if a tag for given key is registered
+     *
+     * @param {String|HTMLElement} key
+     * @return {?Boolean}
+     */
+    has(key) {
+        return super.has(key instanceof HTMLElement ? key.localName : key);
+    }
+
+    /**
+     * Returns registered tag for given key or null
      *
      * @param {String|HTMLElement} key
      * @return {?Tag}
