@@ -1,4 +1,5 @@
 import Base from '../base/Base.js';
+import BreakFilter from './BreakFilter.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -28,5 +29,6 @@ export default class Break extends Plugin {
             group: 'break',
             empty: true,
         });
+        this.editor.filters.add(new BreakFilter(this.editor));
     }
 }

@@ -56,7 +56,6 @@ export default class BaseFilter extends Filter {
         });
 
         wrap();
-        this.filterLinebreaks(element);
     }
 
     /**
@@ -73,7 +72,7 @@ export default class BaseFilter extends Filter {
             return element;
         }
 
-        const newNode = this.editor.createElement(target, {html: element.innerHTML})
+        const newNode = this.editor.createElement(target, {html: element.innerHTML});
         element.parentElement.replaceChild(newNode, element);
 
         return newNode;
@@ -101,21 +100,5 @@ export default class BaseFilter extends Filter {
         element.parentElement.removeChild(element);
 
         return null;
-    }
-
-    /**
-     * Filters linebreaks
-     *
-     * @private
-     * @param {HTMLElement} element
-     */
-    filterLinebreaks(element) {
-        element.innerHTML = element.innerHTML.replace(/^\s*(<br\s*\/?>\s*)+/gi, '').replace(/\s*(<br\s*\/?>\s*)+$/gi, '');
-
-        if (element instanceof HTMLParagraphElement) {
-            element.outerHTML = element.outerHTML.replace(/\s*(<br\s*\/?>\s*){2,}/gi, '</p><p>');
-        } else{
-            element.innerHTML = element.innerHTML.replace(/\s*(<br\s*\/?>\s*){2,}/gi, '<br>');
-        }
     }
 }
