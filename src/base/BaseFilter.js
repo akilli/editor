@@ -66,16 +66,16 @@ export default class BaseFilter extends Filter {
      * @return {HTMLElement}
      */
     convert(element) {
-        const target = this.editor.config.base.filter[element.localName];
+        const name = this.editor.config.base.filter[element.localName];
 
-        if (!target) {
+        if (!name) {
             return element;
         }
 
-        const newNode = this.editor.createElement(target, {html: element.innerHTML});
-        element.parentElement.replaceChild(newNode, element);
+        const convert = this.editor.createElement(name, {html: element.innerHTML});
+        element.parentElement.replaceChild(convert, element);
 
-        return newNode;
+        return convert;
     }
 
     /**
