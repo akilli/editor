@@ -1,8 +1,8 @@
 import CommandMap from './CommandMap.js';
 import DialogMap from './DialogMap.js';
+import EventManager from './EventManager.js';
 import FilterSet from './FilterSet.js';
 import I18nMap from './I18nMap.js';
-import Observer from './Observer.js';
 import PluginMap from './PluginMap.js';
 import TagMap from './TagMap.js';
 
@@ -51,6 +51,13 @@ export default class Editor {
      * @type {HTMLElement}
      */
     content;
+
+    /**
+     * Event Manager
+     *
+     * @type {EventManager}
+     */
+    events;
 
     /**
      * Configuration
@@ -129,6 +136,7 @@ export default class Editor {
         this.element = this.createElement('akilli-editor');
         this.element.appendChild(this.toolbar);
         this.element.appendChild(this.content);
+        this.events = new EventManager(this);
         this.config = config;
     }
 
@@ -227,7 +235,7 @@ export default class Editor {
      */
     getHtml() {
         const content = this.createElement(this.content.localName, {html: this.content.innerHTML});
-        this.dispatch('gethtml', content);
+        this.events.content('gethtml', content);
         this.filters.filter(content);
 
         return content.innerHTML;
@@ -240,7 +248,7 @@ export default class Editor {
      */
     setHtml(html) {
         const content = this.createElement(this.content.localName, {html: html});
-        this.dispatch('sethtml', content);
+        this.events.content('sethtml', content);
         this.filters.filter(content);
         this.content.innerHTML = content.innerHTML;
     }
@@ -493,36 +501,6 @@ export default class Editor {
         range.collapse();
         sel.removeAllRanges();
         sel.addRange(range);
-    }
-
-    /**
-     * Dispatches an editor event
-     *
-     * @param type
-     * @param element
-     */
-    dispatch(type, element = null) {
-        if (!type || typeof type !== 'string' || element && !(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
-        }
-
-        this.content.dispatchEvent(new CustomEvent(type, {detail: element}));
-    }
-
-    /**
-     * Short-cut method to register a mutation observer
-     *
-     * @param {Observer} observer
-     * @param {HTMLElement} [target = null]
-     * @param {Object.<String, Boolean|String[]>} [config = {childList: true, subtree: true}]
-     */
-    observe(observer, {target = null, config = {childList: true, subtree: true}} = {}) {
-        if (!(observer instanceof Observer) || target && !(target instanceof HTMLElement)) {
-            throw 'Invalid argument';
-        }
-
-        const mutation = new MutationObserver(records => observer.observe(records));
-        mutation.observe(target || this.content, config);
     }
 
     /**

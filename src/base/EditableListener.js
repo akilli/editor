@@ -1,32 +1,28 @@
-import Observer from './Observer.js';
+import Listener from './Listener.js';
 
 /**
- * Editable Observer
+ * Editable Listener
  */
-export default class EditableObserver extends Observer {
+export default class EditableListener extends Listener {
     /**
      * @inheritDoc
      */
-    observe(records) {
-        records.forEach(record => record.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement) {
-                if (node.isContentEditable) {
-                    this.init(node);
-                }
-
-                node.querySelectorAll('[contenteditable=true]').forEach(item => this.init(item));
-            }
-        }));
+    constructor(editor) {
+        super(editor);
+        this.editor.content.addEventListener('insert', this);
     }
 
     /**
-     * Initializes editable element
+     * Initializes elements
      *
      * @private
-     * @param {HTMLElement} node
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      */
-    init(node) {
-        node.addEventListener('keydown', this);
+    insert(event) {
+        if (event.detail.element.isContentEditable) {
+            event.detail.element.addEventListener('keydown', this);
+        }
     }
 
     /**

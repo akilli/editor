@@ -1,6 +1,6 @@
 import Base from '../base/Base.js';
 import DivDialog from './DivDialog.js';
-import DivObserver from './DivObserver.js';
+import DivListener from './DivListener.js';
 import Plugin from '../base/Plugin.js';
 import Slot from '../slot/Slot.js';
 import i18n from './i18n.js';
@@ -37,7 +37,7 @@ export default class Div extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this.editor.observe(new DivObserver(this.editor));
+        new DivListener(this.editor);
         this.registerTranslator(i18n);
         this.editor.dialogs.set(new DivDialog(this.editor));
         this.registerCommand('div', 'div');

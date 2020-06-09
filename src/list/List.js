@@ -1,6 +1,6 @@
 import Base from '../base/Base.js';
 import Break from '../break/Break.js';
-import ListObserver from './ListObserver.js';
+import ListListener from './ListListener.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -36,6 +36,6 @@ export default class List extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this.editor.observe(new ListObserver(this.editor));
+        new ListListener(this.editor);
     }
 }

@@ -1,9 +1,9 @@
 import Base from '../base/Base.js';
 import DetailsFilter from './DetailsFilter.js';
-import DetailsObserver from './DetailsObserver.js';
+import DetailsListener from './DetailsListener.js';
 import Plugin from '../base/Plugin.js';
 import Slot from '../slot/Slot.js';
-import SummaryObserver from './SummaryObserver.js';
+import SummaryListener from './SummaryListener.js';
 import i18n from './i18n.js';
 
 /**
@@ -44,8 +44,8 @@ export default class Details extends Plugin {
             enter: 'p',
             navigable: true,
         });
-        this.editor.observe(new DetailsObserver(this.editor));
-        this.editor.observe(new SummaryObserver(this.editor));
+        new DetailsListener(this.editor);
+        new SummaryListener(this.editor);
         this.registerTranslator(i18n);
         this.registerCommand('details', 'details');
         this.editor.filters.add(new DetailsFilter(this.editor));

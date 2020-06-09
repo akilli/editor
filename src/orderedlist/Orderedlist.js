@@ -1,5 +1,6 @@
 import Base from '../base/Base.js';
 import List from '../list/List.js';
+import OrderedlistListener from './OrderedlistListener.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -33,6 +34,7 @@ export default class Orderedlist extends Plugin {
             navigable: true,
             sortable: true,
         });
+        new OrderedlistListener(this.editor);
         this.registerCommand('orderedlist', 'ol');
     }
 }

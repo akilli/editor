@@ -2,7 +2,7 @@ import Base from '../base/Base.js';
 import BlockCommand from './BlockCommand.js';
 import BlockDialog from './BlockDialog.js';
 import BlockElement from './BlockElement.js';
-import BlockObserver from './BlockObserver.js';
+import BlockListener from './BlockListener.js';
 import BrowserDialog from '../base/BrowserDialog.js';
 import Plugin from '../base/Plugin.js';
 import i18n from '../iframe/i18n.js';
@@ -47,8 +47,8 @@ export default class Block extends Plugin {
             navigable: true,
             sortable: true,
         });
+        new BlockListener(this.editor);
         this.registerTranslator(i18n);
-        this.editor.observe(new BlockObserver(this.editor));
 
         if (this.editor.config.block.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'block', this.editor.config.block.browser));

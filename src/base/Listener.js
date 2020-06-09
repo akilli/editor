@@ -1,11 +1,11 @@
 import Editor from './Editor.js';
 
 /**
- * Observer
+ * Listener
  *
  * @implements EventListener
  */
-export default class Observer {
+export default class Listener {
     /**
      * Editor
      *
@@ -14,8 +14,9 @@ export default class Observer {
     editor;
 
     /**
-     * Initializes a new editor observer
+     * Initializes a new listener
      *
+     * @borrows this.handleEvent
      * @param {Editor} editor
      */
     constructor(editor) {
@@ -24,17 +25,6 @@ export default class Observer {
         }
 
         this.editor = editor;
-    }
-
-    /**
-     * Observes editor content mutatations
-     *
-     * @abstract
-     * @borrows this.handleEvent
-     * @param {MutationRecord[]} records
-     */
-    observe(records) {
-        throw 'Not implemented';
     }
 
     /**

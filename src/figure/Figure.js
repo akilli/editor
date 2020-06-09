@@ -1,6 +1,6 @@
 import Base from '../base/Base.js';
 import FigureFilter from './FigureFilter.js';
-import FigureObserver from './FigureObserver.js';
+import FigureListener from './FigureListener.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -44,7 +44,7 @@ export default class Figure extends Plugin {
             enter: 'p',
             navigable: true,
         });
-        this.editor.observe(new FigureObserver(this.editor));
+        new FigureListener(this.editor);
         this.editor.filters.add(new FigureFilter(this.editor));
     }
 }

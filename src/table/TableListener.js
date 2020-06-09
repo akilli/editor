@@ -1,55 +1,63 @@
-import Observer from '../base/Observer.js';
+import Listener from '../base/Listener.js';
 
 /**
- * Table Observer
+ * Table Listener
  */
-export default class TableObserver extends Observer {
+export default class TableListener extends Listener {
     /**
      * @inheritDoc
      */
-    observe(records) {
-        records.forEach(record => record.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement) {
-                if (node instanceof HTMLTableElement) {
-                    this.initTable(node);
-                } else if (node instanceof HTMLTableCellElement) {
-                    this.initCell(node);
-                }
-
-                node.querySelectorAll('table').forEach(item => this.initTable(item));
-                node.querySelectorAll('td, th').forEach(item => this.initCell(item));
-            }
-        }));
+    constructor(editor) {
+        super(editor);
+        this.editor.content.addEventListener('inserttable', this);
+        this.editor.content.addEventListener('inserttd', this);
+        this.editor.content.addEventListener('insertth', this);
     }
 
     /**
-     * Initializes table element
+     * Initializes table elements
      *
      * @private
-     * @param {HTMLTableElement} node
+     * @param {CustomEvent} event
+     * @param {HTMLTableElement} event.detail.element
      */
-    initTable(node) {
-        this.editor.wrap(node, 'figure', {attributes: {class: 'table'}});
+    inserttable(event) {
+        this.editor.wrap(event.detail.element, 'figure', {attributes: {class: 'table'}});
 
-        if (node.tBodies.length > 0 && node.tBodies[0].rows[0] && (!node.tHead || !node.tFoot)) {
-            if (!node.tHead) {
-                this.createRow(node.createTHead(), node.tBodies[0].rows[0].cells.length);
+        if (event.detail.element.tBodies.length > 0
+            && event.detail.element.tBodies[0].rows[0]
+            && (!event.detail.element.tHead || !event.detail.element.tFoot)
+        ) {
+            if (!event.detail.element.tHead) {
+                this.createRow(event.detail.element.createTHead(), event.detail.element.tBodies[0].rows[0].cells.length);
             }
 
-            if (!node.tFoot) {
-                this.createRow(node.createTFoot(), node.tBodies[0].rows[0].cells.length);
+            if (!event.detail.element.tFoot) {
+                this.createRow(event.detail.element.createTFoot(), event.detail.element.tBodies[0].rows[0].cells.length);
             }
         }
     }
 
     /**
-     * Initializes table cell element
+     * Initializes table cell elements
      *
      * @private
-     * @param {HTMLTableCellElement} node
+     * @param {CustomEvent} event
+     * @param {HTMLTableCellElement} event.detail.element
      */
-    initCell(node) {
-        node.addEventListener('keydown', this);
+    inserttd(event) {
+        event.detail.element.addEventListener('keydown', this);
+    }
+
+    /**
+     * Initializes table cell elements
+     *
+     * @private
+     * @param {CustomEvent} event
+     * @param {HTMLTableHeaderCellElement} event.detail.element
+     */
+    insertth(event) {
+        event.detail.element.addEventListener('keydown', this);
     }
 
     /**
@@ -106,12 +114,12 @@ export default class TableObserver extends Observer {
      * Creates table row
      *
      * @private
-     * @param {HTMLTableElement|HTMLTableSectionElement} node
+     * @param {HTMLTableElement|HTMLTableSectionElement} element
      * @param {Number} length
      * @param {Number} [index = 0]
      */
-    createRow(node, length, index = 0) {
-        const row = node.insertRow(index);
+    createRow(element, length, index = 0) {
+        const row = element.insertRow(index);
 
         for (let i = 0; i < length; i++) {
             this.createCell(row);
@@ -122,11 +130,11 @@ export default class TableObserver extends Observer {
      * Creates table cell
      *
      * @private
-     * @param {HTMLTableRowElement} node
+     * @param {HTMLTableRowElement} element
      * @param {?HTMLTableCellElement} [ref = null]
      */
-    createCell(node, ref = null) {
-        const name = node.parentElement.localName === 'thead' ? 'th' : 'td';
-        node.insertBefore(this.editor.createElement(name), ref);
+    createCell(element, ref = null) {
+        const name = element.parentElement.localName === 'thead' ? 'th' : 'td';
+        element.insertBefore(this.editor.createElement(name), ref);
     }
 }

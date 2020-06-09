@@ -3,7 +3,7 @@ import BrowserDialog from '../base/BrowserDialog.js';
 import Figure from '../figure/Figure.js';
 import ImageCommand from './ImageCommand.js';
 import ImageDialog from './ImageDialog.js';
-import ImageObserver from './ImageObserver.js';
+import ImageListener from './ImageListener.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
 
@@ -43,7 +43,7 @@ export default class Image extends Plugin {
             empty: true,
             navigable: true,
         });
-        this.editor.observe(new ImageObserver(this.editor));
+        new ImageListener(this.editor);
         this.registerTranslator(i18n);
 
         if (this.editor.config.image.browser) {

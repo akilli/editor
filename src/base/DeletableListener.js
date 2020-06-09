@@ -1,32 +1,28 @@
-import Observer from './Observer.js';
+import Listener from './Listener.js';
 
 /**
- * Deletable Observer
+ * Deletable Listener
  */
-export default class DeletableObserver extends Observer {
+export default class DeletableListener extends Listener {
     /**
      * @inheritDoc
      */
-    observe(records) {
-        records.forEach(record => record.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement) {
-                if (node.hasAttribute('data-deletable')) {
-                    this.init(node);
-                }
-
-                node.querySelectorAll('[data-deletable]').forEach(item => this.init(item));
-            }
-        }));
+    constructor(editor) {
+        super(editor);
+        this.editor.content.addEventListener('insert', this);
     }
 
     /**
-     * Initializes deletable element
+     * Initializes elements
      *
      * @private
-     * @param {HTMLElement} node
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      */
-    init(node) {
-        node.addEventListener('keydown', this);
+    insert(event) {
+        if (event.detail.element.hasAttribute('data-deletable')) {
+            event.detail.element.addEventListener('keydown', this);
+        }
     }
 
     /**

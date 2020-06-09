@@ -1,0 +1,48 @@
+import Listener from '../base/Listener.js';
+
+/**
+ * Handles audio elements
+ */
+export default class AudioListener extends Listener {
+    /**
+     * @inheritDoc
+     */
+    constructor(editor) {
+        super(editor);
+        this.editor.content.addEventListener('sethtml', this);
+        this.editor.content.addEventListener('insertaudio', this);
+    }
+
+    /**
+     * Initializes audio elements when editor html is set
+     *
+     * @private
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail
+     */
+    sethtml(event) {
+        event.detail.querySelectorAll('audio').forEach(item => this.init(item));
+    }
+
+    /**
+     * Initializes elements
+     *
+     * @private
+     * @param {CustomEvent} event
+     * @param {HTMLAudioElement} event.detail.element
+     */
+    insertaudio(event) {
+        this.init(event.detail.element);
+    }
+
+    /**
+     * Adds controls and wraps in figure if necessary
+     *
+     * @private
+     * @param {HTMLAudioElement} element
+     */
+    init(element) {
+        element.controls = true;
+        this.editor.wrap(element, 'figure', {attributes: {class: 'audio'}});
+    }
+}

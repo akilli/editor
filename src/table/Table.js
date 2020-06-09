@@ -5,7 +5,7 @@ import Plugin from '../base/Plugin.js';
 import TableCommand from './TableCommand.js';
 import TableDialog from './TableDialog.js';
 import TableFilter from './TableFilter.js';
-import TableObserver from './TableObserver.js';
+import TableListener from './TableListener.js';
 import i18n from './i18n.js';
 
 /**
@@ -72,7 +72,7 @@ export default class Table extends Plugin {
             editable: true,
             empty: true,
         });
-        this.editor.observe(new TableObserver(this.editor));
+        new TableListener(this.editor);
         this.registerTranslator(i18n);
         this.editor.filters.add(new TableFilter(this.editor));
         this.editor.dialogs.set(new TableDialog(this.editor));

@@ -1,18 +1,28 @@
-import Observer from './Observer.js';
+import Listener from './Listener.js';
 
 /**
- * Alignable Observer
+ * Alignable Listener
  */
-export default class AlignableObserver extends Observer {
+export default class AlignableListener extends Listener {
     /**
      * @inheritDoc
      */
-    observe(records) {
-        records.forEach(record => record.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && node.parentElement === this.editor.content && node.hasAttribute('data-alignable')) {
-                node.addEventListener('keydown', this);
-            }
-        }));
+    constructor(editor) {
+        super(editor);
+        this.editor.content.addEventListener('insert', this);
+    }
+
+    /**
+     * Initializes elements
+     *
+     * @private
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
+     */
+    insert(event) {
+        if (event.detail.element.parentElement === this.editor.content && event.detail.element.hasAttribute('data-alignable')) {
+            event.detail.element.addEventListener('keydown', this);
+        }
     }
 
     /**

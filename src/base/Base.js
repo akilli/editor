@@ -1,13 +1,13 @@
-import AlignableObserver from './AlignableObserver.js';
+import AlignableListener from './AlignableListener.js';
 import BaseFilter from './BaseFilter.js';
-import DeletableObserver from './DeletableObserver.js';
-import EditableObserver from './EditableObserver.js';
-import FocusableObserver from './FocusableObserver.js';
-import NavigableObserver from './NavigableObserver.js';
+import DeletableListener from './DeletableListener.js';
+import EditableListener from './EditableListener.js';
+import FocusableListener from './FocusableListener.js';
+import NavigableListener from './NavigableListener.js';
 import Plugin from './Plugin.js';
-import SortableObserver from './SortableObserver.js';
-import TagObserver from './TagObserver.js';
-import ToolbarObserver from './ToolbarObserver.js';
+import SortableListener from './SortableListener.js';
+import TagListener from './TagListener.js';
+import ToolbarListener from './ToolbarListener.js';
 
 /**
  * Base Plugin
@@ -36,14 +36,14 @@ export default class Base extends Plugin {
             group: 'root',
             children: ['block', 'container', 'figure', 'heading', 'list', 'paragraph', 'quote', 'table'],
         });
-        this.editor.observe(new TagObserver(this.editor));
-        this.editor.observe(new ToolbarObserver(this.editor), {target: this.editor.toolbar});
-        this.editor.observe(new EditableObserver(this.editor));
-        this.editor.observe(new DeletableObserver(this.editor));
-        this.editor.observe(new NavigableObserver(this.editor));
-        this.editor.observe(new SortableObserver(this.editor));
-        this.editor.observe(new AlignableObserver(this.editor));
-        this.editor.observe(new FocusableObserver(this.editor));
+        new ToolbarListener(this.editor);
+        new TagListener(this.editor);
+        new EditableListener(this.editor);
+        new DeletableListener(this.editor);
+        new NavigableListener(this.editor);
+        new SortableListener(this.editor);
+        new AlignableListener(this.editor);
+        new FocusableListener(this.editor);
         this.editor.filters.add(new BaseFilter(this.editor));
     }
 }

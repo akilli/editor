@@ -3,7 +3,7 @@ import BrowserDialog from '../base/BrowserDialog.js';
 import Figure from '../figure/Figure.js';
 import IframeCommand from './IframeCommand.js';
 import IframeDialog from './IframeDialog.js';
-import IframeObserver from './IframeObserver.js';
+import IframeListener from './IframeListener.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
 
@@ -43,7 +43,7 @@ export default class Iframe extends Plugin {
             empty: true,
             navigable: true,
         });
-        this.editor.observe(new IframeObserver(this.editor));
+        new IframeListener(this.editor);
         this.registerTranslator(i18n);
 
         if (this.editor.config.iframe.browser) {

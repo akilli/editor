@@ -1,36 +1,31 @@
-import Observer from './Observer.js';
+import Listener from './Listener.js';
 
 /**
- * Toolbar Observer
+ * Toolbar Listener
  */
-export default class ToolbarObserver extends Observer {
+export default class ToolbarListener extends Listener {
     /**
      * @inheritDoc
      */
-    observe(records) {
-        records.forEach(record => record.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement) {
-                if (this.editor.toolbar === node.parentElement || node.hasAttribute('data-command')) {
-                    this.init(node);
-                }
-
-                node.querySelectorAll('[data-command]').forEach(item => this.init(item));
-            }
-        }));
+    constructor(editor) {
+        super(editor);
+        this.editor.toolbar.addEventListener('insertbutton', this);
     }
 
     /**
-     * Initializes toolbar item
+     * Initializes button elements
      *
      * @private
-     * @param {HTMLElement} node
+     * @param {CustomEvent} event
+     * @param {HTMLButtonElement} event.detail.element
      */
-    init(node) {
-        node.addEventListener('click', this);
+    insertbutton(event) {
+        const element = event.detail.element;
+        element.addEventListener('click', this);
 
-        if (node.parentElement === this.editor.toolbar) {
-            node.tabIndex = -1;
-            node.addEventListener('keydown', this);
+        if (element.parentElement === this.editor.toolbar) {
+            element.tabIndex = -1;
+            element.addEventListener('keydown', this);
         }
     }
 

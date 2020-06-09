@@ -1,33 +1,29 @@
-import Observer from './Observer.js';
+import Listener from './Listener.js';
 
 /**
- * Navigable Observer
+ * Navigable Listener
  */
-export default class NavigableObserver extends Observer {
+export default class NavigableListener extends Listener {
     /**
      * @inheritDoc
      */
-    observe(records) {
-        records.forEach(record => record.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement) {
-                if (node.hasAttribute('data-navigable')) {
-                    this.init(node);
-                }
-
-                node.querySelectorAll('[data-navigable]').forEach(item => this.init(item));
-            }
-        }));
+    constructor(editor) {
+        super(editor);
+        this.editor.content.addEventListener('insert', this);
     }
 
     /**
-     * Initializes navigable element
+     * Initializes elements
      *
      * @private
-     * @param {HTMLElement} node
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      */
-    init(node) {
-        node.tabIndex = 0;
-        node.addEventListener('keydown', this);
+    insert(event) {
+        if (event.detail.element.hasAttribute('data-navigable')) {
+            event.detail.element.tabIndex = 0;
+            event.detail.element.addEventListener('keydown', this);
+        }
     }
 
     /**
@@ -68,18 +64,18 @@ export default class NavigableObserver extends Observer {
      * Enables or disables navigation for contenteditable elements
      *
      * @private
-     * @param {HTMLElement} node
+     * @param {HTMLElement} element
      * @return {Boolean}
      */
-    isAllowed(node) {
-        if (!node.isContentEditable) {
+    isAllowed(element) {
+        if (!element.isContentEditable) {
             return true;
         }
 
         const sel = this.editor.window.getSelection();
         const editable = this.editor.getSelectedEditable();
-        const element = this.editor.getSelectedElement();
+        const selected = this.editor.getSelectedElement();
 
-        return sel.isCollapsed && sel.anchorOffset === 0 && [editable, node.firstChild].includes(element);
+        return sel.isCollapsed && sel.anchorOffset === 0 && [editable, element.firstChild].includes(selected);
     }
 }

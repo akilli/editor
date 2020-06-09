@@ -1,42 +1,38 @@
-import Observer from './Observer.js';
+import Listener from './Listener.js';
 
 const keyName = 'text/x-editor-name';
 const keyHtml = 'text/x-editor-html';
 
 /**
- * Sortable Observer
+ * Sortable Listener
  */
-export default class SortableObserver extends Observer {
+export default class SortableListener extends Listener {
     /**
      * @inheritDoc
      */
-    observe(records) {
-        records.forEach(record => record.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement) {
-                if (node.hasAttribute('data-sortable')) {
-                    this.init(node);
-                }
-
-                node.querySelectorAll('[data-sortable]').forEach(item => this.init(item));
-            }
-        }));
+    constructor(editor) {
+        super(editor);
+        this.editor.content.addEventListener('insert', this);
     }
 
     /**
-     * Initializes element
+     * Initializes elements
      *
      * @private
-     * @param {HTMLElement} node
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      */
-    init(node) {
-        node.addEventListener('keydown', this);
-        node.addEventListener('dblclick', this);
-        node.addEventListener('dragstart', this);
-        node.addEventListener('dragend', this);
-        node.addEventListener('dragenter', this);
-        node.addEventListener('dragover', this);
-        node.addEventListener('dragleave', this);
-        node.addEventListener('drop', this);
+    insert(event) {
+        if (event.detail.element.hasAttribute('data-sortable')) {
+            event.detail.element.addEventListener('keydown', this);
+            event.detail.element.addEventListener('dblclick', this);
+            event.detail.element.addEventListener('dragstart', this);
+            event.detail.element.addEventListener('dragend', this);
+            event.detail.element.addEventListener('dragenter', this);
+            event.detail.element.addEventListener('dragover', this);
+            event.detail.element.addEventListener('dragleave', this);
+            event.detail.element.addEventListener('drop', this);
+        }
     }
 
     /**
@@ -189,10 +185,10 @@ export default class SortableObserver extends Observer {
      * Toggles contenteditable and draggable states
      *
      * @private
-     * @param {HTMLElement} node
+     * @param {HTMLElement} element
      */
-    toggle(node) {
-        const hasDraggable = node.hasAttribute('draggable');
+    toggle(element) {
+        const hasDraggable = element.hasAttribute('draggable');
         this.editor.content.querySelectorAll('[draggable]').forEach(item => {
             item.removeAttribute('draggable');
 
@@ -202,10 +198,10 @@ export default class SortableObserver extends Observer {
         });
 
         if (!hasDraggable) {
-            node.setAttribute('draggable', 'true');
+            element.setAttribute('draggable', 'true');
 
-            if (node.hasAttribute('contenteditable')) {
-                node.setAttribute('contenteditable', 'false');
+            if (element.hasAttribute('contenteditable')) {
+                element.setAttribute('contenteditable', 'false');
             }
         }
     }

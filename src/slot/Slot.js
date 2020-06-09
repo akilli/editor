@@ -1,6 +1,6 @@
 import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
-import SlotObserver from './SlotObserver.js';
+import SlotListener from './SlotListener.js';
 
 /**
  * Slot Plugin
@@ -31,6 +31,6 @@ export default class Slot extends Plugin {
             focusable: true,
             navigable: true,
         });
-        this.editor.observe(new SlotObserver(this.editor));
+        new SlotListener(this.editor);
     }
 }
