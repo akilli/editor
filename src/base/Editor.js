@@ -496,6 +496,20 @@ export default class Editor {
     }
 
     /**
+     * Dispatches an editor event
+     *
+     * @param type
+     * @param element
+     */
+    dispatch(type, element = null) {
+        if (!type || typeof type !== 'string' || element && !(element instanceof HTMLElement)) {
+            throw 'Invalid argument';
+        }
+
+        this.content.dispatchEvent(new CustomEvent(type, {detail: element}));
+    }
+
+    /**
      * Short-cut method to register a mutation observer
      *
      * @param {Observer} observer
@@ -539,21 +553,6 @@ export default class Editor {
         const a = this.createElement('a', {attributes: {href: url}});
 
         return origin === a.origin ? a.pathname : a.href;
-    }
-
-    /**
-     * Dispatches an editor event
-     *
-     * @private
-     * @param type
-     * @param element
-     */
-    dispatch(type, element = null) {
-        if (!type || typeof type !== 'string' || element && !(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
-        }
-
-        this.content.dispatchEvent(new CustomEvent(type, {detail: element}));
     }
 
     /**
