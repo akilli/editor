@@ -38,40 +38,12 @@ export default class Table extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this.editor.tags.create({
-            name: 'thead',
-            group: 'tablesection',
-            children: ['tablerow'],
-        });
-        this.editor.tags.create({
-            name: 'tbody',
-            group: 'tablesection',
-            children: ['tablerow'],
-        });
-        this.editor.tags.create({
-            name: 'tfoot',
-            group: 'tablesection',
-            children: ['tablerow'],
-        });
-        this.editor.tags.create({
-            name: 'tr',
-            group: 'tablerow',
-            children: ['tablecell'],
-        });
-        this.editor.tags.create({
-            name: 'th',
-            group: 'tablecell',
-            children: ['break', 'format'],
-            editable: true,
-            empty: true,
-        });
-        this.editor.tags.create({
-            name: 'td',
-            group: 'tablecell',
-            children: ['break', 'format'],
-            editable: true,
-            empty: true,
-        });
+        this.editor.tags.create({name: 'thead', group: 'tablesection', children: ['tablerow']});
+        this.editor.tags.create({name: 'tbody', group: 'tablesection', children: ['tablerow']});
+        this.editor.tags.create({name: 'tfoot', group: 'tablesection', children: ['tablerow']});
+        this.editor.tags.create({name: 'tr', group: 'tablerow', children: ['tablecell']});
+        this.editor.tags.create({name: 'th', group: 'tablecell', children: ['break', 'format'], editable: true, empty: true});
+        this.editor.tags.create({name: 'td', group: 'tablecell', children: ['break', 'format'], editable: true, empty: true});
         new TableListener(this.editor);
         this._translator(i18n);
         this.editor.filters.add(new TableFilter(this.editor));
