@@ -34,7 +34,7 @@ export default class NavigableListener extends Listener {
     keydown(event) {
         if (event.target === event.currentTarget
             && this.editor.isKey(event, ['ArrowUp', 'ArrowDown', 'Home', 'End'])
-            && this.isAllowed(event.target)
+            && this.__enabled(event.target)
         ) {
             const prev = event.target.previousElementSibling;
             const next = event.target.nextElementSibling;
@@ -65,7 +65,7 @@ export default class NavigableListener extends Listener {
      * @param {HTMLElement} element
      * @return {Boolean}
      */
-    isAllowed(element) {
+    __enabled(element) {
         if (!element.isContentEditable) {
             return true;
         }

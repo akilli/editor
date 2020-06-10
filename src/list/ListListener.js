@@ -21,7 +21,7 @@ export default class ListListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     sethtml(event) {
-        event.detail.element.querySelectorAll('li').forEach(item => this.init(item));
+        event.detail.element.querySelectorAll('li').forEach(item => this.__init(item));
     }
 
     /**
@@ -31,7 +31,19 @@ export default class ListListener extends Listener {
      * @param {HTMLLIElement} event.detail.element
      */
     insertli(event) {
-        this.init(event.detail.element);
+        this.__init(event.detail.element);
+    }
+
+    /**
+     * Removes parent element too if deleted listitem was the only child
+     *
+     * @param {CustomEvent} event
+     * @param {HTMLOListElement|HTMLUListElement} event.detail.target
+     */
+    deleteli(event) {
+        if (event.detail.target.children.length === 0) {
+            event.detail.target.parentElement.removeChild(event.detail.target);
+        }
     }
 
     /**
@@ -40,21 +52,9 @@ export default class ListListener extends Listener {
      * @private
      * @param {HTMLLIElement} element
      */
-    init(element) {
+    __init(element) {
         if (!(element.parentElement instanceof HTMLOListElement) && !(element.parentElement instanceof HTMLUListElement)) {
             this.editor.wrap(element, 'ul');
-        }
-    }
-
-    /**
-     * Initializes listitem elements
-     *
-     * @param {CustomEvent} event
-     * @param {HTMLOListElement|HTMLUListElement} event.detail.target
-     */
-    deleteli(event) {
-        if (event.detail.target.children.length === 0) {
-            event.detail.target.parentElement.removeChild(event.detail.target);
         }
     }
 }

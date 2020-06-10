@@ -19,19 +19,19 @@ export default class SummaryListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     insertsummary(event) {
-        this.empty(event.detail.element);
+        this.__empty(event.detail.element);
         event.detail.element.addEventListener('blur', this);
         event.detail.element.addEventListener('keydown', this);
     }
 
     /**
-     * Calls empty method on blur
+     * Sets default summary text content if it's empty
      *
      * @param {FocusEvent} event
      * @param {HTMLElement} event.target
      */
     blur(event) {
-        this.empty(event.target);
+        this.__empty(event.target);
     }
 
     /**
@@ -58,7 +58,7 @@ export default class SummaryListener extends Listener {
      * @private
      * @param {HTMLElement} element
      */
-    empty(element) {
+    __empty(element) {
         if (!element.textContent.trim()) {
             element.textContent = this.editor.i18n.translate('details', 'Details');
         } else {

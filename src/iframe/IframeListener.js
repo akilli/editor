@@ -20,7 +20,7 @@ export default class IframeListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     sethtml(event) {
-        event.detail.element.querySelectorAll('iframe').forEach(item => this.init(item));
+        event.detail.element.querySelectorAll('iframe').forEach(item => this.__init(item));
     }
 
     /**
@@ -30,7 +30,7 @@ export default class IframeListener extends Listener {
      * @param {HTMLIFrameElement} event.detail.element
      */
     insertiframe(event) {
-        this.init(event.detail.element);
+        this.__init(event.detail.element);
     }
 
     /**
@@ -39,7 +39,7 @@ export default class IframeListener extends Listener {
      * @private
      * @param {HTMLIFrameElement} element
      */
-    init(element) {
+    __init(element) {
         element.allowFullscreen = true;
         this.editor.wrap(element, 'figure', {attributes: {class: 'iframe'}});
     }

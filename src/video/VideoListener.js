@@ -20,7 +20,7 @@ export default class VideoListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     sethtml(event) {
-        event.detail.element.querySelectorAll('video').forEach(item => this.init(item));
+        event.detail.element.querySelectorAll('video').forEach(item => this.__init(item));
     }
 
     /**
@@ -30,7 +30,7 @@ export default class VideoListener extends Listener {
      * @param {HTMLVideoElement} event.detail.element
      */
     insertvideo(event) {
-        this.init(event.detail.element);
+        this.__init(event.detail.element);
     }
 
     /**
@@ -39,7 +39,7 @@ export default class VideoListener extends Listener {
      * @private
      * @param {HTMLVideoElement} element
      */
-    init(element) {
+    __init(element) {
         element.controls = true;
         this.editor.wrap(element, 'figure', {attributes: {class: 'video'}});
     }

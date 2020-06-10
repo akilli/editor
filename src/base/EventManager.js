@@ -22,9 +22,9 @@ export default class EventManager {
         }
 
         this.editor = editor;
-        const toolbar = new MutationObserver(records => this.observe(records, this.toolbar.bind(this)));
+        const toolbar = new MutationObserver(records => this.__observe(records, this.toolbar.bind(this)));
         toolbar.observe(this.editor.toolbar, {childList: true, subtree: true});
-        const content = new MutationObserver(records => this.observe(records, this.content.bind(this)));
+        const content = new MutationObserver(records => this.__observe(records, this.content.bind(this)));
         content.observe(this.editor.content, {childList: true, subtree: true});
     }
 
@@ -65,7 +65,7 @@ export default class EventManager {
      * @param {MutationRecord[]} records
      * @param {Function} call
      */
-    observe(records, call) {
+    __observe(records, call) {
         const dispatch = (type, element, target) => {
             call(type, element, target);
             call(`${type}${element.localName.replace('-', '')}`, element, target);

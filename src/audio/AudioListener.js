@@ -20,7 +20,7 @@ export default class AudioListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     sethtml(event) {
-        event.detail.element.querySelectorAll('audio').forEach(item => this.init(item));
+        event.detail.element.querySelectorAll('audio').forEach(item => this.__init(item));
     }
 
     /**
@@ -30,7 +30,7 @@ export default class AudioListener extends Listener {
      * @param {HTMLAudioElement} event.detail.element
      */
     insertaudio(event) {
-        this.init(event.detail.element);
+        this.__init(event.detail.element);
     }
 
     /**
@@ -39,7 +39,7 @@ export default class AudioListener extends Listener {
      * @private
      * @param {HTMLAudioElement} element
      */
-    init(element) {
+    __init(element) {
         element.controls = true;
         this.editor.wrap(element, 'figure', {attributes: {class: 'audio'}});
     }

@@ -54,7 +54,7 @@ export default class Dialog {
 
         cleanup();
         const dialog = this.editor.createElement('dialog', {attributes: {class: 'editor-dialog', 'data-name': this.name}});
-        typeof dialog.open === 'boolean' || this.polyfill(dialog);
+        typeof dialog.open === 'boolean' || this.__polyfill(dialog);
         dialog.addEventListener('click', event => {
             if (event.target === dialog) {
                 close();
@@ -119,7 +119,7 @@ export default class Dialog {
      * @private
      * @param {HTMLElement} dialog
      */
-    polyfill(dialog) {
+    __polyfill(dialog) {
         Object.defineProperty(dialog, 'open', {
             get: function () {
                 return dialog.hasAttribute('open');

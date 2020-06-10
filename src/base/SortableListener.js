@@ -79,7 +79,7 @@ export default class SortableListener extends Listener {
         if (event.target === event.currentTarget) {
             event.preventDefault();
             event.stopPropagation();
-            this.toggle(event.target);
+            this.__toggle(event.target);
         }
     }
 
@@ -109,7 +109,7 @@ export default class SortableListener extends Listener {
                 event.target.parentElement.removeChild(event.target);
             }
 
-            this.toggle(event.target);
+            this.__toggle(event.target);
         }
     }
 
@@ -177,7 +177,7 @@ export default class SortableListener extends Listener {
      * @private
      * @param {HTMLElement} element
      */
-    toggle(element) {
+    __toggle(element) {
         const hasDraggable = element.hasAttribute('draggable');
         this.editor.content.querySelectorAll('[draggable]').forEach(item => {
             item.removeAttribute('draggable');

@@ -28,11 +28,11 @@ export default class TableListener extends Listener {
             && (!event.detail.element.tHead || !event.detail.element.tFoot)
         ) {
             if (!event.detail.element.tHead) {
-                this.createRow(event.detail.element.createTHead(), event.detail.element.tBodies[0].rows[0].cells.length);
+                this.__row(event.detail.element.createTHead(), event.detail.element.tBodies[0].rows[0].cells.length);
             }
 
             if (!event.detail.element.tFoot) {
-                this.createRow(event.detail.element.createTFoot(), event.detail.element.tBodies[0].rows[0].cells.length);
+                this.__row(event.detail.element.createTFoot(), event.detail.element.tBodies[0].rows[0].cells.length);
             }
         }
     }
@@ -94,14 +94,13 @@ export default class TableListener extends Listener {
                     base.deleteRow(rowIndex + 1)
                 }
             } else if (event.key === 'ArrowLeft') {
-                Array.from(table.rows).forEach(item => this.createCell(item, item.cells[cell.cellIndex]));
+                Array.from(table.rows).forEach(item => this.__cell(item, item.cells[cell.cellIndex]));
             } else if (event.key === 'ArrowRight') {
-                console.log(table, table.rows);
-                Array.from(table.rows).forEach(item => this.createCell(item, item.cells[cell.cellIndex + 1]));
+                Array.from(table.rows).forEach(item => this.__cell(item, item.cells[cell.cellIndex + 1]));
             } else if (event.key === 'ArrowUp') {
-                this.createRow(base, length, rowIndex);
+                this.__row(base, length, rowIndex);
             } else if (event.key === 'ArrowDown') {
-                this.createRow(base, length, rowIndex + 1);
+                this.__row(base, length, rowIndex + 1);
             }
         }
     }
@@ -114,11 +113,11 @@ export default class TableListener extends Listener {
      * @param {Number} length
      * @param {Number} [index = 0]
      */
-    createRow(element, length, index = 0) {
+    __row(element, length, index = 0) {
         const row = element.insertRow(index);
 
         for (let i = 0; i < length; i++) {
-            this.createCell(row);
+            this.__cell(row);
         }
     }
 
@@ -129,7 +128,7 @@ export default class TableListener extends Listener {
      * @param {HTMLTableRowElement} element
      * @param {?HTMLTableCellElement} [ref = null]
      */
-    createCell(element, ref = null) {
+    __cell(element, ref = null) {
         const name = element.parentElement.localName === 'thead' ? 'th' : 'td';
         element.insertBefore(this.editor.createElement(name), ref);
     }

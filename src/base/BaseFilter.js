@@ -23,14 +23,14 @@ export default class BaseFilter extends Filter {
             const text = child.textContent.trim();
 
             if (child instanceof HTMLElement) {
-                child = this.convert(child);
+                child = this.__convert(child);
                 const childTag = this.editor.tags.get(child);
 
                 if (childTag && this.editor.tags.isAllowed(child, element)) {
                     wrap(child);
-                    this.filterElement(child, childTag);
+                    this.__element(child, childTag);
                 } else if (childTag && childTag.group === 'format' && allowedParagraph) {
-                    if ((child = this.filterElement(child, childTag))) {
+                    if ((child = this.__element(child, childTag))) {
                         p.push(child.outerHTML);
                         element.removeChild(child);
                     }
@@ -65,7 +65,7 @@ export default class BaseFilter extends Filter {
      * @param {HTMLElement} element
      * @return {HTMLElement}
      */
-    convert(element) {
+    __convert(element) {
         const name = this.editor.config.base.filter[element.localName];
 
         if (!name) {
@@ -86,7 +86,7 @@ export default class BaseFilter extends Filter {
      * @param {Tag} tag
      * @return {?HTMLElement}
      */
-    filterElement(element, tag) {
+    __element(element, tag) {
         Array.from(element.attributes).forEach(item => !tag.attributes.includes(item.name) && element.removeAttribute(item.name));
 
         if (element.hasChildNodes()) {

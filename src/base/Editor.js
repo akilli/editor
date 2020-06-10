@@ -145,12 +145,12 @@ export default class Editor {
      */
     init() {
         if (this.plugins.size === 0) {
-            this.initPlugins();
-            this.initToolbar();
+            this.__initPlugins();
+            this.__initToolbar();
         }
 
-        this.initContent();
-        this.initDom();
+        this.__initContent();
+        this.__initDom();
     }
 
     /**
@@ -158,7 +158,7 @@ export default class Editor {
      *
      * @private
      */
-    initPlugins() {
+    __initPlugins() {
         const config = this.config;
         const configPlugins = config.base?.plugins || this.constructor.defaultConfig.base?.plugins || [];
         const plugins = new Set();
@@ -189,7 +189,7 @@ export default class Editor {
      *
      * @private
      */
-    initToolbar() {
+    __initToolbar() {
         this.config.base.toolbar.forEach(item => this.toolbar.appendChild(this.createElement('button', {
             attributes: {type: 'button', 'data-command': item, title: item},
             html: item,
@@ -201,7 +201,7 @@ export default class Editor {
      *
      * @private
      */
-    initContent() {
+    __initContent() {
         if (this.orig instanceof HTMLTextAreaElement) {
             this.orig.form.addEventListener('submit', () => this.save());
             this.setHtml(this.orig.value.replace('/&nbsp;/g', ' '));
@@ -215,7 +215,7 @@ export default class Editor {
      *
      * @private
      */
-    initDom() {
+    __initDom() {
         this.orig.insertAdjacentElement('afterend', this.element);
         this.orig.hidden = true;
     }
