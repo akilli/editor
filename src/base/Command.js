@@ -19,29 +19,18 @@ export default class Command {
     name;
 
     /**
-     * Name of the tag to insert
-     *
-     * @type {?String}
-     */
-    tagName = null;
-
-    /**
      * Associated tag
      *
-     * @return {?Tag}
+     * @type {?Tag}
      */
-    get tag() {
-        return this.tagName ? this.editor.tags.get(this.tagName) : null;
-    }
+    tag = null;
 
     /**
      * Associated dialog
      *
-     * @return {?Dialog}
+     * @type {?Dialog}
      */
-    get dialog() {
-        return this.editor.dialogs.get(this.name);
-    }
+    dialog = null;
 
     /**
      * Initializes a new editor command optionally with given tag name
@@ -57,7 +46,8 @@ export default class Command {
 
         this.editor = editor;
         this.name = name;
-        this.tagName = tagName;
+        this.tag = tagName ? this.editor.tags.get(tagName) : null;
+        this.dialog = this.editor.dialogs.get(name);
     }
 
     /**
@@ -99,7 +89,7 @@ export default class Command {
     _selectedElement() {
         const element = this.editor.getSelectedElement();
 
-        return element && element.localName === this.tagName ? element : null;
+        return element && element.localName === this.tag?.name ? element : null;
     }
 
     /**
