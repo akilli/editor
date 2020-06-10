@@ -9,7 +9,8 @@ export default class QuoteFilter extends Filter {
      */
     filter(element) {
         if (element instanceof HTMLElement
-            && element.matches('figure[class=quote')
+            && element.localName === 'figure'
+            && element.classList.contains('quote')
             && element.querySelector(':scope > blockquote')
             && !element.querySelector(':scope > figcaption')
         ) {
