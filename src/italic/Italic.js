@@ -27,6 +27,6 @@ export default class Italic extends Plugin {
             name: 'i',
             group: 'format',
         });
-        this.registerCommand('italic', 'i')
+        this._command('italic', 'i')
     }
 }

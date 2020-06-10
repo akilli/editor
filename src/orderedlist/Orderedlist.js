@@ -35,6 +35,6 @@ export default class Orderedlist extends Plugin {
             sortable: true,
         });
         new OrderedlistListener(this.editor);
-        this.registerCommand('orderedlist', 'ol');
+        this._command('orderedlist', 'ol');
     }
 }

@@ -16,15 +16,15 @@ export default class TableDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    getFieldsetHtml() {
+    _getHtml() {
         return `
-            <legend>${this.t('Table')}</legend>
+            <legend>${this._('Table')}</legend>
             <div class="editor-required">
-                <label for="editor-rows">${this.t('Rows')}</label>
+                <label for="editor-rows">${this._('Rows')}</label>
                 <input id="editor-rows" name="rows" type="number" value="1" min="1" required />
             </div>
             <div class="editor-required">
-                <label for="editor-cols">${this.t('Columns')}</label>
+                <label for="editor-cols">${this._('Columns')}</label>
                 <input id="editor-cols" name="cols" type="number" value="1" min="1" required />
             </div>
         `;

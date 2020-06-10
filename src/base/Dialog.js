@@ -62,15 +62,15 @@ export default class Dialog {
         });
 
         const fieldset = this.editor.createElement('fieldset');
-        fieldset.insertAdjacentHTML('beforeend', this.getFieldsetHtml());
+        fieldset.insertAdjacentHTML('beforeend', this._getHtml());
         Object.entries(attributes).forEach(([key, val]) => {
             if (fieldset.elements[key]) {
                 fieldset.elements[key].value = val;
             }
         });
 
-        const saveButton = this.editor.createElement('button', {attributes: {class: 'editor-save'}, html: this.t('Save')});
-        const cancelButton = this.editor.createElement('button', {attributes: {class: 'editor-cancel', type: 'button'}, html: this.t('Cancel')});
+        const saveButton = this.editor.createElement('button', {attributes: {class: 'editor-save'}, html: this._('Save')});
+        const cancelButton = this.editor.createElement('button', {attributes: {class: 'editor-cancel', type: 'button'}, html: this._('Cancel')});
         cancelButton.addEventListener('click', close);
 
         const form = this.editor.createElement('form');
@@ -93,24 +93,24 @@ export default class Dialog {
     }
 
     /**
-     * Returns dialogs fieldset HTML
-     *
-     * @protected
-     * @return {String}
-     */
-    getFieldsetHtml() {
-        return '';
-    }
-
-    /**
      * Translates given string
      *
      * @protected
      * @param {String} key
      * @return {String}
      */
-    t(key) {
+    _(key) {
         return this.editor.i18n.translate(this.name, key);
+    }
+
+    /**
+     * Returns dialogs fieldset HTML
+     *
+     * @protected
+     * @return {String}
+     */
+    _getHtml() {
+        return '';
     }
 
     /**

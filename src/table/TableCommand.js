@@ -20,7 +20,7 @@ export default class TableCommand extends Command {
      * @param {Number} rows
      * @param {Number} cols
      */
-    insert({rows = 1, cols = 1} = {}) {
+    _insert({rows = 1, cols = 1} = {}) {
         rows = rows > 1 ? rows : 1;
         cols = cols > 1 ? cols : 1;
 

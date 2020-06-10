@@ -44,7 +44,7 @@ export default class Image extends Plugin {
             navigable: true,
         });
         new ImageListener(this.editor);
-        this.registerTranslator(i18n);
+        this._translator(i18n);
 
         if (this.editor.config.image.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'image', this.editor.config.image.browser));

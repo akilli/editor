@@ -31,7 +31,7 @@ export default class Link extends Plugin {
             group: 'format',
             attributes: ['href'],
         });
-        this.registerTranslator(i18n);
+        this._translator(i18n);
         this.editor.dialogs.set(new LinkDialog(this.editor));
         this.editor.commands.set(new LinkCommand(this.editor));
     }

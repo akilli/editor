@@ -33,6 +33,6 @@ export default class Subheading extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this.registerCommand('subheading', 'h3');
+        this._command('subheading', 'h3');
     }
 }

@@ -23,7 +23,7 @@ export default class IframeCommand extends Command {
      * @param {String} [height = '']
      * @param {String} [allowfullscreen = 'allowfullscreen']
      */
-    insert({src, caption = '', width = '', height = '', allowfullscreen = 'allowfullscreen'} = {}) {
+    _insert({src, caption = '', width = '', height = '', allowfullscreen = 'allowfullscreen'} = {}) {
         if (!src) {
             throw 'Invalid argument';
         }

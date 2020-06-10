@@ -33,6 +33,6 @@ export default class Heading extends Plugin {
             navigable: true,
             sortable: true,
         })
-        this.registerCommand('heading', 'h2');
+        this._command('heading', 'h2');
     }
 }

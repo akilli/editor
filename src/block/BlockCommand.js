@@ -19,7 +19,7 @@ export default class BlockCommand extends Command {
      * @protected
      * @param {String} id
      */
-    insert({id} = {}) {
+    _insert({id} = {}) {
         if (!id) {
             throw 'Invalid argument';
         }

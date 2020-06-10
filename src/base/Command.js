@@ -64,7 +64,7 @@ export default class Command {
      * Executes the command
      */
     execute() {
-        this.dialog ? this.openDialog() : this.insert(this.selectedAttributes());
+        this.dialog ? this._openDialog() : this._insert(this._selectedAttributes());
     }
 
      /**
@@ -73,7 +73,7 @@ export default class Command {
       * @protected
       * @param {Object.<String, String>} [attributes = {}]
       */
-    insert(attributes = {}) {
+    _insert(attributes = {}) {
         if (this.tag) {
             Object.keys(attributes).forEach(item => this.tag.attributes.includes(item) || delete attributes[item]);
             const element = this.editor.createElement(this.tag.name, {attributes: attributes});
@@ -86,8 +86,8 @@ export default class Command {
      *
      * @protected
      */
-    openDialog() {
-        this.dialog.open(attributes => this.insert(attributes), this.selectedAttributes())
+    _openDialog() {
+        this.dialog.open(attributes => this._insert(attributes), this._selectedAttributes())
     }
 
     /**
@@ -96,7 +96,7 @@ export default class Command {
      * @protected
      * @return {?HTMLElement}
      */
-    selectedElement() {
+    _selectedElement() {
         const element = this.editor.getSelectedElement();
 
         return element && element.localName === this.tagName ? element : null;
@@ -108,8 +108,8 @@ export default class Command {
      * @protected
      * @return {Object.<String, String>}
      */
-    selectedAttributes() {
-        const element = this.selectedElement();
+    _selectedAttributes() {
+        const element = this._selectedElement();
         const attributes = {};
 
         if (element && this.tag) {

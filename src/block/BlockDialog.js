@@ -16,11 +16,11 @@ export default class BlockDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    getFieldsetHtml() {
+    _getHtml() {
         return `
-            <legend>${this.t('Block')}</legend>
+            <legend>${this._('Block')}</legend>
             <div class="editor-required">
-                <label for="editor-id">${this.t('ID')}</label>
+                <label for="editor-id">${this._('ID')}</label>
                 <input id="editor-id" name="id" type="text" required />
             </div>
         `;

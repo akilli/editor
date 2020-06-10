@@ -27,6 +27,6 @@ export default class Bold extends Plugin {
             name: 'b',
             group: 'format',
         });
-        this.registerCommand('bold', 'b')
+        this._command('bold', 'b')
     }
 }

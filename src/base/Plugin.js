@@ -67,7 +67,7 @@ export default class Plugin {
      * @protected
      * @param {Object.<String, Object.<String, String>>} i18n
      */
-    registerTranslator(i18n) {
+    _translator(i18n) {
         if (i18n[this.editor.config.base.lang]) {
             this.editor.i18n.set(this.constructor.name, i18n[this.editor.config.base.lang]);
         }
@@ -80,7 +80,7 @@ export default class Plugin {
      * @param {String} name
      * @param {?String} tagName
      */
-    registerCommand(name, tagName = null) {
+    _command(name, tagName = null) {
         this.editor.commands.set(new Command(this.editor, name, tagName));
     }
 }

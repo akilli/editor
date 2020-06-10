@@ -23,7 +23,7 @@ export default class ImageCommand extends Command {
      * @param {String} [height = '']
      * @param {String} [alt = '']
      */
-    insert({src, caption = '', width = '', height = '', alt = ''} = {}) {
+    _insert({src, caption = '', width = '', height = '', alt = ''} = {}) {
         if (!src) {
             throw 'Invalid argument';
         }

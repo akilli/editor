@@ -38,8 +38,8 @@ export default class Div extends Plugin {
             sortable: true,
         });
         new DivListener(this.editor);
-        this.registerTranslator(i18n);
+        this._translator(i18n);
         this.editor.dialogs.set(new DivDialog(this.editor));
-        this.registerCommand('div', 'div');
+        this._command('div', 'div');
     }
 }

@@ -19,8 +19,8 @@ export default class LinkCommand extends Command {
      * @protected
      * @param {?String} href
      */
-    insert({href = null} = {}) {
-        const element = this.selectedElement();
+    _insert({href = null} = {}) {
+        const element = this._selectedElement();
 
         if (element && href) {
             element.setAttribute('href', this.editor.url(href));

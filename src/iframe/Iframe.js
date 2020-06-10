@@ -44,7 +44,7 @@ export default class Iframe extends Plugin {
             navigable: true,
         });
         new IframeListener(this.editor);
-        this.registerTranslator(i18n);
+        this._translator(i18n);
 
         if (this.editor.config.iframe.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'iframe', this.editor.config.iframe.browser));

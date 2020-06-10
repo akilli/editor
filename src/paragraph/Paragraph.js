@@ -35,6 +35,6 @@ export default class Paragraph extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this.registerCommand('paragraph', 'p');
+        this._command('paragraph', 'p');
     }
 }

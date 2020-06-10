@@ -38,8 +38,8 @@ export default class Section extends Plugin {
             sortable: true,
         });
         new SectionListener(this.editor);
-        this.registerTranslator(i18n);
+        this._translator(i18n);
         this.editor.dialogs.set(new SectionDialog(this.editor));
-        this.registerCommand('section', 'section');
+        this._command('section', 'section');
     }
 }

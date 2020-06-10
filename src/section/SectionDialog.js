@@ -16,12 +16,12 @@ export default class SectionDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    getFieldsetHtml() {
+    _getHtml() {
         return `
-            <legend>${this.t('Section')}</legend>
+            <legend>${this._('Section')}</legend>
             <div>
-                <label for="editor-class">${this.t('CSS class')}</label>
-                <input id="editor-class" name="class" type="text" placeholder="${this.t('Insert CSS class')}" />
+                <label for="editor-class">${this._('CSS class')}</label>
+                <input id="editor-class" name="class" type="text" placeholder="${this._('Insert CSS class')}" />
             </div>
         `;
     }

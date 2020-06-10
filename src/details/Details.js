@@ -46,8 +46,8 @@ export default class Details extends Plugin {
         });
         new DetailsListener(this.editor);
         new SummaryListener(this.editor);
-        this.registerTranslator(i18n);
-        this.registerCommand('details', 'details');
+        this._translator(i18n);
+        this._command('details', 'details');
         this.editor.filters.add(new DetailsFilter(this.editor));
     }
 }

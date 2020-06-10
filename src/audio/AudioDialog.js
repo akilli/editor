@@ -16,19 +16,19 @@ export default class AudioDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    getFieldsetHtml() {
+    _getHtml() {
         return `
-            <legend>${this.t('Audio')}</legend>
+            <legend>${this._('Audio')}</legend>
             <div class="editor-required">
-                <label for="editor-src">${this.t('URL')}</label>
-                <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this.t('Insert URL to media element')}" required />
+                <label for="editor-src">${this._('URL')}</label>
+                <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this._('Insert URL to media element')}" required />
             </div>
             <div>
-                <label for="editor-width">${this.t('Width')}</label>
+                <label for="editor-width">${this._('Width')}</label>
                 <input id="editor-width" name="width" type="number" />
             </div>
             <div>
-                <label for="editor-height">${this.t('Height')}</label>
+                <label for="editor-height">${this._('Height')}</label>
                 <input id="editor-height" name="height" type="number" />
             </div>
         `;

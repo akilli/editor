@@ -16,12 +16,12 @@ export default class DivDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    getFieldsetHtml() {
+    _getHtml() {
         return `
-            <legend>${this.t('Division')}</legend>
+            <legend>${this._('Division')}</legend>
             <div>
-                <label for="editor-class">${this.t('CSS class')}</label>
-                <input id="editor-class" name="class" type="text" placeholder="${this.t('Insert CSS class')}" />
+                <label for="editor-class">${this._('CSS class')}</label>
+                <input id="editor-class" name="class" type="text" placeholder="${this._('Insert CSS class')}" />
             </div>
         `;
     }
