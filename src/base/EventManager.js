@@ -32,20 +32,30 @@ export default class EventManager {
      * Dispatches an event on editor toolbar element
      *
      * @param {String} type
-     * @param {*} [detail = null]
+     * @param {HTMLElement} element
+     * @param {HTMLElement} target
      */
-    toolbar(type, detail = null) {
-        this.editor.toolbar.dispatchEvent(new CustomEvent(type, {detail: detail}));
+    toolbar(type, element, target) {
+        if (!type || typeof type !== 'string' || !(element instanceof HTMLElement) || !(target instanceof HTMLElement)) {
+            throw 'Invalid argument';
+        }
+
+        this.editor.toolbar.dispatchEvent(new CustomEvent(type, {detail: {element: element, target: target}}));
     }
 
     /**
      * Dispatches an event on editor content element
      *
      * @param {String} type
-     * @param {*} [detail = null]
+     * @param {HTMLElement} element
+     * @param {HTMLElement} target
      */
-    content(type, detail = null) {
-        this.editor.content.dispatchEvent(new CustomEvent(type, {detail: detail}));
+    content(type, element, target) {
+        if (!type || typeof type !== 'string' || !(element instanceof HTMLElement) || !(target instanceof HTMLElement)) {
+            throw 'Invalid argument';
+        }
+
+        this.editor.content.dispatchEvent(new CustomEvent(type, {detail: {element: element, target: target}}));
     }
 
     /**
@@ -57,8 +67,8 @@ export default class EventManager {
      */
     observe(records, call) {
         const dispatch = (type, element, target) => {
-            call(type, {element, target});
-            call(`${type}${element.localName.replace('-', '')}`, {element, target});
+            call(type, element, target);
+            call(`${type}${element.localName.replace('-', '')}`, element, target);
         };
         records.forEach(record => {
             record.addedNodes.forEach(element => {

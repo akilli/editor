@@ -235,7 +235,7 @@ export default class Editor {
      */
     getHtml() {
         const content = this.createElement(this.content.localName, {html: this.content.innerHTML});
-        this.events.content('gethtml', content);
+        this.events.content('gethtml', content, this.content);
         this.filters.filter(content);
 
         return content.innerHTML;
@@ -248,7 +248,7 @@ export default class Editor {
      */
     setHtml(html) {
         const content = this.createElement(this.content.localName, {html: html});
-        this.events.content('sethtml', content);
+        this.events.content('sethtml', content, this.content);
         this.filters.filter(content);
         this.content.innerHTML = content.innerHTML;
     }
