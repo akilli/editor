@@ -16,7 +16,6 @@ export default class ImageListener extends Listener {
     /**
      * Initializes image elements when editor html is set
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
      */
@@ -27,7 +26,6 @@ export default class ImageListener extends Listener {
     /**
      * Initializes elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLImageElement} event.detail.element
      */

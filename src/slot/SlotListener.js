@@ -15,7 +15,6 @@ export default class SlotListener extends Listener {
     /**
      * Initializes elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLSlotElement} event.detail.element
      */
@@ -26,7 +25,6 @@ export default class SlotListener extends Listener {
     /**
      * Disables all keyboard events
      *
-     * @private
      * @param {KeyboardEvent} event
      */
     keydown(event) {

@@ -15,7 +15,6 @@ export default class NavigableListener extends Listener {
     /**
      * Initializes elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
      */
@@ -29,7 +28,6 @@ export default class NavigableListener extends Listener {
     /**
      * Handles key combinations for navigation
      *
-     * @private
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
      */

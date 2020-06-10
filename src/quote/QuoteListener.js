@@ -16,7 +16,6 @@ export default class QuoteListener extends Listener {
     /**
      * Initializes elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLQuoteElement} event.detail.element
      */
@@ -27,7 +26,6 @@ export default class QuoteListener extends Listener {
     /**
      * Removes parent figure element
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.target
      */

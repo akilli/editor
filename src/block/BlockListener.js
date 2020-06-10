@@ -16,7 +16,6 @@ export default class BlockListener extends Listener {
     /**
      * Sets block content from API
      *
-     * @private
      * @param {CustomEvent} event
      * @param {BlockElement} event.detail.element
      */

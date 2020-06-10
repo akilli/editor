@@ -16,7 +16,6 @@ export default class IframeListener extends Listener {
     /**
      * Initializes iframe elements when editor html is set
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
      */
@@ -27,7 +26,6 @@ export default class IframeListener extends Listener {
     /**
      * Initializes elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLIFrameElement} event.detail.element
      */

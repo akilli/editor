@@ -17,7 +17,6 @@ export default class TableListener extends Listener {
     /**
      * Initializes table elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLTableElement} event.detail.element
      */
@@ -41,7 +40,6 @@ export default class TableListener extends Listener {
     /**
      * Initializes table cell elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLTableCellElement} event.detail.element
      */
@@ -52,7 +50,6 @@ export default class TableListener extends Listener {
     /**
      * Initializes table cell elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLTableHeaderCellElement} event.detail.element
      */
@@ -63,7 +60,6 @@ export default class TableListener extends Listener {
     /**
      * Handles key combinations for sorting
      *
-     * @private
      * @param {KeyboardEvent} event
      * @param {HTMLTableCellElement} event.target
      */

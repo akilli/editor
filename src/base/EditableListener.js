@@ -15,7 +15,6 @@ export default class EditableListener extends Listener {
     /**
      * Initializes elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
      */
@@ -28,7 +27,6 @@ export default class EditableListener extends Listener {
     /**
      * Handles enter and backspace keydown events
      *
-     * @private
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
      */

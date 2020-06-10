@@ -15,7 +15,6 @@ export default class UnorderedlistListener extends Listener {
     /**
      * Initializes unorderedlist elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLUListElement} event.detail.element
      */

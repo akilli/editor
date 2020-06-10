@@ -15,7 +15,6 @@ export default class FocusableListener extends Listener {
     /**
      * Initializes elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
      */

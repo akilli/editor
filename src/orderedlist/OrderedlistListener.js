@@ -15,7 +15,6 @@ export default class OrderedlistListener extends Listener {
     /**
      * Initializes orderedlist elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLUListElement} event.detail.element
      */

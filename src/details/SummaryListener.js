@@ -15,7 +15,6 @@ export default class SummaryListener extends Listener {
     /**
      * Initializes elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
      */
@@ -28,7 +27,6 @@ export default class SummaryListener extends Listener {
     /**
      * Calls empty method on blur
      *
-     * @private
      * @param {FocusEvent} event
      * @param {HTMLElement} event.target
      */
@@ -39,7 +37,6 @@ export default class SummaryListener extends Listener {
     /**
      * Fixes space and enter key handling for editable summary elements
      *
-     * @private
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
      */

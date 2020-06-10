@@ -15,7 +15,6 @@ export default class DeletableListener extends Listener {
     /**
      * Initializes elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
      */
@@ -28,7 +27,6 @@ export default class DeletableListener extends Listener {
     /**
      * Handles key combinations for delete
      *
-     * @private
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
      */

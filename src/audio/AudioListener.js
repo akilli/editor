@@ -16,7 +16,6 @@ export default class AudioListener extends Listener {
     /**
      * Initializes audio elements when editor html is set
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
      */
@@ -27,7 +26,6 @@ export default class AudioListener extends Listener {
     /**
      * Initializes elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLAudioElement} event.detail.element
      */

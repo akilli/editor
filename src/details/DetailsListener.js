@@ -15,7 +15,6 @@ export default class DetailsListener extends Listener {
     /**
      * Initializes elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLDetailsElement} event.detail.element
      */

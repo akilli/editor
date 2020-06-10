@@ -15,7 +15,6 @@ export default class ToolbarListener extends Listener {
     /**
      * Initializes button elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLButtonElement} event.detail.element
      */
@@ -32,7 +31,6 @@ export default class ToolbarListener extends Listener {
     /**
      * Handles click events
      *
-     * @private
      * @param {MouseEvent} event
      * @param {HTMLElement} event.target
      */
@@ -43,7 +41,6 @@ export default class ToolbarListener extends Listener {
     /**
      * Handles key combinations for navigation
      *
-     * @private
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
      */

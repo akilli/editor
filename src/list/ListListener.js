@@ -17,7 +17,6 @@ export default class ListListener extends Listener {
     /**
      * Initializes list item elements when editor html is set
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
      */
@@ -28,7 +27,6 @@ export default class ListListener extends Listener {
     /**
      * Initializes listitem elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLLIElement} event.detail.element
      */
@@ -51,7 +49,6 @@ export default class ListListener extends Listener {
     /**
      * Initializes listitem elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLOListElement|HTMLUListElement} event.detail.target
      */

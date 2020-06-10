@@ -18,7 +18,6 @@ export default class SortableListener extends Listener {
     /**
      * Initializes elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
      */
@@ -38,7 +37,6 @@ export default class SortableListener extends Listener {
     /**
      * Handles key combinations for sorting
      *
-     * @private
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
      */
@@ -74,7 +72,6 @@ export default class SortableListener extends Listener {
     /**
      * Doubleclick listener
      *
-     * @private
      * @param {MouseEvent} event
      * @param {HTMLElement} event.target
      */
@@ -89,7 +86,6 @@ export default class SortableListener extends Listener {
     /**
      * Dragstart listener
      *
-     * @private
      * @param {DragEvent} event
      * @param {HTMLElement} event.target
      */
@@ -104,7 +100,6 @@ export default class SortableListener extends Listener {
     /**
      * Dragend listener
      *
-     * @private
      * @param {DragEvent} event
      * @param {HTMLElement} event.target
      */
@@ -121,7 +116,6 @@ export default class SortableListener extends Listener {
     /**
      * Dragenter listener
      *
-     * @private
      * @param {DragEvent} event
      * @param {HTMLElement} event.target
      */
@@ -141,7 +135,6 @@ export default class SortableListener extends Listener {
     /**
      * Dragover listener
      *
-     * @private
      * @param {DragEvent} event
      */
     dragover(event) {
@@ -150,8 +143,6 @@ export default class SortableListener extends Listener {
 
     /**
      * Dragleave listener
-     *
-     * @private
      */
     dragleave() {
         this.editor.content.querySelectorAll('.editor-dragover').forEach(item => {
@@ -162,7 +153,6 @@ export default class SortableListener extends Listener {
     /**
      * Drop listener
      *
-     * @private
      * @param {DragEvent} event
      * @param {HTMLElement} event.target
      */

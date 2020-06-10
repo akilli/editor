@@ -15,7 +15,6 @@ export default class DivListener extends Listener {
     /**
      * Initializes elements
      *
-     * @private
      * @param {CustomEvent} event
      * @param {HTMLDivElement} event.detail.element
      */
