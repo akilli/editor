@@ -1,9 +1,9 @@
 import Filter from './Filter.js';
 
 /**
- * Base filter
+ * Content filter
  */
-export default class BaseFilter extends Filter {
+export default class ContentFilter extends Filter {
     /**
      * @inheritDoc
      */

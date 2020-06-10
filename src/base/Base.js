@@ -1,5 +1,5 @@
 import AlignableListener from './AlignableListener.js';
-import BaseFilter from './BaseFilter.js';
+import ContentFilter from './ContentFilter.js';
 import DeletableListener from './DeletableListener.js';
 import EditableListener from './EditableListener.js';
 import FocusableListener from './FocusableListener.js';
@@ -44,6 +44,6 @@ export default class Base extends Plugin {
         new SortableListener(this.editor);
         new AlignableListener(this.editor);
         new FocusableListener(this.editor);
-        this.editor.filters.add(new BaseFilter(this.editor));
+        this.editor.filters.add(new ContentFilter(this.editor));
     }
 }
