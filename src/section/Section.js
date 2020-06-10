@@ -1,4 +1,5 @@
 import Base from '../base/Base.js';
+import Command from '../base/Command.js';
 import Plugin from '../base/Plugin.js';
 import SectionDialog from './SectionDialog.js';
 import SectionListener from './SectionListener.js';
@@ -40,6 +41,6 @@ export default class Section extends Plugin {
         new SectionListener(this.editor);
         this._translator(i18n);
         this.editor.dialogs.set(new SectionDialog(this.editor));
-        this._command('section', 'section');
+        this.editor.commands.set(new Command(this.editor, 'section', 'section'));
     }
 }

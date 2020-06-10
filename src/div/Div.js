@@ -1,4 +1,5 @@
 import Base from '../base/Base.js';
+import Command from '../base/Command.js';
 import DivDialog from './DivDialog.js';
 import DivListener from './DivListener.js';
 import Plugin from '../base/Plugin.js';
@@ -40,6 +41,6 @@ export default class Div extends Plugin {
         new DivListener(this.editor);
         this._translator(i18n);
         this.editor.dialogs.set(new DivDialog(this.editor));
-        this._command('div', 'div');
+        this.editor.commands.set(new Command(this.editor, 'div', 'div'));
     }
 }

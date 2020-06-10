@@ -1,5 +1,6 @@
 import Base from '../base/Base.js';
 import Break from '../break/Break.js';
+import Command from '../base/Command.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -35,6 +36,6 @@ export default class Paragraph extends Plugin {
             navigable: true,
             sortable: true,
         });
-        this._command('paragraph', 'p');
+        this.editor.commands.set(new Command(this.editor, 'paragraph', 'p'));
     }
 }

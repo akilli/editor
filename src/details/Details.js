@@ -1,4 +1,5 @@
 import Base from '../base/Base.js';
+import Command from '../base/Command.js';
 import DetailsFilter from './DetailsFilter.js';
 import DetailsListener from './DetailsListener.js';
 import Plugin from '../base/Plugin.js';
@@ -47,7 +48,7 @@ export default class Details extends Plugin {
         new DetailsListener(this.editor);
         new SummaryListener(this.editor);
         this._translator(i18n);
-        this._command('details', 'details');
+        this.editor.commands.set(new Command(this.editor, 'details', 'details'));
         this.editor.filters.add(new DetailsFilter(this.editor));
     }
 }

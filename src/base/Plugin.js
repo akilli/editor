@@ -1,4 +1,3 @@
-import Command from './Command.js';
 import Editor from './Editor.js';
 
 /**
@@ -71,16 +70,5 @@ export default class Plugin {
         if (i18n[this.editor.config.base.lang]) {
             this.editor.i18n.set(this.constructor.name, i18n[this.editor.config.base.lang]);
         }
-    }
-
-    /**
-     * Registers a command with given parameters
-     *
-     * @protected
-     * @param {String} name
-     * @param {?String} tagName
-     */
-    _command(name, tagName = null) {
-        this.editor.commands.set(new Command(this.editor, name, tagName));
     }
 }

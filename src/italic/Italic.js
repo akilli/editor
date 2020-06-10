@@ -1,4 +1,5 @@
 import Base from '../base/Base.js';
+import Command from '../base/Command.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -23,10 +24,7 @@ export default class Italic extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
-            name: 'i',
-            group: 'format',
-        });
-        this._command('italic', 'i')
+        this.editor.tags.create({name: 'i', group: 'format'});
+        this.editor.commands.set(new Command(this.editor, 'italic', 'i'));
     }
 }

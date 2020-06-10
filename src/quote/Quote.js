@@ -1,5 +1,6 @@
 import Base from '../base/Base.js';
 import Break from '../break/Break.js';
+import Command from '../base/Command.js';
 import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
 import QuoteFilter from './QuoteFilter.js';
@@ -37,7 +38,7 @@ export default class Quote extends Plugin {
             navigable: true,
         });
         new QuoteListener(this.editor);
-        this._command('quote', 'blockquote');
+        this.editor.commands.set(new Command(this.editor, 'quote', 'blockquote'));
         this.editor.filters.add(new QuoteFilter(this.editor));
     }
 }

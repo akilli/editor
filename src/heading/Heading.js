@@ -1,4 +1,5 @@
 import Base from '../base/Base.js';
+import Command from '../base/Command.js';
 import Plugin from '../base/Plugin.js';
 
 /**
@@ -33,6 +34,6 @@ export default class Heading extends Plugin {
             navigable: true,
             sortable: true,
         })
-        this._command('heading', 'h2');
+        this.editor.commands.set(new Command(this.editor, 'heading', 'h2'));
     }
 }
