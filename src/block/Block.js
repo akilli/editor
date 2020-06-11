@@ -48,7 +48,10 @@ export default class Block extends Plugin {
             sortable: true,
         });
         new BlockListener(this.editor);
-        this._translator(i18n);
+
+        if (i18n[this.editor.config.base.lang]) {
+            this.editor.i18n.set('block', i18n[this.editor.config.base.lang]);
+        }
 
         if (this.editor.config.block.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'block', this.editor.config.block.browser));

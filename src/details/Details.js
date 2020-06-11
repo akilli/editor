@@ -41,7 +41,11 @@ export default class Details extends Plugin {
         this.editor.tags.create({name: 'summary', group: 'summary', editable: true, enter: 'p', navigable: true});
         new DetailsListener(this.editor);
         new SummaryListener(this.editor);
-        this._translator(i18n);
+
+        if (i18n[this.editor.config.base.lang]) {
+            this.editor.i18n.set('details', i18n[this.editor.config.base.lang]);
+        }
+
         this.editor.commands.set(new Command(this.editor, 'details', 'details'));
         this.editor.filters.add(new DetailsFilter(this.editor));
     }

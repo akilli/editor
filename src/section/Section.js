@@ -39,7 +39,11 @@ export default class Section extends Plugin {
             sortable: true,
         });
         new SectionListener(this.editor);
-        this._translator(i18n);
+
+        if (i18n[this.editor.config.base.lang]) {
+            this.editor.i18n.set('section', i18n[this.editor.config.base.lang]);
+        }
+
         this.editor.dialogs.set(new SectionDialog(this.editor));
         this.editor.commands.set(new Command(this.editor, 'section', 'section'));
     }

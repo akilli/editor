@@ -39,7 +39,11 @@ export default class Div extends Plugin {
             sortable: true,
         });
         new DivListener(this.editor);
-        this._translator(i18n);
+
+        if (i18n[this.editor.config.base.lang]) {
+            this.editor.i18n.set('div', i18n[this.editor.config.base.lang]);
+        }
+
         this.editor.dialogs.set(new DivDialog(this.editor));
         this.editor.commands.set(new Command(this.editor, 'div', 'div'));
     }

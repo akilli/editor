@@ -45,7 +45,11 @@ export default class Table extends Plugin {
         this.editor.tags.create({name: 'th', group: 'tablecell', children: ['break', 'format'], editable: true, empty: true});
         this.editor.tags.create({name: 'td', group: 'tablecell', children: ['break', 'format'], editable: true, empty: true});
         new TableListener(this.editor);
-        this._translator(i18n);
+
+        if (i18n[this.editor.config.base.lang]) {
+            this.editor.i18n.set('table', i18n[this.editor.config.base.lang]);
+        }
+
         this.editor.filters.add(new TableFilter(this.editor));
         this.editor.dialogs.set(new TableDialog(this.editor));
         this.editor.commands.set(new TableCommand(this.editor));

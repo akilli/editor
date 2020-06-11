@@ -59,16 +59,4 @@ export default class Plugin {
     init() {
         throw 'Not implemented';
     }
-
-    /**
-     * Registers a translator for this plugin
-     *
-     * @protected
-     * @param {Object.<String, Object.<String, String>>} i18n
-     */
-    _translator(i18n) {
-        if (i18n[this.editor.config.base.lang]) {
-            this.editor.i18n.set(this.constructor.name, i18n[this.editor.config.base.lang]);
-        }
-    }
 }
