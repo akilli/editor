@@ -33,7 +33,7 @@ export default class Heading extends Plugin {
             focusable: true,
             navigable: true,
             sortable: true,
-        })
+        });
         this.editor.commands.set(new Command(this.editor, 'heading', 'h2'));
     }
 }
