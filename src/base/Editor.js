@@ -146,11 +146,21 @@ export default class Editor {
     init() {
         if (this.plugins.size === 0) {
             this.__initPlugins();
-            this.__initToolbar();
+            this.config.base.toolbar.forEach(item => this.toolbar.appendChild(this.createElement('button', {
+                attributes: {type: 'button', 'data-command': item, title: item},
+                html: item,
+            })));
         }
 
-        this.__initContent();
-        this.__initDom();
+        if (this.orig instanceof HTMLTextAreaElement) {
+            this.orig.form.addEventListener('submit', () => this.save());
+            this.setHtml(this.orig.value.replace('/&nbsp;/g', ' '));
+        } else {
+            this.setHtml(this.orig.innerHTML);
+        }
+
+        this.orig.insertAdjacentElement('afterend', this.element);
+        this.orig.hidden = true;
     }
 
     /**
@@ -182,42 +192,6 @@ export default class Editor {
             this.plugins.set(new item(this));
         });
         this.plugins.init();
-    }
-
-    /**
-     * Initializes Toolbar
-     *
-     * @private
-     */
-    __initToolbar() {
-        this.config.base.toolbar.forEach(item => this.toolbar.appendChild(this.createElement('button', {
-            attributes: {type: 'button', 'data-command': item, title: item},
-            html: item,
-        })));
-    }
-
-    /**
-     * Initializes content
-     *
-     * @private
-     */
-    __initContent() {
-        if (this.orig instanceof HTMLTextAreaElement) {
-            this.orig.form.addEventListener('submit', () => this.save());
-            this.setHtml(this.orig.value.replace('/&nbsp;/g', ' '));
-        } else {
-            this.setHtml(this.orig.innerHTML);
-        }
-    }
-
-    /**
-     * Adds editor element to DOM
-     *
-     * @private
-     */
-    __initDom() {
-        this.orig.insertAdjacentElement('afterend', this.element);
-        this.orig.hidden = true;
     }
 
     /**
