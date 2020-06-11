@@ -59,11 +59,13 @@ export default class Dispatcher {
      * @private
      * @param {String} type
      * @param {HTMLElement} element
-     * @param {HTMLElement} target
+     * @param {Node} target
      */
     __dispatch(type, element, target) {
-        this.dispatch(type, element, target);
-        this.dispatch(`${type}${element.localName.replace('-', '')}`, element, target);
+        if (target instanceof HTMLElement) {
+            this.dispatch(type, element, target);
+            this.dispatch(`${type}${element.localName.replace('-', '')}`, element, target);
+        }
     }
 
     /**
