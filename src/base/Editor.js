@@ -1,6 +1,6 @@
 import CommandMap from './CommandMap.js';
 import DialogMap from './DialogMap.js';
-import EventManager from './EventManager.js';
+import Dispatcher from './Dispatcher.js';
 import FilterSet from './FilterSet.js';
 import I18nMap from './I18nMap.js';
 import PluginMap from './PluginMap.js';
@@ -53,9 +53,9 @@ export default class Editor {
     content;
 
     /**
-     * Event Manager
+     * Event Dispatcher
      *
-     * @type {EventManager}
+     * @type {Dispatcher}
      */
     events;
 
@@ -136,7 +136,7 @@ export default class Editor {
         this.element = this.createElement('akilli-editor');
         this.element.appendChild(this.toolbar);
         this.element.appendChild(this.content);
-        this.events = new EventManager(this);
+        this.events = new Dispatcher(this);
         this.config = config;
     }
 

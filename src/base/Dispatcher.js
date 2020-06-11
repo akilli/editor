@@ -3,7 +3,7 @@ import Editor from './Editor.js';
 /**
  * Event Manager
  */
-export default class EventManager {
+export default class Dispatcher {
     /**
      * Editor
      *
