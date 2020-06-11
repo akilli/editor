@@ -1,83 +1,86 @@
-import Editor from './Editor.js';
-
 /**
- * Event Manager
+ * Event Dispatcher
  */
 export default class Dispatcher {
     /**
-     * Editor
+     * Managed element
      *
-     * @type {Editor}
+     * @type {HTMLElement}
      */
-    editor;
+    element;
 
     /**
-     * Initializes a new event manager
+     * Initializes a new event dispatcher
      *
-     * @param {Editor} editor
+     * @param {HTMLElement} element
      */
-    constructor(editor) {
-        if (!(editor instanceof Editor)) {
+    constructor(element) {
+        if (!(element instanceof HTMLElement)) {
             throw 'Invalid argument';
         }
 
-        this.editor = editor;
-        const toolbar = new MutationObserver(records => this.__observe(records, this.toolbar.bind(this)));
-        toolbar.observe(this.editor.toolbar, {childList: true, subtree: true});
-        const content = new MutationObserver(records => this.__observe(records, this.content.bind(this)));
-        content.observe(this.editor.content, {childList: true, subtree: true});
+        this.element = element;
+        this.register(this.__observe.bind(this));
     }
 
     /**
-     * Dispatches an event on editor toolbar element
+     * Dispatches an event on managed element
      *
      * @param {String} type
      * @param {HTMLElement} element
      * @param {HTMLElement} target
      */
-    toolbar(type, element, target) {
+    dispatch(type, element, target) {
         if (!type || typeof type !== 'string' || !(element instanceof HTMLElement) || !(target instanceof HTMLElement)) {
             throw 'Invalid argument';
         }
 
-        this.editor.toolbar.dispatchEvent(new CustomEvent(type, {detail: {element: element, target: target}}));
+        this.element.dispatchEvent(new CustomEvent(type, {detail: {element: element, target: target}}));
     }
 
     /**
-     * Dispatches an event on editor content element
+     * Registers a mutation observer on managed element
      *
+     * @param {Function} call
+     * @param {MutationObserverInit} [opts = {childList: true, subtree: true}]
+     */
+    register(call, opts = {childList: true, subtree: true}) {
+        if (typeof call !== 'function') {
+            throw 'Invalid argument';
+        }
+
+        const observer = new MutationObserver(call);
+        observer.observe(this.element, opts);
+    }
+
+    /**
+     * Dispatches a mutation event on managed element
+     *
+     * @private
      * @param {String} type
      * @param {HTMLElement} element
      * @param {HTMLElement} target
      */
-    content(type, element, target) {
-        if (!type || typeof type !== 'string' || !(element instanceof HTMLElement) || !(target instanceof HTMLElement)) {
-            throw 'Invalid argument';
-        }
-
-        this.editor.content.dispatchEvent(new CustomEvent(type, {detail: {element: element, target: target}}));
+    __dispatch(type, element, target) {
+        this.dispatch(type, element, target);
+        this.dispatch(`${type}${element.localName.replace('-', '')}`, element, target);
     }
 
     /**
-     * Observes mutations on given element
+     * Observes mutations on managed element
      *
      * @private
      * @param {MutationRecord[]} records
-     * @param {Function} call
      */
-    __observe(records, call) {
-        const dispatch = (type, element, target) => {
-            call(type, element, target);
-            call(`${type}${element.localName.replace('-', '')}`, element, target);
-        };
+    __observe(records) {
         records.forEach(record => {
             record.addedNodes.forEach(element => {
                 if (element instanceof HTMLElement) {
-                    dispatch('insert', element, record.target);
-                    element.querySelectorAll('*').forEach(item => dispatch('insert', item, record.target));
+                    this.__dispatch('insert', element, record.target);
+                    element.querySelectorAll('*').forEach(item => this.__dispatch('insert', item, record.target));
                 }
             });
-            record.removedNodes.forEach(element => element instanceof HTMLElement && dispatch('delete', element, record.target));
+            record.removedNodes.forEach(element => element instanceof HTMLElement && this.__dispatch('delete', element, record.target));
         });
     }
 }

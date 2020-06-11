@@ -53,11 +53,18 @@ export default class Editor {
     content;
 
     /**
-     * Event Dispatcher
+     * Event dispatcher of the editor toolbar
      *
      * @type {Dispatcher}
      */
-    events;
+    toolbarEvents;
+
+    /**
+     * Event dispatcher of the editor content
+     *
+     * @type {Dispatcher}
+     */
+    contentEvents;
 
     /**
      * Configuration
@@ -136,7 +143,8 @@ export default class Editor {
         this.element = this.createElement('akilli-editor');
         this.element.appendChild(this.toolbar);
         this.element.appendChild(this.content);
-        this.events = new Dispatcher(this);
+        this.toolbarEvents = new Dispatcher(this.toolbar);
+        this.contentEvents = new Dispatcher(this.content);
         this.config = config;
     }
 
@@ -209,7 +217,7 @@ export default class Editor {
      */
     getHtml() {
         const content = this.createElement(this.content.localName, {html: this.content.innerHTML});
-        this.events.content('gethtml', content, this.content);
+        this.contentEvents.dispatch('gethtml', content, this.content);
         this.filters.filter(content);
 
         return content.innerHTML;
@@ -222,7 +230,7 @@ export default class Editor {
      */
     setHtml(html) {
         const content = this.createElement(this.content.localName, {html: html});
-        this.events.content('sethtml', content, this.content);
+        this.contentEvents.dispatch('sethtml', content, this.content);
         this.filters.filter(content);
         this.content.innerHTML = content.innerHTML;
     }
