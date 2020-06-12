@@ -152,31 +152,7 @@ export default class Editor {
      * Initializes editor
      */
     init() {
-        if (this.plugins.size === 0) {
-            this.__initPlugins();
-            this.config.base.toolbar.forEach(item => this.toolbar.appendChild(this.createElement('button', {
-                attributes: {type: 'button', 'data-command': item, title: item},
-                html: item,
-            })));
-        }
-
-        if (this.orig instanceof HTMLTextAreaElement) {
-            this.orig.form.addEventListener('submit', () => this.save());
-            this.setHtml(this.orig.value.replace('/&nbsp;/g', ' '));
-        } else {
-            this.setHtml(this.orig.innerHTML);
-        }
-
-        this.orig.insertAdjacentElement('afterend', this.element);
-        this.orig.hidden = true;
-    }
-
-    /**
-     * Initializes plugins
-     *
-     * @private
-     */
-    __initPlugins() {
+        // Initialize plugin and config
         const config = this.config;
         const configPlugins = config.base?.plugins || this.constructor.defaultConfig.base?.plugins || [];
         const plugins = new Set();
@@ -200,6 +176,27 @@ export default class Editor {
             this.plugins.set(new item(this));
         });
         this.plugins.init();
+
+        // Initialize toolbar
+        this.config.base.toolbar.forEach(item => this.toolbar.appendChild(this.createElement('button', {
+            attributes: {type: 'button', 'data-command': item, title: item},
+            html: item,
+        })));
+    }
+
+    /**
+     * Loads editor element into DOM
+     */
+    load() {
+        if (this.orig instanceof HTMLTextAreaElement) {
+            this.orig.form.addEventListener('submit', () => this.save());
+            this.setHtml(this.orig.value.replace('/&nbsp;/g', ' '));
+        } else {
+            this.setHtml(this.orig.innerHTML);
+        }
+
+        this.orig.insertAdjacentElement('afterend', this.element);
+        this.orig.hidden = true;
     }
 
     /**
@@ -520,11 +517,16 @@ export default class Editor {
      *
      * @param {HTMLElement} element
      * @param {Object} [config = {}]
+     * @param {?Function} [preinit = null]
+     * @param {?Function} [preload = null]
      * @return {Editor}
      */
-    static create(element, config = {}) {
+    static create(element, {config = {}, preinit = null, preload = null} = {}) {
         const editor = new this(element, config);
+        typeof preinit === 'function' && preinit(editor);
         editor.init();
+        typeof preload === 'function' && preload(editor);
+        editor.load();
 
         return editor;
     }
