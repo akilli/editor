@@ -2,7 +2,6 @@ import Base from '../base/Base.js';
 import Command from '../base/Command.js';
 import List from '../list/List.js';
 import Plugin from '../base/Plugin.js';
-import UnorderedlistListener from './UnorderedlistListener.js';
 
 /**
  * Unorderedlist Plugin
@@ -36,7 +35,6 @@ export default class Unorderedlist extends Plugin {
             sortable: true,
         });
         this.editor.tags.allow(this.editor.content, 'list');
-        new UnorderedlistListener(this.editor);
         this.editor.commands.set(new Command(this.editor, 'unorderedlist', 'ul'));
     }
 }

@@ -12,6 +12,8 @@ export default class ListListener extends Listener {
         this.editor.content.addEventListener('sethtml', this);
         this.editor.content.addEventListener('insertli', this);
         this.editor.content.addEventListener('deleteli', this);
+        this.editor.content.addEventListener('insertol', this);
+        this.editor.content.addEventListener('insertul', this);
     }
 
     /**
@@ -44,6 +46,27 @@ export default class ListListener extends Listener {
         if (event.detail.target.children.length === 0) {
             event.detail.target.parentElement.removeChild(event.detail.target);
         }
+    }
+
+    /**
+     * Initializes orderedlist elements
+     *
+     * @param {CustomEvent} event
+     * @param {HTMLOListElement} event.detail.element
+     */
+    insertol(event) {
+        if (event.detail.element.children.length === 0) {
+            event.detail.element.appendChild(this.editor.createElement('li'));
+        }
+    }
+
+    /**
+     * Initializes unorderedlist elements
+     *
+     * @param {CustomEvent} event
+     */
+    insertul(event) {
+        this.insertol(event);
     }
 
     /**
