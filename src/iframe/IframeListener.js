@@ -20,7 +20,7 @@ export default class IframeListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     sethtml(event) {
-        event.detail.element.querySelectorAll('iframe').forEach(item => this.__init(item));
+        Array.from(event.detail.element.getElementsByTagName('iframe')).forEach(item => this.__init(item));
     }
 
     /**

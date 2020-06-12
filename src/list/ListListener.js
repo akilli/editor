@@ -21,7 +21,7 @@ export default class ListListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     sethtml(event) {
-        event.detail.element.querySelectorAll('li').forEach(item => this.__init(item));
+        Array.from(event.detail.element.getElementsByTagName('li')).forEach(item => this.__init(item));
     }
 
     /**

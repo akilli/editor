@@ -145,7 +145,7 @@ export default class SortableListener extends Listener {
      * Dragleave listener
      */
     dragleave() {
-        this.editor.content.querySelectorAll('.editor-dragover').forEach(item => {
+        Array.from(this.editor.content.getElementsByClassName('editor-dragover')).forEach(item => {
             item.classList.length > 1 ? item.classList.remove('editor-dragover') : item.removeAttribute('class');
         })
     }

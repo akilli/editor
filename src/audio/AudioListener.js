@@ -20,7 +20,7 @@ export default class AudioListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     sethtml(event) {
-        event.detail.element.querySelectorAll('audio').forEach(item => this.__init(item));
+        Array.from(event.detail.element.getElementsByTagName('audio')).forEach(item => this.__init(item));
     }
 
     /**

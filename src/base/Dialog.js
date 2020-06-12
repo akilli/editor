@@ -40,21 +40,18 @@ export default class Dialog {
      * @param {Object} [attributes = {}]
      */
     open(save, attributes = {}) {
-        const cleanup = () => this.editor.document.querySelectorAll('dialog.editor-dialog').forEach(item => item.parentElement.removeChild(item));
         const sel = this.editor.window.getSelection();
         const range = sel.rangeCount > 0 ? sel.getRangeAt(0) : null;
+        const dialog = this.editor.createElement('dialog', {attributes: {class: 'editor-dialog', 'data-name': this.name}});
+        typeof dialog.open === 'boolean' || this.__polyfill(dialog);
         const close = () => {
             if (range) {
                 sel.removeAllRanges();
                 sel.addRange(range);
             }
 
-            cleanup();
+            dialog.parentElement.removeChild(dialog);
         };
-
-        cleanup();
-        const dialog = this.editor.createElement('dialog', {attributes: {class: 'editor-dialog', 'data-name': this.name}});
-        typeof dialog.open === 'boolean' || this.__polyfill(dialog);
         dialog.addEventListener('click', event => {
             if (event.target === dialog) {
                 close();

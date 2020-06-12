@@ -58,7 +58,7 @@ export default class Dispatcher {
      *
      * @private
      * @param {String} type
-     * @param {HTMLElement} element
+     * @param {Element} element
      * @param {Node} target
      */
     __dispatch(type, element, target) {
@@ -79,7 +79,7 @@ export default class Dispatcher {
             record.addedNodes.forEach(element => {
                 if (element instanceof HTMLElement) {
                     this.__dispatch('insert', element, record.target);
-                    element.querySelectorAll('*').forEach(item => this.__dispatch('insert', item, record.target));
+                    Array.from(element.getElementsByTagName('*')).forEach(item => this.__dispatch('insert', item, record.target));
                 }
             });
             record.removedNodes.forEach(element => element instanceof HTMLElement && this.__dispatch('delete', element, record.target));

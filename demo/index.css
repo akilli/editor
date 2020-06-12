@@ -63,22 +63,30 @@ figcaption {
 /**
  * Blockquote
  */
-figure.quote {
+blockquote {
     padding: 2.25rem 0.75rem 0.75rem;
     color: #f1c40f;
     background: #191919;
 }
 
-figure.quote::before {
+blockquote::before {
     display: block;
     content: '🙷';
     font-family: serif;
     font-size: 6rem;
 }
 
+figure.quote {
+    padding: 0.75rem;
+    color: #f1c40f;
+    background: #191919;
+}
+
 figure.quote > figcaption {
-    padding-top: 0.75rem;
-    border-top: 0.0625rem solid;
+    margin-top: 0;
+    padding: 0.25rem;
+    color: #191919;
+    background: #f1c40f;
 }
 
 /**

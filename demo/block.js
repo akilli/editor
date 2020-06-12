@@ -7,9 +7,9 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('body > section[data-block]').forEach(item => item.addEventListener('click', () => {
-            const id = item.getAttribute('data-block');
-            item.removeAttribute('data-block');
+        Array.from(document.getElementsByTagName('section')).forEach(item => item.addEventListener('click', () => {
+            const id = item.getAttribute('data-id');
+            item.removeAttribute('data-id');
             window.opener.postMessage({
                 id: id,
                 content: item.outerHTML,

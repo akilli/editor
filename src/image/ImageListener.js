@@ -20,7 +20,7 @@ export default class ImageListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     sethtml(event) {
-        event.detail.element.querySelectorAll('img').forEach(item => this.__init(item));
+        Array.from(event.detail.element.getElementsByTagName('img')).forEach(item => this.__init(item));
     }
 
     /**
