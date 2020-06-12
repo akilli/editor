@@ -217,8 +217,8 @@ export default class Editor {
      */
     getHtml() {
         const content = this.createElement(this.content.localName, {html: this.content.innerHTML});
-        this.contentEvents.dispatch('gethtml', content, this.content);
         this.filters.filter(content);
+        this.contentEvents.dispatch('gethtml', content, this.content);
 
         return content.innerHTML;
     }
