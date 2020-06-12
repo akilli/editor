@@ -10,17 +10,31 @@ export default class BlockListener extends Listener {
      */
     constructor(editor) {
         super(editor);
+        this.editor.content.addEventListener('sethtml', this);
         this.editor.content.addEventListener('inserteditorblock', this);
     }
 
     /**
-     * Sets block content from API
+     * Filters block elements without id when editor html is set
+     *
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
+     */
+    sethtml(event) {
+        Array.from(event.detail.element.getElementsByTagName('editor-block')).forEach(item => item.id || item.parentElement.removeChild(item));
+    }
+
+    /**
+     * Removes block element if no id is set or sets block content from API if configured
      *
      * @param {CustomEvent} event
      * @param {BlockElement} event.detail.element
      */
     async inserteditorblock(event) {
-        if (!event.detail.element.id || !this.editor.config.block.api) {
+        if (!event.detail.element.id) {
+            event.detail.element.parentElement.removeChild(event.detail.element);
+            return;
+        } else if (!this.editor.config.block.api) {
             return;
         }
 
