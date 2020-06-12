@@ -38,6 +38,7 @@ export default class Quote extends Plugin {
             navigable: true,
         });
         this.editor.tags.allow(this.editor.content, 'quote');
+        this.editor.tags.allow('figure', 'quote');
         new QuoteListener(this.editor);
         this.editor.commands.set(new Command(this.editor, 'quote', 'blockquote'));
         this.editor.filters.add(new QuoteFilter(this.editor));

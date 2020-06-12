@@ -44,6 +44,7 @@ export default class Audio extends Plugin {
             navigable: true,
         });
         this.editor.tags.allow(this.editor.content, 'audio');
+        this.editor.tags.allow('figure', 'audio');
         new AudioListener(this.editor);
 
         if (i18n[this.editor.config.base.lang]) {

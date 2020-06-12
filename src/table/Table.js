@@ -32,6 +32,7 @@ export default class Table extends Plugin {
     init() {
         this.editor.tags.create({name: 'table', group: 'table', children: ['tablesection'], deletable: true, navigable: true, sortable: true});
         this.editor.tags.allow(this.editor.content, 'table');
+        this.editor.tags.allow('figure', 'table');
         this.editor.tags.create({name: 'thead', group: 'tablesection', children: ['tablerow']});
         this.editor.tags.create({name: 'tbody', group: 'tablesection', children: ['tablerow']});
         this.editor.tags.create({name: 'tfoot', group: 'tablesection', children: ['tablerow']});

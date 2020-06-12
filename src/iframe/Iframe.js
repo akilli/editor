@@ -44,6 +44,7 @@ export default class Iframe extends Plugin {
             navigable: true,
         });
         this.editor.tags.allow(this.editor.content, 'iframe');
+        this.editor.tags.allow('figure', 'iframe');
         new IframeListener(this.editor);
 
         if (i18n[this.editor.config.base.lang]) {

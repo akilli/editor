@@ -44,6 +44,7 @@ export default class Image extends Plugin {
             navigable: true,
         });
         this.editor.tags.allow(this.editor.content, 'image');
+        this.editor.tags.allow('figure', 'image');
         new ImageListener(this.editor);
 
         if (i18n[this.editor.config.base.lang]) {

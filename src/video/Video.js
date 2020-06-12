@@ -44,6 +44,7 @@ export default class Video extends Plugin {
             navigable: true,
         });
         this.editor.tags.allow(this.editor.content, 'video');
+        this.editor.tags.allow('figure', 'video');
         new VideoListener(this.editor);
 
         if (i18n[this.editor.config.base.lang]) {
