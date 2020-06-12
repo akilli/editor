@@ -1,6 +1,6 @@
 {
   "name": "@akilli/editor",
-  "version": "0.59.1",
+  "version": "0.60.0",
   "description": "Minimal rich text editor",
   "keywords": [
     "contenteditable",
@@ -30,8 +30,8 @@
     "start": "npx servor --reload . index.html 20000"
   },
   "devDependencies": {
-    "@rollup/plugin-url": "^5.0.0",
-    "rollup": "^2.11.2",
+    "@rollup/plugin-url": "^5.0.1",
+    "rollup": "^2.15.0",
     "rollup-plugin-css-porter": "^1.0.2",
     "rollup-plugin-esbuild": "^1.4.1"
   }
