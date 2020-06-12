@@ -21,15 +21,14 @@ export default class AudioCommand extends Command {
      * @param {String} [caption = '']
      * @param {String} [width = '']
      * @param {String} [height = '']
-     * @param {String} [controls = 'controls']
      */
-    _insert({src, caption = '', width = '', height = '', controls = 'controls'} = {}) {
+    _insert({src, caption = '', width = '', height = ''} = {}) {
         if (!src) {
             throw 'Invalid argument';
         }
 
         const figure = this.editor.createElement('figure', {attributes: {class: 'audio'}});
-        figure.appendChild(this.editor.createElement('audio', {attributes: {src: this.editor.url(src), width, height, controls}}));
+        figure.appendChild(this.editor.createElement('audio', {attributes: {src: this.editor.url(src), width, height}}));
         figure.appendChild(this.editor.createElement('figcaption', {html: caption}));
         this.editor.insert(figure);
     }
