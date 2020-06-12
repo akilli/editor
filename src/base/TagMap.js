@@ -65,7 +65,7 @@ export default class TagMap extends Map {
      * @param {String|HTMLElement} parentKey
      * @return {Boolean}
      */
-    isAllowed(key, parentKey) {
+    allowed(key, parentKey) {
         return this.get(parentKey)?.children.includes(this.get(key)?.group);
     }
 }

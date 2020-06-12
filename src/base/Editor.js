@@ -258,9 +258,9 @@ export default class Editor {
 
         const editable = this.getSelectedEditable();
 
-        if (editable && editable instanceof HTMLSlotElement && this.tags.isAllowed(element, editable.parentElement)) {
+        if (editable && editable instanceof HTMLSlotElement && this.tags.allowed(element, editable.parentElement)) {
             editable.insertAdjacentElement('beforebegin', element);
-        } else if (this.tags.isAllowed(element, this.content)) {
+        } else if (this.tags.allowed(element, this.content)) {
             this.content.appendChild(element);
         } else {
             throw 'Invalid argument';
@@ -323,7 +323,7 @@ export default class Editor {
 
         range.deleteContents();
 
-        if (parent.isContentEditable && this.tags.isAllowed(element, parent) && selText.trim() && (!tag || !same)) {
+        if (parent.isContentEditable && this.tags.allowed(element, parent) && selText.trim() && (!tag || !same)) {
             element.textContent = selText;
             range.insertNode(element);
         } else {
@@ -350,7 +350,7 @@ export default class Editor {
         let current = element.parentElement;
 
         do {
-            if (this.tags.isAllowed(name, current)) {
+            if (this.tags.allowed(name, current)) {
                 const target = this.createElement(name, opts);
                 prev.insertAdjacentElement('afterend', target);
                 return target;
