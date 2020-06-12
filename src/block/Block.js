@@ -47,6 +47,7 @@ export default class Block extends Plugin {
             navigable: true,
             sortable: true,
         });
+        this.editor.tags.allow(this.editor.content, 'block');
         new BlockListener(this.editor);
 
         if (i18n[this.editor.config.base.lang]) {

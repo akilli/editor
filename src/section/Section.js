@@ -38,6 +38,7 @@ export default class Section extends Plugin {
             navigable: true,
             sortable: true,
         });
+        this.editor.tags.allow(this.editor.content, 'container');
         new SectionListener(this.editor);
 
         if (i18n[this.editor.config.base.lang]) {

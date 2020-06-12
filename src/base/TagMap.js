@@ -59,6 +59,24 @@ export default class TagMap extends Map {
     }
 
     /**
+     * Allows group inside given tag
+     *
+     * @param {String|HTMLElement} key
+     * @param {String} group
+     */
+    allow(key, group) {
+        if (!group || typeof group !== 'string') {
+            throw 'Invalid argument';
+        }
+
+        const tag = this.get(key);
+
+        if (tag && !tag.children.includes(group)) {
+            tag.children.push(group);
+        }
+    }
+
+    /**
      * Checks if tag is allowed inside parent tag
      *
      * @param {String|HTMLElement} key
@@ -66,6 +84,6 @@ export default class TagMap extends Map {
      * @return {Boolean}
      */
     allowed(key, parentKey) {
-        return this.get(parentKey)?.children.includes(this.get(key)?.group);
+        return !!this.get(parentKey)?.children.includes(this.get(key)?.group);
     }
 }

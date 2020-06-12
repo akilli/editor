@@ -37,6 +37,7 @@ export default class Quote extends Plugin {
             enter: 'p',
             navigable: true,
         });
+        this.editor.tags.allow(this.editor.content, 'quote');
         new QuoteListener(this.editor);
         this.editor.commands.set(new Command(this.editor, 'quote', 'blockquote'));
         this.editor.filters.add(new QuoteFilter(this.editor));

@@ -36,6 +36,7 @@ export default class Figure extends Plugin {
             navigable: true,
             sortable: true,
         });
+        this.editor.tags.allow(this.editor.content, 'figure');
         this.editor.tags.create({
             name: 'figcaption',
             group: 'caption',

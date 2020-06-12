@@ -34,6 +34,7 @@ export default class Heading extends Plugin {
             navigable: true,
             sortable: true,
         });
+        this.editor.tags.allow(this.editor.content, 'heading');
         this.editor.commands.set(new Command(this.editor, 'heading', 'h2'));
     }
 }

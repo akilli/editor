@@ -38,6 +38,7 @@ export default class Div extends Plugin {
             navigable: true,
             sortable: true,
         });
+        this.editor.tags.allow(this.editor.content, 'container');
         new DivListener(this.editor);
 
         if (i18n[this.editor.config.base.lang]) {

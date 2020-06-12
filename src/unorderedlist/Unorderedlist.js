@@ -35,6 +35,7 @@ export default class Unorderedlist extends Plugin {
             navigable: true,
             sortable: true,
         });
+        this.editor.tags.allow(this.editor.content, 'list');
         new UnorderedlistListener(this.editor);
         this.editor.commands.set(new Command(this.editor, 'unorderedlist', 'ul'));
     }
