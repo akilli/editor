@@ -40,6 +40,13 @@ export default class ImageListener extends Listener {
      * @param {HTMLImageElement} element
      */
     __init(element) {
+        const src = element.getAttribute('src');
+
+        if (!src) {
+            element.parentElement.removeChild(element);
+        }
+
+        element.setAttribute('src', this.editor.url(src));
         this.editor.wrap(element, 'figure', {attributes: {class: 'image'}});
     }
 }

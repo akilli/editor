@@ -1,7 +1,7 @@
 import Base from '../base/Base.js';
 import BrowserDialog from '../base/BrowserDialog.js';
+import Command from '../base/Command.js';
 import Figure from '../figure/Figure.js';
-import ImageCommand from './ImageCommand.js';
 import ImageDialog from './ImageDialog.js';
 import ImageListener from './ImageListener.js';
 import Plugin from '../base/Plugin.js';
@@ -43,6 +43,7 @@ export default class Image extends Plugin {
             empty: true,
             navigable: true,
         });
+        this.editor.tags.allow(this.editor.content, 'image');
         new ImageListener(this.editor);
 
         if (i18n[this.editor.config.base.lang]) {
@@ -55,6 +56,6 @@ export default class Image extends Plugin {
             this.editor.dialogs.set(new ImageDialog(this.editor));
         }
 
-        this.editor.commands.set(new ImageCommand(this.editor));
+        this.editor.commands.set(new Command(this.editor, 'image', 'img'));
     }
 }

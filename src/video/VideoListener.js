@@ -40,6 +40,13 @@ export default class VideoListener extends Listener {
      * @param {HTMLVideoElement} element
      */
     __init(element) {
+        const src = element.getAttribute('src');
+
+        if (!src) {
+            element.parentElement.removeChild(element);
+        }
+
+        element.setAttribute('src', this.editor.url(src));
         element.controls = true;
         this.editor.wrap(element, 'figure', {attributes: {class: 'video'}});
     }

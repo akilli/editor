@@ -40,6 +40,13 @@ export default class IframeListener extends Listener {
      * @param {HTMLIFrameElement} element
      */
     __init(element) {
+        const src = element.getAttribute('src');
+
+        if (!src) {
+            element.parentElement.removeChild(element);
+        }
+
+        element.setAttribute('src', this.editor.url(src));
         element.allowFullscreen = true;
         this.editor.wrap(element, 'figure', {attributes: {class: 'iframe'}});
     }

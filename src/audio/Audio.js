@@ -1,8 +1,8 @@
-import AudioCommand from './AudioCommand.js';
 import AudioDialog from './AudioDialog.js';
 import AudioListener from './AudioListener.js';
 import Base from '../base/Base.js';
 import BrowserDialog from '../base/BrowserDialog.js';
+import Command from '../base/Command.js';
 import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
@@ -43,6 +43,7 @@ export default class Audio extends Plugin {
             empty: true,
             navigable: true,
         });
+        this.editor.tags.allow(this.editor.content, 'audio');
         new AudioListener(this.editor);
 
         if (i18n[this.editor.config.base.lang]) {
@@ -55,6 +56,6 @@ export default class Audio extends Plugin {
             this.editor.dialogs.set(new AudioDialog(this.editor));
         }
 
-        this.editor.commands.set(new AudioCommand(this.editor));
+        this.editor.commands.set(new Command(this.editor, 'audio', 'audio'));
     }
 }
