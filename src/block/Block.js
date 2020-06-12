@@ -36,9 +36,9 @@ export default class Block extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.registerElement('app-block', BlockElement);
+        this.editor.registerElement('editor-block', BlockElement);
         this.editor.tags.create({
-            name: 'app-block',
+            name: 'editor-block',
             group: 'block',
             attributes: ['id'],
             deletable: true,
