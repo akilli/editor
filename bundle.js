@@ -1,6 +1,6 @@
 import Editor from './src/editor/Editor.js';
-import './src/gui/editor.css';
-import './src/gui/editor.woff2';
+import './src/editor/editor.css';
+import './src/editor/editor.woff2';
 
 // noinspection JSUnusedGlobalSymbols
 export default Editor;
