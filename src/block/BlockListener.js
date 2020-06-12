@@ -10,7 +10,7 @@ export default class BlockListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('insertappblock', this);
+        this.editor.content.addEventListener('inserteditorblock', this);
     }
 
     /**
@@ -19,7 +19,7 @@ export default class BlockListener extends Listener {
      * @param {CustomEvent} event
      * @param {BlockElement} event.detail.element
      */
-    async insertappblock(event) {
+    async inserteditorblock(event) {
         if (!event.detail.element.id || !this.editor.config.block.api) {
             return;
         }
