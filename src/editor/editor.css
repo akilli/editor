@@ -240,16 +240,13 @@ dialog.editor-dialog select:invalid {
 editor-toolbar {
     position: sticky;
     top: 0;
-    display: block;
+    display: flex;
     padding: 0.6875rem;
     color: var(--editor-toolbar-color);
     background: var(--editor-toolbar-background);
     border: 0.0625rem solid var(--editor-border);
 }
 
-/**
- * Toolbar Buttons
- */
 editor-toolbar [data-command] {
     display: inline-block;
     line-height: 1;
@@ -263,12 +260,88 @@ editor-toolbar [data-command]:focus {
     color: var(--editor-cmd-focus);
 }
 
+editor-toolbar [data-command=bold] {
+    order: 1;
+}
+
+editor-toolbar [data-command=italic] {
+    order: 2;
+}
+
+editor-toolbar [data-command=link] {
+    order: 3;
+}
+
+editor-toolbar [data-command=paragraph] {
+    order: 4;
+}
+
+editor-toolbar [data-command=heading] {
+    order: 5;
+}
+
+editor-toolbar [data-command=subheading] {
+    order: 6;
+}
+
+editor-toolbar [data-command=unorderedlist] {
+    order: 7;
+}
+
+editor-toolbar [data-command=orderedlist] {
+    order: 8;
+}
+
+editor-toolbar [data-command=quote] {
+    order: 9;
+}
+
+editor-toolbar [data-command=image] {
+    order: 10;
+}
+
+editor-toolbar [data-command=video] {
+    order: 11;
+}
+
+editor-toolbar [data-command=audio] {
+    order: 12;
+}
+
+editor-toolbar [data-command=iframe] {
+    order: 13;
+}
+
+editor-toolbar [data-command=table] {
+    order: 14;
+}
+
+editor-toolbar [data-command=section] {
+    order: 15;
+}
+
+editor-toolbar [data-command=details] {
+    order: 16;
+}
+
+editor-toolbar [data-command=div] {
+    order: 17;
+}
+
+editor-toolbar [data-command=block] {
+    order: 18;
+}
+
 editor-toolbar [data-command]::before {
     font-size: 1.5rem;
 }
 
 editor-toolbar [data-command=audio]::before {
     content: '\e80c';
+}
+
+editor-toolbar [data-command=block] {
+    order: 18;
 }
 
 editor-toolbar [data-command=block]::before {

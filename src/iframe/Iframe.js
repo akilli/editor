@@ -1,6 +1,5 @@
 import Base from '../base/Base.js';
 import BrowserDialog from '../base/BrowserDialog.js';
-import Command from '../base/Command.js';
 import Figure from '../figure/Figure.js';
 import IframeDialog from './IframeDialog.js';
 import IframeListener from './IframeListener.js';
@@ -46,10 +45,7 @@ export default class Iframe extends Plugin {
         this.editor.tags.allow(this.editor.content, 'iframe');
         this.editor.tags.allow('figure', 'iframe');
         new IframeListener(this.editor);
-
-        if (i18n[this.editor.config.base.lang]) {
-            this.editor.i18n.set('iframe', i18n[this.editor.config.base.lang]);
-        }
+        this._translator(i18n);
 
         if (this.editor.config.iframe.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'iframe', this.editor.config.iframe.browser));
@@ -57,6 +53,7 @@ export default class Iframe extends Plugin {
             this.editor.dialogs.set(new IframeDialog(this.editor));
         }
 
-        this.editor.commands.set(new Command(this.editor, 'iframe', 'iframe'));
+        this._command('iframe', 'iframe');
+        this._button('Iframe');
     }
 }

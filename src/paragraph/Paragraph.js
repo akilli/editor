@@ -1,7 +1,7 @@
 import Base from '../base/Base.js';
 import Break from '../break/Break.js';
-import Command from '../base/Command.js';
 import Plugin from '../base/Plugin.js';
+import i18n from './i18n.js';
 
 /**
  * Paragraph Plugin
@@ -37,6 +37,8 @@ export default class Paragraph extends Plugin {
             sortable: true,
         });
         this.editor.tags.allow(this.editor.content, 'paragraph');
-        this.editor.commands.set(new Command(this.editor, 'paragraph', 'p'));
+        this._translator(i18n);
+        this._command('paragraph', 'p');
+        this._button('Paragraph');
     }
 }

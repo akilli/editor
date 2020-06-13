@@ -1,6 +1,6 @@
 import Base from '../base/Base.js';
-import Command from '../base/Command.js';
 import Plugin from '../base/Plugin.js';
+import i18n from './i18n.js';
 
 /**
  * Bold Plugin
@@ -25,6 +25,8 @@ export default class Bold extends Plugin {
      */
     init() {
         this.editor.tags.create({name: 'b', group: 'format'});
-        this.editor.commands.set(new Command(this.editor, 'bold', 'b'));
+        this._translator(i18n);
+        this._command('bold', 'b');
+        this._button('bold');
     }
 }

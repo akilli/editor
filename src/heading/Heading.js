@@ -1,6 +1,6 @@
 import Base from '../base/Base.js';
-import Command from '../base/Command.js';
 import Plugin from '../base/Plugin.js';
+import i18n from './i18n.js';
 
 /**
  * Heading Plugin
@@ -35,6 +35,8 @@ export default class Heading extends Plugin {
             sortable: true,
         });
         this.editor.tags.allow(this.editor.content, 'heading');
-        this.editor.commands.set(new Command(this.editor, 'heading', 'h2'));
+        this._translator(i18n);
+        this._command('heading', 'h2');
+        this._button('Heading');
     }
 }

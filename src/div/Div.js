@@ -1,5 +1,4 @@
 import Base from '../base/Base.js';
-import Command from '../base/Command.js';
 import DivDialog from './DivDialog.js';
 import DivListener from './DivListener.js';
 import Plugin from '../base/Plugin.js';
@@ -40,12 +39,9 @@ export default class Div extends Plugin {
         });
         this.editor.tags.allow(this.editor.content, 'container');
         new DivListener(this.editor);
-
-        if (i18n[this.editor.config.base.lang]) {
-            this.editor.i18n.set('div', i18n[this.editor.config.base.lang]);
-        }
-
+        this._translator(i18n);
         this.editor.dialogs.set(new DivDialog(this.editor));
-        this.editor.commands.set(new Command(this.editor, 'div', 'div'));
+        this._command('div', 'div');
+        this._button('Division');
     }
 }

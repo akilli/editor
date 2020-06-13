@@ -1,5 +1,4 @@
 import Base from '../base/Base.js';
-import Command from '../base/Command.js';
 import Plugin from '../base/Plugin.js';
 import SectionDialog from './SectionDialog.js';
 import SectionListener from './SectionListener.js';
@@ -40,12 +39,9 @@ export default class Section extends Plugin {
         });
         this.editor.tags.allow(this.editor.content, 'container');
         new SectionListener(this.editor);
-
-        if (i18n[this.editor.config.base.lang]) {
-            this.editor.i18n.set('section', i18n[this.editor.config.base.lang]);
-        }
-
+        this._translator(i18n);
         this.editor.dialogs.set(new SectionDialog(this.editor));
-        this.editor.commands.set(new Command(this.editor, 'section', 'section'));
+        this._command('section', 'section');
+        this._button('Section');
     }
 }

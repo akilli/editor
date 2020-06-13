@@ -3,7 +3,6 @@ import BlockDialog from './BlockDialog.js';
 import BlockElement from './BlockElement.js';
 import BlockListener from './BlockListener.js';
 import BrowserDialog from '../base/BrowserDialog.js';
-import Command from '../base/Command.js';
 import Plugin from '../base/Plugin.js';
 import i18n from '../iframe/i18n.js';
 
@@ -49,10 +48,7 @@ export default class Block extends Plugin {
         });
         this.editor.tags.allow(this.editor.content, 'block');
         new BlockListener(this.editor);
-
-        if (i18n[this.editor.config.base.lang]) {
-            this.editor.i18n.set('block', i18n[this.editor.config.base.lang]);
-        }
+        this._translator(i18n);
 
         if (this.editor.config.block.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'block', this.editor.config.block.browser));
@@ -60,6 +56,7 @@ export default class Block extends Plugin {
             this.editor.dialogs.set(new BlockDialog(this.editor));
         }
 
-        this.editor.commands.set(new Command(this.editor, 'block', 'editor-block'));
+        this._command('block', 'editor-block');
+        this._button('Block');
     }
 }

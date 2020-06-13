@@ -1,7 +1,7 @@
 import Base from '../base/Base.js';
-import Command from '../base/Command.js';
 import List from '../list/List.js';
 import Plugin from '../base/Plugin.js';
+import i18n from './i18n.js';
 
 /**
  * Unorderedlist Plugin
@@ -35,6 +35,8 @@ export default class Unorderedlist extends Plugin {
             sortable: true,
         });
         this.editor.tags.allow(this.editor.content, 'list');
-        this.editor.commands.set(new Command(this.editor, 'unorderedlist', 'ul'));
+        this._translator(i18n);
+        this._command('unorderedlist', 'ul');
+        this._button('Unordered List');
     }
 }

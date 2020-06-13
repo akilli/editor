@@ -1,6 +1,5 @@
 import Base from '../base/Base.js';
 import BrowserDialog from '../base/BrowserDialog.js';
-import Command from '../base/Command.js';
 import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
 import VideoDialog from './VideoDialog.js';
@@ -46,10 +45,7 @@ export default class Video extends Plugin {
         this.editor.tags.allow(this.editor.content, 'video');
         this.editor.tags.allow('figure', 'video');
         new VideoListener(this.editor);
-
-        if (i18n[this.editor.config.base.lang]) {
-            this.editor.i18n.set('video', i18n[this.editor.config.base.lang]);
-        }
+        this._translator(i18n);
 
         if (this.editor.config.video.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'video', this.editor.config.video.browser));
@@ -57,6 +53,7 @@ export default class Video extends Plugin {
             this.editor.dialogs.set(new VideoDialog(this.editor));
         }
 
-        this.editor.commands.set(new Command(this.editor, 'video', 'video'));
+        this._command('video', 'video');
+        this._button('Video');
     }
 }
