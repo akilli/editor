@@ -31,7 +31,7 @@ export default class Base extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({name: 'editor-content', group: 'root'});
+        this.editor.tags.set({name: 'editor-content', group: 'root'});
         new ToolbarListener(this.editor);
         new TagListener(this.editor);
         new EditableListener(this.editor);

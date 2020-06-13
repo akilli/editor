@@ -35,7 +35,7 @@ export default class Audio extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'audio',
             group: 'audio',
             attributes: ['controls', 'height', 'src', 'width'],

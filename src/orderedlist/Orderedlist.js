@@ -25,7 +25,7 @@ export default class Orderedlist extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'ol',
             group: 'list',
             children: ['listitem'],

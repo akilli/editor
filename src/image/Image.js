@@ -35,7 +35,7 @@ export default class Image extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'img',
             group: 'image',
             attributes: ['alt', 'height', 'src', 'width'],

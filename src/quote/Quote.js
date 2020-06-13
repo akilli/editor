@@ -28,7 +28,7 @@ export default class Quote extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'blockquote',
             group: 'quote',
             children: ['break', 'format'],

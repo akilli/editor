@@ -28,7 +28,7 @@ export default class Details extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'details',
             group: 'container',
             children: ['audio', 'figure', 'iframe', 'image', 'list', 'paragraph', 'quote', 'summary', 'table', 'video'],
@@ -38,7 +38,7 @@ export default class Details extends Plugin {
             sortable: true,
         });
         this.editor.tags.allow(this.editor.content, 'container');
-        this.editor.tags.create({name: 'summary', group: 'summary', editable: true, enter: 'p', navigable: true});
+        this.editor.tags.set({name: 'summary', group: 'summary', editable: true, enter: 'p', navigable: true});
         new DetailsListener(this.editor);
         new SummaryListener(this.editor);
         this._translator(i18n);

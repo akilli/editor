@@ -25,7 +25,7 @@ export default class Unorderedlist extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'ul',
             group: 'list',
             children: ['listitem'],

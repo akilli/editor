@@ -25,7 +25,7 @@ export default class List extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'li',
             group: 'listitem',
             children: ['break', 'format'],

@@ -24,7 +24,7 @@ export default class Heading extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'h2',
             group: 'heading',
             deletable: true,

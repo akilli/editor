@@ -35,7 +35,7 @@ export default class Iframe extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'iframe',
             group: 'iframe',
             attributes: ['allowfullscreen', 'height', 'src', 'width'],

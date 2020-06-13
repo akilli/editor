@@ -27,7 +27,7 @@ export default class Div extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'div',
             group: 'container',
             attributes: ['class'],

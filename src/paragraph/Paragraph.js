@@ -25,7 +25,7 @@ export default class Paragraph extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'p',
             group: 'paragraph',
             children: ['break', 'format'],

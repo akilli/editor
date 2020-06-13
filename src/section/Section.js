@@ -27,7 +27,7 @@ export default class Section extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({
+        this.editor.tags.set({
             name: 'section',
             group: 'container',
             attributes: ['class'],

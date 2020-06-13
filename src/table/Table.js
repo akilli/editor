@@ -30,15 +30,15 @@ export default class Table extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.create({name: 'table', group: 'table', children: ['tablesection'], deletable: true, navigable: true, sortable: true});
+        this.editor.tags.set({name: 'table', group: 'table', children: ['tablesection'], deletable: true, navigable: true, sortable: true});
         this.editor.tags.allow(this.editor.content, 'table');
         this.editor.tags.allow('figure', 'table');
-        this.editor.tags.create({name: 'thead', group: 'tablesection', children: ['tablerow']});
-        this.editor.tags.create({name: 'tbody', group: 'tablesection', children: ['tablerow']});
-        this.editor.tags.create({name: 'tfoot', group: 'tablesection', children: ['tablerow']});
-        this.editor.tags.create({name: 'tr', group: 'tablerow', children: ['tablecell']});
-        this.editor.tags.create({name: 'th', group: 'tablecell', children: ['break', 'format'], editable: true, empty: true});
-        this.editor.tags.create({name: 'td', group: 'tablecell', children: ['break', 'format'], editable: true, empty: true});
+        this.editor.tags.set({name: 'thead', group: 'tablesection', children: ['tablerow']});
+        this.editor.tags.set({name: 'tbody', group: 'tablesection', children: ['tablerow']});
+        this.editor.tags.set({name: 'tfoot', group: 'tablesection', children: ['tablerow']});
+        this.editor.tags.set({name: 'tr', group: 'tablerow', children: ['tablecell']});
+        this.editor.tags.set({name: 'th', group: 'tablecell', children: ['break', 'format'], editable: true, empty: true});
+        this.editor.tags.set({name: 'td', group: 'tablecell', children: ['break', 'format'], editable: true, empty: true});
         new TableListener(this.editor);
         this._translator(i18n);
         this.editor.filters.add(new TableFilter(this.editor));

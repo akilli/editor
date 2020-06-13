@@ -39,23 +39,14 @@ export default class TagMap extends Map {
     /**
      * Adds or updates a tag
      *
-     * @param {Tag} tag
+     * @param {Tag|Object} tag
      */
     set(tag) {
         if (!(tag instanceof Tag)) {
-            throw 'Invalid argument';
+            tag = new Tag(tag);
         }
 
         super.set(tag.name, tag);
-    }
-
-    /**
-     * Creates a tag from given object
-     *
-     * @param {Object} opts
-     */
-    create(opts) {
-        this.set(new Tag(opts));
     }
 
     /**
