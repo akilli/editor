@@ -31,7 +31,7 @@ export default class Div extends Plugin {
             name: 'div',
             group: 'container',
             attributes: ['class'],
-            children: ['block', 'figure'],
+            children: this.editor.tags.get(this.editor.content).children,
             deletable: true,
             focusable: true,
             navigable: true,

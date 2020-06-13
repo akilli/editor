@@ -31,7 +31,7 @@ export default class Section extends Plugin {
             name: 'section',
             group: 'container',
             attributes: ['class'],
-            children: ['figure', 'heading', 'list', 'paragraph'],
+            children: this.editor.tags.get(this.editor.content).children,
             deletable: true,
             focusable: true,
             navigable: true,
