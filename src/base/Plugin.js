@@ -106,6 +106,7 @@ export default class Plugin {
             throw 'Invalid argument';
         }
 
+        label = this._(label);
         this.editor.toolbar.appendChild(this.editor.createElement('button', {
             attributes: {type: 'button', 'data-command': this.constructor.name, title: label},
             html: label,

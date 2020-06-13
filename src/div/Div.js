@@ -42,6 +42,6 @@ export default class Div extends Plugin {
         this._translator(i18n);
         this.editor.dialogs.set(new DivDialog(this.editor));
         this._command('div', 'div');
-        this._button(this._('Division'));
+        this._button('Division');
     }
 }

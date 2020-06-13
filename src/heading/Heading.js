@@ -37,6 +37,6 @@ export default class Heading extends Plugin {
         this.editor.tags.allow(this.editor.content, 'heading');
         this._translator(i18n);
         this._command('heading', 'h2');
-        this._button(this._('Heading'));
+        this._button('Heading');
     }
 }

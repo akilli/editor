@@ -30,6 +30,6 @@ export default class Link extends Plugin {
         this._translator(i18n);
         this.editor.dialogs.set(new LinkDialog(this.editor));
         this.editor.commands.set(new LinkCommand(this.editor));
-        this._button(this._('Link'));
+        this._button('Link');
     }
 }
