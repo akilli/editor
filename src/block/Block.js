@@ -57,6 +57,6 @@ export default class Block extends Plugin {
         }
 
         this._command('block', 'editor-block');
-        this._button('Block');
+        this._button(this._('Block'));
     }
 }

@@ -54,6 +54,6 @@ export default class Audio extends Plugin {
         }
 
         this._command('audio', 'audio');
-        this._button('Audio');
+        this._button(this._('Audio'));
     }
 }

@@ -37,6 +37,6 @@ export default class Subheading extends Plugin {
         this.editor.tags.allow(this.editor.content, 'heading');
         this._translator(i18n);
         this._command('subheading', 'h3');
-        this._button('Subheading');
+        this._button(this._('Subheading'));
     }
 }

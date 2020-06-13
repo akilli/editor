@@ -42,7 +42,7 @@ export default class Quote extends Plugin {
         this._translator(i18n);
         new QuoteListener(this.editor);
         this._command('quote', 'blockquote');
-        this._button('Quote');
+        this._button(this._('Quote'));
         this.editor.filters.add(new QuoteFilter(this.editor));
     }
 }
