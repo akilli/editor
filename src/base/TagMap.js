@@ -9,7 +9,7 @@ export default class TagMap extends Map {
     /**
      * Initializes a new tag map
      *
-     * @param {Tag[]} [tags = []]
+     * @param {Tag[]|Object[]} [tags = []]
      */
     constructor(tags = []) {
         super();
