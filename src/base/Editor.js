@@ -178,10 +178,7 @@ export default class Editor {
         this.plugins.init();
 
         // Initialize toolbar
-        this.config.base.toolbar.forEach(item => this.toolbar.appendChild(this.createElement('button', {
-            attributes: {type: 'button', 'data-command': item, title: item},
-            html: item,
-        })));
+        this.config.base.toolbar.forEach(item => this.createButton(item, item));
     }
 
     /**
@@ -416,6 +413,23 @@ export default class Editor {
         })
 
         return element;
+    }
+
+    /**
+     * Creates a toolbar button
+     *
+     * @param {String} name
+     * @param {String} label
+     */
+    createButton(name, label) {
+        if (!name || typeof name !== 'string' || !label || typeof label !== 'string') {
+            throw 'Invalid argument';
+        }
+
+        this.toolbar.appendChild(this.createElement('button', {
+            attributes: {type: 'button', 'data-command': name, title: label},
+            html: label,
+        }));
     }
 
     /**
