@@ -9,7 +9,7 @@ import Editor from '../src/editor/Editor.js';
                     browser: 'media.html#audio',
                 },
                 base: {
-                    lang: 'de',
+                    lang: 'en',
                 },
                 block: {
                     api: 'api/{id}.html',
