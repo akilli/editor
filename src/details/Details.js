@@ -31,7 +31,7 @@ export default class Details extends Plugin {
         this.editor.tags.create({
             name: 'details',
             group: 'container',
-            children: this.editor.tags.get(this.editor.content).children,
+            children: ['audio', 'figure', 'iframe', 'image', 'list', 'paragraph', 'quote', 'summary', 'table', 'video'],
             deletable: true,
             focusable: true,
             navigable: true,

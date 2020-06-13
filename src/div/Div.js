@@ -31,7 +31,7 @@ export default class Div extends Plugin {
             name: 'div',
             group: 'container',
             attributes: ['class'],
-            children: this.editor.tags.get(this.editor.content).children,
+            children: ['audio', 'block', 'figure', 'iframe', 'image', 'quote', 'table', 'video'],
             deletable: true,
             focusable: true,
             navigable: true,
