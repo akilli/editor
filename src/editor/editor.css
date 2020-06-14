@@ -195,6 +195,10 @@ dialog.editor-dialog label {
     display: block;
 }
 
+dialog.editor-dialog .editor-required label::after {
+    content: ' *';
+}
+
 dialog.editor-dialog button {
     padding: 0.75rem;
 }
