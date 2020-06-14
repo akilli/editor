@@ -7,7 +7,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        Array.from(document.getElementsByTagName('section')).forEach(item => item.addEventListener('click', () => {
+        document.querySelectorAll('[data-id]').forEach(item => item.addEventListener('click', () => {
             const id = item.getAttribute('data-id');
             item.removeAttribute('data-id');
             window.opener.postMessage({

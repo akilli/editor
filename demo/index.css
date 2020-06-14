@@ -120,6 +120,49 @@ tbody tr:last-child th {
 }
 
 /**
+ * Form
+ */
+form {
+    min-width: 40rem;
+    min-height: 20rem;
+    padding: 0.75rem;
+    background: #fff;
+}
+
+form > :not(:first-child),
+form > fieldset > :not(:first-child) {
+    margin-top: 1.5rem;
+}
+
+form legend {
+    font-size: 1.25rem;
+}
+
+form label {
+    display: block;
+}
+
+form [data-required] label::after {
+    content: ' *';
+}
+
+form button {
+    padding: 0.75rem;
+    color: #fff;
+    background: #191919;
+}
+
+form input {
+    width: 100%;
+    padding: 0.71875rem 0;
+    border-bottom: 0.0625rem solid #19191933;
+}
+
+form input:invalid {
+    border-color: #960200;
+}
+
+/**
  * Grid
  */
 div.grid {
