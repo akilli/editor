@@ -56,7 +56,7 @@ export default class Block extends Plugin {
             this.editor.dialogs.set(new BlockDialog(this.editor));
         }
 
-        this._command('block', 'editor-block');
+        this._command('editor-block');
         this._button('Block');
     }
 }

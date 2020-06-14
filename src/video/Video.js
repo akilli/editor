@@ -53,7 +53,7 @@ export default class Video extends Plugin {
             this.editor.dialogs.set(new VideoDialog(this.editor));
         }
 
-        this._command('video', 'video');
+        this._command('video');
         this._button('Video');
     }
 }

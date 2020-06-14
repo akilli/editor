@@ -53,7 +53,7 @@ export default class Iframe extends Plugin {
             this.editor.dialogs.set(new IframeDialog(this.editor));
         }
 
-        this._command('iframe', 'iframe');
+        this._command('iframe');
         this._button('Iframe');
     }
 }

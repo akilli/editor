@@ -41,7 +41,7 @@ export default class Section extends Plugin {
         new SectionListener(this.editor);
         this._translator(i18n);
         this.editor.dialogs.set(new SectionDialog(this.editor));
-        this._command('section', 'section');
+        this._command('section');
         this._button('Section');
     }
 }

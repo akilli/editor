@@ -53,7 +53,7 @@ export default class Image extends Plugin {
             this.editor.dialogs.set(new ImageDialog(this.editor));
         }
 
-        this._command('image', 'img');
+        this._command('img');
         this._button('Image');
     }
 }

@@ -88,11 +88,10 @@ export default class Plugin {
      * Registers a command with given parameters
      *
      * @protected
-     * @param {String} name
-     * @param {?String} tagName
+     * @param {String} tagName
      */
-    _command(name, tagName = null) {
-        this.editor.commands.set(new Command(this.editor, name, tagName));
+    _command(tagName) {
+        this.editor.commands.set(new Command(this.editor, this.constructor.name, tagName));
     }
 
     /**

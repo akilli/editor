@@ -53,7 +53,7 @@ export default class Audio extends Plugin {
             this.editor.dialogs.set(new AudioDialog(this.editor));
         }
 
-        this._command('audio', 'audio');
+        this._command('audio');
         this._button('Audio');
     }
 }
