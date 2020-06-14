@@ -19,6 +19,10 @@ export default class ToolbarListener extends Listener {
      * @param {HTMLButtonElement} event.detail.element
      */
     insertbutton(event) {
+        if (event.detail.element.accessKeyLabel) {
+            event.detail.element.title += ` [${event.detail.element.accessKeyLabel}]`;
+        }
+
         if (event.detail.element.getAttribute('data-command')) {
             event.detail.element.addEventListener('click', this);
         }
