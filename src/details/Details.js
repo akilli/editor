@@ -43,7 +43,7 @@ export default class Details extends Plugin {
         new SummaryListener(this.editor);
         this._translator(i18n);
         this._command('details');
-        this._button('Details');
+        this._toolbar('Details');
         this.editor.filters.add(new DetailsFilter(this.editor));
     }
 }

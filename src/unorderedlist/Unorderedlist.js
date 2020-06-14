@@ -37,6 +37,6 @@ export default class Unorderedlist extends Plugin {
         this.editor.tags.allow(this.editor.content, 'list');
         this._translator(i18n);
         this._command('ul');
-        this._button('Unordered List');
+        this._toolbar('Unordered List');
     }
 }

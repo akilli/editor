@@ -39,6 +39,6 @@ export default class Paragraph extends Plugin {
         this.editor.tags.allow(this.editor.content, 'paragraph');
         this._translator(i18n);
         this._command('p');
-        this._button('Paragraph');
+        this._toolbar('Paragraph');
     }
 }

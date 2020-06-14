@@ -101,7 +101,7 @@ export default class Plugin {
      * @param {String} label
      * @param {?String} [accesskey = null]
      */
-    _button(label, accesskey = null) {
+    _toolbar(label, accesskey = null) {
         if (!label || typeof label !== 'string' || accesskey && typeof accesskey !== 'string') {
             throw 'Invalid argument';
         }

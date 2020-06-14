@@ -44,6 +44,6 @@ export default class Table extends Plugin {
         this.editor.filters.add(new TableFilter(this.editor));
         this.editor.dialogs.set(new TableDialog(this.editor));
         this.editor.commands.set(new TableCommand(this.editor));
-        this._button('Table');
+        this._toolbar('Table');
     }
 }

@@ -54,6 +54,6 @@ export default class Video extends Plugin {
         }
 
         this._command('video');
-        this._button('Video');
+        this._toolbar('Video');
     }
 }

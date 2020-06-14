@@ -54,6 +54,6 @@ export default class Image extends Plugin {
         }
 
         this._command('img');
-        this._button('Image');
+        this._toolbar('Image');
     }
 }

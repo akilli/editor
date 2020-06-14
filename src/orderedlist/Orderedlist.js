@@ -37,6 +37,6 @@ export default class Orderedlist extends Plugin {
         this.editor.tags.allow(this.editor.content, 'list');
         this._translator(i18n);
         this._command('ol');
-        this._button('Ordered List');
+        this._toolbar('Ordered List');
     }
 }

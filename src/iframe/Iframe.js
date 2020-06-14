@@ -54,6 +54,6 @@ export default class Iframe extends Plugin {
         }
 
         this._command('iframe');
-        this._button('Iframe');
+        this._toolbar('Iframe');
     }
 }
