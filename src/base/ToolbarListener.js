@@ -19,12 +19,11 @@ export default class ToolbarListener extends Listener {
      * @param {HTMLButtonElement} event.detail.element
      */
     insertbutton(event) {
-        const element = event.detail.element;
-        element.addEventListener('click', this);
+        event.detail.element.addEventListener('click', this);
 
-        if (element.parentElement === this.editor.toolbar) {
-            element.tabIndex = -1;
-            element.addEventListener('keydown', this);
+        if (event.detail.element.parentElement === this.editor.toolbar) {
+            event.detail.element.tabIndex = -1;
+            event.detail.element.addEventListener('keydown', this);
         }
     }
 
