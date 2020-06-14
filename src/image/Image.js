@@ -35,6 +35,7 @@ export default class Image extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.tags.set({
             name: 'img',
             group: 'image',
@@ -45,7 +46,6 @@ export default class Image extends Plugin {
         this.editor.tags.allow(this.editor.content, 'image');
         this.editor.tags.allow('figure', 'image');
         new ImageListener(this.editor);
-        this._translator(i18n);
 
         if (this.editor.config.image.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'image', this.editor.config.image.browser));

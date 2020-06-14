@@ -30,6 +30,7 @@ export default class Table extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.tags.set({name: 'table', group: 'table', children: ['tablesection'], deletable: true, navigable: true, sortable: true});
         this.editor.tags.allow(this.editor.content, 'table');
         this.editor.tags.allow('figure', 'table');
@@ -40,7 +41,6 @@ export default class Table extends Plugin {
         this.editor.tags.set({name: 'th', group: 'tablecell', children: ['break', 'format'], editable: true, empty: true});
         this.editor.tags.set({name: 'td', group: 'tablecell', children: ['break', 'format'], editable: true, empty: true});
         new TableListener(this.editor);
-        this._translator(i18n);
         this.editor.filters.add(new TableFilter(this.editor));
         this.editor.dialogs.set(new TableDialog(this.editor));
         this.editor.commands.set(new TableCommand(this.editor));

@@ -25,6 +25,7 @@ export default class Unorderedlist extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.tags.set({
             name: 'ul',
             group: 'list',
@@ -35,7 +36,6 @@ export default class Unorderedlist extends Plugin {
             sortable: true,
         });
         this.editor.tags.allow(this.editor.content, 'list');
-        this._translator(i18n);
         this._command('ul');
         this._toolbar('Unordered List');
     }

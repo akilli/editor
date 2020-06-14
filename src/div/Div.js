@@ -27,6 +27,7 @@ export default class Div extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.tags.set({
             name: 'div',
             group: 'container',
@@ -39,7 +40,6 @@ export default class Div extends Plugin {
         });
         this.editor.tags.allow(this.editor.content, 'container');
         new DivListener(this.editor);
-        this._translator(i18n);
         this.editor.dialogs.set(new DivDialog(this.editor));
         this._command('div');
         this._toolbar('Division');

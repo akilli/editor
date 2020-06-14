@@ -35,6 +35,7 @@ export default class Block extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.registerElement('editor-block', BlockElement);
         this.editor.tags.set({
             name: 'editor-block',
@@ -48,7 +49,6 @@ export default class Block extends Plugin {
         });
         this.editor.tags.allow(this.editor.content, 'block');
         new BlockListener(this.editor);
-        this._translator(i18n);
 
         if (this.editor.config.block.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'block', this.editor.config.block.browser));

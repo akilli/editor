@@ -27,6 +27,7 @@ export default class Section extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.tags.set({
             name: 'section',
             group: 'container',
@@ -39,7 +40,6 @@ export default class Section extends Plugin {
         });
         this.editor.tags.allow(this.editor.content, 'container');
         new SectionListener(this.editor);
-        this._translator(i18n);
         this.editor.dialogs.set(new SectionDialog(this.editor));
         this._command('section');
         this._toolbar('Section');

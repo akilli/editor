@@ -28,6 +28,7 @@ export default class Quote extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.tags.set({
             name: 'blockquote',
             group: 'quote',
@@ -39,7 +40,6 @@ export default class Quote extends Plugin {
         });
         this.editor.tags.allow(this.editor.content, 'quote');
         this.editor.tags.allow('figure', 'quote');
-        this._translator(i18n);
         new QuoteListener(this.editor);
         this._command('blockquote');
         this._toolbar('Quote');

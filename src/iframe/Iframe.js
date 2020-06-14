@@ -35,6 +35,7 @@ export default class Iframe extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.tags.set({
             name: 'iframe',
             group: 'iframe',
@@ -45,7 +46,6 @@ export default class Iframe extends Plugin {
         this.editor.tags.allow(this.editor.content, 'iframe');
         this.editor.tags.allow('figure', 'iframe');
         new IframeListener(this.editor);
-        this._translator(i18n);
 
         if (this.editor.config.iframe.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'iframe', this.editor.config.iframe.browser));

@@ -32,6 +32,7 @@ export default class Base extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.tags.set({name: 'editor-content', group: 'root'});
         new ToolbarListener(this.editor);
         new TagListener(this.editor);
@@ -41,7 +42,6 @@ export default class Base extends Plugin {
         new SortableListener(this.editor);
         new AlignableListener(this.editor);
         new FocusableListener(this.editor);
-        this._translator(i18n);
         this.editor.filters.add(new ContentFilter(this.editor));
     }
 }

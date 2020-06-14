@@ -24,6 +24,7 @@ export default class Heading extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.tags.set({
             name: 'h2',
             group: 'heading',
@@ -35,7 +36,6 @@ export default class Heading extends Plugin {
             sortable: true,
         });
         this.editor.tags.allow(this.editor.content, 'heading');
-        this._translator(i18n);
         this._command('h2');
         this._toolbar('Heading');
     }

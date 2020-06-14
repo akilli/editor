@@ -24,6 +24,7 @@ export default class Subheading extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.tags.set({
             name: 'h3',
             group: 'heading',
@@ -35,7 +36,6 @@ export default class Subheading extends Plugin {
             sortable: true,
         });
         this.editor.tags.allow(this.editor.content, 'heading');
-        this._translator(i18n);
         this._command('h3');
         this._toolbar('Subheading');
     }

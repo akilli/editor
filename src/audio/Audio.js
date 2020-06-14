@@ -35,6 +35,7 @@ export default class Audio extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.tags.set({
             name: 'audio',
             group: 'audio',
@@ -45,7 +46,6 @@ export default class Audio extends Plugin {
         this.editor.tags.allow(this.editor.content, 'audio');
         this.editor.tags.allow('figure', 'audio');
         new AudioListener(this.editor);
-        this._translator(i18n);
 
         if (this.editor.config.audio.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'audio', this.editor.config.audio.browser));

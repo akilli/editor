@@ -35,6 +35,7 @@ export default class Video extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.tags.set({
             name: 'video',
             group: 'video',
@@ -45,7 +46,6 @@ export default class Video extends Plugin {
         this.editor.tags.allow(this.editor.content, 'video');
         this.editor.tags.allow('figure', 'video');
         new VideoListener(this.editor);
-        this._translator(i18n);
 
         if (this.editor.config.video.browser) {
             this.editor.dialogs.set(new BrowserDialog(this.editor, 'video', this.editor.config.video.browser));

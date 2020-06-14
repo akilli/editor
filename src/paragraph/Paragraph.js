@@ -25,6 +25,7 @@ export default class Paragraph extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.tags.set({
             name: 'p',
             group: 'paragraph',
@@ -37,7 +38,6 @@ export default class Paragraph extends Plugin {
             sortable: true,
         });
         this.editor.tags.allow(this.editor.content, 'paragraph');
-        this._translator(i18n);
         this._command('p');
         this._toolbar('Paragraph');
     }

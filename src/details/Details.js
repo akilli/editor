@@ -28,6 +28,7 @@ export default class Details extends Plugin {
      * @inheritDoc
      */
     init() {
+        this._translator(i18n);
         this.editor.tags.set({
             name: 'details',
             group: 'container',
@@ -41,7 +42,6 @@ export default class Details extends Plugin {
         this.editor.tags.set({name: 'summary', group: 'summary', editable: true, enter: 'p', navigable: true});
         new DetailsListener(this.editor);
         new SummaryListener(this.editor);
-        this._translator(i18n);
         this._command('details');
         this._toolbar('Details');
         this.editor.filters.add(new DetailsFilter(this.editor));
