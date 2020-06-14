@@ -8,6 +8,7 @@ import Plugin from './Plugin.js';
 import SortableListener from './SortableListener.js';
 import TagListener from './TagListener.js';
 import ToolbarListener from './ToolbarListener.js';
+import i18n from './i18n.js';
 
 /**
  * Base Plugin
@@ -40,6 +41,7 @@ export default class Base extends Plugin {
         new SortableListener(this.editor);
         new AlignableListener(this.editor);
         new FocusableListener(this.editor);
+        this._translator(i18n);
         this.editor.filters.add(new ContentFilter(this.editor));
     }
 }
