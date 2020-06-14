@@ -27,6 +27,6 @@ export default class Bold extends Plugin {
         this.editor.tags.set({name: 'b', group: 'format'});
         this._translator(i18n);
         this._command('b');
-        this._button('bold');
+        this._button('bold', 'b');
     }
 }

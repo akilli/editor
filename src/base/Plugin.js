@@ -99,15 +99,16 @@ export default class Plugin {
      *
      * @protected
      * @param {String} label
+     * @param {?String} [accesskey = null]
      */
-    _button(label) {
-        if (!label || typeof label !== 'string') {
+    _button(label, accesskey = null) {
+        if (!label || typeof label !== 'string' || accesskey && typeof accesskey !== 'string') {
             throw 'Invalid argument';
         }
 
         label = this._(label);
         this.editor.toolbar.appendChild(this.editor.createElement('button', {
-            attributes: {type: 'button', 'data-command': this.constructor.name, title: label},
+            attributes: {type: 'button', 'data-command': this.constructor.name, title: label, accesskey},
             html: label,
         }));
     }
