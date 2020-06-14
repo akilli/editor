@@ -396,11 +396,10 @@ export default class Editor {
      * @param {String} name
      * @param {Object.<String, String>} [attributes = {}]
      * @param {String} [html = '']
-     * @param {String} [is = null]
      * @return {HTMLElement}
      */
-    createElement(name, {attributes = {}, html = '', is = null} = {}) {
-        const element = this.document.createElement(name, is ? {is: is} : null);
+    createElement(name, {attributes = {}, html = ''} = {}) {
+        const element = this.document.createElement(name, attributes.is ? {is: attributes.is} : null);
         element.innerHTML = html;
         Object.entries(attributes).forEach(([key, val]) => {
             if (val) {

@@ -33,7 +33,11 @@ export default class TagMap extends Map {
      * @return {?Tag}
      */
     get(key) {
-        return super.get(key instanceof HTMLElement ? key.localName : key) || null;
+        if (key instanceof HTMLElement) {
+            key = key.getAttribute('is') || key.localName;
+        }
+
+        return super.get(key) || null;
     }
 
     /**
