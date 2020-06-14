@@ -506,19 +506,15 @@ export default class Editor {
     }
 
     /**
-     * Factory method to create a new instance of editor with given configuration
+     * Factory method to create a new editor instance with given configuration
      *
      * @param {HTMLElement} element
      * @param {Object} [config = {}]
-     * @param {?Function} [preinit = null]
-     * @param {?Function} [preload = null]
      * @return {Editor}
      */
-    static create(element, {config = {}, preinit = null, preload = null} = {}) {
+    static create(element, config = {}) {
         const editor = new this(element, config);
-        typeof preinit === 'function' && preinit(editor);
         editor.init();
-        typeof preload === 'function' && preload(editor);
         editor.load();
 
         return editor;

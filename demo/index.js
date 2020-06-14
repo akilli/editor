@@ -4,27 +4,25 @@ import Editor from '../src/editor/Editor.js';
     document.addEventListener('DOMContentLoaded', () => {
         const rte = document.getElementById('rte');
         const editor = Editor.create(rte, {
-            config: {
-                audio: {
-                    browser: 'media.html#audio',
-                },
-                base: {
-                    lang: 'en',
-                },
-                block: {
-                    api: 'api/{id}.html',
-                    browser: 'block.html',
-                    css: 'base.css,index.css',
-                },
-                iframe: {
-                    browser: 'media.html#iframe',
-                },
-                image: {
-                    browser: 'media.html#image',
-                },
-                video: {
-                    browser: 'media.html#video',
-                },
+            audio: {
+                browser: 'media.html#audio',
+            },
+            base: {
+                lang: 'en',
+            },
+            block: {
+                api: 'api/{id}.html',
+                browser: 'block.html',
+                css: 'base.css,index.css',
+            },
+            iframe: {
+                browser: 'media.html#iframe',
+            },
+            image: {
+                browser: 'media.html#image',
+            },
+            video: {
+                browser: 'media.html#video',
             },
         });
         console.log(editor);
