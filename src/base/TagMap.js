@@ -57,18 +57,14 @@ export default class TagMap extends Map {
      * Allows group inside given tag
      *
      * @param {String|HTMLElement} key
-     * @param {String} group
+     * @param {...String} groups
      */
-    allow(key, group) {
-        if (!group || typeof group !== 'string') {
+    allow(key, ...groups) {
+        if (groups.find(item => !item || typeof item !== 'string')) {
             throw 'Invalid argument';
         }
 
-        const tag = this.get(key);
-
-        if (tag && !tag.children.includes(group)) {
-            tag.children.push(group);
-        }
+        this.get(key)?.children.push(...groups);
     }
 
     /**
