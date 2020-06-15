@@ -29,6 +29,7 @@ export default class Section extends Plugin {
         this._tag({
             name: 'section',
             group: 'container',
+            children: ['audio', 'figure', 'heading', 'iframe', 'image', 'list', 'paragraph', 'quote', 'table', 'video'],
             attributes: ['class'],
             deletable: true,
             focusable: true,
@@ -36,8 +37,6 @@ export default class Section extends Plugin {
             slotable: true,
             sortable: true,
         });
-        this.editor.tags.allow(this.editor.content, 'container');
-        this.editor.tags.allow('section', 'audio', 'figure', 'heading', 'iframe', 'image', 'list', 'paragraph', 'quote', 'table', 'video');
         this.editor.dialogs.set(new SectionDialog(this.editor));
         this._command('section');
         this._toolbar('Section');

@@ -25,8 +25,16 @@ export default class Heading extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({name: 'h2', group: 'heading', deletable: true, editable: true, focusable: true, navigable: true, sortable: true, enter: 'p'});
-        this.editor.tags.allow(this.editor.content, 'heading');
+        this._tag({
+            name: 'h2',
+            group: 'heading',
+            deletable: true,
+            editable: true,
+            focusable: true,
+            navigable: true,
+            sortable: true,
+            enter: 'p',
+        });
         this._command('h2');
         this._toolbar('Heading');
     }

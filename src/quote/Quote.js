@@ -29,10 +29,15 @@ export default class Quote extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({name: 'blockquote', group: 'quote', deletable: true, editable: true, navigable: true, enter: 'p'});
-        this.editor.tags.allow(this.editor.content, 'quote');
-        this.editor.tags.allow('figure', 'quote');
-        this.editor.tags.allow('blockquote', 'break', 'format');
+        this._tag({
+            name: 'blockquote',
+            group: 'quote',
+            children: ['break', 'format'],
+            deletable: true,
+            editable: true,
+            navigable: true,
+            enter: 'p',
+        });
         new QuoteListener(this.editor);
         this._command('blockquote');
         this._toolbar('Quote');

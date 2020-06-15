@@ -36,9 +36,13 @@ export default class Image extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({name: 'img', group: 'image', attributes: ['alt', 'height', 'src', 'width'], empty: true, navigable: true});
-        this.editor.tags.allow(this.editor.content, 'image');
-        this.editor.tags.allow('figure', 'image');
+        this._tag({
+            name: 'img',
+            group: 'image',
+            attributes: ['alt', 'height', 'src', 'width'],
+            empty: true,
+            navigable: true,
+        });
         new ImageListener(this.editor);
 
         if (this.editor.config.image.browser) {

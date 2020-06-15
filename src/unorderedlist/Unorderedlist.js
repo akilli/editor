@@ -26,9 +26,15 @@ export default class Unorderedlist extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({name: 'ul', group: 'list', deletable: true, focusable: true, navigable: true, sortable: true});
-        this.editor.tags.allow(this.editor.content, 'list');
-        this.editor.tags.allow('ul', 'listitem');
+        this._tag({
+            name: 'ul',
+            group: 'list',
+            children: ['listitem'],
+            deletable: true,
+            focusable: true,
+            navigable: true,
+            sortable: true,
+        });
         this._command('ul');
         this._toolbar('Unordered List');
     }

@@ -36,9 +36,13 @@ export default class Audio extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({name: 'audio', group: 'audio', attributes: ['controls', 'height', 'src', 'width'], empty: true, navigable: true});
-        this.editor.tags.allow(this.editor.content, 'audio');
-        this.editor.tags.allow('figure', 'audio');
+        this._tag({
+            name: 'audio',
+            group: 'audio',
+            attributes: ['controls', 'height', 'src', 'width'],
+            empty: true,
+            navigable: true,
+        });
         new AudioListener(this.editor);
 
         if (this.editor.config.audio.browser) {

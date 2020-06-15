@@ -36,9 +36,13 @@ export default class Video extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({name: 'video', group: 'video', attributes: ['controls', 'height', 'src', 'width'], empty: true, navigable: true});
-        this.editor.tags.allow(this.editor.content, 'video');
-        this.editor.tags.allow('figure', 'video');
+        this._tag({
+            name: 'video',
+            group: 'video',
+            attributes: ['controls', 'height', 'src', 'width'],
+            empty: true,
+            navigable: true,
+        });
         new VideoListener(this.editor);
 
         if (this.editor.config.video.browser) {

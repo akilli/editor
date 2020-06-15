@@ -34,8 +34,18 @@ export default class Base extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({name: 'editor-content', group: 'root'});
-        this._tag({name: 'slot', group: 'slot', editable: true, focusable: true, navigable: true});
+        this._tag({
+            name: 'editor-content',
+            group: 'root',
+            children: ['audio', 'block', 'container', 'figure', 'heading', 'iframe', 'image', 'list', 'paragraph', 'quote', 'table', 'video'],
+        });
+        this._tag({
+            name: 'slot',
+            group: 'slot',
+            editable: true,
+            focusable: true,
+            navigable: true,
+        });
         new ToolbarListener(this.editor);
         new TagListener(this.editor);
         new EditableListener(this.editor);

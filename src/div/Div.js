@@ -29,6 +29,7 @@ export default class Div extends Plugin {
         this._tag({
             name: 'div',
             group: 'container',
+            children: ['audio', 'block', 'figure', 'iframe', 'image', 'quote', 'table', 'video'],
             attributes: ['class'],
             deletable: true,
             focusable: true,
@@ -36,8 +37,6 @@ export default class Div extends Plugin {
             slotable: true,
             sortable: true,
         });
-        this.editor.tags.allow(this.editor.content, 'container');
-        this.editor.tags.allow('div', 'audio', 'block', 'figure', 'iframe', 'image', 'quote', 'table', 'video');
         this.editor.dialogs.set(new DivDialog(this.editor));
         this._command('div');
         this._toolbar('Division');

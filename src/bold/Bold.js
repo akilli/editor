@@ -25,7 +25,10 @@ export default class Bold extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({name: 'b', group: 'format'});
+        this._tag({
+            name: 'b',
+            group: 'format',
+        });
         this._command('b');
         this._toolbar('bold', 'b');
     }

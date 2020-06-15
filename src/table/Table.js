@@ -31,22 +31,48 @@ export default class Table extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({name: 'table', group: 'table', deletable: true, navigable: true, sortable: true});
-        this._tag({name: 'thead', group: 'tablesection'});
-        this._tag({name: 'tbody', group: 'tablesection'});
-        this._tag({name: 'tfoot', group: 'tablesection'});
-        this._tag({name: 'tr', group: 'tablerow'});
-        this._tag({name: 'th', group: 'tablecell', editable: true, empty: true});
-        this._tag({name: 'td', group: 'tablecell', editable: true, empty: true});
-        this.editor.tags.allow(this.editor.content, 'table');
-        this.editor.tags.allow('figure', 'table');
-        this.editor.tags.allow('table', 'tablesection');
-        this.editor.tags.allow('thead', 'tablerow');
-        this.editor.tags.allow('tbody', 'tablerow');
-        this.editor.tags.allow('tfoot', 'tablerow');
-        this.editor.tags.allow('tr', 'tablecell');
-        this.editor.tags.allow('th', 'break', 'format');
-        this.editor.tags.allow('td', 'break', 'format');
+        this._tag({
+            name: 'table',
+            group: 'table',
+            children: ['tablesection'],
+            deletable: true,
+            navigable: true,
+            sortable: true,
+        });
+        this._tag({
+            name: 'thead',
+            group: 'tablesection',
+            children: ['tablerow'],
+        });
+        this._tag({
+            name: 'tbody',
+            group: 'tablesection',
+            children: ['tablerow'],
+        });
+        this._tag({
+            name: 'tfoot',
+            group: 'tablesection',
+            children: ['tablerow'],
+        });
+        this._tag({
+            name: 'tr',
+            group: 'tablerow',
+            children: ['tablecell'],
+        });
+        this._tag({
+            name: 'th',
+            group: 'tablecell',
+            children: ['break', 'format'],
+            editable: true,
+            empty: true,
+        });
+        this._tag({
+            name: 'td',
+            group: 'tablecell',
+            children: ['break', 'format'],
+            editable: true,
+            empty: true,
+        });
         new TableListener(this.editor);
         this.editor.filters.add(new TableFilter(this.editor));
         this.editor.dialogs.set(new TableDialog(this.editor));

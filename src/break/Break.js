@@ -24,7 +24,11 @@ export default class Break extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._tag({name: 'br', group: 'break', empty: true});
+        this._tag({
+            name: 'br',
+            group: 'break',
+            empty: true,
+        });
         this.editor.filters.add(new BreakFilter(this.editor));
     }
 }

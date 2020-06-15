@@ -7,13 +7,6 @@ import Tag from './Tag.js';
  */
 export default class TagManager extends Map {
     /**
-     * Rules
-     *
-     * @type {Object.<String, Set<String>>}
-     */
-    rules = {};
-
-    /**
      * Initializes a new tag manager
      *
      * @param {Tag[]} [tags = []]
@@ -57,24 +50,6 @@ export default class TagManager extends Map {
     }
 
     /**
-     * Allows group inside given tag
-     *
-     * @param {String|HTMLElement} key
-     * @param {...String} groups
-     */
-    allow(key, ...groups) {
-        key = this.__key(key);
-
-        if (!this.has(key) || groups.find(item => !item || typeof item !== 'string')) {
-            throw 'Invalid argument';
-        } else if (this.rules[key]) {
-            groups.forEach(item => this.rules[key].add(item));
-        } else {
-            this.rules[key] = new Set(groups);
-        }
-    }
-
-    /**
      * Checks if tag is allowed inside parent tag
      *
      * @param {String|HTMLElement} key
@@ -82,9 +57,7 @@ export default class TagManager extends Map {
      * @return {Boolean}
      */
     allowed(key, childKey) {
-        key = this.__key(key);
-
-        return this.has(key) && this.rules[key]?.has(this.get(childKey)?.group);
+        return !!this.get(key)?.children.includes(this.get(childKey)?.group);
     }
 
     /**

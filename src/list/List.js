@@ -25,8 +25,17 @@ export default class List extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._tag({name: 'li', group: 'listitem', deletable: true, editable: true, focusable: true, navigable: true, sortable: true, enter: 'li'});
-        this.editor.tags.allow('li', 'break', 'format');
+        this._tag({
+            name: 'li',
+            group: 'listitem',
+            children: ['break', 'format'],
+            deletable: true,
+            editable: true,
+            focusable: true,
+            navigable: true,
+            sortable: true,
+            enter: 'li',
+        });
         new ListListener(this.editor);
     }
 }

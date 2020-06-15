@@ -26,9 +26,17 @@ export default class Paragraph extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({name: 'p', group: 'paragraph', deletable: true, editable: true, focusable: true, navigable: true, sortable: true, enter: 'p'});
-        this.editor.tags.allow(this.editor.content, 'paragraph');
-        this.editor.tags.allow('p', 'break', 'format');
+        this._tag({
+            name: 'p',
+            group: 'paragraph',
+            children: ['break', 'format'],
+            deletable: true,
+            editable: true,
+            focusable: true,
+            navigable: true,
+            sortable: true,
+            enter: 'p',
+        });
         this._command('p');
         this._toolbar('Paragraph');
     }

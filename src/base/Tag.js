@@ -17,6 +17,13 @@ export default class Tag {
     group;
 
     /**
+     * Allowed groups of child elements
+     *
+     * @type {String[]}
+     */
+    children = [];
+
+    /**
      * Allowed attributes
      *
      * @type {String[]}
@@ -100,6 +107,7 @@ export default class Tag {
 
         this.name = name;
         this.group = group;
+        this.children = Array.isArray(opts.children) ? opts.children : [];
         this.attributes = Array.isArray(opts.attributes) ? opts.attributes : [];
         this.alignable = opts.alignable === true;
         this.deletable = opts.deletable === true;

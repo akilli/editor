@@ -30,15 +30,20 @@ export default class Details extends Plugin {
         this._tag({
             name: 'details',
             group: 'container',
+            children: ['audio', 'figure', 'iframe', 'image', 'list', 'paragraph', 'quote', 'summary', 'table', 'video'],
             deletable: true,
             focusable: true,
             navigable: true,
             slotable: true,
             sortable: true,
         });
-        this._tag({name: 'summary', group: 'summary', editable: true, navigable: true, enter: 'p'});
-        this.editor.tags.allow(this.editor.content, 'container');
-        this.editor.tags.allow('details', 'audio', 'figure', 'iframe', 'image', 'list', 'paragraph', 'quote', 'summary', 'table', 'video');
+        this._tag({
+            name: 'summary',
+            group: 'summary',
+            editable: true,
+            navigable: true,
+            enter: 'p',
+        });
         new DetailsListener(this.editor);
         this._command('details');
         this._toolbar('Details');
