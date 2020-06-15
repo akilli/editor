@@ -1,6 +1,6 @@
 {
   "name": "@akilli/editor",
-  "version": "0.67.0",
+  "version": "0.68.0",
   "description": "Minimal rich text editor",
   "keywords": [
     "contenteditable",
@@ -33,6 +33,6 @@
     "@rollup/plugin-url": "^5.0.1",
     "rollup": "^2.16.1",
     "rollup-plugin-css-porter": "^1.0.2",
-    "rollup-plugin-esbuild": "^2.0.0"
+    "rollup-plugin-esbuild": "^2.1.0"
   }
 }
