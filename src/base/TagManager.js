@@ -30,7 +30,7 @@ export default class TagManager extends Map {
      * @return {?Boolean}
      */
     has(key) {
-        return super.has(key instanceof HTMLElement ? key.localName : key);
+        return super.has(this.__key(key));
     }
 
     /**
@@ -40,11 +40,7 @@ export default class TagManager extends Map {
      * @return {?Tag}
      */
     get(key) {
-        if (key instanceof HTMLElement) {
-            key = key.getAttribute('is') || key.localName;
-        }
-
-        return super.get(key) || null;
+        return super.get(this.__key(key)) || null;
     }
 
     /**
@@ -67,13 +63,11 @@ export default class TagManager extends Map {
      * @param {...String} groups
      */
     allow(key, ...groups) {
+        key = this.__key(key);
+
         if (!this.has(key) || groups.find(item => !item || typeof item !== 'string')) {
             throw 'Invalid argument';
-        } else if (key instanceof HTMLElement) {
-            key = key.localName;
-        }
-
-        if (this.rules[key]) {
+        } else if (this.rules[key]) {
             groups.forEach(item => this.rules[key].add(item));
         } else {
             this.rules[key] = new Set(groups);
@@ -88,8 +82,23 @@ export default class TagManager extends Map {
      * @return {Boolean}
      */
     allowed(childKey, key) {
-        key = key instanceof HTMLElement ? key.localName : key;
+        key = this.__key(key);
 
         return this.has(key) && this.rules[key]?.has(this.get(childKey)?.group);
+    }
+
+    /**
+     * Returns key
+     *
+     * @private
+     * @param {String|HTMLElement} key
+     * @return {String}
+     */
+    __key(key) {
+        if (key instanceof HTMLElement) {
+            return key.getAttribute('is') || key.localName;
+        }
+
+        return key;
     }
 }
