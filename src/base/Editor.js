@@ -2,7 +2,7 @@ import CommandMap from './CommandMap.js';
 import DialogMap from './DialogMap.js';
 import Dispatcher from './Dispatcher.js';
 import FilterManager from './FilterManager.js';
-import PluginMap from './PluginMap.js';
+import PluginManager from './PluginManager.js';
 import TagManager from './TagManager.js';
 import Translator from './Translator.js';
 
@@ -111,9 +111,9 @@ export default class Editor {
     /**
      * Plugins
      *
-     * @type {PluginMap}
+     * @type {PluginManager}
      */
-    plugins = new PluginMap();
+    plugins = new PluginManager();
 
     /**
      * Default configuration

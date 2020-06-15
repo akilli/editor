@@ -1,11 +1,11 @@
 import Plugin from './Plugin.js';
 
 /**
- * Plugin Map
+ * Plugin Manager
  *
  * @extends {Map<String, Plugin>}
  */
-export default class PluginMap extends Map {
+export default class PluginManager extends Map {
     /**
      * Initializes a new plugin map
      *
