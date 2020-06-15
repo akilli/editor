@@ -24,7 +24,7 @@ export default class Bold extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._translator(i18n);
+        this._i18n(i18n);
         this._tag({name: 'b', group: 'format'});
         this._command('b');
         this._toolbar('bold', 'b');

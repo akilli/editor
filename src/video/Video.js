@@ -35,7 +35,7 @@ export default class Video extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._translator(i18n);
+        this._i18n(i18n);
         this._tag({
             name: 'video',
             group: 'video',

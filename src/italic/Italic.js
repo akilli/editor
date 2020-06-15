@@ -24,7 +24,7 @@ export default class Italic extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._translator(i18n);
+        this._i18n(i18n);
         this._tag({name: 'i', group: 'format'});
         this._command('i');
         this._toolbar('italic', 'i');

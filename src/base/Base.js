@@ -32,7 +32,7 @@ export default class Base extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._translator(i18n);
+        this._i18n(i18n);
         this._tag({name: 'editor-content', group: 'root'});
         new ToolbarListener(this.editor);
         new TagListener(this.editor);

@@ -27,7 +27,7 @@ export default class Link extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._translator(i18n);
+        this._i18n(i18n);
         this._tag({name: 'a', group: 'format', attributes: ['href']});
         new LinkListener(this.editor);
         this.editor.dialogs.set(new LinkDialog(this.editor));

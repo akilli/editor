@@ -30,7 +30,7 @@ export default class Table extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._translator(i18n);
+        this._i18n(i18n);
         this._tag({name: 'table', group: 'table', children: ['tablesection'], deletable: true, navigable: true, sortable: true});
         this.editor.tags.allow(this.editor.content, 'table');
         this.editor.tags.allow('figure', 'table');

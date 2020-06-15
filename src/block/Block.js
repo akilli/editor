@@ -35,7 +35,7 @@ export default class Block extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._translator(i18n);
+        this._i18n(i18n);
         this.editor.registerElement('editor-block', BlockElement);
         this._tag({
             name: 'editor-block',

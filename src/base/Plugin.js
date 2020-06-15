@@ -74,12 +74,12 @@ export default class Plugin {
     }
 
     /**
-     * Registers a translator for this plugin
+     * Registers i18n data for this plugin
      *
      * @protected
      * @param {Object.<String, Object.<String, String>>} i18n
      */
-    _translator(i18n) {
+    _i18n(i18n) {
         if (i18n[this.editor.config.base.lang]) {
             this.editor.translator.set(this.constructor.name, i18n[this.editor.config.base.lang]);
         }
