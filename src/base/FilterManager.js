@@ -1,11 +1,11 @@
 import Filter from './Filter.js';
 
 /**
- * Filter Set
+ * Filter Manager
  *
  * @extends {Set<Filter>}
  */
-export default class FilterSet extends Set {
+export default class FilterManager extends Set {
     /**
      * Adds or updates a filter
      *

@@ -1,7 +1,7 @@
 import CommandMap from './CommandMap.js';
 import DialogMap from './DialogMap.js';
 import Dispatcher from './Dispatcher.js';
-import FilterSet from './FilterSet.js';
+import FilterManager from './FilterManager.js';
 import PluginMap from './PluginMap.js';
 import TagManager from './TagManager.js';
 import Translator from './Translator.js';
@@ -90,9 +90,9 @@ export default class Editor {
     /**
      * Filters
      *
-     * @type {FilterSet}
+     * @type {FilterManager}
      */
-    filters = new FilterSet();
+    filters = new FilterManager();
 
     /**
      * Dialogs
