@@ -1,13 +1,13 @@
 import Command from './Command.js';
 
 /**
- * Command Map
+ * Command Manager
  *
  * @extends {Map<String, Command>}
  */
-export default class CommandMap extends Map {
+export default class CommandManager extends Map {
     /**
-     * Initializes a new command map
+     * Initializes a new command manager
      *
      * @param {Command[]} [commands = []]
      */

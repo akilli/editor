@@ -1,4 +1,4 @@
-import CommandMap from './CommandMap.js';
+import CommandManager from './CommandManager.js';
 import DialogMap from './DialogMap.js';
 import Dispatcher from './Dispatcher.js';
 import FilterManager from './FilterManager.js';
@@ -104,9 +104,9 @@ export default class Editor {
     /**
      * Commands
      *
-     * @type {CommandMap}
+     * @type {CommandManager}
      */
-    commands = new CommandMap();
+    commands = new CommandManager();
 
     /**
      * Plugins
