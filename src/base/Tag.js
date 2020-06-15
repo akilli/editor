@@ -66,6 +66,13 @@ export default class Tag {
     navigable = false;
 
     /**
+     * Does element define a slot
+     *
+     * @type {Boolean}
+     */
+    slotable = false;
+
+    /**
      * Is element sortable
      *
      * @type {Boolean}
@@ -100,6 +107,7 @@ export default class Tag {
         this.empty = opts.empty === true;
         this.focusable = opts.focusable === true;
         this.navigable = opts.navigable === true;
+        this.slotable = opts.slotable === true;
         this.sortable = opts.sortable === true;
         this.enter = opts.enter && typeof opts.enter === 'string' ? opts.enter : null;
     }

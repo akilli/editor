@@ -5,6 +5,7 @@ import EditableListener from './EditableListener.js';
 import FocusableListener from './FocusableListener.js';
 import NavigableListener from './NavigableListener.js';
 import Plugin from './Plugin.js';
+import SlotableListener from './SlotableListener.js';
 import SortableListener from './SortableListener.js';
 import TagListener from './TagListener.js';
 import ToolbarListener from './ToolbarListener.js';
@@ -34,6 +35,7 @@ export default class Base extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({name: 'editor-content', group: 'root'});
+        this._tag({name: 'slot', group: 'slot', editable: true, focusable: true, navigable: true});
         new ToolbarListener(this.editor);
         new TagListener(this.editor);
         new EditableListener(this.editor);
@@ -42,6 +44,7 @@ export default class Base extends Plugin {
         new SortableListener(this.editor);
         new AlignableListener(this.editor);
         new FocusableListener(this.editor);
+        new SlotableListener(this.editor);
         this.editor.filters.add(new ContentFilter(this.editor));
     }
 }
