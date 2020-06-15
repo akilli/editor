@@ -25,7 +25,7 @@ export default class Subheading extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({
+        this._tag({
             name: 'h3',
             group: 'heading',
             deletable: true,

@@ -36,7 +36,7 @@ export default class Video extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({
+        this._tag({
             name: 'video',
             group: 'video',
             attributes: ['controls', 'height', 'src', 'width'],

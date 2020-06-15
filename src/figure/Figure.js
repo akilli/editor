@@ -25,7 +25,7 @@ export default class Figure extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.set({
+        this._tag({
             name: 'figure',
             group: 'figure',
             alignable: true,
@@ -37,7 +37,7 @@ export default class Figure extends Plugin {
             sortable: true,
         });
         this.editor.tags.allow(this.editor.content, 'figure');
-        this.editor.tags.set({
+        this._tag({
             name: 'figcaption',
             group: 'caption',
             children: ['format'],

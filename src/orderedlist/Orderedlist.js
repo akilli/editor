@@ -26,7 +26,7 @@ export default class Orderedlist extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({
+        this._tag({
             name: 'ol',
             group: 'list',
             children: ['listitem'],

@@ -28,7 +28,7 @@ export default class Div extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({
+        this._tag({
             name: 'div',
             group: 'container',
             attributes: ['class'],

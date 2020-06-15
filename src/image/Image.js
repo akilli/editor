@@ -36,7 +36,7 @@ export default class Image extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({
+        this._tag({
             name: 'img',
             group: 'image',
             attributes: ['alt', 'height', 'src', 'width'],

@@ -29,7 +29,7 @@ export default class Quote extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({
+        this._tag({
             name: 'blockquote',
             group: 'quote',
             children: ['break', 'format'],

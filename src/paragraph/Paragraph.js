@@ -26,7 +26,7 @@ export default class Paragraph extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({
+        this._tag({
             name: 'p',
             group: 'paragraph',
             children: ['break', 'format'],

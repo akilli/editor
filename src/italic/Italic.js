@@ -25,7 +25,7 @@ export default class Italic extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({name: 'i', group: 'format'});
+        this._tag({name: 'i', group: 'format'});
         this._command('i');
         this._toolbar('italic', 'i');
     }

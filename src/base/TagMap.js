@@ -9,7 +9,7 @@ export default class TagMap extends Map {
     /**
      * Initializes a new tag map
      *
-     * @param {Tag[]|Object[]} [tags = []]
+     * @param {Tag[]} [tags = []]
      */
     constructor(tags = []) {
         super();
@@ -43,11 +43,11 @@ export default class TagMap extends Map {
     /**
      * Adds or updates a tag
      *
-     * @param {Tag|Object} tag
+     * @param {Tag} tag
      */
     set(tag) {
         if (!(tag instanceof Tag)) {
-            tag = new Tag(tag);
+            throw 'Invalid argument';
         }
 
         super.set(tag.name, tag);

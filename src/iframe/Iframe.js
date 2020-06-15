@@ -36,7 +36,7 @@ export default class Iframe extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({
+        this._tag({
             name: 'iframe',
             group: 'iframe',
             attributes: ['allowfullscreen', 'height', 'src', 'width'],

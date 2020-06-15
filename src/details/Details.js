@@ -29,7 +29,7 @@ export default class Details extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({
+        this._tag({
             name: 'details',
             group: 'container',
             children: ['audio', 'figure', 'iframe', 'image', 'list', 'paragraph', 'quote', 'summary', 'table', 'video'],
@@ -39,7 +39,7 @@ export default class Details extends Plugin {
             sortable: true,
         });
         this.editor.tags.allow(this.editor.content, 'container');
-        this.editor.tags.set({name: 'summary', group: 'summary', editable: true, enter: 'p', navigable: true});
+        this._tag({name: 'summary', group: 'summary', editable: true, enter: 'p', navigable: true});
         new DetailsListener(this.editor);
         new SummaryListener(this.editor);
         this._command('details');

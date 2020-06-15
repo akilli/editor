@@ -28,7 +28,7 @@ export default class Link extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({name: 'a', group: 'format', attributes: ['href']});
+        this._tag({name: 'a', group: 'format', attributes: ['href']});
         new LinkListener(this.editor);
         this.editor.dialogs.set(new LinkDialog(this.editor));
         this.editor.commands.set(new LinkCommand(this.editor));

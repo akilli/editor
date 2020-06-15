@@ -36,7 +36,7 @@ export default class Audio extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({
+        this._tag({
             name: 'audio',
             group: 'audio',
             attributes: ['controls', 'height', 'src', 'width'],

@@ -1,5 +1,6 @@
 import Command from './Command.js';
 import Editor from './Editor.js';
+import Tag from './Tag.js';
 
 /**
  * Plugin
@@ -92,6 +93,16 @@ export default class Plugin {
      */
     _command(tagName) {
         this.editor.commands.set(new Command(this.editor, this.constructor.name, tagName));
+    }
+
+    /**
+     * Creates and registers a tag with given options
+     *
+     * @protected
+     * @param {Object} opts
+     */
+    _tag(opts) {
+        this.editor.tags.set(new Tag(opts));
     }
 
     /**

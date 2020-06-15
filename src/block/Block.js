@@ -37,7 +37,7 @@ export default class Block extends Plugin {
     init() {
         this._translator(i18n);
         this.editor.registerElement('editor-block', BlockElement);
-        this.editor.tags.set({
+        this._tag({
             name: 'editor-block',
             group: 'block',
             attributes: ['id'],

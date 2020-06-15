@@ -33,7 +33,7 @@ export default class Base extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({name: 'editor-content', group: 'root'});
+        this._tag({name: 'editor-content', group: 'root'});
         new ToolbarListener(this.editor);
         new TagListener(this.editor);
         new EditableListener(this.editor);

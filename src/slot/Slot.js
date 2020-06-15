@@ -24,7 +24,7 @@ export default class Slot extends Plugin {
      * @inheritDoc
      */
     init() {
-        this.editor.tags.set({name: 'slot', group: 'slot', editable: true, focusable: true, navigable: true});
+        this._tag({name: 'slot', group: 'slot', editable: true, focusable: true, navigable: true});
         new SlotListener(this.editor);
     }
 }

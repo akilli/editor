@@ -28,7 +28,7 @@ export default class Section extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({
+        this._tag({
             name: 'section',
             group: 'container',
             attributes: ['class'],

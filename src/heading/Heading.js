@@ -25,7 +25,7 @@ export default class Heading extends Plugin {
      */
     init() {
         this._translator(i18n);
-        this.editor.tags.set({
+        this._tag({
             name: 'h2',
             group: 'heading',
             deletable: true,
