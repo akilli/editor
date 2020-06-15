@@ -60,7 +60,7 @@ export default class SummaryListener extends Listener {
      */
     __empty(element) {
         if (!element.textContent.trim()) {
-            element.textContent = this.editor.i18n.translate('details', 'Details');
+            element.textContent = this.editor.translator.translate('details', 'Details');
         } else {
             element.querySelectorAll('br:not(:last-child)').forEach(item => item.parentElement.removeChild(item));
         }

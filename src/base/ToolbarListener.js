@@ -81,6 +81,6 @@ export default class ToolbarListener extends Listener {
      * @return {String}
      */
     _(key) {
-        return this.editor.i18n.translate('base', key);
+        return this.editor.translator.translate('base', key);
     }
 }

@@ -1,9 +1,9 @@
 /**
- * I18n Map
+ * Translator
  *
  * @extends {Map<String, Object.<String, String>>}
  */
-export default class I18nMap extends Map {
+export default class Translator extends Map {
     /**
      * Returns registered i18n data for given name or null
      *

@@ -70,7 +70,7 @@ export default class Plugin {
      * @return {String}
      */
     _(key) {
-        return this.editor.i18n.translate(this.constructor.name, key);
+        return this.editor.translator.translate(this.constructor.name, key);
     }
 
     /**
@@ -81,7 +81,7 @@ export default class Plugin {
      */
     _translator(i18n) {
         if (i18n[this.editor.config.base.lang]) {
-            this.editor.i18n.set(this.constructor.name, i18n[this.editor.config.base.lang]);
+            this.editor.translator.set(this.constructor.name, i18n[this.editor.config.base.lang]);
         }
     }
 
