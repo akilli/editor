@@ -28,17 +28,9 @@ export default class Div extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: 'div',
-            group: 'container',
-            children: ['audio', 'block', 'figure', 'iframe', 'image', 'quote', 'table', 'video'],
-            attributes: ['class'],
-            deletable: true,
-            focusable: true,
-            navigable: true,
-            sortable: true,
-        });
+        this._tag({name: 'div', group: 'container', attributes: ['class'], deletable: true, focusable: true, navigable: true, sortable: true});
         this.editor.tags.allow(this.editor.content, 'container');
+        this.editor.tags.allow('div', 'audio', 'block', 'figure', 'iframe', 'image', 'quote', 'table', 'video');
         new DivListener(this.editor);
         this.editor.dialogs.set(new DivDialog(this.editor));
         this._command('div');

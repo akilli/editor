@@ -26,16 +26,9 @@ export default class Orderedlist extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: 'ol',
-            group: 'list',
-            children: ['listitem'],
-            deletable: true,
-            focusable: true,
-            navigable: true,
-            sortable: true,
-        });
+        this._tag({name: 'ol', group: 'list', deletable: true, focusable: true, navigable: true, sortable: true});
         this.editor.tags.allow(this.editor.content, 'list');
+        this.editor.tags.allow('ol', 'listitem');
         this._command('ol');
         this._toolbar('Ordered List');
     }
