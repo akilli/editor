@@ -20,7 +20,9 @@ export default class ToolbarListener extends Listener {
      */
     insertbutton(event) {
         if (event.detail.element.dataset.key) {
-            event.detail.element.title += ` [${this._('Alt')} + ${this._('Shift')} + ${event.detail.element.dataset.key}]`;
+            const alt = this.editor.translator.translate('base', 'Alt');
+            const shift = this.editor.translator.translate('base', 'Shift');
+            event.detail.element.title += ` [${alt} + ${shift} + ${event.detail.element.dataset.key}]`;
         }
 
         if (event.detail.element.getAttribute('data-command')) {
@@ -71,16 +73,5 @@ export default class ToolbarListener extends Listener {
             event.preventDefault();
             event.stopPropagation();
         }
-    }
-
-    /**
-     * Translates given string
-     *
-     * @protected
-     * @param {String} key
-     * @return {String}
-     */
-    _(key) {
-        return this.editor.translator.translate('base', key);
     }
 }
