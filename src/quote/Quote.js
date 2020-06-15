@@ -35,8 +35,8 @@ export default class Quote extends Plugin {
             children: ['break', 'format'],
             deletable: true,
             editable: true,
-            enter: 'p',
             navigable: true,
+            enter: 'p',
         });
         this.editor.tags.allow(this.editor.content, 'quote');
         this.editor.tags.allow('figure', 'quote');

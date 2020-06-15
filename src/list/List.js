@@ -31,10 +31,10 @@ export default class List extends Plugin {
             children: ['break', 'format'],
             deletable: true,
             editable: true,
-            enter: 'li',
             focusable: true,
             navigable: true,
             sortable: true,
+            enter: 'li',
         });
         new ListListener(this.editor);
     }

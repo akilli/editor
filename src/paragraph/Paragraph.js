@@ -32,10 +32,10 @@ export default class Paragraph extends Plugin {
             children: ['break', 'format'],
             deletable: true,
             editable: true,
-            enter: 'p',
             focusable: true,
             navigable: true,
             sortable: true,
+            enter: 'p',
         });
         this.editor.tags.allow(this.editor.content, 'paragraph');
         this._command('p');

@@ -28,9 +28,9 @@ export default class Figure extends Plugin {
         this._tag({
             name: 'figure',
             group: 'figure',
-            alignable: true,
-            attributes: ['class'],
             children: ['caption'],
+            attributes: ['class'],
+            alignable: true,
             deletable: true,
             focusable: true,
             navigable: true,
@@ -42,8 +42,8 @@ export default class Figure extends Plugin {
             group: 'caption',
             children: ['format'],
             editable: true,
-            enter: 'p',
             navigable: true,
+            enter: 'p',
         });
         new FigureListener(this.editor);
         this.editor.filters.add(new FigureFilter(this.editor));

@@ -17,11 +17,11 @@ export default class Tag {
     group;
 
     /**
-     * Is element alignable
+     * Allowed groups of child elements
      *
-     * @type {Boolean}
+     * @type {String[]}
      */
-    alignable = false;
+    children = [];
 
     /**
      * Allowed attributes
@@ -31,11 +31,11 @@ export default class Tag {
     attributes = [];
 
     /**
-     * Allowed groups of child elements
+     * Is element alignable
      *
-     * @type {String[]}
+     * @type {Boolean}
      */
-    children = [];
+    alignable = false;
 
     /**
      * Is element deletable
@@ -59,13 +59,6 @@ export default class Tag {
     empty = false;
 
     /**
-     * Element to insert when ENTER-key is pressed
-     *
-     * @type {?String}
-     */
-    enter = null;
-
-    /**
      * Should element be focused on insert
      *
      * @type {Boolean}
@@ -87,6 +80,13 @@ export default class Tag {
     sortable = false;
 
     /**
+     * Element to insert when ENTER-key is pressed
+     *
+     * @type {?String}
+     */
+    enter = null;
+
+    /**
      * Defines a new tag
      *
      * @param {String} name
@@ -100,15 +100,15 @@ export default class Tag {
 
         this.name = name;
         this.group = group;
-        this.alignable = opts.alignable === true;
-        this.attributes = Array.isArray(opts.attributes) ? opts.attributes : [];
         this.children = Array.isArray(opts.children) ? opts.children : [];
+        this.attributes = Array.isArray(opts.attributes) ? opts.attributes : [];
+        this.alignable = opts.alignable === true;
         this.deletable = opts.deletable === true;
         this.editable = opts.editable === true;
         this.empty = opts.empty === true;
-        this.enter = opts.enter && typeof opts.enter === 'string' ? opts.enter : null;
         this.focusable = opts.focusable === true;
         this.navigable = opts.navigable === true;
         this.sortable = opts.sortable === true;
+        this.enter = opts.enter && typeof opts.enter === 'string' ? opts.enter : null;
     }
 }

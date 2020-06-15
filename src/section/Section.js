@@ -31,8 +31,8 @@ export default class Section extends Plugin {
         this._tag({
             name: 'section',
             group: 'container',
-            attributes: ['class'],
             children: ['audio', 'figure', 'heading', 'iframe', 'image', 'list', 'paragraph', 'quote', 'table', 'video'],
+            attributes: ['class'],
             deletable: true,
             focusable: true,
             navigable: true,

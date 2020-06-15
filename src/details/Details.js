@@ -39,7 +39,7 @@ export default class Details extends Plugin {
             sortable: true,
         });
         this.editor.tags.allow(this.editor.content, 'container');
-        this._tag({name: 'summary', group: 'summary', editable: true, enter: 'p', navigable: true});
+        this._tag({name: 'summary', group: 'summary', editable: true, navigable: true, enter: 'p'});
         new DetailsListener(this.editor);
         new SummaryListener(this.editor);
         this._command('details');
