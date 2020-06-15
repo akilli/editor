@@ -123,7 +123,7 @@ export default class SortableListener extends Listener {
         if (event.target === event.currentTarget) {
             const name = event.dataTransfer.getData(keyName);
 
-            if (name && this.editor.tags.allowed(name, event.target.parentElement)) {
+            if (name && this.editor.tags.allowed(event.target.parentElement, name)) {
                 event.preventDefault();
                 event.stopPropagation();
                 event.target.classList.add('editor-dragover');
@@ -165,7 +165,7 @@ export default class SortableListener extends Listener {
             event.preventDefault();
             event.stopPropagation();
 
-            if (name && this.editor.tags.allowed(name, event.target.parentElement) && html) {
+            if (name && this.editor.tags.allowed(event.target.parentElement, name) && html) {
                 event.target.insertAdjacentHTML('beforebegin', html);
             }
         }

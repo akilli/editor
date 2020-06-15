@@ -31,7 +31,7 @@ export default class EditableListener extends Listener {
      * @param {HTMLElement} event.target
      */
     keydown(event) {
-        if (this.editor.isKey(event, 'Enter', {shift: true}) && !this.editor.tags.allowed('br', event.target)) {
+        if (this.editor.isKey(event, 'Enter', {shift: true}) && !this.editor.tags.allowed(event.target, 'br')) {
             event.preventDefault();
             event.stopPropagation();
         } else if (this.editor.isKey(event, 'Enter')) {

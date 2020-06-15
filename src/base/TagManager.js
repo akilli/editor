@@ -77,11 +77,11 @@ export default class TagManager extends Map {
     /**
      * Checks if tag is allowed inside parent tag
      *
-     * @param {String|HTMLElement} childKey
      * @param {String|HTMLElement} key
+     * @param {String|HTMLElement} childKey
      * @return {Boolean}
      */
-    allowed(childKey, key) {
+    allowed(key, childKey) {
         key = this.__key(key);
 
         return this.has(key) && this.rules[key]?.has(this.get(childKey)?.group);

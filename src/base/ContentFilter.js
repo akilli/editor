@@ -9,7 +9,7 @@ export default class ContentFilter extends Filter {
      */
     filter(element) {
         const tag = this.editor.tags.get(element);
-        const allowedParagraph = this.editor.tags.allowed('p', element);
+        const allowedParagraph = this.editor.tags.allowed(element, 'p');
         const allowedText = tag.editable || tag.group === 'format';
         let p = [];
         const wrap = (ref = null) => {
@@ -26,7 +26,7 @@ export default class ContentFilter extends Filter {
                 child = this.__convert(child);
                 const childTag = this.editor.tags.get(child);
 
-                if (childTag && this.editor.tags.allowed(child, element)) {
+                if (childTag && this.editor.tags.allowed(element, child)) {
                     wrap(child);
                     this.__element(child, childTag);
                 } else if (childTag && childTag.group === 'format' && allowedParagraph) {
