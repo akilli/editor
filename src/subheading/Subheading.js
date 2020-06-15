@@ -25,16 +25,7 @@ export default class Subheading extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: 'h3',
-            group: 'heading',
-            deletable: true,
-            editable: true,
-            focusable: true,
-            navigable: true,
-            sortable: true,
-            enter: 'p',
-        });
+        this._tag({name: 'h3', group: 'heading', deletable: true, editable: true, focusable: true, navigable: true, sortable: true, enter: 'p'});
         this.editor.tags.allow(this.editor.content, 'heading');
         this._command('h3');
         this._toolbar('Subheading');

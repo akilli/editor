@@ -36,13 +36,7 @@ export default class Iframe extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: 'iframe',
-            group: 'iframe',
-            attributes: ['allowfullscreen', 'height', 'src', 'width'],
-            empty: true,
-            navigable: true,
-        });
+        this._tag({name: 'iframe', group: 'iframe', attributes: ['allowfullscreen', 'height', 'src', 'width'], empty: true, navigable: true});
         this.editor.tags.allow(this.editor.content, 'iframe');
         this.editor.tags.allow('figure', 'iframe');
         new IframeListener(this.editor);
