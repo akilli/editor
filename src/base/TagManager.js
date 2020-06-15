@@ -23,7 +23,7 @@ export default class TagManager extends Map {
      * @return {?Boolean}
      */
     has(key) {
-        return super.has(this.__key(key));
+        return super.has(key instanceof HTMLElement ? key.localName : key);
     }
 
     /**
@@ -33,7 +33,7 @@ export default class TagManager extends Map {
      * @return {?Tag}
      */
     get(key) {
-        return super.get(this.__key(key)) || null;
+        return super.get(key instanceof HTMLElement ? key.localName : key) || null;
     }
 
     /**
@@ -58,20 +58,5 @@ export default class TagManager extends Map {
      */
     allowed(key, childKey) {
         return !!this.get(key)?.children.includes(this.get(childKey)?.group);
-    }
-
-    /**
-     * Returns key
-     *
-     * @private
-     * @param {String|HTMLElement} key
-     * @return {String}
-     */
-    __key(key) {
-        if (key instanceof HTMLElement) {
-            return key.getAttribute('is') || key.localName;
-        }
-
-        return key;
     }
 }

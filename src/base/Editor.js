@@ -399,7 +399,7 @@ export default class Editor {
      * @return {HTMLElement}
      */
     createElement(name, {attributes = {}, html = ''} = {}) {
-        const element = this.document.createElement(name, attributes.is ? {is: attributes.is} : null);
+        const element = this.document.createElement(name);
         element.innerHTML = html;
         Object.entries(attributes).forEach(([key, val]) => {
             if (val) {
