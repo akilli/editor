@@ -6,6 +6,8 @@
     --editor-block-color: #fff;
     --editor-block-placeholder: "Block: " attr(id) " ";
     --editor-border: #19191933;
+    --editor-button-background: #191919;
+    --editor-button-color: #fff;
     --editor-cancel-background: #f1c40f;
     --editor-cancel-color: #191919;
     --editor-cmd-focus: #f1c40f;
@@ -16,8 +18,6 @@
     --editor-focus: #f1c40f;
     --editor-hover: #f1c40f;
     --editor-placeholder: 'Gimme some text!';
-    --editor-save-background: #191919;
-    --editor-save-color: #fff;
     --editor-slot-color: #54442b;
     --editor-slot-placeholder: 'Focus this slot and add a widget from the toolbar';
     --editor-toolbar-background: #fff;
@@ -159,7 +159,7 @@ editor-block::before {
 /**
  * Dialog
  */
-dialog.editor-dialog[open] {
+akilli-editor dialog[open] {
     position: fixed;
     left: 0;
     right: 0;
@@ -175,66 +175,66 @@ dialog.editor-dialog[open] {
     background: rgba(0, 0, 0, 0.8);
 }
 
-dialog.editor-dialog form {
+akilli-editor dialog form {
     min-width: 40rem;
     min-height: 20rem;
     padding: 0.75rem;
     background: #fff;
 }
 
-dialog.editor-dialog form > :not(:first-child),
-dialog.editor-dialog fieldset > :not(:first-child) {
+akilli-editor dialog form > :not(:first-child),
+akilli-editor dialog fieldset > :not(:first-child) {
     margin-top: 1.5rem;
 }
 
-dialog.editor-dialog legend {
+akilli-editor dialog legend {
     font-size: 1.25rem;
 }
 
-dialog.editor-dialog label {
+akilli-editor dialog label {
     display: block;
 }
 
-dialog.editor-dialog .editor-required label::after {
+akilli-editor dialog .editor-required label::after {
     content: ' *';
 }
 
-dialog.editor-dialog button {
+akilli-editor dialog button {
     padding: 0.75rem;
+    color: var(--editor-button-color);
+    background: var(--editor-button-background);
 }
 
-dialog.editor-dialog button.editor-cancel {
-    margin-right: 1.5rem;
+akilli-editor dialog button + button {
+    margin-left: 1.5rem;
+}
+
+akilli-editor dialog button[type=button] {
     color: var(--editor-cancel-color);
     background: var(--editor-cancel-background);
 }
 
-dialog.editor-dialog button.editor-save {
-    color: var(--editor-save-color);
-    background: var(--editor-save-background);
-}
-
-dialog.editor-dialog input[type=email],
-dialog.editor-dialog input[type=number],
-dialog.editor-dialog input[type=password],
-dialog.editor-dialog input[type=search],
-dialog.editor-dialog input[type=tel],
-dialog.editor-dialog input[type=text],
-dialog.editor-dialog input[type=url],
-dialog.editor-dialog select {
+akilli-editor dialog input[type=email],
+akilli-editor dialog input[type=number],
+akilli-editor dialog input[type=password],
+akilli-editor dialog input[type=search],
+akilli-editor dialog input[type=tel],
+akilli-editor dialog input[type=text],
+akilli-editor dialog input[type=url],
+akilli-editor dialog select {
     width: 100%;
     padding: 0.71875rem 0;
     border-bottom: 0.0625rem solid var(--editor-border);
 }
 
-dialog.editor-dialog input[type=email]:invalid,
-dialog.editor-dialog input[type=number]:invalid,
-dialog.editor-dialog input[type=password]:invalid,
-dialog.editor-dialog input[type=search]:invalid,
-dialog.editor-dialog input[type=tel]:invalid,
-dialog.editor-dialog input[type=text]:invalid,
-dialog.editor-dialog input[type=url]:invalid,
-dialog.editor-dialog select:invalid {
+akilli-editor dialog input[type=email]:invalid,
+akilli-editor dialog input[type=number]:invalid,
+akilli-editor dialog input[type=password]:invalid,
+akilli-editor dialog input[type=search]:invalid,
+akilli-editor dialog input[type=tel]:invalid,
+akilli-editor dialog input[type=text]:invalid,
+akilli-editor dialog input[type=url]:invalid,
+akilli-editor dialog select:invalid {
     border-color: var(--editor-error);
 }
 

@@ -40,7 +40,7 @@ export default class Dialog {
      * @param {Object} [attributes = {}]
      */
     open(save, attributes = {}) {
-        const cleanup = () => Array.from(this.editor.document.getElementsByClassName('editor-dialog')).forEach(item => {
+        const cleanup = () => Array.from(this.editor.element.getElementsByTagName('dialog')).forEach(item => {
             item.parentElement.removeChild(item)
         });
         const sel = this.editor.window.getSelection();
@@ -55,7 +55,7 @@ export default class Dialog {
         };
         cleanup();
 
-        const dialog = this.editor.createElement('dialog', {attributes: {class: 'editor-dialog', 'data-name': this.name}});
+        const dialog = this.editor.createElement('dialog');
         typeof dialog.open === 'boolean' || this.__polyfill(dialog);
         dialog.addEventListener('click', event => {
             if (event.target === dialog) {
@@ -71,8 +71,8 @@ export default class Dialog {
             }
         });
 
-        const saveButton = this.editor.createElement('button', {attributes: {class: 'editor-save'}, html: this._('Save')});
-        const cancelButton = this.editor.createElement('button', {attributes: {class: 'editor-cancel', type: 'button'}, html: this._('Cancel')});
+        const saveButton = this.editor.createElement('button', {html: this._('Save')});
+        const cancelButton = this.editor.createElement('button', {attributes: {type: 'button'}, html: this._('Cancel')});
         cancelButton.addEventListener('click', close);
 
         const form = this.editor.createElement('form');
