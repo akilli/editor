@@ -1,13 +1,13 @@
 import Dialog from './Dialog.js';
 
 /**
- * Dialog Map
+ * Dialog Manager
  *
  * @extends {Map<String, Dialog>}
  */
-export default class DialogMap extends Map {
+export default class DialogManager extends Map {
     /**
-     * Initializes a new dialog map
+     * Initializes a new dialog manager
      *
      * @param {Dialog[]} [dialogs = []]
      */
