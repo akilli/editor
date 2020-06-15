@@ -1,7 +1,7 @@
 {
   "name": "@akilli/editor",
   "version": "0.70.0",
-  "description": "Minimal rich text editor",
+  "description": "A HTML standards-compliant and dependency-free rich text editor",
   "keywords": [
     "contenteditable",
     "editor",
