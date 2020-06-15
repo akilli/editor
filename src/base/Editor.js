@@ -4,7 +4,7 @@ import Dispatcher from './Dispatcher.js';
 import FilterSet from './FilterSet.js';
 import I18nMap from './I18nMap.js';
 import PluginMap from './PluginMap.js';
-import TagMap from './TagMap.js';
+import TagManager from './TagManager.js';
 
 /**
  * Base Editor
@@ -83,9 +83,9 @@ export default class Editor {
     /**
      * Tags
      *
-     * @type {TagMap}
+     * @type {TagManager}
      */
-    tags = new TagMap();
+    tags = new TagManager();
 
     /**
      * Filters

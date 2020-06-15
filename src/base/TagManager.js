@@ -1,13 +1,13 @@
 import Tag from './Tag.js';
 
 /**
- * Tag Map
+ * Tag Manager
  *
  * @extends {Map<String, Tag>}
  */
-export default class TagMap extends Map {
+export default class TagManager extends Map {
     /**
-     * Initializes a new tag map
+     * Initializes a new tag manager
      *
      * @param {Tag[]} [tags = []]
      */
