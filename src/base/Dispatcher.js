@@ -63,8 +63,9 @@ export default class Dispatcher {
      */
     __dispatch(type, element, target) {
         if (element instanceof HTMLElement && target instanceof HTMLElement) {
+            const name = element.getAttribute('is') || element.localName;
             this.dispatch(type, element, target);
-            this.dispatch(`${type}${element.localName.replace('-', '')}`, element, target);
+            this.dispatch(`${type}${name.replace('-', '')}`, element, target);
         }
     }
 
