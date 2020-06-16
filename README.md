@@ -38,4 +38,5 @@ The table widget additionally allows adding and removing rows and columns before
 
 ## Demo
 
-https://akilli.github.io/editor/demo
+- **dist version:** https://akilli.github.io/editor/demo
+- **src version:** https://akilli.github.io/editor/demo/src.html
