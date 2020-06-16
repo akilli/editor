@@ -5,6 +5,7 @@ import FilterManager from './FilterManager.js';
 import PluginManager from './PluginManager.js';
 import TagManager from './TagManager.js';
 import Translator from './Translator.js';
+import {is, localName} from './util.js';
 
 /**
  * Base Editor
@@ -206,7 +207,7 @@ export default class Editor {
      * @return {String}
      */
     getHtml() {
-        const content = this.createElement(this.content.localName, {html: this.content.innerHTML});
+        const content = this.createElement(localName(this.content), {html: this.content.innerHTML});
         this.filters.filter(content);
         this.contentEvents.dispatch('gethtml', content, this.content);
 
@@ -219,7 +220,7 @@ export default class Editor {
      * @param {String} html
      */
     setHtml(html) {
-        const content = this.createElement(this.content.localName, {html: html});
+        const content = this.createElement(localName(this.content), {html: html});
         this.contentEvents.dispatch('sethtml', content, this.content);
         this.filters.filter(content);
         this.content.innerHTML = content.innerHTML;
@@ -308,7 +309,7 @@ export default class Editor {
         const selNodes = range.cloneContents().childNodes;
         const same = Array.from(selNodes).every(item =>
             item instanceof Text && !item.textContent.trim()
-            || item instanceof HTMLElement && item.localName === element.localName
+            || item instanceof HTMLElement && is(item, element)
         );
 
         range.deleteContents();
@@ -362,7 +363,7 @@ export default class Editor {
 
         if (!(element instanceof HTMLElement)) {
             throw 'Invalid argument';
-        } else if (element.parentElement.localName !== name && (target = this.closest(element, name, opts))) {
+        } else if (!is(element.parentElement, opts.attributes?.is || name) && (target = this.closest(element, name, opts))) {
             target.appendChild(element);
         }
     }
@@ -374,7 +375,7 @@ export default class Editor {
      * @return {Boolean}
      */
     contains(element) {
-        return element instanceof HTMLElement && (this.content.contains(element) || element.closest(this.content.localName));
+        return element instanceof HTMLElement && (this.content.contains(element) || element.closest(localName(this.content)));
     }
 
     /**
@@ -399,7 +400,7 @@ export default class Editor {
      * @return {HTMLElement}
      */
     createElement(name, {attributes = {}, html = ''} = {}) {
-        const element = this.document.createElement(name);
+        const element = this.document.createElement(name, attributes.is ? {is: attributes.is} : null);
         element.innerHTML = html;
         Object.entries(attributes).forEach(([key, val]) => {
             if (val) {

@@ -1,4 +1,5 @@
 import Listener from '../base/Listener.js';
+import {is} from '../base/util.js';
 
 /**
  * Handles quote elements
@@ -30,7 +31,7 @@ export default class QuoteListener extends Listener {
      * @param {HTMLElement} event.detail.target
      */
     deleteblockquote(event) {
-        if (event.detail.target.localName === 'figure' && event.detail.target.classList.contains('quote')) {
+        if (is(event.detail.target, 'figure') && event.detail.target.classList.contains('quote')) {
             event.detail.target.parentElement.removeChild(event.detail.target);
         }
     }

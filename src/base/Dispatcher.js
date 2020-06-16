@@ -1,3 +1,5 @@
+import {localName} from './util.js';
+
 /**
  * Event Dispatcher
  */
@@ -64,7 +66,7 @@ export default class Dispatcher {
     __dispatch(type, element, target) {
         if (element instanceof HTMLElement && target instanceof HTMLElement) {
             this.dispatch(type, element, target);
-            this.dispatch(`${type}${element.localName.replace('-', '')}`, element, target);
+            this.dispatch(`${type}${localName(element).replace('-', '')}`, element, target);
         }
     }
 
