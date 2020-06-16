@@ -1,5 +1,4 @@
 import Editor from './Editor.js';
-import {is} from './util.js';
 
 /**
  * Command
@@ -90,7 +89,7 @@ export default class Command {
     _selectedElement() {
         const element = this.editor.getSelectedElement();
 
-        return is(element, this.tag?.name) ? element : null;
+        return element && element.localName === this.tag?.name ? element : null;
     }
 
     /**

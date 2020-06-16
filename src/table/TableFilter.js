@@ -1,5 +1,4 @@
 import Filter from '../base/Filter.js';
-import {is} from '../base/util.js';
 
 /**
  * Filters table figure, element, sections and rows
@@ -10,7 +9,7 @@ export default class TableFilter extends Filter {
      */
     filter(element) {
         if (element instanceof HTMLElement
-            && is(element, 'figure')
+            && element.localName === 'figure'
             && element.classList.contains('table')
             && element.querySelector(':scope > table')
             && !element.querySelector(':scope > figcaption')

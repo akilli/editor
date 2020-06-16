@@ -1,5 +1,4 @@
 import Filter from './Filter.js';
-import {localName} from './util.js';
 
 /**
  * Content filter
@@ -67,7 +66,7 @@ export default class ContentFilter extends Filter {
      * @return {HTMLElement}
      */
     __convert(element) {
-        const name = this.editor.config.base.filter[localName(element)];
+        const name = this.editor.config.base.filter[element.localName];
 
         if (!name) {
             return element;

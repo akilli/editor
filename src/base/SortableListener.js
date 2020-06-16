@@ -1,5 +1,4 @@
 import Listener from './Listener.js';
-import {localName} from './util.js';
 
 const keyName = 'text/x-editor-name';
 const keyHtml = 'text/x-editor-html';
@@ -93,7 +92,7 @@ export default class SortableListener extends Listener {
     dragstart(event) {
         if (event.target === event.currentTarget) {
             event.dataTransfer.effectAllowed = 'move';
-            event.dataTransfer.setData(keyName, localName(event.target));
+            event.dataTransfer.setData(keyName, event.target.localName);
             event.dataTransfer.setData(keyHtml, event.target.outerHTML);
         }
     }

@@ -1,5 +1,4 @@
 import Tag from './Tag.js';
-import {localName} from './util.js';
 
 /**
  * Tag Manager
@@ -24,7 +23,7 @@ export default class TagManager extends Map {
      * @return {?Boolean}
      */
     has(key) {
-        return super.has(localName(key));
+        return super.has(key instanceof HTMLElement ? key.localName : key);
     }
 
     /**
@@ -34,7 +33,7 @@ export default class TagManager extends Map {
      * @return {?Tag}
      */
     get(key) {
-        return super.get(localName(key)) || null;
+        return super.get(key instanceof HTMLElement ? key.localName : key) || null;
     }
 
     /**

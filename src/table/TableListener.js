@@ -1,5 +1,4 @@
 import Listener from '../base/Listener.js';
-import {is} from '../base/util.js';
 
 /**
  * Table Listener
@@ -130,7 +129,7 @@ export default class TableListener extends Listener {
      * @param {?HTMLTableCellElement} [ref = null]
      */
     __cell(element, ref = null) {
-        const name = is(element.parentElement, 'thead') ? 'th' : 'td';
+        const name = element.parentElement.localName === 'thead' ? 'th' : 'td';
         element.insertBefore(this.editor.createElement(name), ref);
     }
 }
