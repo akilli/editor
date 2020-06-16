@@ -374,7 +374,11 @@ export default class Editor {
      * @return {Boolean}
      */
     contains(element) {
-        return element instanceof HTMLElement && (this.content.contains(element) || element.closest(this.content.localName));
+        if (!(element instanceof HTMLElement)) {
+            throw 'Invalid argument';
+        }
+
+        return this.content.contains(element) || element.closest(this.content.localName)?.parentElement === null;
     }
 
     /**
