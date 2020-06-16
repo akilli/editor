@@ -10,7 +10,7 @@ export default class TableCommand extends Command {
      * @param {Editor} editor
      */
     constructor(editor) {
-        super(editor, 'table');
+        super(editor, 'table', 'table');
     }
 
     /**
