@@ -101,14 +101,18 @@ export default class Tag {
      * @param {Object.<String, {*}>} [opts = {}]
      */
     constructor({name, group, ...opts} = {}) {
-        if (!name || typeof name !== 'string' || !group || typeof group !== 'string') {
+        const reqStr = item => item && typeof item === 'string';
+        const optStr = item => typeof item === 'undefined' || item && typeof item === 'string';
+        const optArr = item => typeof item === 'undefined' || Array.isArray(item) && !item.find(i => !reqStr(i));
+
+        if (!reqStr(name) || !reqStr(group) || !optStr(opts.enter) || !optArr(opts.children) || !optArr(opts.attributes)) {
             throw 'Invalid argument';
         }
 
         this.name = name;
         this.group = group;
-        this.children = Array.isArray(opts.children) ? opts.children : [];
-        this.attributes = Array.isArray(opts.attributes) ? opts.attributes : [];
+        this.children = opts.children || [];
+        this.attributes = opts.attributes || [];
         this.alignable = opts.alignable === true;
         this.deletable = opts.deletable === true;
         this.editable = opts.editable === true;
@@ -117,6 +121,6 @@ export default class Tag {
         this.navigable = opts.navigable === true;
         this.slotable = opts.slotable === true;
         this.sortable = opts.sortable === true;
-        this.enter = opts.enter && typeof opts.enter === 'string' ? opts.enter : null;
+        this.enter = opts.enter || null;
     }
 }
