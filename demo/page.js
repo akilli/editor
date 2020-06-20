@@ -16,7 +16,7 @@ export default (document, Editor) => {
         block: {
             api: 'api/{id}.html',
             browser: 'block.html',
-            css: 'base.css,index.css',
+            css: 'base.css,page.css',
         },
         iframe: {
             browser: 'media.html#iframe',
