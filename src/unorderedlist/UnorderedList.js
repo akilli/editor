@@ -4,9 +4,9 @@ import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
 
 /**
- * Unorderedlist Plugin
+ * Unordered List Plugin
  */
-export default class Unorderedlist extends Plugin {
+export default class UnorderedList extends Plugin {
     /**
      * @inheritDoc
      */

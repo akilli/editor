@@ -9,13 +9,13 @@ import Iframe from '../iframe/Iframe.js';
 import Image from '../image/Image.js';
 import Italic from '../italic/Italic.js';
 import Link from '../link/Link.js';
-import Orderedlist from '../orderedlist/Orderedlist.js';
+import OrderedList from '../orderedlist/OrderedList.js';
 import Paragraph from '../paragraph/Paragraph.js';
 import Quote from '../quote/Quote.js';
 import Section from '../section/Section.js';
 import Subheading from '../subheading/Subheading.js';
 import Table from '../table/Table.js';
-import Unorderedlist from '../unorderedlist/Unorderedlist.js';
+import UnorderedList from '../unorderedlist/UnorderedList.js';
 import Video from '../video/Video.js';
 
 /**
@@ -43,13 +43,13 @@ export default class Editor extends BaseEditor {
                     Image,
                     Italic,
                     Link,
-                    Orderedlist,
+                    OrderedList,
                     Paragraph,
                     Quote,
                     Section,
                     Subheading,
                     Table,
-                    Unorderedlist,
+                    UnorderedList,
                     Video,
                 ],
             },
