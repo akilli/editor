@@ -153,17 +153,22 @@ export default class Editor {
      */
     init() {
         const config = this.config;
-        const configPlugins = config.base?.plugins || this.constructor.defaultConfig.base?.plugins || [];
+        const configured = config.base?.plugins || this.constructor.defaultConfig.base?.plugins || [];
+        const disabled = config.base?.pluginsDisabled || [];
         const plugins = new Set();
-        const add = item => {
+        const add = (item, dependency = false) => {
+            if (plugins.has(item) || !dependency && disabled.includes(item.name)) {
+                return;
+            }
+
             if (item.dependencies) {
-                item.dependencies.forEach(add);
+                item.dependencies.forEach(i => add(i, true));
             }
 
             plugins.add(item);
         };
         this.config = {};
-        configPlugins.map(add);
+        configured.map(item => add(item));
         plugins.forEach(item => {
             Object.entries(item.config).forEach(([key, val]) => {
                 if (!this.config.hasOwnProperty(item.name)) {
