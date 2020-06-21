@@ -3,7 +3,7 @@ import BaseEditor from '../base/Editor.js';
 import Block from '../block/Block.js';
 import Bold from '../bold/Bold.js';
 import Details from '../details/Details.js';
-import Div from '../div/Div.js';
+import Division from '../division/Division.js';
 import Heading from '../heading/Heading.js';
 import Iframe from '../iframe/Iframe.js';
 import Image from '../image/Image.js';
@@ -37,7 +37,7 @@ export default class Editor extends BaseEditor {
                     Block,
                     Bold,
                     Details,
-                    Div,
+                    Division,
                     Heading,
                     Iframe,
                     Image,

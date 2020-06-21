@@ -1,17 +1,17 @@
 import Base from '../base/Base.js';
-import DivDialog from './DivDialog.js';
+import DivisionDialog from './DivisionDialog.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
 
 /**
- * Div Plugin
+ * Division Plugin
  */
-export default class Div extends Plugin {
+export default class Division extends Plugin {
     /**
      * @inheritDoc
      */
     static get name() {
-        return 'div';
+        return 'division';
     }
 
     /**
@@ -37,7 +37,7 @@ export default class Div extends Plugin {
             slotable: true,
             sortable: true,
         });
-        this.editor.dialogs.set(new DivDialog(this.editor));
+        this.editor.dialogs.set(new DivisionDialog(this.editor));
         this._command('div');
         this._toolbar('Division');
     }

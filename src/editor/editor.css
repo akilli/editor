@@ -328,7 +328,7 @@ editor-toolbar [data-command=details] {
     order: 16;
 }
 
-editor-toolbar [data-command=div] {
+editor-toolbar [data-command=division] {
     order: 17;
 }
 
@@ -360,7 +360,7 @@ editor-toolbar [data-command=details]::before {
     content: '\f150';
 }
 
-editor-toolbar [data-command=div]::before {
+editor-toolbar [data-command=division]::before {
     content: '\e804';
 }
 
