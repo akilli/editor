@@ -14,6 +14,7 @@ import OrderedList from '../orderedlist/OrderedList.js';
 import Paragraph from '../paragraph/Paragraph.js';
 import Quote from '../quote/Quote.js';
 import Section from '../section/Section.js';
+import Strikethrough from '../strikethrough/Strikethrough.js';
 import Subheading from '../subheading/Subheading.js';
 import Table from '../table/Table.js';
 import UnorderedList from '../unorderedlist/UnorderedList.js';
@@ -49,6 +50,7 @@ export default class Editor extends BaseEditor {
                     Paragraph,
                     Quote,
                     Section,
+                    Strikethrough,
                     Subheading,
                     Table,
                     UnorderedList,
