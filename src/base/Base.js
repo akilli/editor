@@ -35,7 +35,7 @@ export default class Base extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'editor-content',
+            name: 'editor-root',
             group: 'root',
             children: ['audio', 'block', 'container', 'figure', 'heading', 'iframe', 'image', 'list', 'paragraph', 'quote', 'table', 'video'],
         });

@@ -12,7 +12,7 @@ export default class SortableListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('insert', this);
+        this.editor.root.addEventListener('insert', this);
     }
 
     /**
@@ -145,7 +145,7 @@ export default class SortableListener extends Listener {
      * Dragleave listener
      */
     dragleave() {
-        Array.from(this.editor.content.getElementsByClassName('editor-dragover')).forEach(item => {
+        Array.from(this.editor.root.getElementsByClassName('editor-dragover')).forEach(item => {
             item.classList.length > 1 ? item.classList.remove('editor-dragover') : item.removeAttribute('class');
         })
     }
@@ -179,7 +179,7 @@ export default class SortableListener extends Listener {
      */
     __toggle(element) {
         const hasDraggable = element.hasAttribute('draggable');
-        this.editor.content.querySelectorAll('[draggable]').forEach(item => {
+        this.editor.root.querySelectorAll('[draggable]').forEach(item => {
             item.removeAttribute('draggable');
 
             if (item.hasAttribute('contenteditable')) {

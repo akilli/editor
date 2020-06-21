@@ -9,7 +9,7 @@ export default class AlignableListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('insert', this);
+        this.editor.root.addEventListener('insert', this);
     }
 
     /**
@@ -19,7 +19,7 @@ export default class AlignableListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     insert(event) {
-        if (event.detail.element.parentElement === this.editor.content && event.detail.element.hasAttribute('data-alignable')) {
+        if (event.detail.element.parentElement === this.editor.root && event.detail.element.hasAttribute('data-alignable')) {
             event.detail.element.addEventListener('keydown', this);
         }
     }

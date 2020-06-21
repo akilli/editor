@@ -10,8 +10,8 @@ export default class BlockListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('sethtml', this);
-        this.editor.content.addEventListener('inserteditorblock', this);
+        this.editor.root.addEventListener('sethtml', this);
+        this.editor.root.addEventListener('inserteditorblock', this);
     }
 
     /**

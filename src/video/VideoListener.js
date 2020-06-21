@@ -9,8 +9,8 @@ export default class VideoListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('sethtml', this);
-        this.editor.content.addEventListener('insertvideo', this);
+        this.editor.root.addEventListener('sethtml', this);
+        this.editor.root.addEventListener('insertvideo', this);
     }
 
     /**

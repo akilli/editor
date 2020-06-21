@@ -9,8 +9,8 @@ export default class ParagraphListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('sethtml', this);
-        this.editor.content.addEventListener('insertp', this);
+        this.editor.root.addEventListener('sethtml', this);
+        this.editor.root.addEventListener('insertp', this);
     }
 
     /**

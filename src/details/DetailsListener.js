@@ -9,8 +9,8 @@ export default class DetailsListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('insertdetails', this);
-        this.editor.content.addEventListener('insertsummary', this);
+        this.editor.root.addEventListener('insertdetails', this);
+        this.editor.root.addEventListener('insertsummary', this);
     }
 
     /**

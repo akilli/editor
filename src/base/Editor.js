@@ -46,11 +46,11 @@ export default class Editor {
     toolbar;
 
     /**
-     * Corresponding DOM element of the editor content
+     * Corresponding DOM element of the editor content root
      *
      * @type {HTMLElement}
      */
-    content;
+    root;
 
     /**
      * Event dispatcher of the editor toolbar
@@ -60,11 +60,11 @@ export default class Editor {
     toolbarEvents;
 
     /**
-     * Event dispatcher of the editor content
+     * Event dispatcher of the editor content root
      *
      * @type {Dispatcher}
      */
-    contentEvents;
+    rootEvents;
 
     /**
      * Configuration
@@ -139,12 +139,12 @@ export default class Editor {
         this.document = this.orig.ownerDocument;
         this.window = this.document.defaultView;
         this.toolbar = this.createElement('editor-toolbar', {attributes: {role: 'toolbar'}});
-        this.content = this.createElement('editor-content');
+        this.root = this.createElement('editor-root');
         this.element = this.createElement('akilli-editor');
         this.element.appendChild(this.toolbar);
-        this.element.appendChild(this.content);
+        this.element.appendChild(this.root);
         this.toolbarEvents = new Dispatcher(this.toolbar);
-        this.contentEvents = new Dispatcher(this.content);
+        this.rootEvents = new Dispatcher(this.root);
         this.config = config;
     }
 
@@ -201,28 +201,28 @@ export default class Editor {
     }
 
     /**
-     * Returns editor content element's innerHTML
+     * Returns editor content root element's innerHTML
      *
      * @return {String}
      */
     getHtml() {
-        const content = this.createElement(this.content.localName, {html: this.content.innerHTML});
-        this.filters.filter(content);
-        this.contentEvents.dispatch('gethtml', content, this.content);
+        const root = this.createElement(this.root.localName, {html: this.root.innerHTML});
+        this.filters.filter(root);
+        this.rootEvents.dispatch('gethtml', root, this.root);
 
-        return content.innerHTML;
+        return root.innerHTML;
     }
 
     /**
-     * Sets editor content element's innerHTML
+     * Sets editor content root element's innerHTML
      *
      * @param {String} html
      */
     setHtml(html) {
-        const content = this.createElement(this.content.localName, {html: html});
-        this.contentEvents.dispatch('sethtml', content, this.content);
-        this.filters.filter(content);
-        this.content.innerHTML = content.innerHTML;
+        const root = this.createElement(this.root.localName, {html: html});
+        this.rootEvents.dispatch('sethtml', root, this.root);
+        this.filters.filter(root);
+        this.root.innerHTML = root.innerHTML;
     }
 
     /**
@@ -250,8 +250,8 @@ export default class Editor {
 
         if (editable && editable instanceof HTMLSlotElement && this.tags.allowed(editable.parentElement, element)) {
             editable.insertAdjacentElement('beforebegin', element);
-        } else if (this.tags.allowed(this.content, element)) {
-            this.content.appendChild(element);
+        } else if (this.tags.allowed(this.root, element)) {
+            this.root.appendChild(element);
         } else {
             throw 'Invalid argument';
         }
@@ -368,7 +368,7 @@ export default class Editor {
     }
 
     /**
-     * Indicates if given element is contained by editor content or by a clone of it
+     * Indicates if given element is contained by editor content root or by a clone of it
      *
      * @param {HTMLElement} element
      * @return {Boolean}
@@ -378,7 +378,7 @@ export default class Editor {
             throw 'Invalid argument';
         }
 
-        return this.content.contains(element) || element.closest(this.content.localName)?.parentElement === null;
+        return this.root.contains(element) || element.closest(this.root.localName)?.parentElement === null;
     }
 
     /**
@@ -417,11 +417,11 @@ export default class Editor {
     /**
      * Creates text node in editor document
      *
-     * @param {String} content
+     * @param {String} text
      * @return {Text}
      */
-    createText(content) {
-        return this.document.createTextNode(content);
+    createText(text) {
+        return this.document.createTextNode(text);
     }
 
     /**

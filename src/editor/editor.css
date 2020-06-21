@@ -44,7 +44,7 @@ akilli-editor {
 /**
  * Editor Content
  */
-editor-content {
+editor-root {
     display: block;
     width: 100%;
     padding: 0.75rem 0.6875rem 0.6875rem;
@@ -52,18 +52,18 @@ editor-content {
     border-top: 0;
 }
 
-editor-content::before {
+editor-root::before {
     display: table;
     content: ' ';
 }
 
-editor-content::after {
+editor-root::after {
     display: table;
     clear: both;
     content: ' ';
 }
 
-editor-content:empty::after {
+editor-root:empty::after {
     color: var(--editor-border);
     content: var(--editor-empty);
 }
@@ -71,48 +71,48 @@ editor-content:empty::after {
 /**
  * Widgets
  */
-editor-content :hover {
+editor-root :hover {
     outline: 0.25rem dotted var(--editor-hover);
 }
 
-editor-content :focus {
+editor-root :focus {
     outline: 0.25rem dashed var(--editor-focus);
 }
 
 /**
  * Editable
  */
-editor-content [contenteditable] {
+editor-root [contenteditable] {
     min-height: 1.5rem;
 }
 
-editor-content [contenteditable=true]:hover {
+editor-root [contenteditable=true]:hover {
     outline: 0.25rem dotted var(--editor-hover);
 }
 
-editor-content [contenteditable=true] :hover {
+editor-root [contenteditable=true] :hover {
     text-decoration: underline;
     outline: none;
     cursor: context-menu;
 }
 
-editor-content [contenteditable=true]:empty::after {
+editor-root [contenteditable=true]:empty::after {
     color: var(--editor-border);
     content: var(--editor-placeholder);
 }
 
-editor-content td[contenteditable],
-editor-content th[contenteditable] {
+editor-root td[contenteditable],
+editor-root th[contenteditable] {
     height: 1.5rem;
 }
 
-editor-content slot[contenteditable] {
+editor-root slot[contenteditable] {
     display: block;
     padding: 0.25rem;
     outline: 0.25rem solid var(--editor-slot-color);
 }
 
-editor-content slot[contenteditable=true]:empty::after {
+editor-root slot[contenteditable=true]:empty::after {
     color: var(--editor-slot-color);
     content: var(--editor-slot-placeholder);
 }
@@ -120,7 +120,7 @@ editor-content slot[contenteditable=true]:empty::after {
 /**
  * Draggable
  */
-editor-content [draggable=true]:hover {
+editor-root [draggable=true]:hover {
     outline: 0.25rem dashed var(--editor-draggable);
 }
 
@@ -131,10 +131,10 @@ editor-content [draggable=true]:hover {
 /**
  * Media
  */
-editor-content audio,
-editor-content iframe,
-editor-content img,
-editor-content video {
+editor-root audio,
+editor-root iframe,
+editor-root img,
+editor-root video {
     pointer-events: none;
 }
 

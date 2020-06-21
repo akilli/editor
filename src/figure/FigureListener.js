@@ -9,7 +9,7 @@ export default class FigureListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('insertfigure', this);
+        this.editor.root.addEventListener('insertfigure', this);
     }
 
     /**

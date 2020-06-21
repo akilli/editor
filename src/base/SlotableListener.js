@@ -9,7 +9,7 @@ export default class SlotableListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('insert', this);
+        this.editor.root.addEventListener('insert', this);
     }
 
     /**

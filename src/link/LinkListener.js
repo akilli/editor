@@ -9,8 +9,8 @@ export default class LinkListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('sethtml', this);
-        this.editor.content.addEventListener('inserta', this);
+        this.editor.root.addEventListener('sethtml', this);
+        this.editor.root.addEventListener('inserta', this);
     }
 
     /**

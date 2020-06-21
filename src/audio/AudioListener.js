@@ -9,8 +9,8 @@ export default class AudioListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('sethtml', this);
-        this.editor.content.addEventListener('insertaudio', this);
+        this.editor.root.addEventListener('sethtml', this);
+        this.editor.root.addEventListener('insertaudio', this);
     }
 
     /**

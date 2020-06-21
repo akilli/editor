@@ -9,11 +9,11 @@ export default class ListListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('sethtml', this);
-        this.editor.content.addEventListener('insertli', this);
-        this.editor.content.addEventListener('deleteli', this);
-        this.editor.content.addEventListener('insertol', this);
-        this.editor.content.addEventListener('insertul', this);
+        this.editor.root.addEventListener('sethtml', this);
+        this.editor.root.addEventListener('insertli', this);
+        this.editor.root.addEventListener('deleteli', this);
+        this.editor.root.addEventListener('insertol', this);
+        this.editor.root.addEventListener('insertul', this);
     }
 
     /**

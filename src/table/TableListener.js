@@ -9,9 +9,9 @@ export default class TableListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('inserttable', this);
-        this.editor.content.addEventListener('inserttd', this);
-        this.editor.content.addEventListener('insertth', this);
+        this.editor.root.addEventListener('inserttable', this);
+        this.editor.root.addEventListener('inserttd', this);
+        this.editor.root.addEventListener('insertth', this);
     }
 
     /**

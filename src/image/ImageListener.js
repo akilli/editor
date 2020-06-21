@@ -9,8 +9,8 @@ export default class ImageListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('sethtml', this);
-        this.editor.content.addEventListener('insertimg', this);
+        this.editor.root.addEventListener('sethtml', this);
+        this.editor.root.addEventListener('insertimg', this);
     }
 
     /**

@@ -9,8 +9,8 @@ export default class BlockQuoteListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.content.addEventListener('insertblockquote', this);
-        this.editor.content.addEventListener('deleteblockquote', this);
+        this.editor.root.addEventListener('insertblockquote', this);
+        this.editor.root.addEventListener('deleteblockquote', this);
     }
 
     /**
