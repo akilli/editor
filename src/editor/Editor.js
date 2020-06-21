@@ -17,6 +17,7 @@ import Section from '../section/Section.js';
 import Strikethrough from '../strikethrough/Strikethrough.js';
 import Subheading from '../subheading/Subheading.js';
 import Table from '../table/Table.js';
+import Underline from '../underline/Underline.js';
 import UnorderedList from '../unorderedlist/UnorderedList.js';
 import Video from '../video/Video.js';
 
@@ -53,6 +54,7 @@ export default class Editor extends BaseEditor {
                     Strikethrough,
                     Subheading,
                     Table,
+                    Underline,
                     UnorderedList,
                     Video,
                 ],
