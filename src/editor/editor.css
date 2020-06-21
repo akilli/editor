@@ -272,68 +272,72 @@ editor-toolbar [data-command=italic] {
     order: 2;
 }
 
-editor-toolbar [data-command=link] {
+editor-toolbar [data-command=mark] {
     order: 3;
 }
 
-editor-toolbar [data-command=paragraph] {
+editor-toolbar [data-command=link] {
     order: 4;
 }
 
-editor-toolbar [data-command=heading] {
+editor-toolbar [data-command=paragraph] {
     order: 5;
 }
 
-editor-toolbar [data-command=subheading] {
+editor-toolbar [data-command=heading] {
     order: 6;
 }
 
-editor-toolbar [data-command=unorderedlist] {
+editor-toolbar [data-command=subheading] {
     order: 7;
 }
 
-editor-toolbar [data-command=orderedlist] {
+editor-toolbar [data-command=unorderedlist] {
     order: 8;
 }
 
-editor-toolbar [data-command=quote] {
+editor-toolbar [data-command=orderedlist] {
     order: 9;
 }
 
-editor-toolbar [data-command=image] {
+editor-toolbar [data-command=quote] {
     order: 10;
 }
 
-editor-toolbar [data-command=video] {
+editor-toolbar [data-command=image] {
     order: 11;
 }
 
-editor-toolbar [data-command=audio] {
+editor-toolbar [data-command=video] {
     order: 12;
 }
 
-editor-toolbar [data-command=iframe] {
+editor-toolbar [data-command=audio] {
     order: 13;
 }
 
-editor-toolbar [data-command=table] {
+editor-toolbar [data-command=iframe] {
     order: 14;
 }
 
-editor-toolbar [data-command=section] {
+editor-toolbar [data-command=table] {
     order: 15;
 }
 
-editor-toolbar [data-command=details] {
+editor-toolbar [data-command=section] {
     order: 16;
 }
 
-editor-toolbar [data-command=division] {
+editor-toolbar [data-command=details] {
     order: 17;
 }
 
-editor-toolbar [data-command=block] {
+editor-toolbar [data-command=division] {
     order: 18;
+}
+
+editor-toolbar [data-command=block] {
+    order: 19;
 }
 
 editor-toolbar [data-command]::before {
@@ -382,6 +386,10 @@ editor-toolbar [data-command=italic]::before {
 
 editor-toolbar [data-command=link]::before {
     content: '\e803';
+}
+
+editor-toolbar [data-command=mark]::before {
+    content: '\f1fc';
 }
 
 editor-toolbar [data-command=orderedlist]::before {

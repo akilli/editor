@@ -9,6 +9,7 @@ import Iframe from '../iframe/Iframe.js';
 import Image from '../image/Image.js';
 import Italic from '../italic/Italic.js';
 import Link from '../link/Link.js';
+import Mark from '../mark/Mark.js';
 import OrderedList from '../orderedlist/OrderedList.js';
 import Paragraph from '../paragraph/Paragraph.js';
 import Quote from '../quote/Quote.js';
@@ -43,6 +44,7 @@ export default class Editor extends BaseEditor {
                     Image,
                     Italic,
                     Link,
+                    Mark,
                     OrderedList,
                     Paragraph,
                     Quote,
