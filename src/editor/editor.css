@@ -308,7 +308,7 @@ editor-toolbar [data-command=orderedlist] {
     order: 11;
 }
 
-editor-toolbar [data-command=quote] {
+editor-toolbar [data-command=blockquote] {
     order: 12;
 }
 
@@ -364,6 +364,10 @@ editor-toolbar [data-command=block]::before {
     content: '\f2bc';
 }
 
+editor-toolbar [data-command=blockquote]::before {
+    content: '\e805';
+}
+
 editor-toolbar [data-command=bold]::before {
     content: '\e801';
 }
@@ -406,10 +410,6 @@ editor-toolbar [data-command=orderedlist]::before {
 
 editor-toolbar [data-command=paragraph]::before {
     content: '\f1dd';
-}
-
-editor-toolbar [data-command=quote]::before {
-    content: '\e805';
 }
 
 editor-toolbar [data-command=section]::before {

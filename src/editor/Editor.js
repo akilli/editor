@@ -1,6 +1,7 @@
 import Audio from '../audio/Audio.js';
 import BaseEditor from '../base/Editor.js';
 import Block from '../block/Block.js';
+import BlockQuote from '../blockquote/BlockQuote.js';
 import Bold from '../bold/Bold.js';
 import Details from '../details/Details.js';
 import Division from '../division/Division.js';
@@ -12,7 +13,6 @@ import Link from '../link/Link.js';
 import Mark from '../mark/Mark.js';
 import OrderedList from '../orderedlist/OrderedList.js';
 import Paragraph from '../paragraph/Paragraph.js';
-import Quote from '../quote/Quote.js';
 import Section from '../section/Section.js';
 import Strikethrough from '../strikethrough/Strikethrough.js';
 import Subheading from '../subheading/Subheading.js';
@@ -38,6 +38,7 @@ export default class Editor extends BaseEditor {
                 plugins: [
                     Audio,
                     Block,
+                    BlockQuote,
                     Bold,
                     Details,
                     Division,
@@ -49,7 +50,6 @@ export default class Editor extends BaseEditor {
                     Mark,
                     OrderedList,
                     Paragraph,
-                    Quote,
                     Section,
                     Strikethrough,
                     Subheading,

@@ -1,9 +1,9 @@
 import Filter from '../base/Filter.js';
 
 /**
- * Filters quote figure
+ * Filters block quote figure
  */
-export default class QuoteFilter extends Filter {
+export default class BlockQuoteFilter extends Filter {
     /**
      * @inheritDoc
      */

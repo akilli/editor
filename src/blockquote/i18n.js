@@ -5,6 +5,6 @@
  */
 export default {
     de: {
-        'Quote': 'Zitat',
+        'Block Quote': 'Blockzitat',
     },
 }

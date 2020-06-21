@@ -1,9 +1,9 @@
 import Listener from '../base/Listener.js';
 
 /**
- * Handles quote elements
+ * Handles block quote elements
  */
-export default class QuoteListener extends Listener {
+export default class BlockQuoteListener extends Listener {
     /**
      * @inheritDoc
      */
