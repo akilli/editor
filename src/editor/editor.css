@@ -11,8 +11,6 @@
     --editor-cancel-background: #f1c40f;
     --editor-cancel-color: #191919;
     --editor-cmd-focus: #f1c40f;
-    --editor-draggable: #191919;
-    --editor-dragover: #19191933;
     --editor-empty: 'No content :-( ... click a button in the toolbar to add some :-)';
     --editor-error: #960200;
     --editor-focus: #f1c40f;
@@ -20,6 +18,7 @@
     --editor-placeholder: 'Gimme some text!';
     --editor-slot-color: #54442b;
     --editor-slot-placeholder: 'Focus this slot and add a widget from the toolbar';
+    --editor-sortover: #191919;
     --editor-toolbar-background: #fff;
     --editor-toolbar-color: #191919;
 }
@@ -118,14 +117,14 @@ editor-root slot[contenteditable=true]:empty::after {
 }
 
 /**
- * Draggable
+ * Sortable
  */
-editor-root [draggable=true]:hover {
-    outline: 0.25rem dashed var(--editor-draggable);
+editor-root [data-sortable].editor-sort:hover {
+    cursor: grab;
 }
 
-.editor-dragover {
-    outline: 0.25rem dashed var(--editor-dragover);
+.editor-sortover {
+    outline: 0.25rem dashed var(--editor-sortover);
 }
 
 /**

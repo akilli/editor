@@ -24,8 +24,6 @@ After adding the first widget, you can also use the `Enter` key to add a new par
 
 You can reorder the widgets or elements inside a widget in the editor content either by drag'n'drop or by keyboard shortcuts. Note that not all elements are configured to be sortable, p.e. the *summary* element within the *details* widget will always be the first child element.
 
-As `draggable` and `contenteditable` do not play nice with each other, drag'n'drop is disabled per default. If you doubleclick on a widget or sortable element you can toggle `draggable` and `contenteditable` states. After dropping the widget the states are toggled automatically.
-
 If one of the widgets or element inside a widget is focused, you can use the arrow `ArrowUp`, `ArrowDown`, `Home` and `End` keys to navigate among the widgets.
 
 You can move the focused widget or element inside a widget before its previous or after its next sibling or to first or last position by combining the `Control` key with one of the `ArrowUp`, `ArrowDown`, `Home` or `End` keys.

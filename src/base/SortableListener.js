@@ -1,8 +1,5 @@
 import Listener from './Listener.js';
 
-const keyName = 'text/x-editor-name';
-const keyHtml = 'text/x-editor-html';
-
 /**
  * Sortable Listener
  */
@@ -24,13 +21,9 @@ export default class SortableListener extends Listener {
     insert(event) {
         if (event.detail.element.hasAttribute('data-sortable')) {
             event.detail.element.addEventListener('keydown', this);
-            event.detail.element.addEventListener('dblclick', this);
-            event.detail.element.addEventListener('dragstart', this);
-            event.detail.element.addEventListener('dragend', this);
-            event.detail.element.addEventListener('dragenter', this);
-            event.detail.element.addEventListener('dragover', this);
-            event.detail.element.addEventListener('dragleave', this);
-            event.detail.element.addEventListener('drop', this);
+            event.detail.element.addEventListener('pointerdown', this);
+            event.detail.element.addEventListener('pointermove', this);
+            event.detail.element.addEventListener('pointerup', this);
         }
     }
 
@@ -70,129 +63,73 @@ export default class SortableListener extends Listener {
     }
 
     /**
-     * Doubleclick listener
+     * Pointer down
      *
-     * @param {MouseEvent} event
+     * @param {PointerEvent} event
      * @param {HTMLElement} event.target
      */
-    dblclick(event) {
-        if (event.target === event.currentTarget) {
-            event.preventDefault();
-            event.stopPropagation();
-            this.__toggle(event.target);
-        }
+    pointerdown(event) {
+        event.target.classList.add('editor-sort');
+        event.target.setPointerCapture(event.pointerId);
     }
 
     /**
-     * Dragstart listener
+     * Pointer move
      *
-     * @param {DragEvent} event
+     * @param {PointerEvent} event
      * @param {HTMLElement} event.target
      */
-    dragstart(event) {
-        if (event.target === event.currentTarget) {
-            event.dataTransfer.effectAllowed = 'move';
-            event.dataTransfer.setData(keyName, event.target.localName);
-            event.dataTransfer.setData(keyHtml, event.target.outerHTML);
-        }
-    }
+    pointermove(event) {
+        const element = this.editor.document.elementFromPoint(event.x, event.y);
 
-    /**
-     * Dragend listener
-     *
-     * @param {DragEvent} event
-     * @param {HTMLElement} event.target
-     */
-    dragend(event) {
-        if (event.target === event.currentTarget) {
-            if (event.dataTransfer.dropEffect === 'move') {
-                event.target.parentElement.removeChild(event.target);
-            }
+        if (event.target !== element) {
+            this.__sortover();
 
-            this.__toggle(event.target);
-        }
-    }
-
-    /**
-     * Dragenter listener
-     *
-     * @param {DragEvent} event
-     * @param {HTMLElement} event.target
-     */
-    dragenter(event) {
-        if (event.target === event.currentTarget) {
-            const name = event.dataTransfer.getData(keyName);
-
-            if (name && this.editor.tags.allowed(event.target.parentElement, name)) {
-                event.preventDefault();
-                event.stopPropagation();
-                event.target.classList.add('editor-dragover');
-                event.dataTransfer.dropEffect = 'move';
+            if (this.__sortable(element)) {
+                element.classList.add('editor-sortover');
             }
         }
     }
 
     /**
-     * Dragover listener
+     * Pointer up
      *
-     * @param {DragEvent} event
-     */
-    dragover(event) {
-        this.dragenter(event);
-    }
-
-    /**
-     * Dragleave listener
-     */
-    dragleave() {
-        Array.from(this.editor.root.getElementsByClassName('editor-dragover')).forEach(item => {
-            item.classList.length > 1 ? item.classList.remove('editor-dragover') : item.removeAttribute('class');
-        })
-    }
-
-    /**
-     * Drop listener
-     *
-     * @param {DragEvent} event
+     * @param {PointerEvent} event
      * @param {HTMLElement} event.target
      */
-    drop(event) {
-        this.dragleave();
+    pointerup(event) {
+        const element = this.editor.document.elementFromPoint(event.x, event.y);
+        this.__sortover();
+        event.target.classList.length > 1 ? event.target.classList.remove('editor-sort') : event.target.removeAttribute('class');
+        event.target.releasePointerCapture(event.pointerId);
 
-        if (event.target === event.currentTarget) {
-            const name = event.dataTransfer.getData(keyName);
-            const html = event.dataTransfer.getData(keyHtml);
-            event.preventDefault();
-            event.stopPropagation();
-
-            if (name && this.editor.tags.allowed(event.target.parentElement, name) && html) {
-                event.target.insertAdjacentHTML('beforebegin', html);
-            }
+        if (event.target !== element && this.__sortable(element) && this.editor.tags.allowed(element.parentElement, event.target)) {
+            element.insertAdjacentElement('beforebegin', event.target);
         }
     }
 
     /**
-     * Toggles contenteditable and draggable states
+     * Removes editor sortover class
      *
      * @private
-     * @param {HTMLElement} element
      */
-    __toggle(element) {
-        const hasDraggable = element.hasAttribute('draggable');
-        this.editor.root.querySelectorAll('[draggable]').forEach(item => {
-            item.removeAttribute('draggable');
-
-            if (item.hasAttribute('contenteditable')) {
-                item.setAttribute('contenteditable', 'true');
-            }
+    __sortover() {
+        Array.from(this.editor.root.getElementsByClassName('editor-sortover')).forEach(item => {
+            item.classList.length > 1 ? item.classList.remove('editor-sortover') : item.removeAttribute('class');
         });
+    }
 
-        if (!hasDraggable) {
-            element.setAttribute('draggable', 'true');
-
-            if (element.hasAttribute('contenteditable')) {
-                element.setAttribute('contenteditable', 'false');
-            }
-        }
+    /**
+     * Is element sortable
+     *
+     * @private
+     * @param {?Element} element
+     * @return {Boolean}
+     */
+    __sortable(element) {
+        return element instanceof HTMLElement
+            && element.hasAttribute('data-sortable')
+            && this.editor.contains(element)
+            && element !== this.editor.root;
     }
 }
