@@ -19,7 +19,7 @@ export default class AlignableListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     insert(event) {
-        if (event.detail.element.parentElement === this.editor.root && event.detail.element.hasAttribute('data-alignable')) {
+        if (event.detail.element.hasAttribute('data-alignable')) {
             event.detail.element.addEventListener('keydown', this);
         }
     }
