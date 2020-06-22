@@ -144,10 +144,30 @@ tbody tr:last-child th {
 }
 
 /**
+ * Details
+ */
+details {
+    padding: 0.6875rem;
+    border: 0.0625rem solid;
+}
+
+summary {
+    margin: -0.75rem;
+    padding: 0.6875rem;
+    border: 0.0625rem solid;
+}
+
+details[open] summary {
+    margin-bottom: 0;
+    color: #fff;
+    background: #000;
+}
+
+/**
  * Div
  */
-#rte div,
-editor-root div {
+editor-root div,
+#rte div {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1.5rem;
@@ -156,8 +176,8 @@ editor-root div {
     padding: 1.5rem;
 }
 
-div figure.left,
-div figure.right {
+editor-root div figure.right,
+#rte div figure.left {
     float: none;
     margin: 0;
 }
