@@ -21,7 +21,7 @@ export default class LinkDialog extends Dialog {
             <legend>${this._('Link')}</legend>
             <div>
                 <label for="editor-href">${this._('URL')}</label>
-                <input id="editor-href" name="href" type="text" pattern="(https?|/).+" placeholder="${this._('Insert URL to add a link or leave empty to unlink')}" />
+                <input id="editor-href" name="href" type="text" pattern="(https?|/|mailto:).+" placeholder="${this._('Insert URL to add a link or leave empty to unlink')}" />
             </div>
         `;
     }
