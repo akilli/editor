@@ -21,6 +21,25 @@ section > :not(:first-child) {
     margin-top: 0.75rem;
 }
 
+/**
+ * Clear
+ */
+details::before,
+section::before {
+    display: table;
+    content: ' ';
+}
+
+details::after,
+section::after {
+    display: table;
+    clear: both;
+    content: ' ';
+}
+
+/**
+ * Text
+ */
 h2 {
     font-size: 1.25rem;
 }
@@ -125,52 +144,10 @@ tbody tr:last-child th {
 }
 
 /**
- * Form
+ * Div
  */
-form {
-    min-width: 40rem;
-    min-height: 20rem;
-    padding: 0.75rem;
-    background: #fff;
-}
-
-form > :not(:first-child),
-form > fieldset > :not(:first-child) {
-    margin-top: 1.5rem;
-}
-
-form legend {
-    font-size: 1.25rem;
-}
-
-form label {
-    display: block;
-}
-
-form [data-required] label::after {
-    content: ' *';
-}
-
-form button {
-    padding: 0.75rem;
-    color: #fff;
-    background: #191919;
-}
-
-form input {
-    width: 100%;
-    padding: 0.71875rem 0;
-    border-bottom: 0.0625rem solid #19191933;
-}
-
-form input:invalid {
-    border-color: #960200;
-}
-
-/**
- * Grid
- */
-div.grid {
+#rte div,
+editor-root div {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1.5rem;
@@ -179,13 +156,19 @@ div.grid {
     padding: 1.5rem;
 }
 
+div figure.left,
+div figure.right {
+    float: none;
+    margin: 0;
+}
+
 /**
  * Section
  */
 section.content,
 section.info {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1.5rem auto;
     align-items: start;
     gap: 1.5rem 1.5rem;
