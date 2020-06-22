@@ -194,6 +194,13 @@ section.info {
     gap: 1.5rem 1.5rem;
 }
 
+section.content::before,
+section.content::after,
+section.info::before,
+section.info::after {
+    display: none;
+}
+
 section.content > figure > img,
 section.info > figure > img {
     max-height: 10rem;
@@ -207,6 +214,7 @@ section.content > * {
 section.content > figure {
     grid-column: 1 / 3;
     grid-row: 1 / -1;
+    float: none;
 }
 
 section.info > * {
