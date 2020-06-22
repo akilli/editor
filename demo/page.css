@@ -58,9 +58,49 @@ a {
     text-decoration: underline;
 }
 
+strong {
+    font-weight: bold;
+    color: #93ddf9;
+}
+
 mark {
     padding: 0.125rem 0.25rem;
-    background: #ff0;
+    background: #f1c40f;
+}
+
+small {
+    font-size: smaller;
+}
+
+cite {
+    color: #54442b;
+}
+
+dfn {
+    color: #f1c40f;
+}
+
+var {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+code,
+kbd,
+samp {
+    padding: 0.125rem 0.25rem;
+    border: 0.0625rem solid #191919;
+    border-radius: 0.25rem;
+}
+
+code {
+    color: #fff;
+    background: #191919;
+}
+
+samp {
+    color: #f1c40f;
+    background: #191919;
 }
 
 /**
