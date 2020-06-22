@@ -30,7 +30,7 @@
     font-family: editor;
     font-display: block;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 900;
     src: url(editor.woff2) format('woff2');
 }
 
@@ -245,7 +245,7 @@ editor-toolbar {
     position: sticky;
     top: 0;
     display: flex;
-    padding: 0.6875rem;
+    flex-wrap: wrap;
     color: var(--editor-toolbar-color);
     background: var(--editor-toolbar-background);
     border: 0.0625rem solid var(--editor-border);
@@ -253,9 +253,9 @@ editor-toolbar {
 
 editor-toolbar [data-command] {
     display: inline-block;
+    width: calc(100% / 18);
     line-height: 1;
-    margin-right: 0.75rem;
-    padding: 0;
+    padding: 0.25rem;
     font-family: editor;
     font-size: 0;
 }
@@ -272,80 +272,129 @@ editor-toolbar [data-command=italic] {
     order: 2;
 }
 
-editor-toolbar [data-command=underline] {
+editor-toolbar [data-command=strong] {
     order: 3;
 }
 
-editor-toolbar [data-command=strikethrough] {
+editor-toolbar [data-command=emphasis] {
     order: 4;
 }
 
-editor-toolbar [data-command=mark] {
+editor-toolbar [data-command=underline] {
     order: 5;
 }
 
-editor-toolbar [data-command=link] {
+editor-toolbar [data-command=strikethrough] {
     order: 6;
 }
 
-editor-toolbar [data-command=paragraph] {
+editor-toolbar [data-command=mark] {
     order: 7;
 }
 
-editor-toolbar [data-command=heading] {
+editor-toolbar [data-command=small] {
     order: 8;
 }
 
-editor-toolbar [data-command=subheading] {
+editor-toolbar [data-command=definition] {
     order: 9;
 }
 
-editor-toolbar [data-command=unorderedlist] {
+editor-toolbar [data-command=quote] {
     order: 10;
 }
 
-editor-toolbar [data-command=orderedlist] {
+editor-toolbar [data-command=cite] {
     order: 11;
 }
 
-editor-toolbar [data-command=blockquote] {
+editor-toolbar [data-command=code] {
     order: 12;
 }
 
-editor-toolbar [data-command=image] {
+editor-toolbar [data-command=keyboard] {
     order: 13;
 }
 
-editor-toolbar [data-command=video] {
+editor-toolbar [data-command=sample] {
     order: 14;
 }
 
-editor-toolbar [data-command=audio] {
+editor-toolbar [data-command=variable] {
     order: 15;
 }
 
-editor-toolbar [data-command=iframe] {
+editor-toolbar [data-command=subscript] {
     order: 16;
 }
 
-editor-toolbar [data-command=table] {
+editor-toolbar [data-command=superscript] {
     order: 17;
 }
 
-editor-toolbar [data-command=section] {
+editor-toolbar [data-command=link] {
     order: 18;
+    break-after: always;
 }
 
-editor-toolbar [data-command=details] {
+editor-toolbar [data-command=paragraph] {
     order: 19;
 }
 
-editor-toolbar [data-command=division] {
+editor-toolbar [data-command=heading] {
     order: 20;
 }
 
-editor-toolbar [data-command=block] {
+editor-toolbar [data-command=subheading] {
     order: 21;
+}
+
+editor-toolbar [data-command=unorderedlist] {
+    order: 22;
+}
+
+editor-toolbar [data-command=orderedlist] {
+    order: 23;
+}
+
+editor-toolbar [data-command=blockquote] {
+    order: 24;
+}
+
+editor-toolbar [data-command=image] {
+    order: 25;
+}
+
+editor-toolbar [data-command=video] {
+    order: 26;
+}
+
+editor-toolbar [data-command=audio] {
+    order: 27;
+}
+
+editor-toolbar [data-command=iframe] {
+    order: 28;
+}
+
+editor-toolbar [data-command=table] {
+    order: 29;
+}
+
+editor-toolbar [data-command=section] {
+    order: 30;
+}
+
+editor-toolbar [data-command=details] {
+    order: 31;
+}
+
+editor-toolbar [data-command=division] {
+    order: 32;
+}
+
+editor-toolbar [data-command=block] {
+    order: 33;
 }
 
 editor-toolbar [data-command]::before {
@@ -353,23 +402,31 @@ editor-toolbar [data-command]::before {
 }
 
 editor-toolbar [data-command=audio]::before {
-    content: '\e80c';
-}
-
-editor-toolbar [data-command=block] {
-    order: 18;
+    content: '\f001';
 }
 
 editor-toolbar [data-command=block]::before {
-    content: '\f2bc';
+    content: '\f466';
 }
 
 editor-toolbar [data-command=blockquote]::before {
-    content: '\e805';
+    content: '\f075';
 }
 
 editor-toolbar [data-command=bold]::before {
-    content: '\e801';
+    content: '\f032';
+}
+
+editor-toolbar [data-command=cite]::before {
+    content: '\f02d';
+}
+
+editor-toolbar [data-command=code]::before {
+    content: '\f121';
+}
+
+editor-toolbar [data-command=definition]::before {
+    content: '\f129';
 }
 
 editor-toolbar [data-command=details]::before {
@@ -377,7 +434,11 @@ editor-toolbar [data-command=details]::before {
 }
 
 editor-toolbar [data-command=division]::before {
-    content: '\e804';
+    content: '\f009';
+}
+
+editor-toolbar [data-command=emphasis]::before {
+    content: '\f0a1';
 }
 
 editor-toolbar [data-command=heading]::before {
@@ -389,19 +450,23 @@ editor-toolbar [data-command=iframe]::before {
 }
 
 editor-toolbar [data-command=image]::before {
-    content: '\e800';
+    content: '\f03e';
 }
 
 editor-toolbar [data-command=italic]::before {
-    content: '\e802';
+    content: '\f033';
+}
+
+editor-toolbar [data-command=keyboard]::before {
+    content: '\f11c';
 }
 
 editor-toolbar [data-command=link]::before {
-    content: '\e803';
+    content: '\f0c1';
 }
 
 editor-toolbar [data-command=mark]::before {
-    content: '\f1fc';
+    content: '\f5a1';
 }
 
 editor-toolbar [data-command=orderedlist]::before {
@@ -412,16 +477,40 @@ editor-toolbar [data-command=paragraph]::before {
     content: '\f1dd';
 }
 
+editor-toolbar [data-command=quote]::before {
+    content: '\f10d';
+}
+
+editor-toolbar [data-command=sample]::before {
+    content: '\f120';
+}
+
 editor-toolbar [data-command=section]::before {
     content: '\f1ea';
+}
+
+editor-toolbar [data-command=small]::before {
+    content: '\f141';
 }
 
 editor-toolbar [data-command=strikethrough]::before {
     content: '\f0cc';
 }
 
+editor-toolbar [data-command=strong]::before {
+    content: '\f071';
+}
+
 editor-toolbar [data-command=subheading]::before {
     content: '\f0fd';
+}
+
+editor-toolbar [data-command=subscript]::before {
+    content: '\f12c';
+}
+
+editor-toolbar [data-command=superscript]::before {
+    content: '\f12b';
 }
 
 editor-toolbar [data-command=table]::before {
@@ -436,6 +525,10 @@ editor-toolbar [data-command=unorderedlist]::before {
     content: '\f0ca';
 }
 
+editor-toolbar [data-command=variable]::before {
+    content: '\f155';
+}
+
 editor-toolbar [data-command=video]::before {
-    content: '\e80b';
+    content: '\f03d';
 }

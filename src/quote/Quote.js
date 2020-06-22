@@ -3,14 +3,14 @@ import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
 
 /**
- * Strikethrough Plugin
+ * Quote Plugin
  */
-export default class Strikethrough extends Plugin {
+export default class Quote extends Plugin {
     /**
      * @inheritDoc
      */
     static get name() {
-        return 'strikethrough';
+        return 'quote';
     }
 
     /**
@@ -26,10 +26,10 @@ export default class Strikethrough extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 's',
+            name: 'q',
             group: 'format',
         });
-        this._command('s');
-        this._toolbar('strikethrough', 'r');
+        this._command('q');
+        this._toolbar('quote', 'q');
     }
 }
