@@ -28,6 +28,7 @@
  */
 @font-face {
     font-family: editor;
+    font-display: block;
     font-style: normal;
     font-weight: normal;
     src: url(editor.woff2) format('woff2');
