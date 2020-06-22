@@ -154,7 +154,6 @@ details {
 summary {
     margin: -0.75rem;
     padding: 0.6875rem;
-    border: 0.0625rem solid;
 }
 
 details[open] summary {
