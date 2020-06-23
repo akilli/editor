@@ -63,8 +63,6 @@ You can click on a text-level element (bold, italic, link, etc) to
 - open the corresponding dialog in case the elements allows attributes or 
 - remove the format aka replace the element with its `textContent`.
 
-Note that this feature is not fully implemented yet, as quite a lot of new plugins for text-level elements have been added. 
-
 In addition to that, each text-level element registers a keyboard shortcut in the form `Alt` + `Shift` + a letter. If you hover a button for such a text-level element in the toolbar, the actual keyboard shortcut will be shown. 
 
 ## Demo
