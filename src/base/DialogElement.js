@@ -17,6 +17,7 @@ export default class DialogElement extends HTMLElement {
      * Runs when element is added to the DOM
      */
     connectedCallback() {
+        this.setAttribute('role', 'dialog');
         this.tabIndex = -1;
         this.focus();
     }
