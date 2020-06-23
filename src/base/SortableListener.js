@@ -69,7 +69,7 @@ export default class SortableListener extends Listener {
      * @param {HTMLElement} event.target
      */
     pointerdown(event) {
-        event.target.classList.add('editor-sort');
+        event.target.setAttribute('data-sort', '');
         event.target.setPointerCapture(event.pointerId);
     }
 
@@ -86,7 +86,7 @@ export default class SortableListener extends Listener {
             this.__sortover();
 
             if (this.__sortable(element)) {
-                element.classList.add('editor-sortover');
+                element.setAttribute('data-sortover', '');
             }
         }
     }
@@ -100,7 +100,7 @@ export default class SortableListener extends Listener {
     pointerup(event) {
         const element = this.editor.document.elementFromPoint(event.x, event.y);
         this.__sortover();
-        event.target.classList.length > 1 ? event.target.classList.remove('editor-sort') : event.target.removeAttribute('class');
+        event.target.removeAttribute('data-sort');
         event.target.releasePointerCapture(event.pointerId);
 
         if (event.target !== element && this.__sortable(element) && this.editor.tags.allowed(element.parentElement, event.target)) {
@@ -109,14 +109,12 @@ export default class SortableListener extends Listener {
     }
 
     /**
-     * Removes editor sortover class
+     * Removes editor sortover attribute
      *
      * @private
      */
     __sortover() {
-        Array.from(this.editor.root.getElementsByClassName('editor-sortover')).forEach(item => {
-            item.classList.length > 1 ? item.classList.remove('editor-sortover') : item.removeAttribute('class');
-        });
+        this.editor.root.querySelectorAll('[data-sortover]').forEach(item => item.removeAttribute('data-sortover'));
     }
 
     /**

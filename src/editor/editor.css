@@ -120,11 +120,11 @@ editor-root slot[contenteditable=true]:empty::after {
 /**
  * Sortable
  */
-editor-root [data-sortable].editor-sort:hover {
+editor-root [data-sortable][data-sort]:hover {
     cursor: grab;
 }
 
-.editor-sortover {
+editor-root [data-sortover] {
     outline: 0.25rem dashed var(--editor-sortover);
 }
 
