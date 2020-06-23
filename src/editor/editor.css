@@ -257,7 +257,7 @@ editor-toolbar {
 
 editor-toolbar [data-command] {
     display: inline-block;
-    width: calc(100% / 18);
+    width: calc(100% / 19);
     line-height: 1;
     padding: 0.25rem;
     font-family: editor;
@@ -304,104 +304,112 @@ editor-toolbar [data-command=definition] {
     order: 9;
 }
 
-editor-toolbar [data-command=quote] {
+editor-toolbar [data-command=abbreviation] {
     order: 10;
 }
 
-editor-toolbar [data-command=cite] {
+editor-toolbar [data-command=quote] {
     order: 11;
 }
 
-editor-toolbar [data-command=code] {
+editor-toolbar [data-command=cite] {
     order: 12;
 }
 
-editor-toolbar [data-command=keyboard] {
+editor-toolbar [data-command=code] {
     order: 13;
 }
 
-editor-toolbar [data-command=sample] {
+editor-toolbar [data-command=keyboard] {
     order: 14;
 }
 
-editor-toolbar [data-command=variable] {
+editor-toolbar [data-command=sample] {
     order: 15;
 }
 
-editor-toolbar [data-command=subscript] {
+editor-toolbar [data-command=variable] {
     order: 16;
 }
 
-editor-toolbar [data-command=superscript] {
+editor-toolbar [data-command=subscript] {
     order: 17;
 }
 
-editor-toolbar [data-command=link] {
+editor-toolbar [data-command=superscript] {
     order: 18;
 }
 
-editor-toolbar [data-command=paragraph] {
+editor-toolbar [data-command=link] {
     order: 19;
 }
 
-editor-toolbar [data-command=heading] {
+editor-toolbar [data-command=paragraph] {
     order: 20;
 }
 
-editor-toolbar [data-command=subheading] {
+editor-toolbar [data-command=heading] {
     order: 21;
 }
 
-editor-toolbar [data-command=unorderedlist] {
+editor-toolbar [data-command=subheading] {
     order: 22;
 }
 
-editor-toolbar [data-command=orderedlist] {
+editor-toolbar [data-command=unorderedlist] {
     order: 23;
 }
 
-editor-toolbar [data-command=blockquote] {
+editor-toolbar [data-command=orderedlist] {
     order: 24;
 }
 
-editor-toolbar [data-command=image] {
+editor-toolbar [data-command=blockquote] {
     order: 25;
 }
 
-editor-toolbar [data-command=video] {
+editor-toolbar [data-command=image] {
     order: 26;
 }
 
-editor-toolbar [data-command=audio] {
+editor-toolbar [data-command=video] {
     order: 27;
 }
 
-editor-toolbar [data-command=iframe] {
+editor-toolbar [data-command=audio] {
     order: 28;
 }
 
-editor-toolbar [data-command=table] {
+editor-toolbar [data-command=iframe] {
     order: 29;
 }
 
-editor-toolbar [data-command=section] {
+editor-toolbar [data-command=table] {
     order: 30;
 }
 
-editor-toolbar [data-command=details] {
+editor-toolbar [data-command=section] {
     order: 31;
 }
 
-editor-toolbar [data-command=division] {
+editor-toolbar [data-command=details] {
     order: 32;
 }
 
-editor-toolbar [data-command=block] {
+editor-toolbar [data-command=division] {
     order: 33;
+}
+
+editor-toolbar [data-command=block] {
+    order: 34;
 }
 
 editor-toolbar [data-command]::before {
     font-size: 1.5rem;
+}
+
+editor-toolbar [data-command=abbreviation]::before {
+    content: '\f031';
 }
 
 editor-toolbar [data-command=audio]::before {

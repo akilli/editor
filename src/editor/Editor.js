@@ -1,3 +1,4 @@
+import Abbreviation from '../abbreviation/Abbreviation.js';
 import Audio from '../audio/Audio.js';
 import BaseEditor from '../base/Editor.js';
 import Block from '../block/Block.js';
@@ -44,6 +45,7 @@ export default class Editor extends BaseEditor {
         return {
             base: {
                 plugins: [
+                    Abbreviation,
                     Audio,
                     Block,
                     BlockQuote,
