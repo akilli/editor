@@ -44,10 +44,10 @@ export default class IframeListener extends Listener {
 
         if (!src) {
             element.parentElement.removeChild(element);
+        } else {
+            element.setAttribute('src', this.editor.url(src));
+            element.allowFullscreen = true;
+            this.editor.wrap(element, 'figure', {attributes: {class: 'iframe'}});
         }
-
-        element.setAttribute('src', this.editor.url(src));
-        element.allowFullscreen = true;
-        this.editor.wrap(element, 'figure', {attributes: {class: 'iframe'}});
     }
 }

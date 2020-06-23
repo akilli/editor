@@ -44,10 +44,10 @@ export default class VideoListener extends Listener {
 
         if (!src) {
             element.parentElement.removeChild(element);
+        } else {
+            element.setAttribute('src', this.editor.url(src));
+            element.controls = true;
+            this.editor.wrap(element, 'figure', {attributes: {class: 'video'}});
         }
-
-        element.setAttribute('src', this.editor.url(src));
-        element.controls = true;
-        this.editor.wrap(element, 'figure', {attributes: {class: 'video'}});
     }
 }
