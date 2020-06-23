@@ -19,7 +19,7 @@ export default class VideoDialog extends Dialog {
     _getHtml() {
         return `
             <legend>${this._('Video')}</legend>
-            <div class="editor-required">
+            <div data-required>
                 <label for="editor-src">${this._('URL')}</label>
                 <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this._('Insert URL to media element')}" required />
             </div>

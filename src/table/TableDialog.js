@@ -19,11 +19,11 @@ export default class TableDialog extends Dialog {
     _getHtml() {
         return `
             <legend>${this._('Table')}</legend>
-            <div class="editor-required">
+            <div data-required>
                 <label for="editor-rows">${this._('Rows')}</label>
                 <input id="editor-rows" name="rows" type="number" value="1" min="1" required />
             </div>
-            <div class="editor-required">
+            <div data-required>
                 <label for="editor-cols">${this._('Columns')}</label>
                 <input id="editor-cols" name="cols" type="number" value="1" min="1" required />
             </div>

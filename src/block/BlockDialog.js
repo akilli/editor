@@ -19,7 +19,7 @@ export default class BlockDialog extends Dialog {
     _getHtml() {
         return `
             <legend>${this._('Block')}</legend>
-            <div class="editor-required">
+            <div data-required>
                 <label for="editor-id">${this._('ID')}</label>
                 <input id="editor-id" name="id" type="text" required />
             </div>

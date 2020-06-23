@@ -195,7 +195,7 @@ akilli-editor dialog label {
     display: block;
 }
 
-akilli-editor dialog .editor-required label::after {
+akilli-editor dialog [data-required] label::after {
     content: ' *';
 }
 
