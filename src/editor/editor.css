@@ -159,7 +159,11 @@ editor-block::before {
 /**
  * Dialog
  */
-akilli-editor dialog[open] {
+editor-dialog {
+    display: none;
+}
+
+editor-dialog[open] {
     position: fixed;
     left: 0;
     right: 0;
@@ -175,66 +179,66 @@ akilli-editor dialog[open] {
     background: rgba(0, 0, 0, 0.8);
 }
 
-akilli-editor dialog form {
+editor-dialog form {
     min-width: 40rem;
     min-height: 20rem;
     padding: 0.75rem;
     background: #fff;
 }
 
-akilli-editor dialog form > :not(:first-child),
-akilli-editor dialog fieldset > :not(:first-child) {
+editor-dialog form > :not(:first-child),
+editor-dialog fieldset > :not(:first-child) {
     margin-top: 1.5rem;
 }
 
-akilli-editor dialog legend {
+editor-dialog legend {
     font-size: 1.25rem;
 }
 
-akilli-editor dialog label {
+editor-dialog label {
     display: block;
 }
 
-akilli-editor dialog [data-required] label::after {
+editor-dialog [data-required] label::after {
     content: ' *';
 }
 
-akilli-editor dialog button {
+editor-dialog button {
     padding: 0.75rem;
     color: var(--editor-button-color);
     background: var(--editor-button-background);
 }
 
-akilli-editor dialog button + button {
+editor-dialog button + button {
     margin-left: 1.5rem;
 }
 
-akilli-editor dialog button[type=button] {
+editor-dialog button[type=button] {
     color: var(--editor-cancel-color);
     background: var(--editor-cancel-background);
 }
 
-akilli-editor dialog input[type=email],
-akilli-editor dialog input[type=number],
-akilli-editor dialog input[type=password],
-akilli-editor dialog input[type=search],
-akilli-editor dialog input[type=tel],
-akilli-editor dialog input[type=text],
-akilli-editor dialog input[type=url],
-akilli-editor dialog select {
+editor-dialog input[type=email],
+editor-dialog input[type=number],
+editor-dialog input[type=password],
+editor-dialog input[type=search],
+editor-dialog input[type=tel],
+editor-dialog input[type=text],
+editor-dialog input[type=url],
+editor-dialog select {
     width: 100%;
     padding: 0.71875rem 0;
     border-bottom: 0.0625rem solid var(--editor-border);
 }
 
-akilli-editor dialog input[type=email]:invalid,
-akilli-editor dialog input[type=number]:invalid,
-akilli-editor dialog input[type=password]:invalid,
-akilli-editor dialog input[type=search]:invalid,
-akilli-editor dialog input[type=tel]:invalid,
-akilli-editor dialog input[type=text]:invalid,
-akilli-editor dialog input[type=url]:invalid,
-akilli-editor dialog select:invalid {
+editor-dialog input[type=email]:invalid,
+editor-dialog input[type=number]:invalid,
+editor-dialog input[type=password]:invalid,
+editor-dialog input[type=search]:invalid,
+editor-dialog input[type=tel]:invalid,
+editor-dialog input[type=text]:invalid,
+editor-dialog input[type=url]:invalid,
+editor-dialog select:invalid {
     border-color: var(--editor-error);
 }
 

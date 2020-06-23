@@ -1,6 +1,7 @@
 import AlignableListener from './AlignableListener.js';
 import ContentFilter from './ContentFilter.js';
 import DeletableListener from './DeletableListener.js';
+import DialogElement from './DialogElement.js';
 import EditableListener from './EditableListener.js';
 import FocusableListener from './FocusableListener.js';
 import NavigableListener from './NavigableListener.js';
@@ -34,6 +35,7 @@ export default class Base extends Plugin {
      */
     init() {
         this._i18n(i18n);
+        this.editor.registerElement('editor-dialog', DialogElement);
         this._tag({
             name: 'editor-root',
             group: 'root',

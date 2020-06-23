@@ -40,7 +40,7 @@ export default class Dialog {
      * @param {Object} [attributes = {}]
      */
     open(save, attributes = {}) {
-        const cleanup = () => Array.from(this.editor.element.getElementsByTagName('dialog')).forEach(item => {
+        const cleanup = () => Array.from(this.editor.element.getElementsByTagName('editor-dialog')).forEach(item => {
             item.parentElement.removeChild(item)
         });
         const sel = this.editor.window.getSelection();
@@ -55,13 +55,8 @@ export default class Dialog {
         };
         cleanup();
 
-        const dialog = this.editor.createElement('dialog');
-        typeof dialog.open === 'boolean' || this.__polyfill(dialog);
-        dialog.addEventListener('click', event => {
-            if (event.target === dialog) {
-                close();
-            }
-        });
+        const dialog = this.editor.createElement('editor-dialog');
+        dialog.addEventListener('close', close);
 
         const fieldset = this.editor.createElement('fieldset');
         fieldset.insertAdjacentHTML('beforeend', this._getHtml());
@@ -89,7 +84,7 @@ export default class Dialog {
         form.appendChild(saveButton);
 
         dialog.appendChild(form);
-        dialog.open = true;
+        dialog.show();
 
         this.editor.element.appendChild(dialog);
     }
@@ -113,26 +108,5 @@ export default class Dialog {
      */
     _getHtml() {
         return '';
-    }
-
-    /**
-     * Minimal dialog polyfill
-     *
-     * @private
-     * @param {HTMLElement} dialog
-     */
-    __polyfill(dialog) {
-        Object.defineProperty(dialog, 'open', {
-            get: function () {
-                return dialog.hasAttribute('open');
-            },
-            set: function (state) {
-                if (state) {
-                    dialog.setAttribute('open', '');
-                } else {
-                    dialog.removeAttribute('open');
-                }
-            }
-        });
     }
 }
