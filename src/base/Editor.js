@@ -435,11 +435,19 @@ export default class Editor {
      * @return {?HTMLElement}
      */
     getSelectedElement() {
-        const sel = this.window.getSelection();
-        const anc = sel.anchorNode instanceof Text ? sel.anchorNode.parentElement : sel.anchorNode;
-        const foc = sel.focusNode instanceof Text ? sel.focusNode.parentElement : sel.focusNode;
+        try {
+            const sel = this.window.getSelection();
+            const anc = sel.anchorNode instanceof Text ? sel.anchorNode.parentElement : sel.anchorNode;
+            const foc = sel.focusNode instanceof Text ? sel.focusNode.parentElement : sel.focusNode;
 
-        return anc instanceof HTMLElement && foc instanceof HTMLElement && anc === foc && this.contains(anc) ? anc : null;
+            if (anc instanceof HTMLElement && foc instanceof HTMLElement && anc === foc && this.contains(anc)) {
+                return anc;
+            }
+        } catch (e) {
+            console.error(e);
+        }
+
+        return null;
     }
 
     /**
@@ -448,17 +456,21 @@ export default class Editor {
      * @return {?HTMLElement}
      */
     getSelectedEditable() {
-        const sel = this.window.getSelection();
-        const anc = sel.anchorNode instanceof Text ? sel.anchorNode.parentElement : sel.anchorNode;
-        const foc = sel.focusNode instanceof Text ? sel.focusNode.parentElement : sel.focusNode;
+        try {
+            const sel = this.window.getSelection();
+            const anc = sel.anchorNode instanceof Text ? sel.anchorNode.parentElement : sel.anchorNode;
+            const foc = sel.focusNode instanceof Text ? sel.focusNode.parentElement : sel.focusNode;
 
-        if (anc instanceof HTMLElement && foc instanceof HTMLElement) {
-            const ancEdit = anc.closest('[contenteditable=true]');
-            const focEdit = foc.closest('[contenteditable=true]');
+            if (anc instanceof HTMLElement && foc instanceof HTMLElement) {
+                const ancEdit = anc.closest('[contenteditable=true]');
+                const focEdit = foc.closest('[contenteditable=true]');
 
-            if (ancEdit instanceof HTMLElement && ancEdit === focEdit && this.contains(ancEdit)) {
-                return ancEdit;
+                if (ancEdit instanceof HTMLElement && ancEdit === focEdit && this.contains(ancEdit)) {
+                    return ancEdit;
+                }
             }
+        } catch (e) {
+            console.error(e);
         }
 
         return null;
