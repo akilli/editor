@@ -69,38 +69,65 @@ export default class TableListener extends Listener {
         const base = row.parentElement;
         const table = base instanceof HTMLTableElement ? base : base.parentElement;
         const keys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+        const isNav = this.editor.isKey(event, keys.concat(['Home', 'End']));
+        const isAdd = this.editor.isKey(event, keys, {alt: true});
+        const isDel = this.editor.isKey(event, keys, {alt: true, shift: true});
 
         if (cell instanceof HTMLTableCellElement
             && row instanceof HTMLTableRowElement
             && (base instanceof HTMLTableElement || base instanceof HTMLTableSectionElement)
             && table instanceof HTMLTableElement
-            && (this.editor.isKey(event, keys, {alt: true}) || this.editor.isKey(event, keys, {alt: true, shift: true}))
+            && (isNav || isAdd || isDel)
         ) {
             const length = row.cells.length;
             const rowLength = base.rows.length;
             const rowIndex = base instanceof HTMLTableElement ? row.rowIndex : row.sectionRowIndex;
+            const isFirst = cell.cellIndex === 0;
+            const isLast = cell.cellIndex === length - 1;
+            const isFirstTableRow = row.rowIndex === 0;
+            const isLastTableRow = row.rowIndex === table.rows.length - 1;
 
             event.preventDefault();
             event.stopPropagation();
 
-            if (event.shiftKey) {
-                if (event.key === 'ArrowLeft' && cell.cellIndex > 0) {
+            if (isNav) {
+                if (event.key === 'ArrowLeft' && !isFirst && !cell.textContent) {
+                    row.cells[cell.cellIndex - 1].focus();
+                } else if (event.key === 'ArrowRight' && !isLast && !cell.textContent) {
+                    row.cells[cell.cellIndex + 1].focus();
+                } else if ((event.key === 'Home' || event.key === 'ArrowRight' && isLast) && !cell.textContent) {
+                    row.cells[0].focus();
+                } else if ((event.key === 'End' || event.key === 'ArrowLeft' && isFirst) && !cell.textContent) {
+                    row.cells[length - 1].focus();
+                } else if (event.key === 'ArrowUp' && !isFirstTableRow) {
+                    table.rows[row.rowIndex - 1].cells[cell.cellIndex].focus();
+                } else if (event.key === 'ArrowUp') {
+                    table.rows[table.rows.length - 1].cells[cell.cellIndex].focus();
+                } else if (event.key === 'ArrowDown' && !isLastTableRow) {
+                    table.rows[row.rowIndex + 1].cells[cell.cellIndex].focus();
+                } else if (event.key === 'ArrowDown') {
+                    table.rows[0].cells[cell.cellIndex].focus();
+                }
+            } else if (isAdd) {
+                if (event.key === 'ArrowLeft') {
+                    Array.from(table.rows).forEach(item => this.__cell(item, item.cells[cell.cellIndex]));
+                } else if (event.key === 'ArrowRight') {
+                    Array.from(table.rows).forEach(item => this.__cell(item, item.cells[cell.cellIndex + 1]));
+                } else if (event.key === 'ArrowUp') {
+                    this.__row(base, length, rowIndex);
+                } else if (event.key === 'ArrowDown') {
+                    this.__row(base, length, rowIndex + 1);
+                }
+            } else if (isDel) {
+                if (event.key === 'ArrowLeft' && !isFirst) {
                     Array.from(table.rows).forEach(item => item.deleteCell(cell.cellIndex - 1));
-                } else if (event.key === 'ArrowRight' && cell.cellIndex < length - 1) {
+                } else if (event.key === 'ArrowRight' && !isLast) {
                     Array.from(table.rows).forEach(item => item.deleteCell(cell.cellIndex + 1));
                 } else if (event.key === 'ArrowUp' && rowIndex > 0) {
                     base.deleteRow(rowIndex - 1)
                 } else if (event.key === 'ArrowDown' && rowIndex < rowLength - 1) {
                     base.deleteRow(rowIndex + 1)
                 }
-            } else if (event.key === 'ArrowLeft') {
-                Array.from(table.rows).forEach(item => this.__cell(item, item.cells[cell.cellIndex]));
-            } else if (event.key === 'ArrowRight') {
-                Array.from(table.rows).forEach(item => this.__cell(item, item.cells[cell.cellIndex + 1]));
-            } else if (event.key === 'ArrowUp') {
-                this.__row(base, length, rowIndex);
-            } else if (event.key === 'ArrowDown') {
-                this.__row(base, length, rowIndex + 1);
             }
         }
     }
