@@ -160,7 +160,6 @@ export default class Editor {
             configured = configured.filter(item => config.base.plugins.includes(item.name));
         }
 
-        console.log(config.base?.plugins, configured);
         const plugins = new Set();
         const add = item => {
             if (item.dependencies) {
