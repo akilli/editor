@@ -6,7 +6,7 @@ A HTML standards-compliant and dependency-free rich text editor.
 
 As this project is in an early state, some planned features are yet not finished or still missing or exist, but are not well documented. And although most of the API is quite stable now, all versions prior to `v1.0.0` are prereleases and should be considered experimental. `v1.0.0` is the designated initial stable release.
 
-Before `v1.0.0` you will also need quite a modern Browser to run the **src version** and also the **dist version**, because esbuild target for the **dist version** is currently set to `es2020`. 
+Before `v1.0.0` you will also need a modern Browser to run the **src version** and also the **dist version**, because esbuild target for the **dist version** is currently set to `es2020`. 
 
 For the initial stable release additional **dist versions** for older browsers might be provided, as well as individual npm packages for each plugin. 
 
@@ -26,7 +26,7 @@ The features of each element (p.e. like *alignable*, *deletable*, *editable*, *n
 
 ### Toolbar navigation
 
-Once a toolbar buttons is focused, use the `ArrowLeft`, `ArrowRight`, `Home` and `End` keys to navigate among the buttons.
+Once a toolbar button is focused, use the `ArrowLeft`, `ArrowRight`, `Home` and `End` keys to navigate among the buttons.
 
 ### Navigable elements
 
@@ -64,6 +64,8 @@ You can click on a text-level element (bold, italic, link, etc) to
 - remove the format aka replace the element with its `textContent`.
 
 Note that this feature is not fully implemented yet, as quite a lot of new plugins for text-level elements have been added. 
+
+In addition to that, each text-level element registers a keyboard shortcut in the form `Alt` + `Shift` + a letter. If you hover a button for such a text-level element in the toolbar, the actual keyboard shortcut will be shown. 
 
 ## Demo
 
