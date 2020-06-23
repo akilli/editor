@@ -318,7 +318,7 @@ export default class Editor {
 
         range.deleteContents();
 
-        if (parent.isContentEditable && this.tags.allowed(parent, element) && selText.trim() && (!tag || !same)) {
+        if (parent.contentEditable === 'true' && this.tags.allowed(parent, element) && selText.trim() && (!tag || !same)) {
             element.textContent = selText;
             range.insertNode(element);
         } else {

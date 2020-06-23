@@ -66,7 +66,7 @@ export default class NavigableListener extends Listener {
      * @return {Boolean}
      */
     __enabled(element) {
-        if (!element.isContentEditable) {
+        if (element.contentEditable !== 'true') {
             return true;
         }
 
