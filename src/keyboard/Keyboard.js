@@ -30,6 +30,6 @@ export default class Keyboard extends Plugin {
             group: 'format',
         });
         this._command('kbd');
-        this._toolbar('user input', 'k');
+        this._toolbar('User Input', 'k');
     }
 }

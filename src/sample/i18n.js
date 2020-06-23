@@ -5,6 +5,6 @@
  */
 export default {
     de: {
-        'sample output': 'Beispielausgabe',
+        'Sample Output': 'Beispielausgabe',
     },
 }

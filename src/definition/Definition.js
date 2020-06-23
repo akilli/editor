@@ -30,6 +30,6 @@ export default class Definition extends Plugin {
             group: 'format',
         });
         this._command('dfn');
-        this._toolbar('definition', 'd');
+        this._toolbar('Definition', 'd');
     }
 }

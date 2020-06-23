@@ -5,6 +5,6 @@
  */
 export default {
     de: {
-        'user input': 'Benutzereingabe',
+        'User Input': 'Benutzereingabe',
     },
 }

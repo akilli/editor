@@ -5,6 +5,6 @@
  */
 export default {
     de: {
-        'citation': 'Zitatquelle',
+        'Citation': 'Zitatquelle',
     },
 }

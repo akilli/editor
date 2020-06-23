@@ -30,6 +30,6 @@ export default class Quote extends Plugin {
             group: 'format',
         });
         this._command('q');
-        this._toolbar('quote', 'q');
+        this._toolbar('Quote', 'q');
     }
 }

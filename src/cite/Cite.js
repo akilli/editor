@@ -30,6 +30,6 @@ export default class Cite extends Plugin {
             group: 'format',
         });
         this._command('cite');
-        this._toolbar('citation', 'z');
+        this._toolbar('Citation', 'z');
     }
 }

@@ -5,6 +5,6 @@
  */
 export default {
     de: {
-        'definition': 'Definition',
+        'Definition': 'Definition',
     },
 }
