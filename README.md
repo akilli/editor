@@ -26,11 +26,11 @@ The features of each element (p.e. like *alignable*, *deletable*, *editable*, *n
 
 ### Toolbar navigation
 
-Once a toolbar buttons is focused, use the arrow `ArrowLeft`, `ArrowRight`, `Home` and `End` keys to navigate among the buttons.
+Once a toolbar buttons is focused, use the `ArrowLeft`, `ArrowRight`, `Home` and `End` keys to navigate among the buttons.
 
 ### Navigable elements
 
-If one *navigable* element is focused, you can use the arrow `ArrowUp`, `ArrowDown`, `Home` and `End` keys to navigate among the sibling elements.
+If one *navigable* element is focused, you can use the `ArrowUp`, `ArrowDown`, `Home` and `End` keys to navigate among the sibling elements.
 
 ### `Enter` key handling
 
@@ -51,6 +51,8 @@ You can delete a *deletable* element by combining the `Control` key with the `De
 Figure widgets like block quote, table or media elements allow changing alignment by adding or removing the CSS class `left`, `center` or `right`. This is done by combining the `Shift` key with the `ArrowLeft` (`left`), `ArrowDown` (`center`) or `ArrowRight` (`right`) or `ArrowUp` (*removes CSS classes*) keys.
 
 ### Table widget keyboard shortcuts
+
+The navigation within a table slightly differs due to the nature of table elements. You can use the `ArrowLeft`, `ArrowRight`, `Home` and `End` keys to navigate among the sibling cell elements if the `textContent` of the table cell is empty. In addition to that, use the `ArrowUp` and `ArrowDown` keys to navigate among the rows.
 
 The table widget additionally allows adding and removing rows and columns before or after the currently focused table cell by combining the `Alt` key (*add*) or `Alt` and `Shift` keys (*remove*) with one of the arrow keys (`ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown`).
 
