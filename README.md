@@ -4,7 +4,7 @@ A HTML standards-compliant and dependency-free rich text editor.
 
 ## Note
 
-As this project is in an early state, some planned features are not finished yet or still missing. And although most of the API is quite stable now, all versions prior to `v1.0.0` are prereleases and should be considered experimental. `v1.0.0` is the designated initial stable release.
+As this project is in an early state, some planned features are yet not finished or still missing or exist, but are not well documented. And although most of the API is quite stable now, all versions prior to `v1.0.0` are prereleases and should be considered experimental. `v1.0.0` is the designated initial stable release.
 
 Before `v1.0.0` you will also need quite a modern Browser to run the **src version** and also the **dist version**, because esbuild target for the **dist version** is currently set to `es2020`. 
 
