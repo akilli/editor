@@ -1,5 +1,4 @@
 import Base from '../base/Base.js';
-import LinkCommand from './LinkCommand.js';
 import LinkDialog from './LinkDialog.js';
 import LinkListener from './LinkListener.js';
 import Plugin from '../base/Plugin.js';
@@ -35,7 +34,7 @@ export default class Link extends Plugin {
         });
         new LinkListener(this.editor);
         this.editor.dialogs.set(new LinkDialog(this.editor));
-        this.editor.commands.set(new LinkCommand(this.editor));
+        this._command('a');
         this._toolbar('Link', 'l');
     }
 }

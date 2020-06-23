@@ -40,6 +40,13 @@ export default class LinkListener extends Listener {
      * @param {HTMLAnchorElement} element
      */
     __init(element) {
-        element.addEventListener('click', () => this.editor.toolbar.querySelector('button[data-command=link').click());
+        const href = element.getAttribute('href');
+
+        if (!href) {
+            element.parentElement.replaceChild(this.editor.createText(element.textContent), element);
+        } else {
+            element.setAttribute('href', this.editor.url(href));
+            element.addEventListener('click', () => this.editor.toolbar.querySelector('button[data-command=link').click());
+        }
     }
 }

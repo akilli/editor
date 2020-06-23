@@ -65,9 +65,21 @@ export default class Command {
       */
     _insert(attributes = {}) {
         if (this.tag) {
-            Object.keys(attributes).forEach(item => this.tag.attributes.includes(item) || delete attributes[item]);
-            const element = this.editor.createElement(this.tag.name, {attributes: attributes});
-            this.tag.group === 'format' ? this.editor.format(element) : this.editor.insert(element);
+            Object.keys(attributes).forEach(item => this.tag.attributes.includes(item) && attributes[item] || delete attributes[item]);
+            const selected = this._selectedElement();
+
+            if (this.tag.group !== 'format') {
+                this.editor.insert(this.editor.createElement(this.tag.name, {attributes: attributes}));
+            } else if (selected && Object.keys(attributes).length > 0) {
+                selected.parentElement.replaceChild(
+                    this.editor.createElement(this.tag.name, {attributes: attributes, html: selected.textContent}),
+                    selected
+                );
+            } else if (selected) {
+                selected.parentElement.replaceChild(this.editor.createText(selected.textContent), selected);
+            } else {
+                this.editor.format(this.editor.createElement(this.tag.name, {attributes: attributes}));
+            }
         }
     }
 
