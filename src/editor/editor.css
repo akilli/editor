@@ -334,7 +334,6 @@ editor-toolbar [data-command=superscript] {
 
 editor-toolbar [data-command=link] {
     order: 18;
-    break-after: always;
 }
 
 editor-toolbar [data-command=paragraph] {
