@@ -31,20 +31,6 @@ export default class TagListener extends Listener {
                     event.detail.element.dataset[item] = '';
                 }
             });
-
-            if (tag.group === 'format') {
-                event.detail.element.addEventListener('click', this);
-            }
         }
-    }
-
-    /**
-     * Handles click events
-     *
-     * @param {MouseEvent} event
-     * @param {HTMLElement} event.target
-     */
-    click(event) {
-        Array.from(this.editor.commands.values()).find(item => item.tag?.name === event.target.localName)?.execute();
     }
 }

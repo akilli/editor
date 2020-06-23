@@ -19,8 +19,10 @@ export default class EditableListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     insert(event) {
-        if (event.detail.element.isContentEditable) {
+        if (event.detail.element.contentEditable === 'true') {
             event.detail.element.addEventListener('keydown', this);
+        } else if (event.detail.element.parentElement.contentEditable === 'true') {
+            event.detail.element.addEventListener('click', this);
         }
     }
 
@@ -60,5 +62,15 @@ export default class EditableListener extends Listener {
             event.stopPropagation();
             this.editor.toolbar.querySelector(`button[data-key=${event.key.toLowerCase()}]`)?.click();
         }
+    }
+
+    /**
+     * Handles click events
+     *
+     * @param {MouseEvent} event
+     * @param {HTMLElement} event.target
+     */
+    click(event) {
+        Array.from(this.editor.commands.values()).find(item => item.tag?.name === event.target.localName)?.execute();
     }
 }
