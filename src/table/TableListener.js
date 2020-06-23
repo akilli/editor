@@ -69,7 +69,8 @@ export default class TableListener extends Listener {
         const base = row.parentElement;
         const table = base instanceof HTMLTableElement ? base : base.parentElement;
         const keys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
-        const isNav = this.editor.isKey(event, keys.concat(['Home', 'End']));
+        const isNav = this.editor.isKey(event, ['ArrowLeft', 'ArrowRight', 'Home', 'End']);
+        const isRowNav = this.editor.isKey(event, ['ArrowUp', 'ArrowDown'])
         const isAdd = this.editor.isKey(event, keys, {alt: true});
         const isDel = this.editor.isKey(event, keys, {alt: true, shift: true});
 
@@ -77,7 +78,7 @@ export default class TableListener extends Listener {
             && row instanceof HTMLTableRowElement
             && (base instanceof HTMLTableElement || base instanceof HTMLTableSectionElement)
             && table instanceof HTMLTableElement
-            && (isNav || isAdd || isDel)
+            && (isNav && !cell.textContent || isRowNav || isAdd || isDel)
         ) {
             const length = row.cells.length;
             const rowLength = base.rows.length;
@@ -90,7 +91,7 @@ export default class TableListener extends Listener {
             event.preventDefault();
             event.stopPropagation();
 
-            if (isNav) {
+            if (isNav && !cell.textContent) {
                 if (event.key === 'ArrowLeft' && !isFirst && !cell.textContent) {
                     row.cells[cell.cellIndex - 1].focus();
                 } else if (event.key === 'ArrowRight' && !isLast && !cell.textContent) {
@@ -99,7 +100,9 @@ export default class TableListener extends Listener {
                     row.cells[0].focus();
                 } else if ((event.key === 'End' || event.key === 'ArrowLeft' && isFirst) && !cell.textContent) {
                     row.cells[length - 1].focus();
-                } else if (event.key === 'ArrowUp' && !isFirstTableRow) {
+                }
+            } else if (isRowNav) {
+                if (event.key === 'ArrowUp' && !isFirstTableRow) {
                     table.rows[row.rowIndex - 1].cells[cell.cellIndex].focus();
                 } else if (event.key === 'ArrowUp') {
                     table.rows[table.rows.length - 1].cells[cell.cellIndex].focus();
