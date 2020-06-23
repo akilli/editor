@@ -58,7 +58,7 @@ The table widget additionally allows adding and removing rows and columns before
 
 ### Text-level elements
 
-You can click on a text-level element (bold, italic, link, etc) to 
+You can double-click on a text-level element (bold, italic, link, etc) to execute the corresponding command, which is
 
 - open the corresponding dialog in case the elements allows attributes or 
 - remove the format aka replace the element with its `textContent`.

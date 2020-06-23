@@ -22,7 +22,7 @@ export default class EditableListener extends Listener {
         if (event.detail.element.contentEditable === 'true') {
             event.detail.element.addEventListener('keydown', this);
         } else if (event.detail.element.parentElement.contentEditable === 'true') {
-            event.detail.element.addEventListener('click', this);
+            event.detail.element.addEventListener('dblclick', this);
         }
     }
 
@@ -65,12 +65,12 @@ export default class EditableListener extends Listener {
     }
 
     /**
-     * Handles click events
+     * Handles double-click events on format elements
      *
      * @param {MouseEvent} event
      * @param {HTMLElement} event.target
      */
-    click(event) {
+    dblclick(event) {
         Array.from(this.editor.commands.values()).find(item => item.tag?.name === event.target.localName)?.execute();
     }
 }
