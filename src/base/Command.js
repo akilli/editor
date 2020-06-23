@@ -37,7 +37,7 @@ export default class Command {
      *
      * @param {Editor} editor
      * @param {String} name
-     * @param {?String} tagName
+     * @param {?String} [tagName = null]
      */
     constructor(editor, name, tagName = null) {
         if (!(editor instanceof Editor) || !name || typeof name !== 'string' || tagName && typeof tagName !== 'string') {
