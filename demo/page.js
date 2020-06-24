@@ -1,6 +1,7 @@
 /**
  * Initializes editor
  *
+ * @borrows Editor.create
  * @param {Document} document
  * @param {Editor} Editor
  */
