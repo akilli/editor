@@ -21,7 +21,7 @@ export default class IframeDialog extends Dialog {
             <legend>${this._('Iframe')}</legend>
             <div data-required>
                 <label for="editor-src">${this._('URL')}</label>
-                <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this._('Insert URL to media element')}" required />
+                <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this._('Insert URL to embedded page')}" required />
             </div>
             <div>
                 <label for="editor-width">${this._('Width')}</label>

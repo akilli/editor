@@ -8,7 +8,7 @@ export default {
         'Audio': 'Audio',
         'Cancel': 'Abbrechen',
         'Height': 'Höhe',
-        'Insert URL to media element': 'URL zum Medienelement eingeben',
+        'Insert URL to audio': 'URL zur Audiodatei eingeben',
         'Save': 'Speichern',
         'URL': 'URL',
         'Width': 'Breite',

@@ -8,7 +8,7 @@ export default {
         'Abbreviation': 'Abkürzung',
         'Cancel': 'Abbrechen',
         'Full term': 'Langform',
-        'Insert full term or leave empty to remove it': 'Langform eingeben oder leer lassen um Abkürzung zu entfernen',
+        'Insert full term or leave empty to remove it': 'Langform eingeben oder zum Entfernen leer lassen',
         'Save': 'Speichern',
     },
 }

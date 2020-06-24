@@ -8,7 +8,7 @@ export default {
         'Cancel': 'Abbrechen',
         'Height': 'Höhe',
         'Ifrane': 'Iframe',
-        'Insert URL to media element': 'URL zum Medienelement eingeben',
+        'Insert URL to embedded page': 'URL zur eingebetteten Seite eingeben',
         'Save': 'Speichern',
         'URL': 'URL',
         'Width': 'Breite',

@@ -21,7 +21,7 @@ export default class AudioDialog extends Dialog {
             <legend>${this._('Audio')}</legend>
             <div data-required>
                 <label for="editor-src">${this._('URL')}</label>
-                <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this._('Insert URL to media element')}" required />
+                <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this._('Insert URL to audio')}" required />
             </div>
             <div>
                 <label for="editor-width">${this._('Width')}</label>

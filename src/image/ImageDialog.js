@@ -21,7 +21,7 @@ export default class ImageDialog extends Dialog {
             <legend>${this._('Image')}</legend>
             <div data-required>
                 <label for="editor-src">${this._('URL')}</label>
-                <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this._('Insert URL to media element')}" required />
+                <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this._('Insert URL to image')}" required />
             </div>
             <div>
                 <label for="editor-alt">${this._('Alternative text')}</label>

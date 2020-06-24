@@ -9,7 +9,7 @@ export default {
         'Cancel': 'Abbrechen',
         'Height': 'Höhe',
         'Image': 'Bild',
-        'Insert URL to media element': 'URL zum Medienelement eingeben',
+        'Insert URL to image': 'URL zur Bilddatei eingeben',
         'Replacement text for use when media elements are not available': 'Ersatztext, falls Medienelemente nicht verfügbar sind',
         'Save': 'Speichern',
         'URL': 'URL',
