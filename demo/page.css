@@ -104,7 +104,13 @@ samp {
 }
 
 time {
-    text-decoration: underline overline;
+    color: #960200;
+    background: #191919;
+}
+
+data {
+    color: #fff;
+    background: #54442b;
 }
 
 /**

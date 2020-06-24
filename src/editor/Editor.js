@@ -6,6 +6,7 @@ import BlockQuote from '../blockquote/BlockQuote.js';
 import Bold from '../bold/Bold.js';
 import Cite from '../cite/Cite.js';
 import Code from '../code/Code.js';
+import Data from '../data/Data.js';
 import Definition from '../definition/Definition.js';
 import Details from '../details/Details.js';
 import Division from '../division/Division.js';
@@ -65,6 +66,7 @@ export default class Editor extends BaseEditor {
                     Subscript,
                     Superscript,
                     Time,
+                    Data,
                     Link,
                     Paragraph,
                     Heading,

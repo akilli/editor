@@ -251,7 +251,7 @@ editor-toolbar {
 
 editor-toolbar [data-command] {
     display: inline-block;
-    width: calc(100% / 20);
+    width: calc(100% / 21);
     line-height: 1;
     padding: 0.25rem;
     font-family: editor;
@@ -273,6 +273,7 @@ editor-toolbar [data-command=blockquote]::before {content: '\f075';}
 editor-toolbar [data-command=bold]::before {content: '\f032';}
 editor-toolbar [data-command=cite]::before {content: '\f02d';}
 editor-toolbar [data-command=code]::before {content: '\f121';}
+editor-toolbar [data-command=data]::before {content: '\f1c0';}
 editor-toolbar [data-command=definition]::before {content: '\f129';}
 editor-toolbar [data-command=details]::before {content: '\f150';}
 editor-toolbar [data-command=division]::before {content: '\f009';}
