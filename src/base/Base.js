@@ -39,7 +39,21 @@ export default class Base extends Plugin {
         this._tag({
             name: 'editor-root',
             group: 'root',
-            children: ['audio', 'block', 'container', 'figure', 'heading', 'iframe', 'image', 'list', 'paragraph', 'quote', 'table', 'video'],
+            children: [
+                'audio',
+                'block',
+                'container',
+                'figure',
+                'heading',
+                'iframe',
+                'image',
+                'list',
+                'paragraph',
+                'quote',
+                'rule',
+                'table',
+                'video',
+            ],
         });
         this._tag({
             name: 'slot',

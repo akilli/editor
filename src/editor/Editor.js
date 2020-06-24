@@ -8,12 +8,15 @@ import Cite from '../cite/Cite.js';
 import Code from '../code/Code.js';
 import Data from '../data/Data.js';
 import Definition from '../definition/Definition.js';
+import Deletion from '../deletion/Deletion.js';
 import Details from '../details/Details.js';
 import Division from '../division/Division.js';
 import Emphasis from '../emphasis/Emphasis.js';
 import Heading from '../heading/Heading.js';
+import HorizontalRule from '../horizontalrule/HorizontalRule.js';
 import Iframe from '../iframe/Iframe.js';
 import Image from '../image/Image.js';
+import Insertion from '../insertion/Insertion.js';
 import Italic from '../italic/Italic.js';
 import Keyboard from '../keyboard/Keyboard.js';
 import Link from '../link/Link.js';
@@ -67,12 +70,15 @@ export default class Editor extends BaseEditor {
                     Superscript,
                     Time,
                     Data,
+                    Insertion,
+                    Deletion,
                     Link,
                     Paragraph,
                     Heading,
                     Subheading,
                     UnorderedList,
                     OrderedList,
+                    HorizontalRule,
                     BlockQuote,
                     Image,
                     Video,

@@ -30,7 +30,7 @@ export default class Details extends Plugin {
         this._tag({
             name: 'details',
             group: 'container',
-            children: ['audio', 'figure', 'iframe', 'image', 'list', 'paragraph', 'quote', 'summary', 'table', 'video'],
+            children: ['audio', 'figure', 'iframe', 'image', 'list', 'paragraph', 'quote', 'rule', 'summary', 'table', 'video'],
             deletable: true,
             focusable: true,
             navigable: true,

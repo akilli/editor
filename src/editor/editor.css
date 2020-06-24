@@ -251,7 +251,7 @@ editor-toolbar {
 
 editor-toolbar [data-command] {
     display: inline-block;
-    width: calc(100% / 21);
+    width: calc(100% / 23);
     line-height: 1;
     padding: 0.25rem;
     font-family: editor;
@@ -275,12 +275,15 @@ editor-toolbar [data-command=cite]::before {content: '\f02d';}
 editor-toolbar [data-command=code]::before {content: '\f121';}
 editor-toolbar [data-command=data]::before {content: '\f1c0';}
 editor-toolbar [data-command=definition]::before {content: '\f129';}
+editor-toolbar [data-command=deletion]::before {content: '\f056';}
 editor-toolbar [data-command=details]::before {content: '\f150';}
 editor-toolbar [data-command=division]::before {content: '\f009';}
 editor-toolbar [data-command=emphasis]::before {content: '\f0a1';}
 editor-toolbar [data-command=heading]::before {content: '\f1dc';}
+editor-toolbar [data-command=horizontalrule]::before {content: '\f068';}
 editor-toolbar [data-command=iframe]::before {content: '\f1c9';}
 editor-toolbar [data-command=image]::before {content: '\f03e';}
+editor-toolbar [data-command=insertion]::before {content: '\f055';}
 editor-toolbar [data-command=italic]::before {content: '\f033';}
 editor-toolbar [data-command=keyboard]::before {content: '\f11c';}
 editor-toolbar [data-command=link]::before {content: '\f0c1';}

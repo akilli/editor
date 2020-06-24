@@ -1,17 +1,16 @@
 import Base from '../base/Base.js';
-import DivisionDialog from './DivisionDialog.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
 
 /**
- * Division Plugin
+ * Horizontal Rule Plugin
  */
-export default class Division extends Plugin {
+export default class HorizontalRule extends Plugin {
     /**
      * @inheritDoc
      */
     static get name() {
-        return 'division';
+        return 'horizontalrule';
     }
 
     /**
@@ -27,18 +26,15 @@ export default class Division extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'div',
-            group: 'container',
-            children: ['audio', 'block', 'figure', 'iframe', 'image', 'quote', 'rule', 'table', 'video'],
-            attributes: ['class'],
+            name: 'hr',
+            group: 'rule',
             deletable: true,
+            empty: true,
             focusable: true,
             navigable: true,
-            slotable: true,
             sortable: true,
         });
-        this.editor.dialogs.set(new DivisionDialog(this.editor));
-        this._command('div');
-        this._toolbar('Division');
+        this._command('hr');
+        this._toolbar('Horizontal Rule');
     }
 }

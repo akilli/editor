@@ -113,6 +113,19 @@ data {
     background: #54442b;
 }
 
+ins {
+    color: #006400;
+}
+
+del {
+    color: #960200;
+}
+
+hr {
+    height: 0.5rem;
+    background: #191919;
+}
+
 /**
  * Figure
  */
