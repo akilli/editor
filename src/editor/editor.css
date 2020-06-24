@@ -251,7 +251,7 @@ editor-toolbar {
 
 editor-toolbar [data-command] {
     display: inline-block;
-    width: calc(100% / 19);
+    width: calc(100% / 20);
     line-height: 1;
     padding: 0.25rem;
     font-family: editor;
@@ -266,138 +266,38 @@ editor-toolbar [data-command]::before {
     font-size: 1.5rem;
 }
 
-editor-toolbar [data-command=abbreviation]::before {
-    content: '\f031';
-}
-
-editor-toolbar [data-command=audio]::before {
-    content: '\f001';
-}
-
-editor-toolbar [data-command=block]::before {
-    content: '\f466';
-}
-
-editor-toolbar [data-command=blockquote]::before {
-    content: '\f075';
-}
-
-editor-toolbar [data-command=bold]::before {
-    content: '\f032';
-}
-
-editor-toolbar [data-command=cite]::before {
-    content: '\f02d';
-}
-
-editor-toolbar [data-command=code]::before {
-    content: '\f121';
-}
-
-editor-toolbar [data-command=definition]::before {
-    content: '\f129';
-}
-
-editor-toolbar [data-command=details]::before {
-    content: '\f150';
-}
-
-editor-toolbar [data-command=division]::before {
-    content: '\f009';
-}
-
-editor-toolbar [data-command=emphasis]::before {
-    content: '\f0a1';
-}
-
-editor-toolbar [data-command=heading]::before {
-    content: '\f1dc';
-}
-
-editor-toolbar [data-command=iframe]::before {
-    content: '\f1c9';
-}
-
-editor-toolbar [data-command=image]::before {
-    content: '\f03e';
-}
-
-editor-toolbar [data-command=italic]::before {
-    content: '\f033';
-}
-
-editor-toolbar [data-command=keyboard]::before {
-    content: '\f11c';
-}
-
-editor-toolbar [data-command=link]::before {
-    content: '\f0c1';
-}
-
-editor-toolbar [data-command=mark]::before {
-    content: '\f5a1';
-}
-
-editor-toolbar [data-command=orderedlist]::before {
-    content: '\f0cb';
-}
-
-editor-toolbar [data-command=paragraph]::before {
-    content: '\f1dd';
-}
-
-editor-toolbar [data-command=quote]::before {
-    content: '\f10d';
-}
-
-editor-toolbar [data-command=sample]::before {
-    content: '\f120';
-}
-
-editor-toolbar [data-command=section]::before {
-    content: '\f1ea';
-}
-
-editor-toolbar [data-command=small]::before {
-    content: '\f141';
-}
-
-editor-toolbar [data-command=strikethrough]::before {
-    content: '\f0cc';
-}
-
-editor-toolbar [data-command=strong]::before {
-    content: '\f071';
-}
-
-editor-toolbar [data-command=subheading]::before {
-    content: '\f0fd';
-}
-
-editor-toolbar [data-command=subscript]::before {
-    content: '\f12c';
-}
-
-editor-toolbar [data-command=superscript]::before {
-    content: '\f12b';
-}
-
-editor-toolbar [data-command=table]::before {
-    content: '\f0ce';
-}
-
-editor-toolbar [data-command=underline]::before {
-    content: '\f0cd';
-}
-
-editor-toolbar [data-command=unorderedlist]::before {
-    content: '\f0ca';
-}
-
-editor-toolbar [data-command=variable]::before {
-    content: '\f155';
-}
-
-editor-toolbar [data-command=video]::before {
-    content: '\f03d';
-}
+editor-toolbar [data-command=abbreviation]::before {content: '\f031';}
+editor-toolbar [data-command=audio]::before {content: '\f001';}
+editor-toolbar [data-command=block]::before {content: '\f466';}
+editor-toolbar [data-command=blockquote]::before {content: '\f075';}
+editor-toolbar [data-command=bold]::before {content: '\f032';}
+editor-toolbar [data-command=cite]::before {content: '\f02d';}
+editor-toolbar [data-command=code]::before {content: '\f121';}
+editor-toolbar [data-command=definition]::before {content: '\f129';}
+editor-toolbar [data-command=details]::before {content: '\f150';}
+editor-toolbar [data-command=division]::before {content: '\f009';}
+editor-toolbar [data-command=emphasis]::before {content: '\f0a1';}
+editor-toolbar [data-command=heading]::before {content: '\f1dc';}
+editor-toolbar [data-command=iframe]::before {content: '\f1c9';}
+editor-toolbar [data-command=image]::before {content: '\f03e';}
+editor-toolbar [data-command=italic]::before {content: '\f033';}
+editor-toolbar [data-command=keyboard]::before {content: '\f11c';}
+editor-toolbar [data-command=link]::before {content: '\f0c1';}
+editor-toolbar [data-command=mark]::before {content: '\f5a1';}
+editor-toolbar [data-command=orderedlist]::before {content: '\f0cb';}
+editor-toolbar [data-command=paragraph]::before {content: '\f1dd';}
+editor-toolbar [data-command=quote]::before {content: '\f10d';}
+editor-toolbar [data-command=sample]::before {content: '\f120';}
+editor-toolbar [data-command=section]::before {content: '\f1ea';}
+editor-toolbar [data-command=small]::before {content: '\f141';}
+editor-toolbar [data-command=strikethrough]::before {content: '\f0cc';}
+editor-toolbar [data-command=strong]::before {content: '\f071';}
+editor-toolbar [data-command=subheading]::before {content: '\f0fd';}
+editor-toolbar [data-command=subscript]::before {content: '\f12c';}
+editor-toolbar [data-command=superscript]::before {content: '\f12b';}
+editor-toolbar [data-command=table]::before {content: '\f0ce';}
+editor-toolbar [data-command=time]::before {content: '\f017';}
+editor-toolbar [data-command=underline]::before {content: '\f0cd';}
+editor-toolbar [data-command=unorderedlist]::before {content: '\f0ca';}
+editor-toolbar [data-command=variable]::before {content: '\f155';}
+editor-toolbar [data-command=video]::before {content: '\f03d';}

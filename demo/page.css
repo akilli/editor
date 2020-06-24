@@ -103,6 +103,10 @@ samp {
     background: #191919;
 }
 
+time {
+    text-decoration: underline overline;
+}
+
 /**
  * Figure
  */

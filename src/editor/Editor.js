@@ -29,6 +29,7 @@ import Subheading from '../subheading/Subheading.js';
 import Subscript from '../subscript/Subscript.js';
 import Superscript from '../superscript/Superscript.js';
 import Table from '../table/Table.js';
+import Time from '../time/Time.js';
 import Underline from '../underline/Underline.js';
 import UnorderedList from '../unorderedlist/UnorderedList.js';
 import Variable from '../variable/Variable.js';
@@ -63,6 +64,7 @@ export default class Editor extends BaseEditor {
                     Variable,
                     Subscript,
                     Superscript,
+                    Time,
                     Link,
                     Paragraph,
                     Heading,
