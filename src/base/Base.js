@@ -49,6 +49,7 @@ export default class Base extends Plugin {
                 'image',
                 'list',
                 'paragraph',
+                'preformat',
                 'quote',
                 'rule',
                 'table',

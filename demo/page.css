@@ -177,6 +177,15 @@ figure.quote > figcaption {
 }
 
 /**
+ *
+ */
+pre {
+    padding: 0.75rem;
+    color: #fff;
+    background: #191919;
+}
+
+/**
  * Table
  */
 table {

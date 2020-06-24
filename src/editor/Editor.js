@@ -23,6 +23,7 @@ import Link from '../link/Link.js';
 import Mark from '../mark/Mark.js';
 import OrderedList from '../orderedlist/OrderedList.js';
 import Paragraph from '../paragraph/Paragraph.js';
+import Preformat from '../preformat/Preformat.js';
 import Quote from '../quote/Quote.js';
 import Sample from '../sample/Sample.js';
 import Section from '../section/Section.js';
@@ -85,6 +86,7 @@ export default class Editor extends BaseEditor {
                     Audio,
                     Iframe,
                     Table,
+                    Preformat,
                     Section,
                     Details,
                     Division,

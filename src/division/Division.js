@@ -29,7 +29,7 @@ export default class Division extends Plugin {
         this._tag({
             name: 'div',
             group: 'container',
-            children: ['audio', 'block', 'figure', 'iframe', 'image', 'quote', 'rule', 'table', 'video'],
+            children: ['audio', 'block', 'figure', 'iframe', 'image', 'preformat', 'quote', 'rule', 'table', 'video'],
             attributes: ['class'],
             deletable: true,
             focusable: true,

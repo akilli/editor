@@ -28,7 +28,7 @@ export default class Figure extends Plugin {
         this._tag({
             name: 'figure',
             group: 'figure',
-            children: ['audio', 'caption', 'iframe', 'image', 'quote', 'table', 'video'],
+            children: ['audio', 'caption', 'iframe', 'image', 'preformat', 'quote', 'table', 'video'],
             attributes: ['class'],
             alignable: true,
             deletable: true,

@@ -290,6 +290,7 @@ editor-toolbar [data-command=link]::before {content: '\f0c1';}
 editor-toolbar [data-command=mark]::before {content: '\f5a1';}
 editor-toolbar [data-command=orderedlist]::before {content: '\f0cb';}
 editor-toolbar [data-command=paragraph]::before {content: '\f1dd';}
+editor-toolbar [data-command=preformat]::before {content: '\f5fc';}
 editor-toolbar [data-command=quote]::before {content: '\f10d';}
 editor-toolbar [data-command=sample]::before {content: '\f120';}
 editor-toolbar [data-command=section]::before {content: '\f1ea';}
