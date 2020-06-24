@@ -52,7 +52,7 @@ Figure widgets like block quote, table or media elements allow changing alignmen
 
 ### Table widget keyboard shortcuts
 
-The navigation within a table slightly differs due to the nature of table elements. You can use one of the arrow keys (`ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown`) to navigate among the cells and rows.
+The navigation within a table slightly differs due to the nature of table elements. You can use the arrow keys (`ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown`) to navigate among the cells and rows.
 
 The table widget additionally allows adding and removing rows and columns before or after the currently focused table cell by combining the `Alt` key (*add*) or `Alt` and `Shift` keys (*remove*) with one of the arrow keys (`ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown`).
 
