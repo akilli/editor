@@ -154,10 +154,15 @@ export default class Editor {
     init() {
         const config = this.config;
         this.config = {};
-        let configured = this.constructor.defaultConfig.base?.plugins || [];
+        const builtin = this.constructor.defaultConfig.base?.plugins || [];
+        let configured = builtin;
 
-        if (Array.isArray(config.base?.plugins)) {
-            configured = configured.filter(item => config.base.plugins.includes(item.name));
+        if (Array.isArray(config.base?.plugins) && config.base.plugins.length > 0) {
+            configured = [];
+            config.base.plugins.forEach(item => {
+                const p = builtin.find(i => i.name === item);
+                p && configured.push(p);
+            });
         }
 
         const plugins = new Set();
