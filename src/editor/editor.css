@@ -90,12 +90,6 @@ editor-root [contenteditable=true]:hover {
     outline: 0.25rem dotted var(--editor-hover);
 }
 
-editor-root [contenteditable=true] :hover {
-    text-decoration: underline;
-    outline: none;
-    cursor: context-menu;
-}
-
 editor-root [contenteditable=true]:empty::after {
     color: var(--editor-border);
     content: var(--editor-placeholder);

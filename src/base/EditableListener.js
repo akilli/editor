@@ -21,8 +21,6 @@ export default class EditableListener extends Listener {
     insert(event) {
         if (event.detail.element.contentEditable === 'true') {
             event.detail.element.addEventListener('keydown', this);
-        } else if (event.detail.element.parentElement.contentEditable === 'true') {
-            event.detail.element.addEventListener('dblclick', this);
         }
     }
 
@@ -62,15 +60,5 @@ export default class EditableListener extends Listener {
             event.stopPropagation();
             this.editor.toolbar.querySelector(`button[data-key=${event.key.toLowerCase()}]`)?.click();
         }
-    }
-
-    /**
-     * Handles double-click events on format elements
-     *
-     * @param {MouseEvent} event
-     * @param {HTMLElement} event.target
-     */
-    dblclick(event) {
-        Array.from(this.editor.commands.values()).find(item => item.tag?.name === event.target.localName)?.execute();
     }
 }

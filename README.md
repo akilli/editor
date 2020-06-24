@@ -58,12 +58,7 @@ The table widget additionally allows adding and removing rows and columns before
 
 ### Text-level elements
 
-You can double-click on a text-level element (bold, italic, link, etc) to execute the corresponding command which
-
-- opens the corresponding dialog in case the elements allows attributes or 
-- removes the format aka replace the element with its `textContent`.
-
-In addition to that, each text-level element registers a keyboard shortcut in the form `Alt` + `Shift` + a letter. If you hover a button for such a text-level element in the toolbar, the actual keyboard shortcut will be shown. 
+Each text-level element registers a keyboard shortcut in the form `Alt` + `Shift` + a letter. If you hover a toolbar button for such a text-level element, the actual keyboard shortcut will be shown. 
 
 ## Demo
 
