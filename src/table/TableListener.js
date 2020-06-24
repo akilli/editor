@@ -78,7 +78,7 @@ export default class TableListener extends Listener {
             && row instanceof HTMLTableRowElement
             && (base instanceof HTMLTableElement || base instanceof HTMLTableSectionElement)
             && table instanceof HTMLTableElement
-            && (isNav && !cell.textContent || isRowNav || isAdd || isDel)
+            && (isNav && this.__enabled(cell, event.key) || isRowNav || isAdd || isDel)
         ) {
             const length = row.cells.length;
             const rowLength = base.rows.length;
@@ -91,14 +91,14 @@ export default class TableListener extends Listener {
             event.preventDefault();
             event.stopPropagation();
 
-            if (isNav && !cell.textContent) {
-                if (event.key === 'ArrowLeft' && !isFirst && !cell.textContent) {
+            if (isNav) {
+                if (event.key === 'ArrowLeft' && !isFirst) {
                     row.cells[cell.cellIndex - 1].focus();
-                } else if (event.key === 'ArrowRight' && !isLast && !cell.textContent) {
+                } else if (event.key === 'ArrowRight' && !isLast) {
                     row.cells[cell.cellIndex + 1].focus();
-                } else if ((event.key === 'Home' || event.key === 'ArrowRight' && isLast) && !cell.textContent) {
+                } else if ((event.key === 'Home' || event.key === 'ArrowRight' && isLast)) {
                     row.cells[0].focus();
-                } else if ((event.key === 'End' || event.key === 'ArrowLeft' && isFirst) && !cell.textContent) {
+                } else if ((event.key === 'End' || event.key === 'ArrowLeft' && isFirst)) {
                     row.cells[length - 1].focus();
                 }
             } else if (isRowNav) {
@@ -161,5 +161,38 @@ export default class TableListener extends Listener {
     __cell(element, ref = null) {
         const name = element.parentElement.localName === 'thead' ? 'th' : 'td';
         element.insertBefore(this.editor.createElement(name), ref);
+    }
+
+    /**
+     * Enables or disables navigation for table cell elements
+     *
+     * @private
+     * @param {HTMLElement} element
+     * @param {String} key
+     * @return {Boolean}
+     */
+    __enabled(element, key) {
+        const sel = this.editor.window.getSelection();
+
+        if (!sel.isCollapsed) {
+            return false;
+        }
+
+        if (['ArrowLeft', 'Home'].includes(key)) {
+            const first = element.firstChild instanceof HTMLElement ? element.firstChild.firstChild : element.firstChild;
+            return sel.anchorOffset === 0 && [element, first].includes(sel.anchorNode);
+        }
+
+        let last = element.lastChild;
+
+        if (element.lastChild instanceof HTMLBRElement && element.lastChild.previousSibling) {
+            last = element.lastChild.previousSibling;
+        }
+
+        if (last instanceof HTMLElement) {
+            last = last.lastChild;
+        }
+
+        return sel.anchorOffset === sel.anchorNode.textContent.length && [element, last].includes(sel.anchorNode);
     }
 }
