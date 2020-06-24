@@ -37,7 +37,7 @@ export default class EditableListener extends Listener {
         } else if (this.editor.isKey(event, 'Enter')) {
             event.preventDefault();
             event.stopPropagation();
-            let enter = this.editor.tags.get(event.target)?.enter;
+            const enter = this.editor.tags.get(event.target)?.enter;
 
             if (enter) {
                 if (event.target.textContent.trim() || !event.target.hasAttribute('data-deletable')) {
