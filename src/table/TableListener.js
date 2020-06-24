@@ -91,18 +91,26 @@ export default class TableListener extends Listener {
             event.stopPropagation();
 
             if (isNav) {
-                if (event.key === 'ArrowLeft') {
-                    const index = isFirst ? length - 1 : cell.cellIndex - 1;
-                    this.editor.focusEnd(row.cells[index]);
+                if (event.key === 'ArrowLeft' && !isFirst) {
+                    this.editor.focusEnd(row.cells[cell.cellIndex - 1]);
+                } else if (event.key === 'ArrowLeft' && isFirstTableRow) {
+                    this.editor.focusEnd(table.rows[table.rows.length - 1].cells[length - 1]);
+                } else if (event.key === 'ArrowLeft') {
+                    this.editor.focusEnd(table.rows[row.rowIndex - 1].cells[length - 1]);
+                } else if (event.key === 'ArrowRight' && !isLast) {
+                    row.cells[cell.cellIndex + 1].focus();
+                } else if (event.key === 'ArrowRight' && isLastTableRow) {
+                    table.rows[0].cells[0].focus();
                 } else if (event.key === 'ArrowRight') {
-                    const index = isLast ? 0 : cell.cellIndex + 1;
-                    row.cells[index].focus();
+                    table.rows[row.rowIndex + 1].cells[0].focus();
+                } else if (event.key === 'ArrowUp' && isFirstTableRow) {
+                    table.rows[table.rows.length - 1].cells[cell.cellIndex].focus();
                 } else if (event.key === 'ArrowUp') {
-                    const index = isFirstTableRow ? table.rows.length - 1 : row.rowIndex - 1;
-                    table.rows[index].cells[cell.cellIndex].focus();
+                    table.rows[row.rowIndex - 1].cells[cell.cellIndex].focus();
+                } else if (event.key === 'ArrowDown' && isLastTableRow) {
+                    table.rows[0].cells[cell.cellIndex].focus();
                 } else if (event.key === 'ArrowDown') {
-                    const index = isLastTableRow ? 0 : row.rowIndex + 1;
-                    table.rows[index].cells[cell.cellIndex].focus();
+                    table.rows[row.rowIndex + 1].cells[cell.cellIndex].focus();
                 }
             } else if (isAdd) {
                 if (event.key === 'ArrowLeft') {
