@@ -1,4 +1,5 @@
 import Base from '../base/Base.js';
+import Break from '../break/Break.js';
 import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
 import PreformatFilter from './PreformatFilter.js';
@@ -20,7 +21,7 @@ export default class Preformat extends Plugin {
      * @inheritDoc
      */
     static get dependencies() {
-        return [Base, Figure];
+        return [Base, Break, Figure];
     }
 
     /**
@@ -31,9 +32,11 @@ export default class Preformat extends Plugin {
         this._tag({
             name: 'pre',
             group: 'preformat',
+            children: ['break'],
             deletable: true,
             editable: true,
             navigable: true,
+            enter: 'p',
         });
         new PreformatListener(this.editor);
         this._command('pre');

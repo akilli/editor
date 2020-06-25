@@ -21,7 +21,6 @@ export default class PreformatListener extends Listener {
      */
     insertpre(event) {
         this.editor.wrap(event.detail.element, 'figure', {attributes: {class: 'preformat'}});
-        event.detail.element.addEventListener('keydown', this);
     }
 
     /**
@@ -33,19 +32,6 @@ export default class PreformatListener extends Listener {
     deletepre(event) {
         if (event.detail.target.localName === 'figure' && event.detail.target.classList.contains('preformat')) {
             event.detail.target.parentElement.removeChild(event.detail.target);
-        }
-    }
-
-    /**
-     * Handles enter keydown events
-     *
-     * @param {KeyboardEvent} event
-     */
-    keydown(event) {
-        if (this.editor.isKey(event, 'Enter')) {
-            event.preventDefault();
-            event.stopPropagation();
-            this.editor.insertText("\n");
         }
     }
 }
