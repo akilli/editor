@@ -449,7 +449,7 @@ export default class Editor {
                 return anc;
             }
         } catch (e) {
-            console.error(e);
+            this.window.console.error(e);
         }
 
         return null;
@@ -475,7 +475,7 @@ export default class Editor {
                 }
             }
         } catch (e) {
-            console.error(e);
+            this.window.console.error(e);
         }
 
         return null;

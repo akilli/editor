@@ -52,7 +52,7 @@ export default class BlockListener extends Listener {
                 event.detail.element.content = css + content;
             }
         } catch (e) {
-            console.error(e);
+            this.editor.window.console.error(e);
         }
     }
 }

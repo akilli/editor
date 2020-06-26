@@ -29,7 +29,7 @@ export default (document, Editor) => {
             browser: 'media.html#video',
         },
     });
-    console.log(editor);
+    window.console.log(editor);
 
     const button = document.getElementById('button');
     button.textContent = rte.hidden ? 'Save' : 'Edit';

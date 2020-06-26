@@ -2,7 +2,7 @@
 
 (function (document, window) {
     if (!window.opener) {
-        console.error('window.opener undefined');
+        window.console.error('window.opener undefined');
         return;
     }
 
