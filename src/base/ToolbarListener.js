@@ -19,10 +19,12 @@ export default class ToolbarListener extends Listener {
      * @param {HTMLButtonElement} event.detail.element
      */
     insertbutton(event) {
-        if (event.detail.element.dataset.key) {
+        const key = event.detail.element.getAttribute('data-key');
+
+        if (key) {
             const alt = this.editor.translator.translate('base', 'Alt');
             const shift = this.editor.translator.translate('base', 'Shift');
-            event.detail.element.title += ` [${alt} + ${shift} + ${event.detail.element.dataset.key}]`;
+            event.detail.element.title += ` [${alt} + ${shift} + ${key}]`;
         }
 
         if (event.detail.element.getAttribute('data-command')) {
