@@ -80,7 +80,7 @@ export default class ToolbarListener extends Listener {
     }
 
     /**
-     * Hides format toolbar if no editable is selected or selection is collapsed
+     * Shows or hides format toolbar depending on current selection
      */
     selectionchange() {
         const editable = this.editor.getSelectedEditable();
