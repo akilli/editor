@@ -86,7 +86,7 @@ export default class ToolbarListener extends Listener {
     selectstart() {
         const editable = this.editor.getSelectedEditable();
 
-        if (editable && this.editor.tags.get(editable)?.children.includes('format')) {
+        if (editable && this.editor.tags.allowed(editable, 'format', true)) {
             this.editor.formats.hidden = false;
             this.editor.formats.style.top = `${editable.offsetTop + editable.offsetParent.offsetTop - this.editor.formats.clientHeight}px`;
         }

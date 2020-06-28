@@ -50,13 +50,15 @@ export default class TagManager extends Map {
     }
 
     /**
-     * Checks if tag is allowed inside parent tag
+     * Checks if tag or group is allowed inside parent tag
      *
      * @param {String|HTMLElement} key
      * @param {String|HTMLElement} childKey
+     * @param {Boolean} [isGroup = false]
      * @return {Boolean}
      */
-    allowed(key, childKey) {
-        return !!this.get(key)?.children.includes(this.get(childKey)?.group);
+    allowed(key, childKey, isGroup = false) {
+        const group = isGroup ? childKey : this.get(childKey)?.group;
+        return !!this.get(key)?.children.includes(group);
     }
 }
