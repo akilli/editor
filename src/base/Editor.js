@@ -46,11 +46,25 @@ export default class Editor {
     toolbar;
 
     /**
-     * Event dispatcher of the editor toolbar
+     * Event dispatcher of the editor main toolbar
      *
      * @type {Dispatcher}
      */
     toolbarEvents;
+
+    /**
+     * Corresponding DOM element of the formats toolbar
+     *
+     * @type {HTMLElement}
+     */
+    formats;
+
+    /**
+     * Event dispatcher of the editor formats toolbar
+     *
+     * @type {Dispatcher}
+     */
+    formatsEvents;
 
     /**
      * Corresponding DOM element of the editor content root
@@ -138,13 +152,17 @@ export default class Editor {
         this.orig = orig;
         this.document = this.orig.ownerDocument;
         this.window = this.document.defaultView;
-        this.toolbar = this.createElement('editor-toolbar', {attributes: {role: 'toolbar'}});
-        this.toolbarEvents = new Dispatcher(this.toolbar);
-        this.root = this.createElement('editor-root');
-        this.rootEvents = new Dispatcher(this.root);
         this.element = this.createElement('akilli-editor');
+        this.toolbar = this.createElement('editor-toolbar', {attributes: {role: 'toolbar'}});
         this.element.appendChild(this.toolbar);
+        this.toolbarEvents = new Dispatcher(this.toolbar);
+        this.formats = this.createElement('editor-formats', {attributes: {role: 'toolbar'}});
+        this.formats.hidden = true;
+        this.element.appendChild(this.formats);
+        this.formatsEvents = new Dispatcher(this.formats);
+        this.root = this.createElement('editor-root');
         this.element.appendChild(this.root);
+        this.rootEvents = new Dispatcher(this.root);
         this.config = config;
     }
 

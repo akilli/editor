@@ -118,9 +118,11 @@ export default class Plugin {
         }
 
         label = this._(label);
-        this.editor.toolbar.appendChild(this.editor.createElement('button', {
+        const button = this.editor.createElement('button', {
             attributes: {type: 'button', 'data-command': this.constructor.name, title: label, 'data-key': key},
             html: label,
-        }));
+        });
+
+        key ? this.editor.formats.appendChild(button) : this.editor.toolbar.appendChild(button);
     }
 }

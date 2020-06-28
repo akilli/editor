@@ -10,6 +10,9 @@ export default class ToolbarListener extends Listener {
     constructor(editor) {
         super(editor);
         this.editor.toolbar.addEventListener('insertbutton', this);
+        this.editor.formats.addEventListener('insertbutton', this);
+        this.editor.root.addEventListener('selectstart', this);
+        this.editor.document.addEventListener('selectionchange', this);
     }
 
     /**
@@ -74,6 +77,28 @@ export default class ToolbarListener extends Listener {
 
             event.preventDefault();
             event.stopPropagation();
+        }
+    }
+
+    /**
+     * Shows format toolbar if editable is selected and selections starts
+     */
+    selectstart() {
+        const editable = this.editor.getSelectedEditable();
+
+        if (editable && this.editor.tags.get(editable)?.children.includes('format')) {
+            this.editor.formats.hidden = false;
+            this.editor.formats.style.top = `${editable.offsetTop + editable.offsetParent.offsetTop - this.editor.formats.clientHeight}px`;
+        }
+    }
+
+    /**
+     * Hides format toolbar if no editable is selected or selection is collapsed
+     */
+    selectionchange() {
+        if (!this.editor.getSelectedEditable() || this.editor.window.getSelection().isCollapsed) {
+            this.editor.formats.hidden = true;
+            this.editor.formats.removeAttribute('style');
         }
     }
 }
