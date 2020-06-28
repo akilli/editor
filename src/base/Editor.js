@@ -46,18 +46,18 @@ export default class Editor {
     toolbar;
 
     /**
-     * Corresponding DOM element of the editor content root
-     *
-     * @type {HTMLElement}
-     */
-    root;
-
-    /**
      * Event dispatcher of the editor toolbar
      *
      * @type {Dispatcher}
      */
     toolbarEvents;
+
+    /**
+     * Corresponding DOM element of the editor content root
+     *
+     * @type {HTMLElement}
+     */
+    root;
 
     /**
      * Event dispatcher of the editor content root
@@ -139,12 +139,12 @@ export default class Editor {
         this.document = this.orig.ownerDocument;
         this.window = this.document.defaultView;
         this.toolbar = this.createElement('editor-toolbar', {attributes: {role: 'toolbar'}});
+        this.toolbarEvents = new Dispatcher(this.toolbar);
         this.root = this.createElement('editor-root');
+        this.rootEvents = new Dispatcher(this.root);
         this.element = this.createElement('akilli-editor');
         this.element.appendChild(this.toolbar);
         this.element.appendChild(this.root);
-        this.toolbarEvents = new Dispatcher(this.toolbar);
-        this.rootEvents = new Dispatcher(this.root);
         this.config = config;
     }
 
