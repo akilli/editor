@@ -70,6 +70,7 @@ export default class TableListener extends Listener {
         const table = base instanceof HTMLTableElement ? base : base.parentElement;
         const keys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
         const isNav = this.editor.isKey(event, keys);
+        const isSort = this.editor.isKey(event, keys, {ctrl: true});
         const isAdd = this.editor.isKey(event, keys, {alt: true});
         const isDel = this.editor.isKey(event, keys, {alt: true, shift: true});
 
@@ -77,13 +78,16 @@ export default class TableListener extends Listener {
             && row instanceof HTMLTableRowElement
             && (base instanceof HTMLTableElement || base instanceof HTMLTableSectionElement)
             && table instanceof HTMLTableElement
-            && (isNav && this.__enabled(cell, event.key) || isAdd || isDel)
+            && (isNav && this.__enabled(cell, event.key) || isSort || isAdd || isDel)
         ) {
-            const length = row.cells.length;
+            const cellIndex = cell.cellIndex;
+            const cellLength = row.cells.length;
             const rowLength = base.rows.length;
             const rowIndex = base instanceof HTMLTableElement ? row.rowIndex : row.sectionRowIndex;
-            const isFirst = cell.cellIndex === 0;
-            const isLast = cell.cellIndex === length - 1;
+            const isFirst = cellIndex === 0;
+            const isLast = cellIndex === cellLength - 1;
+            const isFirstRow = rowIndex === 0;
+            const isLastRow = rowIndex === rowLength - 1;
             const isFirstTableRow = row.rowIndex === 0;
             const isLastTableRow = row.rowIndex === table.rows.length - 1;
 
@@ -92,41 +96,61 @@ export default class TableListener extends Listener {
 
             if (isNav) {
                 if (event.key === 'ArrowLeft' && !isFirst) {
-                    this.editor.focusEnd(row.cells[cell.cellIndex - 1]);
+                    this.editor.focusEnd(row.cells[cellIndex - 1]);
                 } else if (event.key === 'ArrowLeft' && isFirstTableRow) {
-                    this.editor.focusEnd(table.rows[table.rows.length - 1].cells[length - 1]);
+                    this.editor.focusEnd(table.rows[table.rows.length - 1].cells[cellLength - 1]);
                 } else if (event.key === 'ArrowLeft') {
-                    this.editor.focusEnd(table.rows[row.rowIndex - 1].cells[length - 1]);
+                    this.editor.focusEnd(table.rows[row.rowIndex - 1].cells[cellLength - 1]);
                 } else if (event.key === 'ArrowRight' && !isLast) {
-                    row.cells[cell.cellIndex + 1].focus();
+                    row.cells[cellIndex + 1].focus();
                 } else if (event.key === 'ArrowRight' && isLastTableRow) {
                     table.rows[0].cells[0].focus();
                 } else if (event.key === 'ArrowRight') {
                     table.rows[row.rowIndex + 1].cells[0].focus();
                 } else if (event.key === 'ArrowUp' && isFirstTableRow) {
-                    table.rows[table.rows.length - 1].cells[cell.cellIndex].focus();
+                    table.rows[table.rows.length - 1].cells[cellIndex].focus();
                 } else if (event.key === 'ArrowUp') {
-                    table.rows[row.rowIndex - 1].cells[cell.cellIndex].focus();
+                    table.rows[row.rowIndex - 1].cells[cellIndex].focus();
                 } else if (event.key === 'ArrowDown' && isLastTableRow) {
-                    table.rows[0].cells[cell.cellIndex].focus();
+                    table.rows[0].cells[cellIndex].focus();
                 } else if (event.key === 'ArrowDown') {
-                    table.rows[row.rowIndex + 1].cells[cell.cellIndex].focus();
+                    table.rows[row.rowIndex + 1].cells[cellIndex].focus();
                 }
+            } else if (isSort) {
+                if (event.key === 'ArrowLeft' && cellLength > 1 && isFirst) {
+                    Array.from(table.rows).forEach(item => item.appendChild(item.cells[cellIndex]));
+                } else if (event.key === 'ArrowLeft' && cellLength > 1) {
+                    Array.from(table.rows).forEach(item => item.insertBefore(item.cells[cellIndex], item.cells[cellIndex - 1]));
+                } else if (event.key === 'ArrowRight' && cellLength > 1 && isLast) {
+                    Array.from(table.rows).forEach(item => item.insertBefore(item.cells[cellIndex], item.cells[0]));
+                } else if (event.key === 'ArrowRight' && cellLength > 1) {
+                    Array.from(table.rows).forEach(item => item.insertBefore(item.cells[cellIndex + 1], item.cells[cellIndex]));
+                } else if (event.key === 'ArrowUp' && rowLength > 1 && isFirstRow) {
+                    base.appendChild(row);
+                } else if (event.key === 'ArrowUp' && rowLength > 1) {
+                    base.insertBefore(row, base.rows[rowIndex - 1]);
+                } else if (event.key === 'ArrowDown' && rowLength > 1 && isLastRow) {
+                    base.insertBefore(row, base.rows[0]);
+                } else if (event.key === 'ArrowDown' && rowLength > 1) {
+                    base.insertBefore(base.rows[rowIndex + 1], row);
+                }
+
+                cell.focus();
             } else if (isAdd) {
                 if (event.key === 'ArrowLeft') {
-                    Array.from(table.rows).forEach(item => this.__cell(item, item.cells[cell.cellIndex]));
+                    Array.from(table.rows).forEach(item => this.__cell(item, item.cells[cellIndex]));
                 } else if (event.key === 'ArrowRight') {
-                    Array.from(table.rows).forEach(item => this.__cell(item, item.cells[cell.cellIndex + 1]));
+                    Array.from(table.rows).forEach(item => this.__cell(item, item.cells[cellIndex + 1]));
                 } else if (event.key === 'ArrowUp') {
-                    this.__row(base, length, rowIndex);
+                    this.__row(base, cellLength, rowIndex);
                 } else if (event.key === 'ArrowDown') {
-                    this.__row(base, length, rowIndex + 1);
+                    this.__row(base, cellLength, rowIndex + 1);
                 }
             } else if (isDel) {
                 if (event.key === 'ArrowLeft' && !isFirst) {
-                    Array.from(table.rows).forEach(item => item.deleteCell(cell.cellIndex - 1));
+                    Array.from(table.rows).forEach(item => item.deleteCell(cellIndex - 1));
                 } else if (event.key === 'ArrowRight' && !isLast) {
-                    Array.from(table.rows).forEach(item => item.deleteCell(cell.cellIndex + 1));
+                    Array.from(table.rows).forEach(item => item.deleteCell(cellIndex + 1));
                 } else if (event.key === 'ArrowUp' && rowIndex > 0) {
                     base.deleteRow(rowIndex - 1)
                 } else if (event.key === 'ArrowDown' && rowIndex < rowLength - 1) {
