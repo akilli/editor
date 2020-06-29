@@ -1,8 +1,8 @@
 'use strict';
 
-(function (document, window) {
+(function (document, window, console) {
     if (!window.opener) {
-        window.console.error('window.opener undefined');
+        console.error('window.opener undefined');
         return;
     }
 
@@ -16,4 +16,4 @@
             }, window.opener.origin);
         }));
     });
-})(document, window);
+})(document, window, console);
