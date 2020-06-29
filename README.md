@@ -52,7 +52,7 @@ Figure widgets like block quote, table or media elements allow changing alignmen
 
 ### Table widget keyboard shortcuts
 
-The keyboard shortcuts within a table slightly differ due to the nature of table elements. Navigating, sorting, adding and deleting shortcuts use the **arrow keys** `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown`.
+The keyboard shortcuts within a table slightly differ due to the nature of table elements. Navigating, sorting, adding and deleting shortcuts use the **arrow keys** `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown`. Note that sorting, adding and deleting take the table section (`thead`, `tbody`, `tfoot`) into account.
 
 To navigate among the cells and rows use one of the **arrow keys**.
 
