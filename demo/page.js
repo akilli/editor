@@ -2,10 +2,7 @@
 
 (function (document, window, console) {
     document.addEventListener('DOMContentLoaded', async () => {
-        const rte = document.getElementById('rte');
-        const isSrc = window.location.pathname.endsWith('src.html');
-        const {default: Editor} = await import(isSrc ? '../src/editor/Editor.js' : '../dist/editor.js');
-        const editor = Editor.create(rte, {
+        const config = {
             audio: {
                 browser: 'media.html#audio',
             },
@@ -26,7 +23,11 @@
             video: {
                 browser: 'media.html#video',
             },
-        });
+        };
+        const rte = document.getElementById('rte');
+        const isSrc = window.location.pathname.endsWith('src.html');
+        const {default: Editor} = await import(isSrc ? '../src/editor/Editor.js' : '../dist/editor.js');
+        const editor = Editor.create(rte, config);
         console.log(editor);
 
         const button = document.getElementById('button');
