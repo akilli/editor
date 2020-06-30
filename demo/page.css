@@ -254,51 +254,6 @@ editor-root div figure.right,
 }
 
 /**
- * Section
- */
-section.content,
-section.info {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1.5rem auto;
-    align-items: start;
-    gap: 1.5rem 1.5rem;
-}
-
-section.content::before,
-section.content::after,
-section.info::before,
-section.info::after {
-    display: none;
-}
-
-section.content > figure > img,
-section.info > figure > img {
-    max-height: 10rem;
-}
-
-section.content > * {
-    grid-column: 3 / 5;
-    margin-top: 0;
-}
-
-section.content > figure {
-    grid-column: 1 / 3;
-    grid-row: 1 / -1;
-    float: none;
-}
-
-section.info > * {
-    grid-column: 1 / 4;
-    margin-top: 0;
-}
-
-section.info > figure {
-    grid-column: 4;
-    grid-row: 1 / -1;
-}
-
-/**
  * Editor
  */
 button#button {
