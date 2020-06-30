@@ -304,7 +304,6 @@ section.info > figure {
 button#button {
     display: block;
     width: 100%;
-    line-height: 1.5rem;
     padding: 0.75rem;
     color: #fff;
     background: #191919;
