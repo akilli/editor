@@ -357,10 +357,9 @@ export default class Editor {
      * @param {HTMLElement} element
      * @param {String} name
      * @param {Object} [opts = {}]
-     * @param {InsertPosition} [position = 'afterend']
      * @return {?HTMLElement}
      */
-    closest(element, name, opts = {}, position = 'afterend') {
+    closest(element, name, opts = {}) {
         if (!(element instanceof HTMLElement) || !this.contains(element.parentElement)) {
             throw 'Invalid argument';
         }
@@ -371,7 +370,7 @@ export default class Editor {
         do {
             if (this.tags.allowed(current, name)) {
                 const target = this.createElement(name, opts);
-                prev.insertAdjacentElement(position, target);
+                prev.insertAdjacentElement('afterend', target);
                 return target;
             }
         } while ((prev = current) && (current = current.parentElement) && this.contains(current));
