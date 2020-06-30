@@ -13,8 +13,10 @@
             figure.addEventListener('click', () => window.opener.postMessage({
                 alt: media.getAttribute('alt'),
                 caption: figure.lastElementChild.innerHTML,
+                height: media.getAttribute('height'),
                 src: media.src,
                 type: type,
+                width: media.getAttribute('width'),
             }, window.opener.origin));
 
             if (window.location.hash && window.location.hash !== `#${type}`) {
