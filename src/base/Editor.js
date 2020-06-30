@@ -374,7 +374,7 @@ export default class Editor {
         let parent = element.parentElement;
 
         do {
-            if (this.tags.allowed(parent, child)) {
+            if (this.tags.allowed(parent, child) && (this.root.isSameNode(parent) || parent.hasAttribute('data-slotable'))) {
                 return sibling;
             }
         } while ((sibling = parent) && (parent = parent.parentElement) && this.contains(parent));
