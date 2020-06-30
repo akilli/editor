@@ -352,28 +352,26 @@ export default class Editor {
     }
 
     /**
-     * Creates a new element with given name and options below first ancestor of given element that allows creating it
+     * Returns first ancestor of given element whose parent element allows creating given child tag name or element,
+     * i.e. the returned element is the sibling element to add the new child before or after
      *
      * @param {HTMLElement} element
-     * @param {String} name
-     * @param {Object} [opts = {}]
+     * @param {String|HTMLElement} child
      * @return {?HTMLElement}
      */
-    closest(element, name, opts = {}) {
+    closest(element, child) {
         if (!(element instanceof HTMLElement) || !this.contains(element.parentElement)) {
             throw 'Invalid argument';
         }
 
-        let prev = element;
-        let current = element.parentElement;
+        let sibling = element;
+        let parent = element.parentElement;
 
         do {
-            if (this.tags.allowed(current, name)) {
-                const target = this.createElement(name, opts);
-                prev.insertAdjacentElement('afterend', target);
-                return target;
+            if (this.tags.allowed(parent, child)) {
+                return sibling;
             }
-        } while ((prev = current) && (current = current.parentElement) && this.contains(current));
+        } while ((sibling = parent) && (parent = parent.parentElement) && this.contains(parent));
 
         return null;
     }
@@ -386,11 +384,13 @@ export default class Editor {
      * @param {Object} [opts = {}]
      */
     wrap(element, name, opts = {}) {
-        let target;
+        let sibling;
 
         if (!(element instanceof HTMLElement)) {
             throw 'Invalid argument';
-        } else if (element.parentElement.localName !== name && (target = this.closest(element, name, opts))) {
+        } else if (element.parentElement.localName !== name && (sibling = this.closest(element, name))) {
+            const target = this.createElement(name, opts);
+            sibling.insertAdjacentElement('afterend', target);
             target.appendChild(element);
         }
     }

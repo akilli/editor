@@ -41,9 +41,9 @@ export default class EditableListener extends Listener {
 
             if (enter) {
                 if (event.target.textContent.trim() || !event.target.hasAttribute('data-deletable')) {
-                    this.editor.closest(event.target, enter);
+                    this.editor.closest(event.target, enter)?.insertAdjacentElement('afterend', this.editor.createElement(enter));
                 } else if (!(event.target instanceof HTMLParagraphElement)) {
-                    this.editor.closest(event.target, 'p');
+                    this.editor.closest(event.target, 'p')?.insertAdjacentElement('afterend', this.editor.createElement('p'));
                     event.target.parentElement.removeChild(event.target);
                 }
             }
