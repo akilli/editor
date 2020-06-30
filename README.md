@@ -58,7 +58,7 @@ To navigate among the cells and rows use one of the **arrow keys**.
 
 To sort a table row/column combine the `Control` key with one of the **arrow keys**.
 
-To add the row/column before/after the currently focused table cell combine the `Alt` key with one of the **arrow keys**.
+To add a new row/column before/after the currently focused table cell combine the `Alt` key with one of the **arrow keys**.
 
 To delete the row/column before/after the currently focused table cell combine the `Alt` and `Shift` keys with one of the **arrow keys**.
 
