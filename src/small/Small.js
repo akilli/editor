@@ -30,6 +30,6 @@ export default class Small extends Plugin {
             group: 'format',
         });
         this._command('small');
-        this._toolbar('small', 'w');
+        this._toolbar('small', 'w', true);
     }
 }

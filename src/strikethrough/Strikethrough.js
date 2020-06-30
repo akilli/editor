@@ -30,6 +30,6 @@ export default class Strikethrough extends Plugin {
             group: 'format',
         });
         this._command('s');
-        this._toolbar('strikethrough', 'r');
+        this._toolbar('strikethrough', 'r', true);
     }
 }

@@ -30,6 +30,6 @@ export default class Variable extends Plugin {
             group: 'format',
         });
         this._command('var');
-        this._toolbar('Variable', 'v');
+        this._toolbar('Variable', 'v', true);
     }
 }

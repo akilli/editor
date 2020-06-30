@@ -111,8 +111,9 @@ export default class Plugin {
      * @protected
      * @param {String} label
      * @param {?String} [key = null]
+     * @param {Boolean} [format = false]
      */
-    _toolbar(label, key = null) {
+    _toolbar(label, key = null, format = false) {
         if (!label || typeof label !== 'string' || key && typeof key !== 'string') {
             throw 'Invalid argument';
         }
@@ -123,6 +124,6 @@ export default class Plugin {
             html: label,
         });
 
-        key ? this.editor.formats.appendChild(button) : this.editor.toolbar.appendChild(button);
+        format ? this.editor.formats.appendChild(button) : this.editor.toolbar.appendChild(button);
     }
 }

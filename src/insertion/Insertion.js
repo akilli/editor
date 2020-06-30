@@ -30,6 +30,6 @@ export default class Insertion extends Plugin {
             group: 'format',
         });
         this._command('ins');
-        this._toolbar('Text Insertion', 'f');
+        this._toolbar('Text Insertion', 'f', true);
     }
 }

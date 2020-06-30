@@ -30,6 +30,6 @@ export default class Strong extends Plugin {
             group: 'format',
         });
         this._command('strong');
-        this._toolbar('strongly emphasized', 's');
+        this._toolbar('strongly emphasized', 's', true);
     }
 }

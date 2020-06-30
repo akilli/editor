@@ -30,6 +30,6 @@ export default class Subscript extends Plugin {
             group: 'format',
         });
         this._command('sub');
-        this._toolbar('subscript', 'x');
+        this._toolbar('subscript', 'x', true);
     }
 }

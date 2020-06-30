@@ -30,6 +30,6 @@ export default class Emphasis extends Plugin {
             group: 'format',
         });
         this._command('em');
-        this._toolbar('emphasized', 'e');
+        this._toolbar('emphasized', 'e', true);
     }
 }

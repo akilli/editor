@@ -33,6 +33,6 @@ export default class Time extends Plugin {
         });
         this.editor.dialogs.set(new TimeDialog(this.editor));
         this._command('time');
-        this._toolbar('Time', 't');
+        this._toolbar('Time', 't', true);
     }
 }

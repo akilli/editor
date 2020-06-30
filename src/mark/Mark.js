@@ -30,6 +30,6 @@ export default class Mark extends Plugin {
             group: 'format',
         });
         this._command('mark');
-        this._toolbar('mark', 'm');
+        this._toolbar('mark', 'm', true);
     }
 }

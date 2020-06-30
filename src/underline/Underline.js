@@ -30,6 +30,6 @@ export default class Underline extends Plugin {
             group: 'format',
         });
         this._command('u');
-        this._toolbar('underline', 'u');
+        this._toolbar('underline', 'u', true);
     }
 }

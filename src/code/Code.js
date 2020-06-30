@@ -30,6 +30,6 @@ export default class Code extends Plugin {
             group: 'format',
         });
         this._command('code');
-        this._toolbar('Code', 'c');
+        this._toolbar('Code', 'c', true);
     }
 }

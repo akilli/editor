@@ -30,6 +30,6 @@ export default class Deletion extends Plugin {
             group: 'format',
         });
         this._command('del');
-        this._toolbar('Text Deletion', 'g');
+        this._toolbar('Text Deletion', 'g', true);
     }
 }

@@ -30,6 +30,6 @@ export default class Italic extends Plugin {
             group: 'format',
         });
         this._command('i');
-        this._toolbar('italic', 'i');
+        this._toolbar('italic', 'i', true);
     }
 }

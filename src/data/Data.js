@@ -33,6 +33,6 @@ export default class Data extends Plugin {
         });
         this.editor.dialogs.set(new DataDialog(this.editor));
         this._command('data');
-        this._toolbar('Data', 'j');
+        this._toolbar('Data', 'j', true);
     }
 }

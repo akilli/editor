@@ -30,6 +30,6 @@ export default class Sample extends Plugin {
             group: 'format',
         });
         this._command('samp');
-        this._toolbar('Sample Output', 'o');
+        this._toolbar('Sample Output', 'o', true);
     }
 }

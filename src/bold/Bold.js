@@ -30,6 +30,6 @@ export default class Bold extends Plugin {
             group: 'format',
         });
         this._command('b');
-        this._toolbar('bold', 'b');
+        this._toolbar('bold', 'b', true);
     }
 }

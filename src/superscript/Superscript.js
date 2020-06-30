@@ -30,6 +30,6 @@ export default class Superscript extends Plugin {
             group: 'format',
         });
         this._command('sup');
-        this._toolbar('superscript', 'y');
+        this._toolbar('superscript', 'y', true);
     }
 }
