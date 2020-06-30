@@ -278,6 +278,12 @@ export default class Editor {
 
         if (editable && editable instanceof HTMLSlotElement && this.tags.allowed(editable.parentElement, element)) {
             editable.insertAdjacentElement('beforebegin', element);
+        } else if (editable) {
+            this.closest(editable, element)?.insertAdjacentElement('afterend', element);
+
+            if (editable.hasAttribute('data-deletable') && !editable.textContent.trim()) {
+                editable.parentElement.removeChild(editable);
+            }
         } else if (this.tags.allowed(this.root, element)) {
             this.root.appendChild(element);
         } else {
