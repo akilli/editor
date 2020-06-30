@@ -29,7 +29,7 @@ details, dialog, menu, summary {
  * Box shadow
  */
 :invalid {
-  box-shadow: none;
+    box-shadow: none;
 }
 
 /**
