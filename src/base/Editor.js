@@ -320,9 +320,8 @@ export default class Editor {
 
         const sel = this.window.getSelection();
         const anc = sel.anchorNode instanceof Text ? sel.anchorNode.parentElement : sel.anchorNode;
-        const ancEdit = this.getSelectedEditable();
 
-        if (sel.isCollapsed || !sel.toString().trim() || !(anc instanceof HTMLElement) || !ancEdit) {
+        if (sel.isCollapsed || !sel.toString().trim() || !(anc instanceof HTMLElement) || !this.getSelectedEditable()) {
             return;
         }
 
