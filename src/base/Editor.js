@@ -319,41 +319,36 @@ export default class Editor {
         }
 
         const sel = this.window.getSelection();
-        const anc = sel.anchorNode instanceof Text ? sel.anchorNode.parentElement : sel.anchorNode;
+        const range = sel.rangeCount > 0 ? sel.getRangeAt(0) : null;
+        const editable = this.getSelectedEditable();
 
-        if (sel.isCollapsed || !sel.toString().trim() || !(anc instanceof HTMLElement) || !this.getSelectedEditable()) {
+        if (!range || range.collapsed || !range.toString().trim() || !editable || !this.tags.allowed(editable, element)) {
             return;
         }
 
-        const range = sel.getRangeAt(0);
-        const tag = this.tags.get(anc);
-        const parent = !tag || tag.group === 'format' ? anc.parentElement : anc;
-
-        if (range.startContainer instanceof Text && range.startContainer.parentElement !== parent) {
+        if (range.startContainer instanceof Text && range.startContainer.parentElement !== editable) {
             range.setStartBefore(range.startContainer.parentElement);
         }
 
-        if (range.endContainer instanceof Text && range.endContainer.parentElement !== parent) {
+        if (range.endContainer instanceof Text && range.endContainer.parentElement !== editable) {
             range.setEndAfter(range.endContainer.parentElement);
         }
 
         const selText = range.toString();
-        const selNodes = range.cloneContents().childNodes;
-        const same = Array.from(selNodes).every(item =>
+        const same = Array.from(range.cloneContents().childNodes).every(item =>
             item instanceof Text && !item.textContent.trim()
             || item instanceof HTMLElement && item.localName === element.localName
         );
-
         range.deleteContents();
 
-        if (parent.contentEditable === 'true' && this.tags.allowed(parent, element) && selText.trim() && (!tag || !same)) {
+        if (same) {
+            range.insertNode(this.createText(selText));
+        } else {
             element.textContent = selText;
             range.insertNode(element);
-        } else {
-            range.insertNode(this.createText(selText));
         }
 
-        parent.normalize();
+        editable.normalize();
     }
 
     /**

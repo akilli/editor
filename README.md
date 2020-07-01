@@ -20,7 +20,9 @@ The main toolbar mostly contains the buttons to insert a widget into the content
 
 Each widgets itself usually consists of one or more editables that allow adding and maybe formatting text. The `Block` plugin is an exception to this, as it provides the possibility to add non-editable and optionally previewable placeholder blocks into the editor content that will later be somehow replaced by your application (p.e. a CMS).
 
-The features of each element (p.e. like *alignable*, *deletable*, *editable*, *navigable*, *sortable*, etc) as well as the allowed attributes and child elements are configured by the tag configuration. Be aware of the fact that current default tag configuration p.e. does not allow nesting of text formatting elements.
+The features of each element (p.e. like *alignable*, *deletable*, *editable*, *navigable*, *sortable*, etc) as well as the allowed attributes and child elements are configured by the tag configuration. 
+
+Be aware of the fact that nesting of text-level elements is deliberately disallowed by both the default tag configuration and the `Editor.format()` method. If you are not happy with this restriction, adjust the tag configuration and override the `format()` method in your `Editor` subclass.
 
 ## Features
 
@@ -64,7 +66,7 @@ To delete the row/column before/after the currently focused table cell combine t
 
 ### Text-level elements
 
-Each text-level element registers a keyboard shortcut in the form `Alt` + `Shift` + a letter. If you hover a toolbar button for such a text-level element, the actual keyboard shortcut will be shown. 
+Each text-level element registers a keyboard shortcut in the form `Alt` + `Shift` + a letter. If you hover a formats toolbar button for such a text-level element, the actual keyboard shortcut will be shown.
 
 ## Demo
 
