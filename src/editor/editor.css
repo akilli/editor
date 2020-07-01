@@ -118,7 +118,8 @@ editor-root [data-sortable][data-sort]:hover {
     cursor: grab;
 }
 
-editor-root [data-sortover] {
+editor-root [data-sortover],
+editor-root [contenteditable][data-sortover] {
     outline: 0.25rem dashed var(--editor-sortover);
 }
 

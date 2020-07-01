@@ -69,8 +69,10 @@ export default class SortableListener extends Listener {
      * @param {HTMLElement} event.target
      */
     pointerdown(event) {
-        event.target.setAttribute('data-sort', '');
-        event.target.setPointerCapture(event.pointerId);
+        if (event.target.hasAttribute('data-sortable')) {
+            event.target.setAttribute('data-sort', '');
+            event.target.setPointerCapture(event.pointerId);
+        }
     }
 
     /**
@@ -85,7 +87,7 @@ export default class SortableListener extends Listener {
         if (event.target !== element) {
             this.__sortover();
 
-            if (this.__sortable(element)) {
+            if (this.__droppable(element)) {
                 element.setAttribute('data-sortover', '');
             }
         }
@@ -98,13 +100,15 @@ export default class SortableListener extends Listener {
      * @param {HTMLElement} event.target
      */
     pointerup(event) {
-        const element = this.editor.document.elementFromPoint(event.x, event.y);
-        this.__sortover();
-        event.target.removeAttribute('data-sort');
-        event.target.releasePointerCapture(event.pointerId);
+        if (event.target.hasAttribute('data-sortable')) {
+            const element = this.editor.document.elementFromPoint(event.x, event.y);
+            this.__sortover();
+            event.target.removeAttribute('data-sort');
+            event.target.releasePointerCapture(event.pointerId);
 
-        if (event.target !== element && this.__sortable(element) && this.editor.tags.allowed(element.parentElement, event.target)) {
-            element.insertAdjacentElement('beforebegin', event.target);
+            if (event.target !== element && this.__droppable(element) && this.editor.tags.allowed(element.parentElement, event.target)) {
+                element.insertAdjacentElement('beforebegin', event.target);
+            }
         }
     }
 
@@ -118,15 +122,15 @@ export default class SortableListener extends Listener {
     }
 
     /**
-     * Is element sortable
+     * Indicates if element is a potential drop target, i.e. sortable or a slot element
      *
      * @private
      * @param {?Element} element
      * @return {Boolean}
      */
-    __sortable(element) {
+    __droppable(element) {
         return element instanceof HTMLElement
-            && element.hasAttribute('data-sortable')
+            && (element.hasAttribute('data-sortable') || element instanceof HTMLSlotElement)
             && this.editor.contains(element)
             && element !== this.editor.root;
     }
