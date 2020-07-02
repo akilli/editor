@@ -37,7 +37,6 @@ export default class Table extends Plugin {
             children: ['tablesection'],
             deletable: true,
             navigable: true,
-            sortable: true,
         });
         this._tag({
             name: 'thead',
