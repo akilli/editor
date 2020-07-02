@@ -62,6 +62,7 @@ export default class Base extends Plugin {
             editable: true,
             focusable: true,
             navigable: true,
+            sortable: true,
         });
         new ToolbarListener(this.editor);
         new TagListener(this.editor);

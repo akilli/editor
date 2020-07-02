@@ -83,13 +83,10 @@ export default class SortableListener extends Listener {
      */
     pointermove(event) {
         const element = this.editor.document.elementFromPoint(event.x, event.y);
+        this.__sortover();
 
-        if (event.target !== element) {
-            this.__sortover();
-
-            if (this.__droppable(element)) {
-                element.setAttribute('data-sortover', '');
-            }
+        if (this.__droppable(event.target, element)) {
+            element.setAttribute('data-sortover', '');
         }
     }
 
@@ -106,7 +103,7 @@ export default class SortableListener extends Listener {
             event.target.removeAttribute('data-sort');
             event.target.releasePointerCapture(event.pointerId);
 
-            if (event.target !== element && this.__droppable(element) && this.editor.tags.allowed(element.parentElement, event.target)) {
+            if (this.__droppable(event.target, element)) {
                 element.insertAdjacentElement('beforebegin', event.target);
             }
         }
@@ -122,16 +119,22 @@ export default class SortableListener extends Listener {
     }
 
     /**
-     * Indicates if element is a potential drop target, i.e. sortable or a slot element
+     * Indicates if target element is a potential drop target for given element
      *
      * @private
-     * @param {?Element} element
+     * @param {HTMLElement} element
+     * @param {HTMLElement} target
      * @return {Boolean}
      */
-    __droppable(element) {
+    __droppable(element, target) {
         return element instanceof HTMLElement
-            && (element.hasAttribute('data-sortable') || element instanceof HTMLSlotElement)
-            && this.editor.contains(element)
-            && element !== this.editor.root;
+            && target instanceof HTMLElement
+            && this.editor.contains(target)
+            && ![this.editor.root, element].includes(target)
+            && target.hasAttribute('data-sortable')
+            && (
+                element.parentElement === target.parentElement
+                || this.editor.arbitrary(target.parentElement) && this.editor.tags.allowed(target.parentElement, element)
+            );
     }
 }
