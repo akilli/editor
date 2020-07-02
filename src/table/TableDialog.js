@@ -16,17 +16,9 @@ export default class TableDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _getHtml() {
-        return `
-            <legend>${this._('Table')}</legend>
-            <div data-required>
-                <label for="editor-rows">${this._('Rows')}</label>
-                <input id="editor-rows" name="rows" type="number" value="1" min="1" required />
-            </div>
-            <div data-required>
-                <label for="editor-cols">${this._('Columns')}</label>
-                <input id="editor-cols" name="cols" type="number" value="1" min="1" required />
-            </div>
-        `;
+    _initFieldset(fieldset) {
+        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Table')}));
+        fieldset.appendChild(this._createInput('rows', 'number', this._('Rows'), {min: '1', required: 'required', value: '1'}));
+        fieldset.appendChild(this._createInput('cols', 'number', this._('Columns'), {min: '1', required: 'required', value: '1'}));
     }
 }

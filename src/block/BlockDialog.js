@@ -16,13 +16,8 @@ export default class BlockDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _getHtml() {
-        return `
-            <legend>${this._('Block')}</legend>
-            <div data-required>
-                <label for="editor-id">${this._('ID')}</label>
-                <input id="editor-id" name="id" type="text" required />
-            </div>
-        `;
+    _initFieldset(fieldset) {
+        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Block')}));
+        fieldset.appendChild(this._createInput('id', 'text', this._('ID'), {required: 'required'}));
     }
 }

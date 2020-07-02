@@ -16,25 +16,17 @@ export default class ImageDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _getHtml() {
-        return `
-            <legend>${this._('Image')}</legend>
-            <div data-required>
-                <label for="editor-src">${this._('URL')}</label>
-                <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this._('Insert URL to image')}" required />
-            </div>
-            <div>
-                <label for="editor-alt">${this._('Alternative text')}</label>
-                <input id="editor-alt" name="alt" type="text" placeholder="${this._('Replacement text for use when media elements are not available')}" />
-            </div>
-            <div>
-                <label for="editor-width">${this._('Width')}</label>
-                <input id="editor-width" name="width" type="number" />
-            </div>
-            <div>
-                <label for="editor-height">${this._('Height')}</label>
-                <input id="editor-height" name="height" type="number" />
-            </div>
-        `;
+    _initFieldset(fieldset) {
+        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Image')}));
+        fieldset.appendChild(this._createInput('src', 'text', this._('URL'), {
+            pattern: '(https?|/).+',
+            placeholder: this._('Insert URL to image'),
+            required: 'required',
+        }));
+        fieldset.appendChild(this._createInput('alt', 'text', this._('Alternative text'), {
+            placeholder: this._('Replacement text for use when media elements are not available'),
+        }));
+        fieldset.appendChild(this._createInput('width', 'number', this._('Width')));
+        fieldset.appendChild(this._createInput('height', 'number', this._('Height')));
     }
 }

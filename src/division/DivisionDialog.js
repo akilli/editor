@@ -16,13 +16,8 @@ export default class DivisionDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _getHtml() {
-        return `
-            <legend>${this._('Division')}</legend>
-            <div>
-                <label for="editor-class">${this._('CSS class')}</label>
-                <input id="editor-class" name="class" type="text" placeholder="${this._('Insert CSS class')}" />
-            </div>
-        `;
+    _initFieldset(fieldset) {
+        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Division')}));
+        fieldset.appendChild(this._createInput('class', 'text', this._('CSS class'), {placeholder: this._('Insert CSS class')}));
     }
 }

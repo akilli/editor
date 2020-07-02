@@ -16,13 +16,10 @@ export default class AbbreviationDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _getHtml() {
-        return `
-            <legend>${this._('Abbreviation')}</legend>
-            <div>
-                <label for="editor-title">${this._('Full term')}</label>
-                <input id="editor-title" name="title" type="text" placeholder="${this._('Insert full term or leave empty to remove it')}" />
-            </div>
-        `;
+    _initFieldset(fieldset) {
+        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Abbreviation')}));
+        fieldset.appendChild(this._createInput('title', 'text', this._('Full term'), {
+            placeholder: this._('Insert full term or leave empty to remove it'),
+        }));
     }
 }

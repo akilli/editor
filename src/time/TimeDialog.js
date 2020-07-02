@@ -16,13 +16,10 @@ export default class TimeDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _getHtml() {
-        return `
-            <legend>${this._('Time')}</legend>
-            <div>
-                <label for="editor-datetime">${this._('Machine-readable Datetime')}</label>
-                <input id="editor-datetime" name="datetime" type="text" placeholder="${this._('Insert date and/or time or leave empty to remove it')}" />
-            </div>
-        `;
+    _initFieldset(fieldset) {
+        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Time')}));
+        fieldset.appendChild(this._createInput('datetime', 'text', this._('Machine-readable Datetime'), {
+            placeholder: this._('Insert date and/or time or leave empty to remove it'),
+        }));
     }
 }

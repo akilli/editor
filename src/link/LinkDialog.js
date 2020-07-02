@@ -16,13 +16,11 @@ export default class LinkDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _getHtml() {
-        return `
-            <legend>${this._('Link')}</legend>
-            <div>
-                <label for="editor-href">${this._('URL')}</label>
-                <input id="editor-href" name="href" type="text" pattern="(https?|/|mailto:).+" placeholder="${this._('Insert URL to add a link or leave empty to unlink')}" />
-            </div>
-        `;
+    _initFieldset(fieldset) {
+        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Link')}));
+        fieldset.appendChild(this._createInput('href', 'text', this._('URL'), {
+            pattern: '(https?|/|mailto:).+',
+            placeholder: this._('Insert URL to add a link or leave empty to unlink'),
+        }));
     }
 }

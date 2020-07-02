@@ -55,22 +55,14 @@ export default class Dialog {
         };
         cleanup();
 
-        const dialog = this.editor.createElement('editor-dialog');
-        dialog.addEventListener('close', close);
-
+        const form = this.editor.createElement('form');
         const fieldset = this.editor.createElement('fieldset');
-        fieldset.insertAdjacentHTML('beforeend', this._getHtml());
-        Object.entries(attributes).forEach(([key, val]) => {
-            if (fieldset.elements[key]) {
-                fieldset.elements[key].value = val;
-            }
-        });
-
-        const saveButton = this.editor.createElement('button', {html: this._('Save')});
         const cancelButton = this.editor.createElement('button', {attributes: {type: 'button'}, html: this._('Cancel')});
         cancelButton.addEventListener('click', close);
-
-        const form = this.editor.createElement('form');
+        form.appendChild(fieldset);
+        form.appendChild(cancelButton);
+        form.appendChild(this.editor.createElement('button', {html: this._('Save')}));
+        this._initFieldset(fieldset);
         form.addEventListener('submit', event => {
             event.preventDefault();
             event.stopPropagation();
@@ -79,13 +71,12 @@ export default class Dialog {
             Array.from(fieldset.elements).forEach(item => data[item.name] = item.value);
             save(data);
         });
-        form.appendChild(fieldset);
-        form.appendChild(cancelButton);
-        form.appendChild(saveButton);
+        Object.entries(attributes).forEach(([key, val]) => fieldset.elements[key] && (fieldset.elements[key].value = val));
 
+        const dialog = this.editor.createElement('editor-dialog');
+        dialog.addEventListener('close', close);
         dialog.appendChild(form);
         dialog.show();
-
         this.editor.element.appendChild(dialog);
     }
 
@@ -101,12 +92,38 @@ export default class Dialog {
     }
 
     /**
-     * Returns dialogs fieldset HTML
+     * Initializes form fieldset
+     *
+     * @param {HTMLFieldSetElement} fieldset
+     */
+    _initFieldset(fieldset) {
+        throw 'Not implemented';
+    }
+
+    /**
+     * Creates wrapped input element with label
      *
      * @protected
-     * @return {String}
+     * @param {String} name
+     * @param {String} type
+     * @param {String} label
+     * @param {Object.<String, String>} [attributes = {}]
+     * @return {HTMLDivElement}
      */
-    _getHtml() {
-        return '';
+    _createInput(name, type, label, attributes = {}) {
+        if (!name || typeof name !== 'string' || !type || typeof type !== 'string' || !label || typeof label !== 'string') {
+            throw 'Invalid argument';
+        }
+
+        Object.assign(attributes, {id: `editor-${name}`, name: name, type: type});
+        const div = this.editor.createElement('div');
+        div.appendChild(this.editor.createElement('label', {attributes: {for: attributes.id}, html: label}));
+        div.appendChild(this.editor.createElement('input', {attributes: attributes}));
+
+        if (attributes.required) {
+            div.setAttribute('data-required', '');
+        }
+
+        return div;
     }
 }

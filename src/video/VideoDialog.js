@@ -16,21 +16,14 @@ export default class VideoDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _getHtml() {
-        return `
-            <legend>${this._('Video')}</legend>
-            <div data-required>
-                <label for="editor-src">${this._('URL')}</label>
-                <input id="editor-src" name="src" type="text" pattern="(https?|/).+" placeholder="${this._('Insert URL to video')}" required />
-            </div>
-            <div>
-                <label for="editor-width">${this._('Width')}</label>
-                <input id="editor-width" name="width" type="number" />
-            </div>
-            <div>
-                <label for="editor-height">${this._('Height')}</label>
-                <input id="editor-height" name="height" type="number" />
-            </div>
-        `;
+    _initFieldset(fieldset) {
+        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Video')}));
+        fieldset.appendChild(this._createInput('src', 'text', this._('URL'), {
+            pattern: '(https?|/).+',
+            placeholder: this._('Insert URL to video'),
+            required: 'required',
+        }));
+        fieldset.appendChild(this._createInput('width', 'number', this._('Width')));
+        fieldset.appendChild(this._createInput('height', 'number', this._('Height')));
     }
 }

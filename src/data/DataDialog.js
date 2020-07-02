@@ -16,13 +16,10 @@ export default class DataDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _getHtml() {
-        return `
-            <legend>${this._('Data')}</legend>
-            <div>
-                <label for="editor-value">${this._('Machine-readable Value')}</label>
-                <input id="editor-value" name="value" type="text" placeholder="${this._('Insert value or leave empty to remove it')}" />
-            </div>
-        `;
+    _initFieldset(fieldset) {
+        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Data')}));
+        fieldset.appendChild(this._createInput('value', 'text', this._('Machine-readable Value'), {
+            placeholder: this._('Insert value or leave empty to remove it'),
+        }));
     }
 }
