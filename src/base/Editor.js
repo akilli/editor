@@ -352,7 +352,7 @@ export default class Editor {
     }
 
     /**
-     * Indicates if element allows arbitrary amount of child elements, i.e. is the root or a arbitrary element
+     * Indicates if element allows arbitrary amount of child elements
      *
      * @param {Element} element
      * @return {Boolean}
