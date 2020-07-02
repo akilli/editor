@@ -352,13 +352,13 @@ export default class Editor {
     }
 
     /**
-     * Indicates if element allows arbitrary amount of child elements, i.e. is the root or a slotable element
+     * Indicates if element allows arbitrary amount of child elements, i.e. is the root or a arbitrary element
      *
      * @param {Element} element
      * @return {Boolean}
      */
     arbitrary(element) {
-        return element instanceof HTMLElement && (element === this.root || element.hasAttribute('data-slotable'));
+        return element instanceof HTMLElement && (element === this.root || element.hasAttribute('data-arbitrary'));
     }
 
     /**

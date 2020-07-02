@@ -31,6 +31,7 @@ export default class Section extends Plugin {
             group: 'container',
             children: ['audio', 'figure', 'heading', 'iframe', 'image', 'list', 'paragraph', 'preformat', 'quote', 'rule', 'table', 'video'],
             attributes: ['class'],
+            arbitrary: true,
             deletable: true,
             focusable: true,
             navigable: true,

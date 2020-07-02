@@ -31,6 +31,7 @@ export default class Details extends Plugin {
             name: 'details',
             group: 'container',
             children: ['audio', 'figure', 'iframe', 'image', 'list', 'paragraph', 'preformat', 'quote', 'rule', 'summary', 'table', 'video'],
+            arbitrary: true,
             deletable: true,
             focusable: true,
             navigable: true,

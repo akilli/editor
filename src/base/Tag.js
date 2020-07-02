@@ -38,6 +38,13 @@ export default class Tag {
     alignable = false;
 
     /**
+     * Does element allow arbitrary amount of child elements
+     *
+     * @type {Boolean}
+     */
+    arbitrary = false;
+
+    /**
      * Is element deletable
      *
      * @type {Boolean}
@@ -113,6 +120,7 @@ export default class Tag {
         this.group = group;
         this.children = opts.children || [];
         this.attributes = opts.attributes || [];
+        this.arbitrary = opts.arbitrary === true;
         this.alignable = opts.alignable === true;
         this.deletable = opts.deletable === true;
         this.editable = opts.editable === true;

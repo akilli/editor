@@ -31,6 +31,7 @@ export default class Division extends Plugin {
             group: 'container',
             children: ['audio', 'block', 'figure', 'iframe', 'image', 'preformat', 'quote', 'rule', 'table', 'video'],
             attributes: ['class'],
+            arbitrary: true,
             deletable: true,
             focusable: true,
             navigable: true,

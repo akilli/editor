@@ -30,6 +30,7 @@ export default class OrderedList extends Plugin {
             name: 'ol',
             group: 'list',
             children: ['listitem'],
+            arbitrary: true,
             deletable: true,
             focusable: true,
             navigable: true,

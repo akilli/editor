@@ -30,6 +30,7 @@ export default class UnorderedList extends Plugin {
             name: 'ul',
             group: 'list',
             children: ['listitem'],
+            arbitrary: true,
             deletable: true,
             focusable: true,
             navigable: true,
