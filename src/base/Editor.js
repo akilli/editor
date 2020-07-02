@@ -443,11 +443,7 @@ export default class Editor {
     createElement(name, {attributes = {}, html = ''} = {}) {
         const element = this.document.createElement(name);
         element.innerHTML = html;
-        Object.entries(attributes).forEach(([key, val]) => {
-            if (val) {
-                element.setAttribute(key, `${val}`);
-            }
-        })
+        Object.entries(attributes).forEach(([key, val]) => val && element.setAttribute(key, `${val}`));
 
         return element;
     }
