@@ -352,6 +352,16 @@ export default class Editor {
     }
 
     /**
+     * Indicates if element allows arbitrary amount of child elements, i.e. is the root or a slotable element
+     *
+     * @param {Element} element
+     * @return {Boolean}
+     */
+    arbitrary(element) {
+        return element instanceof HTMLElement && (element === this.root || element.hasAttribute('data-slotable'));
+    }
+
+    /**
      * Returns first ancestor of given element whose parent element allows creating given child tag name or element,
      * i.e. the returned element is the sibling element to add the new child before or after
      *
@@ -368,7 +378,7 @@ export default class Editor {
         let parent = element.parentElement;
 
         do {
-            if (this.tags.allowed(parent, child) && (this.root.isSameNode(parent) || parent.hasAttribute('data-slotable'))) {
+            if (this.arbitrary(parent) && this.tags.allowed(parent, child)) {
                 return sibling;
             }
         } while ((sibling = parent) && (parent = parent.parentElement) && this.contains(parent));
