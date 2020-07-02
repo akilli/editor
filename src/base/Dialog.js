@@ -94,6 +94,7 @@ export default class Dialog {
     /**
      * Initializes form fieldset
      *
+     * @protected
      * @param {HTMLFieldSetElement} fieldset
      */
     _initFieldset(fieldset) {
