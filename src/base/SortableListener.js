@@ -134,7 +134,8 @@ export default class SortableListener extends Listener {
             && target.hasAttribute('data-sortable')
             && (
                 element.parentElement === target.parentElement
-                || this.editor.arbitrary(target.parentElement) && this.editor.tags.allowed(target.parentElement, element)
-            );
+                || this.editor.arbitrary(element.parentElement) && this.editor.arbitrary(target.parentElement)
+            )
+            && this.editor.tags.allowed(target.parentElement, element);
     }
 }
