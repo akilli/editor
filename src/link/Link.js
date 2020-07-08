@@ -32,8 +32,8 @@ export default class Link extends Plugin {
             group: 'format',
             attributes: ['href'],
         });
-        new LinkListener(this.editor);
-        this.editor.dialogs.set(new LinkDialog(this.editor));
+        new LinkListener(this._editor);
+        this._editor.dialogs.set(new LinkDialog(this._editor));
         this._command('a');
         this._toolbar('Link', 'l', true);
     }

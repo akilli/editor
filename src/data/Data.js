@@ -31,7 +31,7 @@ export default class Data extends Plugin {
             group: 'format',
             attributes: ['value'],
         });
-        this.editor.dialogs.set(new DataDialog(this.editor));
+        this._editor.dialogs.set(new DataDialog(this._editor));
         this._command('data');
         this._toolbar('Data', 'j', true);
     }

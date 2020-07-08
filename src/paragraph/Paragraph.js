@@ -38,7 +38,7 @@ export default class Paragraph extends Plugin {
             sortable: true,
             enter: 'p',
         });
-        new ParagraphListener(this.editor);
+        new ParagraphListener(this._editor);
         this._command('p');
         this._toolbar('Paragraph');
     }

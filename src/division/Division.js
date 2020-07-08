@@ -38,7 +38,7 @@ export default class Division extends Plugin {
             slotable: true,
             sortable: true,
         });
-        this.editor.dialogs.set(new DivisionDialog(this.editor));
+        this._editor.dialogs.set(new DivisionDialog(this._editor));
         this._command('div');
         this._toolbar('Division');
     }

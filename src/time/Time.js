@@ -31,7 +31,7 @@ export default class Time extends Plugin {
             group: 'format',
             attributes: ['datetime'],
         });
-        this.editor.dialogs.set(new TimeDialog(this.editor));
+        this._editor.dialogs.set(new TimeDialog(this._editor));
         this._command('time');
         this._toolbar('Time', 't', true);
     }

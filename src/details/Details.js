@@ -45,9 +45,9 @@ export default class Details extends Plugin {
             navigable: true,
             enter: 'p',
         });
-        new DetailsListener(this.editor);
+        new DetailsListener(this._editor);
         this._command('details');
         this._toolbar('Details');
-        this.editor.filters.add(new DetailsFilter(this.editor));
+        this._editor.filters.add(new DetailsFilter(this._editor));
     }
 }

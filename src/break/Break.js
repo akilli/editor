@@ -29,6 +29,6 @@ export default class Break extends Plugin {
             group: 'break',
             empty: true,
         });
-        this.editor.filters.add(new BreakFilter(this.editor));
+        this._editor.filters.add(new BreakFilter(this._editor));
     }
 }

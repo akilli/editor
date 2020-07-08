@@ -36,6 +36,6 @@ export default class List extends Plugin {
             sortable: true,
             enter: 'li',
         });
-        new ListListener(this.editor);
+        new ListListener(this._editor);
     }
 }

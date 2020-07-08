@@ -43,12 +43,12 @@ export default class Image extends Plugin {
             empty: true,
             navigable: true,
         });
-        new ImageListener(this.editor);
+        new ImageListener(this._editor);
 
-        if (this.editor.config.image.browser) {
-            this.editor.dialogs.set(new BrowserDialog(this.editor, 'image', this.editor.config.image.browser));
+        if (this._editor.config.image.browser) {
+            this._editor.dialogs.set(new BrowserDialog(this._editor, 'image', this._editor.config.image.browser));
         } else {
-            this.editor.dialogs.set(new ImageDialog(this.editor));
+            this._editor.dialogs.set(new ImageDialog(this._editor));
         }
 
         this._command('img');

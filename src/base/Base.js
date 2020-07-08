@@ -35,7 +35,7 @@ export default class Base extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this.editor.registerElement('editor-dialog', DialogElement);
+        this._editor.registerElement('editor-dialog', DialogElement);
         this._tag({
             name: 'editor-root',
             group: 'root',
@@ -64,15 +64,15 @@ export default class Base extends Plugin {
             navigable: true,
             sortable: true,
         });
-        new ToolbarListener(this.editor);
-        new TagListener(this.editor);
-        new EditableListener(this.editor);
-        new DeletableListener(this.editor);
-        new NavigableListener(this.editor);
-        new SortableListener(this.editor);
-        new AlignableListener(this.editor);
-        new FocusableListener(this.editor);
-        new SlotableListener(this.editor);
-        this.editor.filters.add(new ContentFilter(this.editor));
+        new ToolbarListener(this._editor);
+        new TagListener(this._editor);
+        new EditableListener(this._editor);
+        new DeletableListener(this._editor);
+        new NavigableListener(this._editor);
+        new SortableListener(this._editor);
+        new AlignableListener(this._editor);
+        new FocusableListener(this._editor);
+        new SlotableListener(this._editor);
+        this._editor.filters.add(new ContentFilter(this._editor));
     }
 }

@@ -44,7 +44,7 @@ export default class Figure extends Plugin {
             navigable: true,
             enter: 'p',
         });
-        new FigureListener(this.editor);
-        this.editor.filters.add(new FigureFilter(this.editor));
+        new FigureListener(this._editor);
+        this._editor.filters.add(new FigureFilter(this._editor));
     }
 }
