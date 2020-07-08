@@ -7,9 +7,10 @@ export default class Command {
     /**
      * Editor
      *
+     * @protected
      * @type {Editor}
      */
-    editor;
+    _editor;
 
     /**
      * Name
@@ -21,16 +22,18 @@ export default class Command {
     /**
      * Associated tag
      *
+     * @protected
      * @type {?Tag}
      */
-    tag = null;
+    _tag = null;
 
     /**
      * Associated dialog
      *
+     * @protected
      * @type {?Dialog}
      */
-    dialog = null;
+    _dialog = null;
 
     /**
      * Initializes a new editor command optionally with given tag name
@@ -44,17 +47,17 @@ export default class Command {
             throw 'Invalid argument';
         }
 
-        this.editor = editor;
+        this._editor = editor;
         this.name = name;
-        this.tag = tagName ? this.editor.tags.get(tagName) : null;
-        this.dialog = this.editor.dialogs.get(name);
+        this._tag = tagName ? this._editor.tags.get(tagName) : null;
+        this._dialog = this._editor.dialogs.get(name);
     }
 
     /**
      * Executes the command
      */
     execute() {
-        this.dialog ? this._openDialog() : this._insert(this._selectedAttributes());
+        this._dialog ? this._openDialog() : this._insert(this._selectedAttributes());
     }
 
      /**
@@ -64,21 +67,21 @@ export default class Command {
       * @param {Object.<String, String>} [attributes = {}]
       */
     _insert(attributes = {}) {
-        if (this.tag) {
-            Object.keys(attributes).forEach(item => this.tag.attributes.includes(item) && attributes[item] || delete attributes[item]);
+        if (this._tag) {
+            Object.keys(attributes).forEach(item => this._tag.attributes.includes(item) && attributes[item] || delete attributes[item]);
             const selected = this._selectedElement();
 
-            if (this.tag.group !== 'format') {
-                this.editor.insert(this.editor.createElement(this.tag.name, {attributes: attributes}));
+            if (this._tag.group !== 'format') {
+                this._editor.insert(this._editor.createElement(this._tag.name, {attributes: attributes}));
             } else if (selected && Object.keys(attributes).length > 0) {
                 selected.parentElement.replaceChild(
-                    this.editor.createElement(this.tag.name, {attributes: attributes, html: selected.textContent}),
+                    this._editor.createElement(this._tag.name, {attributes: attributes, html: selected.textContent}),
                     selected
                 );
             } else if (selected) {
-                selected.parentElement.replaceChild(this.editor.createText(selected.textContent), selected);
+                selected.parentElement.replaceChild(this._editor.createText(selected.textContent), selected);
             } else {
-                this.editor.format(this.editor.createElement(this.tag.name, {attributes: attributes}));
+                this._editor.format(this._editor.createElement(this._tag.name, {attributes: attributes}));
             }
         }
     }
@@ -89,7 +92,7 @@ export default class Command {
      * @protected
      */
     _openDialog() {
-        this.dialog.open(attributes => this._insert(attributes), this._selectedAttributes())
+        this._dialog.open(attributes => this._insert(attributes), this._selectedAttributes())
     }
 
     /**
@@ -99,9 +102,9 @@ export default class Command {
      * @return {?HTMLElement}
      */
     _selectedElement() {
-        const element = this.editor.getSelectedElement();
+        const element = this._editor.getSelectedElement();
 
-        return element && element.localName === this.tag?.name ? element : null;
+        return element && element.localName === this._tag?.name ? element : null;
     }
 
     /**
@@ -114,9 +117,9 @@ export default class Command {
         const element = this._selectedElement();
         const attributes = {};
 
-        if (element && this.tag) {
+        if (element && this._tag) {
             Array.from(element.attributes).forEach(item => {
-                if (this.tag.attributes.includes(item.nodeName)) {
+                if (this._tag.attributes.includes(item.nodeName)) {
                     attributes[item.nodeName] = item.nodeValue;
                 }
             });
