@@ -5,9 +5,10 @@ export default class Dispatcher {
     /**
      * Managed element
      *
+     * @private
      * @type {HTMLElement}
      */
-    element;
+    __element;
 
     /**
      * Initializes a new event dispatcher
@@ -19,7 +20,7 @@ export default class Dispatcher {
             throw 'Invalid argument';
         }
 
-        this.element = element;
+        this.__element = element;
         this.register(this.__observe.bind(this));
     }
 
@@ -35,7 +36,7 @@ export default class Dispatcher {
             throw 'Invalid argument';
         }
 
-        this.element.dispatchEvent(new CustomEvent(type, {detail: {element: element, target: target}}));
+        this.__element.dispatchEvent(new CustomEvent(type, {detail: {element: element, target: target}}));
     }
 
     /**
@@ -50,7 +51,7 @@ export default class Dispatcher {
         }
 
         const observer = new MutationObserver(call);
-        observer.observe(this.element, opts);
+        observer.observe(this.__element, opts);
     }
 
     /**
