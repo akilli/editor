@@ -10,8 +10,8 @@ export default class BlockListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.root.addEventListener('sethtml', this);
-        this.editor.root.addEventListener('inserteditorblock', this);
+        this._editor.root.addEventListener('sethtml', this);
+        this._editor.root.addEventListener('inserteditorblock', this);
     }
 
     /**
@@ -34,25 +34,25 @@ export default class BlockListener extends Listener {
         if (!event.detail.element.id) {
             event.detail.element.parentElement.removeChild(event.detail.element);
             return;
-        } else if (!this.editor.config.block.api) {
+        } else if (!this._editor.config.block.api) {
             return;
         }
 
         try {
-            const response = await fetch(this.editor.config.block.api.replace('{id}', event.detail.element.id), {mode: 'no-cors'});
+            const response = await fetch(this._editor.config.block.api.replace('{id}', event.detail.element.id), {mode: 'no-cors'});
 
             if (response.ok) {
                 let css = '';
 
-                if (this.editor.config.block.css) {
-                    css = this.editor.config.block.css.split(',').map(item => `<link rel="stylesheet" href="${item}">`).join('');
+                if (this._editor.config.block.css) {
+                    css = this._editor.config.block.css.split(',').map(item => `<link rel="stylesheet" href="${item}">`).join('');
                 }
 
                 const content = await response.text();
                 event.detail.element.content = css + content;
             }
         } catch (e) {
-            this.editor.window.console.error(e);
+            this._editor.window.console.error(e);
         }
     }
 }

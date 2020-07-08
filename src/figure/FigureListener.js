@@ -9,7 +9,7 @@ export default class FigureListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.root.addEventListener('insertfigure', this);
+        this._editor.root.addEventListener('insertfigure', this);
     }
 
     /**
@@ -20,7 +20,7 @@ export default class FigureListener extends Listener {
      */
     insertfigure(event) {
         if (!event.detail.element.querySelector(':scope > figcaption')) {
-            event.detail.element.appendChild(this.editor.createElement('figcaption'));
+            event.detail.element.appendChild(this._editor.createElement('figcaption'));
         }
     }
 }

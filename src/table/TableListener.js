@@ -9,9 +9,9 @@ export default class TableListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.root.addEventListener('inserttable', this);
-        this.editor.root.addEventListener('inserttd', this);
-        this.editor.root.addEventListener('insertth', this);
+        this._editor.root.addEventListener('inserttable', this);
+        this._editor.root.addEventListener('inserttd', this);
+        this._editor.root.addEventListener('insertth', this);
     }
 
     /**
@@ -21,7 +21,7 @@ export default class TableListener extends Listener {
      * @param {HTMLTableElement} event.detail.element
      */
     inserttable(event) {
-        this.editor.wrap(event.detail.element, 'figure', {attributes: {class: 'table'}});
+        this._editor.wrap(event.detail.element, 'figure', {attributes: {class: 'table'}});
 
         if (event.detail.element.tBodies.length > 0
             && event.detail.element.tBodies[0].rows[0]
@@ -69,10 +69,10 @@ export default class TableListener extends Listener {
         const base = row.parentElement;
         const table = base instanceof HTMLTableElement ? base : base.parentElement;
         const keys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
-        const isNav = this.editor.isKey(event, keys);
-        const isSort = this.editor.isKey(event, keys, {ctrl: true});
-        const isAdd = this.editor.isKey(event, keys, {alt: true});
-        const isDel = this.editor.isKey(event, keys, {alt: true, shift: true});
+        const isNav = this._editor.isKey(event, keys);
+        const isSort = this._editor.isKey(event, keys, {ctrl: true});
+        const isAdd = this._editor.isKey(event, keys, {alt: true});
+        const isDel = this._editor.isKey(event, keys, {alt: true, shift: true});
 
         if (cell instanceof HTMLTableCellElement
             && row instanceof HTMLTableRowElement
@@ -96,11 +96,11 @@ export default class TableListener extends Listener {
 
             if (isNav) {
                 if (event.key === 'ArrowLeft' && !isFirst) {
-                    this.editor.focusEnd(row.cells[cellIndex - 1]);
+                    this._editor.focusEnd(row.cells[cellIndex - 1]);
                 } else if (event.key === 'ArrowLeft' && isFirstTableRow) {
-                    this.editor.focusEnd(table.rows[table.rows.length - 1].cells[cellLength - 1]);
+                    this._editor.focusEnd(table.rows[table.rows.length - 1].cells[cellLength - 1]);
                 } else if (event.key === 'ArrowLeft') {
-                    this.editor.focusEnd(table.rows[row.rowIndex - 1].cells[cellLength - 1]);
+                    this._editor.focusEnd(table.rows[row.rowIndex - 1].cells[cellLength - 1]);
                 } else if (event.key === 'ArrowRight' && !isLast) {
                     row.cells[cellIndex + 1].focus();
                 } else if (event.key === 'ArrowRight' && isLastTableRow) {
@@ -185,7 +185,7 @@ export default class TableListener extends Listener {
      */
     __cell(element, ref = null) {
         const name = element.parentElement.localName === 'thead' ? 'th' : 'td';
-        element.insertBefore(this.editor.createElement(name), ref);
+        element.insertBefore(this._editor.createElement(name), ref);
     }
 
     /**
@@ -201,7 +201,7 @@ export default class TableListener extends Listener {
             return true;
         }
 
-        const sel = this.editor.window.getSelection();
+        const sel = this._editor.window.getSelection();
 
         if (!sel.isCollapsed) {
             return false;

@@ -9,7 +9,7 @@ export default class DeletableListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.root.addEventListener('insert', this);
+        this._editor.root.addEventListener('insert', this);
     }
 
     /**
@@ -31,9 +31,9 @@ export default class DeletableListener extends Listener {
      * @param {HTMLElement} event.target
      */
     keydown(event) {
-        if (event.target === event.currentTarget && this.editor.isKey(event, 'Delete', {ctrl: true})) {
+        if (event.target === event.currentTarget && this._editor.isKey(event, 'Delete', {ctrl: true})) {
             if (event.target.previousElementSibling instanceof HTMLElement) {
-                this.editor.focusEnd(event.target.previousElementSibling);
+                this._editor.focusEnd(event.target.previousElementSibling);
             }
 
             event.target.parentElement.removeChild(event.target);

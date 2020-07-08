@@ -9,8 +9,8 @@ export default class PreformatListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.root.addEventListener('insertpre', this);
-        this.editor.root.addEventListener('deletepre', this);
+        this._editor.root.addEventListener('insertpre', this);
+        this._editor.root.addEventListener('deletepre', this);
     }
 
     /**
@@ -20,7 +20,7 @@ export default class PreformatListener extends Listener {
      * @param {HTMLPreElement} event.detail.element
      */
     insertpre(event) {
-        this.editor.wrap(event.detail.element, 'figure', {attributes: {class: 'preformat'}});
+        this._editor.wrap(event.detail.element, 'figure', {attributes: {class: 'preformat'}});
     }
 
     /**

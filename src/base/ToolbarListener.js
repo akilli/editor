@@ -9,9 +9,9 @@ export default class ToolbarListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this.editor.toolbar.addEventListener('insertbutton', this);
-        this.editor.formats.addEventListener('insertbutton', this);
-        this.editor.document.addEventListener('selectionchange', this);
+        this._editor.toolbar.addEventListener('insertbutton', this);
+        this._editor.formats.addEventListener('insertbutton', this);
+        this._editor.document.addEventListener('selectionchange', this);
     }
 
     /**
@@ -24,8 +24,8 @@ export default class ToolbarListener extends Listener {
         const key = event.detail.element.getAttribute('data-key');
 
         if (key) {
-            const alt = this.editor.translator.translate('base', 'Alt');
-            const shift = this.editor.translator.translate('base', 'Shift');
+            const alt = this._editor.translator.translate('base', 'Alt');
+            const shift = this._editor.translator.translate('base', 'Shift');
             event.detail.element.title += ` [${alt} + ${shift} + ${key}]`;
         }
 
@@ -33,7 +33,7 @@ export default class ToolbarListener extends Listener {
             event.detail.element.addEventListener('click', this);
         }
 
-        if (event.detail.element.parentElement === this.editor.toolbar) {
+        if (event.detail.element.parentElement === this._editor.toolbar) {
             event.detail.element.tabIndex = -1;
             event.detail.element.addEventListener('keydown', this);
         }
@@ -46,7 +46,7 @@ export default class ToolbarListener extends Listener {
      * @param {HTMLElement} event.target
      */
     click(event) {
-        this.editor.commands.execute(event.target.getAttribute('data-command'));
+        this._editor.commands.execute(event.target.getAttribute('data-command'));
     }
 
     /**
@@ -56,7 +56,7 @@ export default class ToolbarListener extends Listener {
      * @param {HTMLElement} event.target
      */
     keydown(event) {
-        if (this.editor.isKey(event, ['ArrowLeft', 'ArrowRight', 'Home', 'End'])) {
+        if (this._editor.isKey(event, ['ArrowLeft', 'ArrowRight', 'Home', 'End'])) {
             const prev = event.target.previousElementSibling;
             const next = event.target.nextElementSibling;
             const first = event.target.parentElement.firstElementChild;
@@ -83,14 +83,14 @@ export default class ToolbarListener extends Listener {
      * Shows or hides format toolbar depending on current selection
      */
     selectionchange() {
-        const editable = this.editor.getSelectedEditable();
+        const editable = this._editor.getSelectedEditable();
 
-        if (editable && !this.editor.window.getSelection().isCollapsed && this.editor.tags.allowed(editable, 'format', true)) {
-            this.editor.formats.hidden = false;
-            this.editor.formats.style.top = `${editable.offsetTop + editable.offsetParent.offsetTop - this.editor.formats.clientHeight}px`;
+        if (editable && !this._editor.window.getSelection().isCollapsed && this._editor.tags.allowed(editable, 'format', true)) {
+            this._editor.formats.hidden = false;
+            this._editor.formats.style.top = `${editable.offsetTop + editable.offsetParent.offsetTop - this._editor.formats.clientHeight}px`;
         } else {
-            this.editor.formats.hidden = true;
-            this.editor.formats.removeAttribute('style');
+            this._editor.formats.hidden = true;
+            this._editor.formats.removeAttribute('style');
         }
     }
 }

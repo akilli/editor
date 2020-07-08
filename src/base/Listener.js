@@ -9,9 +9,10 @@ export default class Listener {
     /**
      * Editor
      *
+     * @protected
      * @type {Editor}
      */
-    editor;
+    _editor;
 
     /**
      * Initializes a new listener
@@ -24,7 +25,7 @@ export default class Listener {
             throw 'Invalid argument';
         }
 
-        this.editor = editor;
+        this._editor = editor;
     }
 
     /**
