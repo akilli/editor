@@ -17,7 +17,7 @@ export default class DataDialog extends Dialog {
      * @inheritDoc
      */
     _initFieldset(fieldset) {
-        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Data')}));
+        fieldset.appendChild(this._editor.createElement('legend', {html: this._('Data')}));
         fieldset.appendChild(this._createInput('value', 'text', this._('Machine-readable Value'), {
             placeholder: this._('Insert value or leave empty to remove it'),
         }));
