@@ -114,10 +114,6 @@ editor-root slot[contenteditable=true]:empty::after {
 /**
  * Sortable
  */
-editor-root [data-sortable][data-sort] {
-    touch-action: none;
-}
-
 editor-root [data-sortable][data-sort]:hover {
     cursor: grab;
 }
