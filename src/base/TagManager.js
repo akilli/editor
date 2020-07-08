@@ -2,28 +2,23 @@ import Tag from './Tag.js';
 
 /**
  * Tag Manager
- *
- * @extends {Map<String, Tag>}
  */
-export default class TagManager extends Map {
+export default class TagManager {
+    /**
+     * Registered tags
+     *
+     * @private
+     * @type {Map<String, Tag>}
+     */
+    __items = new Map();
+
     /**
      * Initializes a new tag manager
      *
      * @param {Tag[]} [tags = []]
      */
     constructor(tags = []) {
-        super();
         tags.forEach(tag => this.set(tag));
-    }
-
-    /**
-     * Indicates if a tag for given key is registered
-     *
-     * @param {String|HTMLElement} key
-     * @return {?Boolean}
-     */
-    has(key) {
-        return super.has(key instanceof HTMLElement ? key.localName : key);
     }
 
     /**
@@ -33,7 +28,7 @@ export default class TagManager extends Map {
      * @return {?Tag}
      */
     get(key) {
-        return super.get(key instanceof HTMLElement ? key.localName : key) || null;
+        return this.__items.get(key instanceof HTMLElement ? key.localName : key) || null;
     }
 
     /**
@@ -46,7 +41,7 @@ export default class TagManager extends Map {
             throw 'Invalid argument';
         }
 
-        super.set(tag.name, tag);
+        this.__items.set(tag.name, tag);
     }
 
     /**

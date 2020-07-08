@@ -2,17 +2,22 @@ import Command from './Command.js';
 
 /**
  * Command Manager
- *
- * @extends {Map<String, Command>}
  */
-export default class CommandManager extends Map {
+export default class CommandManager {
+    /**
+     * Registered commands
+     *
+     * @private
+     * @type {Map<String, Command>}
+     */
+    __items = new Map();
+
     /**
      * Initializes a new command manager
      *
      * @param {Command[]} [commands = []]
      */
     constructor(commands = []) {
-        super();
         commands.forEach(command => this.set(command));
     }
 
@@ -23,7 +28,7 @@ export default class CommandManager extends Map {
      * @return {?Command}
      */
     get(name) {
-        return super.get(name) || null;
+        return this.__items.get(name) || null;
     }
 
     /**
@@ -36,7 +41,7 @@ export default class CommandManager extends Map {
             throw 'Invalid argument';
         }
 
-        super.set(command.name, command);
+        this.__items.set(command.name, command);
     }
 
     /**

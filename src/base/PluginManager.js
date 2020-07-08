@@ -2,17 +2,22 @@ import Plugin from './Plugin.js';
 
 /**
  * Plugin Manager
- *
- * @extends {Map<String, Plugin>}
  */
-export default class PluginManager extends Map {
+export default class PluginManager {
+    /**
+     * Registered plugins
+     *
+     * @private
+     * @type {Map<String, Plugin>}
+     */
+    __items = new Map();
+
     /**
      * Initializes a new plugin map
      *
      * @param {Plugin[]} [plugins = []]
      */
     constructor(plugins = []) {
-        super();
         plugins.forEach(plugin => this.set(plugin));
     }
 
@@ -23,7 +28,7 @@ export default class PluginManager extends Map {
      * @return {?Plugin}
      */
     get(name) {
-        return super.get(name) || null;
+        return this.__items.get(name) || null;
     }
 
     /**
@@ -36,13 +41,13 @@ export default class PluginManager extends Map {
             throw 'Invalid argument';
         }
 
-        super.set(plugin.constructor.name, plugin);
+        this.__items.set(plugin.constructor.name, plugin);
     }
 
     /**
      * Initializes registered plugins
      */
     init() {
-        this.forEach(plugin => plugin.init());
+        this.__items.forEach(plugin => plugin.init());
     }
 }

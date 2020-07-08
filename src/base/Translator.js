@@ -1,9 +1,15 @@
 /**
  * Translator
- *
- * @extends {Map<String, Object.<String, String>>}
  */
-export default class Translator extends Map {
+export default class Translator {
+    /**
+     * Registered translations
+     *
+     * @private
+     * @type {Map<String, Object.<String, String>>}
+     */
+    __items = new Map();
+
     /**
      * Returns registered i18n data for given name or null
      *
@@ -11,7 +17,7 @@ export default class Translator extends Map {
      * @return {?Object.<String, String>}
      */
     get(name) {
-        return super.get(name) || null;
+        return this.__items.get(name) || null;
     }
 
     /**
@@ -25,7 +31,7 @@ export default class Translator extends Map {
             throw 'Invalid argument';
         }
 
-        super.set(name, i18n);
+        this.__items.set(name, i18n);
     }
 
     /**

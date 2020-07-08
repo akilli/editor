@@ -2,10 +2,16 @@ import Filter from './Filter.js';
 
 /**
  * Filter Manager
- *
- * @extends {Set<Filter>}
  */
-export default class FilterManager extends Set {
+export default class FilterManager {
+    /**
+     * Registered filters
+     *
+     * @private
+     * @type {Set<Filter>}
+     */
+    __items = new Set();
+
     /**
      * Adds or updates a filter
      *
@@ -16,7 +22,7 @@ export default class FilterManager extends Set {
             throw 'Invalid argument';
         }
 
-        super.add(filter);
+        this.__items.add(filter);
     }
 
     /**
@@ -29,7 +35,7 @@ export default class FilterManager extends Set {
             throw 'Invalid argument';
         }
 
-        this.forEach(filter => {
+        this.__items.forEach(filter => {
             element.normalize();
             filter.filter(element)
         });

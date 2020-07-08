@@ -2,17 +2,22 @@ import Dialog from './Dialog.js';
 
 /**
  * Dialog Manager
- *
- * @extends {Map<String, Dialog>}
  */
-export default class DialogManager extends Map {
+export default class DialogManager {
+    /**
+     * Registered dialogs
+     *
+     * @private
+     * @type {Map<String, Dialog>}
+     */
+    __items = new Map();
+
     /**
      * Initializes a new dialog manager
      *
      * @param {Dialog[]} [dialogs = []]
      */
     constructor(dialogs = []) {
-        super();
         dialogs.forEach(dialog => this.set(dialog));
     }
 
@@ -23,7 +28,7 @@ export default class DialogManager extends Map {
      * @return {?Dialog}
      */
     get(name) {
-        return super.get(name) || null;
+        return this.__items.get(name) || null;
     }
 
     /**
@@ -36,6 +41,6 @@ export default class DialogManager extends Map {
             throw 'Invalid argument';
         }
 
-        super.set(dialog.name, dialog);
+        this.__items.set(dialog.name, dialog);
     }
 }
