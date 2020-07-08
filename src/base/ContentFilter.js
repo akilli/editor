@@ -8,13 +8,13 @@ export default class ContentFilter extends Filter {
      * @inheritDoc
      */
     filter(element) {
-        const tag = this.editor.tags.get(element);
-        const allowedParagraph = this.editor.tags.allowed(element, 'p');
+        const tag = this._editor.tags.get(element);
+        const allowedParagraph = this._editor.tags.allowed(element, 'p');
         const allowedText = tag.editable || tag.group === 'format';
         let p = [];
         const wrap = (ref = null) => {
             if (allowedParagraph && p.length > 0) {
-                element.insertBefore(this.editor.createElement('p', {html: p.join(' ')}), ref);
+                element.insertBefore(this._editor.createElement('p', {html: p.join(' ')}), ref);
                 p = [];
             }
         };
@@ -24,9 +24,9 @@ export default class ContentFilter extends Filter {
 
             if (child instanceof HTMLElement) {
                 child = this.__convert(child);
-                const childTag = this.editor.tags.get(child);
+                const childTag = this._editor.tags.get(child);
 
-                if (childTag && this.editor.tags.allowed(element, child)) {
+                if (childTag && this._editor.tags.allowed(element, child)) {
                     wrap(child);
                     this.__element(child, childTag);
                 } else if (childTag && childTag.group === 'format' && allowedParagraph) {
@@ -38,7 +38,7 @@ export default class ContentFilter extends Filter {
                     p.push(text);
                     element.removeChild(child);
                 } else if (allowedText && text) {
-                    element.replaceChild(this.editor.createText(text), child);
+                    element.replaceChild(this._editor.createText(text), child);
                 } else {
                     element.removeChild(child);
                 }
@@ -66,13 +66,13 @@ export default class ContentFilter extends Filter {
      * @return {HTMLElement}
      */
     __convert(element) {
-        const name = this.editor.config.base.filter[element.localName];
+        const name = this._editor.config.base.filter[element.localName];
 
         if (!name) {
             return element;
         }
 
-        const convert = this.editor.createElement(name, {html: element.innerHTML});
+        const convert = this._editor.createElement(name, {html: element.innerHTML});
         element.parentElement.replaceChild(convert, element);
 
         return convert;
@@ -90,7 +90,7 @@ export default class ContentFilter extends Filter {
         Array.from(element.attributes).forEach(item => !tag.attributes.includes(item.name) && element.removeAttribute(item.name));
 
         if (element.hasChildNodes()) {
-            this.editor.filters.filter(element);
+            this._editor.filters.filter(element);
         }
 
         if (element.hasChildNodes() || tag.empty) {

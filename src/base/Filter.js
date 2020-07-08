@@ -7,9 +7,10 @@ export default class Filter {
     /**
      * Editor
      *
+     * @protected
      * @type {Editor}
      */
-    editor;
+    _editor;
 
     /**
      * Initializes a new filter
@@ -21,7 +22,7 @@ export default class Filter {
             throw 'Invalid argument';
         }
 
-        this.editor = editor;
+        this._editor = editor;
     }
 
     /**
