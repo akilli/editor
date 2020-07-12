@@ -19,6 +19,20 @@ export default [
         ],
     },
     {
+        input: 'src/editor/Editor.js',
+        output: {
+            file: 'dist/editor.legacy.js',
+            format: 'esm',
+            preferConst: true,
+        },
+        plugins: [
+            esbuild({
+                minify: true,
+                target: 'es6',
+            }),
+        ],
+    },
+    {
         input: 'src/editor/editor.css',
         plugins: [
             css({

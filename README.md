@@ -6,8 +6,6 @@ A HTML standards-compliant and dependency-free rich text editor.
 
 As this project is in an early state, some planned features are yet not finished or still missing or exist, but are not well documented. And although most of the API is quite stable now, all versions prior to `v1.0.0` are prereleases and should be considered experimental. `v1.0.0` is the designated initial stable release.
 
-Before `v1.0.0` you will also need a modern Browser to run the **src version** and also the **dist version**, because esbuild target for the **dist version** is currently set to `es2020`. 
-
 For the initial stable release additional **dist versions** for older browsers might be provided, as well as individual npm packages for each plugin. 
 
 ## Info
@@ -70,5 +68,6 @@ Each text-level element registers a keyboard shortcut in the form `Alt` + `Shift
 
 ## Demo
 
-- **dist version:** https://akilli.github.io/editor/demo
+- **dist version (`es2020`):** https://akilli.github.io/editor/demo
+- **legacy version (`es6`):** https://akilli.github.io/editor/demo/legacy.html
 - **src version:** https://akilli.github.io/editor/demo/src.html

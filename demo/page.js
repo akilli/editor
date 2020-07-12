@@ -1,6 +1,18 @@
 'use strict';
 
 (function (document, window, console) {
+    function editorPath() {
+        if (window.location.pathname.endsWith('src.html')) {
+            return '../src/editor/Editor.js';
+        }
+
+        if (window.location.pathname.endsWith('legacy.html')) {
+            return '../dist/editor.legacy.js';
+        }
+
+        return '../dist/editor.js';
+    }
+
     document.addEventListener('DOMContentLoaded', async () => {
         const config = {
             audio: {
@@ -25,8 +37,7 @@
             },
         };
         const rte = document.getElementById('rte');
-        const isSrc = window.location.pathname.endsWith('src.html');
-        const {default: Editor} = await import(isSrc ? '../src/editor/Editor.js' : '../dist/editor.js');
+        const {default: Editor} = await import(editorPath());
         const editor = Editor.create(rte, config);
         console.log(editor);
 
