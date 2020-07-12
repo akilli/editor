@@ -39,7 +39,7 @@ export default class Audio extends Plugin {
         this._tag({
             name: 'audio',
             group: 'audio',
-            attributes: ['controls', 'height', 'src', 'width'],
+            attributes: ['controls', 'src'],
             empty: true,
             navigable: true,
         });
