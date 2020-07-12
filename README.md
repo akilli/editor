@@ -106,7 +106,8 @@ const config = {
         /**
          * Names of the built-in plugins to load
          *
-         * If empty, all built-in plugins are loaded, otherwise only those configured or their dependencies.
+         * If empty, all built-in plugins are loaded, otherwise only those configured or their
+         * dependencies.
          *
          * @see Editor.init
          * @see Editor.defaultConfig
@@ -122,8 +123,9 @@ const config = {
         /**
          * URL to audio browser
          *
-         * If browser URL is provided, an audio browser dialog is used to insert new audio elements instead of the
-         * default audio dialog that provides just a simple form to set the src attribute.
+         * If browser URL is provided, an audio browser dialog is used to insert new audio elements
+         * instead of the default audio dialog that provides just a simple form to set the src 
+         * attribute.
          *
          * @see Audio.init
          * @type {?String}
@@ -138,10 +140,11 @@ const config = {
         /**
          * URL to block API including the placeholder {id}, p.e. '/api/{id}.html'
          *
-         * The placeholder {id} will be replaced by the value of the block element's id attribute and then a GET request
-         * will be sent to the resulting URL, p.e. if the block API URL is configured to '/api/{id}.html' and the block 
-         * element's id attribute is 1, an GET request is sent to '/api/1.html'. The block API must only return the HTML
-         * content for the preview if the block with the requested ID exists.
+         * The placeholder {id} will be replaced by the value of the block element's id attribute
+         * and then a GET request will be sent to the resulting URL, p.e. if the block API URL is
+         * configured to '/api/{id}.html' and the block element's id attribute is 1, an GET request
+         * is sent to '/api/1.html'. The block API must only return the HTML content for the
+         * preview if the block with the requested ID exists.
          * 
          *
          * @see BlockListener.inserteditorblock
@@ -152,8 +155,9 @@ const config = {
         /**
          * URL to block browser
          *
-         * If browser URL is provided, a block browser dialog is used to insert new block elements instead of the
-         * default block dialog that provides just a simple form to set the id attribute.
+         * If browser URL is provided, a block browser dialog is used to insert new block elements
+         * instead of the default block dialog that provides just a simple form to set the id
+         * attribute.
          *
          * @see Block.init
          * @type {?String}
@@ -161,7 +165,8 @@ const config = {
         browser: null,
 
         /**
-         * Comma-separated list of URLs to CSS files that should be included by the autonomous custom block element
+         * Comma-separated list of URLs to CSS files that should be included by the autonomous
+         * custom block element
          *
          * @see BlockListener.inserteditorblock
          * @type {?String}
@@ -176,8 +181,9 @@ const config = {
         /**
          * URL to iframe browser
          *
-         * If browser URL is provided, an iframe browser dialog is used to insert new iframe elements instead of the
-         * default iframe dialog that provides just a simple form to set the src, width and height attributes.
+         * If browser URL is provided, an iframe browser dialog is used to insert new iframe
+         * elements instead of the default iframe dialog that provides just a simple form to set
+         * the src, width and height attributes.
          *
          * @see Iframe.init
          * @type {?String}
