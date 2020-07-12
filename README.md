@@ -145,7 +145,6 @@ const config = {
          * configured to '/api/{id}.html' and the block element's id attribute is 1, an GET request
          * is sent to '/api/1.html'. The block API must only return the HTML content for the
          * preview if the block with the requested ID exists.
-         * 
          *
          * @see BlockListener.inserteditorblock
          * @type {?String}
