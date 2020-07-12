@@ -253,7 +253,7 @@ window.opener.postMessage({
 }, window.opener.origin);
 ```
 
-The examples for the other browser differ only in the keys the plugin considers:
+The examples for the other browsers differ only in the keys the plugin considers:
 
 - the iframe and video plugins require `src` and additionally accept `height` and `width`
 - the audio plugin only accepts and requires `src`
