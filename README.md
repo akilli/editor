@@ -70,154 +70,156 @@ Each text-level element registers a keyboard shortcut in the form `Alt` + `Shift
 
 ```js
 import Editor from './dist/editor.js';
+
+/**
+ * Configuration options
+ */
+const config = {
+    /**
+     * Base plugin
+     */
+    base: {
+        /**
+         * Overrides default browser dialog window options
+         *
+         * @see BrowserDialog.opts
+         * @type {Object.<String, String>}
+         */
+        browser: {},
+
+        /**
+         * Converts one HTML element to another
+         *
+         * @see ContentFilter.__convert
+         * @type {Object.<String, String>}
+         */
+        filter: {},
+
+        /**
+         * Language for i18n
+         *
+         * @see Plugin._i18n
+         * @type {?String}
+         */
+        lang: null,
+
+        /**
+         * Names of the built-in plugins to load
+         *
+         * If empty, all built-in plugins are loaded, otherwise only those configured or their dependencies.
+         *
+         * @see Editor.init
+         * @see Editor.defaultConfig
+         * @type {String[]}
+         */
+        plugins: [],
+    },
+
+    /**
+     * Audio plugin
+     */
+    audio: {
+        /**
+         * URL to audio browser
+         *
+         * If browser URL is provided, an audio browser dialog is used to insert new audio elements instead of the
+         * default audio dialog that provides just a simple form to set the src attribute.
+         *
+         * @see Audio.init
+         * @type {?String}
+         */
+        browser: null,
+    },
+
+    /**
+     * Block plugin
+     */
+    block: {
+        /**
+         * URL to block API including the placeholder {id}, p.e. '/api/{id}.html'
+         *
+         * The placeholder {id} will be replaced by the value of the block element's id attribute and then a GET request
+         * will be sent to the resulting URL, p.e. if the block API URL is configured to '/api/{id}.html' and the block 
+         * element's id attribute is 1, an GET request is sent to '/api/1.html'. The block API must only return the HTML
+         * content for the preview if the block with the requested ID exists.
+         * 
+         *
+         * @see BlockListener.inserteditorblock
+         * @type {?String}
+         */
+        api: null,
+
+        /**
+         * URL to block browser
+         *
+         * If browser URL is provided, a block browser dialog is used to insert new block elements instead of the
+         * default block dialog that provides just a simple form to set the id attribute.
+         *
+         * @see Block.init
+         * @type {?String}
+         */
+        browser: null,
+
+        /**
+         * Comma-separated list of URLs to CSS files that should be included by the autonomous custom block element
+         *
+         * @see BlockListener.inserteditorblock
+         * @type {?String}
+         */
+        css: null,
+    },
+
+    /**
+     * Iframe plugin
+     */
+    iframe: {
+        /**
+         * URL to iframe browser
+         *
+         * If browser URL is provided, an iframe browser dialog is used to insert new iframe elements instead of the
+         * default iframe dialog that provides just a simple form to set the src, width and height attributes.
+         *
+         * @see Iframe.init
+         * @type {?String}
+         */
+        browser: null,
+    },
+
+    /**
+     * Image plugin
+     */
+    image: {
+        /**
+         * URL to image browser
+         *
+         * If browser URL is provided, an image browser dialog is used to insert new image elements instead of the
+         * default image dialog that provides just a simple form to set the src, alt, width and height attributes.
+         *
+         * @see Image.init
+         * @type {?String}
+         */
+        browser: null,
+    },
+
+    /**
+     * Video plugin
+     */
+    video: {
+        /**
+         * URL to video browser
+         *
+         * If browser URL is provided, a video browser dialog is used to insert new video elements instead of the
+         * default video dialog that provides just a simple form to set the src, width and height attributes.
+         *
+         * @see Video.init
+         * @type {?String}
+         */
+        browser: null,
+    },
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const rte = document.getElementById('rte');
-    /**
-     * Configuration options
-     */
-    const config = {
-        /**
-         * Base plugin
-         */
-        base: {
-            /**
-             * Overrides default browser dialog window options
-             *
-             * @see BrowserDialog.opts
-             * @type {Object.<String, String>}
-             */
-            browser: {},
-
-            /**
-             * Converts one HTML element to another
-             *
-             * @see ContentFilter.__convert
-             * @type {Object.<String, String>}
-             */
-            filter: {},
-
-            /**
-             * Language for i18n
-             *
-             * @see Plugin._i18n
-             * @type {?String}
-             */
-            lang: null,
-
-            /**
-             * Names of the built-in plugins to load
-             *
-             * If empty, all built-in plugins are loaded, otherwise only those configured or their dependencies.
-             *
-             * @see Editor.init
-             * @see Editor.defaultConfig
-             * @type {String[]}
-             */
-            plugins: [],
-        },
-
-        /**
-         * Audio plugin
-         */
-        audio: {
-            /**
-             * URL to audio browser
-             *
-             * If browser URL is provided, an audio browser dialog is used to insert new audio elements instead of the
-             * default audio dialog that provides just a simple form to set the src attribute.
-             *
-             * @see Audio.init
-             * @type {?String}
-             */
-            browser: null,
-        },
-
-        /**
-         * Block plugin
-         */
-        block: {
-            /**
-             * URL to block API including the placeholder {id}, p.e. '/api/{id}.html'
-             *
-             * The placeholder {id} will be replaced by the value of the block element's id attribute and then a GET
-             * request will be sent to the resulting URL, p.e. if the block API URL is configured to '/api/{id}.html' 
-             * and the block element's id attribute is 1, an GET request is sent to '/api/1.html'. The block API must 
-             * only return the HTML content for the preview if the block with the requested ID exists.
-             * 
-             *
-             * @see BlockListener.inserteditorblock
-             * @type {?String}
-             */
-            api: null,
-
-            /**
-             * URL to block browser
-             *
-             * If browser URL is provided, a block browser dialog is used to insert new block elements instead of the
-             * default block dialog that provides just a simple form to set the id attribute.
-             *
-             * @see Block.init
-             * @type {?String}
-             */
-            browser: null,
-
-            /**
-             * Comma-separated list of URLs to CSS files that should be included by the autonomous custom block element
-             *
-             * @see BlockListener.inserteditorblock
-             * @type {?String}
-             */
-            css: null,
-        },
-
-        /**
-         * Iframe plugin
-         */
-        iframe: {
-            /**
-             * URL to iframe browser
-             *
-             * If browser URL is provided, an iframe browser dialog is used to insert new iframe elements instead of the
-             * default iframe dialog that provides just a simple form to set the src, width and height attributes.
-             *
-             * @see Iframe.init
-             * @type {?String}
-             */
-            browser: null,
-        },
-
-        /**
-         * Image plugin
-         */
-        image: {
-            /**
-             * URL to image browser
-             *
-             * If browser URL is provided, an image browser dialog is used to insert new image elements instead of the
-             * default image dialog that provides just a simple form to set the src, alt, width and height attributes.
-             *
-             * @see Image.init
-             * @type {?String}
-             */
-            browser: null,
-        },
-
-        /**
-         * Video plugin
-         */
-        video: {
-            /**
-             * URL to video browser
-             *
-             * If browser URL is provided, a video browser dialog is used to insert new video elements instead of the
-             * default video dialog that provides just a simple form to set the src, width and height attributes.
-             *
-             * @see Video.init
-             * @type {?String}
-             */
-            browser: null,
-        },
-    };
     const editor = Editor.create(rte, config);
     console.log(editor);
 });
