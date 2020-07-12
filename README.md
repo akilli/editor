@@ -198,8 +198,9 @@ const config = {
         /**
          * URL to image browser
          *
-         * If browser URL is provided, an image browser dialog is used to insert new image elements instead of the
-         * default image dialog that provides just a simple form to set the src, alt, width and height attributes.
+         * If browser URL is provided, an image browser dialog is used to insert new image elements
+         * instead of the default image dialog that provides just a simple form to set the src, alt,
+         * width and height attributes.
          *
          * @see Image.init
          * @type {?String}
@@ -214,8 +215,9 @@ const config = {
         /**
          * URL to video browser
          *
-         * If browser URL is provided, a video browser dialog is used to insert new video elements instead of the
-         * default video dialog that provides just a simple form to set the src, width and height attributes.
+         * If browser URL is provided, a video browser dialog is used to insert new video elements
+         * instead of the default video dialog that provides just a simple form to set the src,
+         * width and height attributes.
          *
          * @see Video.init
          * @type {?String}
