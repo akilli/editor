@@ -69,5 +69,5 @@ Each text-level element registers a keyboard shortcut in the form `Alt` + `Shift
 ## Demo
 
 - **dist version (`es2020`):** https://akilli.github.io/editor/demo
-- **legacy version (`es2015`):** https://akilli.github.io/editor/demo/legacy.html
+- **legacy version (`es2017`):** https://akilli.github.io/editor/demo/legacy.html
 - **src version:** https://akilli.github.io/editor/demo/src.html
