@@ -31,8 +31,9 @@
   },
   "devDependencies": {
     "@rollup/plugin-url": "^5.0.1",
-    "rollup": "^2.21.0",
+    "esbuild": "^0.6.8",
+    "rollup": "^2.23.0",
     "rollup-plugin-css-porter": "^1.0.2",
-    "rollup-plugin-esbuild": "^2.1.0"
+    "rollup-plugin-esbuild": "^2.4.2"
   }
 }
