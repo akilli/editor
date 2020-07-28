@@ -10,11 +10,11 @@ A HTML standards-compliant and dependency-free rich text editor.
 
 ## Info
 
-The editor mostly consists of a main toolbar, a formats toolbar and a content area. 
+The editor consists of a main toolbar, a formats toolbar and a content area. 
 
 The formats toolbar contains the buttons to format the text inside an editable element, p.e. bold, italic, link or any other [text-level element](https://html.spec.whatwg.org/multipage/text-level-semantics.html) and is hidden or shown depending on the current selection.
 
-The main toolbar mostly contains the buttons to insert a widget into the content area, p.e. paragraph, heading, lists, media elements, tables, sections and more.
+The main toolbar contains the buttons to insert a widget into the content area, p.e. paragraph, heading, lists, media elements, tables, sections and more.
 
 Each widgets itself usually consists of one or more editables that allow adding and maybe formatting text. The `Block` plugin is an exception to this, as it provides the possibility to add non-editable and optionally previewable placeholder blocks into the editor content that will later be somehow replaced by your application (p.e. a CMS).
 
