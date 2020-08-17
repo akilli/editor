@@ -1,6 +1,6 @@
 {
   "name": "@akilli/editor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A HTML standards-compliant and dependency-free rich text editor",
   "keywords": [
     "contenteditable",
@@ -31,8 +31,8 @@
   },
   "devDependencies": {
     "@rollup/plugin-url": "^5.0.1",
-    "esbuild": "^0.6.8",
-    "rollup": "^2.23.0",
+    "esbuild": "^0.6.25",
+    "rollup": "^2.26.3",
     "rollup-plugin-css-porter": "^1.0.2",
     "rollup-plugin-esbuild": "^2.4.2"
   }
