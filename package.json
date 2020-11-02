@@ -25,15 +25,14 @@
     "dist"
   ],
   "scripts": {
-    "build": "npm run clean && rollup --config",
+    "build": "npm run clean && npm run build:font && npm run build:css && npm run build:js",
+    "build:font": "mkdir -p dist && cp src/editor/editor.woff2 dist/editor.woff2",
+    "build:css": "esbuild src/editor/editor.css --minify --outfile=dist/editor.css",
+    "build:js": "esbuild src/editor/Editor.js --minify --bundle --outfile=dist/editor.js --target=es2020 --format=esm",
     "clean": "rm -rf dist",
     "start": "npx servor --reload . index.html 20000"
   },
   "devDependencies": {
-    "@rollup/plugin-url": "^5.0.1",
-    "esbuild": "^0.6.25",
-    "rollup": "^2.26.3",
-    "rollup-plugin-css-porter": "^1.0.2",
-    "rollup-plugin-esbuild": "^2.4.2"
+    "esbuild": "^0.8.2"
   }
 }

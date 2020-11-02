@@ -6,10 +6,6 @@
             return '../src/editor/Editor.js';
         }
 
-        if (window.location.pathname.endsWith('legacy.html')) {
-            return '../dist/editor.legacy.js';
-        }
-
         return '../dist/editor.js';
     }
 
