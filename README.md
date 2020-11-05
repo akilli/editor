@@ -9,6 +9,31 @@ A HTML standards-compliant and dependency-free rich text editor.
 
 The **dist-version** is currently built for target `es2020`. If you have to support older browsers, adjust the build config to your needs.
 
+## Development
+
+To build the editor run
+
+```
+npm run build
+```
+
+To start the demos locally run either
+
+```
+npm start
+```
+
+or
+
+```
+docker-compose up -d
+```
+
+In both cases the demos are accessible at
+
+- **dist version:** http://localhost:20000/demo
+- **src version:** http://localhost:20000/demo/src.html
+
 ## Info
 
 The editor consists of a main toolbar, a formats toolbar and a content area. 

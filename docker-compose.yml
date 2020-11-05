@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  node:
+    image: akilli/node
+    command: npm start
+    working_dir: /app
+    restart: unless-stopped
+    ports:
+      - "20000:20000"
+    volumes:
+    - .:/app
