@@ -56,7 +56,7 @@ export default class Dialog {
         };
         cleanup();
 
-        const form = this._editor.createElement('form');
+        const form = this._editor.createElement('form', {attributes: {method: 'dialog'}});
         const fieldset = this._editor.createElement('fieldset');
         const cancelButton = this._editor.createElement('button', {attributes: {type: 'button'}, html: this._('Cancel')});
         cancelButton.addEventListener('click', close);
