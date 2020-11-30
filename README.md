@@ -172,7 +172,7 @@ const config = {
          * is sent to '/api/1.html'. The block API must only return the HTML content for the
          * preview if the block with the requested ID exists.
          *
-         * @see BlockListener.inserteditorblock
+         * @see BlockListener.insertappblock
          * @type {?String}
          */
         api: null,
@@ -193,7 +193,7 @@ const config = {
          * Comma-separated list of URLs to CSS files that should be included by the autonomous
          * custom block element
          *
-         * @see BlockListener.inserteditorblock
+         * @see BlockListener.insertappblock
          * @type {?String}
          */
         css: null,

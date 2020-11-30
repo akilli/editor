@@ -1,4 +1,3 @@
-import BlockElement from './BlockElement.js';
 import Listener from '../base/Listener.js';
 
 /**
@@ -11,7 +10,7 @@ export default class BlockListener extends Listener {
     constructor(editor) {
         super(editor);
         this._editor.root.addEventListener('sethtml', this);
-        this._editor.root.addEventListener('inserteditorblock', this);
+        this._editor.root.addEventListener('insertappblock', this);
     }
 
     /**
@@ -21,7 +20,7 @@ export default class BlockListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName('editor-block')).forEach(item => item.id || item.parentElement.removeChild(item));
+        Array.from(event.detail.element.getElementsByTagName('app-block')).forEach(item => item.id || item.parentElement.removeChild(item));
     }
 
     /**
@@ -30,7 +29,7 @@ export default class BlockListener extends Listener {
      * @param {CustomEvent} event
      * @param {BlockElement} event.detail.element
      */
-    async inserteditorblock(event) {
+    async insertappblock(event) {
         if (!event.detail.element.id) {
             event.detail.element.parentElement.removeChild(event.detail.element);
             return;

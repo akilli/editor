@@ -36,9 +36,9 @@ export default class Block extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._editor.registerElement('editor-block', BlockElement);
+        this._editor.registerElement('app-block', BlockElement);
         this._tag({
-            name: 'editor-block',
+            name: 'app-block',
             group: 'block',
             attributes: ['id'],
             deletable: true,
@@ -55,7 +55,7 @@ export default class Block extends Plugin {
             this._editor.dialogs.set(new BlockDialog(this._editor));
         }
 
-        this._command('editor-block');
+        this._command('app-block');
         this._toolbar('Block');
     }
 }
