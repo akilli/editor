@@ -34,7 +34,7 @@ export default class DetailsListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     insertsummary(event) {
-        this.__empty(event.detail.element);
+        this.#empty(event.detail.element);
         event.detail.element.addEventListener('blur', this);
         event.detail.element.addEventListener('keydown', this);
     }
@@ -46,7 +46,7 @@ export default class DetailsListener extends Listener {
      * @param {HTMLElement} event.target
      */
     blur(event) {
-        this.__empty(event.target);
+        this.#empty(event.target);
     }
 
     /**
@@ -70,10 +70,9 @@ export default class DetailsListener extends Listener {
     /**
      * Ensures summary element is not empty to avoid strange browser behaviour
      *
-     * @private
      * @param {HTMLElement} element
      */
-    __empty(element) {
+    #empty(element) {
         if (!element.textContent.trim()) {
             element.textContent = this._editor.translator.translate('details', 'Details');
         } else {

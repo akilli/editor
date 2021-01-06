@@ -116,7 +116,7 @@ const config = {
         /**
          * Converts one HTML element to another
          *
-         * @see ContentFilter.__convert
+         * @see ContentFilter.#convert
          * @type {Object.<String, String>}
          */
         filter: {},

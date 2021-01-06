@@ -23,14 +23,14 @@ export default class ContentFilter extends Filter {
             const text = child.textContent.trim();
 
             if (child instanceof HTMLElement) {
-                child = this.__convert(child);
+                child = this.#convert(child);
                 const childTag = this._editor.tags.get(child);
 
                 if (childTag && this._editor.tags.allowed(element, child)) {
                     wrap(child);
-                    this.__element(child, childTag);
+                    this.#element(child, childTag);
                 } else if (childTag && childTag.group === 'format' && allowedParagraph) {
-                    if ((child = this.__element(child, childTag))) {
+                    if ((child = this.#element(child, childTag))) {
                         p.push(child.outerHTML);
                         element.removeChild(child);
                     }
@@ -61,11 +61,10 @@ export default class ContentFilter extends Filter {
     /**
      * Converts element
      *
-     * @private
      * @param {HTMLElement} element
      * @return {HTMLElement}
      */
-    __convert(element) {
+    #convert(element) {
         const name = this._editor.config.base.filter[element.localName];
 
         if (!name) {
@@ -81,12 +80,11 @@ export default class ContentFilter extends Filter {
     /**
      * Filters element
      *
-     * @private
      * @param {HTMLElement} element
      * @param {Tag} tag
      * @return {?HTMLElement}
      */
-    __element(element, tag) {
+    #element(element, tag) {
         Array.from(element.attributes).forEach(item => !tag.attributes.includes(item.name) && element.removeAttribute(item.name));
 
         if (element.hasChildNodes()) {

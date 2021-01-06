@@ -5,10 +5,9 @@ export default class Dispatcher {
     /**
      * Managed element
      *
-     * @private
      * @type {HTMLElement}
      */
-    __element;
+    #element;
 
     /**
      * Initializes a new event dispatcher
@@ -20,8 +19,8 @@ export default class Dispatcher {
             throw 'Invalid argument';
         }
 
-        this.__element = element;
-        this.register(this.__observe.bind(this));
+        this.#element = element;
+        this.register(this.#observe.bind(this));
     }
 
     /**
@@ -36,7 +35,7 @@ export default class Dispatcher {
             throw 'Invalid argument';
         }
 
-        this.__element.dispatchEvent(new CustomEvent(type, {detail: {element: element, target: target}}));
+        this.#element.dispatchEvent(new CustomEvent(type, {detail: {element: element, target: target}}));
     }
 
     /**
@@ -51,18 +50,17 @@ export default class Dispatcher {
         }
 
         const observer = new MutationObserver(call);
-        observer.observe(this.__element, opts);
+        observer.observe(this.#element, opts);
     }
 
     /**
      * Dispatches a mutation event on managed element
      *
-     * @private
      * @param {String} type
      * @param {Element} element
      * @param {Node} target
      */
-    __dispatch(type, element, target) {
+    #dispatch(type, element, target) {
         if (element instanceof HTMLElement && target instanceof HTMLElement) {
             this.dispatch(type, element, target);
             this.dispatch(`${type}${element.localName.replace('-', '')}`, element, target);
@@ -72,18 +70,17 @@ export default class Dispatcher {
     /**
      * Observes mutations on managed element
      *
-     * @private
      * @param {MutationRecord[]} records
      */
-    __observe(records) {
+    #observe(records) {
         records.forEach(record => {
             record.addedNodes.forEach(element => {
                 if (element instanceof HTMLElement) {
-                    this.__dispatch('insert', element, record.target);
-                    Array.from(element.getElementsByTagName('*')).forEach(item => this.__dispatch('insert', item, record.target));
+                    this.#dispatch('insert', element, record.target);
+                    Array.from(element.getElementsByTagName('*')).forEach(item => this.#dispatch('insert', item, record.target));
                 }
             });
-            record.removedNodes.forEach(element => element instanceof HTMLElement && this.__dispatch('delete', element, record.target));
+            record.removedNodes.forEach(element => element instanceof HTMLElement && this.#dispatch('delete', element, record.target));
         });
     }
 }

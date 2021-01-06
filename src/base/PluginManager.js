@@ -7,10 +7,9 @@ export default class PluginManager {
     /**
      * Registered plugins
      *
-     * @private
      * @type {Map<String, Plugin>}
      */
-    __items = new Map();
+    #items = new Map();
 
     /**
      * Initializes a new plugin map
@@ -28,7 +27,7 @@ export default class PluginManager {
      * @return {?Plugin}
      */
     get(name) {
-        return this.__items.get(name) || null;
+        return this.#items.get(name) || null;
     }
 
     /**
@@ -41,13 +40,13 @@ export default class PluginManager {
             throw 'Invalid argument';
         }
 
-        this.__items.set(plugin.constructor.name, plugin);
+        this.#items.set(plugin.constructor.name, plugin);
     }
 
     /**
      * Initializes registered plugins
      */
     init() {
-        this.__items.forEach(plugin => plugin.init());
+        this.#items.forEach(plugin => plugin.init());
     }
 }

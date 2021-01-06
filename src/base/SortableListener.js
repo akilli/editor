@@ -83,9 +83,9 @@ export default class SortableListener extends Listener {
      */
     pointermove(event) {
         const element = this._editor.document.elementFromPoint(event.x, event.y);
-        this.__sortover();
+        this.#sortover();
 
-        if (this.__droppable(event.target, element)) {
+        if (this.#droppable(event.target, element)) {
             element.setAttribute('data-sortover', '');
         }
     }
@@ -99,11 +99,11 @@ export default class SortableListener extends Listener {
     pointerup(event) {
         if (event.target.hasAttribute('data-sortable')) {
             const element = this._editor.document.elementFromPoint(event.x, event.y);
-            this.__sortover();
+            this.#sortover();
             event.target.removeAttribute('data-sort');
             event.target.releasePointerCapture(event.pointerId);
 
-            if (this.__droppable(event.target, element)) {
+            if (this.#droppable(event.target, element)) {
                 element.insertAdjacentElement('beforebegin', event.target);
             }
         }
@@ -111,22 +111,19 @@ export default class SortableListener extends Listener {
 
     /**
      * Removes editor sortover attribute
-     *
-     * @private
      */
-    __sortover() {
+    #sortover() {
         this._editor.root.querySelectorAll('[data-sortover]').forEach(item => item.removeAttribute('data-sortover'));
     }
 
     /**
      * Indicates if target element is a potential drop target for given element
      *
-     * @private
      * @param {HTMLElement} element
      * @param {HTMLElement} target
      * @return {Boolean}
      */
-    __droppable(element, target) {
+    #droppable(element, target) {
         return element instanceof HTMLElement
             && target instanceof HTMLElement
             && this._editor.contains(target)

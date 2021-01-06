@@ -7,10 +7,9 @@ export default class FilterManager {
     /**
      * Registered filters
      *
-     * @private
      * @type {Set<Filter>}
      */
-    __items = new Set();
+    #items = new Set();
 
     /**
      * Adds or updates a filter
@@ -22,7 +21,7 @@ export default class FilterManager {
             throw 'Invalid argument';
         }
 
-        this.__items.add(filter);
+        this.#items.add(filter);
     }
 
     /**
@@ -35,7 +34,7 @@ export default class FilterManager {
             throw 'Invalid argument';
         }
 
-        this.__items.forEach(filter => {
+        this.#items.forEach(filter => {
             element.normalize();
             filter.filter(element)
         });

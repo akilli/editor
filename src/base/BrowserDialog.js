@@ -7,10 +7,9 @@ export default class BrowserDialog extends Dialog {
     /**
      * Browser URL
      *
-     * @private
      * @type {String}
      */
-    __url;
+    #url;
 
     /**
      * Browser window configuration
@@ -45,7 +44,7 @@ export default class BrowserDialog extends Dialog {
             throw 'Invalid argument';
         }
 
-        this.__url = url;
+        this.#url = url;
     }
 
     /**
@@ -55,7 +54,7 @@ export default class BrowserDialog extends Dialog {
      */
     open(save, attributes = {}) {
         const features = Object.entries(this.opts).map(x => `${x[0]}=${x[1]}`).join(',');
-        const a = this._editor.createElement('a', {attributes: {href: this.__url}});
+        const a = this._editor.createElement('a', {attributes: {href: this.#url}});
         const url = new URL(a.href);
         Object.entries(attributes).forEach(([key, val]) => url.searchParams.set(key, `${val}`));
         const win = this._editor.window.open(url.toString(), this.name, features);

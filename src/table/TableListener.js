@@ -28,11 +28,11 @@ export default class TableListener extends Listener {
             && (!event.detail.element.tHead || !event.detail.element.tFoot)
         ) {
             if (!event.detail.element.tHead) {
-                this.__row(event.detail.element.createTHead(), event.detail.element.tBodies[0].rows[0].cells.length);
+                this.#row(event.detail.element.createTHead(), event.detail.element.tBodies[0].rows[0].cells.length);
             }
 
             if (!event.detail.element.tFoot) {
-                this.__row(event.detail.element.createTFoot(), event.detail.element.tBodies[0].rows[0].cells.length);
+                this.#row(event.detail.element.createTFoot(), event.detail.element.tBodies[0].rows[0].cells.length);
             }
         }
     }
@@ -78,7 +78,7 @@ export default class TableListener extends Listener {
             && row instanceof HTMLTableRowElement
             && (base instanceof HTMLTableElement || base instanceof HTMLTableSectionElement)
             && table instanceof HTMLTableElement
-            && (isNav && this.__enabled(cell, event.key) || isSort || isAdd || isDel)
+            && (isNav && this.#enabled(cell, event.key) || isSort || isAdd || isDel)
         ) {
             const cellIndex = cell.cellIndex;
             const cellLength = row.cells.length;
@@ -138,13 +138,13 @@ export default class TableListener extends Listener {
                 cell.focus();
             } else if (isAdd) {
                 if (event.key === 'ArrowLeft') {
-                    Array.from(table.rows).forEach(item => this.__cell(item, item.cells[cellIndex]));
+                    Array.from(table.rows).forEach(item => this.#cell(item, item.cells[cellIndex]));
                 } else if (event.key === 'ArrowRight') {
-                    Array.from(table.rows).forEach(item => this.__cell(item, item.cells[cellIndex + 1]));
+                    Array.from(table.rows).forEach(item => this.#cell(item, item.cells[cellIndex + 1]));
                 } else if (event.key === 'ArrowUp') {
-                    this.__row(base, cellLength, rowIndex);
+                    this.#row(base, cellLength, rowIndex);
                 } else if (event.key === 'ArrowDown') {
-                    this.__row(base, cellLength, rowIndex + 1);
+                    this.#row(base, cellLength, rowIndex + 1);
                 }
             } else if (isDel) {
                 if (event.key === 'ArrowLeft' && !isFirst) {
@@ -163,27 +163,25 @@ export default class TableListener extends Listener {
     /**
      * Creates table row
      *
-     * @private
      * @param {HTMLTableElement|HTMLTableSectionElement} element
      * @param {Number} length
      * @param {Number} [index = 0]
      */
-    __row(element, length, index = 0) {
+    #row(element, length, index = 0) {
         const row = element.insertRow(index);
 
         for (let i = 0; i < length; i++) {
-            this.__cell(row);
+            this.#cell(row);
         }
     }
 
     /**
      * Creates table cell
      *
-     * @private
      * @param {HTMLTableRowElement} element
      * @param {?HTMLTableCellElement} [ref = null]
      */
-    __cell(element, ref = null) {
+    #cell(element, ref = null) {
         const name = element.parentElement.localName === 'thead' ? 'th' : 'td';
         element.insertBefore(this._editor.createElement(name), ref);
     }
@@ -191,12 +189,11 @@ export default class TableListener extends Listener {
     /**
      * Enables or disables navigation for table cell elements
      *
-     * @private
      * @param {HTMLElement} element
      * @param {String} key
      * @return {Boolean}
      */
-    __enabled(element, key) {
+    #enabled(element, key) {
         if (['ArrowUp', 'ArrowDown'].includes(key)) {
             return true;
         }

@@ -7,10 +7,9 @@ export default class CommandManager {
     /**
      * Registered commands
      *
-     * @private
      * @type {Map<String, Command>}
      */
-    __items = new Map();
+    #items = new Map();
 
     /**
      * Initializes a new command manager
@@ -28,7 +27,7 @@ export default class CommandManager {
      * @return {?Command}
      */
     get(name) {
-        return this.__items.get(name) || null;
+        return this.#items.get(name) || null;
     }
 
     /**
@@ -41,7 +40,7 @@ export default class CommandManager {
             throw 'Invalid argument';
         }
 
-        this.__items.set(command.name, command);
+        this.#items.set(command.name, command);
     }
 
     /**

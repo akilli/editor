@@ -23,7 +23,7 @@ export default class ListListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName('li')).forEach(item => this.__init(item));
+        Array.from(event.detail.element.getElementsByTagName('li')).forEach(item => this.#init(item));
     }
 
     /**
@@ -33,7 +33,7 @@ export default class ListListener extends Listener {
      * @param {HTMLLIElement} event.detail.element
      */
     insertli(event) {
-        this.__init(event.detail.element);
+        this.#init(event.detail.element);
     }
 
     /**
@@ -72,10 +72,9 @@ export default class ListListener extends Listener {
     /**
      * Initializes listitem elements
      *
-     * @private
      * @param {HTMLLIElement} element
      */
-    __init(element) {
+    #init(element) {
         if (!(element.parentElement instanceof HTMLOListElement) && !(element.parentElement instanceof HTMLUListElement)) {
             this._editor.wrap(element, 'ul');
         }

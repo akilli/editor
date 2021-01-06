@@ -7,10 +7,9 @@ export default class DialogManager {
     /**
      * Registered dialogs
      *
-     * @private
      * @type {Map<String, Dialog>}
      */
-    __items = new Map();
+    #items = new Map();
 
     /**
      * Initializes a new dialog manager
@@ -28,7 +27,7 @@ export default class DialogManager {
      * @return {?Dialog}
      */
     get(name) {
-        return this.__items.get(name) || null;
+        return this.#items.get(name) || null;
     }
 
     /**
@@ -41,6 +40,6 @@ export default class DialogManager {
             throw 'Invalid argument';
         }
 
-        this.__items.set(dialog.name, dialog);
+        this.#items.set(dialog.name, dialog);
     }
 }

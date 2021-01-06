@@ -7,10 +7,9 @@ export default class TagManager {
     /**
      * Registered tags
      *
-     * @private
      * @type {Map<String, Tag>}
      */
-    __items = new Map();
+    #items = new Map();
 
     /**
      * Initializes a new tag manager
@@ -28,7 +27,7 @@ export default class TagManager {
      * @return {?Tag}
      */
     get(key) {
-        return this.__items.get(key instanceof HTMLElement ? key.localName : key) || null;
+        return this.#items.get(key instanceof HTMLElement ? key.localName : key) || null;
     }
 
     /**
@@ -41,7 +40,7 @@ export default class TagManager {
             throw 'Invalid argument';
         }
 
-        this.__items.set(tag.name, tag);
+        this.#items.set(tag.name, tag);
     }
 
     /**

@@ -20,7 +20,7 @@ export default class ParagraphListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName('p')).forEach(item => this.__init(item));
+        Array.from(event.detail.element.getElementsByTagName('p')).forEach(item => this.#init(item));
     }
 
     /**
@@ -30,16 +30,15 @@ export default class ParagraphListener extends Listener {
      * @param {HTMLParagraphElement} event.detail.element
      */
     insertp(event) {
-        this.__init(event.detail.element);
+        this.#init(event.detail.element);
     }
 
     /**
      * Initializes paragraph element
      *
-     * @private
      * @param {HTMLParagraphElement} element
      */
-    __init(element) {
+    #init(element) {
         element.addEventListener('paste', this);
     }
 

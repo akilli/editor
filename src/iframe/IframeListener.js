@@ -20,7 +20,7 @@ export default class IframeListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName('iframe')).forEach(item => this.__init(item));
+        Array.from(event.detail.element.getElementsByTagName('iframe')).forEach(item => this.#init(item));
     }
 
     /**
@@ -30,16 +30,15 @@ export default class IframeListener extends Listener {
      * @param {HTMLIFrameElement} event.detail.element
      */
     insertiframe(event) {
-        this.__init(event.detail.element);
+        this.#init(event.detail.element);
     }
 
     /**
      * Initializes iframe element
      *
-     * @private
      * @param {HTMLIFrameElement} element
      */
-    __init(element) {
+    #init(element) {
         const src = element.getAttribute('src');
 
         if (!src) {

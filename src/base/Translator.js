@@ -5,10 +5,9 @@ export default class Translator {
     /**
      * Registered translations
      *
-     * @private
      * @type {Map<String, Object.<String, String>>}
      */
-    __items = new Map();
+    #items = new Map();
 
     /**
      * Returns registered i18n data for given name or null
@@ -17,7 +16,7 @@ export default class Translator {
      * @return {?Object.<String, String>}
      */
     get(name) {
-        return this.__items.get(name) || null;
+        return this.#items.get(name) || null;
     }
 
     /**
@@ -31,7 +30,7 @@ export default class Translator {
             throw 'Invalid argument';
         }
 
-        this.__items.set(name, i18n);
+        this.#items.set(name, i18n);
     }
 
     /**
