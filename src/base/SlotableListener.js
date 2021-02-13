@@ -9,7 +9,7 @@ export default class SlotableListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this._editor.root.addEventListener('insert', this);
+        this.editor.root.addEventListener('insert', this);
     }
 
     /**
@@ -22,7 +22,7 @@ export default class SlotableListener extends Listener {
         if (event.detail.element instanceof HTMLSlotElement) {
             event.detail.element.addEventListener('keydown', this);
         } else if (event.detail.element.hasAttribute('data-slotable') && !event.detail.element.querySelector(':scope > slot')) {
-            event.detail.element.appendChild(this._editor.createElement('slot'));
+            event.detail.element.appendChild(this.editor.createElement('slot'));
         }
     }
 

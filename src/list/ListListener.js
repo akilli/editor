@@ -9,11 +9,11 @@ export default class ListListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this._editor.root.addEventListener('sethtml', this);
-        this._editor.root.addEventListener('insertli', this);
-        this._editor.root.addEventListener('deleteli', this);
-        this._editor.root.addEventListener('insertol', this);
-        this._editor.root.addEventListener('insertul', this);
+        this.editor.root.addEventListener('sethtml', this);
+        this.editor.root.addEventListener('insertli', this);
+        this.editor.root.addEventListener('deleteli', this);
+        this.editor.root.addEventListener('insertol', this);
+        this.editor.root.addEventListener('insertul', this);
     }
 
     /**
@@ -56,7 +56,7 @@ export default class ListListener extends Listener {
      */
     insertol(event) {
         if (event.detail.element.children.length === 0) {
-            event.detail.element.appendChild(this._editor.createElement('li'));
+            event.detail.element.appendChild(this.editor.createElement('li'));
         }
     }
 
@@ -76,7 +76,7 @@ export default class ListListener extends Listener {
      */
     #init(element) {
         if (!(element.parentElement instanceof HTMLOListElement) && !(element.parentElement instanceof HTMLUListElement)) {
-            this._editor.wrap(element, 'ul');
+            this.editor.wrap(element, 'ul');
         }
     }
 }

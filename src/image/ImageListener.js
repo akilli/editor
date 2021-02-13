@@ -9,8 +9,8 @@ export default class ImageListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this._editor.root.addEventListener('sethtml', this);
-        this._editor.root.addEventListener('insertimg', this);
+        this.editor.root.addEventListener('sethtml', this);
+        this.editor.root.addEventListener('insertimg', this);
     }
 
     /**
@@ -44,8 +44,8 @@ export default class ImageListener extends Listener {
         if (!src) {
             element.parentElement.removeChild(element);
         } else {
-            element.setAttribute('src', this._editor.url(src));
-            this._editor.wrap(element, 'figure', {attributes: {class: 'image'}});
+            element.setAttribute('src', this.editor.url(src));
+            this.editor.wrap(element, 'figure', {attributes: {class: 'image'}});
         }
     }
 }

@@ -7,10 +7,9 @@ export default class Dialog {
     /**
      * Editor
      *
-     * @protected
      * @type {Editor}
      */
-    _editor;
+    #editor;
 
     /**
      * Name
@@ -18,6 +17,15 @@ export default class Dialog {
      * @type {String}
      */
     name;
+
+    /**
+     * Allows read access to editor
+     *
+     * @return {Editor}
+     */
+    get editor() {
+        return this.#editor;
+    }
 
     /**
      * Initializes a new dialog with given name
@@ -30,7 +38,7 @@ export default class Dialog {
             throw 'Invalid argument';
         }
 
-        this._editor = editor;
+        this.#editor = editor;
         this.name = name;
     }
 
@@ -41,10 +49,10 @@ export default class Dialog {
      * @param {Object} [attributes = {}]
      */
     open(save, attributes = {}) {
-        const cleanup = () => Array.from(this._editor.element.getElementsByTagName('editor-dialog')).forEach(item => {
+        const cleanup = () => Array.from(this.editor.element.getElementsByTagName('editor-dialog')).forEach(item => {
             item.parentElement.removeChild(item)
         });
-        const sel = this._editor.window.getSelection();
+        const sel = this.editor.window.getSelection();
         const range = sel.rangeCount > 0 ? sel.getRangeAt(0) : null;
         const close = () => {
             if (range) {
@@ -56,13 +64,13 @@ export default class Dialog {
         };
         cleanup();
 
-        const form = this._editor.createElement('form', {attributes: {method: 'dialog'}});
-        const fieldset = this._editor.createElement('fieldset');
-        const cancelButton = this._editor.createElement('button', {attributes: {type: 'button'}, html: this._('Cancel')});
+        const form = this.editor.createElement('form', {attributes: {method: 'dialog'}});
+        const fieldset = this.editor.createElement('fieldset');
+        const cancelButton = this.editor.createElement('button', {attributes: {type: 'button'}, html: this._('Cancel')});
         cancelButton.addEventListener('click', close);
         form.appendChild(fieldset);
         form.appendChild(cancelButton);
-        form.appendChild(this._editor.createElement('button', {html: this._('Save')}));
+        form.appendChild(this.editor.createElement('button', {html: this._('Save')}));
         this._initFieldset(fieldset);
         form.addEventListener('submit', event => {
             event.preventDefault();
@@ -74,11 +82,11 @@ export default class Dialog {
         });
         Object.entries(attributes).forEach(([key, val]) => fieldset.elements[key] && (fieldset.elements[key].value = val));
 
-        const dialog = this._editor.createElement('editor-dialog');
+        const dialog = this.editor.createElement('editor-dialog');
         dialog.addEventListener('close', close);
         dialog.appendChild(form);
         dialog.show();
-        this._editor.element.appendChild(dialog);
+        this.editor.element.appendChild(dialog);
     }
 
     /**
@@ -89,7 +97,7 @@ export default class Dialog {
      * @return {String}
      */
     _(key) {
-        return this._editor.translator.translate(this.name, key);
+        return this.editor.translator.translate(this.name, key);
     }
 
     /**
@@ -118,9 +126,9 @@ export default class Dialog {
         }
 
         Object.assign(attributes, {id: `editor-${name}`, name: name, type: type});
-        const div = this._editor.createElement('div');
-        div.appendChild(this._editor.createElement('label', {attributes: {for: attributes.id}, html: label}));
-        div.appendChild(this._editor.createElement('input', {attributes: attributes}));
+        const div = this.editor.createElement('div');
+        div.appendChild(this.editor.createElement('label', {attributes: {for: attributes.id}, html: label}));
+        div.appendChild(this.editor.createElement('input', {attributes: attributes}));
 
         if (attributes.required) {
             div.setAttribute('data-required', '');

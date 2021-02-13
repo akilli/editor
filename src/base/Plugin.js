@@ -9,10 +9,18 @@ export default class Plugin {
     /**
      * Editor
      *
-     * @protected
      * @type {Editor}
      */
-    _editor;
+    #editor;
+
+    /**
+     * Allows read access to editor
+     *
+     * @return {Editor}
+     */
+    get editor() {
+        return this.#editor;
+    }
 
     /**
      * Name
@@ -51,7 +59,7 @@ export default class Plugin {
             throw 'Invalid argument';
         }
 
-        this._editor = editor;
+        this.#editor = editor;
     }
 
     /**
@@ -71,7 +79,7 @@ export default class Plugin {
      * @return {String}
      */
     _(key) {
-        return this._editor.translator.translate(this.constructor.name, key);
+        return this.editor.translator.translate(this.constructor.name, key);
     }
 
     /**
@@ -81,8 +89,8 @@ export default class Plugin {
      * @param {Object.<String, Object.<String, String>>} i18n
      */
     _i18n(i18n) {
-        if (i18n[this._editor.config.base.lang]) {
-            this._editor.translator.set(this.constructor.name, i18n[this._editor.config.base.lang]);
+        if (i18n[this.editor.config.base.lang]) {
+            this.editor.translator.set(this.constructor.name, i18n[this.editor.config.base.lang]);
         }
     }
 
@@ -93,7 +101,7 @@ export default class Plugin {
      * @param {String} tagName
      */
     _command(tagName) {
-        this._editor.commands.set(new Command(this._editor, this.constructor.name, tagName));
+        this.editor.commands.set(new Command(this.editor, this.constructor.name, tagName));
     }
 
     /**
@@ -103,7 +111,7 @@ export default class Plugin {
      * @param {Object} opts
      */
     _tag(opts) {
-        this._editor.tags.set(new Tag(opts));
+        this.editor.tags.set(new Tag(opts));
     }
 
     /**
@@ -120,11 +128,11 @@ export default class Plugin {
         }
 
         label = this._(label);
-        const button = this._editor.createElement('button', {
+        const button = this.editor.createElement('button', {
             attributes: {type: 'button', 'data-command': this.constructor.name, title: label, 'data-key': key},
             html: label,
         });
 
-        format ? this._editor.formats.appendChild(button) : this._editor.toolbar.appendChild(button);
+        format ? this.editor.formats.appendChild(button) : this.editor.toolbar.appendChild(button);
     }
 }

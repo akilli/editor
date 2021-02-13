@@ -38,9 +38,9 @@ export default class BlockQuote extends Plugin {
             navigable: true,
             enter: 'p',
         });
-        new BlockQuoteListener(this._editor);
+        new BlockQuoteListener(this.editor);
         this._command('blockquote');
         this._toolbar('Block Quote');
-        this._editor.filters.add(new BlockQuoteFilter(this._editor));
+        this.editor.filters.add(new BlockQuoteFilter(this.editor));
     }
 }

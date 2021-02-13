@@ -24,21 +24,21 @@ export default class TableCommand extends Command {
         rows = rows > 1 ? rows : 1;
         cols = cols > 1 ? cols : 1;
 
-        const figure = this._editor.createElement('figure', {attributes: {class: 'table'}});
-        const table = this._editor.createElement('table');
-        const tbody = this._editor.createElement('tbody');
+        const figure = this.editor.createElement('figure', {attributes: {class: 'table'}});
+        const table = this.editor.createElement('table');
+        const tbody = this.editor.createElement('tbody');
 
         for (let i = 0; i < rows; i++) {
-            const tr = this._editor.createElement('tr');
+            const tr = this.editor.createElement('tr');
             tbody.appendChild(tr);
 
             for (let j = 0; j < cols; ++j) {
-                tr.appendChild(this._editor.createElement('td'));
+                tr.appendChild(this.editor.createElement('td'));
             }
         }
 
         table.appendChild(tbody);
         figure.appendChild(table);
-        this._editor.insert(figure);
+        this.editor.insert(figure);
     }
 }

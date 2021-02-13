@@ -17,7 +17,7 @@ export default class TimeDialog extends Dialog {
      * @inheritDoc
      */
     _initFieldset(fieldset) {
-        fieldset.appendChild(this._editor.createElement('legend', {html: this._('Time')}));
+        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Time')}));
         fieldset.appendChild(this._createInput('datetime', 'text', this._('Machine-readable Datetime'), {
             placeholder: this._('Insert date and/or time or leave empty to remove it'),
         }));

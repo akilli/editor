@@ -72,10 +72,10 @@ export default class Table extends Plugin {
             editable: true,
             empty: true,
         });
-        new TableListener(this._editor);
-        this._editor.filters.add(new TableFilter(this._editor));
-        this._editor.dialogs.set(new TableDialog(this._editor));
-        this._editor.commands.set(new TableCommand(this._editor));
+        new TableListener(this.editor);
+        this.editor.filters.add(new TableFilter(this.editor));
+        this.editor.dialogs.set(new TableDialog(this.editor));
+        this.editor.commands.set(new TableCommand(this.editor));
         this._toolbar('Table');
     }
 }

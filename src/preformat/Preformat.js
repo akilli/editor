@@ -38,9 +38,9 @@ export default class Preformat extends Plugin {
             navigable: true,
             enter: 'p',
         });
-        new PreformatListener(this._editor);
+        new PreformatListener(this.editor);
         this._command('pre');
         this._toolbar('Preformatted Text');
-        this._editor.filters.add(new PreformatFilter(this._editor));
+        this.editor.filters.add(new PreformatFilter(this.editor));
     }
 }

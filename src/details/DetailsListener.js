@@ -9,8 +9,8 @@ export default class DetailsListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this._editor.root.addEventListener('insertdetails', this);
-        this._editor.root.addEventListener('insertsummary', this);
+        this.editor.root.addEventListener('insertdetails', this);
+        this.editor.root.addEventListener('insertsummary', this);
     }
 
     /**
@@ -23,7 +23,7 @@ export default class DetailsListener extends Listener {
         event.detail.element.open = true;
 
         if (!event.detail.element.querySelector(':scope > summary:first-child')) {
-            event.detail.element.insertAdjacentElement('afterbegin', this._editor.createElement('summary'));
+            event.detail.element.insertAdjacentElement('afterbegin', this.editor.createElement('summary'));
         }
     }
 
@@ -56,11 +56,11 @@ export default class DetailsListener extends Listener {
      * @param {HTMLElement} event.target
      */
     keydown(event) {
-        if (this._editor.isKey(event, ' ')) {
+        if (this.editor.isKey(event, ' ')) {
             event.preventDefault();
             event.stopPropagation();
-            this._editor.insertText(' ');
-        } else if (this._editor.isKey(event, 'Enter')) {
+            this.editor.insertText(' ');
+        } else if (this.editor.isKey(event, 'Enter')) {
             event.preventDefault();
             event.stopPropagation();
             event.target.parentElement.open = true;
@@ -74,11 +74,11 @@ export default class DetailsListener extends Listener {
      */
     #empty(element) {
         if (!element.textContent.trim()) {
-            element.textContent = this._editor.translator.translate('details', 'Details');
+            element.textContent = this.editor.translator.translate('details', 'Details');
         } else {
             element.querySelectorAll('br:not(:last-child)').forEach(item => item.parentElement.removeChild(item));
         }
 
-        element.lastElementChild instanceof HTMLBRElement || element.appendChild(this._editor.createElement('br'));
+        element.lastElementChild instanceof HTMLBRElement || element.appendChild(this.editor.createElement('br'));
     }
 }

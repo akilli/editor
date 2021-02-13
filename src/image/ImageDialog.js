@@ -17,7 +17,7 @@ export default class ImageDialog extends Dialog {
      * @inheritDoc
      */
     _initFieldset(fieldset) {
-        fieldset.appendChild(this._editor.createElement('legend', {html: this._('Image')}));
+        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Image')}));
         fieldset.appendChild(this._createInput('src', 'text', this._('URL'), {
             pattern: '(https?|/).+',
             placeholder: this._('Insert URL to image'),

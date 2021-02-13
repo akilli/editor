@@ -9,7 +9,7 @@ export default class SortableListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this._editor.root.addEventListener('insert', this);
+        this.editor.root.addEventListener('insert', this);
     }
 
     /**
@@ -34,7 +34,7 @@ export default class SortableListener extends Listener {
      * @param {HTMLElement} event.target
      */
     keydown(event) {
-        if (event.target === event.currentTarget && this._editor.isKey(event, ['ArrowUp', 'ArrowDown', 'Home', 'End'], {ctrl: true})) {
+        if (event.target === event.currentTarget && this.editor.isKey(event, ['ArrowUp', 'ArrowDown', 'Home', 'End'], {ctrl: true})) {
             const parent = event.target.parentElement;
             const prev = event.target.previousElementSibling;
             const next = event.target.nextElementSibling;
@@ -82,7 +82,7 @@ export default class SortableListener extends Listener {
      * @param {HTMLElement} event.target
      */
     pointermove(event) {
-        const element = this._editor.document.elementFromPoint(event.x, event.y);
+        const element = this.editor.document.elementFromPoint(event.x, event.y);
         this.#sortover();
 
         if (this.#droppable(event.target, element)) {
@@ -98,7 +98,7 @@ export default class SortableListener extends Listener {
      */
     pointerup(event) {
         if (event.target.hasAttribute('data-sortable')) {
-            const element = this._editor.document.elementFromPoint(event.x, event.y);
+            const element = this.editor.document.elementFromPoint(event.x, event.y);
             this.#sortover();
             event.target.removeAttribute('data-sort');
             event.target.releasePointerCapture(event.pointerId);
@@ -113,7 +113,7 @@ export default class SortableListener extends Listener {
      * Removes editor sortover attribute
      */
     #sortover() {
-        this._editor.root.querySelectorAll('[data-sortover]').forEach(item => item.removeAttribute('data-sortover'));
+        this.editor.root.querySelectorAll('[data-sortover]').forEach(item => item.removeAttribute('data-sortover'));
     }
 
     /**
@@ -126,13 +126,13 @@ export default class SortableListener extends Listener {
     #droppable(element, target) {
         return element instanceof HTMLElement
             && target instanceof HTMLElement
-            && this._editor.contains(target)
-            && ![this._editor.root, element].includes(target)
+            && this.editor.contains(target)
+            && ![this.editor.root, element].includes(target)
             && target.hasAttribute('data-sortable')
             && (
                 element.parentElement === target.parentElement
-                || this._editor.arbitrary(element.parentElement) && this._editor.arbitrary(target.parentElement)
+                || this.editor.arbitrary(element.parentElement) && this.editor.arbitrary(target.parentElement)
             )
-            && this._editor.tags.allowed(target.parentElement, element);
+            && this.editor.tags.allowed(target.parentElement, element);
     }
 }

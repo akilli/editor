@@ -7,10 +7,9 @@ export default class Command {
     /**
      * Editor
      *
-     * @protected
      * @type {Editor}
      */
-    _editor;
+    #editor;
 
     /**
      * Name
@@ -36,6 +35,15 @@ export default class Command {
     _dialog = null;
 
     /**
+     * Allows read access to editor
+     *
+     * @return {Editor}
+     */
+    get editor() {
+        return this.#editor;
+    }
+
+    /**
      * Initializes a new editor command optionally with given tag name
      *
      * @param {Editor} editor
@@ -47,10 +55,10 @@ export default class Command {
             throw 'Invalid argument';
         }
 
-        this._editor = editor;
+        this.#editor = editor;
         this.name = name;
-        this._tag = tagName ? this._editor.tags.get(tagName) : null;
-        this._dialog = this._editor.dialogs.get(name);
+        this._tag = tagName ? this.editor.tags.get(tagName) : null;
+        this._dialog = this.editor.dialogs.get(name);
     }
 
     /**
@@ -72,16 +80,16 @@ export default class Command {
             const selected = this._selectedElement();
 
             if (this._tag.group !== 'format') {
-                this._editor.insert(this._editor.createElement(this._tag.name, {attributes: attributes}));
+                this.editor.insert(this.editor.createElement(this._tag.name, {attributes: attributes}));
             } else if (selected && Object.keys(attributes).length > 0) {
                 selected.parentElement.replaceChild(
-                    this._editor.createElement(this._tag.name, {attributes: attributes, html: selected.textContent}),
+                    this.editor.createElement(this._tag.name, {attributes: attributes, html: selected.textContent}),
                     selected
                 );
             } else if (selected) {
-                selected.parentElement.replaceChild(this._editor.createText(selected.textContent), selected);
+                selected.parentElement.replaceChild(this.editor.createText(selected.textContent), selected);
             } else {
-                this._editor.format(this._editor.createElement(this._tag.name, {attributes: attributes}));
+                this.editor.format(this.editor.createElement(this._tag.name, {attributes: attributes}));
             }
         }
     }
@@ -102,7 +110,7 @@ export default class Command {
      * @return {?HTMLElement}
      */
     _selectedElement() {
-        const element = this._editor.getSelectedElement();
+        const element = this.editor.getSelectedElement();
 
         return element && element.localName === this._tag?.name ? element : null;
     }

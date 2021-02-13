@@ -9,8 +9,8 @@ export default class ParagraphListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this._editor.root.addEventListener('sethtml', this);
-        this._editor.root.addEventListener('insertp', this);
+        this.editor.root.addEventListener('sethtml', this);
+        this.editor.root.addEventListener('insertp', this);
     }
 
     /**
@@ -49,6 +49,6 @@ export default class ParagraphListener extends Listener {
      * @param {HTMLParagraphElement} event.target
      */
     paste(event) {
-        this._editor.window.setTimeout(() => this._editor.filters.filter(event.target));
+        this.editor.window.setTimeout(() => this.editor.filters.filter(event.target));
     }
 }

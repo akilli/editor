@@ -43,12 +43,12 @@ export default class Audio extends Plugin {
             empty: true,
             navigable: true,
         });
-        new AudioListener(this._editor);
+        new AudioListener(this.editor);
 
-        if (this._editor.config.audio.browser) {
-            this._editor.dialogs.set(new BrowserDialog(this._editor, 'audio', this._editor.config.audio.browser));
+        if (this.editor.config.audio.browser) {
+            this.editor.dialogs.set(new BrowserDialog(this.editor, 'audio', this.editor.config.audio.browser));
         } else {
-            this._editor.dialogs.set(new AudioDialog(this._editor));
+            this.editor.dialogs.set(new AudioDialog(this.editor));
         }
 
         this._command('audio');

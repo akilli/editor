@@ -9,8 +9,8 @@ export default class IframeListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this._editor.root.addEventListener('sethtml', this);
-        this._editor.root.addEventListener('insertiframe', this);
+        this.editor.root.addEventListener('sethtml', this);
+        this.editor.root.addEventListener('insertiframe', this);
     }
 
     /**
@@ -44,9 +44,9 @@ export default class IframeListener extends Listener {
         if (!src) {
             element.parentElement.removeChild(element);
         } else {
-            element.setAttribute('src', this._editor.url(src));
+            element.setAttribute('src', this.editor.url(src));
             element.allowFullscreen = true;
-            this._editor.wrap(element, 'figure', {attributes: {class: 'iframe'}});
+            this.editor.wrap(element, 'figure', {attributes: {class: 'iframe'}});
         }
     }
 }

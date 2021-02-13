@@ -17,7 +17,7 @@ export default class AbbreviationDialog extends Dialog {
      * @inheritDoc
      */
     _initFieldset(fieldset) {
-        fieldset.appendChild(this._editor.createElement('legend', {html: this._('Abbreviation')}));
+        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Abbreviation')}));
         fieldset.appendChild(this._createInput('title', 'text', this._('Full term'), {
             placeholder: this._('Insert full term or leave empty to remove it'),
         }));

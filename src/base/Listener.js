@@ -9,10 +9,18 @@ export default class Listener {
     /**
      * Editor
      *
-     * @protected
      * @type {Editor}
      */
-    _editor;
+    #editor;
+
+    /**
+     * Allows read access to editor
+     *
+     * @return {Editor}
+     */
+    get editor() {
+        return this.#editor;
+    }
 
     /**
      * Initializes a new listener
@@ -25,7 +33,7 @@ export default class Listener {
             throw 'Invalid argument';
         }
 
-        this._editor = editor;
+        this.#editor = editor;
     }
 
     /**

@@ -17,7 +17,7 @@ export default class LinkDialog extends Dialog {
      * @inheritDoc
      */
     _initFieldset(fieldset) {
-        fieldset.appendChild(this._editor.createElement('legend', {html: this._('Link')}));
+        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Link')}));
         fieldset.appendChild(this._createInput('href', 'text', this._('URL'), {
             pattern: '(https?|/|mailto:|tel:).+',
             placeholder: this._('Insert URL to add a link or leave empty to unlink'),

@@ -7,10 +7,18 @@ export default class Filter {
     /**
      * Editor
      *
-     * @protected
      * @type {Editor}
      */
-    _editor;
+    #editor;
+
+    /**
+     * Allows read access to editor
+     *
+     * @return {Editor}
+     */
+    get editor() {
+        return this.#editor;
+    }
 
     /**
      * Initializes a new filter
@@ -22,7 +30,7 @@ export default class Filter {
             throw 'Invalid argument';
         }
 
-        this._editor = editor;
+        this.#editor = editor;
     }
 
     /**

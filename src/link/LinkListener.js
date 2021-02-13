@@ -9,8 +9,8 @@ export default class LinkListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this._editor.root.addEventListener('sethtml', this);
-        this._editor.root.addEventListener('inserta', this);
+        this.editor.root.addEventListener('sethtml', this);
+        this.editor.root.addEventListener('inserta', this);
     }
 
     /**
@@ -42,9 +42,9 @@ export default class LinkListener extends Listener {
         const href = element.getAttribute('href');
 
         if (!href) {
-            element.parentElement.replaceChild(this._editor.createText(element.textContent), element);
+            element.parentElement.replaceChild(this.editor.createText(element.textContent), element);
         } else {
-            element.setAttribute('href', this._editor.url(href));
+            element.setAttribute('href', this.editor.url(href));
         }
     }
 }

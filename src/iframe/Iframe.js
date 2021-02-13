@@ -43,12 +43,12 @@ export default class Iframe extends Plugin {
             empty: true,
             navigable: true,
         });
-        new IframeListener(this._editor);
+        new IframeListener(this.editor);
 
-        if (this._editor.config.iframe.browser) {
-            this._editor.dialogs.set(new BrowserDialog(this._editor, 'iframe', this._editor.config.iframe.browser));
+        if (this.editor.config.iframe.browser) {
+            this.editor.dialogs.set(new BrowserDialog(this.editor, 'iframe', this.editor.config.iframe.browser));
         } else {
-            this._editor.dialogs.set(new IframeDialog(this._editor));
+            this.editor.dialogs.set(new IframeDialog(this.editor));
         }
 
         this._command('iframe');

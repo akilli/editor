@@ -17,7 +17,7 @@ export default class AudioDialog extends Dialog {
      * @inheritDoc
      */
     _initFieldset(fieldset) {
-        fieldset.appendChild(this._editor.createElement('legend', {html: this._('Audio')}));
+        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Audio')}));
         fieldset.appendChild(this._createInput('src', 'text', this._('URL'), {
             pattern: '(https?|/).+',
             placeholder: this._('Insert URL to audio'),

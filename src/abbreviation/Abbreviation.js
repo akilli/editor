@@ -31,7 +31,7 @@ export default class Abbreviation extends Plugin {
             group: 'format',
             attributes: ['title'],
         });
-        this._editor.dialogs.set(new AbbreviationDialog(this._editor));
+        this.editor.dialogs.set(new AbbreviationDialog(this.editor));
         this._command('abbr');
         this._toolbar('Abbreviation', 'a', true);
     }

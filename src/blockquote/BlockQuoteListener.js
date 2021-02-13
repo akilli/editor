@@ -9,8 +9,8 @@ export default class BlockQuoteListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this._editor.root.addEventListener('insertblockquote', this);
-        this._editor.root.addEventListener('deleteblockquote', this);
+        this.editor.root.addEventListener('insertblockquote', this);
+        this.editor.root.addEventListener('deleteblockquote', this);
     }
 
     /**
@@ -20,7 +20,7 @@ export default class BlockQuoteListener extends Listener {
      * @param {HTMLQuoteElement} event.detail.element
      */
     insertblockquote(event) {
-        this._editor.wrap(event.detail.element, 'figure', {attributes: {class: 'quote'}});
+        this.editor.wrap(event.detail.element, 'figure', {attributes: {class: 'quote'}});
     }
 
     /**

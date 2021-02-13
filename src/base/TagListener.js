@@ -9,7 +9,7 @@ export default class TagListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this._editor.root.addEventListener('insert', this);
+        this.editor.root.addEventListener('insert', this);
     }
 
     /**
@@ -19,7 +19,7 @@ export default class TagListener extends Listener {
      * @param {HTMLElement} event.detail.element
      */
     insert(event) {
-        const tag = this._editor.tags.get(event.detail.element);
+        const tag = this.editor.tags.get(event.detail.element);
 
         if (tag) {
             if (tag.editable) {

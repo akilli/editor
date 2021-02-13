@@ -9,7 +9,7 @@ export default class AlignableListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this._editor.root.addEventListener('insert', this);
+        this.editor.root.addEventListener('insert', this);
     }
 
     /**
@@ -33,7 +33,7 @@ export default class AlignableListener extends Listener {
     keydown(event) {
         const map = {ArrowUp: null, ArrowLeft: 'left', ArrowDown: 'center', ArrowRight: 'right'};
 
-        if (event.target === event.currentTarget && this._editor.isKey(event, Object.keys(map), {shift: true})) {
+        if (event.target === event.currentTarget && this.editor.isKey(event, Object.keys(map), {shift: true})) {
             event.preventDefault();
             event.stopPropagation();
             event.target.classList.remove(...Object.values(map));

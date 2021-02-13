@@ -9,7 +9,7 @@ export default class FocusableListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this._editor.root.addEventListener('insert', this);
+        this.editor.root.addEventListener('insert', this);
     }
 
     /**

@@ -36,7 +36,7 @@ export default class Block extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._editor.registerElement('app-block', BlockElement);
+        this.editor.registerElement('app-block', BlockElement);
         this._tag({
             name: 'app-block',
             group: 'block',
@@ -47,12 +47,12 @@ export default class Block extends Plugin {
             navigable: true,
             sortable: true,
         });
-        new BlockListener(this._editor);
+        new BlockListener(this.editor);
 
-        if (this._editor.config.block.browser) {
-            this._editor.dialogs.set(new BrowserDialog(this._editor, 'block', this._editor.config.block.browser));
+        if (this.editor.config.block.browser) {
+            this.editor.dialogs.set(new BrowserDialog(this.editor, 'block', this.editor.config.block.browser));
         } else {
-            this._editor.dialogs.set(new BlockDialog(this._editor));
+            this.editor.dialogs.set(new BlockDialog(this.editor));
         }
 
         this._command('app-block');

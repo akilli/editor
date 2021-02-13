@@ -9,7 +9,7 @@ export default class NavigableListener extends Listener {
      */
     constructor(editor) {
         super(editor);
-        this._editor.root.addEventListener('insert', this);
+        this.editor.root.addEventListener('insert', this);
     }
 
     /**
@@ -33,7 +33,7 @@ export default class NavigableListener extends Listener {
      */
     keydown(event) {
         if (event.target === event.currentTarget
-            && this._editor.isKey(event, ['ArrowUp', 'ArrowDown', 'Home', 'End'])
+            && this.editor.isKey(event, ['ArrowUp', 'ArrowDown', 'Home', 'End'])
             && this.#enabled(event.target)
         ) {
             const prev = event.target.previousElementSibling;
@@ -69,9 +69,9 @@ export default class NavigableListener extends Listener {
             return true;
         }
 
-        const sel = this._editor.window.getSelection();
-        const editable = this._editor.getSelectedEditable();
-        const selected = this._editor.getSelectedElement();
+        const sel = this.editor.window.getSelection();
+        const editable = this.editor.getSelectedEditable();
+        const selected = this.editor.getSelectedElement();
 
         return sel.isCollapsed && sel.anchorOffset === 0 && [editable, element.firstChild].includes(selected);
     }
