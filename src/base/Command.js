@@ -16,7 +16,7 @@ export default class Command {
      *
      * @type {String}
      */
-    name;
+    #name;
 
     /**
      * Associated tag
@@ -44,6 +44,15 @@ export default class Command {
     }
 
     /**
+     * Allows read access to name
+     *
+     * @return {String}
+     */
+    get name() {
+        return this.#name;
+    }
+
+    /**
      * Initializes a new editor command optionally with given tag name
      *
      * @param {Editor} editor
@@ -56,7 +65,7 @@ export default class Command {
         }
 
         this.#editor = editor;
-        this.name = name;
+        this.#name = name;
         this._tag = tagName ? this.editor.tags.get(tagName) : null;
         this._dialog = this.editor.dialogs.get(name);
     }

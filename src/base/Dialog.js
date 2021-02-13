@@ -16,7 +16,7 @@ export default class Dialog {
      *
      * @type {String}
      */
-    name;
+    #name;
 
     /**
      * Allows read access to editor
@@ -25,6 +25,15 @@ export default class Dialog {
      */
     get editor() {
         return this.#editor;
+    }
+
+    /**
+     * Allows read access to name
+     *
+     * @return {String}
+     */
+    get name() {
+        return this.#name;
     }
 
     /**
@@ -39,7 +48,7 @@ export default class Dialog {
         }
 
         this.#editor = editor;
-        this.name = name;
+        this.#name = name;
     }
 
     /**
