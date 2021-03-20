@@ -127,7 +127,7 @@ export default class Dialog {
      * @param {String} type
      * @param {String} label
      * @param {Object.<String, String>} [attributes = {}]
-     * @return {HTMLDivElement}
+     * @return {HTMLElement}
      */
     _createInput(name, type, label, attributes = {}) {
         if (!name || typeof name !== 'string' || !type || typeof type !== 'string' || !label || typeof label !== 'string') {
