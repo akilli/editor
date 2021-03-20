@@ -33,7 +33,9 @@ export default class BlockListener extends Listener {
         if (!event.detail.element.id) {
             event.detail.element.parentElement.removeChild(event.detail.element);
             return;
-        } else if (!this.editor.config.block.api) {
+        }
+
+        if (!this.editor.config.block.api) {
             return;
         }
 
