@@ -108,7 +108,7 @@ const config = {
         /**
          * Overrides default browser dialog window options
          *
-         * @see BrowserDialog.opts
+         * @see BrowserManager.#opts
          * @type {Object.<string, string>}
          */
         browser: {},

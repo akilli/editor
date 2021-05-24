@@ -12,25 +12,6 @@ export default class BrowserDialog extends Dialog {
     #url;
 
     /**
-     * Browser window configuration
-     *
-     * @type {Object.<string, string>}
-     */
-    opts = Object.assign({
-        alwaysRaised: 'yes',
-        dependent: 'yes',
-        height: `${this.editor.window.screen.height}`,
-        location: 'no',
-        menubar: 'no',
-        minimizable: 'no',
-        modal: 'yes',
-        resizable: 'yes',
-        scrollbars: 'yes',
-        toolbar: 'no',
-        width: `${this.editor.window.screen.width}`,
-    }, this.editor.config.base.browser);
-
-    /**
      * Initializes a new editor browser dialog
      *
      * @param {Editor} editor
@@ -53,17 +34,6 @@ export default class BrowserDialog extends Dialog {
      * @inheritDoc
      */
     open(save, attributes = {}) {
-        const features = Object.entries(this.opts).map(x => `${x[0]}=${x[1]}`).join(',');
-        /** @type {HTMLAnchorElement} */
-        const a = this.editor.createElement('a', {attributes: {href: this.#url}});
-        const url = new URL(a.href);
-        Object.entries(attributes).forEach(([key, val]) => url.searchParams.set(key, `${val}`));
-        const win = this.editor.window.open(url.toString(), this.name, features);
-        this.editor.window.addEventListener('message', event => {
-            if (event.origin === url.origin && event.source === win) {
-                save(event.data);
-                win.close();
-            }
-        }, false);
+        this.editor.browser.open({url: this.#url, name: this.name, call: save, params: attributes});
     }
 }

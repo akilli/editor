@@ -1,3 +1,4 @@
+import BrowserManager from './BrowserManager.js';
 import CommandManager from './CommandManager.js';
 import DialogManager from './DialogManager.js';
 import Dispatcher from './Dispatcher.js';
@@ -130,6 +131,13 @@ export default class Editor {
     plugins = new PluginManager();
 
     /**
+     * Browser
+     *
+     * @type {BrowserManager}
+     */
+    browser;
+
+    /**
      * Default configuration
      *
      * @type {Object.<string, Object>}
@@ -164,6 +172,7 @@ export default class Editor {
         this.element.appendChild(this.root);
         this.rootEvents = new Dispatcher(this.root);
         this.config = config;
+        this.browser = new BrowserManager(this);
     }
 
     /**
