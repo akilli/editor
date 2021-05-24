@@ -25,7 +25,7 @@ export default class Plugin {
     /**
      * Name
      *
-     * @type {String}
+     * @type {string}
      */
     static get name() {
         throw 'Missing plugin name';
@@ -43,7 +43,7 @@ export default class Plugin {
     /**
      * Returns plugin default configuration
      *
-     * @type {Object.<String, {*}>}
+     * @type {Object.<string, {*}>}
      */
     static get config() {
         return {};
@@ -75,8 +75,8 @@ export default class Plugin {
      * Translates given string
      *
      * @protected
-     * @param {String} key
-     * @return {String}
+     * @param {string} key
+     * @return {string}
      */
     _(key) {
         return this.editor.translator.translate(this.constructor.name, key);
@@ -86,7 +86,7 @@ export default class Plugin {
      * Registers i18n data for this plugin
      *
      * @protected
-     * @param {Object.<String, Object.<String, String>>} i18n
+     * @param {Object.<string, Object.<string, string>>} i18n
      */
     _i18n(i18n) {
         if (i18n[this.editor.config.base.lang]) {
@@ -98,7 +98,7 @@ export default class Plugin {
      * Registers a command with given parameters
      *
      * @protected
-     * @param {String} tagName
+     * @param {string} tagName
      */
     _command(tagName) {
         this.editor.commands.set(new Command(this.editor, this.constructor.name, tagName));
@@ -118,9 +118,9 @@ export default class Plugin {
      * Creates a toolbar button
      *
      * @protected
-     * @param {String} label
-     * @param {?String} [key = null]
-     * @param {Boolean} [format = false]
+     * @param {string} label
+     * @param {?string} [key = null]
+     * @param {boolean} [format = false]
      */
     _toolbar(label, key = null, format = false) {
         if (!label || typeof label !== 'string' || key && typeof key !== 'string') {

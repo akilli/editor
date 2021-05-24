@@ -7,7 +7,7 @@ export default class DialogManager {
     /**
      * Registered dialogs
      *
-     * @type {Map<String, Dialog>}
+     * @type {Map<string, Dialog>}
      */
     #items = new Map();
 
@@ -23,7 +23,7 @@ export default class DialogManager {
     /**
      * Returns registered dialog with given name or null
      *
-     * @param {String} name
+     * @param {string} name
      * @return {?Dialog}
      */
     get(name) {

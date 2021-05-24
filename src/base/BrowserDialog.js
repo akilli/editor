@@ -7,14 +7,14 @@ export default class BrowserDialog extends Dialog {
     /**
      * Browser URL
      *
-     * @type {String}
+     * @type {string}
      */
     #url;
 
     /**
      * Browser window configuration
      *
-     * @type {Object.<String, String>}
+     * @type {Object.<string, string>}
      */
     opts = Object.assign({
         alwaysRaised: 'yes',
@@ -34,8 +34,8 @@ export default class BrowserDialog extends Dialog {
      * Initializes a new editor browser dialog
      *
      * @param {Editor} editor
-     * @param {String} name
-     * @param {String} url
+     * @param {string} name
+     * @param {string} url
      */
     constructor(editor, name, url) {
         super(editor, name);
@@ -54,6 +54,7 @@ export default class BrowserDialog extends Dialog {
      */
     open(save, attributes = {}) {
         const features = Object.entries(this.opts).map(x => `${x[0]}=${x[1]}`).join(',');
+        /** @type {HTMLAnchorElement} */
         const a = this.editor.createElement('a', {attributes: {href: this.#url}});
         const url = new URL(a.href);
         Object.entries(attributes).forEach(([key, val]) => url.searchParams.set(key, `${val}`));

@@ -5,15 +5,15 @@ export default class Translator {
     /**
      * Registered translations
      *
-     * @type {Map<String, Object.<String, String>>}
+     * @type {Map<string, Object.<string, string>>}
      */
     #items = new Map();
 
     /**
      * Returns registered i18n data for given name or null
      *
-     * @param {String} name
-     * @return {?Object.<String, String>}
+     * @param {string} name
+     * @return {?Object.<string, string>}
      */
     get(name) {
         return this.#items.get(name) || null;
@@ -22,8 +22,8 @@ export default class Translator {
     /**
      * Registers i18n data with given name
      *
-     * @param {String} name
-     * @param {Object.<String, String>} i18n
+     * @param {string} name
+     * @param {Object.<string, string>} i18n
      */
     set(name, i18n) {
         if (!name || typeof name !== 'string' || !(i18n instanceof Object)) {
@@ -36,9 +36,9 @@ export default class Translator {
     /**
      * Translates string with registered i18n data for given name
      *
-     * @param {String} name
-     * @param {String} key
-     * @return {String}
+     * @param {string} name
+     * @param {string} key
+     * @return {string}
      */
     translate(name, key) {
         return this.get(name)?.[key] || key;

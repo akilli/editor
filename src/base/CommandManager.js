@@ -7,7 +7,7 @@ export default class CommandManager {
     /**
      * Registered commands
      *
-     * @type {Map<String, Command>}
+     * @type {Map<string, Command>}
      */
     #items = new Map();
 
@@ -23,7 +23,7 @@ export default class CommandManager {
     /**
      * Returns registered command with given name or null
      *
-     * @param {String} name
+     * @param {string} name
      * @return {?Command}
      */
     get(name) {
@@ -46,7 +46,7 @@ export default class CommandManager {
     /**
      * Executes command with given name
      *
-     * @param {String} name
+     * @param {string} name
      */
     execute(name) {
         this.get(name).execute();

@@ -132,7 +132,7 @@ export default class Editor {
     /**
      * Default configuration
      *
-     * @type {Object.<String, Object>}
+     * @type {Object.<string, Object>}
      */
     static get defaultConfig() {
         return {};
@@ -231,7 +231,7 @@ export default class Editor {
     /**
      * Returns editor content root element's innerHTML
      *
-     * @return {String}
+     * @return {string}
      */
     getHtml() {
         const root = this.createElement(this.root.localName, {html: this.root.innerHTML});
@@ -244,7 +244,7 @@ export default class Editor {
     /**
      * Sets editor content root element's innerHTML
      *
-     * @param {String} html
+     * @param {string} html
      */
     setHtml(html) {
         const root = this.createElement(this.root.localName, {html: html});
@@ -294,7 +294,7 @@ export default class Editor {
     /**
      * Inserts text
      *
-     * @param {String} text
+     * @param {string} text
      */
     insertText(text) {
         const editable = this.getSelectedEditable();
@@ -355,7 +355,7 @@ export default class Editor {
      * Indicates if element allows arbitrary amount of child elements
      *
      * @param {Element} element
-     * @return {Boolean}
+     * @return {boolean}
      */
     arbitrary(element) {
         return element instanceof HTMLElement && (element === this.root || element.hasAttribute('data-arbitrary'));
@@ -366,7 +366,7 @@ export default class Editor {
      * i.e. the returned element is the sibling element to add the new child before or after
      *
      * @param {HTMLElement} element
-     * @param {String|HTMLElement} child
+     * @param {string|HTMLElement} child
      * @return {?HTMLElement}
      */
     closest(element, child) {
@@ -390,7 +390,7 @@ export default class Editor {
      * Wraps element with given parent if necessary and allowed
      *
      * @param {HTMLElement} element
-     * @param {String} name
+     * @param {string} name
      * @param {Object} [opts = {}]
      */
     wrap(element, name, opts = {}) {
@@ -409,7 +409,7 @@ export default class Editor {
      * Indicates if given element is contained by editor content root or by a clone of it
      *
      * @param {HTMLElement} element
-     * @return {Boolean}
+     * @return {boolean}
      */
     contains(element) {
         if (!(element instanceof HTMLElement)) {
@@ -422,9 +422,9 @@ export default class Editor {
     /**
      * Registers custom element
      *
-     * @param {String} name
-     * @param {Function} constructor
-     * @param {?String} [parentName = null]
+     * @param {string} name
+     * @param {function} constructor
+     * @param {?string} [parentName = null]
      */
     registerElement(name, constructor, parentName = null) {
         if (typeof this.window.customElements.get(name) === 'undefined') {
@@ -435,9 +435,9 @@ export default class Editor {
     /**
      * Creates HTML element in editor document
      *
-     * @param {String} name
-     * @param {Object.<String, String>} [attributes = {}]
-     * @param {String} [html = '']
+     * @param {string} name
+     * @param {Object.<string, string>} [attributes = {}]
+     * @param {string} [html = '']
      * @return {HTMLElement}
      */
     createElement(name, {attributes = {}, html = ''} = {}) {
@@ -451,7 +451,7 @@ export default class Editor {
     /**
      * Creates text node in editor document
      *
-     * @param {String} text
+     * @param {string} text
      * @return {Text}
      */
     createText(text) {
@@ -528,11 +528,11 @@ export default class Editor {
      * Indicates if keyboard event was triggered for given key combination
      *
      * @param {KeyboardEvent} event
-     * @param {String|String[]} key
-     * @param {Boolean} alt
-     * @param {Boolean} ctrl
-     * @param {Boolean} shift
-     * @return {Boolean}
+     * @param {string|string[]} key
+     * @param {boolean} alt
+     * @param {boolean} ctrl
+     * @param {boolean} shift
+     * @return {boolean}
      */
     isKey(event, key, {alt = false, ctrl = false, shift = false} = {}) {
         return (Array.isArray(key) && key.includes(event.key) || event.key === key)
@@ -544,11 +544,12 @@ export default class Editor {
     /**
      * Returns relative or absolute URL depending on its origin
      *
-     * @param {String} url
-     * @return {String}
+     * @param {string} url
+     * @return {string}
      */
     url(url) {
         const origin = this.window.origin || this.window.location.origin;
+        /** @type {HTMLAnchorElement} */
         const a = this.createElement('a', {attributes: {href: url}});
 
         return origin === a.origin ? a.pathname : a.href;

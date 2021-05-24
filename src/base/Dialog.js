@@ -14,7 +14,7 @@ export default class Dialog {
     /**
      * Name
      *
-     * @type {String}
+     * @type {string}
      */
     #name;
 
@@ -30,7 +30,7 @@ export default class Dialog {
     /**
      * Allows read access to name
      *
-     * @return {String}
+     * @return {string}
      */
     get name() {
         return this.#name;
@@ -40,7 +40,7 @@ export default class Dialog {
      * Initializes a new dialog with given name
      *
      * @param {Editor} editor
-     * @param {String} name
+     * @param {string} name
      */
     constructor(editor, name) {
         if (!(editor instanceof Editor) || !name || typeof name !== 'string') {
@@ -54,7 +54,7 @@ export default class Dialog {
     /**
      * Opens a dialog and executes given callback on save
      *
-     * @param {Function} save
+     * @param {function} save
      * @param {Object} [attributes = {}]
      */
     open(save, attributes = {}) {
@@ -74,6 +74,7 @@ export default class Dialog {
         cleanup();
 
         const form = this.editor.createElement('form', {attributes: {method: 'dialog'}});
+        /** @type {HTMLFieldSetElement} */
         const fieldset = this.editor.createElement('fieldset');
         const cancelButton = this.editor.createElement('button', {attributes: {type: 'button'}, html: this._('Cancel')});
         cancelButton.addEventListener('click', close);
@@ -91,6 +92,7 @@ export default class Dialog {
         });
         Object.entries(attributes).forEach(([key, val]) => fieldset.elements[key] && (fieldset.elements[key].value = val));
 
+        /** @type {DialogElement} */
         const dialog = this.editor.createElement('editor-dialog');
         dialog.addEventListener('close', close);
         dialog.appendChild(form);
@@ -102,8 +104,8 @@ export default class Dialog {
      * Translates given string
      *
      * @protected
-     * @param {String} key
-     * @return {String}
+     * @param {string} key
+     * @return {string}
      */
     _(key) {
         return this.editor.translator.translate(this.name, key);
@@ -114,6 +116,7 @@ export default class Dialog {
      *
      * @protected
      * @param {HTMLFieldSetElement} fieldset
+     * @return {void}
      */
     _initFieldset(fieldset) {
         throw 'Not implemented';
@@ -123,10 +126,10 @@ export default class Dialog {
      * Creates wrapped input element with label
      *
      * @protected
-     * @param {String} name
-     * @param {String} type
-     * @param {String} label
-     * @param {Object.<String, String>} [attributes = {}]
+     * @param {string} name
+     * @param {string} type
+     * @param {string} label
+     * @param {Object.<string, string>} [attributes = {}]
      * @return {HTMLElement}
      */
     _createInput(name, type, label, attributes = {}) {

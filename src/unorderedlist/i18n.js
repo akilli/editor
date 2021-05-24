@@ -1,7 +1,7 @@
 /**
  * Translations
  *
- * @type {Object.<String, Object.<String, String>>}
+ * @type {Object.<string, Object.<string, string>>}
  */
 export default {
     de: {

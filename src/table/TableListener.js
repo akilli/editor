@@ -164,8 +164,8 @@ export default class TableListener extends Listener {
      * Creates table row
      *
      * @param {HTMLTableElement|HTMLTableSectionElement} element
-     * @param {Number} length
-     * @param {Number} [index = 0]
+     * @param {number} length
+     * @param {number} [index = 0]
      */
     #row(element, length, index = 0) {
         const row = element.insertRow(index);
@@ -190,8 +190,8 @@ export default class TableListener extends Listener {
      * Enables or disables navigation for table cell elements
      *
      * @param {HTMLElement} element
-     * @param {String} key
-     * @return {Boolean}
+     * @param {string} key
+     * @return {boolean}
      */
     #enabled(element, key) {
         if (['ArrowUp', 'ArrowDown'].includes(key)) {

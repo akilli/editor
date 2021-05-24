@@ -38,6 +38,7 @@ export default class Filter {
      *
      * @abstract
      * @param {HTMLElement} element
+     * @return {void}
      */
     filter(element) {
         throw 'Not implemented';

@@ -26,7 +26,7 @@ export default class Dispatcher {
     /**
      * Dispatches an event on managed element
      *
-     * @param {String} type
+     * @param {string} type
      * @param {HTMLElement} element
      * @param {HTMLElement} target
      */
@@ -41,7 +41,7 @@ export default class Dispatcher {
     /**
      * Registers a mutation observer on managed element
      *
-     * @param {Function} call
+     * @param {function} call
      * @param {MutationObserverInit} [opts = {childList: true, subtree: true}]
      */
     register(call, opts = {childList: true, subtree: true}) {
@@ -56,7 +56,7 @@ export default class Dispatcher {
     /**
      * Dispatches a mutation event on managed element
      *
-     * @param {String} type
+     * @param {string} type
      * @param {Element} element
      * @param {Node} target
      */

@@ -25,7 +25,7 @@ export default class DialogElement extends HTMLElement {
     /**
      * Indicates dialog state
      *
-     * @return {Boolean}
+     * @return {boolean}
      */
     get open() {
         return this.hasAttribute('open');
@@ -34,7 +34,7 @@ export default class DialogElement extends HTMLElement {
     /**
      * Sets dialog state
      *
-     * @param {Boolean} state
+     * @param {boolean} state
      */
     set open(state) {
         state === true ? this.setAttribute('open', '') : this.removeAttribute('open');

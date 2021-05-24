@@ -7,7 +7,7 @@ export default class PluginManager {
     /**
      * Registered plugins
      *
-     * @type {Map<String, Plugin>}
+     * @type {Map<string, Plugin>}
      */
     #items = new Map();
 
@@ -23,7 +23,7 @@ export default class PluginManager {
     /**
      * Returns registered plugin with given name or null
      *
-     * @param {String} name
+     * @param {string} name
      * @return {?Plugin}
      */
     get(name) {

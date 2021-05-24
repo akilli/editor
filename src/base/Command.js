@@ -14,7 +14,7 @@ export default class Command {
     /**
      * Name
      *
-     * @type {String}
+     * @type {string}
      */
     #name;
 
@@ -46,7 +46,7 @@ export default class Command {
     /**
      * Allows read access to name
      *
-     * @return {String}
+     * @return {string}
      */
     get name() {
         return this.#name;
@@ -56,8 +56,8 @@ export default class Command {
      * Initializes a new editor command optionally with given tag name
      *
      * @param {Editor} editor
-     * @param {String} name
-     * @param {?String} [tagName = null]
+     * @param {string} name
+     * @param {?string} [tagName = null]
      */
     constructor(editor, name, tagName = null) {
         if (!(editor instanceof Editor) || !name || typeof name !== 'string' || tagName && typeof tagName !== 'string') {
@@ -81,7 +81,7 @@ export default class Command {
       * Inserts element
       *
       * @protected
-      * @param {Object.<String, String>} [attributes = {}]
+      * @param {Object.<string, string>} [attributes = {}]
       */
     _insert(attributes = {}) {
         if (this._tag) {
@@ -128,7 +128,7 @@ export default class Command {
      * Returns attributes from selected element if it is the same kind of element
      *
      * @protected
-     * @return {Object.<String, String>}
+     * @return {Object.<string, string>}
      */
     _selectedAttributes() {
         const element = this._selectedElement();

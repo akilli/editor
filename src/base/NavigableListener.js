@@ -62,7 +62,7 @@ export default class NavigableListener extends Listener {
      * Enables or disables navigation for contenteditable elements
      *
      * @param {HTMLElement} element
-     * @return {Boolean}
+     * @return {boolean}
      */
     #enabled(element) {
         if (element.contentEditable !== 'true') {

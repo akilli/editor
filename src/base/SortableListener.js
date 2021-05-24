@@ -121,7 +121,7 @@ export default class SortableListener extends Listener {
      *
      * @param {HTMLElement} element
      * @param {HTMLElement} target
-     * @return {Boolean}
+     * @return {boolean}
      */
     #droppable(element, target) {
         return element instanceof HTMLElement

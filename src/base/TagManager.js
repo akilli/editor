@@ -7,7 +7,7 @@ export default class TagManager {
     /**
      * Registered tags
      *
-     * @type {Map<String, Tag>}
+     * @type {Map<string, Tag>}
      */
     #items = new Map();
 
@@ -23,7 +23,7 @@ export default class TagManager {
     /**
      * Returns registered tag for given key or null
      *
-     * @param {String|HTMLElement} key
+     * @param {string|HTMLElement} key
      * @return {?Tag}
      */
     get(key) {
@@ -46,10 +46,10 @@ export default class TagManager {
     /**
      * Checks if tag or group is allowed inside parent tag
      *
-     * @param {String|HTMLElement} key
-     * @param {String|HTMLElement} childKey
-     * @param {Boolean} [isGroup = false]
-     * @return {Boolean}
+     * @param {string|HTMLElement} key
+     * @param {string|HTMLElement} childKey
+     * @param {boolean} [isGroup = false]
+     * @return {boolean}
      */
     allowed(key, childKey, isGroup = false) {
         const group = isGroup ? childKey : this.get(childKey)?.group;

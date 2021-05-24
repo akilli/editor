@@ -5,107 +5,107 @@ export default class Tag {
     /**
      * Name
      *
-     * @type {String}
+     * @type {string}
      */
     name;
 
     /**
      * Name of the tag group
      *
-     * @type {String}
+     * @type {string}
      */
     group;
 
     /**
      * Allowed groups of child elements
      *
-     * @type {String[]}
+     * @type {string[]}
      */
     children = [];
 
     /**
      * Allowed attributes
      *
-     * @type {String[]}
+     * @type {string[]}
      */
     attributes = [];
 
     /**
      * Is element alignable
      *
-     * @type {Boolean}
+     * @type {boolean}
      */
     alignable = false;
 
     /**
      * Does element allow arbitrary amount of child elements
      *
-     * @type {Boolean}
+     * @type {boolean}
      */
     arbitrary = false;
 
     /**
      * Is element deletable
      *
-     * @type {Boolean}
+     * @type {boolean}
      */
     deletable = false;
 
     /**
      * Is element editable
      *
-     * @type {Boolean}
+     * @type {boolean}
      */
     editable = false;
 
     /**
      * Is element empty or allowed to be empty
      *
-     * @type {Boolean}
+     * @type {boolean}
      */
     empty = false;
 
     /**
      * Should element be focused on insert
      *
-     * @type {Boolean}
+     * @type {boolean}
      */
     focusable = false;
 
     /**
      * Is element navigable
      *
-     * @type {Boolean}
+     * @type {boolean}
      */
     navigable = false;
 
     /**
      * Does element define a slot
      *
-     * @type {Boolean}
+     * @type {boolean}
      */
     slotable = false;
 
     /**
      * Is element sortable
      *
-     * @type {Boolean}
+     * @type {boolean}
      */
     sortable = false;
 
     /**
      * Element to insert when ENTER-key is pressed
      *
-     * @type {?String}
+     * @type {?string}
      */
     enter = null;
 
     /**
      * Defines a new tag
      *
-     * @param {String} name
-     * @param {String} group
-     * @param {Object.<String, {*}>} [opts = {}]
+     * @param {string} name
+     * @param {string} group
+     * @param {Object.<string, {*}>} [opts = {}]
      */
     constructor({name, group, ...opts} = {}) {
         const reqStr = item => item && typeof item === 'string';

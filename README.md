@@ -109,7 +109,7 @@ const config = {
          * Overrides default browser dialog window options
          *
          * @see BrowserDialog.opts
-         * @type {Object.<String, String>}
+         * @type {Object.<string, string>}
          */
         browser: {},
 
@@ -117,7 +117,7 @@ const config = {
          * Converts one HTML element to another
          *
          * @see ContentFilter.#convert
-         * @type {Object.<String, String>}
+         * @type {Object.<string, string>}
          */
         filter: {},
 
@@ -125,7 +125,7 @@ const config = {
          * Language for i18n
          *
          * @see Plugin._i18n
-         * @type {?String}
+         * @type {?string}
          */
         lang: null,
 
@@ -137,7 +137,7 @@ const config = {
          *
          * @see Editor.init
          * @see Editor.defaultConfig
-         * @type {String[]}
+         * @type {string[]}
          */
         plugins: [],
     },
@@ -154,7 +154,7 @@ const config = {
          * attribute.
          *
          * @see Audio.init
-         * @type {?String}
+         * @type {?string}
          */
         browser: null,
     },
@@ -173,7 +173,7 @@ const config = {
          * preview if the block with the requested ID exists.
          *
          * @see BlockListener.insertappblock
-         * @type {?String}
+         * @type {?string}
          */
         api: null,
 
@@ -185,7 +185,7 @@ const config = {
          * attribute.
          *
          * @see Block.init
-         * @type {?String}
+         * @type {?string}
          */
         browser: null,
 
@@ -194,7 +194,7 @@ const config = {
          * custom block element
          *
          * @see BlockListener.insertappblock
-         * @type {?String}
+         * @type {?string}
          */
         css: null,
     },
@@ -211,7 +211,7 @@ const config = {
          * the src, width and height attributes.
          *
          * @see Iframe.init
-         * @type {?String}
+         * @type {?string}
          */
         browser: null,
     },
@@ -228,7 +228,7 @@ const config = {
          * width and height attributes.
          *
          * @see Image.init
-         * @type {?String}
+         * @type {?string}
          */
         browser: null,
     },
@@ -245,7 +245,7 @@ const config = {
          * width and height attributes.
          *
          * @see Video.init
-         * @type {?String}
+         * @type {?string}
          */
         browser: null,
     },

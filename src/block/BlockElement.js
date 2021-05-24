@@ -13,7 +13,7 @@ export default class BlockElement extends HTMLElement {
     /**
      * Returns shadow roots innerHTML
      *
-     * @return {String}
+     * @return {string}
      */
     get content() {
         return this.shadowRoot.innerHTML;
@@ -22,7 +22,7 @@ export default class BlockElement extends HTMLElement {
     /**
      * Sets shadow roots innerHTML
      *
-     * @param {String} val
+     * @param {string} val
      */
     set content(val) {
         this.shadowRoot.innerHTML = val;
