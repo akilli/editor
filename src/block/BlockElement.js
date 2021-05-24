@@ -3,14 +3,6 @@
  */
 export default class BlockElement extends HTMLElement {
     /**
-     * Initializes new block element
-     */
-    constructor() {
-        super();
-        this.attachShadow({mode: 'open'});
-    }
-
-    /**
      * Returns shadow roots innerHTML
      *
      * @return {string}
@@ -26,5 +18,13 @@ export default class BlockElement extends HTMLElement {
      */
     set content(val) {
         this.shadowRoot.innerHTML = val;
+    }
+
+    /**
+     * Initializes new block element
+     */
+    constructor() {
+        super();
+        this.attachShadow({mode: 'open'});
     }
 }

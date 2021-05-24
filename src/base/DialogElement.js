@@ -3,6 +3,24 @@
  */
 export default class DialogElement extends HTMLElement {
     /**
+     * Indicates dialog state
+     *
+     * @return {boolean}
+     */
+    get open() {
+        return this.hasAttribute('open');
+    }
+
+    /**
+     * Sets dialog state
+     *
+     * @param {boolean} state
+     */
+    set open(state) {
+        state === true ? this.setAttribute('open', '') : this.removeAttribute('open');
+    }
+
+    /**
      * Initializes new dialog element
      *
      * @borrows this.connectedCallback
@@ -20,24 +38,6 @@ export default class DialogElement extends HTMLElement {
         this.setAttribute('role', 'dialog');
         this.tabIndex = -1;
         this.focus();
-    }
-
-    /**
-     * Indicates dialog state
-     *
-     * @return {boolean}
-     */
-    get open() {
-        return this.hasAttribute('open');
-    }
-
-    /**
-     * Sets dialog state
-     *
-     * @param {boolean} state
-     */
-    set open(state) {
-        state === true ? this.setAttribute('open', '') : this.removeAttribute('open');
     }
 
     /**

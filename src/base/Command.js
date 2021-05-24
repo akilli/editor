@@ -12,11 +12,29 @@ export default class Command {
     #editor;
 
     /**
+     * Allows read access to editor
+     *
+     * @return {Editor}
+     */
+    get editor() {
+        return this.#editor;
+    }
+
+    /**
      * Name
      *
      * @type {string}
      */
     #name;
+
+    /**
+     * Allows read access to name
+     *
+     * @return {string}
+     */
+    get name() {
+        return this.#name;
+    }
 
     /**
      * Associated tag
@@ -33,24 +51,6 @@ export default class Command {
      * @type {?Dialog}
      */
     _dialog = null;
-
-    /**
-     * Allows read access to editor
-     *
-     * @return {Editor}
-     */
-    get editor() {
-        return this.#editor;
-    }
-
-    /**
-     * Allows read access to name
-     *
-     * @return {string}
-     */
-    get name() {
-        return this.#name;
-    }
 
     /**
      * Initializes a new editor command optionally with given tag name
