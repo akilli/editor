@@ -16,126 +16,288 @@ export default class Editor {
      *
      * @type {HTMLElement}
      */
-    orig;
+    #orig;
+
+    /**
+     * Allows read access to corresponding DOM element of the source
+     *
+     * @return {HTMLElement}
+     */
+    get orig() {
+        return this.#orig;
+    }
 
     /**
      * Correspondig DOM Document
      *
      * @type {Document}
      */
-    document;
+    #document;
+
+    /**
+     * Allows read access to correspondig DOM Document
+     *
+     * @return {Document}
+     */
+    get document() {
+        return this.#document;
+    }
 
     /**
      * Corresponding Window object
      *
      * @type {Window}
      */
-    window;
+    #window;
+
+    /**
+     * Allows read access to corresponding Window object
+     *
+     * @return {Window}
+     */
+    get window() {
+        return this.#window;
+    }
 
     /**
      * Corresponding DOM element of the editor
      *
      * @type {HTMLElement}
      */
-    element;
+    #element;
+
+    /**
+     * Allows read access to corresponding DOM element of the editor
+     *
+     * @return {HTMLElement}
+     */
+    get element() {
+        return this.#element;
+    }
 
     /**
      * Corresponding DOM element of the main toolbar
      *
      * @type {HTMLElement}
      */
-    toolbar;
+    #toolbar;
+
+    /**
+     * Allows read access to corresponding DOM element of the main toolbar
+     *
+     * @return {HTMLElement}
+     */
+    get toolbar() {
+        return this.#toolbar;
+    }
 
     /**
      * Event dispatcher of the editor main toolbar
      *
      * @type {Dispatcher}
      */
-    toolbarEvents;
+    #toolbarEvents;
+
+    /**
+     * Allows read access to event dispatcher of the editor main toolbar
+     *
+     * @return {Dispatcher}
+     */
+    get toolbarEvents() {
+        return this.#toolbarEvents;
+    }
 
     /**
      * Corresponding DOM element of the formats toolbar
      *
      * @type {HTMLElement}
      */
-    formats;
+    #formats;
+
+    /**
+     * Allows read access to corresponding DOM element of the formats toolbar
+     *
+     * @return {HTMLElement}
+     */
+    get formats() {
+        return this.#formats;
+    }
 
     /**
      * Event dispatcher of the editor formats toolbar
      *
      * @type {Dispatcher}
      */
-    formatsEvents;
+    #formatsEvents;
+
+    /**
+     * Allows read access to event dispatcher of the editor formats toolbar
+     *
+     * @return {Dispatcher}
+     */
+    get formatsEvents() {
+        return this.#formatsEvents;
+    }
 
     /**
      * Corresponding DOM element of the editor content root
      *
      * @type {HTMLElement}
      */
-    root;
+    #root;
+
+    /**
+     * Allows read access to corresponding DOM element of the editor content root
+     *
+     * @return {HTMLElement}
+     */
+    get root() {
+        return this.#root;
+    }
 
     /**
      * Event dispatcher of the editor content root
      *
      * @type {Dispatcher}
      */
-    rootEvents;
+    #rootEvents;
+
+    /**
+     * Allows read access to event dispatcher of the editor content root
+     *
+     * @return {Dispatcher}
+     */
+    get rootEvents() {
+        return this.#rootEvents;
+    }
 
     /**
      * Configuration
      *
      * @type {Object}
      */
-    config = {};
+    #config = {};
+
+    /**
+     * Allows read access to configuration
+     *
+     * @return {Object}
+     */
+    get config() {
+        return this.#config;
+    }
 
     /**
      * Translator
      *
      * @type {Translator}
      */
-    translator = new Translator();
+    #translator = new Translator();
 
     /**
-     * Tags
+     * Allows read access to translator
+     *
+     * @return {Translator}
+     */
+    get translator() {
+        return this.#translator;
+    }
+
+    /**
+     * Tag manager
      *
      * @type {TagManager}
      */
-    tags = new TagManager();
+    #tags = new TagManager();
 
     /**
-     * Filters
+     * Allows read access to tag manager
+     *
+     * @return {TagManager}
+     */
+    get tags() {
+        return this.#tags;
+    }
+
+    /**
+     * Filter manager
      *
      * @type {FilterManager}
      */
-    filters = new FilterManager();
+    #filters = new FilterManager();
 
     /**
-     * Dialogs
+     * Allows read access to filter manager
+     *
+     * @return {FilterManager}
+     */
+    get filters() {
+        return this.#filters;
+    }
+
+    /**
+     * Dialog manager
      *
      * @type {DialogManager}
      */
-    dialogs = new DialogManager();
+    #dialogs = new DialogManager();
 
     /**
-     * Commands
+     * Allows read access to dialog manager
+     *
+     * @type {DialogManager}
+     */
+    get dialogs() {
+        return this.#dialogs;
+    }
+
+    /**
+     * Command manager
      *
      * @type {CommandManager}
      */
-    commands = new CommandManager();
+    #commands = new CommandManager();
 
     /**
-     * Plugins
+     * Allows read access to command manager
+     *
+     * @return {CommandManager}
+     */
+    get commands() {
+        return this.#commands;
+    }
+
+    /**
+     * Plugin manager
      *
      * @type {PluginManager}
      */
-    plugins = new PluginManager();
+    #plugins = new PluginManager();
 
     /**
-     * Browser
+     * Allows read access to plugin manager
+     *
+     * @return {PluginManager}
+     */
+    get plugins() {
+        return this.#plugins;
+    }
+
+    /**
+     * Browser manager
      *
      * @type {BrowserManager}
      */
-    browser;
+    #browser;
+
+    /**
+     * Allows read access to browser manager
+     *
+     * @return {BrowserManager}
+     */
+    get browser() {
+        return this.#browser;
+    }
 
     /**
      * Default configuration
@@ -157,22 +319,22 @@ export default class Editor {
             throw 'Invalid argument';
         }
 
-        this.orig = orig;
-        this.document = this.orig.ownerDocument;
-        this.window = this.document.defaultView;
-        this.element = this.createElement('akilli-editor');
-        this.toolbar = this.createElement('editor-toolbar', {attributes: {role: 'toolbar'}});
+        this.#orig = orig;
+        this.#document = this.orig.ownerDocument;
+        this.#window = this.document.defaultView;
+        this.#element = this.createElement('akilli-editor');
+        this.#toolbar = this.createElement('editor-toolbar', {attributes: {role: 'toolbar'}});
         this.element.appendChild(this.toolbar);
-        this.toolbarEvents = new Dispatcher(this.toolbar);
-        this.formats = this.createElement('editor-formats', {attributes: {role: 'toolbar'}});
+        this.#toolbarEvents = new Dispatcher(this.toolbar);
+        this.#formats = this.createElement('editor-formats', {attributes: {role: 'toolbar'}});
         this.formats.hidden = true;
         this.element.appendChild(this.formats);
-        this.formatsEvents = new Dispatcher(this.formats);
-        this.root = this.createElement('editor-root');
+        this.#formatsEvents = new Dispatcher(this.formats);
+        this.#root = this.createElement('editor-root');
         this.element.appendChild(this.root);
-        this.rootEvents = new Dispatcher(this.root);
-        this.config = config;
-        this.browser = new BrowserManager(this);
+        this.#rootEvents = new Dispatcher(this.root);
+        this.#config = config;
+        this.#browser = new BrowserManager(this);
     }
 
     /**
@@ -180,7 +342,7 @@ export default class Editor {
      */
     init() {
         const config = this.config;
-        this.config = {};
+        this.#config = {};
         const builtin = this.constructor.defaultConfig.base?.plugins || [];
         let configured = builtin;
 
@@ -194,20 +356,16 @@ export default class Editor {
 
         const plugins = new Set();
         const add = item => {
-            if (item.dependencies) {
-                item.dependencies.forEach(add);
-            }
-
+            item.dependencies?.forEach(add);
             plugins.add(item);
         };
         configured.map(add);
         plugins.forEach(item => {
             Object.entries(item.config).forEach(([key, val]) => {
-                if (!this.config.hasOwnProperty(item.name)) {
-                    this.config[item.name] = {};
-                }
-
-                this.config[item.name][key] = config[item.name]?.[key] || this.constructor.defaultConfig[item.name]?.[key] || val;
+                this.config[item.name] = this.config[item.name] ?? {};
+                this.config[item.name][key] = config[item.name]?.[key]
+                    || this.constructor.defaultConfig[item.name]?.[key]
+                    || val;
             });
             this.plugins.set(new item(this));
         });
