@@ -101,7 +101,7 @@ export default class Tag {
     enter = null;
 
     /**
-     * Defines a new tag
+     * Defines a new tag and freezes it
      *
      * @param {string} name
      * @param {string} group
@@ -130,5 +130,8 @@ export default class Tag {
         this.slotable = opts.slotable === true;
         this.sortable = opts.sortable === true;
         this.enter = opts.enter || null;
+        Object.freeze(this);
+        Object.freeze(this.children);
+        Object.freeze(this.attributes);
     }
 }
