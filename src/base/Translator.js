@@ -10,7 +10,7 @@ export default class Translator {
     #items = new Map();
 
     /**
-     * Returns registered i18n data for given name or null
+     * Returns registered i18n data for given name
      *
      * @param {string} name
      * @return {?Object.<string, string>}

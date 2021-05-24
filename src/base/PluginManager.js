@@ -21,7 +21,7 @@ export default class PluginManager {
     }
 
     /**
-     * Returns registered plugin with given name or null
+     * Returns registered plugin with given name
      *
      * @param {string} name
      * @return {?Plugin}

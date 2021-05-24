@@ -626,7 +626,7 @@ export default class Editor {
     }
 
     /**
-     * Returns current selected element or null
+     * Returns current selected element
      *
      * @return {?HTMLElement}
      */
@@ -647,7 +647,7 @@ export default class Editor {
     }
 
     /**
-     * Returns current selected contenteditable or null
+     * Returns current selected contenteditable
      *
      * @return {?HTMLElement}
      */

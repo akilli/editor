@@ -21,7 +21,7 @@ export default class TagManager {
     }
 
     /**
-     * Returns registered tag for given key or null
+     * Returns registered tag for given key
      *
      * @param {string|HTMLElement} key
      * @return {?Tag}

@@ -21,7 +21,7 @@ export default class CommandManager {
     }
 
     /**
-     * Returns registered command with given name or null
+     * Returns registered command with given name
      *
      * @param {string} name
      * @return {?Command}

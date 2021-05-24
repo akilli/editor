@@ -21,7 +21,7 @@ export default class DialogManager {
     }
 
     /**
-     * Returns registered dialog with given name or null
+     * Returns registered dialog with given name
      *
      * @param {string} name
      * @return {?Dialog}
