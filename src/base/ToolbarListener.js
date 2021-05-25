@@ -1,4 +1,5 @@
 import Base from './Base.js';
+import Key from './Key.js';
 import Listener from './Listener.js';
 
 /**
@@ -60,7 +61,7 @@ export default class ToolbarListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (this.editor.isKey(event, ['ArrowLeft', 'ArrowRight', 'Home', 'End'])) {
+        if (this.editor.isKey(event, [Key.LEFT, Key.RIGHT, Key.HOME, Key.END])) {
             const prev = event.target.previousElementSibling;
             const next = event.target.nextElementSibling;
             const first = event.target.parentElement.firstElementChild;
@@ -68,13 +69,13 @@ export default class ToolbarListener extends Listener {
             const isFirst = event.target === first;
             const isLast = event.target === last;
 
-            if (event.key === 'ArrowLeft' && !isFirst) {
+            if (event.key === Key.LEFT && !isFirst) {
                 prev.focus();
-            } else if (event.key === 'ArrowRight' && !isLast) {
+            } else if (event.key === Key.RIGHT && !isLast) {
                 next.focus();
-            } else if (event.key === 'Home' || event.key === 'ArrowRight' && isLast) {
+            } else if (event.key === Key.HOME || event.key === Key.RIGHT && isLast) {
                 first.focus();
-            } else if (event.key === 'End' || event.key === 'ArrowLeft' && isFirst) {
+            } else if (event.key === Key.END || event.key === Key.LEFT && isFirst) {
                 last.focus();
             }
 

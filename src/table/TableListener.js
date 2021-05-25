@@ -1,3 +1,4 @@
+import Key from '../base/Key.js';
 import Listener from '../base/Listener.js';
 
 /**
@@ -72,7 +73,7 @@ export default class TableListener extends Listener {
         const row = cell.parentElement;
         const base = row.parentElement;
         const table = base instanceof HTMLTableElement ? base : base.parentElement;
-        const keys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+        const keys = [Key.LEFT, Key.RIGHT, Key.UP, Key.DOWN];
         const isNav = this.editor.isKey(event, keys);
         const isSort = this.editor.isKey(event, keys, {ctrl: true});
         const isAdd = this.editor.isKey(event, keys, {alt: true});
@@ -99,69 +100,69 @@ export default class TableListener extends Listener {
             event.stopPropagation();
 
             if (isNav) {
-                if (event.key === 'ArrowLeft' && !isFirst) {
+                if (event.key === Key.LEFT && !isFirst) {
                     this.editor.focusEnd(row.cells[cellIndex - 1]);
-                } else if (event.key === 'ArrowLeft' && isFirstTableRow) {
+                } else if (event.key === Key.LEFT && isFirstTableRow) {
                     this.editor.focusEnd(table.rows[table.rows.length - 1].cells[cellLength - 1]);
-                } else if (event.key === 'ArrowLeft') {
+                } else if (event.key === Key.LEFT) {
                     this.editor.focusEnd(table.rows[row.rowIndex - 1].cells[cellLength - 1]);
-                } else if (event.key === 'ArrowRight' && !isLast) {
+                } else if (event.key === Key.RIGHT && !isLast) {
                     row.cells[cellIndex + 1].focus();
-                } else if (event.key === 'ArrowRight' && isLastTableRow) {
+                } else if (event.key === Key.RIGHT && isLastTableRow) {
                     table.rows[0].cells[0].focus();
-                } else if (event.key === 'ArrowRight') {
+                } else if (event.key === Key.RIGHT) {
                     table.rows[row.rowIndex + 1].cells[0].focus();
-                } else if (event.key === 'ArrowUp' && isFirstTableRow) {
+                } else if (event.key === Key.UP && isFirstTableRow) {
                     table.rows[table.rows.length - 1].cells[cellIndex].focus();
-                } else if (event.key === 'ArrowUp') {
+                } else if (event.key === Key.UP) {
                     table.rows[row.rowIndex - 1].cells[cellIndex].focus();
-                } else if (event.key === 'ArrowDown' && isLastTableRow) {
+                } else if (event.key === Key.DOWN && isLastTableRow) {
                     table.rows[0].cells[cellIndex].focus();
-                } else if (event.key === 'ArrowDown') {
+                } else if (event.key === Key.DOWN) {
                     table.rows[row.rowIndex + 1].cells[cellIndex].focus();
                 }
             } else if (isSort) {
-                if (event.key === 'ArrowLeft' && cellLength > 1 && isFirst) {
+                if (event.key === Key.LEFT && cellLength > 1 && isFirst) {
                     Array.from(table.rows).forEach(item => item.appendChild(item.cells[cellIndex]));
-                } else if (event.key === 'ArrowLeft' && cellLength > 1) {
+                } else if (event.key === Key.LEFT && cellLength > 1) {
                     Array.from(table.rows).forEach(
                         item => item.insertBefore(item.cells[cellIndex], item.cells[cellIndex - 1]),
                     );
-                } else if (event.key === 'ArrowRight' && cellLength > 1 && isLast) {
+                } else if (event.key === Key.RIGHT && cellLength > 1 && isLast) {
                     Array.from(table.rows).forEach(item => item.insertBefore(item.cells[cellIndex], item.cells[0]));
-                } else if (event.key === 'ArrowRight' && cellLength > 1) {
+                } else if (event.key === Key.RIGHT && cellLength > 1) {
                     Array.from(table.rows).forEach(
                         item => item.insertBefore(item.cells[cellIndex + 1], item.cells[cellIndex]),
                     );
-                } else if (event.key === 'ArrowUp' && rowLength > 1 && isFirstRow) {
+                } else if (event.key === Key.UP && rowLength > 1 && isFirstRow) {
                     base.appendChild(row);
-                } else if (event.key === 'ArrowUp' && rowLength > 1) {
+                } else if (event.key === Key.UP && rowLength > 1) {
                     base.insertBefore(row, base.rows[rowIndex - 1]);
-                } else if (event.key === 'ArrowDown' && rowLength > 1 && isLastRow) {
+                } else if (event.key === Key.DOWN && rowLength > 1 && isLastRow) {
                     base.insertBefore(row, base.rows[0]);
-                } else if (event.key === 'ArrowDown' && rowLength > 1) {
+                } else if (event.key === Key.DOWN && rowLength > 1) {
                     base.insertBefore(base.rows[rowIndex + 1], row);
                 }
 
                 cell.focus();
             } else if (isAdd) {
-                if (event.key === 'ArrowLeft') {
+                if (event.key === Key.LEFT) {
                     Array.from(table.rows).forEach(item => this.#cell(item, item.cells[cellIndex]));
-                } else if (event.key === 'ArrowRight') {
+                } else if (event.key === Key.RIGHT) {
                     Array.from(table.rows).forEach(item => this.#cell(item, item.cells[cellIndex + 1]));
-                } else if (event.key === 'ArrowUp') {
+                } else if (event.key === Key.UP) {
                     this.#row(base, cellLength, rowIndex);
-                } else if (event.key === 'ArrowDown') {
+                } else if (event.key === Key.DOWN) {
                     this.#row(base, cellLength, rowIndex + 1);
                 }
             } else if (isDel) {
-                if (event.key === 'ArrowLeft' && !isFirst) {
+                if (event.key === Key.LEFT && !isFirst) {
                     Array.from(table.rows).forEach(item => item.deleteCell(cellIndex - 1));
-                } else if (event.key === 'ArrowRight' && !isLast) {
+                } else if (event.key === Key.RIGHT && !isLast) {
                     Array.from(table.rows).forEach(item => item.deleteCell(cellIndex + 1));
-                } else if (event.key === 'ArrowUp' && rowIndex > 0) {
+                } else if (event.key === Key.UP && rowIndex > 0) {
                     base.deleteRow(rowIndex - 1);
-                } else if (event.key === 'ArrowDown' && rowIndex < rowLength - 1) {
+                } else if (event.key === Key.DOWN && rowIndex < rowLength - 1) {
                     base.deleteRow(rowIndex + 1);
                 }
             }
@@ -204,7 +205,7 @@ export default class TableListener extends Listener {
      * @return {boolean}
      */
     #enabled(element, key) {
-        if (['ArrowUp', 'ArrowDown'].includes(key)) {
+        if ([Key.UP, Key.DOWN].includes(key)) {
             return true;
         }
 
@@ -214,7 +215,7 @@ export default class TableListener extends Listener {
             return false;
         }
 
-        if (key === 'ArrowLeft') {
+        if (key === Key.LEFT) {
             let first = element.firstChild;
 
             if (first instanceof HTMLElement) {

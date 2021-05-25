@@ -1,3 +1,4 @@
+import Key from './Key.js';
 import Listener from './Listener.js';
 
 /**
@@ -37,7 +38,7 @@ export default class SortableListener extends Listener {
      */
     keydown(event) {
         if (event.target === event.currentTarget
-            && this.editor.isKey(event, ['ArrowUp', 'ArrowDown', 'Home', 'End'], {ctrl: true})
+            && this.editor.isKey(event, [Key.UP, Key.DOWN, Key.HOME, Key.END], {ctrl: true})
         ) {
             const parent = event.target.parentElement;
             const prev = event.target.previousElementSibling;
@@ -47,18 +48,18 @@ export default class SortableListener extends Listener {
             const isFirst = event.target === first;
             const isLast = event.target === last;
 
-            if (event.key === 'ArrowUp' && !isFirst && prev.hasAttribute('data-sortable')) {
+            if (event.key === Key.UP && !isFirst && prev.hasAttribute('data-sortable')) {
                 prev.insertAdjacentHTML('beforebegin', event.target.outerHTML);
                 parent.removeChild(event.target);
-            } else if (event.key === 'ArrowDown' && !isLast && next.hasAttribute('data-sortable')) {
+            } else if (event.key === Key.DOWN && !isLast && next.hasAttribute('data-sortable')) {
                 next.insertAdjacentHTML('afterend', event.target.outerHTML);
                 parent.removeChild(event.target);
-            } else if ((event.key === 'Home' && !isFirst || event.key === 'ArrowDown' && isLast)
+            } else if ((event.key === Key.HOME && !isFirst || event.key === Key.DOWN && isLast)
                 && first.hasAttribute('data-sortable')
             ) {
                 first.insertAdjacentHTML('beforebegin', event.target.outerHTML);
                 parent.removeChild(event.target);
-            } else if ((event.key === 'End' && !isLast || event.key === 'ArrowUp' && isFirst)
+            } else if ((event.key === Key.END && !isLast || event.key === Key.UP && isFirst)
                 && last.hasAttribute('data-sortable')
             ) {
                 last.insertAdjacentHTML('afterend', event.target.outerHTML);

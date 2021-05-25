@@ -1,3 +1,4 @@
+import Key from './Key.js';
 import Listener from './Listener.js';
 
 /**
@@ -35,7 +36,7 @@ export default class NavigableListener extends Listener {
      */
     keydown(event) {
         if (event.target === event.currentTarget
-            && this.editor.isKey(event, ['ArrowUp', 'ArrowDown', 'Home', 'End'])
+            && this.editor.isKey(event, [Key.UP, Key.DOWN, Key.HOME, Key.END])
             && this.#enabled(event.target)
         ) {
             const prev = event.target.previousElementSibling;
@@ -45,15 +46,15 @@ export default class NavigableListener extends Listener {
             const isFirst = event.target === first;
             const isLast = event.target === last;
 
-            if (event.key === 'ArrowUp' && !isFirst && prev.hasAttribute('data-navigable')) {
+            if (event.key === Key.UP && !isFirst && prev.hasAttribute('data-navigable')) {
                 prev.focus();
-            } else if (event.key === 'ArrowDown' && !isLast && next.hasAttribute('data-navigable')) {
+            } else if (event.key === Key.DOWN && !isLast && next.hasAttribute('data-navigable')) {
                 next.focus();
-            } else if ((event.key === 'Home' || event.key === 'ArrowDown' && isLast)
+            } else if ((event.key === Key.HOME || event.key === Key.DOWN && isLast)
                 && first.hasAttribute('data-navigable')
             ) {
                 first.focus();
-            } else if ((event.key === 'End' || event.key === 'ArrowUp' && isFirst)
+            } else if ((event.key === Key.END || event.key === Key.UP && isFirst)
                 && last.hasAttribute('data-navigable')
             ) {
                 last.focus();
