@@ -125,7 +125,7 @@ export default class Command {
      * @protected
      */
     _openDialog() {
-        this.dialog.open(attributes => this._insert(attributes), this._selectedAttributes())
+        this.dialog?.open(attributes => this._insert(attributes), this._selectedAttributes())
     }
 
     /**
