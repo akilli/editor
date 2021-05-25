@@ -24,7 +24,7 @@ export default class ImageDialog extends Dialog {
             required: 'required',
         }));
         fieldset.appendChild(this._createInput('alt', 'text', this._('Alternative text'), {
-            placeholder: this._('Replacement text for use when media elements are not available'),
+            placeholder: this._('Text shown when media element is not available'),
         }));
         fieldset.appendChild(this._createInput('width', 'number', this._('Width')));
         fieldset.appendChild(this._createInput('height', 'number', this._('Height')));

@@ -124,11 +124,15 @@ export default class TableListener extends Listener {
                 if (event.key === 'ArrowLeft' && cellLength > 1 && isFirst) {
                     Array.from(table.rows).forEach(item => item.appendChild(item.cells[cellIndex]));
                 } else if (event.key === 'ArrowLeft' && cellLength > 1) {
-                    Array.from(table.rows).forEach(item => item.insertBefore(item.cells[cellIndex], item.cells[cellIndex - 1]));
+                    Array.from(table.rows).forEach(
+                        item => item.insertBefore(item.cells[cellIndex], item.cells[cellIndex - 1]),
+                    );
                 } else if (event.key === 'ArrowRight' && cellLength > 1 && isLast) {
                     Array.from(table.rows).forEach(item => item.insertBefore(item.cells[cellIndex], item.cells[0]));
                 } else if (event.key === 'ArrowRight' && cellLength > 1) {
-                    Array.from(table.rows).forEach(item => item.insertBefore(item.cells[cellIndex + 1], item.cells[cellIndex]));
+                    Array.from(table.rows).forEach(
+                        item => item.insertBefore(item.cells[cellIndex + 1], item.cells[cellIndex]),
+                    );
                 } else if (event.key === 'ArrowUp' && rowLength > 1 && isFirstRow) {
                     base.appendChild(row);
                 } else if (event.key === 'ArrowUp' && rowLength > 1) {
@@ -156,9 +160,9 @@ export default class TableListener extends Listener {
                 } else if (event.key === 'ArrowRight' && !isLast) {
                     Array.from(table.rows).forEach(item => item.deleteCell(cellIndex + 1));
                 } else if (event.key === 'ArrowUp' && rowIndex > 0) {
-                    base.deleteRow(rowIndex - 1)
+                    base.deleteRow(rowIndex - 1);
                 } else if (event.key === 'ArrowDown' && rowIndex < rowLength - 1) {
-                    base.deleteRow(rowIndex + 1)
+                    base.deleteRow(rowIndex + 1);
                 }
             }
         }
@@ -211,7 +215,12 @@ export default class TableListener extends Listener {
         }
 
         if (key === 'ArrowLeft') {
-            const first = element.firstChild instanceof HTMLElement ? element.firstChild.firstChild : element.firstChild;
+            let first = element.firstChild;
+
+            if (first instanceof HTMLElement) {
+                first = first.firstChild;
+            }
+
             return sel.anchorOffset === 0 && [element, first].includes(sel.anchorNode);
         }
 

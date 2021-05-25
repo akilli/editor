@@ -85,7 +85,9 @@ export default class ContentFilter extends Filter {
      * @return {?HTMLElement}
      */
     #element(element, tag) {
-        Array.from(element.attributes).forEach(item => !tag.attributes.includes(item.name) && element.removeAttribute(item.name));
+        Array.from(element.attributes).forEach(
+            item => !tag.attributes.includes(item.name) && element.removeAttribute(item.name),
+        );
 
         if (element.hasChildNodes()) {
             this.editor.filters.filter(element);

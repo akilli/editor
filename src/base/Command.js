@@ -76,7 +76,11 @@ export default class Command {
      * @param {?string} [tagName = null]
      */
     constructor(editor, name, tagName = null) {
-        if (!(editor instanceof Editor) || !name || typeof name !== 'string' || tagName && typeof tagName !== 'string') {
+        if (!(editor instanceof Editor)
+            || !name
+            || typeof name !== 'string'
+            || tagName && typeof tagName !== 'string'
+        ) {
             throw 'Invalid argument';
         }
 
@@ -95,16 +99,18 @@ export default class Command {
         this.dialog ? this._openDialog() : this._insert(this._selectedAttributes());
     }
 
-     /**
-      * Inserts element
-      *
-      * @protected
-      * @param {Object.<string, string>} [attributes = {}]
-      * @return {void}
-      */
+    /**
+     * Inserts element
+     *
+     * @protected
+     * @param {Object.<string, string>} [attributes = {}]
+     * @return {void}
+     */
     _insert(attributes = {}) {
         if (this.tag) {
-            Object.keys(attributes).forEach(item => this.tag.attributes.includes(item) && attributes[item] || delete attributes[item]);
+            Object.keys(attributes).forEach(
+                item => this.tag.attributes.includes(item) && attributes[item] || delete attributes[item],
+            );
             const selected = this._selectedElement();
 
             if (this.tag.group !== 'format') {
@@ -112,7 +118,7 @@ export default class Command {
             } else if (selected && Object.keys(attributes).length > 0) {
                 selected.parentElement.replaceChild(
                     this.editor.createElement(this.tag.name, {attributes: attributes, html: selected.textContent}),
-                    selected
+                    selected,
                 );
             } else if (selected) {
                 selected.parentElement.replaceChild(this.editor.createText(selected.textContent), selected);
@@ -129,7 +135,7 @@ export default class Command {
      * @return {void}
      */
     _openDialog() {
-        this.dialog?.open(attributes => this._insert(attributes), this._selectedAttributes())
+        this.dialog?.open(attributes => this._insert(attributes), this._selectedAttributes());
     }
 
     /**

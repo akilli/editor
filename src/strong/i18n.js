@@ -7,4 +7,4 @@ export default {
     de: {
         'strongly emphasized': 'stark betont',
     },
-}
+};

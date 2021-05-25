@@ -43,7 +43,7 @@ export default class Plugin {
     /**
      * Returns plugin default configuration
      *
-     * @type {Object.<string, {*}>}
+     * @type {Object.<string, any>}
      */
     static get config() {
         return {};

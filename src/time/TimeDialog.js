@@ -19,7 +19,7 @@ export default class TimeDialog extends Dialog {
     _initFieldset(fieldset) {
         fieldset.appendChild(this.editor.createElement('legend', {html: this._('Time')}));
         fieldset.appendChild(this._createInput('datetime', 'text', this._('Machine-readable Datetime'), {
-            placeholder: this._('Insert date and/or time or leave empty to remove it'),
+            placeholder: this._('Insert date/time or leave empty to remove it'),
         }));
     }
 }

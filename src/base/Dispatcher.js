@@ -32,7 +32,10 @@ export default class Dispatcher {
      * @return {void}
      */
     dispatch(type, element = null, target = null) {
-        if (!type || typeof type !== 'string' || element && !(element instanceof HTMLElement) || target && !(target instanceof HTMLElement)) {
+        if (!type || typeof type !== 'string'
+            || element && !(element instanceof HTMLElement)
+            || target && !(target instanceof HTMLElement)
+        ) {
             throw 'Invalid argument';
         }
 
@@ -81,10 +84,14 @@ export default class Dispatcher {
             record.addedNodes.forEach(element => {
                 if (element instanceof HTMLElement) {
                     this.#dispatch('insert', element, record.target);
-                    Array.from(element.getElementsByTagName('*')).forEach(item => this.#dispatch('insert', item, record.target));
+                    Array.from(element.getElementsByTagName('*')).forEach(
+                        item => this.#dispatch('insert', item, record.target),
+                    );
                 }
             });
-            record.removedNodes.forEach(element => element instanceof HTMLElement && this.#dispatch('delete', element, record.target));
+            record.removedNodes.forEach(
+                element => element instanceof HTMLElement && this.#dispatch('delete', element, record.target),
+            );
         });
     }
 }

@@ -22,7 +22,9 @@ export default class SlotableListener extends Listener {
     insert(event) {
         if (event.detail.element instanceof HTMLSlotElement) {
             event.detail.element.addEventListener('keydown', this);
-        } else if (event.detail.element.hasAttribute('data-slotable') && !event.detail.element.querySelector(':scope > slot')) {
+        } else if (event.detail.element.hasAttribute('data-slotable')
+            && !event.detail.element.querySelector(':scope > slot')
+        ) {
             event.detail.element.appendChild(this.editor.createElement('slot'));
         }
     }

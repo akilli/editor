@@ -13,4 +13,4 @@ export default {
         'Video': 'Video',
         'Width': 'Breite',
     },
-}
+};

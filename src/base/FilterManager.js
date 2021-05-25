@@ -38,7 +38,7 @@ export default class FilterManager {
 
         this.#items.forEach(filter => {
             element.normalize();
-            filter.filter(element)
+            filter.filter(element);
         });
     }
 }

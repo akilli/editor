@@ -364,7 +364,7 @@ export default class Editor {
         configured.map(add);
         plugins.forEach(item => {
             Object.entries(item.config).forEach(([key, val]) => {
-                this.config[item.name] = this.config[item.name] ?? {};
+                this.config[item.name] ??= {};
                 this.config[item.name][key] = config[item.name]?.[key]
                     || this.constructor.defaultConfig[item.name]?.[key]
                     || val;
@@ -504,7 +504,12 @@ export default class Editor {
         const range = sel.rangeCount > 0 ? sel.getRangeAt(0) : null;
         const editable = this.getSelectedEditable();
 
-        if (!range || range.collapsed || !range.toString().trim() || !editable || !this.tags.allowed(editable, element)) {
+        if (!range
+            || range.collapsed
+            || !range.toString().trim()
+            || !editable
+            || !this.tags.allowed(editable, element)
+        ) {
             return;
         }
 
@@ -517,9 +522,9 @@ export default class Editor {
         }
 
         const selText = range.toString();
-        const same = Array.from(range.cloneContents().childNodes).every(item =>
-            item instanceof Text && !item.textContent.trim()
-            || item instanceof HTMLElement && item.localName === element.localName
+        const same = Array.from(range.cloneContents().childNodes).every(
+            item => item instanceof Text && !item.textContent.trim()
+                || item instanceof HTMLElement && item.localName === element.localName,
         );
         range.deleteContents();
 

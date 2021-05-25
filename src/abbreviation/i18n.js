@@ -11,4 +11,4 @@ export default {
         'Insert full term or leave empty to remove it': 'Langform eingeben oder zum Entfernen leer lassen',
         'Save': 'Speichern',
     },
-}
+};

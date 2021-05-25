@@ -49,9 +49,13 @@ export default class NavigableListener extends Listener {
                 prev.focus();
             } else if (event.key === 'ArrowDown' && !isLast && next.hasAttribute('data-navigable')) {
                 next.focus();
-            } else if ((event.key === 'Home' || event.key === 'ArrowDown' && isLast) && first.hasAttribute('data-navigable')) {
+            } else if ((event.key === 'Home' || event.key === 'ArrowDown' && isLast)
+                && first.hasAttribute('data-navigable')
+            ) {
                 first.focus();
-            } else if ((event.key === 'End' || event.key === 'ArrowUp' && isFirst) && last.hasAttribute('data-navigable')) {
+            } else if ((event.key === 'End' || event.key === 'ArrowUp' && isFirst)
+                && last.hasAttribute('data-navigable')
+            ) {
                 last.focus();
             }
 

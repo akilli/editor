@@ -60,7 +60,7 @@ export default class Dialog {
      */
     open(save, attributes = {}) {
         const cleanup = () => Array.from(this.editor.element.getElementsByTagName('editor-dialog')).forEach(item => {
-            item.parentElement.removeChild(item)
+            item.parentElement.removeChild(item);
         });
         const sel = this.editor.window.getSelection();
         const range = sel.rangeCount > 0 ? sel.getRangeAt(0) : null;
@@ -77,7 +77,10 @@ export default class Dialog {
         const form = this.editor.createElement('form', {attributes: {method: 'dialog'}});
         /** @type {HTMLFieldSetElement} */
         const fieldset = this.editor.createElement('fieldset');
-        const cancelButton = this.editor.createElement('button', {attributes: {type: 'button'}, html: this._('Cancel')});
+        const cancelButton = this.editor.createElement(
+            'button',
+            {attributes: {type: 'button'}, html: this._('Cancel')},
+        );
         cancelButton.addEventListener('click', close);
         form.appendChild(fieldset);
         form.appendChild(cancelButton);
@@ -88,10 +91,12 @@ export default class Dialog {
             event.stopPropagation();
             close();
             const data = {};
-            Array.from(fieldset.elements).forEach(item => data[item.name] = item.value);
+            Array.from(fieldset.elements).forEach(item => (data[item.name] = item.value));
             save(data);
         });
-        Object.entries(attributes).forEach(([key, val]) => fieldset.elements[key] && (fieldset.elements[key].value = val));
+        Object.entries(attributes).forEach(
+            ([key, val]) => fieldset.elements[key] && (fieldset.elements[key].value = val),
+        );
 
         /** @type {DialogElement} */
         const dialog = this.editor.createElement('editor-dialog');
@@ -134,7 +139,10 @@ export default class Dialog {
      * @return {HTMLElement}
      */
     _createInput(name, type, label, attributes = {}) {
-        if (!name || typeof name !== 'string' || !type || typeof type !== 'string' || !label || typeof label !== 'string') {
+        if (!name || typeof name !== 'string'
+            || !type || typeof type !== 'string'
+            || !label || typeof label !== 'string'
+        ) {
             throw 'Invalid argument';
         }
 

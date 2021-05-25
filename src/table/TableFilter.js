@@ -23,7 +23,9 @@ export default class TableFilter extends Filter {
             element.innerHTML = '';
         } else if (element instanceof HTMLTableSectionElement && element.rows.length <= 0) {
             element.innerHTML = '';
-        } else if (element instanceof HTMLTableRowElement && !element.querySelector(':scope > th:not(:empty), :scope > td:not(:empty)')) {
+        } else if (element instanceof HTMLTableRowElement
+            && !element.querySelector(':scope > th:not(:empty), :scope > td:not(:empty)')
+        ) {
             element.innerHTML = '';
         }
     }

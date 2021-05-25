@@ -7,4 +7,4 @@ export default {
     de: {
         'Horizontal Rule': 'Horizontale Linie',
     },
-}
+};

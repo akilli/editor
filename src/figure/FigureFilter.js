@@ -8,6 +8,8 @@ export default class FigureFilter extends Filter {
      * @inheritDoc
      */
     filter(element) {
-        element.querySelectorAll('figure > figcaption:only-child').forEach(item => item.parentElement.removeChild(item));
+        element.querySelectorAll('figure > figcaption:only-child').forEach(
+            item => item.parentElement.removeChild(item),
+        );
     }
 }

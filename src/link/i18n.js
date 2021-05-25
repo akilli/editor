@@ -6,9 +6,9 @@
 export default {
     de: {
         'Cancel': 'Abbrechen',
-        'Insert URL to add a link or leave empty to unlink': 'URL zum Verlinken eingeben oder zum Entfernen leer lassen',
+        'Insert link or leave empty to unlink': 'Link eingeben oder zum Entfernen leer lassen',
         'Link': 'Link',
         'Save': 'Speichern',
         'URL': 'URL',
     },
-}
+};

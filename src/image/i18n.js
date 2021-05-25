@@ -10,9 +10,9 @@ export default {
         'Height': 'Höhe',
         'Image': 'Bild',
         'Insert URL to image': 'URL zur Bilddatei eingeben',
-        'Replacement text for use when media elements are not available': 'Ersatztext, falls Medienelemente nicht verfügbar sind',
         'Save': 'Speichern',
+        'Text shown when media element is not available': 'Ersatztext, falls Medienelement nicht verfügbar ist',
         'URL': 'URL',
         'Width': 'Breite',
     },
-}
+};

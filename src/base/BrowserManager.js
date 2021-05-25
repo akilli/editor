@@ -81,6 +81,6 @@ export default class BrowserManager {
      * @return {string}
      */
     #features() {
-        return Object.entries(this.#opts).filter(([, val]) => !!val).map(([key, val]) => `${key}=${val}`).join(',')
+        return Object.entries(this.#opts).filter(([, val]) => !!val).map(([key, val]) => `${key}=${val}`).join(',');
     }
 }

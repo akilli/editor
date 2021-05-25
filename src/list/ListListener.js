@@ -81,7 +81,9 @@ export default class ListListener extends Listener {
      * @return {void}
      */
     #init(element) {
-        if (!(element.parentElement instanceof HTMLOListElement) && !(element.parentElement instanceof HTMLUListElement)) {
+        if (!(element.parentElement instanceof HTMLOListElement)
+            && !(element.parentElement instanceof HTMLUListElement)
+        ) {
             this.editor.wrap(element, 'ul');
         }
     }

@@ -90,9 +90,13 @@ export default class ToolbarListener extends Listener {
     selectionchange() {
         const editable = this.editor.getSelectedEditable();
 
-        if (editable && !this.editor.window.getSelection().isCollapsed && this.editor.tags.allowed(editable, 'format', true)) {
+        if (editable
+            && !this.editor.window.getSelection().isCollapsed
+            && this.editor.tags.allowed(editable, 'format', true)
+        ) {
+            const top = editable.offsetTop + editable.offsetParent.offsetTop - this.editor.formats.clientHeight;
+            this.editor.formats.style.top = `${top}px`;
             this.editor.formats.hidden = false;
-            this.editor.formats.style.top = `${editable.offsetTop + editable.offsetParent.offsetTop - this.editor.formats.clientHeight}px`;
         } else {
             this.editor.formats.hidden = true;
             this.editor.formats.removeAttribute('style');

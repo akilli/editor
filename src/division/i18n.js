@@ -11,4 +11,4 @@ export default {
         'Insert CSS class': 'CSS-Klasse eingeben',
         'Save': 'Speichern',
     },
-}
+};

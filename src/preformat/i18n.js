@@ -7,4 +7,4 @@ export default {
     de: {
         'Preformatted Text': 'Vorformatierter Text',
     },
-}
+};

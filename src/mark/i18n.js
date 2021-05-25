@@ -7,4 +7,4 @@ export default {
     de: {
         'mark': 'markiert',
     },
-}
+};

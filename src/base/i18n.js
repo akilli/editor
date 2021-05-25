@@ -8,4 +8,4 @@ export default {
         'Alt': 'Alt',
         'Shift': 'Umschalt',
     },
-}
+};

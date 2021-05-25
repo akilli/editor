@@ -7,4 +7,4 @@ export default {
     de: {
         'Citation': 'Zitatquelle',
     },
-}
+};

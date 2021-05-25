@@ -11,4 +11,4 @@ export default {
         'Save': 'Speichern',
         'URL': 'URL',
     },
-}
+};

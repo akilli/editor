@@ -105,14 +105,19 @@ export default class Tag {
      *
      * @param {string} name
      * @param {string} group
-     * @param {Object.<string, {*}>} [opts = {}]
+     * @param {Object.<string, any>} [opts = {}]
      */
     constructor({name, group, ...opts} = {}) {
         const reqStr = item => item && typeof item === 'string';
         const optStr = item => typeof item === 'undefined' || item && typeof item === 'string';
         const optArr = item => typeof item === 'undefined' || Array.isArray(item) && !item.find(i => !reqStr(i));
 
-        if (!reqStr(name) || !reqStr(group) || !optStr(opts.enter) || !optArr(opts.children) || !optArr(opts.attributes)) {
+        if (!reqStr(name)
+            || !reqStr(group)
+            || !optStr(opts.enter)
+            || !optArr(opts.children)
+            || !optArr(opts.attributes)
+        ) {
             throw 'Invalid argument';
         }
 

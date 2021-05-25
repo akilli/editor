@@ -10,4 +10,4 @@ export default {
         'ID': 'ID',
         'Save': 'Speichern',
     },
-}
+};

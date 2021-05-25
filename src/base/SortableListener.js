@@ -36,7 +36,9 @@ export default class SortableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (event.target === event.currentTarget && this.editor.isKey(event, ['ArrowUp', 'ArrowDown', 'Home', 'End'], {ctrl: true})) {
+        if (event.target === event.currentTarget
+            && this.editor.isKey(event, ['ArrowUp', 'ArrowDown', 'Home', 'End'], {ctrl: true})
+        ) {
             const parent = event.target.parentElement;
             const prev = event.target.previousElementSibling;
             const next = event.target.nextElementSibling;
@@ -51,10 +53,14 @@ export default class SortableListener extends Listener {
             } else if (event.key === 'ArrowDown' && !isLast && next.hasAttribute('data-sortable')) {
                 next.insertAdjacentHTML('afterend', event.target.outerHTML);
                 parent.removeChild(event.target);
-            } else if ((event.key === 'Home' && !isFirst || event.key === 'ArrowDown' && isLast) && first.hasAttribute('data-sortable')) {
+            } else if ((event.key === 'Home' && !isFirst || event.key === 'ArrowDown' && isLast)
+                && first.hasAttribute('data-sortable')
+            ) {
                 first.insertAdjacentHTML('beforebegin', event.target.outerHTML);
                 parent.removeChild(event.target);
-            } else if ((event.key === 'End' && !isLast || event.key === 'ArrowUp' && isFirst) && last.hasAttribute('data-sortable')) {
+            } else if ((event.key === 'End' && !isLast || event.key === 'ArrowUp' && isFirst)
+                && last.hasAttribute('data-sortable')
+            ) {
                 last.insertAdjacentHTML('afterend', event.target.outerHTML);
                 parent.removeChild(event.target);
             }

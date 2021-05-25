@@ -13,4 +13,4 @@ export default {
         'URL': 'URL',
         'Width': 'Breite',
     },
-}
+};

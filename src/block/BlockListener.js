@@ -21,7 +21,9 @@ export default class BlockListener extends Listener {
      * @return {void}
      */
     sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName('app-block')).forEach(item => item.id || item.parentElement.removeChild(item));
+        Array.from(event.detail.element.getElementsByTagName('app-block')).forEach(
+            item => item.id || item.parentElement.removeChild(item),
+        );
     }
 
     /**
@@ -42,13 +44,19 @@ export default class BlockListener extends Listener {
         }
 
         try {
-            const response = await fetch(this.editor.config.block.api.replace('{id}', event.detail.element.id), {mode: 'no-cors'});
+            const response = await fetch(
+                this.editor.config.block.api.replace('{id}', event.detail.element.id),
+                {mode: 'no-cors'},
+            );
 
             if (response.ok) {
                 let css = '';
 
                 if (this.editor.config.block.css) {
-                    css = this.editor.config.block.css.split(',').map(item => `<link rel="stylesheet" href="${item}">`).join('');
+                    css = this.editor.config.block.css
+                        .split(',')
+                        .map(item => `<link rel="stylesheet" href="${item}">`)
+                        .join('');
                 }
 
                 const content = await response.text();

@@ -11,4 +11,4 @@ export default {
         'Insert value or leave empty to remove it': 'Wert eingeben oder zum Entfernen leer lassen',
         'Save': 'Speichern',
     },
-}
+};
