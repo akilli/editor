@@ -27,11 +27,11 @@ export default class Dispatcher {
      * Dispatches an event on managed element
      *
      * @param {string} type
-     * @param {HTMLElement} element
-     * @param {HTMLElement} target
+     * @param {?HTMLElement} [element = null]
+     * @param {?HTMLElement} [target = null]
      */
-    dispatch(type, element, target) {
-        if (!type || typeof type !== 'string' || !(element instanceof HTMLElement) || !(target instanceof HTMLElement)) {
+    dispatch(type, element = null, target = null) {
+        if (!type || typeof type !== 'string' || element && !(element instanceof HTMLElement) || target && !(target instanceof HTMLElement)) {
             throw 'Invalid argument';
         }
 

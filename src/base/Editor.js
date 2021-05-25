@@ -370,6 +370,9 @@ export default class Editor {
             this.plugins.set(new item(this));
         });
         this.plugins.init();
+        this.toolbarEvents.dispatch('init');
+        this.formatsEvents.dispatch('init');
+        this.rootEvents.dispatch('init');
     }
 
     /**
@@ -403,7 +406,7 @@ export default class Editor {
     getHtml() {
         const root = this.createElement(this.root.localName, {html: this.root.innerHTML});
         this.filters.filter(root);
-        this.rootEvents.dispatch('gethtml', root, this.root);
+        this.rootEvents.dispatch('gethtml', root);
 
         return root.innerHTML;
     }
@@ -415,7 +418,7 @@ export default class Editor {
      */
     setHtml(html) {
         const root = this.createElement(this.root.localName, {html: html});
-        this.rootEvents.dispatch('sethtml', root, this.root);
+        this.rootEvents.dispatch('sethtml', root);
         this.filters.filter(root);
         this.root.innerHTML = root.innerHTML;
     }
