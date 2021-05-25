@@ -1,3 +1,4 @@
+import Base from './Base.js';
 import Listener from './Listener.js';
 
 /**
@@ -24,8 +25,8 @@ export default class ToolbarListener extends Listener {
         const key = event.detail.element.getAttribute('data-key');
 
         if (key) {
-            const alt = this.editor.translator.translate('base', 'Alt');
-            const shift = this.editor.translator.translate('base', 'Shift');
+            const alt = this.editor.translator.translate(Base.name, 'Alt');
+            const shift = this.editor.translator.translate(Base.name, 'Shift');
             event.detail.element.title += ` [${alt} + ${shift} + ${key}]`;
         }
 

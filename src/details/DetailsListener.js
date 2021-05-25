@@ -1,3 +1,4 @@
+import Details from './Details.js';
 import Listener from '../base/Listener.js';
 
 /**
@@ -74,7 +75,7 @@ export default class DetailsListener extends Listener {
      */
     #empty(element) {
         if (!element.textContent.trim()) {
-            element.textContent = this.editor.translator.translate('details', 'Details');
+            element.textContent = this.editor.translator.translate(Details.name, 'Details');
         } else {
             element.querySelectorAll('br:not(:last-child)').forEach(item => item.parentElement.removeChild(item));
         }
