@@ -339,6 +339,8 @@ export default class Editor {
 
     /**
      * Initializes plugins and configuration
+     *
+     * @return {void}
      */
     init() {
         const config = this.config;
@@ -377,6 +379,8 @@ export default class Editor {
 
     /**
      * Loads editor element into DOM
+     *
+     * @return {void}
      */
     load() {
         if (this.orig instanceof HTMLTextAreaElement) {
@@ -392,6 +396,8 @@ export default class Editor {
 
     /**
      * Removes editor element from DOM
+     *
+     * @return {void}
      */
     destroy() {
         this.element.parentElement.removeChild(this.element);
@@ -415,6 +421,7 @@ export default class Editor {
      * Sets editor content root element's innerHTML
      *
      * @param {string} html
+     * @return {void}
      */
     setHtml(html) {
         const root = this.createElement(this.root.localName, {html: html});
@@ -425,6 +432,8 @@ export default class Editor {
 
     /**
      * Saves editor data to source element
+     *
+     * @return {void}
      */
     save() {
         if (this.orig instanceof HTMLTextAreaElement) {
@@ -438,6 +447,7 @@ export default class Editor {
      * Inserts element
      *
      * @param {HTMLElement} element
+     * @return {void}
      */
     insert(element) {
         if (!(element instanceof HTMLElement)) {
@@ -465,6 +475,7 @@ export default class Editor {
      * Inserts text
      *
      * @param {string} text
+     * @return {void}
      */
     insertText(text) {
         const editable = this.getSelectedEditable();
@@ -482,6 +493,7 @@ export default class Editor {
      * Adds/removes formatting to/from selected text
      *
      * @param {HTMLElement} element
+     * @return {void}
      */
     format(element) {
         if (!(element instanceof HTMLElement)) {
@@ -562,6 +574,7 @@ export default class Editor {
      * @param {HTMLElement} element
      * @param {string} name
      * @param {Object} [opts = {}]
+     * @return {void}
      */
     wrap(element, name, opts = {}) {
         let sibling;
@@ -595,6 +608,7 @@ export default class Editor {
      * @param {string} name
      * @param {function} constructor
      * @param {?string} [parentName = null]
+     * @return {void}
      */
     registerElement(name, constructor, parentName = null) {
         if (typeof this.window.customElements.get(name) === 'undefined') {
@@ -679,6 +693,7 @@ export default class Editor {
      * Focus end of contents
      *
      * @param {HTMLElement} element
+     * @return {void}
      */
     focusEnd(element) {
         if (!(element instanceof HTMLElement)) {

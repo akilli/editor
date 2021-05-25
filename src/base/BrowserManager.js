@@ -55,6 +55,7 @@ export default class BrowserManager {
      * @param {string} name
      * @param {function} call
      * @param {Object} [params = {}]
+     * @return {void}
      */
     open({url, name, call, params = {}}) {
         if (!url || typeof url !== 'string' || !name || typeof name !== 'string' || typeof call !== 'function') {

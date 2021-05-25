@@ -34,6 +34,7 @@ export default class PluginManager {
      * Adds or updates a plugin
      *
      * @param {Plugin} plugin
+     * @return {void}
      */
     set(plugin) {
         if (!(plugin instanceof Plugin)) {
@@ -45,6 +46,8 @@ export default class PluginManager {
 
     /**
      * Initializes registered plugins
+     *
+     * @return {void}
      */
     init() {
         this.#items.forEach(plugin => plugin.init());

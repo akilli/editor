@@ -15,6 +15,7 @@ export default class DialogElement extends HTMLElement {
      * Sets dialog state
      *
      * @param {boolean} state
+     * @return {void}
      */
     set open(state) {
         state === true ? this.setAttribute('open', '') : this.removeAttribute('open');
@@ -33,6 +34,8 @@ export default class DialogElement extends HTMLElement {
 
     /**
      * Runs when element is added to the DOM
+     *
+     * @return {void}
      */
     connectedCallback() {
         this.setAttribute('role', 'dialog');
@@ -42,6 +45,8 @@ export default class DialogElement extends HTMLElement {
 
     /**
      * Shows dialog and dispatches show event
+     *
+     * @return {void}
      */
     show() {
         this.open = true;
@@ -50,6 +55,8 @@ export default class DialogElement extends HTMLElement {
 
     /**
      * Closes dialog and dispatches close event
+     *
+     * @return {void}
      */
     close() {
         this.open = false;

@@ -17,6 +17,7 @@ export default class AlignableListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
+     * @return {void}
      */
     insert(event) {
         if (event.detail.element.hasAttribute('data-alignable')) {
@@ -29,6 +30,7 @@ export default class AlignableListener extends Listener {
      *
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
+     * @return {void}
      */
     keydown(event) {
         const map = {ArrowUp: null, ArrowLeft: 'left', ArrowDown: 'center', ArrowRight: 'right'};

@@ -19,6 +19,7 @@ export default class TableListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLTableElement} event.detail.element
+     * @return {void}
      */
     inserttable(event) {
         this.editor.wrap(event.detail.element, 'figure', {attributes: {class: 'table'}});
@@ -42,6 +43,7 @@ export default class TableListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLTableCellElement} event.detail.element
+     * @return {void}
      */
     inserttd(event) {
         event.detail.element.addEventListener('keydown', this);
@@ -52,6 +54,7 @@ export default class TableListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLTableHeaderCellElement} event.detail.element
+     * @return {void}
      */
     insertth(event) {
         event.detail.element.addEventListener('keydown', this);
@@ -62,6 +65,7 @@ export default class TableListener extends Listener {
      *
      * @param {KeyboardEvent} event
      * @param {HTMLTableCellElement} event.target
+     * @return {void}
      */
     keydown(event) {
         const cell = event.target;
@@ -166,6 +170,7 @@ export default class TableListener extends Listener {
      * @param {HTMLTableElement|HTMLTableSectionElement} element
      * @param {number} length
      * @param {number} [index = 0]
+     * @return {void}
      */
     #row(element, length, index = 0) {
         const row = element.insertRow(index);
@@ -180,6 +185,7 @@ export default class TableListener extends Listener {
      *
      * @param {HTMLTableRowElement} element
      * @param {?HTMLTableCellElement} [ref = null]
+     * @return {void}
      */
     #cell(element, ref = null) {
         const name = element.parentElement.localName === 'thead' ? 'th' : 'td';

@@ -17,6 +17,7 @@ export default class TagListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
+     * @return {void}
      */
     insert(event) {
         const tag = this.editor.tags.get(event.detail.element);

@@ -15,6 +15,7 @@ export default class BlockElement extends HTMLElement {
      * Sets shadow roots innerHTML
      *
      * @param {string} val
+     * @return {void}
      */
     set content(val) {
         this.shadowRoot.innerHTML = val;

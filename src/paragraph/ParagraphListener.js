@@ -18,6 +18,7 @@ export default class ParagraphListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
+     * @return {void}
      */
     sethtml(event) {
         Array.from(event.detail.element.getElementsByTagName('p')).forEach(item => this.#init(item));
@@ -28,6 +29,7 @@ export default class ParagraphListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLParagraphElement} event.detail.element
+     * @return {void}
      */
     insertp(event) {
         this.#init(event.detail.element);
@@ -37,6 +39,7 @@ export default class ParagraphListener extends Listener {
      * Initializes paragraph element
      *
      * @param {HTMLParagraphElement} element
+     * @return {void}
      */
     #init(element) {
         element.addEventListener('paste', this);
@@ -47,6 +50,7 @@ export default class ParagraphListener extends Listener {
      *
      * @param {ClipboardEvent} event
      * @param {HTMLParagraphElement} event.target
+     * @return {void}
      */
     paste(event) {
         this.editor.window.setTimeout(() => this.editor.filters.filter(event.target));

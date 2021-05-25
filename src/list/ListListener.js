@@ -21,6 +21,7 @@ export default class ListListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
+     * @return {void}
      */
     sethtml(event) {
         Array.from(event.detail.element.getElementsByTagName('li')).forEach(item => this.#init(item));
@@ -31,6 +32,7 @@ export default class ListListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLLIElement} event.detail.element
+     * @return {void}
      */
     insertli(event) {
         this.#init(event.detail.element);
@@ -41,6 +43,7 @@ export default class ListListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLOListElement|HTMLUListElement} event.detail.target
+     * @return {void}
      */
     deleteli(event) {
         if (event.detail.target.children.length === 0) {
@@ -53,6 +56,7 @@ export default class ListListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLOListElement} event.detail.element
+     * @return {void}
      */
     insertol(event) {
         if (event.detail.element.children.length === 0) {
@@ -64,6 +68,7 @@ export default class ListListener extends Listener {
      * Initializes unorderedlist elements
      *
      * @param {CustomEvent} event
+     * @return {void}
      */
     insertul(event) {
         this.insertol(event);
@@ -73,6 +78,7 @@ export default class ListListener extends Listener {
      * Initializes listitem elements
      *
      * @param {HTMLLIElement} element
+     * @return {void}
      */
     #init(element) {
         if (!(element.parentElement instanceof HTMLOListElement) && !(element.parentElement instanceof HTMLUListElement)) {

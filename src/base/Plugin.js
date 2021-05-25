@@ -66,6 +66,7 @@ export default class Plugin {
      * Initializes plugin
      *
      * @abstract
+     * @return {void}
      */
     init() {
         throw 'Not implemented';
@@ -87,6 +88,7 @@ export default class Plugin {
      *
      * @protected
      * @param {Object.<string, Object.<string, string>>} i18n
+     * @return {void}
      */
     _i18n(i18n) {
         if (i18n[this.editor.config.base.lang]) {
@@ -99,6 +101,7 @@ export default class Plugin {
      *
      * @protected
      * @param {string} tagName
+     * @return {void}
      */
     _command(tagName) {
         this.editor.commands.set(new Command(this.editor, this.constructor.name, tagName));
@@ -109,6 +112,7 @@ export default class Plugin {
      *
      * @protected
      * @param {Object} opts
+     * @return {void}
      */
     _tag(opts) {
         this.editor.tags.set(new Tag(opts));
@@ -121,6 +125,7 @@ export default class Plugin {
      * @param {string} label
      * @param {?string} [key = null]
      * @param {boolean} [format = false]
+     * @return {void}
      */
     _toolbar(label, key = null, format = false) {
         if (!label || typeof label !== 'string' || key && typeof key !== 'string') {

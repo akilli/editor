@@ -17,6 +17,7 @@ export default class FigureListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
+     * @return {void}
      */
     insertfigure(event) {
         if (!event.detail.element.querySelector(':scope > figcaption')) {

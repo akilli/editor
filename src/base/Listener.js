@@ -40,6 +40,7 @@ export default class Listener {
      * Handles events
      *
      * @param {Event} event
+     * @return {void}
      */
     handleEvent(event) {
         if (typeof this[event.type] === 'function') {

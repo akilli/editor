@@ -88,6 +88,8 @@ export default class Command {
 
     /**
      * Executes the command
+     *
+     * @return {void}
      */
     execute() {
         this.dialog ? this._openDialog() : this._insert(this._selectedAttributes());
@@ -98,6 +100,7 @@ export default class Command {
       *
       * @protected
       * @param {Object.<string, string>} [attributes = {}]
+      * @return {void}
       */
     _insert(attributes = {}) {
         if (this.tag) {
@@ -123,6 +126,7 @@ export default class Command {
      * Open dialog
      *
      * @protected
+     * @return {void}
      */
     _openDialog() {
         this.dialog?.open(attributes => this._insert(attributes), this._selectedAttributes())

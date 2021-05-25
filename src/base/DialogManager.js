@@ -34,6 +34,7 @@ export default class DialogManager {
      * Adds or updates a dialog
      *
      * @param {Dialog} dialog
+     * @return {void}
      */
     set(dialog) {
         if (!(dialog instanceof Dialog)) {

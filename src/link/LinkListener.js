@@ -18,6 +18,7 @@ export default class LinkListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
+     * @return {void}
      */
     sethtml(event) {
         Array.from(event.detail.element.getElementsByTagName('a')).forEach(item => this.#init(item));
@@ -28,6 +29,7 @@ export default class LinkListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLAnchorElement} event.detail.element
+     * @return {void}
      */
     inserta(event) {
         this.#init(event.detail.element);
@@ -37,6 +39,7 @@ export default class LinkListener extends Listener {
      * Initializes link element
      *
      * @param {HTMLAnchorElement} element
+     * @return {void}
      */
     #init(element) {
         const href = element.getAttribute('href');

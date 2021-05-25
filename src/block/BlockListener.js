@@ -18,6 +18,7 @@ export default class BlockListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
+     * @return {void}
      */
     sethtml(event) {
         Array.from(event.detail.element.getElementsByTagName('app-block')).forEach(item => item.id || item.parentElement.removeChild(item));
@@ -28,6 +29,7 @@ export default class BlockListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {BlockElement} event.detail.element
+     * @return {void}
      */
     async insertappblock(event) {
         if (!event.detail.element.id) {

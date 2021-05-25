@@ -17,6 +17,7 @@ export default class EditableListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
+     * @return {void}
      */
     insert(event) {
         if (event.detail.element.contentEditable === 'true') {
@@ -29,6 +30,7 @@ export default class EditableListener extends Listener {
      *
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
+     * @return {void}
      */
     keydown(event) {
         if (this.editor.isKey(event, 'Enter', {shift: true}) && !this.editor.tags.allowed(event.target, 'br')) {

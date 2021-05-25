@@ -56,6 +56,7 @@ export default class Dialog {
      *
      * @param {function} save
      * @param {Object} [attributes = {}]
+     * @return {void}
      */
     open(save, attributes = {}) {
         const cleanup = () => Array.from(this.editor.element.getElementsByTagName('editor-dialog')).forEach(item => {

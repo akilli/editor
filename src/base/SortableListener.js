@@ -17,6 +17,7 @@ export default class SortableListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
+     * @return {void}
      */
     insert(event) {
         if (event.detail.element.hasAttribute('data-sortable')) {
@@ -32,6 +33,7 @@ export default class SortableListener extends Listener {
      *
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
+     * @return {void}
      */
     keydown(event) {
         if (event.target === event.currentTarget && this.editor.isKey(event, ['ArrowUp', 'ArrowDown', 'Home', 'End'], {ctrl: true})) {
@@ -67,6 +69,7 @@ export default class SortableListener extends Listener {
      *
      * @param {PointerEvent} event
      * @param {HTMLElement} event.target
+     * @return {void}
      */
     pointerdown(event) {
         if (event.target.hasAttribute('data-sortable')) {
@@ -80,6 +83,7 @@ export default class SortableListener extends Listener {
      *
      * @param {PointerEvent} event
      * @param {HTMLElement} event.target
+     * @return {void}
      */
     pointermove(event) {
         const element = this.editor.document.elementFromPoint(event.x, event.y);
@@ -95,6 +99,7 @@ export default class SortableListener extends Listener {
      *
      * @param {PointerEvent} event
      * @param {HTMLElement} event.target
+     * @return {void}
      */
     pointerup(event) {
         if (event.target.hasAttribute('data-sortable')) {
@@ -111,6 +116,8 @@ export default class SortableListener extends Listener {
 
     /**
      * Removes editor sortover attribute
+     *
+     * @return {void}
      */
     #sortover() {
         this.editor.root.querySelectorAll('[data-sortover]').forEach(item => item.removeAttribute('data-sortover'));

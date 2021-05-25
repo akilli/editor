@@ -20,6 +20,7 @@ export default class ToolbarListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLButtonElement} event.detail.element
+     * @return {void}
      */
     insertbutton(event) {
         const key = event.detail.element.getAttribute('data-key');
@@ -45,6 +46,7 @@ export default class ToolbarListener extends Listener {
      *
      * @param {MouseEvent} event
      * @param {HTMLElement} event.target
+     * @return {void}
      */
     click(event) {
         this.editor.commands.execute(event.target.getAttribute('data-command'));
@@ -55,6 +57,7 @@ export default class ToolbarListener extends Listener {
      *
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
+     * @return {void}
      */
     keydown(event) {
         if (this.editor.isKey(event, ['ArrowLeft', 'ArrowRight', 'Home', 'End'])) {
@@ -82,6 +85,7 @@ export default class ToolbarListener extends Listener {
 
     /**
      * Shows or hides format toolbar depending on current selection
+     * @return {void}
      */
     selectionchange() {
         const editable = this.editor.getSelectedEditable();

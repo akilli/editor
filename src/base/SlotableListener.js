@@ -17,6 +17,7 @@ export default class SlotableListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
+     * @return {void}
      */
     insert(event) {
         if (event.detail.element instanceof HTMLSlotElement) {
@@ -30,6 +31,7 @@ export default class SlotableListener extends Listener {
      * Disables all keyboard events for slot elements
      *
      * @param {KeyboardEvent} event
+     * @return {void}
      */
     keydown(event) {
         event.preventDefault();

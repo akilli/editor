@@ -34,6 +34,7 @@ export default class TagManager {
      * Adds or updates a tag
      *
      * @param {Tag} tag
+     * @return {void}
      */
     set(tag) {
         if (!(tag instanceof Tag)) {

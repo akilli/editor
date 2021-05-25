@@ -15,6 +15,7 @@ export default class FilterManager {
      * Adds or updates a filter
      *
      * @param {Filter} filter
+     * @return {void}
      */
     add(filter) {
         if (!(filter instanceof Filter)) {
@@ -28,6 +29,7 @@ export default class FilterManager {
      * Filters element
      *
      * @param {HTMLElement} element
+     * @return {void}
      */
     filter(element) {
         if (!(element instanceof HTMLElement)) {

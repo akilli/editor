@@ -19,6 +19,7 @@ export default class DetailsListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLDetailsElement} event.detail.element
+     * @return {void}
      */
     insertdetails(event) {
         event.detail.element.open = true;
@@ -33,6 +34,7 @@ export default class DetailsListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
+     * @return {void}
      */
     insertsummary(event) {
         this.#empty(event.detail.element);
@@ -45,6 +47,7 @@ export default class DetailsListener extends Listener {
      *
      * @param {FocusEvent} event
      * @param {HTMLElement} event.target
+     * @return {void}
      */
     blur(event) {
         this.#empty(event.target);
@@ -55,6 +58,7 @@ export default class DetailsListener extends Listener {
      *
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
+     * @return {void}
      */
     keydown(event) {
         if (this.editor.isKey(event, ' ')) {
@@ -72,6 +76,7 @@ export default class DetailsListener extends Listener {
      * Ensures summary element is not empty to avoid strange browser behaviour
      *
      * @param {HTMLElement} element
+     * @return {void}
      */
     #empty(element) {
         if (!element.textContent.trim()) {

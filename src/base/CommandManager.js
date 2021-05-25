@@ -34,6 +34,7 @@ export default class CommandManager {
      * Adds or updates a command
      *
      * @param {Command} command
+     * @return {void}
      */
     set(command) {
         if (!(command instanceof Command)) {
@@ -47,6 +48,7 @@ export default class CommandManager {
      * Executes command with given name
      *
      * @param {string} name
+     * @return {void}
      */
     execute(name) {
         this.get(name).execute();

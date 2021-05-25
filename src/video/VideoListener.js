@@ -18,6 +18,7 @@ export default class VideoListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
+     * @return {void}
      */
     sethtml(event) {
         Array.from(event.detail.element.getElementsByTagName('video')).forEach(item => this.#init(item));
@@ -28,6 +29,7 @@ export default class VideoListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLVideoElement} event.detail.element
+     * @return {void}
      */
     insertvideo(event) {
         this.#init(event.detail.element);
@@ -37,6 +39,7 @@ export default class VideoListener extends Listener {
      * Initializes video element
      *
      * @param {HTMLVideoElement} element
+     * @return {void}
      */
     #init(element) {
         const src = element.getAttribute('src');

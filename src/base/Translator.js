@@ -24,6 +24,7 @@ export default class Translator {
      *
      * @param {string} name
      * @param {Object.<string, string>} i18n
+     * @return {void}
      */
     set(name, i18n) {
         if (!name || typeof name !== 'string' || !(i18n instanceof Object)) {

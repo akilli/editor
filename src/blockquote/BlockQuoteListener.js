@@ -18,6 +18,7 @@ export default class BlockQuoteListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLQuoteElement} event.detail.element
+     * @return {void}
      */
     insertblockquote(event) {
         this.editor.wrap(event.detail.element, 'figure', {attributes: {class: 'quote'}});
@@ -28,6 +29,7 @@ export default class BlockQuoteListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.target
+     * @return {void}
      */
     deleteblockquote(event) {
         if (event.detail.target.localName === 'figure' && event.detail.target.classList.contains('quote')) {

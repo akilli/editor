@@ -19,6 +19,7 @@ export default class TableCommand extends Command {
      * @protected
      * @param {number} rows
      * @param {number} cols
+     * @return {void}
      */
     _insert({rows = 1, cols = 1} = {}) {
         rows = rows > 1 ? rows : 1;

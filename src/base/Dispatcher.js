@@ -29,6 +29,7 @@ export default class Dispatcher {
      * @param {string} type
      * @param {?HTMLElement} [element = null]
      * @param {?HTMLElement} [target = null]
+     * @return {void}
      */
     dispatch(type, element = null, target = null) {
         if (!type || typeof type !== 'string' || element && !(element instanceof HTMLElement) || target && !(target instanceof HTMLElement)) {
@@ -43,6 +44,7 @@ export default class Dispatcher {
      *
      * @param {function} call
      * @param {MutationObserverInit} [opts = {childList: true, subtree: true}]
+     * @return {void}
      */
     register(call, opts = {childList: true, subtree: true}) {
         if (typeof call !== 'function') {
@@ -59,6 +61,7 @@ export default class Dispatcher {
      * @param {string} type
      * @param {Element} element
      * @param {Node} target
+     * @return {void}
      */
     #dispatch(type, element, target) {
         if (element instanceof HTMLElement && target instanceof HTMLElement) {
@@ -71,6 +74,7 @@ export default class Dispatcher {
      * Observes mutations on managed element
      *
      * @param {MutationRecord[]} records
+     * @return {void}
      */
     #observe(records) {
         records.forEach(record => {

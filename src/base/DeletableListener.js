@@ -17,6 +17,7 @@ export default class DeletableListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
+     * @return {void}
      */
     insert(event) {
         if (event.detail.element.hasAttribute('data-deletable')) {
@@ -29,6 +30,7 @@ export default class DeletableListener extends Listener {
      *
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
+     * @return {void}
      */
     keydown(event) {
         if (event.target === event.currentTarget && this.editor.isKey(event, 'Delete', {ctrl: true})) {

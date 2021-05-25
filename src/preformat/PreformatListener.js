@@ -18,6 +18,7 @@ export default class PreformatListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLPreElement} event.detail.element
+     * @return {void}
      */
     insertpre(event) {
         this.editor.wrap(event.detail.element, 'figure', {attributes: {class: 'preformat'}});
@@ -28,6 +29,7 @@ export default class PreformatListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.target
+     * @return {void}
      */
     deletepre(event) {
         if (event.detail.target.localName === 'figure' && event.detail.target.classList.contains('preformat')) {

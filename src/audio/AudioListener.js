@@ -18,6 +18,7 @@ export default class AudioListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLElement} event.detail.element
+     * @return {void}
      */
     sethtml(event) {
         Array.from(event.detail.element.getElementsByTagName('audio')).forEach(item => this.#init(item));
@@ -28,6 +29,7 @@ export default class AudioListener extends Listener {
      *
      * @param {CustomEvent} event
      * @param {HTMLAudioElement} event.detail.element
+     * @return {void}
      */
     insertaudio(event) {
         this.#init(event.detail.element);
@@ -37,6 +39,7 @@ export default class AudioListener extends Listener {
      * Adds controls and wraps in figure if necessary
      *
      * @param {HTMLAudioElement} element
+     * @return {void}
      */
     #init(element) {
         const src = element.getAttribute('src');
