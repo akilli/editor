@@ -39,18 +39,34 @@ export default class Command {
     /**
      * Associated tag
      *
-     * @protected
      * @type {?Tag}
      */
-    _tag = null;
+    #tag = null;
+
+    /**
+     * Allows read access to associated tag
+     *
+     * @return {?Tag}
+     */
+    get tag() {
+        return this.#tag;
+    }
 
     /**
      * Associated dialog
      *
-     * @protected
      * @type {?Dialog}
      */
-    _dialog = null;
+    #dialog = null;
+
+    /**
+     * Allows read access to associated dialog
+     *
+     * @return {?Dialog}
+     */
+    get dialog() {
+        return this.#dialog;
+    }
 
     /**
      * Initializes a new editor command optionally with given tag name
@@ -66,15 +82,15 @@ export default class Command {
 
         this.#editor = editor;
         this.#name = name;
-        this._tag = tagName ? this.editor.tags.get(tagName) : null;
-        this._dialog = this.editor.dialogs.get(name);
+        this.#tag = tagName && this.editor.tags.get(tagName);
+        this.#dialog = this.editor.dialogs.get(name);
     }
 
     /**
      * Executes the command
      */
     execute() {
-        this._dialog ? this._openDialog() : this._insert(this._selectedAttributes());
+        this.dialog ? this._openDialog() : this._insert(this._selectedAttributes());
     }
 
      /**
@@ -84,21 +100,21 @@ export default class Command {
       * @param {Object.<string, string>} [attributes = {}]
       */
     _insert(attributes = {}) {
-        if (this._tag) {
-            Object.keys(attributes).forEach(item => this._tag.attributes.includes(item) && attributes[item] || delete attributes[item]);
+        if (this.tag) {
+            Object.keys(attributes).forEach(item => this.tag.attributes.includes(item) && attributes[item] || delete attributes[item]);
             const selected = this._selectedElement();
 
-            if (this._tag.group !== 'format') {
-                this.editor.insert(this.editor.createElement(this._tag.name, {attributes: attributes}));
+            if (this.tag.group !== 'format') {
+                this.editor.insert(this.editor.createElement(this.tag.name, {attributes: attributes}));
             } else if (selected && Object.keys(attributes).length > 0) {
                 selected.parentElement.replaceChild(
-                    this.editor.createElement(this._tag.name, {attributes: attributes, html: selected.textContent}),
+                    this.editor.createElement(this.tag.name, {attributes: attributes, html: selected.textContent}),
                     selected
                 );
             } else if (selected) {
                 selected.parentElement.replaceChild(this.editor.createText(selected.textContent), selected);
             } else {
-                this.editor.format(this.editor.createElement(this._tag.name, {attributes: attributes}));
+                this.editor.format(this.editor.createElement(this.tag.name, {attributes: attributes}));
             }
         }
     }
@@ -109,7 +125,7 @@ export default class Command {
      * @protected
      */
     _openDialog() {
-        this._dialog.open(attributes => this._insert(attributes), this._selectedAttributes())
+        this.dialog.open(attributes => this._insert(attributes), this._selectedAttributes())
     }
 
     /**
@@ -121,7 +137,7 @@ export default class Command {
     _selectedElement() {
         const element = this.editor.getSelectedElement();
 
-        return element && element.localName === this._tag?.name ? element : null;
+        return element && element.localName === this.tag?.name ? element : null;
     }
 
     /**
@@ -134,9 +150,9 @@ export default class Command {
         const element = this._selectedElement();
         const attributes = {};
 
-        if (element && this._tag) {
+        if (element && this.tag) {
             Array.from(element.attributes).forEach(item => {
-                if (this._tag.attributes.includes(item.nodeName)) {
+                if (this.tag.attributes.includes(item.nodeName)) {
                     attributes[item.nodeName] = item.nodeValue;
                 }
             });
