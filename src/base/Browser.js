@@ -1,7 +1,7 @@
 import Editor from './Editor.js';
 
 /**
- * Browser
+ * Browser Manager
  */
 export default class Browser {
     /**
