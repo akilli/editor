@@ -60,7 +60,7 @@ export default class ListListener extends Listener {
      */
     insertol(event) {
         if (event.detail.element.children.length === 0) {
-            event.detail.element.appendChild(this.editor.createElement('li'));
+            event.detail.element.appendChild(this.editor.dom.createElement('li'));
         }
     }
 
@@ -84,7 +84,7 @@ export default class ListListener extends Listener {
         if (!(element.parentElement instanceof HTMLOListElement)
             && !(element.parentElement instanceof HTMLUListElement)
         ) {
-            this.editor.wrap(element, 'ul');
+            this.editor.dom.wrap(element, 'ul');
         }
     }
 }

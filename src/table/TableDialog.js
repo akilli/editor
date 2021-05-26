@@ -17,7 +17,7 @@ export default class TableDialog extends Dialog {
      * @inheritDoc
      */
     _initFieldset(fieldset) {
-        fieldset.appendChild(this.editor.createElement('legend', {html: this._('Table')}));
+        fieldset.appendChild(this.editor.dom.createElement('legend', {html: this._('Table')}));
         fieldset.appendChild(
             this._createInput('rows', 'number', this._('Rows'), {min: '1', required: 'required', value: '1'}),
         );

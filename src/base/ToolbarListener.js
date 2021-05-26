@@ -13,7 +13,7 @@ export default class ToolbarListener extends Listener {
         super(editor);
         this.editor.toolbar.addEventListener('insertbutton', this);
         this.editor.formats.addEventListener('insertbutton', this);
-        this.editor.document.addEventListener('selectionchange', this);
+        this.editor.dom.document.addEventListener('selectionchange', this);
     }
 
     /**
@@ -89,10 +89,10 @@ export default class ToolbarListener extends Listener {
      * @return {void}
      */
     selectionchange() {
-        const editable = this.editor.getSelectedEditable();
+        const editable = this.editor.dom.getSelectedEditable();
 
         if (editable
-            && !this.editor.window.getSelection().isCollapsed
+            && !this.editor.dom.getSelection().isCollapsed
             && this.editor.tags.allowed(editable, 'format', true)
         ) {
             const top = editable.offsetTop + editable.offsetParent.offsetTop - this.editor.formats.clientHeight;

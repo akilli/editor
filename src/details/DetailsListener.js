@@ -25,7 +25,7 @@ export default class DetailsListener extends Listener {
         event.detail.element.open = true;
 
         if (!event.detail.element.querySelector(':scope > summary:first-child')) {
-            event.detail.element.insertAdjacentElement('afterbegin', this.editor.createElement('summary'));
+            event.detail.element.insertAdjacentElement('afterbegin', this.editor.dom.createElement('summary'));
         }
     }
 
@@ -64,7 +64,7 @@ export default class DetailsListener extends Listener {
         if (this.editor.isKey(event, ' ')) {
             event.preventDefault();
             event.stopPropagation();
-            this.editor.insertText(' ');
+            this.editor.dom.insertText(' ');
         } else if (this.editor.isKey(event, 'Enter')) {
             event.preventDefault();
             event.stopPropagation();
@@ -85,6 +85,6 @@ export default class DetailsListener extends Listener {
             element.querySelectorAll('br:not(:last-child)').forEach(item => item.parentElement.removeChild(item));
         }
 
-        element.lastElementChild instanceof HTMLBRElement || element.appendChild(this.editor.createElement('br'));
+        element.lastElementChild instanceof HTMLBRElement || element.appendChild(this.editor.dom.createElement('br'));
     }
 }

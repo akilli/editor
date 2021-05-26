@@ -21,7 +21,7 @@ export default class PreformatListener extends Listener {
      * @return {void}
      */
     insertpre(event) {
-        this.editor.wrap(event.detail.element, 'figure', {attributes: {class: 'preformat'}});
+        this.editor.dom.wrap(event.detail.element, 'figure', {attributes: {class: 'preformat'}});
     }
 
     /**

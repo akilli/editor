@@ -49,7 +49,7 @@ export default class AudioListener extends Listener {
         } else {
             element.setAttribute('src', this.editor.url(src));
             element.controls = true;
-            this.editor.wrap(element, 'figure', {attributes: {class: 'audio'}});
+            this.editor.dom.wrap(element, 'figure', {attributes: {class: 'audio'}});
         }
     }
 }

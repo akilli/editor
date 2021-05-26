@@ -93,7 +93,7 @@ export default class SortableListener extends Listener {
      * @return {void}
      */
     pointermove(event) {
-        const element = this.editor.document.elementFromPoint(event.x, event.y);
+        const element = this.editor.dom.document.elementFromPoint(event.x, event.y);
         this.#sortover();
 
         if (this.#droppable(event.target, element)) {
@@ -110,7 +110,7 @@ export default class SortableListener extends Listener {
      */
     pointerup(event) {
         if (event.target.hasAttribute('data-sortable')) {
-            const element = this.editor.document.elementFromPoint(event.x, event.y);
+            const element = this.editor.dom.document.elementFromPoint(event.x, event.y);
             this.#sortover();
             event.target.removeAttribute('data-sort');
             event.target.releasePointerCapture(event.pointerId);
@@ -140,12 +140,12 @@ export default class SortableListener extends Listener {
     #droppable(element, target) {
         return element instanceof HTMLElement
             && target instanceof HTMLElement
-            && this.editor.contains(target)
+            && this.editor.dom.contains(target)
             && ![this.editor.root, element].includes(target)
             && target.hasAttribute('data-sortable')
             && (
                 element.parentElement === target.parentElement
-                || this.editor.arbitrary(element.parentElement) && this.editor.arbitrary(target.parentElement)
+                || this.editor.dom.arbitrary(element.parentElement) && this.editor.dom.arbitrary(target.parentElement)
             )
             && this.editor.tags.allowed(target.parentElement, element);
     }

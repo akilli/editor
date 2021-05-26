@@ -59,32 +59,24 @@ export default class Dialog {
      * @return {void}
      */
     open(save, attributes = {}) {
-        const cleanup = () => Array.from(this.editor.element.getElementsByTagName('editor-dialog')).forEach(item => {
-            item.parentElement.removeChild(item);
-        });
-        const sel = this.editor.window.getSelection();
-        const range = sel.rangeCount > 0 ? sel.getRangeAt(0) : null;
+        const range = this.editor.dom.getRange();
         const close = () => {
-            if (range) {
-                sel.removeAllRanges();
-                sel.addRange(range);
-            }
-
-            cleanup();
+            range && this.editor.dom.setRange(range);
+            this.#cleanup();
         };
-        cleanup();
+        this.#cleanup();
 
-        const form = this.editor.createElement('form', {attributes: {method: 'dialog'}});
+        const form = this.editor.dom.createElement('form', {attributes: {method: 'dialog'}});
         /** @type {HTMLFieldSetElement} */
-        const fieldset = this.editor.createElement('fieldset');
-        const cancelButton = this.editor.createElement(
+        const fieldset = this.editor.dom.createElement('fieldset');
+        const cancelButton = this.editor.dom.createElement(
             'button',
             {attributes: {type: 'button'}, html: this._('Cancel')},
         );
         cancelButton.addEventListener('click', close);
         form.appendChild(fieldset);
         form.appendChild(cancelButton);
-        form.appendChild(this.editor.createElement('button', {html: this._('Save')}));
+        form.appendChild(this.editor.dom.createElement('button', {html: this._('Save')}));
         this._initFieldset(fieldset);
         form.addEventListener('submit', event => {
             event.preventDefault();
@@ -99,7 +91,7 @@ export default class Dialog {
         );
 
         /** @type {DialogElement} */
-        const dialog = this.editor.createElement('editor-dialog');
+        const dialog = this.editor.dom.createElement('editor-dialog');
         dialog.addEventListener('close', close);
         dialog.appendChild(form);
         dialog.show();
@@ -147,14 +139,25 @@ export default class Dialog {
         }
 
         Object.assign(attributes, {id: `editor-${name}`, name: name, type: type});
-        const div = this.editor.createElement('div');
-        div.appendChild(this.editor.createElement('label', {attributes: {for: attributes.id}, html: label}));
-        div.appendChild(this.editor.createElement('input', {attributes: attributes}));
+        const div = this.editor.dom.createElement('div');
+        div.appendChild(this.editor.dom.createElement('label', {attributes: {for: attributes.id}, html: label}));
+        div.appendChild(this.editor.dom.createElement('input', {attributes: attributes}));
 
         if (attributes.required) {
             div.setAttribute('data-required', '');
         }
 
         return div;
+    }
+
+    /**
+     * Removes all existing editor dialogs
+     *
+     * @return {void}
+     */
+    #cleanup() {
+        Array.from(this.editor.element.getElementsByTagName('editor-dialog')).forEach(item => {
+            item.parentElement.removeChild(item);
+        });
     }
 }

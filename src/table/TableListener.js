@@ -23,7 +23,7 @@ export default class TableListener extends Listener {
      * @return {void}
      */
     inserttable(event) {
-        this.editor.wrap(event.detail.element, 'figure', {attributes: {class: 'table'}});
+        this.editor.dom.wrap(event.detail.element, 'figure', {attributes: {class: 'table'}});
 
         if (event.detail.element.tBodies.length > 0
             && event.detail.element.tBodies[0].rows[0]
@@ -101,11 +101,11 @@ export default class TableListener extends Listener {
 
             if (isNav) {
                 if (event.key === Key.LEFT && !isFirst) {
-                    this.editor.focusEnd(row.cells[cellIndex - 1]);
+                    this.editor.dom.focusEnd(row.cells[cellIndex - 1]);
                 } else if (event.key === Key.LEFT && isFirstTableRow) {
-                    this.editor.focusEnd(table.rows[table.rows.length - 1].cells[cellLength - 1]);
+                    this.editor.dom.focusEnd(table.rows[table.rows.length - 1].cells[cellLength - 1]);
                 } else if (event.key === Key.LEFT) {
-                    this.editor.focusEnd(table.rows[row.rowIndex - 1].cells[cellLength - 1]);
+                    this.editor.dom.focusEnd(table.rows[row.rowIndex - 1].cells[cellLength - 1]);
                 } else if (event.key === Key.RIGHT && !isLast) {
                     row.cells[cellIndex + 1].focus();
                 } else if (event.key === Key.RIGHT && isLastTableRow) {
@@ -194,7 +194,7 @@ export default class TableListener extends Listener {
      */
     #cell(element, ref = null) {
         const name = element.parentElement.localName === 'thead' ? 'th' : 'td';
-        element.insertBefore(this.editor.createElement(name), ref);
+        element.insertBefore(this.editor.dom.createElement(name), ref);
     }
 
     /**
@@ -209,7 +209,8 @@ export default class TableListener extends Listener {
             return true;
         }
 
-        const sel = this.editor.window.getSelection();
+        const sel = this.editor.dom.getSelection();
+        const anc = sel.anchorNode instanceof HTMLElement && sel.anchorNode;
 
         if (!sel.isCollapsed) {
             return false;
@@ -222,7 +223,7 @@ export default class TableListener extends Listener {
                 first = first.firstChild;
             }
 
-            return sel.anchorOffset === 0 && [element, first].includes(sel.anchorNode);
+            return sel.anchorOffset === 0 && [element, first].includes(anc);
         }
 
         let last = element.lastChild;
@@ -235,6 +236,6 @@ export default class TableListener extends Listener {
             last = last.lastChild;
         }
 
-        return sel.anchorOffset === sel.anchorNode.textContent.length && [element, last].includes(sel.anchorNode);
+        return sel.anchorOffset === anc.textContent.length && [element, last].includes(anc);
     }
 }

@@ -21,7 +21,7 @@ export default class FigureListener extends Listener {
      */
     insertfigure(event) {
         if (!event.detail.element.querySelector(':scope > figcaption')) {
-            event.detail.element.appendChild(this.editor.createElement('figcaption'));
+            event.detail.element.appendChild(this.editor.dom.createElement('figcaption'));
         }
     }
 }

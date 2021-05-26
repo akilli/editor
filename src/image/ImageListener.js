@@ -48,7 +48,7 @@ export default class ImageListener extends Listener {
             element.parentElement.removeChild(element);
         } else {
             element.setAttribute('src', this.editor.url(src));
-            this.editor.wrap(element, 'figure', {attributes: {class: 'image'}});
+            this.editor.dom.wrap(element, 'figure', {attributes: {class: 'image'}});
         }
     }
 }

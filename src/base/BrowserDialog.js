@@ -34,6 +34,6 @@ export default class BrowserDialog extends Dialog {
      * @inheritDoc
      */
     open(save, attributes = {}) {
-        this.editor.browser.open({url: this.#url, name: this.name, call: save, params: attributes});
+        this.editor.dom.open({url: this.#url, name: this.name, call: save, params: attributes});
     }
 }

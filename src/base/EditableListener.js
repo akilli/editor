@@ -43,14 +43,14 @@ export default class EditableListener extends Listener {
 
             if (enter) {
                 if (event.target.textContent.trim() || !event.target.hasAttribute('data-deletable')) {
-                    this.editor.closest(event.target, enter)?.insertAdjacentElement(
+                    this.editor.dom.closest(event.target, enter)?.insertAdjacentElement(
                         'afterend',
-                        this.editor.createElement(enter),
+                        this.editor.dom.createElement(enter),
                     );
                 } else if (!(event.target instanceof HTMLParagraphElement)) {
-                    this.editor.closest(event.target, 'p')?.insertAdjacentElement(
+                    this.editor.dom.closest(event.target, 'p')?.insertAdjacentElement(
                         'afterend',
-                        this.editor.createElement('p'),
+                        this.editor.dom.createElement('p'),
                     );
                     event.target.parentElement.removeChild(event.target);
                 }
@@ -60,7 +60,7 @@ export default class EditableListener extends Listener {
             && event.target.hasAttribute('data-deletable')
         ) {
             if (event.target.previousElementSibling instanceof HTMLElement) {
-                this.editor.focusEnd(event.target.previousElementSibling);
+                this.editor.dom.focusEnd(event.target.previousElementSibling);
             }
 
             event.target.parentElement.removeChild(event.target);

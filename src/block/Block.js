@@ -36,7 +36,7 @@ export default class Block extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this.editor.registerElement('app-block', BlockElement);
+        this.editor.dom.registerElement('app-block', BlockElement);
         this._tag({
             name: 'app-block',
             group: 'block',

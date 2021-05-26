@@ -132,10 +132,15 @@ export default class Plugin {
             throw 'Invalid argument';
         }
 
-        label = this._(label);
-        const button = this.editor.createElement('button', {
-            attributes: {type: 'button', 'data-command': this.constructor.name, title: label, 'data-key': key},
-            html: label,
+        const translatedLabel = this._(label);
+        const button = this.editor.dom.createElement('button', {
+            attributes: {
+                type: 'button',
+                'data-command': this.constructor.name,
+                title: translatedLabel,
+                'data-key': key,
+            },
+            html: translatedLabel,
         });
 
         format ? this.editor.formats.appendChild(button) : this.editor.toolbar.appendChild(button);

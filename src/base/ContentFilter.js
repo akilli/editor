@@ -14,7 +14,7 @@ export default class ContentFilter extends Filter {
         let p = [];
         const wrap = (ref = null) => {
             if (allowedParagraph && p.length > 0) {
-                element.insertBefore(this.editor.createElement('p', {html: p.join(' ')}), ref);
+                element.insertBefore(this.editor.dom.createElement('p', {html: p.join(' ')}), ref);
                 p = [];
             }
         };
@@ -23,24 +23,26 @@ export default class ContentFilter extends Filter {
             const text = child.textContent.trim();
 
             if (child instanceof HTMLElement) {
-                child = this.#convert(child);
-                const childTag = this.editor.tags.get(child);
+                const realChild = this.#convert(child);
+                const childTag = this.editor.tags.get(realChild);
 
-                if (childTag && this.editor.tags.allowed(element, child)) {
-                    wrap(child);
-                    this.#element(child, childTag);
+                if (childTag && this.editor.tags.allowed(element, realChild)) {
+                    wrap(realChild);
+                    this.#element(realChild, childTag);
                 } else if (childTag && childTag.group === 'format' && allowedParagraph) {
-                    if ((child = this.#element(child, childTag))) {
-                        p.push(child.outerHTML);
-                        element.removeChild(child);
+                    const filteredChild = this.#element(realChild, childTag);
+
+                    if (filteredChild) {
+                        p.push(filteredChild.outerHTML);
+                        element.removeChild(filteredChild);
                     }
                 } else if (!allowedText && text && allowedParagraph) {
                     p.push(text);
-                    element.removeChild(child);
+                    element.removeChild(realChild);
                 } else if (allowedText && text) {
-                    element.replaceChild(this.editor.createText(text), child);
+                    element.replaceChild(this.editor.dom.createText(text), realChild);
                 } else {
-                    element.removeChild(child);
+                    element.removeChild(realChild);
                 }
             } else if (child instanceof Text) {
                 if (!allowedText && text && allowedParagraph) {
@@ -71,7 +73,7 @@ export default class ContentFilter extends Filter {
             return element;
         }
 
-        const convert = this.editor.createElement(name, {html: element.innerHTML});
+        const convert = this.editor.dom.createElement(name, {html: element.innerHTML});
         element.parentElement.replaceChild(convert, element);
 
         return convert;

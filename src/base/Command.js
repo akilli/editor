@@ -114,16 +114,16 @@ export default class Command {
             const selected = this._selectedElement();
 
             if (this.tag.group !== 'format') {
-                this.editor.insert(this.editor.createElement(this.tag.name, {attributes: attributes}));
+                this.editor.dom.insert(this.editor.dom.createElement(this.tag.name, {attributes: attributes}));
             } else if (selected && Object.keys(attributes).length > 0) {
                 selected.parentElement.replaceChild(
-                    this.editor.createElement(this.tag.name, {attributes: attributes, html: selected.textContent}),
+                    this.editor.dom.createElement(this.tag.name, {attributes: attributes, html: selected.textContent}),
                     selected,
                 );
             } else if (selected) {
-                selected.parentElement.replaceChild(this.editor.createText(selected.textContent), selected);
+                selected.parentElement.replaceChild(this.editor.dom.createText(selected.textContent), selected);
             } else {
-                this.editor.format(this.editor.createElement(this.tag.name, {attributes: attributes}));
+                this.editor.dom.format(this.editor.dom.createElement(this.tag.name, {attributes: attributes}));
             }
         }
     }
@@ -145,7 +145,7 @@ export default class Command {
      * @return {?HTMLElement}
      */
     _selectedElement() {
-        const element = this.editor.getSelectedElement();
+        const element = this.editor.dom.getSelectedElement();
 
         return element && element.localName === this.tag?.name ? element : null;
     }

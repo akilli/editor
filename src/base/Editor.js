@@ -1,7 +1,7 @@
-import Browser from './Browser.js';
 import CommandManager from './CommandManager.js';
 import DialogManager from './DialogManager.js';
 import Dispatcher from './Dispatcher.js';
+import Dom from './Dom.js';
 import FilterManager from './FilterManager.js';
 import PluginManager from './PluginManager.js';
 import TagManager from './TagManager.js';
@@ -28,35 +28,35 @@ export default class Editor {
     }
 
     /**
-     * Correspondig DOM Document
+     * Configuration
      *
-     * @type {Document}
+     * @type {Object}
      */
-    #document;
+    #config = {};
 
     /**
-     * Allows read access to correspondig DOM Document
+     * Allows read access to configuration
      *
-     * @return {Document}
+     * @return {Object}
      */
-    get document() {
-        return this.#document;
+    get config() {
+        return this.#config;
     }
 
     /**
-     * Corresponding Window object
+     * DOM manager
      *
-     * @type {Window}
+     * @type {Dom}
      */
-    #window;
+    #dom;
 
     /**
-     * Allows read access to corresponding Window object
+     * Allows read access to DOM manager
      *
-     * @return {Window}
+     * @return {Dom}
      */
-    get window() {
-        return this.#window;
+    get dom() {
+        return this.#dom;
     }
 
     /**
@@ -172,22 +172,6 @@ export default class Editor {
     }
 
     /**
-     * Configuration
-     *
-     * @type {Object}
-     */
-    #config = {};
-
-    /**
-     * Allows read access to configuration
-     *
-     * @return {Object}
-     */
-    get config() {
-        return this.#config;
-    }
-
-    /**
      * Translator
      *
      * @type {Translator}
@@ -284,22 +268,6 @@ export default class Editor {
     }
 
     /**
-     * Browser manager
-     *
-     * @type {Browser}
-     */
-    #browser;
-
-    /**
-     * Allows read access to browser manager
-     *
-     * @return {Browser}
-     */
-    get browser() {
-        return this.#browser;
-    }
-
-    /**
      * Default configuration
      *
      * @type {Object.<string, Object>}
@@ -320,21 +288,19 @@ export default class Editor {
         }
 
         this.#orig = orig;
-        this.#document = this.orig.ownerDocument;
-        this.#window = this.document.defaultView;
-        this.#element = this.createElement('akilli-editor');
-        this.#toolbar = this.createElement('editor-toolbar', {attributes: {role: 'toolbar'}});
+        this.#config = config;
+        this.#dom = new Dom(this, this.orig.ownerDocument);
+        this.#element = this.dom.createElement('akilli-editor');
+        this.#toolbar = this.dom.createElement('editor-toolbar', {attributes: {role: 'toolbar'}});
         this.element.appendChild(this.toolbar);
         this.#toolbarEvents = new Dispatcher(this.toolbar);
-        this.#formats = this.createElement('editor-formats', {attributes: {role: 'toolbar'}});
+        this.#formats = this.dom.createElement('editor-formats', {attributes: {role: 'toolbar'}});
         this.formats.hidden = true;
         this.element.appendChild(this.formats);
         this.#formatsEvents = new Dispatcher(this.formats);
-        this.#root = this.createElement('editor-root');
+        this.#root = this.dom.createElement('editor-root');
         this.element.appendChild(this.root);
         this.#rootEvents = new Dispatcher(this.root);
-        this.#config = config;
-        this.#browser = new Browser(this);
     }
 
     /**
@@ -423,7 +389,7 @@ export default class Editor {
      * @return {string}
      */
     getHtml() {
-        const root = this.createElement(this.root.localName, {html: this.root.innerHTML});
+        const root = this.dom.createElement(this.root.localName, {html: this.root.innerHTML});
         this.filters.filter(root);
         this.rootEvents.dispatch('gethtml', root);
 
@@ -437,7 +403,7 @@ export default class Editor {
      * @return {void}
      */
     setHtml(html) {
-        const root = this.createElement(this.root.localName, {html: html});
+        const root = this.dom.createElement(this.root.localName, {html: html});
         this.rootEvents.dispatch('sethtml', root);
         this.filters.filter(root);
         this.root.innerHTML = root.innerHTML;
@@ -454,277 +420,6 @@ export default class Editor {
         } else {
             this.orig.innerHTML = this.getHtml();
         }
-    }
-
-    /**
-     * Inserts element
-     *
-     * @param {HTMLElement} element
-     * @return {void}
-     */
-    insert(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
-        }
-
-        const editable = this.getSelectedEditable();
-
-        if (editable && editable instanceof HTMLSlotElement && this.tags.allowed(editable.parentElement, element)) {
-            editable.insertAdjacentElement('beforebegin', element);
-        } else if (editable) {
-            this.closest(editable, element)?.insertAdjacentElement('afterend', element);
-
-            if (editable.hasAttribute('data-deletable') && !editable.textContent.trim()) {
-                editable.parentElement.removeChild(editable);
-            }
-        } else if (this.tags.allowed(this.root, element)) {
-            this.root.appendChild(element);
-        } else {
-            throw 'Invalid argument';
-        }
-    }
-
-    /**
-     * Inserts text
-     *
-     * @param {string} text
-     * @return {void}
-     */
-    insertText(text) {
-        const editable = this.getSelectedEditable();
-
-        if (editable) {
-            const range = this.window.getSelection().getRangeAt(0);
-            range.deleteContents();
-            range.insertNode(this.createText(text));
-            range.collapse();
-            editable.normalize();
-        }
-    }
-
-    /**
-     * Adds/removes formatting to/from selected text
-     *
-     * @param {HTMLElement} element
-     * @return {void}
-     */
-    format(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
-        }
-
-        const sel = this.window.getSelection();
-        const range = sel.rangeCount > 0 ? sel.getRangeAt(0) : null;
-        const editable = this.getSelectedEditable();
-
-        if (!range
-            || range.collapsed
-            || !range.toString().trim()
-            || !editable
-            || !this.tags.allowed(editable, element)
-        ) {
-            return;
-        }
-
-        if (range.startContainer instanceof Text && range.startContainer.parentElement !== editable) {
-            range.setStartBefore(range.startContainer.parentElement);
-        }
-
-        if (range.endContainer instanceof Text && range.endContainer.parentElement !== editable) {
-            range.setEndAfter(range.endContainer.parentElement);
-        }
-
-        const selText = range.toString();
-        const same = Array.from(range.cloneContents().childNodes).every(
-            item => item instanceof Text && !item.textContent.trim()
-                || item instanceof HTMLElement && item.localName === element.localName,
-        );
-        range.deleteContents();
-
-        if (same) {
-            range.insertNode(this.createText(selText));
-        } else {
-            element.textContent = selText;
-            range.insertNode(element);
-        }
-
-        editable.normalize();
-    }
-
-    /**
-     * Indicates if element allows arbitrary amount of child elements
-     *
-     * @param {Element} element
-     * @return {boolean}
-     */
-    arbitrary(element) {
-        return element instanceof HTMLElement && (element === this.root || element.hasAttribute('data-arbitrary'));
-    }
-
-    /**
-     * Returns first ancestor of given element whose parent element allows creating given child tag name or element,
-     * i.e. the returned element is the sibling element to add the new child before or after
-     *
-     * @param {HTMLElement} element
-     * @param {string|HTMLElement} child
-     * @return {?HTMLElement}
-     */
-    closest(element, child) {
-        if (!(element instanceof HTMLElement) || !this.contains(element.parentElement)) {
-            throw 'Invalid argument';
-        }
-
-        let sibling = element;
-        let parent = element.parentElement;
-
-        do {
-            if (this.arbitrary(parent) && this.tags.allowed(parent, child)) {
-                return sibling;
-            }
-        } while ((sibling = parent) && (parent = parent.parentElement) && this.contains(parent));
-
-        return null;
-    }
-
-    /**
-     * Wraps element with given parent if necessary and allowed
-     *
-     * @param {HTMLElement} element
-     * @param {string} name
-     * @param {Object} [opts = {}]
-     * @return {void}
-     */
-    wrap(element, name, opts = {}) {
-        let sibling;
-
-        if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
-        } else if (element.parentElement.localName !== name && (sibling = this.closest(element, name))) {
-            const target = this.createElement(name, opts);
-            sibling.insertAdjacentElement('afterend', target);
-            target.appendChild(element);
-        }
-    }
-
-    /**
-     * Indicates if given element is contained by editor content root or by a clone of it
-     *
-     * @param {HTMLElement} element
-     * @return {boolean}
-     */
-    contains(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
-        }
-
-        return this.root.contains(element) || element.closest(this.root.localName)?.parentElement === null;
-    }
-
-    /**
-     * Registers custom element
-     *
-     * @param {string} name
-     * @param {function} constructor
-     * @param {?string} [parentName = null]
-     * @return {void}
-     */
-    registerElement(name, constructor, parentName = null) {
-        if (typeof this.window.customElements.get(name) === 'undefined') {
-            this.window.customElements.define(name, constructor, parentName ? {extends: parentName} : null);
-        }
-    }
-
-    /**
-     * Creates HTML element in editor document
-     *
-     * @param {string} name
-     * @param {Object.<string, string>} [attributes = {}]
-     * @param {string} [html = '']
-     * @return {HTMLElement}
-     */
-    createElement(name, {attributes = {}, html = ''} = {}) {
-        const element = this.document.createElement(name);
-        element.innerHTML = html;
-        Object.entries(attributes).forEach(([key, val]) => val && element.setAttribute(key, `${val}`));
-
-        return element;
-    }
-
-    /**
-     * Creates text node in editor document
-     *
-     * @param {string} text
-     * @return {Text}
-     */
-    createText(text) {
-        return this.document.createTextNode(text);
-    }
-
-    /**
-     * Returns current selected element
-     *
-     * @return {?HTMLElement}
-     */
-    getSelectedElement() {
-        try {
-            const sel = this.window.getSelection();
-            const anc = sel.anchorNode instanceof Text ? sel.anchorNode.parentElement : sel.anchorNode;
-            const foc = sel.focusNode instanceof Text ? sel.focusNode.parentElement : sel.focusNode;
-
-            if (anc instanceof HTMLElement && foc instanceof HTMLElement && anc === foc && this.contains(anc)) {
-                return anc;
-            }
-        } catch (e) {
-            this.window.console.error(e);
-        }
-
-        return null;
-    }
-
-    /**
-     * Returns current selected contenteditable
-     *
-     * @return {?HTMLElement}
-     */
-    getSelectedEditable() {
-        try {
-            const sel = this.window.getSelection();
-            const anc = sel.anchorNode instanceof Text ? sel.anchorNode.parentElement : sel.anchorNode;
-            const foc = sel.focusNode instanceof Text ? sel.focusNode.parentElement : sel.focusNode;
-
-            if (anc instanceof HTMLElement && foc instanceof HTMLElement) {
-                const ancEdit = anc.closest('[contenteditable=true]');
-                const focEdit = foc.closest('[contenteditable=true]');
-
-                if (ancEdit instanceof HTMLElement && ancEdit === focEdit && this.contains(ancEdit)) {
-                    return ancEdit;
-                }
-            }
-        } catch (e) {
-            this.window.console.error(e);
-        }
-
-        return null;
-    }
-
-    /**
-     * Focus end of contents
-     *
-     * @param {HTMLElement} element
-     * @return {void}
-     */
-    focusEnd(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
-        }
-
-        const range = this.document.createRange();
-        const sel = this.window.getSelection();
-        element.focus();
-        range.selectNodeContents(element);
-        range.collapse();
-        sel.removeAllRanges();
-        sel.addRange(range);
     }
 
     /**
@@ -751,9 +446,9 @@ export default class Editor {
      * @return {string}
      */
     url(url) {
-        const origin = this.window.origin || this.window.location.origin;
+        const origin = this.dom.window.origin || this.dom.window.location.origin;
         /** @type {HTMLAnchorElement} */
-        const a = this.createElement('a', {attributes: {href: url}});
+        const a = this.dom.createElement('a', {attributes: {href: url}});
 
         return origin === a.origin ? a.pathname : a.href;
     }

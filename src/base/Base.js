@@ -35,7 +35,7 @@ export default class Base extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this.editor.registerElement('editor-dialog', DialogElement);
+        this.editor.dom.registerElement('editor-dialog', DialogElement);
         this._tag({
             name: 'editor-root',
             group: 'root',

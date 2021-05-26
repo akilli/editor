@@ -45,7 +45,7 @@ export default class LinkListener extends Listener {
         const href = element.getAttribute('href');
 
         if (!href) {
-            element.parentElement.replaceChild(this.editor.createText(element.textContent), element);
+            element.parentElement.replaceChild(this.editor.dom.createText(element.textContent), element);
         } else {
             element.setAttribute('href', this.editor.url(href));
         }

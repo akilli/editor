@@ -76,9 +76,9 @@ export default class NavigableListener extends Listener {
             return true;
         }
 
-        const sel = this.editor.window.getSelection();
-        const editable = this.editor.getSelectedEditable();
-        const selected = this.editor.getSelectedElement();
+        const sel = this.editor.dom.getSelection();
+        const editable = this.editor.dom.getSelectedEditable();
+        const selected = this.editor.dom.getSelectedElement();
 
         return sel.isCollapsed && sel.anchorOffset === 0 && [editable, element.firstChild].includes(selected);
     }
