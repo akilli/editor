@@ -86,6 +86,7 @@ export default class ToolbarListener extends Listener {
 
     /**
      * Shows or hides format toolbar depending on current selection
+     *
      * @return {void}
      */
     selectionchange() {
