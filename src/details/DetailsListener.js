@@ -1,4 +1,5 @@
 import Details from './Details.js';
+import Key from '../base/Key.js';
 import Listener from '../base/Listener.js';
 
 /**
@@ -61,11 +62,11 @@ export default class DetailsListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (this.editor.isKey(event, ' ')) {
+        if (this.editor.isKey(event, Key.SPACE)) {
             event.preventDefault();
             event.stopPropagation();
             this.editor.dom.insertText(' ');
-        } else if (this.editor.isKey(event, 'Enter')) {
+        } else if (this.editor.isKey(event, Key.ENTER)) {
             event.preventDefault();
             event.stopPropagation();
             event.target.parentElement.open = true;

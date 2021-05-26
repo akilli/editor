@@ -1,3 +1,4 @@
+import Key from './Key.js';
 import Listener from './Listener.js';
 
 /**
@@ -33,7 +34,7 @@ export default class DeletableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (event.target === event.currentTarget && this.editor.isKey(event, 'Delete', {ctrl: true})) {
+        if (event.target === event.currentTarget && this.editor.isKey(event, Key.DEL, {ctrl: true})) {
             if (event.target.previousElementSibling instanceof HTMLElement) {
                 this.editor.dom.focusEnd(event.target.previousElementSibling);
             }

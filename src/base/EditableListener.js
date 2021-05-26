@@ -1,3 +1,4 @@
+import Key from './Key.js';
 import Listener from './Listener.js';
 
 /**
@@ -33,10 +34,10 @@ export default class EditableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (this.editor.isKey(event, 'Enter', {shift: true}) && !this.editor.tags.allowed(event.target, 'br')) {
+        if (this.editor.isKey(event, Key.ENTER, {shift: true}) && !this.editor.tags.allowed(event.target, 'br')) {
             event.preventDefault();
             event.stopPropagation();
-        } else if (this.editor.isKey(event, 'Enter')) {
+        } else if (this.editor.isKey(event, Key.ENTER)) {
             event.preventDefault();
             event.stopPropagation();
             const enter = this.editor.tags.get(event.target)?.enter;
@@ -55,7 +56,7 @@ export default class EditableListener extends Listener {
                     event.target.parentElement.removeChild(event.target);
                 }
             }
-        } else if (this.editor.isKey(event, 'Backspace')
+        } else if (this.editor.isKey(event, Key.BACKSPACE)
             && !event.target.textContent
             && event.target.hasAttribute('data-deletable')
         ) {
