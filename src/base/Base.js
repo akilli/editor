@@ -64,8 +64,8 @@ export default class Base extends Plugin {
             navigable: true,
             sortable: true,
         });
-        new ToolbarListener(this.editor);
         new TagListener(this.editor);
+        new ToolbarListener(this.editor);
         new EditableListener(this.editor);
         new DeletableListener(this.editor);
         new NavigableListener(this.editor);
