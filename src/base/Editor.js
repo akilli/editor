@@ -1,4 +1,4 @@
-import BrowserManager from './BrowserManager.js';
+import Browser from './Browser.js';
 import CommandManager from './CommandManager.js';
 import DialogManager from './DialogManager.js';
 import Dispatcher from './Dispatcher.js';
@@ -286,14 +286,14 @@ export default class Editor {
     /**
      * Browser manager
      *
-     * @type {BrowserManager}
+     * @type {Browser}
      */
     #browser;
 
     /**
      * Allows read access to browser manager
      *
-     * @return {BrowserManager}
+     * @return {Browser}
      */
     get browser() {
         return this.#browser;
@@ -334,7 +334,7 @@ export default class Editor {
         this.element.appendChild(this.root);
         this.#rootEvents = new Dispatcher(this.root);
         this.#config = config;
-        this.#browser = new BrowserManager(this);
+        this.#browser = new Browser(this);
     }
 
     /**
@@ -388,7 +388,6 @@ export default class Editor {
         this.dialogs.freeze();
         this.commands.freeze();
         this.plugins.freeze();
-        this.browser.freeze();
     }
 
     /**

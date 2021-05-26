@@ -1,9 +1,9 @@
 import Editor from './Editor.js';
 
 /**
- * Browser Manager
+ * Browser
  */
-export default class BrowserManager {
+export default class Browser {
     /**
      * Editor
      *
@@ -82,12 +82,5 @@ export default class BrowserManager {
      */
     #features() {
         return Object.entries(this.#opts).filter(([, val]) => !!val).map(([key, val]) => `${key}=${val}`).join(',');
-    }
-
-    /**
-     * Freezes itself
-     */
-    freeze() {
-        Object.freeze(this);
     }
 }
