@@ -378,6 +378,20 @@ export default class Editor {
     }
 
     /**
+     * Freezes the editor and its configuration
+     */
+    freeze() {
+        Object.freeze(this.config);
+        this.translator.freeze();
+        this.tags.freeze();
+        this.filters.freeze();
+        this.dialogs.freeze();
+        this.commands.freeze();
+        this.plugins.freeze();
+        this.browser.freeze();
+    }
+
+    /**
      * Loads editor element into DOM
      *
      * @return {void}
@@ -755,6 +769,7 @@ export default class Editor {
     static create(element, config = {}) {
         const editor = new this(element, config);
         editor.init();
+        editor.freeze();
         editor.load();
 
         return editor;

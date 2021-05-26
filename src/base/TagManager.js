@@ -56,4 +56,17 @@ export default class TagManager {
         const group = isGroup ? childKey : this.get(childKey)?.group;
         return !!this.get(key)?.children.includes(group);
     }
+
+    /**
+     * Freezes itself and its items
+     */
+    freeze() {
+        this.#items.forEach(tag => {
+            Object.freeze(tag.children);
+            Object.freeze(tag.attributes);
+            Object.freeze(tag);
+        });
+        Object.freeze(this.#items);
+        Object.freeze(this);
+    }
 }

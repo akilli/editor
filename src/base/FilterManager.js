@@ -41,4 +41,13 @@ export default class FilterManager {
             filter.filter(element);
         });
     }
+
+    /**
+     * Freezes itself and its items
+     */
+    freeze() {
+        this.#items.forEach(filter => Object.freeze(filter));
+        Object.freeze(this.#items);
+        Object.freeze(this);
+    }
 }

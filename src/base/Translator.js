@@ -44,4 +44,13 @@ export default class Translator {
     translate(name, key) {
         return this.get(name)?.[key] || key;
     }
+
+    /**
+     * Freezes itself and its items
+     */
+    freeze() {
+        this.#items.forEach(i18n => Object.freeze(i18n));
+        Object.freeze(this.#items);
+        Object.freeze(this);
+    }
 }

@@ -135,8 +135,5 @@ export default class Tag {
         this.slotable = opts.slotable === true;
         this.sortable = opts.sortable === true;
         this.enter = opts.enter || null;
-        Object.freeze(this);
-        Object.freeze(this.children);
-        Object.freeze(this.attributes);
     }
 }
