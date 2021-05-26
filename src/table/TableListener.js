@@ -74,10 +74,10 @@ export default class TableListener extends Listener {
         const base = row.parentElement;
         const table = base instanceof HTMLTableElement ? base : base.parentElement;
         const keys = [Key.LEFT, Key.RIGHT, Key.UP, Key.DOWN];
-        const isNav = this.editor.isKey(event, keys);
-        const isSort = this.editor.isKey(event, keys, {ctrl: true});
-        const isAdd = this.editor.isKey(event, keys, {alt: true});
-        const isDel = this.editor.isKey(event, keys, {alt: true, shift: true});
+        const isNav = Key.is(event, keys);
+        const isSort = Key.is(event, keys, {ctrl: true});
+        const isAdd = Key.is(event, keys, {alt: true});
+        const isDel = Key.is(event, keys, {alt: true, shift: true});
 
         if (cell instanceof HTMLTableCellElement
             && row instanceof HTMLTableRowElement

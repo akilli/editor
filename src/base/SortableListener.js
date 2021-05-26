@@ -38,7 +38,7 @@ export default class SortableListener extends Listener {
      */
     keydown(event) {
         if (event.target === event.currentTarget
-            && this.editor.isKey(event, [Key.UP, Key.DOWN, Key.HOME, Key.END], {ctrl: true})
+            && Key.is(event, [Key.UP, Key.DOWN, Key.HOME, Key.END], {ctrl: true})
         ) {
             const parent = event.target.parentElement;
             const prev = event.target.previousElementSibling;

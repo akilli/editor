@@ -36,7 +36,7 @@ export default class NavigableListener extends Listener {
      */
     keydown(event) {
         if (event.target === event.currentTarget
-            && this.editor.isKey(event, [Key.UP, Key.DOWN, Key.HOME, Key.END])
+            && Key.is(event, [Key.UP, Key.DOWN, Key.HOME, Key.END])
             && this.#enabled(event.target)
         ) {
             const prev = event.target.previousElementSibling;

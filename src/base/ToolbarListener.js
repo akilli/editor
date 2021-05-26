@@ -61,7 +61,7 @@ export default class ToolbarListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (this.editor.isKey(event, [Key.LEFT, Key.RIGHT, Key.HOME, Key.END])) {
+        if (Key.is(event, [Key.LEFT, Key.RIGHT, Key.HOME, Key.END])) {
             const prev = event.target.previousElementSibling;
             const next = event.target.nextElementSibling;
             const first = event.target.parentElement.firstElementChild;

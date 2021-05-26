@@ -1,3 +1,4 @@
+import Key from './Key.js';
 import Listener from './Listener.js';
 
 /**
@@ -35,7 +36,7 @@ export default class AlignableListener extends Listener {
     keydown(event) {
         const map = {ArrowUp: null, ArrowLeft: 'left', ArrowDown: 'center', ArrowRight: 'right'};
 
-        if (event.target === event.currentTarget && this.editor.isKey(event, Object.keys(map), {shift: true})) {
+        if (event.target === event.currentTarget && Key.is(event, Object.keys(map), {shift: true})) {
             event.preventDefault();
             event.stopPropagation();
             event.target.classList.remove(...Object.values(map));
