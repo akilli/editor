@@ -108,14 +108,14 @@ export default class Editor {
     }
 
     /**
-     * Corresponding DOM element of the format bar
+     * Corresponding DOM element of the formatbar
      *
      * @type {HTMLElement}
      */
     #formatbar;
 
     /**
-     * Allows read access to corresponding DOM element of the format bar
+     * Allows read access to corresponding DOM element of the formatbar
      *
      * @return {HTMLElement}
      */
@@ -124,14 +124,14 @@ export default class Editor {
     }
 
     /**
-     * Event dispatcher of the editor format bar
+     * Event dispatcher of the editor formatbar
      *
      * @type {Dispatcher}
      */
     #formatbarDispatcher;
 
     /**
-     * Allows read access to event dispatcher of the editor format bar
+     * Allows read access to event dispatcher of the editor formatbar
      *
      * @return {Dispatcher}
      */

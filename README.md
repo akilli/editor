@@ -37,9 +37,9 @@ In both cases the demos are accessible at
 
 ## Info
 
-The editor consists of a main toolbar, a format bar and a content area.
+The editor consists of a main toolbar, a formatbar and a content area.
 
-The format bar contains the buttons to format the text inside an editable element, p.e. bold, italic, link or any
+The formatbar contains the buttons to format the text inside an editable element, p.e. bold, italic, link or any
 other [text-level element](https://html.spec.whatwg.org/multipage/text-level-semantics.html) and is hidden or shown
 depending on the current selection.
 
@@ -115,7 +115,7 @@ the **arrow keys**.
 
 ### Text-level elements
 
-Each text-level element registers a keyboard shortcut in the form `Alt` + `Shift` + a letter. If you hover a format bar
+Each text-level element registers a keyboard shortcut in the form `Alt` + `Shift` + a letter. If you hover a formatbar
 button for such a text-level element, the actual keyboard shortcut will be shown.
 
 ## Usage
