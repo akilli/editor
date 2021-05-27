@@ -1,5 +1,6 @@
-import Key from './Key.js';
 import Listener from './Listener.js';
+import { Key } from './enum.js';
+import { isKey } from './util.js';
 
 /**
  * Editable Listener
@@ -34,10 +35,10 @@ export default class EditableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (Key.is(event, Key.ENTER, { shift: true }) && !this.editor.tags.allowed(event.target, 'br')) {
+        if (isKey(event, Key.ENTER, { shift: true }) && !this.editor.tags.allowed(event.target, 'br')) {
             event.preventDefault();
             event.stopPropagation();
-        } else if (Key.is(event, Key.ENTER)) {
+        } else if (isKey(event, Key.ENTER)) {
             event.preventDefault();
             event.stopPropagation();
             const enter = this.editor.tags.get(event.target)?.enter;
@@ -56,7 +57,7 @@ export default class EditableListener extends Listener {
                     event.target.parentElement.removeChild(event.target);
                 }
             }
-        } else if (Key.is(event, Key.BACKSPACE)
+        } else if (isKey(event, Key.BACKSPACE)
             && !event.target.textContent
             && event.target.hasAttribute('data-deletable')
         ) {
@@ -67,7 +68,7 @@ export default class EditableListener extends Listener {
             event.target.parentElement.removeChild(event.target);
             event.preventDefault();
             event.stopPropagation();
-        } else if (/^[A-Z]$/.test(event.key) && Key.is(event, event.key, { alt: true, shift: true })) {
+        } else if (/^[A-Z]$/.test(event.key) && isKey(event, event.key, { alt: true, shift: true })) {
             event.preventDefault();
             event.stopPropagation();
             this.editor.formatbar.querySelector(`button[data-key=${event.key.toLowerCase()}]`)?.click();

@@ -1,4 +1,4 @@
-import Key from './Key.js';
+import { Key } from './enum.js';
 
 /**
  * Dialog Element

@@ -1,6 +1,7 @@
 import Base from './Base.js';
-import Key from './Key.js';
 import Listener from './Listener.js';
+import { Key } from './enum.js';
+import { isKey } from './util.js';
 
 /**
  * Abstract Bar Listener
@@ -53,7 +54,7 @@ export default class BarListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (Key.is(event, [Key.LEFT, Key.RIGHT, Key.HOME, Key.END])) {
+        if (isKey(event, [Key.LEFT, Key.RIGHT, Key.HOME, Key.END])) {
             const prev = event.target.previousElementSibling;
             const next = event.target.nextElementSibling;
             const first = event.target.parentElement.firstElementChild;

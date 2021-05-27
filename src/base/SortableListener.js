@@ -1,5 +1,6 @@
-import Key from './Key.js';
 import Listener from './Listener.js';
+import { Key } from './enum.js';
+import { isKey } from './util.js';
 
 /**
  * Sortable Listener
@@ -38,7 +39,7 @@ export default class SortableListener extends Listener {
      */
     keydown(event) {
         if (event.target === event.currentTarget
-            && Key.is(event, [Key.UP, Key.DOWN, Key.HOME, Key.END], { ctrl: true })
+            && isKey(event, [Key.UP, Key.DOWN, Key.HOME, Key.END], { ctrl: true })
         ) {
             const parent = event.target.parentElement;
             const prev = event.target.previousElementSibling;
