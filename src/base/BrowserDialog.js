@@ -1,5 +1,6 @@
 import Dialog from './Dialog.js';
-import { Error, Type } from './enum.js';
+import { Error } from './enum.js';
+import { isPopulatedString } from './util.js';
 
 /**
  * Browser Dialog
@@ -22,7 +23,7 @@ export default class BrowserDialog extends Dialog {
     constructor(editor, name, url) {
         super(editor, name);
 
-        if (!url || typeof url !== Type.STRING) {
+        if (!isPopulatedString(url)) {
             throw Error.INVALID_ARGUMENT;
         }
 

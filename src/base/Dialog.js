@@ -1,5 +1,6 @@
 import Editor from './Editor.js';
-import { Error, TagName, Type } from './enum.js';
+import { Error, TagName } from './enum.js';
+import { isPopulatedString } from './util.js';
 
 /**
  * Dialog
@@ -44,7 +45,7 @@ export default class Dialog {
      * @param {string} name
      */
     constructor(editor, name) {
-        if (!(editor instanceof Editor) || !name || typeof name !== Type.STRING) {
+        if (!(editor instanceof Editor) || !isPopulatedString(name)) {
             throw Error.INVALID_ARGUMENT;
         }
 
@@ -132,13 +133,7 @@ export default class Dialog {
      * @return {HTMLElement}
      */
     _createInput(name, type, label, attributes = {}) {
-        if (!name
-            || typeof name !== Type.STRING
-            || !type
-            || typeof type !== Type.STRING
-            || !label
-            || typeof label !== Type.STRING
-        ) {
+        if (!isPopulatedString(name) || !isPopulatedString(type) || !isPopulatedString(label)) {
             throw Error.INVALID_ARGUMENT;
         }
 

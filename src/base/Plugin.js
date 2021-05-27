@@ -1,7 +1,8 @@
 import Command from './Command.js';
 import Editor from './Editor.js';
 import Tag from './Tag.js';
-import { Error, TagName, Type } from './enum.js';
+import { Error, TagName } from './enum.js';
+import { isPopulatedString, isUnsetOrPopulatedString } from './util.js';
 
 /**
  * Plugin
@@ -129,7 +130,7 @@ export default class Plugin {
      * @return {void}
      */
     _toolbar(label, key = null, format = false) {
-        if (!label || typeof label !== Type.STRING || key && typeof key !== Type.STRING) {
+        if (!isPopulatedString(label) || !isUnsetOrPopulatedString(key)) {
             throw Error.INVALID_ARGUMENT;
         }
 

@@ -1,4 +1,5 @@
-import { Error, Type } from './enum.js';
+import { Error } from './enum.js';
+import { isPopulatedString } from './util.js';
 
 /**
  * Translator
@@ -29,7 +30,7 @@ export default class Translator {
      * @return {void}
      */
     set(name, i18n) {
-        if (!name || typeof name !== Type.STRING || !(i18n instanceof Object)) {
+        if (!isPopulatedString(name) || !(i18n instanceof Object)) {
             throw Error.INVALID_ARGUMENT;
         }
 

@@ -1,4 +1,5 @@
-import { Error, TagName, Type } from './enum.js';
+import { Error, TagName } from './enum.js';
+import { isFunction, isPopulatedString, isUnsetOrHtml } from './util.js';
 
 /**
  * Event Dispatcher
@@ -34,11 +35,7 @@ export default class Dispatcher {
      * @return {void}
      */
     dispatch(type, element = null, target = null) {
-        if (!type
-            || typeof type !== Type.STRING
-            || element && !(element instanceof HTMLElement)
-            || target && !(target instanceof HTMLElement)
-        ) {
+        if (!isPopulatedString(type) || !isUnsetOrHtml(element) || !isUnsetOrHtml(target)) {
             throw Error.INVALID_ARGUMENT;
         }
 
@@ -53,7 +50,7 @@ export default class Dispatcher {
      * @return {void}
      */
     register(call, opts = { childList: true, subtree: true }) {
-        if (typeof call !== Type.FUNCTION) {
+        if (!isFunction(call)) {
             throw Error.INVALID_ARGUMENT;
         }
 

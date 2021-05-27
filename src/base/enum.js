@@ -174,7 +174,6 @@ export const TagName = Object.freeze({
  */
 export const Type = Object.freeze({
     FUNCTION: 'function',
-    NUMBER: 'number',
     STRING: 'string',
     UNDEFINED: 'undefined',
 });

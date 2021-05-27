@@ -1,5 +1,6 @@
 import Editor from './Editor.js';
-import { Error, Type } from './enum.js';
+import { Error } from './enum.js';
+import { isFunction } from './util.js';
 
 /**
  * Listener
@@ -44,8 +45,6 @@ export default class Listener {
      * @return {void}
      */
     handleEvent(event) {
-        if (typeof this[event.type] === Type.FUNCTION) {
-            this[event.type](event);
-        }
+        isFunction(this[event.type]) && this[event.type](event);
     }
 }

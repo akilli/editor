@@ -1,4 +1,5 @@
-import { Error, Type } from './enum.js';
+import { Error } from './enum.js';
+import { isPopulatedString, isUndefinedOrPopulatedArray, isUnsetOrPopulatedString } from './util.js';
 
 /**
  * Tag
@@ -110,15 +111,11 @@ export default class Tag {
      * @param {Object.<string, any>} [opts = {}]
      */
     constructor({ name, group, ...opts } = {}) {
-        const reqStr = item => item && typeof item === Type.STRING;
-        const optStr = item => typeof item === Type.UNDEFINED || item && typeof item === Type.STRING;
-        const optArr = item => typeof item === Type.UNDEFINED || Array.isArray(item) && !item.find(i => !reqStr(i));
-
-        if (!reqStr(name)
-            || !reqStr(group)
-            || !optStr(opts.enter)
-            || !optArr(opts.children)
-            || !optArr(opts.attributes)
+        if (!isPopulatedString(name)
+            || !isPopulatedString(group)
+            || !isUnsetOrPopulatedString(opts.enter)
+            || !isUndefinedOrPopulatedArray(opts.children)
+            || !isUndefinedOrPopulatedArray(opts.attributes)
         ) {
             throw Error.INVALID_ARGUMENT;
         }
