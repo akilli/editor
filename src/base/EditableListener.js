@@ -70,7 +70,7 @@ export default class EditableListener extends Listener {
         } else if (/^[A-Z]$/.test(event.key) && Key.is(event, event.key, { alt: true, shift: true })) {
             event.preventDefault();
             event.stopPropagation();
-            this.editor.formats.querySelector(`button[data-key=${event.key.toLowerCase()}]`)?.click();
+            this.editor.formatbar.querySelector(`button[data-key=${event.key.toLowerCase()}]`)?.click();
         }
     }
 }

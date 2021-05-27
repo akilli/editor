@@ -143,6 +143,6 @@ export default class Plugin {
             html: translatedLabel,
         });
 
-        format ? this.editor.formats.appendChild(button) : this.editor.toolbar.appendChild(button);
+        format ? this.editor.formatbar.appendChild(button) : this.editor.toolbar.appendChild(button);
     }
 }

@@ -96,47 +96,47 @@ export default class Editor {
      *
      * @type {Dispatcher}
      */
-    #toolbarEvents;
+    #toolbarDispatcher;
 
     /**
      * Allows read access to event dispatcher of the editor main toolbar
      *
      * @return {Dispatcher}
      */
-    get toolbarEvents() {
-        return this.#toolbarEvents;
+    get toolbarDispatcher() {
+        return this.#toolbarDispatcher;
     }
 
     /**
-     * Corresponding DOM element of the formats toolbar
+     * Corresponding DOM element of the format bar
      *
      * @type {HTMLElement}
      */
-    #formats;
+    #formatbar;
 
     /**
-     * Allows read access to corresponding DOM element of the formats toolbar
+     * Allows read access to corresponding DOM element of the format bar
      *
      * @return {HTMLElement}
      */
-    get formats() {
-        return this.#formats;
+    get formatbar() {
+        return this.#formatbar;
     }
 
     /**
-     * Event dispatcher of the editor formats toolbar
+     * Event dispatcher of the editor format bar
      *
      * @type {Dispatcher}
      */
-    #formatsEvents;
+    #formatbarDispatcher;
 
     /**
-     * Allows read access to event dispatcher of the editor formats toolbar
+     * Allows read access to event dispatcher of the editor format bar
      *
      * @return {Dispatcher}
      */
-    get formatsEvents() {
-        return this.#formatsEvents;
+    get formatbarDispatcher() {
+        return this.#formatbarDispatcher;
     }
 
     /**
@@ -160,15 +160,15 @@ export default class Editor {
      *
      * @type {Dispatcher}
      */
-    #rootEvents;
+    #rootDispatcher;
 
     /**
      * Allows read access to event dispatcher of the editor content root
      *
      * @return {Dispatcher}
      */
-    get rootEvents() {
-        return this.#rootEvents;
+    get rootDispatcher() {
+        return this.#rootDispatcher;
     }
 
     /**
@@ -293,14 +293,14 @@ export default class Editor {
         this.#element = this.dom.createElement('akilli-editor');
         this.#toolbar = this.dom.createElement('editor-toolbar', { attributes: { role: 'toolbar' } });
         this.element.appendChild(this.toolbar);
-        this.#toolbarEvents = new Dispatcher(this.toolbar);
-        this.#formats = this.dom.createElement('editor-formats', { attributes: { role: 'toolbar' } });
-        this.formats.hidden = true;
-        this.element.appendChild(this.formats);
-        this.#formatsEvents = new Dispatcher(this.formats);
+        this.#toolbarDispatcher = new Dispatcher(this.toolbar);
+        this.#formatbar = this.dom.createElement('editor-formatbar', { attributes: { role: 'toolbar' } });
+        this.formatbar.hidden = true;
+        this.element.appendChild(this.formatbar);
+        this.#formatbarDispatcher = new Dispatcher(this.formatbar);
         this.#root = this.dom.createElement('editor-root');
         this.element.appendChild(this.root);
-        this.#rootEvents = new Dispatcher(this.root);
+        this.#rootDispatcher = new Dispatcher(this.root);
     }
 
     /**
@@ -338,9 +338,9 @@ export default class Editor {
             this.plugins.set(new item(this));
         });
         this.plugins.init();
-        this.toolbarEvents.dispatch('init');
-        this.formatsEvents.dispatch('init');
-        this.rootEvents.dispatch('init');
+        this.toolbarDispatcher.dispatch('init');
+        this.formatbarDispatcher.dispatch('init');
+        this.rootDispatcher.dispatch('init');
     }
 
     /**
@@ -391,7 +391,7 @@ export default class Editor {
     getHtml() {
         const root = this.dom.createElement(this.root.localName, { html: this.root.innerHTML });
         this.filters.filter(root);
-        this.rootEvents.dispatch('gethtml', root);
+        this.rootDispatcher.dispatch('gethtml', root);
 
         return root.innerHTML;
     }
@@ -404,7 +404,7 @@ export default class Editor {
      */
     setHtml(html) {
         const root = this.dom.createElement(this.root.localName, { html: html });
-        this.rootEvents.dispatch('sethtml', root);
+        this.rootDispatcher.dispatch('sethtml', root);
         this.filters.filter(root);
         this.root.innerHTML = root.innerHTML;
     }

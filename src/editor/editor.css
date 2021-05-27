@@ -250,7 +250,7 @@ editor-toolbar {
     border: 0.0625rem solid var(--editor-border);
 }
 
-editor-formats {
+editor-formatbar {
     position: absolute;
     display: flex;
     flex-wrap: wrap;

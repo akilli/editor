@@ -12,7 +12,7 @@ export default class ToolbarListener extends Listener {
     constructor(editor) {
         super(editor);
         this.editor.toolbar.addEventListener('insertbutton', this);
-        this.editor.formats.addEventListener('insertbutton', this);
+        this.editor.formatbar.addEventListener('insertbutton', this);
         this.editor.dom.document.addEventListener('selectionchange', this);
     }
 
@@ -96,12 +96,12 @@ export default class ToolbarListener extends Listener {
             && !this.editor.dom.getSelection().isCollapsed
             && this.editor.tags.allowed(editable, 'format', true)
         ) {
-            const top = editable.offsetTop + editable.offsetParent.offsetTop - this.editor.formats.clientHeight;
-            this.editor.formats.style.top = `${top}px`;
-            this.editor.formats.hidden = false;
+            const top = editable.offsetTop + editable.offsetParent.offsetTop - this.editor.formatbar.clientHeight;
+            this.editor.formatbar.style.top = `${top}px`;
+            this.editor.formatbar.hidden = false;
         } else {
-            this.editor.formats.hidden = true;
-            this.editor.formats.removeAttribute('style');
+            this.editor.formatbar.hidden = true;
+            this.editor.formatbar.removeAttribute('style');
         }
     }
 }
