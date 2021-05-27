@@ -4,6 +4,7 @@ import DeletableListener from './DeletableListener.js';
 import DialogElement from './DialogElement.js';
 import EditableListener from './EditableListener.js';
 import FocusableListener from './FocusableListener.js';
+import FormatbarListener from './FormatbarListener.js';
 import NavigableListener from './NavigableListener.js';
 import Plugin from './Plugin.js';
 import SlotableListener from './SlotableListener.js';
@@ -66,6 +67,7 @@ export default class Base extends Plugin {
         });
         new TagListener(this.editor);
         new ToolbarListener(this.editor);
+        new FormatbarListener(this.editor);
         new EditableListener(this.editor);
         new DeletableListener(this.editor);
         new NavigableListener(this.editor);
