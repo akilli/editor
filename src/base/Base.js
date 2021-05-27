@@ -12,6 +12,7 @@ import SortableListener from './SortableListener.js';
 import TagListener from './TagListener.js';
 import ToolbarListener from './ToolbarListener.js';
 import i18n from './i18n.js';
+import { TagGroup, TagName } from './enum.js';
 
 /**
  * Base Plugin
@@ -36,30 +37,30 @@ export default class Base extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this.editor.dom.registerElement('editor-dialog', DialogElement);
+        this.editor.dom.registerElement(TagName.DIALOG, DialogElement);
         this._tag({
-            name: 'editor-root',
-            group: 'root',
+            name: TagName.ROOT,
+            group: TagGroup.ROOT,
             children: [
-                'audio',
-                'block',
-                'container',
-                'figure',
-                'heading',
-                'iframe',
-                'image',
-                'list',
-                'paragraph',
-                'preformat',
-                'quote',
-                'rule',
-                'table',
-                'video',
+                TagGroup.AUDIO,
+                TagGroup.BLOCK,
+                TagGroup.CONTAINER,
+                TagGroup.FIGURE,
+                TagGroup.HEADING,
+                TagGroup.IFRAME,
+                TagGroup.IMAGE,
+                TagGroup.LIST,
+                TagGroup.PARAGRAPH,
+                TagGroup.PREFORMAT,
+                TagGroup.QUOTE,
+                TagGroup.RULE,
+                TagGroup.TABLE,
+                TagGroup.VIDEO,
             ],
         });
         this._tag({
-            name: 'slot',
-            group: 'slot',
+            name: TagName.SLOT,
+            group: TagGroup.SLOT,
             editable: true,
             focusable: true,
             navigable: true,

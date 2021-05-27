@@ -1,4 +1,5 @@
 import Editor from './Editor.js';
+import { Error, Position, TagName, Type } from './enum.js';
 
 /**
  * DOM Manager
@@ -79,7 +80,7 @@ export default class Dom {
      */
     constructor(editor, document) {
         if (!(editor instanceof Editor) || !(document instanceof Document)) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         this.#editor = editor;
@@ -128,7 +129,7 @@ export default class Dom {
      * @return {void}
      */
     registerElement(name, constructor, parentName = null) {
-        if (typeof this.window.customElements.get(name) === 'undefined') {
+        if (typeof this.window.customElements.get(name) === Type.UNDEFINED) {
             this.window.customElements.define(name, constructor, parentName ? { extends: parentName } : null);
         }
     }
@@ -157,15 +158,15 @@ export default class Dom {
      */
     insert(element) {
         if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         const editable = this.getSelectedEditable();
 
         if (editable instanceof HTMLSlotElement && this.editor.tags.allowed(editable.parentElement, element)) {
-            editable.insertAdjacentElement('beforebegin', element);
+            editable.insertAdjacentElement(Position.BEFOREBEGIN, element);
         } else if (editable) {
-            this.closest(editable, element)?.insertAdjacentElement('afterend', element);
+            this.closest(editable, element)?.insertAdjacentElement(Position.AFTEREND, element);
 
             if (editable.hasAttribute('data-deletable') && !editable.textContent.trim()) {
                 editable.parentElement.removeChild(editable);
@@ -173,7 +174,7 @@ export default class Dom {
         } else if (this.editor.tags.allowed(this.editor.root, element)) {
             this.editor.root.appendChild(element);
         } else {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
     }
 
@@ -203,7 +204,7 @@ export default class Dom {
      */
     format(element) {
         if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         const range = this.getRange();
@@ -271,7 +272,7 @@ export default class Dom {
      */
     contains(element) {
         if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         return this.editor.root.contains(element)
@@ -288,7 +289,7 @@ export default class Dom {
      */
     closest(element, child) {
         if (!(element instanceof HTMLElement) || !this.contains(element.parentElement)) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         let sibling = element;
@@ -315,10 +316,10 @@ export default class Dom {
         let sibling;
 
         if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         } else if (element.parentElement.localName !== name && (sibling = this.editor.dom.closest(element, name))) {
             const target = this.createElement(name, opts);
-            sibling.insertAdjacentElement('afterend', target);
+            sibling.insertAdjacentElement(Position.AFTEREND, target);
             target.appendChild(element);
         }
     }
@@ -370,7 +371,7 @@ export default class Dom {
      */
     focusEnd(element) {
         if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         element.focus();
@@ -390,12 +391,17 @@ export default class Dom {
      * @return {void}
      */
     open({ url, name, call, params = {} }) {
-        if (!url || typeof url !== 'string' || !name || typeof name !== 'string' || typeof call !== 'function') {
-            throw 'Invalid argument';
+        if (!url
+            || typeof url !== Type.STRING
+            || !name
+            || typeof name !== Type.STRING
+            || typeof call !== Type.FUNCTION
+        ) {
+            throw Error.INVALID_ARGUMENT;
         }
 
         /** @type {HTMLAnchorElement} */
-        const a = this.createElement('a', { attributes: { href: url } });
+        const a = this.createElement(TagName.A, { attributes: { href: url } });
         const urlObject = new URL(a.href);
         Object.entries(params).forEach(([key, val]) => urlObject.searchParams.set(key, `${val}`));
         const win = this.window.open(urlObject.toString(), name, this.#features());

@@ -1,6 +1,7 @@
 import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
+import { TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Heading Plugin
@@ -26,16 +27,16 @@ export default class Heading extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'h2',
-            group: 'heading',
+            name: TagName.H2,
+            group: TagGroup.HEADING,
             deletable: true,
             editable: true,
             focusable: true,
             navigable: true,
             sortable: true,
-            enter: 'p',
+            enter: TagName.P,
         });
-        this._command('h2');
+        this._command(TagName.H2);
         this._toolbar('Heading');
     }
 }

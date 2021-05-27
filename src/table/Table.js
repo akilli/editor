@@ -7,6 +7,7 @@ import TableDialog from './TableDialog.js';
 import TableFilter from './TableFilter.js';
 import TableListener from './TableListener.js';
 import i18n from './i18n.js';
+import { TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Table Plugin
@@ -32,43 +33,43 @@ export default class Table extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'table',
-            group: 'table',
-            children: ['tablesection'],
+            name: TagName.TABLE,
+            group: TagGroup.TABLE,
+            children: [TagGroup.TABLESECTION],
             deletable: true,
             navigable: true,
         });
         this._tag({
-            name: 'thead',
-            group: 'tablesection',
-            children: ['tablerow'],
+            name: TagName.THEAD,
+            group: TagGroup.TABLESECTION,
+            children: [TagGroup.TABLEROW],
         });
         this._tag({
-            name: 'tbody',
-            group: 'tablesection',
-            children: ['tablerow'],
+            name: TagName.TBODY,
+            group: TagGroup.TABLESECTION,
+            children: [TagGroup.TABLEROW],
         });
         this._tag({
-            name: 'tfoot',
-            group: 'tablesection',
-            children: ['tablerow'],
+            name: TagName.TFOOT,
+            group: TagGroup.TABLESECTION,
+            children: [TagGroup.TABLEROW],
         });
         this._tag({
-            name: 'tr',
-            group: 'tablerow',
-            children: ['tablecell'],
+            name: TagName.TR,
+            group: TagGroup.TABLEROW,
+            children: [TagGroup.TABLECELL],
         });
         this._tag({
-            name: 'th',
-            group: 'tablecell',
-            children: ['break', 'format'],
+            name: TagName.TH,
+            group: TagGroup.TABLECELL,
+            children: [TagGroup.BREAK, TagGroup.FORMAT],
             editable: true,
             empty: true,
         });
         this._tag({
-            name: 'td',
-            group: 'tablecell',
-            children: ['break', 'format'],
+            name: TagName.TD,
+            group: TagGroup.TABLECELL,
+            children: [TagGroup.BREAK, TagGroup.FORMAT],
             editable: true,
             empty: true,
         });

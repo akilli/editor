@@ -2,7 +2,7 @@ import Abbreviation from '../abbreviation/Abbreviation.js';
 import Audio from '../audio/Audio.js';
 import BaseEditor from '../base/Editor.js';
 import Block from '../block/Block.js';
-import BlockQuote from '../blockquote/BlockQuote.js';
+import Blockquote from '../blockquote/Blockquote.js';
 import Bold from '../bold/Bold.js';
 import Cite from '../cite/Cite.js';
 import Code from '../code/Code.js';
@@ -80,7 +80,7 @@ export default class Editor extends BaseEditor {
                     UnorderedList,
                     OrderedList,
                     HorizontalRule,
-                    BlockQuote,
+                    Blockquote,
                     Image,
                     Video,
                     Audio,

@@ -1,4 +1,6 @@
+import Audio from './Audio.js';
 import Listener from '../base/Listener.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Handles audio elements
@@ -21,7 +23,7 @@ export default class AudioListener extends Listener {
      * @return {void}
      */
     sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName('audio')).forEach(item => this.#init(item));
+        Array.from(event.detail.element.getElementsByTagName(TagName.AUDIO)).forEach(item => this.#init(item));
     }
 
     /**
@@ -49,7 +51,7 @@ export default class AudioListener extends Listener {
         } else {
             element.setAttribute('src', this.editor.url(src));
             element.controls = true;
-            this.editor.dom.wrap(element, 'figure', { attributes: { class: 'audio' } });
+            this.editor.dom.wrap(element, TagName.FIGURE, { attributes: { class: Audio.name } });
         }
     }
 }

@@ -1,4 +1,5 @@
 import BarListener from './BarListener.js';
+import { TagGroup } from './enum.js';
 
 /**
  * Formatbar Listener
@@ -23,7 +24,7 @@ export default class FormatbarListener extends BarListener {
 
         if (editable
             && !this.editor.dom.getSelection().isCollapsed
-            && this.editor.tags.allowed(editable, 'format', true)
+            && this.editor.tags.allowed(editable, TagGroup.FORMAT, true)
         ) {
             const top = editable.offsetTop + editable.offsetParent.offsetTop - this.editor.formatbar.clientHeight;
             this.editor.formatbar.style.top = `${top}px`;

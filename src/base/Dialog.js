@@ -1,4 +1,5 @@
 import Editor from './Editor.js';
+import { Error, TagName, Type } from './enum.js';
 
 /**
  * Dialog
@@ -43,8 +44,8 @@ export default class Dialog {
      * @param {string} name
      */
     constructor(editor, name) {
-        if (!(editor instanceof Editor) || !name || typeof name !== 'string') {
-            throw 'Invalid argument';
+        if (!(editor instanceof Editor) || !name || typeof name !== Type.STRING) {
+            throw Error.INVALID_ARGUMENT;
         }
 
         this.#editor = editor;
@@ -66,17 +67,17 @@ export default class Dialog {
         };
         this.#cleanup();
 
-        const form = this.editor.dom.createElement('form', { attributes: { method: 'dialog' } });
+        const form = this.editor.dom.createElement(TagName.FORM, { attributes: { method: 'dialog' } });
         /** @type {HTMLFieldSetElement} */
-        const fieldset = this.editor.dom.createElement('fieldset');
+        const fieldset = this.editor.dom.createElement(TagName.FIELDSET);
         const cancelButton = this.editor.dom.createElement(
-            'button',
+            TagName.BUTTON,
             { attributes: { type: 'button' }, html: this._('Cancel') },
         );
         cancelButton.addEventListener('click', close);
         form.appendChild(fieldset);
         form.appendChild(cancelButton);
-        form.appendChild(this.editor.dom.createElement('button', { html: this._('Save') }));
+        form.appendChild(this.editor.dom.createElement(TagName.BUTTON, { html: this._('Save') }));
         this._initFieldset(fieldset);
         form.addEventListener('submit', event => {
             event.preventDefault();
@@ -91,7 +92,7 @@ export default class Dialog {
         );
 
         /** @type {DialogElement} */
-        const dialog = this.editor.dom.createElement('editor-dialog');
+        const dialog = this.editor.dom.createElement(TagName.DIALOG);
         dialog.addEventListener('close', close);
         dialog.appendChild(form);
         dialog.show();
@@ -117,7 +118,7 @@ export default class Dialog {
      * @return {void}
      */
     _initFieldset(fieldset) {
-        throw 'Not implemented';
+        throw Error.NOT_IMPLEMENTED;
     }
 
     /**
@@ -131,17 +132,22 @@ export default class Dialog {
      * @return {HTMLElement}
      */
     _createInput(name, type, label, attributes = {}) {
-        if (!name || typeof name !== 'string'
-            || !type || typeof type !== 'string'
-            || !label || typeof label !== 'string'
+        if (!name
+            || typeof name !== Type.STRING
+            || !type
+            || typeof type !== Type.STRING
+            || !label
+            || typeof label !== Type.STRING
         ) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         Object.assign(attributes, { id: `editor-${name}`, name: name, type: type });
-        const div = this.editor.dom.createElement('div');
-        div.appendChild(this.editor.dom.createElement('label', { attributes: { for: attributes.id }, html: label }));
-        div.appendChild(this.editor.dom.createElement('input', { attributes: attributes }));
+        const div = this.editor.dom.createElement(TagName.DIV);
+        div.appendChild(
+            this.editor.dom.createElement(TagName.LABEL, { attributes: { for: attributes.id }, html: label }),
+        );
+        div.appendChild(this.editor.dom.createElement(TagName.INPUT, { attributes: attributes }));
 
         if (attributes.required) {
             div.setAttribute('data-required', '');
@@ -156,7 +162,7 @@ export default class Dialog {
      * @return {void}
      */
     #cleanup() {
-        Array.from(this.editor.element.getElementsByTagName('editor-dialog')).forEach(item => {
+        Array.from(this.editor.element.getElementsByTagName(TagName.DIALOG)).forEach(item => {
             item.parentElement.removeChild(item);
         });
     }

@@ -2,6 +2,7 @@ import Base from '../base/Base.js';
 import FigureFilter from './FigureFilter.js';
 import FigureListener from './FigureListener.js';
 import Plugin from '../base/Plugin.js';
+import { TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Figure Plugin
@@ -26,9 +27,18 @@ export default class Figure extends Plugin {
      */
     init() {
         this._tag({
-            name: 'figure',
-            group: 'figure',
-            children: ['audio', 'caption', 'iframe', 'image', 'preformat', 'quote', 'table', 'video'],
+            name: TagName.FIGURE,
+            group: TagGroup.FIGURE,
+            children: [
+                TagGroup.AUDIO,
+                TagGroup.CAPTION,
+                TagGroup.IFRAME,
+                TagGroup.IMAGE,
+                TagGroup.PREFORMAT,
+                TagGroup.QUOTE,
+                TagGroup.TABLE,
+                TagGroup.VIDEO,
+            ],
             attributes: ['class'],
             alignable: true,
             deletable: true,
@@ -37,12 +47,12 @@ export default class Figure extends Plugin {
             sortable: true,
         });
         this._tag({
-            name: 'figcaption',
-            group: 'caption',
-            children: ['format'],
+            name: TagName.FIGCAPTION,
+            group: TagGroup.CAPTION,
+            children: [TagGroup.FORMAT],
             editable: true,
             navigable: true,
-            enter: 'p',
+            enter: TagName.P,
         });
         new FigureListener(this.editor);
         this.editor.filters.add(new FigureFilter(this.editor));

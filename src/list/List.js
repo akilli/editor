@@ -2,6 +2,7 @@ import Base from '../base/Base.js';
 import Break from '../break/Break.js';
 import ListListener from './ListListener.js';
 import Plugin from '../base/Plugin.js';
+import { TagGroup, TagName } from '../base/enum.js';
 
 /**
  * List Plugin
@@ -26,15 +27,15 @@ export default class List extends Plugin {
      */
     init() {
         this._tag({
-            name: 'li',
-            group: 'listitem',
-            children: ['break', 'format'],
+            name: TagName.LI,
+            group: TagGroup.LISTITEM,
+            children: [TagGroup.BREAK, TagGroup.FORMAT],
             deletable: true,
             editable: true,
             focusable: true,
             navigable: true,
             sortable: true,
-            enter: 'li',
+            enter: TagName.LI,
         });
         new ListListener(this.editor);
     }

@@ -1,3 +1,5 @@
+import { Error, Type } from './enum.js';
+
 /**
  * Tag
  */
@@ -108,9 +110,9 @@ export default class Tag {
      * @param {Object.<string, any>} [opts = {}]
      */
     constructor({ name, group, ...opts } = {}) {
-        const reqStr = item => item && typeof item === 'string';
-        const optStr = item => typeof item === 'undefined' || item && typeof item === 'string';
-        const optArr = item => typeof item === 'undefined' || Array.isArray(item) && !item.find(i => !reqStr(i));
+        const reqStr = item => item && typeof item === Type.STRING;
+        const optStr = item => typeof item === Type.UNDEFINED || item && typeof item === Type.STRING;
+        const optArr = item => typeof item === Type.UNDEFINED || Array.isArray(item) && !item.find(i => !reqStr(i));
 
         if (!reqStr(name)
             || !reqStr(group)
@@ -118,7 +120,7 @@ export default class Tag {
             || !optArr(opts.children)
             || !optArr(opts.attributes)
         ) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         this.name = name;

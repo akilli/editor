@@ -1,4 +1,5 @@
 import Tag from './Tag.js';
+import { Error } from './enum.js';
 
 /**
  * Tag Manager
@@ -38,7 +39,7 @@ export default class TagManager {
      */
     set(tag) {
         if (!(tag instanceof Tag)) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         this.#items.set(tag.name, tag);

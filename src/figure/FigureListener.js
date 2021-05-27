@@ -1,4 +1,5 @@
 import Listener from '../base/Listener.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Creates missing figcaption elements
@@ -20,8 +21,8 @@ export default class FigureListener extends Listener {
      * @return {void}
      */
     insertfigure(event) {
-        if (!event.detail.element.querySelector(':scope > figcaption')) {
-            event.detail.element.appendChild(this.editor.dom.createElement('figcaption'));
+        if (!event.detail.element.querySelector(':scope > ' + TagName.FIGCAPTION)) {
+            event.detail.element.appendChild(this.editor.dom.createElement(TagName.FIGCAPTION));
         }
     }
 }

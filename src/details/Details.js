@@ -3,6 +3,7 @@ import DetailsFilter from './DetailsFilter.js';
 import DetailsListener from './DetailsListener.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
+import { TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Details Plugin
@@ -28,21 +29,21 @@ export default class Details extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'details',
-            group: 'container',
+            name: TagName.DETAILS,
+            group: TagGroup.CONTAINER,
             children: [
-                'audio',
-                'figure',
-                'iframe',
-                'image',
-                'list',
-                'paragraph',
-                'preformat',
-                'quote',
-                'rule',
-                'summary',
-                'table',
-                'video',
+                TagGroup.AUDIO,
+                TagGroup.FIGURE,
+                TagGroup.IFRAME,
+                TagGroup.IMAGE,
+                TagGroup.LIST,
+                TagGroup.PARAGRAPH,
+                TagGroup.PREFORMAT,
+                TagGroup.QUOTE,
+                TagGroup.RULE,
+                TagGroup.SUMMARY,
+                TagGroup.TABLE,
+                TagGroup.VIDEO,
             ],
             arbitrary: true,
             deletable: true,
@@ -52,14 +53,14 @@ export default class Details extends Plugin {
             sortable: true,
         });
         this._tag({
-            name: 'summary',
-            group: 'summary',
+            name: TagName.SUMMARY,
+            group: TagGroup.SUMMARY,
             editable: true,
             navigable: true,
-            enter: 'p',
+            enter: TagName.P,
         });
         new DetailsListener(this.editor);
-        this._command('details');
+        this._command(TagName.DETAILS);
         this._toolbar('Details');
         this.editor.filters.add(new DetailsFilter(this.editor));
     }

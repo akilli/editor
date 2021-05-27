@@ -1,6 +1,7 @@
 import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
+import { Key, TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Variable Plugin
@@ -26,10 +27,10 @@ export default class Variable extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'var',
-            group: 'format',
+            name: TagName.VAR,
+            group: TagGroup.FORMAT,
         });
-        this._command('var');
-        this._toolbar('Variable', 'v', true);
+        this._command(TagName.VAR);
+        this._toolbar('Variable', Key.V, true);
     }
 }

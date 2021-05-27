@@ -2,6 +2,7 @@ import Base from '../base/Base.js';
 import DataDialog from './DataDialog.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
+import { Key, TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Data Plugin
@@ -27,12 +28,12 @@ export default class Data extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'data',
-            group: 'format',
+            name: TagName.DATA,
+            group: TagGroup.FORMAT,
             attributes: ['value'],
         });
         this.editor.dialogs.set(new DataDialog(this.editor));
-        this._command('data');
-        this._toolbar('Data', 'j', true);
+        this._command(TagName.DATA);
+        this._toolbar('Data', Key.J, true);
     }
 }

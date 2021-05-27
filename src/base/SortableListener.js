@@ -1,5 +1,5 @@
 import Listener from './Listener.js';
-import { Key } from './enum.js';
+import { Key, Position } from './enum.js';
 import { isKey } from './util.js';
 
 /**
@@ -50,20 +50,20 @@ export default class SortableListener extends Listener {
             const isLast = event.target === last;
 
             if (event.key === Key.UP && !isFirst && prev.hasAttribute('data-sortable')) {
-                prev.insertAdjacentHTML('beforebegin', event.target.outerHTML);
+                prev.insertAdjacentHTML(Position.BEFOREBEGIN, event.target.outerHTML);
                 parent.removeChild(event.target);
             } else if (event.key === Key.DOWN && !isLast && next.hasAttribute('data-sortable')) {
-                next.insertAdjacentHTML('afterend', event.target.outerHTML);
+                next.insertAdjacentHTML(Position.AFTEREND, event.target.outerHTML);
                 parent.removeChild(event.target);
             } else if ((event.key === Key.HOME && !isFirst || event.key === Key.DOWN && isLast)
                 && first.hasAttribute('data-sortable')
             ) {
-                first.insertAdjacentHTML('beforebegin', event.target.outerHTML);
+                first.insertAdjacentHTML(Position.BEFOREBEGIN, event.target.outerHTML);
                 parent.removeChild(event.target);
             } else if ((event.key === Key.END && !isLast || event.key === Key.UP && isFirst)
                 && last.hasAttribute('data-sortable')
             ) {
-                last.insertAdjacentHTML('afterend', event.target.outerHTML);
+                last.insertAdjacentHTML(Position.AFTEREND, event.target.outerHTML);
                 parent.removeChild(event.target);
             }
 
@@ -117,7 +117,7 @@ export default class SortableListener extends Listener {
             event.target.releasePointerCapture(event.pointerId);
 
             if (this.#droppable(event.target, element)) {
-                element.insertAdjacentElement('beforebegin', event.target);
+                element.insertAdjacentElement(Position.BEFOREBEGIN, event.target);
             }
         }
     }

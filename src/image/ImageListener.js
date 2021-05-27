@@ -1,4 +1,6 @@
+import Image from './Image.js';
 import Listener from '../base/Listener.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Handles image elements
@@ -21,7 +23,7 @@ export default class ImageListener extends Listener {
      * @return {void}
      */
     sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName('img')).forEach(item => this.#init(item));
+        Array.from(event.detail.element.getElementsByTagName(TagName.IMG)).forEach(item => this.#init(item));
     }
 
     /**
@@ -48,7 +50,7 @@ export default class ImageListener extends Listener {
             element.parentElement.removeChild(element);
         } else {
             element.setAttribute('src', this.editor.url(src));
-            this.editor.dom.wrap(element, 'figure', { attributes: { class: 'image' } });
+            this.editor.dom.wrap(element, TagName.FIGURE, { attributes: { class: Image.name } });
         }
     }
 }

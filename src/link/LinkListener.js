@@ -1,4 +1,5 @@
 import Listener from '../base/Listener.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Handles link elements
@@ -21,7 +22,7 @@ export default class LinkListener extends Listener {
      * @return {void}
      */
     sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName('a')).forEach(item => this.#init(item));
+        Array.from(event.detail.element.getElementsByTagName(TagName.A)).forEach(item => this.#init(item));
     }
 
     /**

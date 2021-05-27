@@ -1,4 +1,5 @@
 import Listener from '../base/Listener.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Block listener to set API and CSS
@@ -21,7 +22,7 @@ export default class BlockListener extends Listener {
      * @return {void}
      */
     sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName('app-block')).forEach(
+        Array.from(event.detail.element.getElementsByTagName(TagName.BLOCK)).forEach(
             /** @param {HTMLElement} item */
             item => item.id || item.parentElement.removeChild(item),
         );

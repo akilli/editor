@@ -1,6 +1,7 @@
 import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
+import { Key, TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Mark Plugin
@@ -26,10 +27,10 @@ export default class Mark extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'mark',
-            group: 'format',
+            name: TagName.MARK,
+            group: TagGroup.FORMAT,
         });
-        this._command('mark');
-        this._toolbar('mark', 'm', true);
+        this._command(TagName.MARK);
+        this._toolbar('mark', Key.M, true);
     }
 }

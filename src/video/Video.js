@@ -5,6 +5,7 @@ import Plugin from '../base/Plugin.js';
 import VideoDialog from './VideoDialog.js';
 import VideoListener from './VideoListener.js';
 import i18n from './i18n.js';
+import { TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Video Plugin
@@ -37,21 +38,22 @@ export default class Video extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'video',
-            group: 'video',
+            name: TagName.VIDEO,
+            group: TagGroup.VIDEO,
             attributes: ['controls', 'height', 'src', 'width'],
             empty: true,
             navigable: true,
         });
         new VideoListener(this.editor);
+        const url = this.editor.config.video.browser;
 
-        if (this.editor.config.video.browser) {
-            this.editor.dialogs.set(new BrowserDialog(this.editor, 'video', this.editor.config.video.browser));
+        if (url) {
+            this.editor.dialogs.set(new BrowserDialog(this.editor, this.constructor.name, url));
         } else {
             this.editor.dialogs.set(new VideoDialog(this.editor));
         }
 
-        this._command('video');
+        this._command(TagName.VIDEO);
         this._toolbar('Video');
     }
 }

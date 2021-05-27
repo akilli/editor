@@ -1,4 +1,5 @@
 import Editor from './Editor.js';
+import { Error, Type } from './enum.js';
 
 /**
  * Listener
@@ -30,7 +31,7 @@ export default class Listener {
      */
     constructor(editor) {
         if (!(editor instanceof Editor)) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         this.#editor = editor;
@@ -43,7 +44,7 @@ export default class Listener {
      * @return {void}
      */
     handleEvent(event) {
-        if (typeof this[event.type] === 'function') {
+        if (typeof this[event.type] === Type.FUNCTION) {
             this[event.type](event);
         }
     }

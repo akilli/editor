@@ -1,6 +1,7 @@
 import Base from '../base/Base.js';
 import BreakFilter from './BreakFilter.js';
 import Plugin from '../base/Plugin.js';
+import { TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Break Plugin
@@ -25,8 +26,8 @@ export default class Break extends Plugin {
      */
     init() {
         this._tag({
-            name: 'br',
-            group: 'break',
+            name: TagName.BR,
+            group: TagGroup.BREAK,
             empty: true,
         });
         this.editor.filters.add(new BreakFilter(this.editor));

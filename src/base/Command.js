@@ -1,4 +1,5 @@
 import Editor from './Editor.js';
+import { Error, TagGroup, Type } from './enum.js';
 
 /**
  * Command
@@ -78,10 +79,10 @@ export default class Command {
     constructor(editor, name, tagName = null) {
         if (!(editor instanceof Editor)
             || !name
-            || typeof name !== 'string'
-            || tagName && typeof tagName !== 'string'
+            || typeof name !== Type.STRING
+            || tagName && typeof tagName !== Type.STRING
         ) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         this.#editor = editor;
@@ -113,7 +114,7 @@ export default class Command {
             );
             const selected = this._selectedElement();
 
-            if (this.tag.group !== 'format') {
+            if (this.tag.group !== TagGroup.FORMAT) {
                 this.editor.dom.insert(this.editor.dom.createElement(this.tag.name, { attributes: attributes }));
             } else if (selected && Object.keys(attributes).length > 0) {
                 selected.parentElement.replaceChild(

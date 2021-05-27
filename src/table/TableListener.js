@@ -1,5 +1,6 @@
 import Listener from '../base/Listener.js';
-import { Key } from '../base/enum.js';
+import Table from './Table.js';
+import { Key, TagName } from '../base/enum.js';
 import { isKey } from '../base/util.js';
 
 /**
@@ -24,7 +25,7 @@ export default class TableListener extends Listener {
      * @return {void}
      */
     inserttable(event) {
-        this.editor.dom.wrap(event.detail.element, 'figure', { attributes: { class: 'table' } });
+        this.editor.dom.wrap(event.detail.element, TagName.FIGURE, { attributes: { class: Table.name } });
 
         if (event.detail.element.tBodies.length > 0
             && event.detail.element.tBodies[0].rows[0]
@@ -194,7 +195,7 @@ export default class TableListener extends Listener {
      * @return {void}
      */
     #cell(element, ref = null) {
-        const name = element.parentElement.localName === 'thead' ? 'th' : 'td';
+        const name = element.parentElement.localName === TagName.THEAD ? TagName.TH : TagName.TD;
         element.insertBefore(this.editor.dom.createElement(name), ref);
     }
 

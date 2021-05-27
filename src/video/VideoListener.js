@@ -1,4 +1,6 @@
 import Listener from '../base/Listener.js';
+import Video from './Video.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Handles video elements
@@ -21,7 +23,7 @@ export default class VideoListener extends Listener {
      * @return {void}
      */
     sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName('video')).forEach(item => this.#init(item));
+        Array.from(event.detail.element.getElementsByTagName(TagName.VIDEO)).forEach(item => this.#init(item));
     }
 
     /**
@@ -49,7 +51,7 @@ export default class VideoListener extends Listener {
         } else {
             element.setAttribute('src', this.editor.url(src));
             element.controls = true;
-            this.editor.dom.wrap(element, 'figure', { attributes: { class: 'video' } });
+            this.editor.dom.wrap(element, TagName.FIGURE, { attributes: { class: Video.name } });
         }
     }
 }

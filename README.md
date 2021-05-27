@@ -93,7 +93,7 @@ deleting the *summary* element will delete the whole *details* widget.
 
 ### Alignable elements
 
-Figure widgets like block quote, table or media elements allow changing alignment by adding or removing the CSS
+Figure widgets like blockquote, table or media elements allow changing alignment by adding or removing the CSS
 class `left`, `center` or `right`. This is done by combining the `Shift` key with the `ArrowLeft` (`left`)
 , `ArrowDown` (`center`) or `ArrowRight` (`right`) or `ArrowUp` (*removes CSS classes*) keys.
 

@@ -1,4 +1,5 @@
 import Listener from './Listener.js';
+import { TagName } from './enum.js';
 
 /**
  * Slotable Listener
@@ -23,9 +24,9 @@ export default class SlotableListener extends Listener {
         if (event.detail.element instanceof HTMLSlotElement) {
             event.detail.element.addEventListener('keydown', this);
         } else if (event.detail.element.hasAttribute('data-slotable')
-            && !event.detail.element.querySelector(':scope > slot')
+            && !event.detail.element.querySelector(':scope > ' + TagName.SLOT)
         ) {
-            event.detail.element.appendChild(this.editor.dom.createElement('slot'));
+            event.detail.element.appendChild(this.editor.dom.createElement(TagName.SLOT));
         }
     }
 

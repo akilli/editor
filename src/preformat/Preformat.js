@@ -5,6 +5,7 @@ import Plugin from '../base/Plugin.js';
 import PreformatFilter from './PreformatFilter.js';
 import PreformatListener from './PreformatListener.js';
 import i18n from './i18n.js';
+import { TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Preformat Plugin
@@ -30,16 +31,16 @@ export default class Preformat extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'pre',
-            group: 'preformat',
-            children: ['break'],
+            name: TagName.PRE,
+            group: TagGroup.PREFORMAT,
+            children: [TagGroup.BREAK],
             deletable: true,
             editable: true,
             navigable: true,
-            enter: 'p',
+            enter: TagName.P,
         });
         new PreformatListener(this.editor);
-        this._command('pre');
+        this._command(TagName.PRE);
         this._toolbar('Preformatted Text');
         this.editor.filters.add(new PreformatFilter(this.editor));
     }

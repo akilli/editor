@@ -1,4 +1,5 @@
 import Listener from '../base/Listener.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Handles paragraph elements
@@ -21,7 +22,7 @@ export default class ParagraphListener extends Listener {
      * @return {void}
      */
     sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName('p')).forEach(item => this.#init(item));
+        Array.from(event.detail.element.getElementsByTagName(TagName.P)).forEach(item => this.#init(item));
     }
 
     /**

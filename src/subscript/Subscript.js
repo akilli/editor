@@ -1,6 +1,7 @@
 import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
+import { Key, TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Subscript Plugin
@@ -26,10 +27,10 @@ export default class Subscript extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'sub',
-            group: 'format',
+            name: TagName.SUB,
+            group: TagGroup.FORMAT,
         });
-        this._command('sub');
-        this._toolbar('subscript', 'x', true);
+        this._command(TagName.SUB);
+        this._toolbar('subscript', Key.X, true);
     }
 }

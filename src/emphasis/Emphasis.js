@@ -1,6 +1,7 @@
 import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
+import { Key, TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Emphasis Plugin
@@ -26,10 +27,10 @@ export default class Emphasis extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'em',
-            group: 'format',
+            name: TagName.EM,
+            group: TagGroup.FORMAT,
         });
-        this._command('em');
-        this._toolbar('emphasized', 'e', true);
+        this._command(TagName.EM);
+        this._toolbar('emphasized', Key.E, true);
     }
 }

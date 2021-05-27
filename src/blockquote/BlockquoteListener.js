@@ -1,9 +1,11 @@
+import Blockquote from './Blockquote.js';
 import Listener from '../base/Listener.js';
+import { TagName } from '../base/enum.js';
 
 /**
- * Handles block quote elements
+ * Handles blockquote elements
  */
-export default class BlockQuoteListener extends Listener {
+export default class BlockquoteListener extends Listener {
     /**
      * @inheritDoc
      */
@@ -21,7 +23,7 @@ export default class BlockQuoteListener extends Listener {
      * @return {void}
      */
     insertblockquote(event) {
-        this.editor.dom.wrap(event.detail.element, 'figure', { attributes: { class: 'quote' } });
+        this.editor.dom.wrap(event.detail.element, TagName.FIGURE, { attributes: { class: Blockquote.name } });
     }
 
     /**
@@ -32,7 +34,9 @@ export default class BlockQuoteListener extends Listener {
      * @return {void}
      */
     deleteblockquote(event) {
-        if (event.detail.target.localName === 'figure' && event.detail.target.classList.contains('quote')) {
+        if (event.detail.target.localName === TagName.FIGURE
+            && event.detail.target.classList.contains(Blockquote.name)
+        ) {
             event.detail.target.parentElement.removeChild(event.detail.target);
         }
     }

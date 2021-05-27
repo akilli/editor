@@ -5,6 +5,7 @@ import BlockListener from './BlockListener.js';
 import BrowserDialog from '../base/BrowserDialog.js';
 import Plugin from '../base/Plugin.js';
 import i18n from '../iframe/i18n.js';
+import { TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Block Plugin
@@ -36,10 +37,10 @@ export default class Block extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this.editor.dom.registerElement('app-block', BlockElement);
+        this.editor.dom.registerElement(TagName.BLOCK, BlockElement);
         this._tag({
-            name: 'app-block',
-            group: 'block',
+            name: TagName.BLOCK,
+            group: TagGroup.BLOCK,
             attributes: ['id'],
             deletable: true,
             empty: true,
@@ -48,14 +49,15 @@ export default class Block extends Plugin {
             sortable: true,
         });
         new BlockListener(this.editor);
+        const url = this.editor.config.block.browser;
 
-        if (this.editor.config.block.browser) {
-            this.editor.dialogs.set(new BrowserDialog(this.editor, 'block', this.editor.config.block.browser));
+        if (url) {
+            this.editor.dialogs.set(new BrowserDialog(this.editor, this.constructor.name, url));
         } else {
             this.editor.dialogs.set(new BlockDialog(this.editor));
         }
 
-        this._command('app-block');
+        this._command(TagName.BLOCK);
         this._toolbar('Block');
     }
 }

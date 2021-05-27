@@ -1,4 +1,6 @@
 import Command from '../base/Command.js';
+import Table from './Table.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Table Command
@@ -10,7 +12,7 @@ export default class TableCommand extends Command {
      * @param {Editor} editor
      */
     constructor(editor) {
-        super(editor, 'table', 'table');
+        super(editor, Table.name, TagName.TABLE);
     }
 
     /**
@@ -22,16 +24,16 @@ export default class TableCommand extends Command {
      * @return {void}
      */
     _insert({ rows = 1, cols = 1 } = {}) {
-        const figure = this.editor.dom.createElement('figure', { attributes: { class: 'table' } });
-        const table = this.editor.dom.createElement('table');
-        const tbody = this.editor.dom.createElement('tbody');
+        const figure = this.editor.dom.createElement(TagName.FIGURE, { attributes: { class: Table.name } });
+        const table = this.editor.dom.createElement(TagName.TABLE);
+        const tbody = this.editor.dom.createElement(TagName.TBODY);
 
         for (let i = 0; i < rows; i++) {
-            const tr = this.editor.dom.createElement('tr');
+            const tr = this.editor.dom.createElement(TagName.TR);
             tbody.appendChild(tr);
 
             for (let j = 0; j < cols; ++j) {
-                tr.appendChild(this.editor.dom.createElement('td'));
+                tr.appendChild(this.editor.dom.createElement(TagName.TD));
             }
         }
 

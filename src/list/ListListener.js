@@ -1,4 +1,5 @@
 import Listener from '../base/Listener.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Handles list elements
@@ -24,7 +25,7 @@ export default class ListListener extends Listener {
      * @return {void}
      */
     sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName('li')).forEach(item => this.#init(item));
+        Array.from(event.detail.element.getElementsByTagName(TagName.LI)).forEach(item => this.#init(item));
     }
 
     /**
@@ -60,7 +61,7 @@ export default class ListListener extends Listener {
      */
     insertol(event) {
         if (event.detail.element.children.length === 0) {
-            event.detail.element.appendChild(this.editor.dom.createElement('li'));
+            event.detail.element.appendChild(this.editor.dom.createElement(TagName.LI));
         }
     }
 
@@ -84,7 +85,7 @@ export default class ListListener extends Listener {
         if (!(element.parentElement instanceof HTMLOListElement)
             && !(element.parentElement instanceof HTMLUListElement)
         ) {
-            this.editor.dom.wrap(element, 'ul');
+            this.editor.dom.wrap(element, TagName.UL);
         }
     }
 }

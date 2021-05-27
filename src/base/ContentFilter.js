@@ -1,4 +1,5 @@
 import Filter from './Filter.js';
+import { TagGroup, TagName } from './enum.js';
 
 /**
  * Content filter
@@ -9,12 +10,12 @@ export default class ContentFilter extends Filter {
      */
     filter(element) {
         const tag = this.editor.tags.get(element);
-        const allowedParagraph = this.editor.tags.allowed(element, 'p');
-        const allowedText = tag.editable || tag.group === 'format';
+        const allowedParagraph = this.editor.tags.allowed(element, TagName.P);
+        const allowedText = tag.editable || tag.group === TagGroup.FORMAT;
         let p = [];
         const wrap = (ref = null) => {
             if (allowedParagraph && p.length > 0) {
-                element.insertBefore(this.editor.dom.createElement('p', { html: p.join(' ') }), ref);
+                element.insertBefore(this.editor.dom.createElement(TagName.P, { html: p.join(' ') }), ref);
                 p = [];
             }
         };
@@ -29,7 +30,7 @@ export default class ContentFilter extends Filter {
                 if (childTag && this.editor.tags.allowed(element, realChild)) {
                     wrap(realChild);
                     this.#element(realChild, childTag);
-                } else if (childTag && childTag.group === 'format' && allowedParagraph) {
+                } else if (childTag && childTag.group === TagGroup.FORMAT && allowedParagraph) {
                     const filteredChild = this.#element(realChild, childTag);
 
                     if (filteredChild) {

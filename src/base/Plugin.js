@@ -1,6 +1,7 @@
 import Command from './Command.js';
 import Editor from './Editor.js';
 import Tag from './Tag.js';
+import { Error, TagName, Type } from './enum.js';
 
 /**
  * Plugin
@@ -28,7 +29,7 @@ export default class Plugin {
      * @type {string}
      */
     static get name() {
-        throw 'Missing plugin name';
+        throw Error.MISSING_NAME;
     }
 
     /**
@@ -56,7 +57,7 @@ export default class Plugin {
      */
     constructor(editor) {
         if (!(editor instanceof Editor)) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         this.#editor = editor;
@@ -69,7 +70,7 @@ export default class Plugin {
      * @return {void}
      */
     init() {
-        throw 'Not implemented';
+        throw Error.NOT_IMPLEMENTED;
     }
 
     /**
@@ -97,17 +98,6 @@ export default class Plugin {
     }
 
     /**
-     * Registers a command with given parameters
-     *
-     * @protected
-     * @param {string} tagName
-     * @return {void}
-     */
-    _command(tagName) {
-        this.editor.commands.set(new Command(this.editor, this.constructor.name, tagName));
-    }
-
-    /**
      * Creates and registers a tag with given options
      *
      * @protected
@@ -116,6 +106,17 @@ export default class Plugin {
      */
     _tag(opts) {
         this.editor.tags.set(new Tag(opts));
+    }
+
+    /**
+     * Registers a command with given parameters
+     *
+     * @protected
+     * @param {string} tagName
+     * @return {void}
+     */
+    _command(tagName) {
+        this.editor.commands.set(new Command(this.editor, this.constructor.name, tagName));
     }
 
     /**
@@ -128,12 +129,12 @@ export default class Plugin {
      * @return {void}
      */
     _toolbar(label, key = null, format = false) {
-        if (!label || typeof label !== 'string' || key && typeof key !== 'string') {
-            throw 'Invalid argument';
+        if (!label || typeof label !== Type.STRING || key && typeof key !== Type.STRING) {
+            throw Error.INVALID_ARGUMENT;
         }
 
         const translatedLabel = this._(label);
-        const button = this.editor.dom.createElement('button', {
+        const button = this.editor.dom.createElement(TagName.BUTTON, {
             attributes: {
                 type: 'button',
                 'data-command': this.constructor.name,

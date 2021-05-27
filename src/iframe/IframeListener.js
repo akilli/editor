@@ -1,4 +1,6 @@
+import Iframe from './Iframe.js';
 import Listener from '../base/Listener.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Handles iframe elements
@@ -21,7 +23,7 @@ export default class IframeListener extends Listener {
      * @return {void}
      */
     sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName('iframe')).forEach(item => this.#init(item));
+        Array.from(event.detail.element.getElementsByTagName(TagName.IFRAME)).forEach(item => this.#init(item));
     }
 
     /**
@@ -49,7 +51,7 @@ export default class IframeListener extends Listener {
         } else {
             element.setAttribute('src', this.editor.url(src));
             element.allowFullscreen = true;
-            this.editor.dom.wrap(element, 'figure', { attributes: { class: 'iframe' } });
+            this.editor.dom.wrap(element, TagName.FIGURE, { attributes: { class: Iframe.name } });
         }
     }
 }

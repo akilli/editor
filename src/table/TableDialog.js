@@ -1,4 +1,6 @@
 import Dialog from '../base/Dialog.js';
+import Table from './Table.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Table Dialog
@@ -10,14 +12,14 @@ export default class TableDialog extends Dialog {
      * @param {Editor} editor
      */
     constructor(editor) {
-        super(editor, 'table');
+        super(editor, Table.name);
     }
 
     /**
      * @inheritDoc
      */
     _initFieldset(fieldset) {
-        fieldset.appendChild(this.editor.dom.createElement('legend', { html: this._('Table') }));
+        fieldset.appendChild(this.editor.dom.createElement(TagName.LEGEND, { html: this._('Table') }));
         fieldset.appendChild(
             this._createInput('rows', 'number', this._('Rows'), { min: '1', required: 'required', value: '1' }),
         );

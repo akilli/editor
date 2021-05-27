@@ -1,6 +1,6 @@
 import Details from './Details.js';
 import Listener from '../base/Listener.js';
-import { Key } from '../base/enum.js';
+import { Key, Position, TagName } from '../base/enum.js';
 import { isKey } from '../base/util.js';
 
 /**
@@ -26,8 +26,11 @@ export default class DetailsListener extends Listener {
     insertdetails(event) {
         event.detail.element.open = true;
 
-        if (!event.detail.element.querySelector(':scope > summary:first-child')) {
-            event.detail.element.insertAdjacentElement('afterbegin', this.editor.dom.createElement('summary'));
+        if (!event.detail.element.querySelector(`:scope > ${TagName.SUMMARY}:first-child`)) {
+            event.detail.element.insertAdjacentElement(
+                Position.AFTERBEGIN,
+                this.editor.dom.createElement(TagName.SUMMARY),
+            );
         }
     }
 
@@ -84,9 +87,12 @@ export default class DetailsListener extends Listener {
         if (!element.textContent.trim()) {
             element.textContent = this.editor.translator.translate(Details.name, 'Details');
         } else {
-            element.querySelectorAll('br:not(:last-child)').forEach(item => item.parentElement.removeChild(item));
+            element.querySelectorAll(TagName.BR + ':not(:last-child)').forEach(
+                item => item.parentElement.removeChild(item),
+            );
         }
 
-        element.lastElementChild instanceof HTMLBRElement || element.appendChild(this.editor.dom.createElement('br'));
+        element.lastElementChild instanceof HTMLBRElement
+        || element.appendChild(this.editor.dom.createElement(TagName.BR));
     }
 }

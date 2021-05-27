@@ -1,4 +1,6 @@
 import Listener from '../base/Listener.js';
+import Preformat from './Preformat.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Handles preformatted text elements
@@ -21,7 +23,7 @@ export default class PreformatListener extends Listener {
      * @return {void}
      */
     insertpre(event) {
-        this.editor.dom.wrap(event.detail.element, 'figure', { attributes: { class: 'preformat' } });
+        this.editor.dom.wrap(event.detail.element, TagName.FIGURE, { attributes: { class: Preformat.name } });
     }
 
     /**
@@ -32,7 +34,9 @@ export default class PreformatListener extends Listener {
      * @return {void}
      */
     deletepre(event) {
-        if (event.detail.target.localName === 'figure' && event.detail.target.classList.contains('preformat')) {
+        if (event.detail.target.localName === TagName.FIGURE
+            && event.detail.target.classList.contains(Preformat.name)
+        ) {
             event.detail.target.parentElement.removeChild(event.detail.target);
         }
     }

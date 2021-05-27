@@ -1,4 +1,6 @@
+import Abbreviation from './Abbreviation.js';
 import Dialog from '../base/Dialog.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Abbreviation Dialog
@@ -10,14 +12,14 @@ export default class AbbreviationDialog extends Dialog {
      * @param {Editor} editor
      */
     constructor(editor) {
-        super(editor, 'abbreviation');
+        super(editor, Abbreviation.name);
     }
 
     /**
      * @inheritDoc
      */
     _initFieldset(fieldset) {
-        fieldset.appendChild(this.editor.dom.createElement('legend', { html: this._('Abbreviation') }));
+        fieldset.appendChild(this.editor.dom.createElement(TagName.LEGEND, { html: this._('Abbreviation') }));
         fieldset.appendChild(this._createInput('title', 'text', this._('Full term'), {
             placeholder: this._('Insert full term or leave empty to remove it'),
         }));

@@ -6,6 +6,7 @@ import FilterManager from './FilterManager.js';
 import PluginManager from './PluginManager.js';
 import TagManager from './TagManager.js';
 import Translator from './Translator.js';
+import { Error, Position, TagName } from './enum.js';
 
 /**
  * Base Editor
@@ -284,21 +285,21 @@ export default class Editor {
      */
     constructor(orig, config = {}) {
         if (!(orig instanceof HTMLElement) || !(config instanceof Object)) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         this.#orig = orig;
         this.#config = config;
         this.#dom = new Dom(this, this.orig.ownerDocument);
-        this.#element = this.dom.createElement('akilli-editor');
-        this.#toolbar = this.dom.createElement('editor-toolbar', { attributes: { role: 'toolbar' } });
+        this.#element = this.dom.createElement(TagName.EDITOR);
+        this.#toolbar = this.dom.createElement(TagName.TOOLBAR, { attributes: { role: 'toolbar' } });
         this.element.appendChild(this.toolbar);
         this.#toolbarDispatcher = new Dispatcher(this.toolbar);
-        this.#formatbar = this.dom.createElement('editor-formatbar', { attributes: { role: 'toolbar' } });
+        this.#formatbar = this.dom.createElement(TagName.FORMATBAR, { attributes: { role: 'toolbar' } });
         this.formatbar.hidden = true;
         this.element.appendChild(this.formatbar);
         this.#formatbarDispatcher = new Dispatcher(this.formatbar);
-        this.#root = this.dom.createElement('editor-root');
+        this.#root = this.dom.createElement(TagName.ROOT);
         this.element.appendChild(this.root);
         this.#rootDispatcher = new Dispatcher(this.root);
     }
@@ -369,7 +370,7 @@ export default class Editor {
             this.setHtml(this.orig.innerHTML);
         }
 
-        this.orig.insertAdjacentElement('afterend', this.element);
+        this.orig.insertAdjacentElement(Position.AFTEREND, this.element);
         this.orig.hidden = true;
     }
 
@@ -431,7 +432,7 @@ export default class Editor {
     url(url) {
         const origin = this.dom.window.origin || this.dom.window.location.origin;
         /** @type {HTMLAnchorElement} */
-        const a = this.dom.createElement('a', { attributes: { href: url } });
+        const a = this.dom.createElement(TagName.A, { attributes: { href: url } });
 
         return origin === a.origin ? a.pathname : a.href;
     }

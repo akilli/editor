@@ -1,4 +1,6 @@
 import Filter from '../base/Filter.js';
+import Preformat from './Preformat.js';
+import { Position, TagName } from '../base/enum.js';
 
 /**
  * Filters preformatted text figure
@@ -9,12 +11,12 @@ export default class PreformatFilter extends Filter {
      */
     filter(element) {
         if (element instanceof HTMLElement
-            && element.localName === 'figure'
-            && element.classList.contains('preformat')
-            && element.querySelector(':scope > pre')
-            && !element.querySelector(':scope > figcaption')
+            && element.localName === TagName.FIGURE
+            && element.classList.contains(Preformat.name)
+            && element.querySelector(':scope > ' + TagName.PRE)
+            && !element.querySelector(':scope > ' + TagName.FIGCAPTION)
         ) {
-            element.insertAdjacentElement('beforebegin', element.querySelector(':scope > pre'));
+            element.insertAdjacentElement(Position.BEFOREBEGIN, element.querySelector(':scope > ' + TagName.PRE));
             element.innerHTML = '';
         }
     }

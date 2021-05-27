@@ -2,6 +2,7 @@ import Base from '../base/Base.js';
 import List from '../list/List.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
+import { TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Unordered List Plugin
@@ -27,16 +28,16 @@ export default class UnorderedList extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'ul',
-            group: 'list',
-            children: ['listitem'],
+            name: TagName.UL,
+            group: TagGroup.LIST,
+            children: [TagGroup.LISTITEM],
             arbitrary: true,
             deletable: true,
             focusable: true,
             navigable: true,
             sortable: true,
         });
-        this._command('ul');
+        this._command(TagName.UL);
         this._toolbar('Unordered List');
     }
 }

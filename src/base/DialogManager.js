@@ -1,4 +1,5 @@
 import Dialog from './Dialog.js';
+import { Error } from './enum.js';
 
 /**
  * Dialog Manager
@@ -38,7 +39,7 @@ export default class DialogManager {
      */
     set(dialog) {
         if (!(dialog instanceof Dialog)) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         this.#items.set(dialog.name, dialog);

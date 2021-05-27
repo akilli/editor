@@ -2,6 +2,7 @@ import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 import SectionDialog from './SectionDialog.js';
 import i18n from './i18n.js';
+import { TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Section Plugin
@@ -27,21 +28,21 @@ export default class Section extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'section',
-            group: 'container',
+            name: TagName.SECTION,
+            group: TagGroup.CONTAINER,
             children: [
-                'audio',
-                'figure',
-                'heading',
-                'iframe',
-                'image',
-                'list',
-                'paragraph',
-                'preformat',
-                'quote',
-                'rule',
-                'table',
-                'video',
+                TagGroup.AUDIO,
+                TagGroup.FIGURE,
+                TagGroup.HEADING,
+                TagGroup.IFRAME,
+                TagGroup.IMAGE,
+                TagGroup.LIST,
+                TagGroup.PARAGRAPH,
+                TagGroup.PREFORMAT,
+                TagGroup.QUOTE,
+                TagGroup.RULE,
+                TagGroup.TABLE,
+                TagGroup.VIDEO,
             ],
             attributes: ['class'],
             arbitrary: true,
@@ -52,7 +53,7 @@ export default class Section extends Plugin {
             sortable: true,
         });
         this.editor.dialogs.set(new SectionDialog(this.editor));
-        this._command('section');
+        this._command(TagName.SECTION);
         this._toolbar('Section');
     }
 }

@@ -1,6 +1,7 @@
 import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
+import { Key, TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Definition Plugin
@@ -26,10 +27,10 @@ export default class Definition extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'dfn',
-            group: 'format',
+            name: TagName.DFN,
+            group: TagGroup.FORMAT,
         });
-        this._command('dfn');
-        this._toolbar('Definition', 'd', true);
+        this._command(TagName.DFN);
+        this._toolbar('Definition', Key.D, true);
     }
 }

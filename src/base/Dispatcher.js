@@ -1,3 +1,5 @@
+import { Error, TagName, Type } from './enum.js';
+
 /**
  * Event Dispatcher
  */
@@ -16,7 +18,7 @@ export default class Dispatcher {
      */
     constructor(element) {
         if (!(element instanceof HTMLElement)) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         this.#element = element;
@@ -32,11 +34,12 @@ export default class Dispatcher {
      * @return {void}
      */
     dispatch(type, element = null, target = null) {
-        if (!type || typeof type !== 'string'
+        if (!type
+            || typeof type !== Type.STRING
             || element && !(element instanceof HTMLElement)
             || target && !(target instanceof HTMLElement)
         ) {
-            throw 'Invalid argument';
+            throw Error.INVALID_ARGUMENT;
         }
 
         this.#element.dispatchEvent(new CustomEvent(type, { detail: { element: element, target: target } }));
@@ -50,8 +53,8 @@ export default class Dispatcher {
      * @return {void}
      */
     register(call, opts = { childList: true, subtree: true }) {
-        if (typeof call !== 'function') {
-            throw 'Invalid argument';
+        if (typeof call !== Type.FUNCTION) {
+            throw Error.INVALID_ARGUMENT;
         }
 
         const observer = new MutationObserver(call);
@@ -84,7 +87,7 @@ export default class Dispatcher {
             record.addedNodes.forEach(element => {
                 if (element instanceof HTMLElement) {
                     this.#dispatch('insert', element, record.target);
-                    Array.from(element.getElementsByTagName('*')).forEach(
+                    Array.from(element.getElementsByTagName(TagName.ALL)).forEach(
                         item => this.#dispatch('insert', item, record.target),
                     );
                 }

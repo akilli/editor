@@ -1,4 +1,5 @@
 import Dialog from './Dialog.js';
+import { Error, Type } from './enum.js';
 
 /**
  * Browser Dialog
@@ -21,8 +22,8 @@ export default class BrowserDialog extends Dialog {
     constructor(editor, name, url) {
         super(editor, name);
 
-        if (!url || typeof url !== 'string') {
-            throw 'Invalid argument';
+        if (!url || typeof url !== Type.STRING) {
+            throw Error.INVALID_ARGUMENT;
         }
 
         this.#url = url;

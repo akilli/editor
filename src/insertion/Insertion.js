@@ -1,6 +1,7 @@
 import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
+import { Key, TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Insertion Plugin
@@ -26,10 +27,10 @@ export default class Insertion extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'ins',
-            group: 'format',
+            name: TagName.INS,
+            group: TagGroup.FORMAT,
         });
-        this._command('ins');
-        this._toolbar('Text Insertion', 'f', true);
+        this._command(TagName.INS);
+        this._toolbar('Text Insertion', Key.F, true);
     }
 }

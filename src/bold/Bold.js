@@ -1,6 +1,7 @@
 import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
+import { Key, TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Bold Plugin
@@ -26,10 +27,10 @@ export default class Bold extends Plugin {
     init() {
         this._i18n(i18n);
         this._tag({
-            name: 'b',
-            group: 'format',
+            name: TagName.B,
+            group: TagGroup.FORMAT,
         });
-        this._command('b');
-        this._toolbar('bold', 'b', true);
+        this._command(TagName.B);
+        this._toolbar('bold', Key.B, true);
     }
 }
