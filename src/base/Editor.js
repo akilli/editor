@@ -291,10 +291,10 @@ export default class Editor {
         this.#config = config;
         this.#dom = new Dom(this, this.orig.ownerDocument);
         this.#element = this.dom.createElement('akilli-editor');
-        this.#toolbar = this.dom.createElement('editor-toolbar', {attributes: {role: 'toolbar'}});
+        this.#toolbar = this.dom.createElement('editor-toolbar', { attributes: { role: 'toolbar' } });
         this.element.appendChild(this.toolbar);
         this.#toolbarEvents = new Dispatcher(this.toolbar);
-        this.#formats = this.dom.createElement('editor-formats', {attributes: {role: 'toolbar'}});
+        this.#formats = this.dom.createElement('editor-formats', { attributes: { role: 'toolbar' } });
         this.formats.hidden = true;
         this.element.appendChild(this.formats);
         this.#formatsEvents = new Dispatcher(this.formats);
@@ -389,7 +389,7 @@ export default class Editor {
      * @return {string}
      */
     getHtml() {
-        const root = this.dom.createElement(this.root.localName, {html: this.root.innerHTML});
+        const root = this.dom.createElement(this.root.localName, { html: this.root.innerHTML });
         this.filters.filter(root);
         this.rootEvents.dispatch('gethtml', root);
 
@@ -403,7 +403,7 @@ export default class Editor {
      * @return {void}
      */
     setHtml(html) {
-        const root = this.dom.createElement(this.root.localName, {html: html});
+        const root = this.dom.createElement(this.root.localName, { html: html });
         this.rootEvents.dispatch('sethtml', root);
         this.filters.filter(root);
         this.root.innerHTML = root.innerHTML;
@@ -431,7 +431,7 @@ export default class Editor {
     url(url) {
         const origin = this.dom.window.origin || this.dom.window.location.origin;
         /** @type {HTMLAnchorElement} */
-        const a = this.dom.createElement('a', {attributes: {href: url}});
+        const a = this.dom.createElement('a', { attributes: { href: url } });
 
         return origin === a.origin ? a.pathname : a.href;
     }

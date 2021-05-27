@@ -8,4 +8,4 @@ services:
     ports:
       - "20000:20000"
     volumes:
-    - .:/app
+      - .:/app

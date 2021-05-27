@@ -29,7 +29,7 @@
             },
         };
         const rte = document.getElementById('rte');
-        const {default: Editor} = await import(editorPath());
+        const { default: Editor } = await import(editorPath());
         const editor = Editor.create(rte, config);
         console.log(editor);
 

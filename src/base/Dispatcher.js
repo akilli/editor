@@ -39,7 +39,7 @@ export default class Dispatcher {
             throw 'Invalid argument';
         }
 
-        this.#element.dispatchEvent(new CustomEvent(type, {detail: {element: element, target: target}}));
+        this.#element.dispatchEvent(new CustomEvent(type, { detail: { element: element, target: target } }));
     }
 
     /**
@@ -49,7 +49,7 @@ export default class Dispatcher {
      * @param {MutationObserverInit} [opts = {childList: true, subtree: true}]
      * @return {void}
      */
-    register(call, opts = {childList: true, subtree: true}) {
+    register(call, opts = { childList: true, subtree: true }) {
         if (typeof call !== 'function') {
             throw 'Invalid argument';
         }

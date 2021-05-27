@@ -34,7 +34,7 @@ export default class EditableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (Key.is(event, Key.ENTER, {shift: true}) && !this.editor.tags.allowed(event.target, 'br')) {
+        if (Key.is(event, Key.ENTER, { shift: true }) && !this.editor.tags.allowed(event.target, 'br')) {
             event.preventDefault();
             event.stopPropagation();
         } else if (Key.is(event, Key.ENTER)) {
@@ -67,7 +67,7 @@ export default class EditableListener extends Listener {
             event.target.parentElement.removeChild(event.target);
             event.preventDefault();
             event.stopPropagation();
-        } else if (/^[A-Z]$/.test(event.key) && Key.is(event, event.key, {alt: true, shift: true})) {
+        } else if (/^[A-Z]$/.test(event.key) && Key.is(event, event.key, { alt: true, shift: true })) {
             event.preventDefault();
             event.stopPropagation();
             this.editor.formats.querySelector(`button[data-key=${event.key.toLowerCase()}]`)?.click();

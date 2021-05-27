@@ -129,7 +129,7 @@ export default class Dom {
      */
     registerElement(name, constructor, parentName = null) {
         if (typeof this.window.customElements.get(name) === 'undefined') {
-            this.window.customElements.define(name, constructor, parentName ? {extends: parentName} : null);
+            this.window.customElements.define(name, constructor, parentName ? { extends: parentName } : null);
         }
     }
 
@@ -141,7 +141,7 @@ export default class Dom {
      * @param {string} [html = '']
      * @return {HTMLElement}
      */
-    createElement(name, {attributes = {}, html = ''} = {}) {
+    createElement(name, { attributes = {}, html = '' } = {}) {
         const element = this.document.createElement(name);
         element.innerHTML = html;
         Object.entries(attributes).forEach(([key, val]) => val && element.setAttribute(key, `${val}`));
@@ -389,13 +389,13 @@ export default class Dom {
      * @param {Object} [params = {}]
      * @return {void}
      */
-    open({url, name, call, params = {}}) {
+    open({ url, name, call, params = {} }) {
         if (!url || typeof url !== 'string' || !name || typeof name !== 'string' || typeof call !== 'function') {
             throw 'Invalid argument';
         }
 
         /** @type {HTMLAnchorElement} */
-        const a = this.createElement('a', {attributes: {href: url}});
+        const a = this.createElement('a', { attributes: { href: url } });
         const urlObject = new URL(a.href);
         Object.entries(params).forEach(([key, val]) => urlObject.searchParams.set(key, `${val}`));
         const win = this.window.open(urlObject.toString(), name, this.#features());
@@ -434,7 +434,7 @@ export default class Dom {
         const features = Object.assign(
             {},
             this.#browser,
-            {height: `${this.getHeight()}`, width: `${this.getWidth()}`},
+            { height: `${this.getHeight()}`, width: `${this.getWidth()}` },
             this.editor.config.base.browser,
         );
 

@@ -14,7 +14,7 @@ export default class ContentFilter extends Filter {
         let p = [];
         const wrap = (ref = null) => {
             if (allowedParagraph && p.length > 0) {
-                element.insertBefore(this.editor.dom.createElement('p', {html: p.join(' ')}), ref);
+                element.insertBefore(this.editor.dom.createElement('p', { html: p.join(' ') }), ref);
                 p = [];
             }
         };
@@ -73,7 +73,7 @@ export default class ContentFilter extends Filter {
             return element;
         }
 
-        const convert = this.editor.dom.createElement(name, {html: element.innerHTML});
+        const convert = this.editor.dom.createElement(name, { html: element.innerHTML });
         element.parentElement.replaceChild(convert, element);
 
         return convert;

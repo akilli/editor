@@ -21,8 +21,8 @@ export default class TableCommand extends Command {
      * @param {number} cols
      * @return {void}
      */
-    _insert({rows = 1, cols = 1} = {}) {
-        const figure = this.editor.dom.createElement('figure', {attributes: {class: 'table'}});
+    _insert({ rows = 1, cols = 1 } = {}) {
+        const figure = this.editor.dom.createElement('figure', { attributes: { class: 'table' } });
         const table = this.editor.dom.createElement('table');
         const tbody = this.editor.dom.createElement('tbody');
 

@@ -49,7 +49,7 @@ export default class VideoListener extends Listener {
         } else {
             element.setAttribute('src', this.editor.url(src));
             element.controls = true;
-            this.editor.dom.wrap(element, 'figure', {attributes: {class: 'video'}});
+            this.editor.dom.wrap(element, 'figure', { attributes: { class: 'video' } });
         }
     }
 }

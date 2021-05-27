@@ -107,7 +107,7 @@ export default class Tag {
      * @param {string} group
      * @param {Object.<string, any>} [opts = {}]
      */
-    constructor({name, group, ...opts} = {}) {
+    constructor({ name, group, ...opts } = {}) {
         const reqStr = item => item && typeof item === 'string';
         const optStr = item => typeof item === 'undefined' || item && typeof item === 'string';
         const optArr = item => typeof item === 'undefined' || Array.isArray(item) && !item.find(i => !reqStr(i));

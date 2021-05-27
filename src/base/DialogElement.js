@@ -52,7 +52,7 @@ export default class DialogElement extends HTMLElement {
      */
     show() {
         this.open = true;
-        this.dispatchEvent(new CustomEvent('show', {detail: {element: this, target: this}}));
+        this.dispatchEvent(new CustomEvent('show', { detail: { element: this, target: this } }));
     }
 
     /**
@@ -62,6 +62,6 @@ export default class DialogElement extends HTMLElement {
      */
     close() {
         this.open = false;
-        this.dispatchEvent(new CustomEvent('close', {detail: {element: this, target: this}}));
+        this.dispatchEvent(new CustomEvent('close', { detail: { element: this, target: this } }));
     }
 }

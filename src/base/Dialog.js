@@ -66,17 +66,17 @@ export default class Dialog {
         };
         this.#cleanup();
 
-        const form = this.editor.dom.createElement('form', {attributes: {method: 'dialog'}});
+        const form = this.editor.dom.createElement('form', { attributes: { method: 'dialog' } });
         /** @type {HTMLFieldSetElement} */
         const fieldset = this.editor.dom.createElement('fieldset');
         const cancelButton = this.editor.dom.createElement(
             'button',
-            {attributes: {type: 'button'}, html: this._('Cancel')},
+            { attributes: { type: 'button' }, html: this._('Cancel') },
         );
         cancelButton.addEventListener('click', close);
         form.appendChild(fieldset);
         form.appendChild(cancelButton);
-        form.appendChild(this.editor.dom.createElement('button', {html: this._('Save')}));
+        form.appendChild(this.editor.dom.createElement('button', { html: this._('Save') }));
         this._initFieldset(fieldset);
         form.addEventListener('submit', event => {
             event.preventDefault();
@@ -138,10 +138,10 @@ export default class Dialog {
             throw 'Invalid argument';
         }
 
-        Object.assign(attributes, {id: `editor-${name}`, name: name, type: type});
+        Object.assign(attributes, { id: `editor-${name}`, name: name, type: type });
         const div = this.editor.dom.createElement('div');
-        div.appendChild(this.editor.dom.createElement('label', {attributes: {for: attributes.id}, html: label}));
-        div.appendChild(this.editor.dom.createElement('input', {attributes: attributes}));
+        div.appendChild(this.editor.dom.createElement('label', { attributes: { for: attributes.id }, html: label }));
+        div.appendChild(this.editor.dom.createElement('input', { attributes: attributes }));
 
         if (attributes.required) {
             div.setAttribute('data-required', '');

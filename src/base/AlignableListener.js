@@ -34,9 +34,9 @@ export default class AlignableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        const map = {ArrowUp: null, ArrowLeft: 'left', ArrowDown: 'center', ArrowRight: 'right'};
+        const map = { ArrowUp: null, ArrowLeft: 'left', ArrowDown: 'center', ArrowRight: 'right' };
 
-        if (event.target === event.currentTarget && Key.is(event, Object.keys(map), {shift: true})) {
+        if (event.target === event.currentTarget && Key.is(event, Object.keys(map), { shift: true })) {
             event.preventDefault();
             event.stopPropagation();
             event.target.classList.remove(...Object.values(map));

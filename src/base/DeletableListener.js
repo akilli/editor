@@ -34,7 +34,7 @@ export default class DeletableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (event.target === event.currentTarget && Key.is(event, Key.DEL, {ctrl: true})) {
+        if (event.target === event.currentTarget && Key.is(event, Key.DEL, { ctrl: true })) {
             if (event.target.previousElementSibling instanceof HTMLElement) {
                 this.editor.dom.focusEnd(event.target.previousElementSibling);
             }

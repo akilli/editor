@@ -23,7 +23,7 @@ export default class TableListener extends Listener {
      * @return {void}
      */
     inserttable(event) {
-        this.editor.dom.wrap(event.detail.element, 'figure', {attributes: {class: 'table'}});
+        this.editor.dom.wrap(event.detail.element, 'figure', { attributes: { class: 'table' } });
 
         if (event.detail.element.tBodies.length > 0
             && event.detail.element.tBodies[0].rows[0]
@@ -75,9 +75,9 @@ export default class TableListener extends Listener {
         const table = base instanceof HTMLTableElement ? base : base.parentElement;
         const keys = [Key.LEFT, Key.RIGHT, Key.UP, Key.DOWN];
         const isNav = Key.is(event, keys);
-        const isSort = Key.is(event, keys, {ctrl: true});
-        const isAdd = Key.is(event, keys, {alt: true});
-        const isDel = Key.is(event, keys, {alt: true, shift: true});
+        const isSort = Key.is(event, keys, { ctrl: true });
+        const isAdd = Key.is(event, keys, { alt: true });
+        const isDel = Key.is(event, keys, { alt: true, shift: true });
 
         if (cell instanceof HTMLTableCellElement
             && row instanceof HTMLTableRowElement

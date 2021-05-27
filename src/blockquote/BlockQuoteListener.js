@@ -21,7 +21,7 @@ export default class BlockQuoteListener extends Listener {
      * @return {void}
      */
     insertblockquote(event) {
-        this.editor.dom.wrap(event.detail.element, 'figure', {attributes: {class: 'quote'}});
+        this.editor.dom.wrap(event.detail.element, 'figure', { attributes: { class: 'quote' } });
     }
 
     /**

@@ -24,7 +24,7 @@ export default Object.freeze({
      * @param {boolean} shift
      * @return {boolean}
      */
-    is(event, key, {alt = false, ctrl = false, shift = false} = {}) {
+    is(event, key, { alt = false, ctrl = false, shift = false } = {}) {
         return (Array.isArray(key) && key.includes(event.key) || event.key === key)
             && event.altKey === alt
             && event.ctrlKey === ctrl

@@ -17,12 +17,12 @@ export default class TableDialog extends Dialog {
      * @inheritDoc
      */
     _initFieldset(fieldset) {
-        fieldset.appendChild(this.editor.dom.createElement('legend', {html: this._('Table')}));
+        fieldset.appendChild(this.editor.dom.createElement('legend', { html: this._('Table') }));
         fieldset.appendChild(
-            this._createInput('rows', 'number', this._('Rows'), {min: '1', required: 'required', value: '1'}),
+            this._createInput('rows', 'number', this._('Rows'), { min: '1', required: 'required', value: '1' }),
         );
         fieldset.appendChild(
-            this._createInput('cols', 'number', this._('Columns'), {min: '1', required: 'required', value: '1'}),
+            this._createInput('cols', 'number', this._('Columns'), { min: '1', required: 'required', value: '1' }),
         );
     }
 }

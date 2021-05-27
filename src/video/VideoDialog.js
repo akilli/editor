@@ -17,7 +17,7 @@ export default class VideoDialog extends Dialog {
      * @inheritDoc
      */
     _initFieldset(fieldset) {
-        fieldset.appendChild(this.editor.dom.createElement('legend', {html: this._('Video')}));
+        fieldset.appendChild(this.editor.dom.createElement('legend', { html: this._('Video') }));
         fieldset.appendChild(this._createInput('src', 'text', this._('URL'), {
             pattern: '(https?|/).+',
             placeholder: this._('Insert URL to video'),

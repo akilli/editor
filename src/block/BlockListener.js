@@ -45,7 +45,7 @@ export default class BlockListener extends Listener {
         }
 
         const url = this.editor.config.block.api.replace('{id}', event.detail.element.id);
-        const response = await fetch(url, {mode: 'no-cors'});
+        const response = await fetch(url, { mode: 'no-cors' });
 
         if (!response.ok) {
             return;
