@@ -8,24 +8,24 @@
     document.addEventListener('DOMContentLoaded', async () => {
         const config = {
             audio: {
-                //browser: 'media.html#audio',
+                browser: 'media.html#audio',
             },
             base: {
                 lang: 'en',
             },
             block: {
                 api: 'api/{id}.html',
-                //browser: 'block.html',
+                browser: 'block.html',
                 css: 'base.css,page.css',
             },
             iframe: {
-                //browser: 'media.html#iframe',
+                browser: 'media.html#iframe',
             },
             image: {
-                //browser: 'media.html#image',
+                browser: 'media.html#image',
             },
             video: {
-                //browser: 'media.html#video',
+                browser: 'media.html#video',
             },
         };
         const rte = document.getElementById('rte');
