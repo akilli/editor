@@ -9,9 +9,10 @@ export default class AudioDialog extends Dialog {
      * Initializes a new audio dialog
      *
      * @param {Editor} editor
+     * @param {string|undefined} url
      */
-    constructor(editor) {
-        super(editor, Audio.name);
+    constructor(editor, url = undefined) {
+        super(editor, Audio.name, url);
     }
 
     /**

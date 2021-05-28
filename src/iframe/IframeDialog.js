@@ -9,9 +9,10 @@ export default class IframeDialog extends Dialog {
      * Initializes a new iframe dialog
      *
      * @param {Editor} editor
+     * @param {string|undefined} url
      */
-    constructor(editor) {
-        super(editor, Iframe.name);
+    constructor(editor, url = undefined) {
+        super(editor, Iframe.name, url);
     }
 
     /**

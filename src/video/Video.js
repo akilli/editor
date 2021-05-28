@@ -1,5 +1,4 @@
 import Base from '../base/Base.js';
-import BrowserDialog from '../base/BrowserDialog.js';
 import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
 import VideoDialog from './VideoDialog.js';
@@ -45,14 +44,7 @@ export default class Video extends Plugin {
             navigable: true,
         });
         new VideoListener(this.editor);
-        const url = this.editor.config.video.browser;
-
-        if (url) {
-            this.editor.dialogs.set(new BrowserDialog(this.editor, this.constructor.name, url));
-        } else {
-            this.editor.dialogs.set(new VideoDialog(this.editor));
-        }
-
+        this.editor.dialogs.set(new VideoDialog(this.editor, this.editor.config.video.browser));
         this._command(TagName.VIDEO);
         this._toolbar('Video');
     }

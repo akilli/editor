@@ -9,9 +9,10 @@ export default class ImageDialog extends Dialog {
      * Initializes a new image dialog
      *
      * @param {Editor} editor
+     * @param {string|undefined} url
      */
-    constructor(editor) {
-        super(editor, Image.name);
+    constructor(editor, url = undefined) {
+        super(editor, Image.name, url);
     }
 
     /**

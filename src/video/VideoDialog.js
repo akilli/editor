@@ -9,9 +9,10 @@ export default class VideoDialog extends Dialog {
      * Initializes a new video dialog
      *
      * @param {Editor} editor
+     * @param {string|undefined} url
      */
-    constructor(editor) {
-        super(editor, Video.name);
+    constructor(editor, url = undefined) {
+        super(editor, Video.name, url);
     }
 
     /**

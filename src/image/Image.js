@@ -1,5 +1,4 @@
 import Base from '../base/Base.js';
-import BrowserDialog from '../base/BrowserDialog.js';
 import Figure from '../figure/Figure.js';
 import ImageDialog from './ImageDialog.js';
 import ImageListener from './ImageListener.js';
@@ -45,14 +44,7 @@ export default class Image extends Plugin {
             navigable: true,
         });
         new ImageListener(this.editor);
-        const url = this.editor.config.image.browser;
-
-        if (url) {
-            this.editor.dialogs.set(new BrowserDialog(this.editor, this.constructor.name, url));
-        } else {
-            this.editor.dialogs.set(new ImageDialog(this.editor));
-        }
-
+        this.editor.dialogs.set(new ImageDialog(this.editor, this.editor.config.image.browser));
         this._command(TagName.IMG);
         this._toolbar('Image');
     }

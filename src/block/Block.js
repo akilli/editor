@@ -2,7 +2,6 @@ import Base from '../base/Base.js';
 import BlockDialog from './BlockDialog.js';
 import BlockElement from './BlockElement.js';
 import BlockListener from './BlockListener.js';
-import BrowserDialog from '../base/BrowserDialog.js';
 import Plugin from '../base/Plugin.js';
 import i18n from '../iframe/i18n.js';
 import { TagGroup, TagName } from '../base/enum.js';
@@ -49,14 +48,7 @@ export default class Block extends Plugin {
             sortable: true,
         });
         new BlockListener(this.editor);
-        const url = this.editor.config.block.browser;
-
-        if (url) {
-            this.editor.dialogs.set(new BrowserDialog(this.editor, this.constructor.name, url));
-        } else {
-            this.editor.dialogs.set(new BlockDialog(this.editor));
-        }
-
+        this.editor.dialogs.set(new BlockDialog(this.editor, this.editor.config.block.browser));
         this._command(TagName.BLOCK);
         this._toolbar('Block');
     }

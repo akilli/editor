@@ -9,9 +9,10 @@ export default class BlockDialog extends Dialog {
      * Initializes a new block dialog
      *
      * @param {Editor} editor
+     * @param {string|undefined} url
      */
-    constructor(editor) {
-        super(editor, Block.name);
+    constructor(editor, url = undefined) {
+        super(editor, Block.name, url);
     }
 
     /**

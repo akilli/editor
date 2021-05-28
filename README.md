@@ -287,11 +287,11 @@ document.addEventListener('DOMContentLoaded', () => {
 ## Browser integration
 
 As described in the configuration options in above's *Usage* example, some plugins *(currently all media element plugins
-and the block element plugin)* offer the possibilty to configure a browser URL and use a browser dialog instead of the
-simple form dialog used by default.
+and the block element plugin)* offer the possibilty to configure a browser URL. If browser URL is provided, a browser
+window with that location will be opened instead of the simple form dialog used by default.
 
-The [BrowserDialog](src/base/BrowserDialog.js), that is used by these plugins in case a browser URL is configured, does
-not provide a browser integration itself, but a simple and minimal API to integrate your own browser implementation.
+The editor does not provide a browser integration itself, but a simple and minimal API to integrate your own browser
+implementation.
 
 You can implement your browser as you wish, the only requirement is that your browser notifies the editor by posting a
 message when an item is selected, p.e. for the image plugin something like
@@ -314,6 +314,6 @@ The examples for the other browsers differ only in the keys the plugin considers
 You can also use this API for your own plugins and define the type and structure of the message to your likings, p.e.
 use a simple string if you are only interested in one value, an object or an array.
 
-[BrowserDialog](src/base/BrowserDialog.js) will pass existing values of the currently selected element to the browser
-as `URL.searchParams` if the plugin supports updating already inserted elements *(currently the media element plugins
-and the block element plugin don't)*.
+Your browser implementation will receive existing values of the currently selected element as `URL.searchParams` if the
+plugin supports updating already inserted elements. Currently neither media element plugins nor the block element plugin
+do, but support will be added somewhen in the future.

@@ -1,7 +1,6 @@
 import AudioDialog from './AudioDialog.js';
 import AudioListener from './AudioListener.js';
 import Base from '../base/Base.js';
-import BrowserDialog from '../base/BrowserDialog.js';
 import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
@@ -45,14 +44,7 @@ export default class Audio extends Plugin {
             navigable: true,
         });
         new AudioListener(this.editor);
-        const url = this.editor.config.audio.browser;
-
-        if (url) {
-            this.editor.dialogs.set(new BrowserDialog(this.editor, this.constructor.name, url));
-        } else {
-            this.editor.dialogs.set(new AudioDialog(this.editor));
-        }
-
+        this.editor.dialogs.set(new AudioDialog(this.editor, this.editor.config.audio.browser));
         this._command(TagName.AUDIO);
         this._toolbar('Audio');
     }

@@ -1,6 +1,6 @@
 import Editor from './Editor.js';
 import { Error, TagName } from './enum.js';
-import { isPopulatedString } from './util.js';
+import { isEmptyOrString, isPopulatedString } from './util.js';
 
 /**
  * Dialog
@@ -39,18 +39,58 @@ export default class Dialog {
     }
 
     /**
+     * Browser URL
+     *
+     * @type {string|undefined}
+     */
+    #url;
+
+    /**
+     * Allows read access to browser URL
+     *
+     * @return {string|undefined}
+     */
+    get url() {
+        return this.#url;
+    }
+
+    /**
      * Initializes a new dialog with given name
      *
      * @param {Editor} editor
      * @param {string} name
+     * @param {string|undefined} url
      */
-    constructor(editor, name) {
-        if (!(editor instanceof Editor) || !isPopulatedString(name)) {
+    constructor(editor, name, url = undefined) {
+        if (!(editor instanceof Editor) || !isPopulatedString(name) || !isEmptyOrString(url)) {
             throw Error.INVALID_ARGUMENT;
         }
 
         this.#editor = editor;
         this.#name = name;
+        this.#url = url || undefined;
+    }
+
+    /**
+     * Opens a dialog or a browser window if browser URL is set
+     *
+     * @param {function} save
+     * @param {Object} [attributes = {}]
+     * @return {void}
+     */
+    open(save, attributes = {}) {
+        this.url ? this._openBrowser(save, attributes) : this._openDialog(save, attributes);
+    }
+
+    /**
+     * Opens a browser window and registers a listener for communication between editor and browser windows
+     *
+     * @param {function} save
+     * @param {Object} [attributes = {}]
+     * @return {void}
+     */
+    _openBrowser(save, attributes = {}) {
+        this.editor.dom.open({ url: this.url, name: this.name, call: save, params: attributes });
     }
 
     /**
@@ -60,7 +100,7 @@ export default class Dialog {
      * @param {Object} [attributes = {}]
      * @return {void}
      */
-    open(save, attributes = {}) {
+    _openDialog(save, attributes = {}) {
         const range = this.editor.dom.getRange();
         const close = () => {
             range && this.editor.dom.setRange(range);

@@ -1,5 +1,4 @@
 import Base from '../base/Base.js';
-import BrowserDialog from '../base/BrowserDialog.js';
 import Figure from '../figure/Figure.js';
 import IframeDialog from './IframeDialog.js';
 import IframeListener from './IframeListener.js';
@@ -45,14 +44,7 @@ export default class Iframe extends Plugin {
             navigable: true,
         });
         new IframeListener(this.editor);
-        const url = this.editor.config.iframe.browser;
-
-        if (url) {
-            this.editor.dialogs.set(new BrowserDialog(this.editor, this.constructor.name, url));
-        } else {
-            this.editor.dialogs.set(new IframeDialog(this.editor));
-        }
-
+        this.editor.dialogs.set(new IframeDialog(this.editor, this.editor.config.iframe.browser));
         this._command(TagName.IFRAME);
         this._toolbar('Iframe');
     }
