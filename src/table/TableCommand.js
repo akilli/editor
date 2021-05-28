@@ -19,8 +19,8 @@ export default class TableCommand extends Command {
      * Inserts table element
      *
      * @protected
-     * @param {number} rows
-     * @param {number} cols
+     * @param {number} [rows = 1]
+     * @param {number} [cols = 1]
      * @return {void}
      */
     _insert({ rows = 1, cols = 1 } = {}) {
