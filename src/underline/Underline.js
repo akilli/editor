@@ -31,6 +31,6 @@ export default class Underline extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.U);
-        this._toolbar('underline', Key.U, true);
+        this._formatbar('underline', Key.U);
     }
 }

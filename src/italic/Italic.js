@@ -31,6 +31,6 @@ export default class Italic extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.I);
-        this._toolbar('italic', Key.I, true);
+        this._formatbar('italic', Key.I);
     }
 }

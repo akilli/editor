@@ -31,6 +31,6 @@ export default class Quote extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.Q);
-        this._toolbar('Quote', Key.Q, true);
+        this._formatbar('Quote', Key.Q);
     }
 }

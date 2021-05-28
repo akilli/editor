@@ -29,7 +29,7 @@ export default class Image extends Plugin {
      * @inheritDoc
      */
     static get config() {
-        return { browser: null };
+        return { browser: undefined };
     }
 
     /**

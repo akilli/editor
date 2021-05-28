@@ -31,6 +31,6 @@ export default class Strong extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.STRONG);
-        this._toolbar('strongly emphasized', Key.S, true);
+        this._formatbar('strongly emphasized', Key.S);
     }
 }

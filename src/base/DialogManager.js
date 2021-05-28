@@ -25,10 +25,10 @@ export default class DialogManager {
      * Returns registered dialog with given name
      *
      * @param {string} name
-     * @return {?Dialog}
+     * @return {Dialog|undefined}
      */
     get(name) {
-        return this.#items.get(name) || null;
+        return this.#items.get(name);
     }
 
     /**

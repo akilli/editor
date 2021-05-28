@@ -26,7 +26,7 @@ export default class DialogElement extends HTMLElement {
     /**
      * Initializes new dialog element
      *
-     * @borrows this.connectedCallback
+     * @borrows DialogElement.connectedCallback
      */
     constructor() {
         super();

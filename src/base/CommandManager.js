@@ -25,10 +25,10 @@ export default class CommandManager {
      * Returns registered command with given name
      *
      * @param {string} name
-     * @return {?Command}
+     * @return {Command|undefined}
      */
     get(name) {
-        return this.#items.get(name) || null;
+        return this.#items.get(name);
     }
 
     /**

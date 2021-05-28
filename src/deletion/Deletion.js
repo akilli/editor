@@ -31,6 +31,6 @@ export default class Deletion extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.DEL);
-        this._toolbar('Text Deletion', Key.G, true);
+        this._formatbar('Text Deletion', Key.G);
     }
 }

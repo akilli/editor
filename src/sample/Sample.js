@@ -31,6 +31,6 @@ export default class Sample extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.SAMP);
-        this._toolbar('Sample Output', Key.O, true);
+        this._formatbar('Sample Output', Key.O);
     }
 }

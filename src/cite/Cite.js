@@ -31,6 +31,6 @@ export default class Cite extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.CITE);
-        this._toolbar('Citation', Key.Z, true);
+        this._formatbar('Citation', Key.Z);
     }
 }

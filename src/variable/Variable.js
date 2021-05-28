@@ -31,6 +31,6 @@ export default class Variable extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.VAR);
-        this._toolbar('Variable', Key.V, true);
+        this._formatbar('Variable', Key.V);
     }
 }

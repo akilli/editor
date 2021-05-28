@@ -31,6 +31,6 @@ export default class Subscript extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.SUB);
-        this._toolbar('subscript', Key.X, true);
+        this._formatbar('subscript', Key.X);
     }
 }

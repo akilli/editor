@@ -31,6 +31,6 @@ export default class Definition extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.DFN);
-        this._toolbar('Definition', Key.D, true);
+        this._formatbar('Definition', Key.D);
     }
 }

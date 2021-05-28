@@ -1,6 +1,6 @@
 import Editor from './Editor.js';
 import { Error, TagGroup } from './enum.js';
-import { isPopulatedString, isUnsetOrPopulatedString } from './util.js';
+import { isEmptyOrString, isPopulatedString } from './util.js';
 
 /**
  * Command
@@ -41,14 +41,14 @@ export default class Command {
     /**
      * Associated tag
      *
-     * @type {?Tag}
+     * @type {Tag|undefined}
      */
-    #tag = null;
+    #tag;
 
     /**
      * Allows read access to associated tag
      *
-     * @return {?Tag}
+     * @return {Tag|undefined}
      */
     get tag() {
         return this.#tag;
@@ -57,14 +57,14 @@ export default class Command {
     /**
      * Associated dialog
      *
-     * @type {?Dialog}
+     * @type {Dialog|undefined}
      */
-    #dialog = null;
+    #dialog;
 
     /**
      * Allows read access to associated dialog
      *
-     * @return {?Dialog}
+     * @return {Dialog|undefined}
      */
     get dialog() {
         return this.#dialog;
@@ -75,10 +75,10 @@ export default class Command {
      *
      * @param {Editor} editor
      * @param {string} name
-     * @param {?string} [tagName = null]
+     * @param {string|undefined} [tagName = undefined]
      */
-    constructor(editor, name, tagName = null) {
-        if (!(editor instanceof Editor) || !isPopulatedString(name) || !isUnsetOrPopulatedString(tagName)) {
+    constructor(editor, name, tagName = undefined) {
+        if (!(editor instanceof Editor) || !isPopulatedString(name) || !isEmptyOrString(tagName)) {
             throw Error.INVALID_ARGUMENT;
         }
 
@@ -143,12 +143,12 @@ export default class Command {
      * Returns selected element if it is the same kind of element
      *
      * @protected
-     * @return {?HTMLElement}
+     * @return {HTMLElement|undefined}
      */
     _selectedElement() {
         const element = this.editor.dom.getSelectedElement();
 
-        return element && element.localName === this.tag?.name ? element : null;
+        return element?.localName === this.tag?.name && element;
     }
 
     /**

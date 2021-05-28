@@ -31,6 +31,6 @@ export default class Strikethrough extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.S);
-        this._toolbar('strikethrough', Key.R, true);
+        this._formatbar('strikethrough', Key.R);
     }
 }

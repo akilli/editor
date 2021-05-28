@@ -27,7 +27,7 @@ export default class Listener {
     /**
      * Initializes a new listener
      *
-     * @borrows this.handleEvent
+     * @borrows Listener.handleEvent
      * @param {Editor} editor
      */
     constructor(editor) {

@@ -31,6 +31,6 @@ export default class Code extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.CODE);
-        this._toolbar('Code', Key.C, true);
+        this._formatbar('Code', Key.C);
     }
 }

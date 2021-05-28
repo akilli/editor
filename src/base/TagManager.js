@@ -25,10 +25,10 @@ export default class TagManager {
      * Returns registered tag for given key
      *
      * @param {string|HTMLElement} key
-     * @return {?Tag}
+     * @return {Tag|undefined}
      */
     get(key) {
-        return this.#items.get(key instanceof HTMLElement ? key.localName : key) || null;
+        return this.#items.get(key instanceof HTMLElement ? key.localName : key);
     }
 
     /**

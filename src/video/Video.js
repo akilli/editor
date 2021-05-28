@@ -29,7 +29,7 @@ export default class Video extends Plugin {
      * @inheritDoc
      */
     static get config() {
-        return { browser: null };
+        return { browser: undefined };
     }
 
     /**

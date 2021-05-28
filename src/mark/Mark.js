@@ -31,6 +31,6 @@ export default class Mark extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.MARK);
-        this._toolbar('mark', Key.M, true);
+        this._formatbar('mark', Key.M);
     }
 }

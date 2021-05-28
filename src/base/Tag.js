@@ -1,5 +1,5 @@
 import { Error } from './enum.js';
-import { isPopulatedString, isUndefinedOrPopulatedArray, isUnsetOrPopulatedString } from './util.js';
+import { isEmptyOrArray, isEmptyOrString, isPopulatedString } from './util.js';
 
 /**
  * Tag
@@ -24,84 +24,84 @@ export default class Tag {
      *
      * @type {string[]}
      */
-    children = [];
+    children;
 
     /**
      * Allowed attributes
      *
      * @type {string[]}
      */
-    attributes = [];
+    attributes;
 
     /**
      * Is element alignable
      *
      * @type {boolean}
      */
-    alignable = false;
+    alignable;
 
     /**
      * Does element allow arbitrary amount of child elements
      *
      * @type {boolean}
      */
-    arbitrary = false;
+    arbitrary;
 
     /**
      * Is element deletable
      *
      * @type {boolean}
      */
-    deletable = false;
+    deletable;
 
     /**
      * Is element editable
      *
      * @type {boolean}
      */
-    editable = false;
+    editable;
 
     /**
      * Is element empty or allowed to be empty
      *
      * @type {boolean}
      */
-    empty = false;
+    empty;
 
     /**
      * Should element be focused on insert
      *
      * @type {boolean}
      */
-    focusable = false;
+    focusable;
 
     /**
      * Is element navigable
      *
      * @type {boolean}
      */
-    navigable = false;
+    navigable;
 
     /**
      * Does element define a slot
      *
      * @type {boolean}
      */
-    slotable = false;
+    slotable;
 
     /**
      * Is element sortable
      *
      * @type {boolean}
      */
-    sortable = false;
+    sortable;
 
     /**
      * Element to insert when ENTER-key is pressed
      *
-     * @type {?string}
+     * @type {string|undefined}
      */
-    enter = null;
+    enter;
 
     /**
      * Defines a new tag and freezes it
@@ -113,9 +113,9 @@ export default class Tag {
     constructor({ name, group, ...opts } = {}) {
         if (!isPopulatedString(name)
             || !isPopulatedString(group)
-            || !isUnsetOrPopulatedString(opts.enter)
-            || !isUndefinedOrPopulatedArray(opts.children)
-            || !isUndefinedOrPopulatedArray(opts.attributes)
+            || !isEmptyOrString(opts.enter)
+            || !isEmptyOrArray(opts.children)
+            || !isEmptyOrArray(opts.attributes)
         ) {
             throw Error.INVALID_ARGUMENT;
         }
@@ -133,6 +133,6 @@ export default class Tag {
         this.navigable = opts.navigable === true;
         this.slotable = opts.slotable === true;
         this.sortable = opts.sortable === true;
-        this.enter = opts.enter || null;
+        this.enter = opts.enter || undefined;
     }
 }

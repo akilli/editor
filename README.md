@@ -151,9 +151,9 @@ const config = {
          * Language for i18n
          *
          * @see Plugin._i18n
-         * @type {?string}
+         * @type {string|undefined}
          */
-        lang: null,
+        lang: undefined,
 
         /**
          * Names of the built-in plugins to load
@@ -180,9 +180,9 @@ const config = {
          * attribute.
          *
          * @see Audio.init
-         * @type {?string}
+         * @type {string|undefined}
          */
-        browser: null,
+        browser: undefined,
     },
 
     /**
@@ -199,9 +199,9 @@ const config = {
          * preview if the block with the requested ID exists.
          *
          * @see BlockListener.insertappblock
-         * @type {?string}
+         * @type {string|undefined}
          */
-        api: null,
+        api: undefined,
 
         /**
          * URL to block browser
@@ -211,18 +211,18 @@ const config = {
          * attribute.
          *
          * @see Block.init
-         * @type {?string}
+         * @type {string|undefined}
          */
-        browser: null,
+        browser: undefined,
 
         /**
          * Comma-separated list of URLs to CSS files that should be included by the autonomous
          * custom block element
          *
          * @see BlockListener.insertappblock
-         * @type {?string}
+         * @type {string|undefined}
          */
-        css: null,
+        css: undefined,
     },
 
     /**
@@ -237,9 +237,9 @@ const config = {
          * the src, width and height attributes.
          *
          * @see Iframe.init
-         * @type {?string}
+         * @type {string|undefined}
          */
-        browser: null,
+        browser: undefined,
     },
 
     /**
@@ -254,9 +254,9 @@ const config = {
          * width and height attributes.
          *
          * @see Image.init
-         * @type {?string}
+         * @type {string|undefined}
          */
-        browser: null,
+        browser: undefined,
     },
 
     /**
@@ -271,9 +271,9 @@ const config = {
          * width and height attributes.
          *
          * @see Video.init
-         * @type {?string}
+         * @type {string|undefined}
          */
-        browser: null,
+        browser: undefined,
     },
 };
 

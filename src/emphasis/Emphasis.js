@@ -31,6 +31,6 @@ export default class Emphasis extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.EM);
-        this._toolbar('emphasized', Key.E, true);
+        this._formatbar('emphasized', Key.E);
     }
 }

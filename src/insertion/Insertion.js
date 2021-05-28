@@ -31,6 +31,6 @@ export default class Insertion extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.INS);
-        this._toolbar('Text Insertion', Key.F, true);
+        this._formatbar('Text Insertion', Key.F);
     }
 }

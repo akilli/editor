@@ -25,10 +25,10 @@ export default class PluginManager {
      * Returns registered plugin with given name
      *
      * @param {string} name
-     * @return {?Plugin}
+     * @return {Plugin|undefined}
      */
     get(name) {
-        return this.#items.get(name) || null;
+        return this.#items.get(name);
     }
 
     /**

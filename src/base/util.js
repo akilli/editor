@@ -18,33 +18,13 @@ export function isKey(event, key, { alt = false, ctrl = false, shift = false } =
 }
 
 /**
- * Indicates if given value is a non-empty string
+ * Indicates if given value is undefined
  *
  * @param {any} val
  * @return {boolean}
  */
-export function isPopulatedString(val) {
-    return val && typeof val === Type.STRING;
-}
-
-/**
- * Indicates if given value is either undefined or null or a non-empty string
- *
- * @param {any} val
- * @return {boolean}
- */
-export function isUnsetOrPopulatedString(val) {
-    return isUndefined(val) || val === null || isPopulatedString(val);
-}
-
-/**
- * Indicates if given value is either undefined or null or a non-empty array
- *
- * @param {any} val
- * @return {boolean}
- */
-export function isUndefinedOrPopulatedArray(val) {
-    return isUndefined(val) || Array.isArray(val) && !val.find(i => !isPopulatedString(i));
+export function isUndefined(val) {
+    return typeof val === Type.UNDEFINED;
 }
 
 /**
@@ -58,21 +38,41 @@ export function isFunction(val) {
 }
 
 /**
- * Indicates if given value is undefined
+ * Indicates if given value is a non-empty string
  *
  * @param {any} val
  * @return {boolean}
  */
-export function isUndefined(val) {
-    return typeof val === Type.UNDEFINED;
+export function isPopulatedString(val) {
+    return val && typeof val === Type.STRING;
 }
 
 /**
- * Indicates if given value is either null or an instance of HTMLElement
+ * Indicates if given value is either empty or a non-empty string
  *
  * @param {any} val
  * @return {boolean}
  */
-export function isUnsetOrHtml(val) {
-    return typeof val === Type.UNDEFINED || val === null || val instanceof HTMLElement;
+export function isEmptyOrString(val) {
+    return !val || typeof val === Type.STRING;
+}
+
+/**
+ * Indicates if given value is either empty or a non-empty array
+ *
+ * @param {any} val
+ * @return {boolean}
+ */
+export function isEmptyOrArray(val) {
+    return !val || Array.isArray(val) && val.length > 0;
+}
+
+/**
+ * Indicates if given value is either empty or an instance of HTMLElement
+ *
+ * @param {any} val
+ * @return {boolean}
+ */
+export function isEmptyOrHtml(val) {
+    return !val || val instanceof HTMLElement;
 }

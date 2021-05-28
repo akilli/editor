@@ -31,6 +31,6 @@ export default class Bold extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.B);
-        this._toolbar('bold', Key.B, true);
+        this._formatbar('bold', Key.B);
     }
 }

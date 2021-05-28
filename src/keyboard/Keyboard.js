@@ -31,6 +31,6 @@ export default class Keyboard extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.KBD);
-        this._toolbar('User Input', Key.K, true);
+        this._formatbar('User Input', Key.K);
     }
 }

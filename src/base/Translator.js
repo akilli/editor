@@ -16,10 +16,10 @@ export default class Translator {
      * Returns registered i18n data for given name
      *
      * @param {string} name
-     * @return {?Object.<string, string>}
+     * @return {Object.<string, string>|undefined}
      */
     get(name) {
-        return this.#items.get(name) || null;
+        return this.#items.get(name);
     }
 
     /**

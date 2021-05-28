@@ -31,6 +31,6 @@ export default class Small extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.SMALL);
-        this._toolbar('small', Key.W, true);
+        this._formatbar('small', Key.W);
     }
 }

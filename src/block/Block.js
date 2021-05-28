@@ -29,7 +29,7 @@ export default class Block extends Plugin {
      * @inheritDoc
      */
     static get config() {
-        return { api: null, browser: null, css: null };
+        return { api: undefined, browser: undefined, css: undefined };
     }
 
     /**

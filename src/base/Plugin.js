@@ -2,7 +2,7 @@ import Command from './Command.js';
 import Editor from './Editor.js';
 import Tag from './Tag.js';
 import { Error, TagName } from './enum.js';
-import { isPopulatedString, isUnsetOrPopulatedString } from './util.js';
+import { isEmptyOrString, isPopulatedString } from './util.js';
 
 /**
  * Plugin
@@ -125,12 +125,34 @@ export default class Plugin {
      *
      * @protected
      * @param {string} label
-     * @param {?string} [key = null]
+     * @return {void}
+     */
+    _toolbar(label) {
+        this.#bar(label);
+    }
+
+    /**
+     * Creates a formatbar button
+     *
+     * @protected
+     * @param {string} label
+     * @param {string|undefined} [key = undefined]
+     * @return {void}
+     */
+    _formatbar(label, key = undefined) {
+        this.#bar(label, key, true);
+    }
+
+    /**
+     * Creates a bar button
+     *
+     * @param {string} label
+     * @param {string|undefined} [key = undefined]
      * @param {boolean} [format = false]
      * @return {void}
      */
-    _toolbar(label, key = null, format = false) {
-        if (!isPopulatedString(label) || !isUnsetOrPopulatedString(key)) {
+    #bar(label, key = undefined, format = false) {
+        if (!isPopulatedString(label) || !isEmptyOrString(key)) {
             throw Error.INVALID_ARGUMENT;
         }
 

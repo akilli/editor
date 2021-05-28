@@ -85,7 +85,7 @@ export default class ContentFilter extends Filter {
      *
      * @param {HTMLElement} element
      * @param {Tag} tag
-     * @return {?HTMLElement}
+     * @return {HTMLElement|undefined}
      */
     #element(element, tag) {
         Array.from(element.attributes).forEach(
@@ -102,6 +102,6 @@ export default class ContentFilter extends Filter {
 
         element.parentElement.removeChild(element);
 
-        return null;
+        return undefined;
     }
 }

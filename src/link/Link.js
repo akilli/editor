@@ -36,6 +36,6 @@ export default class Link extends Plugin {
         new LinkListener(this.editor);
         this.editor.dialogs.set(new LinkDialog(this.editor));
         this._command(TagName.A);
-        this._toolbar('Link', Key.L, true);
+        this._formatbar('Link', Key.L);
     }
 }

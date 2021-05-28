@@ -101,12 +101,12 @@ export default class Dom {
     /**
      * Returns first range
      *
-     * @return {?Range}
+     * @return {Range|undefined}
      */
     getRange() {
         const sel = this.window.getSelection();
 
-        return sel.rangeCount > 0 ? sel.getRangeAt(0) : null;
+        return sel.rangeCount > 0 ? sel.getRangeAt(0) : undefined;
     }
 
     /**
@@ -126,12 +126,12 @@ export default class Dom {
      *
      * @param {string} name
      * @param {function} constructor
-     * @param {?string} [parentName = null]
+     * @param {string|undefined} [parentName = undefined]
      * @return {void}
      */
-    registerElement(name, constructor, parentName = null) {
+    registerElement(name, constructor, parentName = undefined) {
         if (isUndefined(this.window.customElements.get(name))) {
-            this.window.customElements.define(name, constructor, parentName ? { extends: parentName } : null);
+            this.window.customElements.define(name, constructor, parentName ? { extends: parentName } : undefined);
         }
     }
 
@@ -276,8 +276,7 @@ export default class Dom {
             throw Error.INVALID_ARGUMENT;
         }
 
-        return this.editor.root.contains(element)
-            || element.closest(this.editor.root.localName)?.parentElement === null;
+        return this.editor.root.contains(element) || !element.closest(this.editor.root.localName)?.parentElement;
     }
 
     /**
@@ -286,7 +285,7 @@ export default class Dom {
      *
      * @param {HTMLElement} element
      * @param {string|HTMLElement} child
-     * @return {?HTMLElement}
+     * @return {HTMLElement|undefined}
      */
     closest(element, child) {
         if (!(element instanceof HTMLElement) || !this.contains(element.parentElement)) {
@@ -302,7 +301,7 @@ export default class Dom {
             }
         } while ((sibling = parent) && (parent = parent.parentElement) && this.contains(parent));
 
-        return null;
+        return undefined;
     }
 
     /**
@@ -328,7 +327,7 @@ export default class Dom {
     /**
      * Returns current selected element
      *
-     * @return {?HTMLElement}
+     * @return {HTMLElement|undefined}
      */
     getSelectedElement() {
         const sel = this.getSelection();
@@ -339,13 +338,13 @@ export default class Dom {
             return anc;
         }
 
-        return null;
+        return undefined;
     }
 
     /**
      * Returns current selected contenteditable
      *
-     * @return {?HTMLElement}
+     * @return {HTMLElement|undefined}
      */
     getSelectedEditable() {
         const sel = this.getSelection();
@@ -361,7 +360,7 @@ export default class Dom {
             }
         }
 
-        return null;
+        return undefined;
     }
 
     /**

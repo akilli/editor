@@ -31,6 +31,6 @@ export default class Superscript extends Plugin {
             group: TagGroup.FORMAT,
         });
         this._command(TagName.SUP);
-        this._toolbar('superscript', Key.Y, true);
+        this._formatbar('superscript', Key.Y);
     }
 }
