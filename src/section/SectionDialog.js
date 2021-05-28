@@ -17,10 +17,9 @@ export default class SectionDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _initFieldset(fieldset) {
-        fieldset.appendChild(this._createLegend(this._('Section')));
-        fieldset.appendChild(
-            this._createInput('class', 'text', this._('CSS class'), { placeholder: this._('Insert CSS class') }),
-        );
+    _prepareForm() {
+        this.creator
+            .addLegend(this._('Section'))
+            .addTextInput('class', this._('CSS class'), { placeholder: this._('Insert CSS class') });
     }
 }

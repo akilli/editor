@@ -18,8 +18,9 @@ export default class BlockDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _initFieldset(fieldset) {
-        fieldset.appendChild(this._createLegend(this._('Block')));
-        fieldset.appendChild(this._createInput('id', 'text', this._('ID'), { required: 'required' }));
+    _prepareForm() {
+        this.creator
+            .addLegend(this._('Block'))
+            .addTextInput('id', this._('ID'), { required: 'required' });
     }
 }

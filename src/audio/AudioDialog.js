@@ -18,12 +18,13 @@ export default class AudioDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _initFieldset(fieldset) {
-        fieldset.appendChild(this._createLegend(this._('Audio')));
-        fieldset.appendChild(this._createInput('src', 'text', this._('URL'), {
-            pattern: '(https?|/).+',
-            placeholder: this._('Insert URL to audio'),
-            required: 'required',
-        }));
+    _prepareForm() {
+        this.creator
+            .addLegend(this._('Audio'))
+            .addTextInput('src', this._('URL'), {
+                pattern: '(https?|/).+',
+                placeholder: this._('Insert URL to audio'),
+                required: 'required',
+            });
     }
 }

@@ -17,11 +17,12 @@ export default class LinkDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _initFieldset(fieldset) {
-        fieldset.appendChild(this._createLegend(this._('Link')));
-        fieldset.appendChild(this._createInput('href', 'text', this._('URL'), {
-            pattern: '(https?|/|mailto:|tel:).+',
-            placeholder: this._('Insert link or leave empty to unlink'),
-        }));
+    _prepareForm() {
+        this.creator
+            .addLegend(this._('Link'))
+            .addTextInput('href', this._('URL'), {
+                pattern: '(https?|/|mailto:|tel:).+',
+                placeholder: this._('Insert link or leave empty to unlink'),
+            });
     }
 }

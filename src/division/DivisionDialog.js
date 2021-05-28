@@ -17,10 +17,9 @@ export default class DivisionDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _initFieldset(fieldset) {
-        fieldset.appendChild(this._createLegend(this._('Division')));
-        fieldset.appendChild(
-            this._createInput('class', 'text', this._('CSS class'), { placeholder: this._('Insert CSS class') }),
-        );
+    _prepareForm() {
+        this.creator
+            .addLegend(this._('Division'))
+            .addTextInput('class', this._('CSS class'), { placeholder: this._('Insert CSS class') });
     }
 }

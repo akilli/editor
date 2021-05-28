@@ -17,10 +17,11 @@ export default class TimeDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _initFieldset(fieldset) {
-        fieldset.appendChild(this._createLegend(this._('Time')));
-        fieldset.appendChild(this._createInput('datetime', 'text', this._('Machine-readable Datetime'), {
-            placeholder: this._('Insert date/time or leave empty to remove it'),
-        }));
+    _prepareForm() {
+        this.creator
+            .addLegend(this._('Data'))
+            .addTextInput('datetime', this._('Machine-readable Datetime'), {
+                placeholder: this._('Insert date/time or leave empty to remove it'),
+            });
     }
 }

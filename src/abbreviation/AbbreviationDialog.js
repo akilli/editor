@@ -17,10 +17,11 @@ export default class AbbreviationDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _initFieldset(fieldset) {
-        fieldset.appendChild(this._createLegend(this._('Abbreviation')));
-        fieldset.appendChild(this._createInput('title', 'text', this._('Full term'), {
-            placeholder: this._('Insert full term or leave empty to remove it'),
-        }));
+    _prepareForm() {
+        this.creator
+            .addLegend(this._('Abbreviation'))
+            .addTextInput('title', this._('Full term'), {
+                placeholder: this._('Insert full term or leave empty to remove it'),
+            });
     }
 }

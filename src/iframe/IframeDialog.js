@@ -18,14 +18,15 @@ export default class IframeDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _initFieldset(fieldset) {
-        fieldset.appendChild(this._createLegend(this._('Iframe')));
-        fieldset.appendChild(this._createInput('src', 'text', this._('URL'), {
-            pattern: '(https?|/).+',
-            placeholder: this._('Insert URL to embedded page'),
-            required: 'required',
-        }));
-        fieldset.appendChild(this._createInput('width', 'number', this._('Width')));
-        fieldset.appendChild(this._createInput('height', 'number', this._('Height')));
+    _prepareForm() {
+        this.creator
+            .addLegend(this._('Iframe'))
+            .addTextInput('src', this._('URL'), {
+                pattern: '(https?|/).+',
+                placeholder: this._('Insert URL to embedded page'),
+                required: 'required',
+            })
+            .addNumberInput('width', this._('Width'))
+            .addNumberInput('height', this._('Height'));
     }
 }

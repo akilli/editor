@@ -17,10 +17,11 @@ export default class DataDialog extends Dialog {
     /**
      * @inheritDoc
      */
-    _initFieldset(fieldset) {
-        fieldset.appendChild(this._createLegend(this._('Data')));
-        fieldset.appendChild(this._createInput('value', 'text', this._('Machine-readable Value'), {
-            placeholder: this._('Insert value or leave empty to remove it'),
-        }));
+    _prepareForm() {
+        this.creator
+            .addLegend(this._('Data'))
+            .addTextInput('value', this._('Machine-readable Value'), {
+                placeholder: this._('Insert value or leave empty to remove it'),
+            });
     }
 }
