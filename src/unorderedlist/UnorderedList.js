@@ -38,6 +38,6 @@ export default class UnorderedList extends Plugin {
             sortable: true,
         });
         this._command(TagName.UL);
-        this._toolbar('Unordered List');
+        this._toolbar(this._('Unordered List'));
     }
 }

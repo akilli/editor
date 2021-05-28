@@ -26,11 +26,8 @@ export default class Definition extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: TagName.DFN,
-            group: TagGroup.FORMAT,
-        });
+        this._tag({ name: TagName.DFN, group: TagGroup.FORMAT });
         this._command(TagName.DFN);
-        this._formatbar('Definition', Key.D);
+        this._formatbar(this._('Definition'), Key.D);
     }
 }

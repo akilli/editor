@@ -26,11 +26,8 @@ export default class Code extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: TagName.CODE,
-            group: TagGroup.FORMAT,
-        });
+        this._tag({ name: TagName.CODE, group: TagGroup.FORMAT });
         this._command(TagName.CODE);
-        this._formatbar('Code', Key.C);
+        this._formatbar(this._('Code'), Key.C);
     }
 }

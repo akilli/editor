@@ -38,6 +38,6 @@ export default class OrderedList extends Plugin {
             sortable: true,
         });
         this._command(TagName.OL);
-        this._toolbar('Ordered List');
+        this._toolbar(this._('Ordered List'));
     }
 }

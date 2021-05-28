@@ -26,11 +26,8 @@ export default class Emphasis extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: TagName.EM,
-            group: TagGroup.FORMAT,
-        });
+        this._tag({ name: TagName.EM, group: TagGroup.FORMAT });
         this._command(TagName.EM);
-        this._formatbar('emphasized', Key.E);
+        this._formatbar(this._('emphasized'), Key.E);
     }
 }

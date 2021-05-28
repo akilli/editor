@@ -26,11 +26,8 @@ export default class Underline extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: TagName.U,
-            group: TagGroup.FORMAT,
-        });
+        this._tag({ name: TagName.U, group: TagGroup.FORMAT });
         this._command(TagName.U);
-        this._formatbar('underline', Key.U);
+        this._formatbar(this._('underline'), Key.U);
     }
 }

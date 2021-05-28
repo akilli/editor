@@ -26,11 +26,8 @@ export default class Mark extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: TagName.MARK,
-            group: TagGroup.FORMAT,
-        });
+        this._tag({ name: TagName.MARK, group: TagGroup.FORMAT });
         this._command(TagName.MARK);
-        this._formatbar('mark', Key.M);
+        this._formatbar(this._('mark'), Key.M);
     }
 }

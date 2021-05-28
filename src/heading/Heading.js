@@ -37,6 +37,6 @@ export default class Heading extends Plugin {
             enter: TagName.P,
         });
         this._command(TagName.H2);
-        this._toolbar('Heading');
+        this._toolbar(this._('Heading'));
     }
 }

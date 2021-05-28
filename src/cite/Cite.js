@@ -26,11 +26,8 @@ export default class Cite extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: TagName.CITE,
-            group: TagGroup.FORMAT,
-        });
+        this._tag({ name: TagName.CITE, group: TagGroup.FORMAT });
         this._command(TagName.CITE);
-        this._formatbar('Citation', Key.Z);
+        this._formatbar(this._('Citation'), Key.Z);
     }
 }

@@ -61,7 +61,7 @@ export default class Details extends Plugin {
         });
         new DetailsListener(this.editor);
         this._command(TagName.DETAILS);
-        this._toolbar('Details');
+        this._toolbar(this._('Details'));
         this.editor.filters.add(new DetailsFilter(this.editor));
     }
 }

@@ -26,11 +26,8 @@ export default class Strikethrough extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: TagName.S,
-            group: TagGroup.FORMAT,
-        });
+        this._tag({ name: TagName.S, group: TagGroup.FORMAT });
         this._command(TagName.S);
-        this._formatbar('strikethrough', Key.R);
+        this._formatbar(this._('strikethrough'), Key.R);
     }
 }

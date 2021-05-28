@@ -26,11 +26,8 @@ export default class Variable extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: TagName.VAR,
-            group: TagGroup.FORMAT,
-        });
+        this._tag({ name: TagName.VAR, group: TagGroup.FORMAT });
         this._command(TagName.VAR);
-        this._formatbar('Variable', Key.V);
+        this._formatbar(this._('Variable'), Key.V);
     }
 }

@@ -26,11 +26,8 @@ export default class Insertion extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: TagName.INS,
-            group: TagGroup.FORMAT,
-        });
+        this._tag({ name: TagName.INS, group: TagGroup.FORMAT });
         this._command(TagName.INS);
-        this._formatbar('Text Insertion', Key.F);
+        this._formatbar(this._('Text Insertion'), Key.F);
     }
 }

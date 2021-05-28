@@ -46,6 +46,6 @@ export default class Image extends Plugin {
         new ImageListener(this.editor);
         this.editor.dialogs.set(new ImageDialog(this.editor, this.editor.config.image.browser));
         this._command(TagName.IMG);
-        this._toolbar('Image');
+        this._toolbar(this._('Image'));
     }
 }

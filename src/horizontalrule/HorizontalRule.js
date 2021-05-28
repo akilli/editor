@@ -36,6 +36,6 @@ export default class HorizontalRule extends Plugin {
             sortable: true,
         });
         this._command(TagName.HR);
-        this._toolbar('Horizontal Rule');
+        this._toolbar(this._('Horizontal Rule'));
     }
 }

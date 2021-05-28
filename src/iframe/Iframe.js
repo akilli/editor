@@ -46,6 +46,6 @@ export default class Iframe extends Plugin {
         new IframeListener(this.editor);
         this.editor.dialogs.set(new IframeDialog(this.editor, this.editor.config.iframe.browser));
         this._command(TagName.IFRAME);
-        this._toolbar('Iframe');
+        this._toolbar(this._('Iframe'));
     }
 }

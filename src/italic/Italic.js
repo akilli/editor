@@ -26,11 +26,8 @@ export default class Italic extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: TagName.I,
-            group: TagGroup.FORMAT,
-        });
+        this._tag({ name: TagName.I, group: TagGroup.FORMAT });
         this._command(TagName.I);
-        this._formatbar('italic', Key.I);
+        this._formatbar(this._('italic'), Key.I);
     }
 }

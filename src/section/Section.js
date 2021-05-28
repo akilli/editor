@@ -54,6 +54,6 @@ export default class Section extends Plugin {
         });
         this.editor.dialogs.set(new SectionDialog(this.editor));
         this._command(TagName.SECTION);
-        this._toolbar('Section');
+        this._toolbar(this._('Section'));
     }
 }

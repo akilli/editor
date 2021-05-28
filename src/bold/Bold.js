@@ -26,11 +26,8 @@ export default class Bold extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: TagName.B,
-            group: TagGroup.FORMAT,
-        });
+        this._tag({ name: TagName.B, group: TagGroup.FORMAT });
         this._command(TagName.B);
-        this._formatbar('bold', Key.B);
+        this._formatbar(this._('bold'), Key.B);
     }
 }

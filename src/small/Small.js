@@ -26,11 +26,8 @@ export default class Small extends Plugin {
      */
     init() {
         this._i18n(i18n);
-        this._tag({
-            name: TagName.SMALL,
-            group: TagGroup.FORMAT,
-        });
+        this._tag({ name: TagName.SMALL, group: TagGroup.FORMAT });
         this._command(TagName.SMALL);
-        this._formatbar('small', Key.W);
+        this._formatbar(this._('small'), Key.W);
     }
 }

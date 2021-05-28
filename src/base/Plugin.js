@@ -121,18 +121,18 @@ export default class Plugin {
     }
 
     /**
-     * Creates a toolbar button
+     * Adds a toolbar button
      *
      * @protected
      * @param {string} label
      * @return {void}
      */
     _toolbar(label) {
-        this.#bar(label);
+        this.editor.toolbar.appendChild(this.#button(label));
     }
 
     /**
-     * Creates a formatbar button
+     * Adds a formatbar button
      *
      * @protected
      * @param {string} label
@@ -140,33 +140,24 @@ export default class Plugin {
      * @return {void}
      */
     _formatbar(label, key = undefined) {
-        this.#bar(label, key, true);
+        this.editor.formatbar.appendChild(this.#button(label, key));
     }
 
     /**
-     * Creates a bar button
+     * Creates a button
      *
      * @param {string} label
      * @param {string|undefined} [key = undefined]
-     * @param {boolean} [format = false]
-     * @return {void}
+     * @return {HTMLButtonElement}
      */
-    #bar(label, key = undefined, format = false) {
+    #button(label, key = undefined) {
         if (!isPopulatedString(label) || !isEmptyOrString(key)) {
             throw Error.INVALID_ARGUMENT;
         }
 
-        const translatedLabel = this._(label);
-        const button = this.editor.dom.createElement(TagName.BUTTON, {
-            attributes: {
-                type: 'button',
-                'data-command': this.constructor.name,
-                title: translatedLabel,
-                'data-key': key,
-            },
-            html: translatedLabel,
+        return this.editor.dom.createElement(TagName.BUTTON, {
+            attributes: { type: 'button', 'data-command': this.constructor.name, title: label, 'data-key': key },
+            html: label,
         });
-
-        format ? this.editor.formatbar.appendChild(button) : this.editor.toolbar.appendChild(button);
     }
 }
