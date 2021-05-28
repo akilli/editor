@@ -342,6 +342,35 @@ export default class Dom {
     }
 
     /**
+     * Returns current selected element only if its tag name matches given name
+     *
+     * @param {string} name
+     * @return {HTMLElement|undefined}
+     */
+    getSelectedElementByName(name) {
+        const element = this.getSelectedElement();
+
+        return element?.localName === name && element;
+    }
+
+    /**
+     * Extracts attributes from the current selected element only if its tag name matches given name
+     *
+     * @param {string} name
+     * @return {Object.<string, string>}
+     */
+    getSelectedAttributesByName(name) {
+        const element = this.getSelectedElementByName(name);
+        const attributes = {};
+
+        if (element) {
+            Array.from(element.attributes).forEach(item => (attributes[item.nodeName] = item.nodeValue));
+        }
+
+        return attributes;
+    }
+
+    /**
      * Returns current selected contenteditable
      *
      * @return {HTMLElement|undefined}

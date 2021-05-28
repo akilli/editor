@@ -18,12 +18,11 @@ export default class TableCommand extends Command {
     /**
      * Inserts table element
      *
-     * @protected
      * @param {number} [rows = 1]
      * @param {number} [cols = 1]
      * @return {void}
      */
-    _insert({ rows = 1, cols = 1 } = {}) {
+    insert({ rows = 1, cols = 1 } = {}) {
         const figure = this.editor.dom.createElement(TagName.FIGURE, { attributes: { class: Table.name } });
         const table = this.editor.dom.createElement(TagName.TABLE);
         const tbody = this.editor.dom.createElement(TagName.TBODY);
