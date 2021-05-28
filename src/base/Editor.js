@@ -404,7 +404,7 @@ export default class Editor {
      * @return {void}
      */
     setHtml(html) {
-        const root = this.dom.createElement(this.root.localName, { html: html });
+        const root = this.dom.createElement(this.root.localName, { html });
         this.rootDispatcher.dispatch('sethtml', root);
         this.filters.filter(root);
         this.root.innerHTML = root.innerHTML;

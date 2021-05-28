@@ -112,19 +112,16 @@ export default class Command {
             const selected = this._selectedElement();
 
             if (this.tag.group !== TagGroup.FORMAT) {
-                this.editor.dom.insert(this.editor.dom.createElement(this.tag.name, { attributes: attributes }));
+                this.editor.dom.insert(this.editor.dom.createElement(this.tag.name, { attributes }));
             } else if (selected && Object.keys(attributes).length > 0) {
                 selected.parentElement.replaceChild(
-                    this.editor.dom.createElement(
-                        this.tag.name,
-                        { attributes: attributes, html: selected.textContent },
-                    ),
+                    this.editor.dom.createElement(this.tag.name, { attributes, html: selected.textContent }),
                     selected,
                 );
             } else if (selected) {
                 selected.parentElement.replaceChild(this.editor.dom.createText(selected.textContent), selected);
             } else {
-                this.editor.dom.format(this.editor.dom.createElement(this.tag.name, { attributes: attributes }));
+                this.editor.dom.format(this.editor.dom.createElement(this.tag.name, { attributes }));
             }
         }
     }
