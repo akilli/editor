@@ -123,6 +123,21 @@ export default class Dialog {
     }
 
     /**
+     * Creates a legend element with given HTML
+     *
+     * @protected
+     * @param {string} html
+     * @return {HTMLLegendElement}
+     */
+    _createLegend(html) {
+        if (!isPopulatedString(html)) {
+            throw Error.INVALID_ARGUMENT;
+        }
+
+        return this.editor.dom.createElement(TagName.LEGEND, { html });
+    }
+
+    /**
      * Creates wrapped input element with label
      *
      * @protected
@@ -137,12 +152,12 @@ export default class Dialog {
             throw Error.INVALID_ARGUMENT;
         }
 
-        Object.assign(attributes, { id: `editor-${name}`, name: name, type: type });
+        Object.assign(attributes, { id: `editor-${name}`, name, type });
         const div = this.editor.dom.createElement(TagName.DIV);
         div.appendChild(
             this.editor.dom.createElement(TagName.LABEL, { attributes: { for: attributes.id }, html: label }),
         );
-        div.appendChild(this.editor.dom.createElement(TagName.INPUT, { attributes: attributes }));
+        div.appendChild(this.editor.dom.createElement(TagName.INPUT, { attributes }));
 
         if (attributes.required) {
             div.setAttribute('data-required', '');

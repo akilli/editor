@@ -1,6 +1,5 @@
 import Dialog from '../base/Dialog.js';
 import Video from './Video.js';
-import { TagName } from '../base/enum.js';
 
 /**
  * Video Dialog
@@ -19,7 +18,7 @@ export default class VideoDialog extends Dialog {
      * @inheritDoc
      */
     _initFieldset(fieldset) {
-        fieldset.appendChild(this.editor.dom.createElement(TagName.LEGEND, { html: this._('Video') }));
+        fieldset.appendChild(this._createLegend(this._('Video')));
         fieldset.appendChild(this._createInput('src', 'text', this._('URL'), {
             pattern: '(https?|/).+',
             placeholder: this._('Insert URL to video'),

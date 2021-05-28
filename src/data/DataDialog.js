@@ -1,6 +1,5 @@
 import Data from './Data.js';
 import Dialog from '../base/Dialog.js';
-import { TagName } from '../base/enum.js';
 
 /**
  * Data Dialog
@@ -19,7 +18,7 @@ export default class DataDialog extends Dialog {
      * @inheritDoc
      */
     _initFieldset(fieldset) {
-        fieldset.appendChild(this.editor.dom.createElement(TagName.LEGEND, { html: this._('Data') }));
+        fieldset.appendChild(this._createLegend(this._('Data')));
         fieldset.appendChild(this._createInput('value', 'text', this._('Machine-readable Value'), {
             placeholder: this._('Insert value or leave empty to remove it'),
         }));
