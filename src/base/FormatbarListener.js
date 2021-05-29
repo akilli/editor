@@ -26,9 +26,9 @@ export default class FormatbarListener extends BarListener {
             && !this.editor.dom.getSelection().isCollapsed
             && this.editor.tags.allowed(editable, TagGroup.FORMAT, true)
         ) {
+            this.editor.formatbar.hidden = false;
             const top = editable.offsetTop + editable.offsetParent.offsetTop - this.editor.formatbar.clientHeight;
             this.editor.formatbar.style.top = `${top}px`;
-            this.editor.formatbar.hidden = false;
         } else {
             this.editor.formatbar.hidden = true;
             this.editor.formatbar.removeAttribute('style');
