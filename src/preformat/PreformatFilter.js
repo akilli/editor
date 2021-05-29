@@ -17,7 +17,7 @@ export default class PreformatFilter extends Filter {
             && !element.querySelector(':scope > ' + TagName.FIGCAPTION)
         ) {
             element.insertAdjacentElement(Position.BEFOREBEGIN, element.querySelector(':scope > ' + TagName.PRE));
-            element.innerHTML = '';
+            element.parentElement.removeChild(element);
         }
     }
 }

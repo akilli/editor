@@ -20,7 +20,7 @@ export default class BlockquoteFilter extends Filter {
                 Position.BEFOREBEGIN,
                 element.querySelector(':scope > ' + TagName.BLOCKQUOTE),
             );
-            element.innerHTML = '';
+            element.parentElement.removeChild(element);
         }
     }
 }

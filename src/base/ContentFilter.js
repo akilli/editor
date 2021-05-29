@@ -100,7 +100,7 @@ export default class ContentFilter extends Filter {
             return element;
         }
 
-        element.parentElement.removeChild(element);
+        element.parentElement?.removeChild(element);
 
         return undefined;
     }
