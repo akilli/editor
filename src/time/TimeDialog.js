@@ -18,7 +18,7 @@ export default class TimeDialog extends Dialog {
      * @inheritDoc
      */
     _prepareForm() {
-        this.creator
+        this.formCreator
             .addLegend(this._('Data'))
             .addTextInput('datetime', this._('Machine-readable Datetime'), {
                 placeholder: this._('Insert date/time or leave empty to remove it'),

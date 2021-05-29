@@ -18,7 +18,7 @@ export default class DivisionDialog extends Dialog {
      * @inheritDoc
      */
     _prepareForm() {
-        this.creator
+        this.formCreator
             .addLegend(this._('Division'))
             .addTextInput('class', this._('CSS class'), { placeholder: this._('Insert CSS class') });
     }

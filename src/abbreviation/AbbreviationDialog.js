@@ -18,7 +18,7 @@ export default class AbbreviationDialog extends Dialog {
      * @inheritDoc
      */
     _prepareForm() {
-        this.creator
+        this.formCreator
             .addLegend(this._('Abbreviation'))
             .addTextInput('title', this._('Full term'), {
                 placeholder: this._('Insert full term or leave empty to remove it'),

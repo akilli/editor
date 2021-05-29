@@ -18,7 +18,7 @@ export default class SectionDialog extends Dialog {
      * @inheritDoc
      */
     _prepareForm() {
-        this.creator
+        this.formCreator
             .addLegend(this._('Section'))
             .addTextInput('class', this._('CSS class'), { placeholder: this._('Insert CSS class') });
     }

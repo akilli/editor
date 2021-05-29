@@ -19,7 +19,7 @@ export default class VideoDialog extends Dialog {
      * @inheritDoc
      */
     _prepareForm() {
-        this.creator
+        this.formCreator
             .addLegend(this._('Video'))
             .addTextInput('src', this._('URL'), {
                 pattern: '(https?|/).+',

@@ -19,7 +19,7 @@ export default class ImageDialog extends Dialog {
      * @inheritDoc
      */
     _prepareForm() {
-        this.creator
+        this.formCreator
             .addLegend(this._('Image'))
             .addTextInput('src', this._('URL'), {
                 pattern: '(https?|/).+',

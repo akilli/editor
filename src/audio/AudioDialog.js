@@ -19,7 +19,7 @@ export default class AudioDialog extends Dialog {
      * @inheritDoc
      */
     _prepareForm() {
-        this.creator
+        this.formCreator
             .addLegend(this._('Audio'))
             .addTextInput('src', this._('URL'), {
                 pattern: '(https?|/).+',

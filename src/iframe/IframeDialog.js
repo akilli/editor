@@ -19,7 +19,7 @@ export default class IframeDialog extends Dialog {
      * @inheritDoc
      */
     _prepareForm() {
-        this.creator
+        this.formCreator
             .addLegend(this._('Iframe'))
             .addTextInput('src', this._('URL'), {
                 pattern: '(https?|/).+',

@@ -18,7 +18,7 @@ export default class TableDialog extends Dialog {
      * @inheritDoc
      */
     _prepareForm() {
-        this.creator
+        this.formCreator
             .addLegend(this._('Table'))
             .addNumberInput('rows', this._('Rows'), { min: '1', required: 'required', value: '1' })
             .addNumberInput('cols', this._('Columns'), { min: '1', required: 'required', value: '1' });

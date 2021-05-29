@@ -19,7 +19,7 @@ export default class BlockDialog extends Dialog {
      * @inheritDoc
      */
     _prepareForm() {
-        this.creator
+        this.formCreator
             .addLegend(this._('Block'))
             .addTextInput('id', this._('ID'), { required: 'required' });
     }

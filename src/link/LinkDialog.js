@@ -18,7 +18,7 @@ export default class LinkDialog extends Dialog {
      * @inheritDoc
      */
     _prepareForm() {
-        this.creator
+        this.formCreator
             .addLegend(this._('Link'))
             .addTextInput('href', this._('URL'), {
                 pattern: '(https?|/|mailto:|tel:).+',

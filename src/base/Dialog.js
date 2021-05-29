@@ -60,15 +60,15 @@ export default class Dialog {
      *
      * @type {FormCreator|undefined}
      */
-    #creator;
+    #formCreator;
 
     /**
      * Allows read access to form creator
      *
      * @type {FormCreator}
      */
-    get creator() {
-        return this.#creator;
+    get formCreator() {
+        return this.#formCreator;
     }
 
     /**
@@ -145,9 +145,9 @@ export default class Dialog {
             this.#cleanup();
         };
         this.#cleanup();
-        this.#creator = new FormCreator(this.editor.dom, this._('Save'), this._('Cancel'), close);
+        this.#formCreator = new FormCreator(this.editor.dom, this._('Save'), this._('Cancel'), close);
         this._prepareForm();
-        const form = this.creator.form;
+        const form = this.formCreator.form;
         form.addEventListener('submit', event => {
             event.preventDefault();
             event.stopPropagation();
