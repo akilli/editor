@@ -422,7 +422,23 @@ export default class Dom {
     }
 
     /**
-     * Sort element
+     * Deletes element and focuses previous sibling if applicable
+     *
+     * @param {HTMLElement} element
+     * @return {void}
+     */
+    delete(element) {
+        if (!(element instanceof HTMLElement)) {
+            throw Error.INVALID_ARGUMENT;
+        } else if (element.previousElementSibling instanceof HTMLElement) {
+            this.focusEnd(element.previousElementSibling);
+        }
+
+        element.parentElement.removeChild(element);
+    }
+
+    /**
+     * Sorts element
      *
      * @param {HTMLElement} element
      * @param {string} sort

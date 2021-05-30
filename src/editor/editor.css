@@ -331,6 +331,10 @@ akilli-editor [data-command=definition]::before {
     content: '\f129';
 }
 
+akilli-editor [data-command=delete]::before {
+    content: '\f1f8';
+}
+
 akilli-editor [data-command=deletion]::before {
     content: '\f056';
 }

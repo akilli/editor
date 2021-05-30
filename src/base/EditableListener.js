@@ -61,11 +61,7 @@ export default class EditableListener extends Listener {
             && !event.target.textContent
             && event.target.hasAttribute('data-deletable')
         ) {
-            if (event.target.previousElementSibling instanceof HTMLElement) {
-                this.editor.dom.focusEnd(event.target.previousElementSibling);
-            }
-
-            event.target.parentElement.removeChild(event.target);
+            this.editor.dom.delete(event.target);
             event.preventDefault();
             event.stopPropagation();
         } else if (/^[A-Z]$/.test(event.key) && isKey(event, event.key, { alt: true, shift: true })) {
