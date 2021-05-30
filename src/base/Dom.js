@@ -276,7 +276,13 @@ export default class Dom {
             throw Error.INVALID_ARGUMENT;
         }
 
-        return this.editor.root.contains(element) || !element.closest(this.editor.root.localName)?.parentElement;
+        if (this.editor.root.contains(element)) {
+            return true;
+        }
+
+        const root = element.closest(this.editor.root.localName);
+
+        return root && !root.parentElement;
     }
 
     /**

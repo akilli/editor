@@ -13,7 +13,6 @@ export default class FocusbarListener extends BarListener {
         this.editor.focusbar.addEventListener('insertbutton', this);
         this.editor.root.addEventListener('focusin', this);
         this.editor.root.addEventListener('focusout', this);
-        this.editor.root.addEventListener('delete', this);
         this.editor.dom.document.addEventListener('selectionchange', this);
     }
 
@@ -60,15 +59,6 @@ export default class FocusbarListener extends BarListener {
     }
 
     /**
-     * Hides the focusbar when last element was deleted
-     *
-     * @return {void}
-     */
-    delete() {
-        this.editor.root.firstElementChild || this.#hide();
-    }
-
-    /**
      * Hides focusbar if current selection is not collapsed
      *
      * @return {void}
@@ -76,7 +66,7 @@ export default class FocusbarListener extends BarListener {
     selectionchange() {
         const element = this.editor.dom.getActiveElement();
 
-        if (!this.editor.dom.getSelection().isCollapsed) {
+        if (!this.editor.dom.getSelection().isCollapsed || !element) {
             this.#hide();
         } else if (element) {
             this.#show(element);
