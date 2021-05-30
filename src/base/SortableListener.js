@@ -1,5 +1,5 @@
 import Listener from './Listener.js';
-import { Key, Position } from './enum.js';
+import { Key, Position, Sort } from './enum.js';
 import { isKey } from './util.js';
 
 /**
@@ -38,35 +38,10 @@ export default class SortableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (event.target === event.currentTarget
-            && isKey(event, [Key.UP, Key.DOWN, Key.HOME, Key.END], { ctrl: true })
-        ) {
-            const parent = event.target.parentElement;
-            const prev = event.target.previousElementSibling;
-            const next = event.target.nextElementSibling;
-            const first = parent.firstElementChild;
-            const last = parent.lastElementChild;
-            const isFirst = event.target === first;
-            const isLast = event.target === last;
+        const map = { [Key.UP]: Sort.UP, [Key.DOWN]: Sort.DOWN, [Key.HOME]: Sort.TOP, [Key.END]: Sort.END };
 
-            if (event.key === Key.UP && !isFirst && prev.hasAttribute('data-sortable')) {
-                prev.insertAdjacentHTML(Position.BEFOREBEGIN, event.target.outerHTML);
-                parent.removeChild(event.target);
-            } else if (event.key === Key.DOWN && !isLast && next.hasAttribute('data-sortable')) {
-                next.insertAdjacentHTML(Position.AFTEREND, event.target.outerHTML);
-                parent.removeChild(event.target);
-            } else if ((event.key === Key.HOME && !isFirst || event.key === Key.DOWN && isLast)
-                && first.hasAttribute('data-sortable')
-            ) {
-                first.insertAdjacentHTML(Position.BEFOREBEGIN, event.target.outerHTML);
-                parent.removeChild(event.target);
-            } else if ((event.key === Key.END && !isLast || event.key === Key.UP && isFirst)
-                && last.hasAttribute('data-sortable')
-            ) {
-                last.insertAdjacentHTML(Position.AFTEREND, event.target.outerHTML);
-                parent.removeChild(event.target);
-            }
-
+        if (event.target === event.currentTarget && isKey(event, Object.keys(map), { ctrl: true })) {
+            this.editor.dom.sort(event.target, map[event.key]);
             event.preventDefault();
             event.stopPropagation();
         }

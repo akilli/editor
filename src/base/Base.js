@@ -10,11 +10,12 @@ import FormatbarListener from './FormatbarListener.js';
 import NavigableListener from './NavigableListener.js';
 import Plugin from './Plugin.js';
 import SlotableListener from './SlotableListener.js';
+import SortCommand from './SortCommand.js';
 import SortableListener from './SortableListener.js';
 import TagListener from './TagListener.js';
 import ToolbarListener from './ToolbarListener.js';
 import i18n from './i18n.js';
-import { Align, TagGroup, TagName } from './enum.js';
+import { Align, Sort, TagGroup, TagName } from './enum.js';
 
 /**
  * Base Plugin
@@ -80,14 +81,27 @@ export default class Base extends Plugin {
         new FocusableListener(this.editor);
         new SlotableListener(this.editor);
         this.editor.filters.add(new ContentFilter(this.editor));
-        const alignments = {
+
+        const aligns = {
             [Align.NONE]: this._('Align none'),
             [Align.LEFT]: this._('Align left'),
             [Align.CENTER]: this._('Align center'),
             [Align.RIGHT]: this._('Align right'),
         };
-        Object.entries(alignments).forEach(([align, label]) => {
+        Object.entries(aligns).forEach(([align, label]) => {
             const command = new AlignCommand(this.editor, align);
+            this.editor.commands.set(command);
+            this._focusbar(label, command.name);
+        });
+
+        const sorts = {
+            [Sort.TOP]: this._('Sort top'),
+            [Sort.UP]: this._('Sort up'),
+            [Sort.DOWN]: this._('Sort down'),
+            [Sort.END]: this._('Sort end'),
+        };
+        Object.entries(sorts).forEach(([sort, label]) => {
+            const command = new SortCommand(this.editor, sort);
             this.editor.commands.set(command);
             this._focusbar(label, command.name);
         });

@@ -13,7 +13,7 @@ export default class AlignCommand extends Command {
     #align;
 
     /**
-     * Initializes a new table command
+     * Initializes a new align command
      *
      * @param {Editor} editor
      * @param {string} align
@@ -33,11 +33,11 @@ export default class AlignCommand extends Command {
      * @inheritDoc
      */
     execute() {
-        const active = this.editor.dom.getActiveElement();
+        const element = this.editor.dom.getActiveElement();
 
-        if (active?.hasAttribute('data-alignable')) {
-            active.classList.remove(...Object.values(Align));
-            this.#align !== Align.NONE && active.classList.add(this.#align);
+        if (element?.hasAttribute('data-alignable')) {
+            element.classList.remove(...Object.values(Align));
+            this.#align !== Align.NONE && element.classList.add(this.#align);
         }
     }
 }

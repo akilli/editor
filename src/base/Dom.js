@@ -1,5 +1,5 @@
 import Editor from './Editor.js';
-import { Error, Position, TagName } from './enum.js';
+import { Error, Position, Sort, TagName } from './enum.js';
 import { isFunction, isPopulatedString, isUndefined } from './util.js';
 
 /**
@@ -419,6 +419,45 @@ export default class Dom {
         range.selectNodeContents(element);
         range.collapse();
         this.setRange(range);
+    }
+
+    /**
+     * Sort element
+     *
+     * @param {HTMLElement} element
+     * @param {string} sort
+     * @return {void}
+     */
+    sort(element, sort) {
+        if (!(element instanceof HTMLElement) || !Object.values(Sort).includes(sort)) {
+            throw Error.INVALID_ARGUMENT;
+        }
+
+        const parent = element.parentElement;
+        const prev = element.previousElementSibling;
+        const next = element.nextElementSibling;
+        const first = parent.firstElementChild;
+        const last = parent.lastElementChild;
+        const isFirst = element === first;
+        const isLast = element === last;
+
+        if (sort === Sort.UP && !isFirst && prev.hasAttribute('data-sortable')) {
+            prev.insertAdjacentHTML(Position.BEFOREBEGIN, element.outerHTML);
+            parent.removeChild(element);
+        } else if (sort === Sort.DOWN && !isLast && next.hasAttribute('data-sortable')) {
+            next.insertAdjacentHTML(Position.AFTEREND, element.outerHTML);
+            parent.removeChild(element);
+        } else if ((sort === Sort.TOP && !isFirst || sort === Sort.DOWN && isLast)
+            && first.hasAttribute('data-sortable')
+        ) {
+            first.insertAdjacentHTML(Position.BEFOREBEGIN, element.outerHTML);
+            parent.removeChild(element);
+        } else if ((sort === Sort.END && !isLast || sort === Sort.UP && isFirst)
+            && last.hasAttribute('data-sortable')
+        ) {
+            last.insertAdjacentHTML(Position.AFTEREND, element.outerHTML);
+            parent.removeChild(element);
+        }
     }
 
     /**

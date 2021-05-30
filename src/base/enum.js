@@ -76,6 +76,18 @@ export const Position = Object.freeze({
 });
 
 /**
+ * Sort
+ *
+ * @enum {string}
+ */
+export const Sort = Object.freeze({
+    DOWN: 'down',
+    END: 'end',
+    TOP: 'top',
+    UP: 'up',
+});
+
+/**
  * Tag Groups
  *
  * @enum {string}

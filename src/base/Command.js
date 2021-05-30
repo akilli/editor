@@ -109,17 +109,17 @@ export default class Command {
         }
 
         this.#filterAttributes(attributes);
-        const selected = this.editor.dom.getSelectedElementByName(this.tag.name);
+        const element = this.editor.dom.getSelectedElementByName(this.tag.name);
 
         if (this.tag.group !== TagGroup.FORMAT) {
             this.editor.dom.insert(this.editor.dom.createElement(this.tag.name, { attributes }));
-        } else if (selected && Object.keys(attributes).length > 0) {
-            selected.parentElement.replaceChild(
-                this.editor.dom.createElement(this.tag.name, { attributes, html: selected.textContent }),
-                selected,
+        } else if (element && Object.keys(attributes).length > 0) {
+            element.parentElement.replaceChild(
+                this.editor.dom.createElement(this.tag.name, { attributes, html: element.textContent }),
+                element,
             );
-        } else if (selected) {
-            selected.parentElement.replaceChild(this.editor.dom.createText(selected.textContent), selected);
+        } else if (element) {
+            element.parentElement.replaceChild(this.editor.dom.createText(element.textContent), element);
         } else {
             this.editor.dom.format(this.editor.dom.createElement(this.tag.name, { attributes }));
         }
