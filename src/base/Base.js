@@ -1,4 +1,3 @@
-import AlignCommand from './AlignCommand.js';
 import AlignableListener from './AlignableListener.js';
 import ContentFilter from './ContentFilter.js';
 import DeletableListener from './DeletableListener.js';
@@ -14,7 +13,7 @@ import SortableListener from './SortableListener.js';
 import TagListener from './TagListener.js';
 import ToolbarListener from './ToolbarListener.js';
 import i18n from './i18n.js';
-import { Alignment, TagGroup, TagName } from './enum.js';
+import { TagGroup, TagName } from './enum.js';
 
 /**
  * Base Plugin
@@ -80,17 +79,5 @@ export default class Base extends Plugin {
         new FocusableListener(this.editor);
         new SlotableListener(this.editor);
         this.editor.filters.add(new ContentFilter(this.editor));
-
-        const aligns = {
-            [Alignment.NONE]: this._('Align none'),
-            [Alignment.LEFT]: this._('Align left'),
-            [Alignment.CENTER]: this._('Align center'),
-            [Alignment.RIGHT]: this._('Align right'),
-        };
-        Object.entries(aligns).forEach(([align, label]) => {
-            const command = new AlignCommand(this.editor, align);
-            this.editor.commands.set(command);
-            this._focusbar(label, command.name);
-        });
     }
 }

@@ -1,5 +1,6 @@
-import Command from './Command.js';
-import { Alignment, Error } from './enum.js';
+import Align from './Align.js';
+import Command from '../base/Command.js';
+import { Alignment, Error } from '../base/enum.js';
 
 /**
  * Align Command
@@ -10,23 +11,23 @@ export default class AlignCommand extends Command {
      *
      * @type {string}
      */
-    #align;
+    #alignment;
 
     /**
      * Initializes a new align command
      *
      * @param {Editor} editor
-     * @param {string} align
+     * @param {string} alignment
      */
-    constructor(editor, align) {
-        const key = Object.entries(Alignment).find(([, val]) => val === align)?.[0].toLowerCase();
+    constructor(editor, alignment) {
+        const key = Object.entries(Alignment).find(([, val]) => val === alignment)?.[0].toLowerCase();
 
         if (!key) {
             throw Error.INVALID_ARGUMENT;
         }
 
-        super(editor, 'align-' + key);
-        this.#align = align;
+        super(editor, Align.name + '-' + key);
+        this.#alignment = alignment;
     }
 
     /**
@@ -37,7 +38,7 @@ export default class AlignCommand extends Command {
 
         if (element?.hasAttribute('data-alignable')) {
             element.classList.remove(...Object.values(Alignment));
-            this.#align !== Alignment.NONE && element.classList.add(this.#align);
+            this.#alignment !== Alignment.NONE && element.classList.add(this.#alignment);
         }
     }
 }

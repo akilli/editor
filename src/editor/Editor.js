@@ -1,4 +1,5 @@
 import Abbreviation from '../abbreviation/Abbreviation.js';
+import Align from '../align/Align.js';
 import Audio from '../audio/Audio.js';
 import BaseEditor from '../base/Editor.js';
 import Block from '../block/Block.js';
@@ -93,6 +94,7 @@ export default class Editor extends BaseEditor {
                     Details,
                     Division,
                     Block,
+                    Align,
                     Sort,
                     Delete,
                 ],
