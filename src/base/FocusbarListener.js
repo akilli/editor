@@ -1,5 +1,4 @@
 import BarListener from './BarListener.js';
-import { Error } from './enum.js';
 
 /**
  * Focusbar Listener
@@ -46,7 +45,9 @@ export default class FocusbarListener extends BarListener {
      * @return {void}
      */
     focusin(event) {
-        this.#show(event.target);
+        if (event.target instanceof HTMLElement && event.target.hasAttribute('data-focusable')) {
+            this.#show(event.target);
+        }
     }
 
     /**
@@ -68,7 +69,7 @@ export default class FocusbarListener extends BarListener {
 
         if (!this.editor.dom.getSelection().isCollapsed || !element) {
             this.#hide();
-        } else if (element) {
+        } else if (element instanceof HTMLElement && element.hasAttribute('data-focusable')) {
             this.#show(element);
         }
     }
@@ -80,16 +81,10 @@ export default class FocusbarListener extends BarListener {
      * @return {void}
      */
     #show(element) {
-        if (!(element instanceof HTMLElement)) {
-            throw Error.INVALID_ARGUMENT;
-        }
-
-        if (element.hasAttribute('data-focusable')) {
-            this.editor.focusbar.hidden = false;
-            const top = element.offsetTop + element.offsetParent.offsetTop - this.editor.focusbar.clientHeight;
-            this.editor.focusbar.style.top = `${top}px`;
-            Object.keys(element.dataset).forEach(key => (this.editor.focusbar.dataset[key] = element.dataset[key]));
-        }
+        this.editor.focusbar.hidden = false;
+        const top = element.offsetTop + element.offsetParent.offsetTop - this.editor.focusbar.clientHeight;
+        this.editor.focusbar.style.top = `${top}px`;
+        Object.keys(element.dataset).forEach(key => (this.editor.focusbar.dataset[key] = element.dataset[key]));
     }
 
     /**
