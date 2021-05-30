@@ -11,4 +11,13 @@ export default class ToolbarListener extends BarListener {
         super(editor);
         this.editor.toolbar.addEventListener('insertbutton', this);
     }
+
+    /**
+     * @inheritDoc
+     */
+    insertbutton(event) {
+        super.insertbutton(event);
+        event.detail.element.tabIndex = -1;
+        event.detail.element.addEventListener('keydown', this);
+    }
 }

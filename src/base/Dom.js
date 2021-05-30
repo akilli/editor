@@ -325,6 +325,17 @@ export default class Dom {
     }
 
     /**
+     * Returns current active element
+     *
+     * @return {HTMLElement|undefined}
+     */
+    getActiveElement() {
+        const element = this.document.activeElement;
+
+        return element && this.contains(element) ? element : undefined;
+    }
+
+    /**
      * Returns current selected element
      *
      * @return {HTMLElement|undefined}

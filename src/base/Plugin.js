@@ -125,10 +125,11 @@ export default class Plugin {
      *
      * @protected
      * @param {string} label
+     * @param {string|undefined} [command = undefined]
      * @return {void}
      */
-    _toolbar(label) {
-        this.editor.toolbar.appendChild(this.#button(label));
+    _toolbar(label, command = undefined) {
+        this.editor.toolbar.appendChild(this.#button(label, undefined, command));
     }
 
     /**
@@ -137,10 +138,23 @@ export default class Plugin {
      * @protected
      * @param {string} label
      * @param {string|undefined} [key = undefined]
+     * @param {string|undefined} [command = undefined]
      * @return {void}
      */
-    _formatbar(label, key = undefined) {
-        this.editor.formatbar.appendChild(this.#button(label, key));
+    _formatbar(label, key = undefined, command = undefined) {
+        this.editor.formatbar.appendChild(this.#button(label, key, undefined));
+    }
+
+    /**
+     * Adds a focusbar button
+     *
+     * @protected
+     * @param {string} label
+     * @param {string|undefined} [command = undefined]
+     * @return {void}
+     */
+    _focusbar(label, command = undefined) {
+        this.editor.focusbar.appendChild(this.#button(label, undefined, command));
     }
 
     /**
@@ -148,15 +162,21 @@ export default class Plugin {
      *
      * @param {string} label
      * @param {string|undefined} [key = undefined]
+     * @param {string|undefined} [command = undefined]
      * @return {HTMLButtonElement}
      */
-    #button(label, key = undefined) {
+    #button(label, key = undefined, command = undefined) {
         if (!isPopulatedString(label) || !isEmptyOrString(key)) {
             throw Error.INVALID_ARGUMENT;
         }
 
         return this.editor.dom.createElement(TagName.BUTTON, {
-            attributes: { type: 'button', 'data-command': this.constructor.name, title: label, 'data-key': key },
+            attributes: {
+                type: 'button',
+                title: label,
+                'data-command': command || this.constructor.name,
+                'data-key': key,
+            },
             html: label,
         });
     }

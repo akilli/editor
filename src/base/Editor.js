@@ -141,6 +141,38 @@ export default class Editor {
     }
 
     /**
+     * Corresponding DOM element of the focusbar
+     *
+     * @type {HTMLElement}
+     */
+    #focusbar;
+
+    /**
+     * Allows read access to corresponding DOM element of the focusbar
+     *
+     * @return {HTMLElement}
+     */
+    get focusbar() {
+        return this.#focusbar;
+    }
+
+    /**
+     * Event dispatcher of the editor focusbar
+     *
+     * @type {Dispatcher}
+     */
+    #focusbarDispatcher;
+
+    /**
+     * Allows read access to event dispatcher of the editor focusbar
+     *
+     * @return {Dispatcher}
+     */
+    get focusbarDispatcher() {
+        return this.#focusbarDispatcher;
+    }
+
+    /**
      * Corresponding DOM element of the editor content root
      *
      * @type {HTMLElement}
@@ -292,13 +324,21 @@ export default class Editor {
         this.#config = config;
         this.#dom = new Dom(this, this.orig.ownerDocument);
         this.#element = this.dom.createElement(TagName.EDITOR);
+
         this.#toolbar = this.dom.createElement(TagName.TOOLBAR, { attributes: { role: 'toolbar' } });
         this.element.appendChild(this.toolbar);
         this.#toolbarDispatcher = new Dispatcher(this.toolbar);
+
         this.#formatbar = this.dom.createElement(TagName.FORMATBAR, { attributes: { role: 'toolbar' } });
         this.formatbar.hidden = true;
         this.element.appendChild(this.formatbar);
         this.#formatbarDispatcher = new Dispatcher(this.formatbar);
+
+        this.#focusbar = this.dom.createElement(TagName.FOCUSBAR, { attributes: { role: 'toolbar' } });
+        this.focusbar.hidden = true;
+        this.element.appendChild(this.focusbar);
+        this.#focusbarDispatcher = new Dispatcher(this.focusbar);
+
         this.#root = this.dom.createElement(TagName.ROOT);
         this.element.appendChild(this.root);
         this.#rootDispatcher = new Dispatcher(this.root);
@@ -341,6 +381,7 @@ export default class Editor {
         this.plugins.init();
         this.toolbarDispatcher.dispatch('init');
         this.formatbarDispatcher.dispatch('init');
+        this.focusbarDispatcher.dispatch('init');
         this.rootDispatcher.dispatch('init');
     }
 

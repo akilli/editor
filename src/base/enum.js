@@ -1,4 +1,16 @@
 /**
+ * Alignment
+ *
+ * @enum {string}
+ */
+export const Align = Object.freeze({
+    CENTER: 'center',
+    LEFT: 'left',
+    NONE: 'none',
+    RIGHT: 'right',
+});
+
+/**
  * Error
  *
  * @enum {string}
@@ -123,6 +135,7 @@ export const TagName = Object.freeze({
     FIELDSET: 'fieldset',
     FIGCAPTION: 'figcaption',
     FIGURE: 'figure',
+    FOCUSBAR: 'editor-focusbar',
     FORM: 'form',
     FORMATBAR: 'editor-formatbar',
     H2: 'h2',
