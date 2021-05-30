@@ -1,5 +1,5 @@
 import Listener from './Listener.js';
-import { Key, Position, Sort } from './enum.js';
+import { Key, Position, Sorting } from './enum.js';
 import { isKey } from './util.js';
 
 /**
@@ -38,7 +38,7 @@ export default class SortableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        const map = { [Key.UP]: Sort.UP, [Key.DOWN]: Sort.DOWN, [Key.HOME]: Sort.TOP, [Key.END]: Sort.END };
+        const map = { [Key.UP]: Sorting.UP, [Key.DOWN]: Sorting.DOWN, [Key.HOME]: Sorting.TOP, [Key.END]: Sorting.END };
 
         if (event.target === event.currentTarget && isKey(event, Object.keys(map), { ctrl: true })) {
             this.editor.dom.sort(event.target, map[event.key]);

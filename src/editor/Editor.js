@@ -29,6 +29,7 @@ import Quote from '../quote/Quote.js';
 import Sample from '../sample/Sample.js';
 import Section from '../section/Section.js';
 import Small from '../small/Small.js';
+import Sort from '../sort/Sort.js';
 import Strikethrough from '../strikethrough/Strikethrough.js';
 import Strong from '../strong/Strong.js';
 import Subheading from '../subheading/Subheading.js';
@@ -92,6 +93,7 @@ export default class Editor extends BaseEditor {
                     Details,
                     Division,
                     Block,
+                    Sort,
                     Delete,
                 ],
             },

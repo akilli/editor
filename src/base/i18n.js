@@ -11,9 +11,5 @@ export default {
         'Align right': 'rechtsbündig',
         'Alt': 'Alt',
         'Shift': 'Umschalt',
-        'Sort down': 'Nach unten sortieren',
-        'Sort end': 'Ans Ende sortieren',
-        'Sort top': 'An den Anfang sortieren',
-        'Sort oben': 'Nach oben sortieren',
     },
 };

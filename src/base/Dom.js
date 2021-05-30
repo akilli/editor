@@ -1,5 +1,5 @@
 import Editor from './Editor.js';
-import { Error, Position, Sort, TagName } from './enum.js';
+import { Error, Position, Sorting, TagName } from './enum.js';
 import { isFunction, isPopulatedString, isUndefined } from './util.js';
 
 /**
@@ -436,9 +436,9 @@ export default class Dom {
         const next = element.nextElementSibling;
         element.parentElement.removeChild(element);
 
-        if (prev instanceof HTMLElement) {
+        if (prev instanceof HTMLElement && prev.hasAttribute('data-focusable')) {
             this.focusEnd(prev);
-        } else if (next instanceof HTMLElement) {
+        } else if (next instanceof HTMLElement && next.hasAttribute('data-focusable')) {
             next.focus();
         }
     }
@@ -447,11 +447,11 @@ export default class Dom {
      * Sorts element
      *
      * @param {HTMLElement} element
-     * @param {string} sort
+     * @param {string} sorting
      * @return {void}
      */
-    sort(element, sort) {
-        if (!(element instanceof HTMLElement) || !Object.values(Sort).includes(sort)) {
+    sort(element, sorting) {
+        if (!(element instanceof HTMLElement) || !Object.values(Sorting).includes(sorting)) {
             throw Error.INVALID_ARGUMENT;
         }
 
@@ -463,18 +463,18 @@ export default class Dom {
         const isFirst = element === first;
         const isLast = element === last;
 
-        if (sort === Sort.UP && !isFirst && prev.hasAttribute('data-sortable')) {
+        if (sorting === Sorting.UP && !isFirst && prev.hasAttribute('data-sortable')) {
             prev.insertAdjacentHTML(Position.BEFOREBEGIN, element.outerHTML);
             parent.removeChild(element);
-        } else if (sort === Sort.DOWN && !isLast && next.hasAttribute('data-sortable')) {
+        } else if (sorting === Sorting.DOWN && !isLast && next.hasAttribute('data-sortable')) {
             next.insertAdjacentHTML(Position.AFTEREND, element.outerHTML);
             parent.removeChild(element);
-        } else if ((sort === Sort.TOP && !isFirst || sort === Sort.DOWN && isLast)
+        } else if ((sorting === Sorting.TOP && !isFirst || sorting === Sorting.DOWN && isLast)
             && first.hasAttribute('data-sortable')
         ) {
             first.insertAdjacentHTML(Position.BEFOREBEGIN, element.outerHTML);
             parent.removeChild(element);
-        } else if ((sort === Sort.END && !isLast || sort === Sort.UP && isFirst)
+        } else if ((sorting === Sorting.END && !isLast || sorting === Sorting.UP && isFirst)
             && last.hasAttribute('data-sortable')
         ) {
             last.insertAdjacentHTML(Position.AFTEREND, element.outerHTML);

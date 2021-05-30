@@ -4,7 +4,7 @@ import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
 
 /**
- * Cite Plugin
+ * Delete Plugin
  */
 export default class Delete extends Plugin {
     /**

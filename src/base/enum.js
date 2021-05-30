@@ -3,7 +3,7 @@
  *
  * @enum {string}
  */
-export const Align = Object.freeze({
+export const Alignment = Object.freeze({
     CENTER: 'center',
     LEFT: 'left',
     NONE: 'none',
@@ -76,11 +76,11 @@ export const Position = Object.freeze({
 });
 
 /**
- * Sort
+ * Sorting
  *
  * @enum {string}
  */
-export const Sort = Object.freeze({
+export const Sorting = Object.freeze({
     DOWN: 'down',
     END: 'end',
     TOP: 'top',

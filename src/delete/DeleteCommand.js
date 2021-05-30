@@ -6,7 +6,7 @@ import Delete from './Delete.js';
  */
 export default class DeleteCommand extends Command {
     /**
-     * Initializes a new align command
+     * Initializes a new delete command
      *
      * @param {Editor} editor
      */

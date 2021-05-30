@@ -1,5 +1,6 @@
-import Command from './Command.js';
-import { Error, Sort } from './enum.js';
+import Command from '../base/Command.js';
+import Sort from './Sort.js';
+import { Error, Sorting } from '../base/enum.js';
 
 /**
  * Sort Command
@@ -10,23 +11,23 @@ export default class SortCommand extends Command {
      *
      * @type {string}
      */
-    #sort;
+    #sorting;
 
     /**
      * Initializes a new sort command
      *
      * @param {Editor} editor
-     * @param {string} sort
+     * @param {string} sorting
      */
-    constructor(editor, sort) {
-        const key = Object.entries(Sort).find(([, val]) => val === sort)?.[0].toLowerCase();
+    constructor(editor, sorting) {
+        const key = Object.entries(Sorting).find(([, val]) => val === sorting)?.[0].toLowerCase();
 
         if (!key) {
             throw Error.INVALID_ARGUMENT;
         }
 
-        super(editor, 'sort-' + key);
-        this.#sort = sort;
+        super(editor, Sort.name + '-' + key);
+        this.#sorting = sorting;
     }
 
     /**
@@ -36,7 +37,7 @@ export default class SortCommand extends Command {
         const element = this.editor.dom.getActiveElement();
 
         if (element?.hasAttribute('data-sortable')) {
-            this.editor.dom.sort(element, this.#sort);
+            this.editor.dom.sort(element, this.#sorting);
         }
     }
 }
