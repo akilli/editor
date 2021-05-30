@@ -88,10 +88,7 @@ export default class FocusbarListener extends BarListener {
             this.editor.focusbar.hidden = false;
             const top = element.offsetTop + element.offsetParent.offsetTop - this.editor.focusbar.clientHeight;
             this.editor.focusbar.style.top = `${top}px`;
-
-            for (const key in element.dataset) {
-                this.editor.focusbar.dataset[key] = element.dataset[key];
-            }
+            Object.keys(element.dataset).forEach(key => (this.editor.focusbar.dataset[key] = element.dataset[key]));
         }
     }
 
@@ -103,9 +100,6 @@ export default class FocusbarListener extends BarListener {
     #hide() {
         this.editor.focusbar.hidden = true;
         this.editor.focusbar.removeAttribute('style');
-
-        for (const key in this.editor.focusbar.dataset) {
-            delete this.editor.focusbar.dataset[key];
-        }
+        Object.keys(this.editor.focusbar.dataset).forEach(key => delete this.editor.focusbar.dataset[key]);
     }
 }
