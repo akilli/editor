@@ -1,4 +1,5 @@
 import BarListener from './BarListener.js';
+import { Error } from './enum.js';
 
 /**
  * Focusbar Listener
@@ -12,6 +13,8 @@ export default class FocusbarListener extends BarListener {
         this.editor.focusbar.addEventListener('insertbutton', this);
         this.editor.root.addEventListener('focusin', this);
         this.editor.root.addEventListener('focusout', this);
+        this.editor.root.addEventListener('delete', this);
+        this.editor.dom.document.addEventListener('selectionchange', this);
     }
 
     /**
@@ -37,24 +40,73 @@ export default class FocusbarListener extends BarListener {
     }
 
     /**
-     * Hides the focusbar
+     * Shows the focusbar on focusin if element is focusable
      *
      * @param {FocusEvent} event
      * @param {HTMLElement} event.target
      * @return {void}
      */
     focusin(event) {
-        this.editor.focusbar.hidden = false;
-        const top = event.target.offsetTop + event.target.offsetParent.offsetTop - this.editor.focusbar.clientHeight;
-        this.editor.focusbar.style.top = `${top}px`;
+        this.#show(event.target);
+    }
+
+    /**
+     * Hides the focusbar on focusout
+     *
+     * @return {void}
+     */
+    focusout() {
+        this.#hide();
+    }
+
+    /**
+     * Hides the focusbar when last element was deleted
+     *
+     * @return {void}
+     */
+    delete() {
+        this.editor.root.firstElementChild || this.#hide();
+    }
+
+    /**
+     * Hides focusbar if current selection is not collapsed
+     *
+     * @return {void}
+     */
+    selectionchange() {
+        const element = this.editor.dom.getActiveElement();
+
+        if (!this.editor.dom.getSelection().isCollapsed) {
+            this.#hide();
+        } else if (element) {
+            this.#show(element);
+        }
     }
 
     /**
      * Shows the focusbar
      *
+     * @param {HTMLElement} element
      * @return {void}
      */
-    focusout() {
+    #show(element) {
+        if (!(element instanceof HTMLElement)) {
+            throw Error.INVALID_ARGUMENT;
+        }
+
+        if (element.hasAttribute('data-focusable')) {
+            this.editor.focusbar.hidden = false;
+            const top = element.offsetTop + element.offsetParent.offsetTop - this.editor.focusbar.clientHeight;
+            this.editor.focusbar.style.top = `${top}px`;
+        }
+    }
+
+    /**
+     * Hides the focusbar
+     *
+     * @return {void}
+     */
+    #hide() {
         this.editor.focusbar.hidden = true;
         this.editor.focusbar.removeAttribute('style');
     }

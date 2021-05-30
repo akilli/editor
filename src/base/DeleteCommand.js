@@ -21,7 +21,6 @@ export default class DeleteCommand extends Command {
 
         if (element?.hasAttribute('data-deletable')) {
             this.editor.dom.delete(element);
-            this.editor.root.firstElementChild || (this.editor.focusbar.hidden = true);
         }
     }
 }
