@@ -52,11 +52,9 @@ export default class FocusbarListener extends BarListener {
     /**
      * Shows the focusbar
      *
-     * @param {FocusEvent} event
-     * @param {HTMLElement} event.target
      * @return {void}
      */
-    focusout(event) {
+    focusout() {
         this.editor.focusbar.hidden = true;
         this.editor.focusbar.removeAttribute('style');
     }

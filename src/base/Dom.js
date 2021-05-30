@@ -430,11 +430,17 @@ export default class Dom {
     delete(element) {
         if (!(element instanceof HTMLElement)) {
             throw Error.INVALID_ARGUMENT;
-        } else if (element.previousElementSibling instanceof HTMLElement) {
-            this.focusEnd(element.previousElementSibling);
         }
 
+        const prev = element.previousElementSibling;
+        const next = element.nextElementSibling;
         element.parentElement.removeChild(element);
+
+        if (prev instanceof HTMLElement) {
+            this.focusEnd(prev);
+        } else if (next instanceof HTMLElement) {
+            next.focus();
+        }
     }
 
     /**
