@@ -260,6 +260,16 @@ editor-formatbar {
     border: 0.0625rem solid var(--editor-border);
 }
 
+akilli-editor editor-focusbar [data-command] {
+    display: none;
+}
+
+akilli-editor editor-focusbar[data-alignable] [data-command^=align-],
+akilli-editor editor-focusbar[data-deletable] [data-command=delete],
+akilli-editor editor-focusbar[data-sortable] [data-command^=sort-] {
+    display: inline-block;
+}
+
 /**
  * Buttons
  */
