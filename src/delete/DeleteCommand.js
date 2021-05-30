@@ -1,4 +1,5 @@
-import Command from './Command.js';
+import Command from '../base/Command.js';
+import Delete from './Delete.js';
 
 /**
  * Delete Command
@@ -10,7 +11,7 @@ export default class DeleteCommand extends Command {
      * @param {Editor} editor
      */
     constructor(editor) {
-        super(editor, 'delete');
+        super(editor, Delete.name);
     }
 
     /**

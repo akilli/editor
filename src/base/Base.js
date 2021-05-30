@@ -1,7 +1,6 @@
 import AlignCommand from './AlignCommand.js';
 import AlignableListener from './AlignableListener.js';
 import ContentFilter from './ContentFilter.js';
-import DeleteCommand from './DeleteCommand.js';
 import DeletableListener from './DeletableListener.js';
 import DialogElement from './DialogElement.js';
 import EditableListener from './EditableListener.js';
@@ -106,9 +105,5 @@ export default class Base extends Plugin {
             this.editor.commands.set(command);
             this._focusbar(label, command.name);
         });
-
-        const command = new DeleteCommand(this.editor);
-        this.editor.commands.set(command);
-        this._focusbar(this._('Delete'), command.name);
     }
 }

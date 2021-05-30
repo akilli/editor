@@ -10,7 +10,6 @@ export default {
         'Align none': 'Keine Ausrichtung',
         'Align right': 'rechtsbündig',
         'Alt': 'Alt',
-        'Delete': 'Löschen',
         'Shift': 'Umschalt',
         'Sort down': 'Nach unten sortieren',
         'Sort end': 'Ans Ende sortieren',

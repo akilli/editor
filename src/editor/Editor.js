@@ -8,6 +8,7 @@ import Cite from '../cite/Cite.js';
 import Code from '../code/Code.js';
 import Data from '../data/Data.js';
 import Definition from '../definition/Definition.js';
+import Delete from '../delete/Delete.js';
 import Deletion from '../deletion/Deletion.js';
 import Details from '../details/Details.js';
 import Division from '../division/Division.js';
@@ -91,6 +92,7 @@ export default class Editor extends BaseEditor {
                     Details,
                     Division,
                     Block,
+                    Delete,
                 ],
             },
         };
