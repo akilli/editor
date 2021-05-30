@@ -85,6 +85,7 @@ export default class FocusbarListener extends BarListener {
         const top = element.offsetTop + element.offsetParent.offsetTop - this.editor.focusbar.clientHeight;
         this.editor.focusbar.style.top = `${top}px`;
         Object.keys(element.dataset).forEach(key => (this.editor.focusbar.dataset[key] = element.dataset[key]));
+        this.editor.focusbar.dataset.tag = element.localName;
     }
 
     /**
