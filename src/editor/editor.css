@@ -255,6 +255,7 @@ editor-formatbar {
     position: absolute;
     display: flex;
     flex-wrap: wrap;
+    min-height: 2.125rem;
     color: var(--editor-toolbar-color);
     background: var(--editor-toolbar-background);
     border: 0.0625rem solid var(--editor-border);
