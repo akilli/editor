@@ -327,7 +327,7 @@ akilli-editor [data-command=bold]::before {
 }
 
 akilli-editor [data-command=cite]::before {
-    content: '\f02d';
+    content: '\f1f9';
 }
 
 akilli-editor [data-command=code]::before {
@@ -427,19 +427,19 @@ akilli-editor [data-command=small]::before {
 }
 
 akilli-editor [data-command=sort-down]::before {
-    content: '\f107';
+    content: '\f0dd';
 }
 
 akilli-editor [data-command=sort-end]::before {
-    content: '\f103';
+    content: '\f160';
 }
 
 akilli-editor [data-command=sort-top]::before {
-    content: '\f102';
+    content: '\f161';
 }
 
 akilli-editor [data-command=sort-up]::before {
-    content: '\f106';
+    content: '\f0de';
 }
 
 akilli-editor [data-command=strikethrough]::before {
@@ -447,7 +447,7 @@ akilli-editor [data-command=strikethrough]::before {
 }
 
 akilli-editor [data-command=strong]::before {
-    content: '\f071';
+    content: '\f12a';
 }
 
 akilli-editor [data-command=subheading]::before {
