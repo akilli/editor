@@ -37,7 +37,10 @@ In both cases the demos are accessible at
 
 ## Info
 
-The editor consists of a main toolbar, a formatbar and a content area.
+The editor consists of a main toolbar, a formatbar, a focusbar and a content area.
+
+The focusbar contains the buttons to align, sort and delete a *focusable* element. Which buttons are shown depends on
+the elements tag configuration (see below).
 
 The formatbar contains the buttons to format the text inside an editable element, p.e. bold, italic, link or any
 other [text-level element](https://html.spec.whatwg.org/multipage/text-level-semantics.html) and is hidden or shown
@@ -50,8 +53,8 @@ Each widgets itself usually consists of one or more editables that allow adding 
 plugin is an exception to this, as it provides the possibility to add non-editable and optionally previewable
 placeholder blocks into the editor content that will later be somehow replaced by your application (p.e. a CMS).
 
-The features of each element (p.e. like *alignable*, *deletable*, *editable*, *navigable*, *sortable*, etc) as well as
-the allowed attributes and child elements are configured by the tag configuration.
+The features of each element (p.e. like *alignable*, *deletable*, *editable*, *focusable*, *navigable*, *sortable*, etc)
+as well as the allowed attributes and child elements are configured by the tag configuration.
 
 Be aware of the fact that nesting of text-level elements is deliberately disallowed by both the default tag
 configuration and the `Editor.format()` method. If you are not happy with this restriction, adjust the tag configuration
@@ -315,5 +318,5 @@ You can also use this API for your own plugins and define the type and structure
 use a simple string if you are only interested in one value, an object or an array.
 
 Your browser implementation will receive existing values of the currently selected element as `URL.searchParams` if the
-plugin supports updating already inserted elements. Currently neither media element plugins nor the block element plugin
-do, but support will be added somewhen in the future.
+plugin supports updating already inserted elements. Currently neither the media element plugins nor the block element
+plugin do.
