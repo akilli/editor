@@ -28,9 +28,9 @@ export default class Sort extends Plugin {
     init() {
         this._i18n(i18n);
         const sortings = {
-            [Sorting.TOP]: this._('Sort top'),
             [Sorting.UP]: this._('Sort up'),
             [Sorting.DOWN]: this._('Sort down'),
+            [Sorting.TOP]: this._('Sort top'),
             [Sorting.END]: this._('Sort end'),
         };
         Object.entries(sortings).forEach(([sorting, label]) => {

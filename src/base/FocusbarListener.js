@@ -81,9 +81,17 @@ export default class FocusbarListener extends BarListener {
      * @return {void}
      */
     #show(element) {
+        if (!this.editor.focusbar.children.length) {
+            return;
+        }
+
         this.editor.focusbar.hidden = false;
-        const top = element.offsetTop + element.offsetParent.offsetTop - this.editor.focusbar.clientHeight;
+        const top = element.offsetParent.offsetTop + element.offsetTop;
+        const left = this.editor.root.offsetParent.offsetLeft
+            + this.editor.root.offsetLeft
+            - this.editor.focusbar.offsetWidth;
         this.editor.focusbar.style.top = `${top}px`;
+        this.editor.focusbar.style.left = `${left}px`;
         Object.keys(element.dataset).forEach(key => (this.editor.focusbar.dataset[key] = element.dataset[key]));
         this.editor.focusbar.dataset.tag = element.localName;
     }

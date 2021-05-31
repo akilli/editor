@@ -255,12 +255,18 @@ editor-formatbar {
     position: absolute;
     display: flex;
     flex-wrap: wrap;
+    min-width: 2.625rem;
     min-height: 2.125rem;
     color: var(--editor-toolbar-color);
     background: var(--editor-toolbar-background);
     border: 0.0625rem solid var(--editor-border);
 }
 
+editor-focusbar {
+    flex-direction: column;
+}
+
+akilli-editor editor-focusbar:empty,
 akilli-editor editor-focusbar [data-command] {
     display: none;
 }
@@ -427,7 +433,7 @@ akilli-editor [data-command=small]::before {
 }
 
 akilli-editor [data-command=sort-down]::before {
-    content: '\f0dd';
+    content: '\f0d7';
 }
 
 akilli-editor [data-command=sort-end]::before {
@@ -439,7 +445,7 @@ akilli-editor [data-command=sort-top]::before {
 }
 
 akilli-editor [data-command=sort-up]::before {
-    content: '\f0de';
+    content: '\f0d8';
 }
 
 akilli-editor [data-command=strikethrough]::before {
