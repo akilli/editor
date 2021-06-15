@@ -1,6 +1,6 @@
 {
   "name": "@akilli/editor",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "A HTML standards-compliant and dependency-free rich text editor",
   "keywords": [
     "contenteditable",
@@ -33,6 +33,6 @@
     "start": "npx servor --reload . index.html 20000"
   },
   "devDependencies": {
-    "esbuild": "^0.12.5"
+    "esbuild": "^0.12.8"
   }
 }
