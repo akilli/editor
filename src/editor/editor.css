@@ -19,8 +19,8 @@
     --editor-toolbar-color: #191919;
     --editor-text-block: "Block: " attr(id) " ";
     --editor-text-editable: 'Gimme some text!';
-    --editor-text-root: 'No content :-( ... click a button in the toolbar to add some :-)';
-    --editor-text-slot: 'Focus this slot and add a widget from the toolbar';
+    --editor-text-root: 'Add a widget from the toolbar ;-)';
+    --editor-text-slot: 'Focus this slot and add a widget from the toolbar ;-)';
 }
 
 /**
