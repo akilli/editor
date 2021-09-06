@@ -30,7 +30,7 @@
     "build:css": "esbuild src/editor/editor.css --minify --outfile=dist/editor.css",
     "build:js": "esbuild src/editor/Editor.js --minify --bundle --outfile=dist/editor.js --target=es2020 --format=esm",
     "clean": "rm -rf dist",
-    "start": "npx servor --reload . index.html 20000"
+    "start": "npx --yes servor --reload . index.html 20000"
   },
   "devDependencies": {
     "esbuild": "^0.12.25"
