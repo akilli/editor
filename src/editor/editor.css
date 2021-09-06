@@ -4,23 +4,23 @@
 :root {
     --editor-block-background: #191919;
     --editor-block-color: #fff;
-    --editor-block-placeholder: "Block: " attr(id) " ";
     --editor-border: #19191933;
     --editor-button-background: #191919;
     --editor-button-color: #fff;
     --editor-cancel-background: #f1c40f;
     --editor-cancel-color: #191919;
     --editor-cmd-focus: #f1c40f;
-    --editor-empty: 'No content :-( ... click a button in the toolbar to add some :-)';
     --editor-error: #960200;
     --editor-focus: #f1c40f;
     --editor-hover: #f1c40f;
-    --editor-placeholder: 'Gimme some text!';
     --editor-slot-color: #54442b;
-    --editor-slot-placeholder: 'Focus this slot and add a widget from the toolbar';
     --editor-sortover: #191919;
     --editor-toolbar-background: #fff;
     --editor-toolbar-color: #191919;
+    --editor-text-block: "Block: " attr(id) " ";
+    --editor-text-editable: 'Gimme some text!';
+    --editor-text-root: 'No content :-( ... click a button in the toolbar to add some :-)';
+    --editor-text-slot: 'Focus this slot and add a widget from the toolbar';
 }
 
 /**
@@ -65,7 +65,7 @@ editor-root::after {
 
 editor-root:empty::after {
     color: var(--editor-border);
-    content: var(--editor-empty);
+    content: var(--editor-text-root);
 }
 
 /**
@@ -92,7 +92,7 @@ editor-root [contenteditable=true]:hover {
 
 editor-root [contenteditable=true]:empty::after {
     color: var(--editor-border);
-    content: var(--editor-placeholder);
+    content: var(--editor-text-editable);
 }
 
 editor-root td[contenteditable],
@@ -108,7 +108,7 @@ editor-root slot[contenteditable] {
 
 editor-root slot[contenteditable=true]:empty::after {
     color: var(--editor-slot-color);
-    content: var(--editor-slot-placeholder);
+    content: var(--editor-text-slot);
 }
 
 /**
@@ -148,7 +148,7 @@ app-block::before {
     padding: 0.125rem 0.25rem;
     color: var(--editor-block-color);
     background: var(--editor-block-background);
-    content: var(--editor-block-placeholder);
+    content: var(--editor-text-block);
 }
 
 /**
