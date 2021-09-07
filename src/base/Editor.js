@@ -413,6 +413,7 @@ export default class Editor {
 
         this.orig.insertAdjacentElement(Position.AFTEREND, this.element);
         this.orig.hidden = true;
+        this.rootDispatcher.dispatch('load');
     }
 
     /**
@@ -423,6 +424,7 @@ export default class Editor {
     destroy() {
         this.element.parentElement.removeChild(this.element);
         this.orig.hidden = false;
+        this.rootDispatcher.dispatch('destroy');
     }
 
     /**
