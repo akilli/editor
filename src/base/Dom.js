@@ -55,6 +55,22 @@ export default class Dom {
     }
 
     /**
+     * Correspondig DOM Document root element
+     *
+     * @type {HTMLHtmlElement}
+     */
+    #root;
+
+    /**
+     * Allows read access to correspondig DOM Document root element
+     *
+     * @return {HTMLHtmlElement}
+     */
+    get root() {
+        return this.#root;
+    }
+
+    /**
      * Browser window configuration
      *
      * @type {Object.<string, string>}
@@ -87,6 +103,7 @@ export default class Dom {
         this.#editor = editor;
         this.#document = document;
         this.#window = this.document.defaultView;
+        this.#root = this.document.documentElement;
     }
 
     /**
