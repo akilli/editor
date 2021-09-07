@@ -1,5 +1,6 @@
 import AlignableListener from './AlignableListener.js';
 import ContentFilter from './ContentFilter.js';
+import CssListener from './CssListener.js';
 import DeletableListener from './DeletableListener.js';
 import DialogElement from './DialogElement.js';
 import EditableListener from './EditableListener.js';
@@ -78,6 +79,7 @@ export default class Base extends Plugin {
         new AlignableListener(this.editor);
         new FocusableListener(this.editor);
         new SlotableListener(this.editor);
+        new CssListener(this.editor);
         this.editor.filters.add(new ContentFilter(this.editor));
     }
 }
