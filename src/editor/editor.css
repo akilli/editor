@@ -9,11 +9,10 @@
     --editor-button-color: #fff;
     --editor-cancel-background: #f1c40f;
     --editor-cancel-color: #191919;
-    --editor-cmd-focus: #f1c40f;
     --editor-error: #960200;
     --editor-focus: #f1c40f;
     --editor-hover: #f1c40f;
-    --editor-slot-color: #54442b;
+    --editor-slot: #54442b;
     --editor-sortover: #191919;
     --editor-toolbar-background: #fff;
     --editor-toolbar-color: #191919;
@@ -103,11 +102,11 @@ editor-root th[contenteditable] {
 editor-root slot[contenteditable] {
     display: block;
     padding: 0.25rem;
-    outline: 0.25rem solid var(--editor-slot-color);
+    outline: 0.25rem solid var(--editor-slot);
 }
 
 editor-root slot[contenteditable=true]:empty::after {
-    color: var(--editor-slot-color);
+    color: var(--editor-slot);
     content: var(--editor-text-slot);
 }
 
@@ -289,7 +288,7 @@ akilli-editor [data-command] {
 }
 
 akilli-editor [data-command]:focus {
-    color: var(--editor-cmd-focus);
+    color: var(--editor-focus);
 }
 
 akilli-editor [data-command]::before {
