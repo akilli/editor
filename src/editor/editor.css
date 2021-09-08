@@ -16,7 +16,7 @@
     --editor-sortover: #191919;
     --editor-toolbar-background: #fff;
     --editor-toolbar-color: #191919;
-    --editor-text-block: "Block: " attr(id) " ";
+    --editor-text-block: "Block: " attr(id);
     --editor-text-editable: '';
     --editor-text-root: '';
     --editor-text-slot: '';
