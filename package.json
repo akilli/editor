@@ -33,6 +33,6 @@
     "start": "npx --yes servor --reload . index.html 20000"
   },
   "devDependencies": {
-    "esbuild": "^0.12.25"
+    "esbuild": "^0.13.4"
   }
 }
