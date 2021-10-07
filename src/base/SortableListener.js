@@ -38,7 +38,12 @@ export default class SortableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        const map = { [Key.UP]: Sorting.UP, [Key.DOWN]: Sorting.DOWN, [Key.HOME]: Sorting.TOP, [Key.END]: Sorting.END };
+        const map = {
+            [Key.UP]: Sorting.UP,
+            [Key.DOWN]: Sorting.DOWN,
+            [Key.HOME]: Sorting.TOP,
+            [Key.END]: Sorting.BOTTOM,
+        };
 
         if (event.target === event.currentTarget && isKey(event, Object.keys(map), { ctrl: true })) {
             this.editor.dom.sort(event.target, map[event.key]);

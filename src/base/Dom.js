@@ -497,7 +497,7 @@ export default class Dom {
         ) {
             first.insertAdjacentHTML(Position.BEFOREBEGIN, element.outerHTML);
             parent.removeChild(element);
-        } else if ((sorting === Sorting.END && !isLast || sorting === Sorting.UP && isFirst)
+        } else if ((sorting === Sorting.BOTTOM && !isLast || sorting === Sorting.UP && isFirst)
             && last.hasAttribute('data-sortable')
         ) {
             last.insertAdjacentHTML(Position.AFTEREND, element.outerHTML);

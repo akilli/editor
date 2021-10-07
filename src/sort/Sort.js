@@ -31,7 +31,7 @@ export default class Sort extends Plugin {
             [Sorting.UP]: this._('Sort up'),
             [Sorting.DOWN]: this._('Sort down'),
             [Sorting.TOP]: this._('Sort top'),
-            [Sorting.END]: this._('Sort end'),
+            [Sorting.BOTTOM]: this._('Sort bottom'),
         };
         Object.entries(sortings).forEach(([sorting, label]) => {
             const command = new SortCommand(this.editor, sorting);
