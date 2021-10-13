@@ -11,6 +11,7 @@
     --editor-cancel-color: #191919;
     --editor-dialog-backdrop: #000000cc;
     --editor-dialog-background: #fff;
+    --editor-dialog-color: #191919;
     --editor-error: #960200;
     --editor-focus: #f1c40f;
     --editor-hover: #f1c40f;
@@ -179,6 +180,7 @@ editor-dialog form {
     min-width: 40rem;
     min-height: 20rem;
     padding: 0.75rem;
+    color: var(--editor-dialog-color);
     background: var(--editor-dialog-background);
 }
 
