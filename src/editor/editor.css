@@ -2,6 +2,7 @@
  * Variable
  */
 :root {
+    --editor-backdrop: #000000cc;
     --editor-block-background: #191919;
     --editor-block-color: #fff;
     --editor-border: #19191933;
@@ -9,7 +10,6 @@
     --editor-button-color: #fff;
     --editor-cancel-background: #f1c40f;
     --editor-cancel-color: #191919;
-    --editor-backdrop: #000000cc;
     --editor-error: #960200;
     --editor-focus: #f1c40f;
     --editor-hover: #f1c40f;
