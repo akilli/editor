@@ -2,7 +2,6 @@
  * Variable
  */
 :root {
-    --editor-backdrop: #000000cc;
     --editor-block-background: #191919;
     --editor-block-color: #fff;
     --editor-border: #19191933;
@@ -10,6 +9,8 @@
     --editor-button-color: #fff;
     --editor-cancel-background: #f1c40f;
     --editor-cancel-color: #191919;
+    --editor-dialog-backdrop: #fff;
+    --editor-dialog-background: #000000cc;
     --editor-error: #960200;
     --editor-focus: #f1c40f;
     --editor-hover: #f1c40f;
@@ -171,14 +172,14 @@ editor-dialog[open] {
     justify-content: center;
     width: 100%;
     height: 100vh;
-    background: var(--editor-backdrop);
+    background: var(--editor-dialog-backdrop);
 }
 
 editor-dialog form {
     min-width: 40rem;
     min-height: 20rem;
     padding: 0.75rem;
-    background: #fff;
+    background: var(--editor-dialog-background);
 }
 
 editor-dialog form > :not(:first-child),
