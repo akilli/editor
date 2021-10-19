@@ -104,7 +104,7 @@ export default class Tag {
     enter;
 
     /**
-     * Defines a new tag and freezes it
+     * Defines a new tag
      *
      * @param {string} name
      * @param {string} group
