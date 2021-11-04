@@ -5,14 +5,38 @@
     --app-color-accent: #f4a261;
     --app-color-accent-dark: #e76f51;
     --app-color-accent-light: #e9c46a;
-    --app-color-accent-text: #fff;
+    --app-color-accent-text: #000;
     --app-color-border: #000;
-    --app-color-error: #b22222;
+    --app-color-error: #d23632;
     --app-color-error-text: #fff;
     --app-color-primary: #264653;
     --app-color-primary-dark: #000;
     --app-color-primary-light: #2a9d8f;
     --app-color-primary-text: #fff;
+}
+
+/**
+ * Font
+ */
+@font-face {
+    font-family: knewave;
+    font-weight: normal;
+    font-style: normal;
+    src: url('../font/knewave.woff') format('woff');
+}
+
+@font-face {
+    font-family: raleway;
+    font-weight: normal;
+    font-style: normal;
+    src: url('../font/raleway.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: spartan;
+    font-weight: normal;
+    font-style: normal;
+    src: url('../font/spartan.woff2') format('woff2');
 }
 
 /**
@@ -23,7 +47,6 @@ body {
     margin: 0 auto 7.5rem;
     padding: 0.75rem;
     line-height: 1.5rem;
-    font-family: sans-serif;
 }
 
 #button {
@@ -97,7 +120,9 @@ figure.blockquote {
     color: var(--app-color-accent);
 }
 
-details[open] a {
+h2,
+h3,
+details[open] :is(a, blockquote, figure.blockquote) {
     color: var(--app-color-primary-dark);
 }
 
@@ -121,12 +146,6 @@ details[open] summary {
     border-bottom: 0.0625rem solid var(--app-color-primary-dark);
 }
 
-figure.blockquote,
-:not(figure.blockquote) > blockquote {
-    border-top: 0.0625rem solid var(--app-color-accent);
-    border-bottom: 0.0625rem solid var(--app-color-accent);
-}
-
 td,
 th {
     border: solid 0.0625rem var(--app-color-border);
@@ -142,22 +161,25 @@ tbody tr:last-child th {
 /**
  * Typography
  */
-figure.blockquote::before,
-:not(figure.blockquote) > blockquote::before {
-    font-size: 6rem
+body {
+    font-family: raleway;
 }
 
 blockquote {
-    font-family: serif;
+    font-family: knewave;
     font-size: 3rem;
 }
 
 h2 {
-    font-size: 1.25rem;
+    font-family: spartan;
+    font-size: 3rem;
+    font-variation-settings: 'wght' 900;
 }
 
 h3 {
-    font-size: 1.125rem;
+    font-family: spartan;
+    font-size: 1.5rem;
+    font-variation-settings: 'wght' 700;
 }
 
 figcaption,
@@ -188,9 +210,13 @@ var {
 /**
  * Text
  */
+h2 {
+    line-height: 3rem;
+}
+
 hr {
     height: 1.5rem;
-    background-size: auto 0.5rem;
+    background-size: auto 0.125rem;
 }
 
 ol,
@@ -199,7 +225,7 @@ ul {
 }
 
 a {
-    text-decoration: underline;
+    text-decoration: underline double;
 }
 
 code,
@@ -247,18 +273,8 @@ figure.right {
  */
 figure.blockquote,
 :not(figure.blockquote) > blockquote {
-    position: relative;
-    padding: 0.6875rem 3.375rem 0.6875rem 0.75rem;
+    padding: 0.75rem;
     text-align: center;
-}
-
-figure.blockquote::before,
-:not(figure.blockquote) > blockquote::before {
-    position: absolute;
-    right: 0;
-    top: 0.75rem;
-    display: inline-block;
-    content: '🙷';
 }
 
 blockquote {

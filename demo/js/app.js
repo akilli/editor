@@ -2,7 +2,7 @@
 
 (function (document, window, console) {
     function editorPath() {
-        return window.location.pathname.endsWith('src.html') ? '../src/editor/Editor.js' : '../dist/editor.js';
+        return window.location.pathname.endsWith('src.html') ? '../../src/editor/Editor.js' : '../../dist/editor.js';
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
