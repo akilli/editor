@@ -38,7 +38,7 @@ details, dialog, menu, summary {
  */
 a[role=button],
 audio, canvas, embed, iframe, img, object, picture, video,
-th, thead td,
+thead :is(td, th),
 button, input, label, select, textarea {
     vertical-align: middle;
 }
@@ -51,7 +51,8 @@ sup {
     vertical-align: super;
 }
 
-td {
+td,
+th {
     vertical-align: top;
 }
 
@@ -110,21 +111,14 @@ thead td {
  */
 a,
 button,
-input[type=button],
-input[type=reset],
-input[type=submit],
-input[type=checkbox],
-input[type=radio],
+input:is([type=button], [type=reset], [type=submit], [type=checkbox], [type=radio]),
 label,
 select,
 summary {
     cursor: pointer;
 }
 
-abbr[title],
-del[title],
-dfn[title],
-ins[title] {
+:is(abbr, del, dfn, ins)[title] {
     cursor: help;
 }
 
@@ -186,9 +180,8 @@ ins {
     text-decoration: underline;
 }
 
-abbr[title],
-dfn[title] {
-    border-bottom: thin dotted;
+:is(abbr, dfn)[title] {
+    text-decoration: underline dotted;
 }
 
 a {
@@ -203,9 +196,6 @@ hr {
  * Figure
  */
 img {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 }
 

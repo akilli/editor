@@ -1,0 +1,308 @@
+/**
+ * Variable
+ */
+:root {
+    --app-color-accent: #f4a261;
+    --app-color-accent-dark: #e76f51;
+    --app-color-accent-light: #e9c46a;
+    --app-color-accent-text: #fff;
+    --app-color-border: #000;
+    --app-color-error: #b22222;
+    --app-color-error-text: #fff;
+    --app-color-primary: #264653;
+    --app-color-primary-dark: #000;
+    --app-color-primary-light: #2a9d8f;
+    --app-color-primary-text: #fff;
+}
+
+/**
+ * Layout
+ */
+body {
+    max-width: 66rem;
+    margin: 0 auto 7.5rem;
+    padding: 0.75rem;
+    line-height: 1.5rem;
+    font-family: sans-serif;
+}
+
+#button {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/**
+ * Margin
+ */
+:is(editor-root, #rte, #rte div) > :not(:is(:first-child)) {
+    margin-top: 1.5rem;
+}
+
+:is(details, figure, section) > :not(:first-child) {
+    margin-top: 0.75rem;
+}
+
+/**
+ * Color
+ */
+body {
+    color: var(--app-color-primary);
+    background: var(--app-color-primary-text);
+}
+
+details,
+pre,
+code {
+    color: var(--app-color-primary-text);
+    background: var(--app-color-primary-dark);
+}
+
+samp {
+    color: var(--app-color-accent-light);
+    background: var(--app-color-primary-dark);
+}
+
+::selection,
+details[open] {
+    color: var(--app-color-accent-text);
+    background: var(--app-color-accent);
+}
+
+#button {
+    color: var(--app-color-error-text);
+    background: var(--app-color-error);
+}
+
+mark {
+    background: var(--app-color-accent-light);
+}
+
+::placeholder {
+    color: var(--app-color-primary-light);
+}
+
+ins {
+    color: var(--app-color-accent-dark);
+}
+
+del {
+    color: var(--app-color-accent-light);
+}
+
+a,
+blockquote,
+figure.blockquote {
+    color: var(--app-color-accent);
+}
+
+details[open] a {
+    color: var(--app-color-primary-dark);
+}
+
+cite {
+    color: #54442b;
+}
+
+dfn {
+    color: var(--app-color-accent-light);
+}
+
+hr {
+    background: linear-gradient(to left, var(--app-color-primary-dark), var(--app-color-primary-dark)) no-repeat center;
+}
+
+details {
+    border: 0.0625rem solid var(--app-color-primary-dark);
+}
+
+details[open] summary {
+    border-bottom: 0.0625rem solid var(--app-color-primary-dark);
+}
+
+figure.blockquote,
+:not(figure.blockquote) > blockquote {
+    border-top: 0.0625rem solid var(--app-color-accent);
+    border-bottom: 0.0625rem solid var(--app-color-accent);
+}
+
+td,
+th {
+    border: solid 0.0625rem var(--app-color-border);
+}
+
+thead tr:last-child td,
+thead tr:last-child th,
+tbody tr:last-child td,
+tbody tr:last-child th {
+    border-bottom-color: var(--app-color-primary);
+}
+
+/**
+ * Typography
+ */
+figure.blockquote::before,
+:not(figure.blockquote) > blockquote::before {
+    font-size: 6rem
+}
+
+blockquote {
+    font-family: serif;
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+}
+
+h3 {
+    font-size: 1.125rem;
+}
+
+figcaption,
+small,
+table {
+    font-size: 0.875rem;
+}
+
+var {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+/**
+ * Clear
+ */
+:is(details, section)::before {
+    display: table;
+    content: ' ';
+}
+
+:is(details, section)::after {
+    display: table;
+    clear: both;
+    content: ' ';
+}
+
+/**
+ * Text
+ */
+hr {
+    height: 1.5rem;
+    background-size: auto 0.5rem;
+}
+
+ol,
+ul {
+    padding-left: 2rem;
+}
+
+a {
+    text-decoration: underline;
+}
+
+code,
+kbd,
+mark,
+samp {
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+}
+
+/**
+ * Details
+ */
+details {
+    padding: 0.6875rem 0.3125rem;
+}
+
+details[open] summary {
+    padding-bottom: 0.6875rem;
+}
+
+/**
+ * Figure
+ */
+figure.left {
+    max-width: 50%;
+    float: left;
+    margin-right: 0.75rem;
+}
+
+figure.center {
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+figure.right {
+    max-width: 50%;
+    float: right;
+    margin-left: 0.75rem;
+}
+
+/**
+ * Blockquote
+ */
+figure.blockquote,
+:not(figure.blockquote) > blockquote {
+    position: relative;
+    padding: 0.6875rem 3.375rem 0.6875rem 0.75rem;
+    text-align: center;
+}
+
+figure.blockquote::before,
+:not(figure.blockquote) > blockquote::before {
+    position: absolute;
+    right: 0;
+    top: 0.75rem;
+    display: inline-block;
+    content: '🙷';
+}
+
+blockquote {
+    line-height: 3rem;
+}
+
+/**
+ * Table
+ */
+figure.table.center table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td,
+th {
+    min-height: 1.5rem;
+}
+
+/**
+ * Div
+ */
+editor-root div,
+#rte div {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1.5rem;
+    align-items: end;
+    min-height: 0;
+    padding: 1.5rem;
+}
+
+editor-root div figure.right,
+#rte div figure.left {
+    float: none;
+    margin: 0;
+}
+
+/**
+ * Editor
+ */
+#button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    border: 0;
+}
