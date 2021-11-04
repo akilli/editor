@@ -16,7 +16,7 @@
             block: {
                 api: 'api/{id}.html',
                 browser: 'block.html',
-                css: 'base.css,page.css',
+                css: 'css/base.css,css/app.css',
             },
             iframe: {
                 browser: 'media.html#iframe',
