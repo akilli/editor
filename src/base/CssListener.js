@@ -20,9 +20,9 @@ export default class CssListener extends Listener {
      */
     init() {
         const style = this.editor.element.style;
-        style.setProperty('--editor-text-root', this.#quote('Gimme some content!'));
+        style.setProperty('--editor-text-root', this.#quote('Gimme some widgets!'));
         style.setProperty('--editor-text-editable', this.#quote('Gimme some text!'));
-        style.setProperty('--editor-text-slot', this.#quote('Focus this slot and gimme some content!'));
+        style.setProperty('--editor-text-slot', this.#quote('Focus this slot and gimme some widgets!'));
     }
 
     /**

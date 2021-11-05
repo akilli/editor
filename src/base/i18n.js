@@ -6,9 +6,9 @@
 export default {
     de: {
         'Alt': 'Alt',
-        'Focus this slot and gimme some content!': 'Fokussiere diesen Slot und gib mir Inhalte!',
-        'Gimme some content!': 'Gib mir Inhalte!',
+        'Focus this slot and gimme some widgets!': 'Fokussiere diesen Slot und gib mir Widgets!',
         'Gimme some text!': 'Gib mir Text!',
+        'Gimme some widgets!': 'Gib mir Widgets!',
         'Shift': 'Umschalt',
     },
 };
