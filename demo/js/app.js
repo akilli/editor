@@ -30,16 +30,21 @@
         const editor = Editor.create(rte, config);
         console.log(editor);
 
-        const button = document.getElementById('button');
-        button.textContent = rte.hidden ? 'Save' : 'Edit';
-        button.addEventListener('click', () => {
+        document.getElementById('clear').addEventListener('click', () => {
+            editor.setHtml('');
+            window.scrollTo(0, 0);
+        });
+
+        const save = document.getElementById('save');
+        save.textContent = rte.hidden ? 'Save' : 'Edit';
+        save.addEventListener('click', () => {
             if (rte.hidden) {
                 editor.save();
                 editor.destroy();
-                button.textContent = 'Edit';
+                save.textContent = 'Edit';
             } else {
                 editor.load();
-                button.textContent = 'Save';
+                save.textContent = 'Save';
             }
         });
     });

@@ -49,11 +49,12 @@ body {
     line-height: 1.5rem;
 }
 
-#button {
+footer {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
+    display: flex;
 }
 
 /**
@@ -93,7 +94,12 @@ details[open] {
     background: var(--app-color-accent);
 }
 
-#button {
+#clear {
+    color: var(--app-color-primary-text);
+    background: var(--app-color-primary-light);
+}
+
+#save {
     color: var(--app-color-error-text);
     background: var(--app-color-error);
 }
@@ -314,9 +320,10 @@ editor-root div figure.right,
 }
 
 /**
- * Editor
+ * Footer
  */
-#button {
+#clear,
+#save {
     display: block;
     width: 100%;
     padding: 0.75rem;
