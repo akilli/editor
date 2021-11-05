@@ -1,3 +1,6 @@
+/**
+ * Reset
+ */
 :root,
 address, article, aside, body, footer, h1, h2, h3, h4, h5, h6, header, nav, section,
 blockquote, dd, div, dl, dt, figcaption, figure, hr, li, main, ol, p, pre, ul,
@@ -24,6 +27,20 @@ details, dialog, menu, summary {
 ::before,
 ::after {
     box-sizing: border-box;
+}
+
+/**
+ * Global
+ */
+:root {
+    width: 100%;
+    overflow-y: scroll;
+    font-size: 16px;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
 }
 
 /**
@@ -85,6 +102,13 @@ dialog {
 /**
  * Font
  */
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace;
+}
+
 blockquote,
 cite,
 dfn,
@@ -127,24 +151,6 @@ summary {
 }
 
 /**
- * Global
- */
-:root {
-    width: 100%;
-    overflow-y: scroll;
-    font-size: 16px;
-}
-
-body {
-    width: 100%;
-    min-height: 100vh;
-}
-
-main {
-    hyphens: auto;
-}
-
-/**
  * Nav
  */
 nav ul {
@@ -154,11 +160,8 @@ nav ul {
 /**
  * Text
  */
-code,
-kbd,
-pre,
-samp {
-    font-family: monospace;
+main {
+    hyphens: auto;
 }
 
 pre {
@@ -186,10 +189,6 @@ ins {
 
 a {
     text-decoration: none;
-}
-
-hr {
-    clear: both;
 }
 
 /**
@@ -224,6 +223,13 @@ thead td {
 select[multiple],
 textarea {
     resize: both;
+}
+
+/**
+ * Clear
+ */
+hr {
+    clear: both;
 }
 
 /**
