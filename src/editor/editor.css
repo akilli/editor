@@ -15,6 +15,7 @@
     --editor-error: #960200;
     --editor-focus: #f1c40f;
     --editor-hover: #f1c40f;
+    --editor-placeholder: #19191933;
     --editor-slot: #54442b;
     --editor-sortover: #191919;
     --editor-toolbar-background: #fff;
@@ -60,19 +61,17 @@ editor-root {
     border-top: 0;
 }
 
-editor-root::before {
+editor-root:is(::before, ::after) {
     display: table;
     content: ' ';
 }
 
 editor-root::after {
-    display: table;
     clear: both;
-    content: ' ';
 }
 
 editor-root:empty::after {
-    color: var(--editor-border);
+    color: var(--editor-placeholder);
     content: var(--editor-text-root);
 }
 
@@ -99,12 +98,11 @@ editor-root [contenteditable=true]:hover {
 }
 
 editor-root [contenteditable=true]:empty::after {
-    color: var(--editor-border);
+    color: var(--editor-placeholder);
     content: var(--editor-text-editable);
 }
 
-editor-root td[contenteditable],
-editor-root th[contenteditable] {
+editor-root :is(td, th)[contenteditable] {
     height: 1.5rem;
 }
 
@@ -126,18 +124,14 @@ editor-root [data-sortable][data-sort]:hover {
     cursor: grab;
 }
 
-editor-root [data-sortover],
-editor-root [contenteditable][data-sortover] {
+editor-root :is([data-sortover], [contenteditable][data-sortover]) {
     outline: 0.25rem dashed var(--editor-sortover);
 }
 
 /**
  * Media
  */
-editor-root audio,
-editor-root iframe,
-editor-root img,
-editor-root video {
+editor-root :is(audio, iframe, image, video) {
     pointer-events: none;
 }
 
@@ -190,8 +184,7 @@ editor-dialog form {
     background: var(--editor-dialog-background);
 }
 
-editor-dialog form > :not(:first-child),
-editor-dialog fieldset > :not(:first-child) {
+editor-dialog :is(form, fieldset) > :not(:first-child) {
     margin-top: 1.5rem;
 }
 
@@ -222,26 +215,30 @@ editor-dialog button[type=button] {
     background: var(--editor-cancel-background);
 }
 
-editor-dialog input[type=email],
-editor-dialog input[type=number],
-editor-dialog input[type=password],
-editor-dialog input[type=search],
-editor-dialog input[type=tel],
-editor-dialog input[type=text],
-editor-dialog input[type=url],
+editor-dialog input:is(
+    [type=email],
+    [type=number],
+    [type=password],
+    [type=search],
+    [type=tel],
+    [type=text],
+    [type=url]
+),
 editor-dialog select {
     width: 100%;
     padding: 0.71875rem 0;
     border-bottom: 0.0625rem solid var(--editor-border);
 }
 
-editor-dialog input[type=email]:invalid,
-editor-dialog input[type=number]:invalid,
-editor-dialog input[type=password]:invalid,
-editor-dialog input[type=search]:invalid,
-editor-dialog input[type=tel]:invalid,
-editor-dialog input[type=text]:invalid,
-editor-dialog input[type=url]:invalid,
+editor-dialog input:is(
+    [type=email],
+    [type=number],
+    [type=password],
+    [type=search],
+    [type=tel],
+    [type=text],
+    [type=url]
+):invalid,
 editor-dialog select:invalid {
     border-color: var(--editor-error);
 }
