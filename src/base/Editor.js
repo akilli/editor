@@ -378,6 +378,11 @@ export default class Editor {
             });
             this.plugins.set(new item(this));
         });
+
+        if (this.config.base.lang) {
+            this.element.lang = this.config.base.lang;
+        }
+
         this.plugins.init();
         this.toolbarDispatcher.dispatch('init');
         this.formatbarDispatcher.dispatch('init');

@@ -25,6 +25,12 @@
     --editor-text-slot: 'Focus this slot and gimme some widgets!';
 }
 
+akilli-editor[lang=de] {
+    --editor-text-editable: 'Gib mir Text!';
+    --editor-text-root: 'Gib mir Widgets!';
+    --editor-text-slot: 'Fokussiere diesen Slot und gib mir Widgets!';
+}
+
 /**
  * Font
  */
