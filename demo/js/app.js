@@ -10,9 +10,6 @@
             audio: {
                 browser: 'media.html#audio',
             },
-            base: {
-                lang: 'en',
-            },
             block: {
                 api: 'api/{id}.html',
                 browser: 'block.html',
