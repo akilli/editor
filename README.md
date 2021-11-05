@@ -32,7 +32,7 @@ docker-compose up -d
 
 In both cases the demos are accessible at
 
-- **dist version:** http://localhost:20000/demo
+- **dist version:** http://localhost:20000/demo/index.html
 - **src version:** http://localhost:20000/demo/src.html
 
 ## Info
