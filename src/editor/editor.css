@@ -131,7 +131,7 @@ editor-root :is([data-sortover], [contenteditable][data-sortover]) {
 /**
  * Media
  */
-editor-root :is(audio, iframe, image, video) {
+editor-root :is(audio, iframe, img, video) {
     pointer-events: none;
 }
 
