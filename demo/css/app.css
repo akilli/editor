@@ -13,6 +13,43 @@
     --app-color-primary-dark: #000;
     --app-color-primary-light: #2a9d8f;
     --app-color-primary-text: #fff;
+    --editor-block-background: var(--app-color-primary-dark);
+    --editor-block-color: var(--app-color-primary-text);
+    --editor-border: var(--app-color-border);
+    --editor-button-background: var(--app-color-primary-dark);
+    --editor-button-color: var(--app-color-primary-text);
+    --editor-cancel-background: var(--app-color-primary-light);
+    --editor-cancel-color: var(--app-color-primary-text);
+    --editor-dialog-backdrop: #000000cc;
+    --editor-dialog-background: var(--app-color-primary-text);
+    --editor-dialog-color: var(--app-color-primary);
+    --editor-error: var(--app-color-error);
+    --editor-focus: var(--app-color-accent-light);
+    --editor-hover: var(--app-color-accent-light);
+    --editor-placeholder: var(--app-color-primary-light);
+    --editor-slot: var(--app-color-primary-light);
+    --editor-sortover: var(--app-color-primary-dark);
+    --editor-toolbar-background: var(--app-color-primary-text);
+    --editor-toolbar-color: var(--app-color-primary);
+}
+
+:root[data-dark] {
+    --app-color-accent: #4166f5;
+    --app-color-accent-dark: #003cc1;
+    --app-color-accent-light: #8193ff;
+    --app-color-accent-text: #fff;
+    --app-color-border: #000;
+    --app-color-error: #b22222;
+    --app-color-error-text: #fff;
+    --app-color-primary: #222;
+    --app-color-primary-dark: #000;
+    --app-color-primary-light: #494949;
+    --app-color-primary-text: #fff;
+    --editor-dialog-backdrop: #ffffffcc;
+    --editor-dialog-background: var(--app-color-primary);
+    --editor-dialog-color: var(--app-color-primary-text);
+    --editor-toolbar-background: var(--app-color-primary);
+    --editor-toolbar-color: var(--app-color-primary-text);
 }
 
 /**
@@ -49,20 +86,27 @@ body {
     line-height: 1.5rem;
 }
 
-#header {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    padding: 0.75rem;
-}
-
+#header,
 #footer {
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 0;
     display: flex;
+}
+
+#header {
+    top: 0;
+}
+
+#footer {
+    bottom: 0;
+}
+
+:is(#header, #footer) > * {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    border: 0;
 }
 
 /**
@@ -82,6 +126,11 @@ body {
 body {
     color: var(--app-color-primary);
     background: var(--app-color-primary-text);
+}
+
+:root[data-dark] body {
+    color: var(--app-color-primary-text);
+    background: var(--app-color-primary);
 }
 
 details,
@@ -334,15 +383,4 @@ editor-root div figure.right,
 
 editor-toolbar {
     top: 3rem;
-}
-
-/**
- * Footer
- */
-#clear,
-#save {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
-    border: 0;
 }

@@ -22,8 +22,11 @@ const config = {
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
+    const root = document.documentElement;
     const dist = document.getElementById('dist');
     const src = document.getElementById('src');
+    const light = document.getElementById('light');
+    const dark = document.getElementById('dark');
     const rte = document.getElementById('rte');
     const clear = document.getElementById('clear');
     const save = document.getElementById('save');
@@ -34,8 +37,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         editor = Editor.create(rte, config);
         console.log(editor);
     };
+    dark.checked && root.setAttribute('data-dark', '');
     dist.addEventListener('click', init);
     src.addEventListener('click', init);
+    light.addEventListener('click', () => root.removeAttribute('data-dark'));
+    dark.addEventListener('click', () => root.setAttribute('data-dark', ''));
     clear.addEventListener('click', () => {
         editor.setHtml('');
         window.scrollTo(0, 0);
