@@ -1,3 +1,6 @@
+import DistEditor from '../../dist/editor.js';
+import SrcEditor from '../../src/editor/Editor.js';
+
 const config = {
     audio: {
         browser: 'browser/audio.html',
@@ -20,7 +23,7 @@ const config = {
 
 document.addEventListener('DOMContentLoaded', async () => {
     const rte = document.getElementById('rte');
-    const { default: Editor } = await import(editorPath());
+    const Editor = window.location.pathname.endsWith('src.html') ? SrcEditor : DistEditor;
     const editor = Editor.create(rte, config);
     console.log(editor);
 
@@ -40,9 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             editor.load();
             save.textContent = 'Save';
         }
+
+        window.scrollTo(0, 0);
     });
 });
-
-function editorPath() {
-    return window.location.pathname.endsWith('src.html') ? '../../src/editor/Editor.js' : '../../dist/editor.js';
-}
