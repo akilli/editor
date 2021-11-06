@@ -18,10 +18,6 @@
                 type: type,
                 width: media.getAttribute('width'),
             }, window.opener.origin));
-
-            if (window.location.hash && window.location.hash !== `#${type}`) {
-                figure.parentElement.removeChild(figure);
-            }
         });
     });
 })(document, window, console);

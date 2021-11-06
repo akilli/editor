@@ -8,21 +8,21 @@
     document.addEventListener('DOMContentLoaded', async () => {
         const config = {
             audio: {
-                browser: 'media.html#audio',
+                browser: 'browser/audio.html',
             },
             block: {
                 api: 'api/{id}.html',
-                browser: 'block.html',
+                browser: 'browser/block.html',
                 css: 'css/base.css,css/app.css',
             },
             iframe: {
-                browser: 'media.html#iframe',
+                browser: 'browser/iframe.html',
             },
             image: {
-                browser: 'media.html#image',
+                browser: 'browser/image.html',
             },
             video: {
-                browser: 'media.html#video',
+                browser: 'browser/video.html',
             },
         };
         const rte = document.getElementById('rte');
