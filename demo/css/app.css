@@ -44,12 +44,20 @@
  */
 body {
     max-width: 66rem;
-    margin: 0 auto 7.5rem;
+    margin: 7.5rem auto;
     padding: 0.75rem;
     line-height: 1.5rem;
 }
 
-footer {
+#header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 0.75rem;
+}
+
+#footer {
     position: fixed;
     left: 0;
     right: 0;
@@ -78,7 +86,8 @@ body {
 
 details,
 pre,
-code {
+code,
+#header {
     color: var(--app-color-primary-text);
     background: var(--app-color-primary-dark);
 }
@@ -196,6 +205,10 @@ table {
 
 var {
     font-family: monospace;
+    font-weight: bold;
+}
+
+#header label:first-child {
     font-weight: bold;
 }
 
@@ -317,6 +330,10 @@ editor-root div figure.right,
 #rte div figure.left {
     float: none;
     margin: 0;
+}
+
+editor-toolbar {
+    top: 3rem;
 }
 
 /**

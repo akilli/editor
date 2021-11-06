@@ -4,11 +4,7 @@ A HTML standards-compliant and dependency-free rich text editor.
 
 ## Demo
 
-- **dist version:** https://akilli.github.io/editor/demo
-- **src version:** https://akilli.github.io/editor/demo/src.html
-
-The **dist-version** is currently built for target `es2020`. If you have to support older browsers, adjust the build
-config to your needs.
+https://akilli.github.io/editor/demo
 
 ## Development
 
@@ -30,10 +26,8 @@ or
 docker-compose up -d
 ```
 
-In both cases the demos are accessible at
-
-- **dist version:** http://localhost:20000/demo/index.html
-- **src version:** http://localhost:20000/demo/src.html
+In both cases the demo is accessible at
+http://localhost:20000/demo/index.html
 
 ## Info
 

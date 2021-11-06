@@ -22,28 +22,38 @@ const config = {
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
+    const dist = document.getElementById('dist');
+    const src = document.getElementById('src');
     const rte = document.getElementById('rte');
-    const Editor = window.location.pathname.endsWith('src.html') ? SrcEditor : DistEditor;
-    const editor = Editor.create(rte, config);
-    console.log(editor);
-
-    document.getElementById('clear').addEventListener('click', () => {
+    const clear = document.getElementById('clear');
+    const save = document.getElementById('save');
+    let editor;
+    const init = () => {
+        editor?.destroy();
+        const Editor = src.checked ? SrcEditor : DistEditor;
+        editor = Editor.create(rte, config);
+        console.log(editor);
+    };
+    dist.addEventListener('click', init);
+    src.addEventListener('click', init);
+    clear.addEventListener('click', () => {
         editor.setHtml('');
         window.scrollTo(0, 0);
     });
-
-    const save = document.getElementById('save');
     save.textContent = rte.hidden ? 'Save' : 'Edit';
     save.addEventListener('click', () => {
         if (rte.hidden) {
             editor.save();
             editor.destroy();
             save.textContent = 'Edit';
+            dist.disabled = true;
+            src.disabled = true;
         } else {
             editor.load();
             save.textContent = 'Save';
+            dist.disabled = false;
+            src.disabled = false;
         }
-
-        window.scrollTo(0, 0);
     });
+    init();
 });
