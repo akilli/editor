@@ -258,7 +258,7 @@ var {
 }
 
 #header label:first-child {
-    font-weight: bold;
+    font-variation-settings: 'wght' 700;;
 }
 
 /**
