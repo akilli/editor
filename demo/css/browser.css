@@ -1,3 +1,17 @@
+/**
+ * Variable
+ */
+:root {
+    --app-color-accent: #4166f5;
+    --app-color-accent-text: #fff;
+    --app-color-primary: #222;
+    --app-color-primary-dark: #000;
+    --app-color-primary-text: #fff;
+}
+
+/**
+ * Global
+ */
 body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -8,21 +22,28 @@ body {
 }
 
 body > * {
-    box-shadow: 0.25rem 0.25rem 0.25rem darkgrey;
     cursor: pointer;
 }
 
-body > :hover {
-    box-shadow: 0.25rem 0.25rem 0.25rem black;
-}
-
-section {
-    align-self: start;
-    padding: 0.75rem;
-}
-
+/**
+ * Margin
+ */
 section > :not(:first-child) {
     margin-top: 0.75rem;
+}
+
+/**
+ * Font
+ */
+@font-face {
+    font-family: raleway;
+    font-weight: normal;
+    font-style: normal;
+    src: url('../font/raleway.woff2') format('woff2');
+}
+
+body {
+    font-family: raleway;
 }
 
 h2 {
@@ -30,10 +51,40 @@ h2 {
 }
 
 figcaption {
-    padding: 0.75rem;
     font-size: 0.85rem;
-    color: white;
-    background: black;
+}
+
+/**
+ * Color
+ */
+body {
+    color: var(--app-color-primary-text);
+    background: var(--app-color-primary);
+}
+
+figcaption {
+    background: var(--app-color-primary-dark);
+}
+
+section:hover,
+body > figure:hover > figcaption {
+    color: var(--app-color-accent-text);
+    background: var(--app-color-accent);
+}
+
+body > * {
+    border: 0.0625rem solid var(--app-color-primary-dark);
+}
+
+body > :hover {
+    border-color: var(--app-color-accent);
+}
+
+/**
+ * Figure
+ */
+figcaption {
+    padding: 0.75rem;
 }
 
 audio,
@@ -44,4 +95,12 @@ video {
     max-height: 14rem;
     object-fit: cover;
     pointer-events: none;
+}
+
+/**
+ * Section
+ */
+section {
+    align-self: start;
+    padding: 0.75rem;
 }

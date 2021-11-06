@@ -53,30 +53,6 @@
 }
 
 /**
- * Font
- */
-@font-face {
-    font-family: knewave;
-    font-weight: normal;
-    font-style: normal;
-    src: url('../font/knewave.woff') format('woff');
-}
-
-@font-face {
-    font-family: raleway;
-    font-weight: normal;
-    font-style: normal;
-    src: url('../font/raleway.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: spartan;
-    font-weight: normal;
-    font-style: normal;
-    src: url('../font/spartan.woff2') format('woff2');
-}
-
-/**
  * Layout
  */
 body {
@@ -118,6 +94,66 @@ body {
 
 :is(details, figure, section) > :not(:first-child) {
     margin-top: 0.75rem;
+}
+
+/**
+ * Font
+ */
+@font-face {
+    font-family: knewave;
+    font-weight: normal;
+    font-style: normal;
+    src: url('../font/knewave.woff') format('woff');
+}
+
+@font-face {
+    font-family: raleway;
+    font-weight: normal;
+    font-style: normal;
+    src: url('../font/raleway.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: spartan;
+    font-weight: normal;
+    font-style: normal;
+    src: url('../font/spartan.woff2') format('woff2');
+}
+
+body {
+    font-family: raleway;
+}
+
+blockquote {
+    font-family: knewave;
+    font-size: 3rem;
+}
+
+h2 {
+    font-family: spartan;
+    font-size: 3rem;
+    font-variation-settings: 'wght' 900;
+}
+
+h3 {
+    font-family: spartan;
+    font-size: 1.5rem;
+    font-variation-settings: 'wght' 700;
+}
+
+figcaption,
+small,
+table {
+    font-size: 0.875rem;
+}
+
+var {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+#header label:first-child {
+    font-variation-settings: 'wght' 700;;
 }
 
 /**
@@ -220,45 +256,6 @@ thead tr:last-child th,
 tbody tr:last-child td,
 tbody tr:last-child th {
     border-bottom-color: var(--app-color-primary);
-}
-
-/**
- * Typography
- */
-body {
-    font-family: raleway;
-}
-
-blockquote {
-    font-family: knewave;
-    font-size: 3rem;
-}
-
-h2 {
-    font-family: spartan;
-    font-size: 3rem;
-    font-variation-settings: 'wght' 900;
-}
-
-h3 {
-    font-family: spartan;
-    font-size: 1.5rem;
-    font-variation-settings: 'wght' 700;
-}
-
-figcaption,
-small,
-table {
-    font-size: 0.875rem;
-}
-
-var {
-    font-family: monospace;
-    font-weight: bold;
-}
-
-#header label:first-child {
-    font-variation-settings: 'wght' 700;;
 }
 
 /**
