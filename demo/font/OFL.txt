@@ -1,4 +1,3 @@
-cms     ::: copyright (c) 2021 Font Awesome (www.fontawesome.com)
 knewave ::: copyright (c) 2010, Tyler Finck <hello@sursly.com>
 raleway ::: copyright (c) 2010-2013, Matt McInerney <matt@pixelspread.com>
             copyright (c) 2012-2013, Pablo Impallari <impallari@gmail.com>

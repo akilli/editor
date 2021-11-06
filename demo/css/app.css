@@ -101,22 +101,25 @@ body {
  */
 @font-face {
     font-family: knewave;
-    font-weight: normal;
+    font-display: swap;
     font-style: normal;
+    font-weight: normal;
     src: url('../font/knewave.woff') format('woff');
 }
 
 @font-face {
     font-family: raleway;
-    font-weight: normal;
+    font-display: swap;
     font-style: normal;
+    font-weight: normal;
     src: url('../font/raleway.woff2') format('woff2');
 }
 
 @font-face {
     font-family: spartan;
-    font-weight: normal;
+    font-display: swap;
     font-style: normal;
+    font-weight: normal;
     src: url('../font/spartan.woff2') format('woff2');
 }
 
