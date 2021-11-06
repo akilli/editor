@@ -54,11 +54,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             save.textContent = 'Edit';
             dist.disabled = true;
             src.disabled = true;
+            clear.disabled = true;
         } else {
             editor.load();
             save.textContent = 'Save';
             dist.disabled = false;
             src.disabled = false;
+            clear.disabled = false;
         }
     });
     init();
