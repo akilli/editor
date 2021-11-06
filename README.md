@@ -14,7 +14,7 @@ To build the editor run
 npm run build
 ```
 
-To start the demos locally run either
+To start the demo locally run either
 
 ```
 npm start
