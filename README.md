@@ -159,16 +159,27 @@ const config = {
         lang: undefined,
 
         /**
-         * Names of the built-in plugins to load
-         *
-         * If empty, all built-in plugins are loaded, otherwise only those configured or their
-         * dependencies.
+         * Names of the built-in plugins to load or disable
+         * 
+         * - if empty, all built-in plugins are loaded
+         * - if not empty and `pluginsDisabled` is not set, only given plugins and their 
+         *   dependencies are loaded
+         * - if not empty and `pluginsDisabled` is set, all given plugins are disabled
+         *   that are not a dependency of another used plugin
          *
          * @see Editor.init
          * @see Editor.defaultConfig
          * @type {string[]}
          */
         plugins: [],
+
+        /**
+         * The state of this flag will affect the way the `plugins` array is used 
+         *
+         * @see Editor.init
+         * @type {boolean}
+         */
+        pluginsDisabled: false,
     },
 
     /**

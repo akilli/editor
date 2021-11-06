@@ -356,11 +356,17 @@ export default class Editor {
         let configured = builtin;
 
         if (Array.isArray(config.base?.plugins) && config.base.plugins.length > 0) {
-            configured = [];
-            config.base.plugins.forEach(item => {
-                const p = builtin.find(i => i.name === item);
-                p && configured.push(p);
-            });
+            const p = config.base.plugins;
+
+            if (!config.base?.pluginsDisabled) {
+                configured = [];
+                p.forEach(item => {
+                    const b = builtin.find(i => i.name === item);
+                    b && configured.push(b);
+                });
+            } else {
+                configured = configured.filter(i => !p.includes(i.name));
+            }
         }
 
         const plugins = new Set();
