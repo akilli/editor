@@ -117,6 +117,10 @@ editor-root slot[contenteditable=true]:empty::after {
     content: var(--editor-text-slot);
 }
 
+editor-root [contenteditable=true] :hover {
+    cursor: context-menu;
+}
+
 /**
  * Sortable
  */

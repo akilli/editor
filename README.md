@@ -112,8 +112,14 @@ the **arrow keys**.
 
 ### Text-level elements
 
-Each text-level element registers a keyboard shortcut in the form `Alt` + `Shift` + a letter. If you hover a formatbar
-button for such a text-level element, the actual keyboard shortcut will be shown.
+Each formatting command registers a keyboard shortcut in the form `Alt` + `Shift` + a letter. If you hover a formatbar
+button for such a text-level element, the actual keyboard shortcut will be shown. Using such a shortcut will execute the
+corresponding command. 
+
+In addition to that, you can also doubleclick on a text-level element to execute the corresponding command.
+
+In both cases, executing the command will either open the corresponding dialog in case the elements allows attributes or
+remove the formatting text-level element.
 
 ## Usage
 
