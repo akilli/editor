@@ -46,6 +46,16 @@ export default class CommandManager {
     }
 
     /**
+     * Returns registered command for given tag name
+     *
+     * @param {string} tagName
+     * @return {Command|undefined}
+     */
+    find(tagName) {
+        return Array.from(this.#items.values()).find(command => command.tag?.name === tagName);
+    }
+
+    /**
      * Executes command with given name
      *
      * @param {string} name
