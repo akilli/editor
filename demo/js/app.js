@@ -41,7 +41,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const init = () => {
         editor?.destroy();
         const Editor = src.checked ? SrcEditor : DistEditor;
-        editor = Editor.create(rte, { ...config, base: { lang: de.checked ? 'de' : 'en' } });
+        editor = Editor.create(rte, {
+            ...config,
+            base: {
+                lang: de.checked ? 'de' : 'en',
+            },
+        });
         console.log(editor);
     };
     dark.checked && root.setAttribute('data-dark', '');
