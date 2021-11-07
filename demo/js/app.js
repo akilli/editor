@@ -23,7 +23,6 @@ const config = {
 
 document.addEventListener('DOMContentLoaded', async () => {
     const root = document.documentElement;
-    const css = document.getElementById('css');
     const header = document.getElementById('header');
     const light = document.getElementById('light');
     const dark = document.getElementById('dark');
@@ -41,7 +40,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
     const init = () => {
         editor?.destroy();
-        css.setAttribute('href', src.checked ? '../src/editor/editor.css?v=3' : '../dist/editor.css?v=3');
         const Editor = src.checked ? SrcEditor : DistEditor;
         editor = Editor.create(rte, {
             ...config,
