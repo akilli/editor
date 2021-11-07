@@ -107,38 +107,6 @@ export default class Dom {
     }
 
     /**
-     * Returns current selection
-     *
-     * @return {Selection}
-     */
-    getSelection() {
-        return this.window.getSelection();
-    }
-
-    /**
-     * Returns first range
-     *
-     * @return {Range|undefined}
-     */
-    getRange() {
-        const sel = this.window.getSelection();
-
-        return sel.rangeCount > 0 ? sel.getRangeAt(0) : undefined;
-    }
-
-    /**
-     * Removes all ranges and sets first range
-     *
-     * @param {Range} range
-     * @return {void}
-     */
-    setRange(range) {
-        const sel = this.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(range);
-    }
-
-    /**
      * Registers custom element
      *
      * @param {string} name
@@ -424,6 +392,38 @@ export default class Dom {
         }
 
         return undefined;
+    }
+
+    /**
+     * Returns current selection
+     *
+     * @return {Selection}
+     */
+    getSelection() {
+        return this.window.getSelection();
+    }
+
+    /**
+     * Returns first range
+     *
+     * @return {Range|undefined}
+     */
+    getRange() {
+        const sel = this.window.getSelection();
+
+        return sel.rangeCount > 0 ? sel.getRangeAt(0) : undefined;
+    }
+
+    /**
+     * Removes all ranges and sets first range
+     *
+     * @param {Range} range
+     * @return {void}
+     */
+    setRange(range) {
+        const sel = this.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
     }
 
     /**
