@@ -23,25 +23,34 @@ const config = {
 
 document.addEventListener('DOMContentLoaded', async () => {
     const root = document.documentElement;
-    const dist = document.getElementById('dist');
-    const src = document.getElementById('src');
+    const header = document.getElementById('header');
     const light = document.getElementById('light');
     const dark = document.getElementById('dark');
+    const dist = document.getElementById('dist');
+    const src = document.getElementById('src');
+    const en = document.getElementById('en');
+    const de = document.getElementById('de');
     const rte = document.getElementById('rte');
     const clear = document.getElementById('clear');
     const save = document.getElementById('save');
     let editor;
+    const toggle = (flag) => {
+        Array.from(header.getElementsByTagName('input')).forEach(item => (item.disabled = flag));
+        clear.disabled = flag;
+    };
     const init = () => {
         editor?.destroy();
         const Editor = src.checked ? SrcEditor : DistEditor;
-        editor = Editor.create(rte, config);
+        editor = Editor.create(rte, { ...config, base: { lang: de.checked ? 'de' : 'en' } });
         console.log(editor);
     };
     dark.checked && root.setAttribute('data-dark', '');
-    dist.addEventListener('click', init);
-    src.addEventListener('click', init);
     light.addEventListener('click', () => root.removeAttribute('data-dark'));
     dark.addEventListener('click', () => root.setAttribute('data-dark', ''));
+    dist.addEventListener('click', init);
+    src.addEventListener('click', init);
+    en.addEventListener('click', init);
+    de.addEventListener('click', init);
     clear.addEventListener('click', () => {
         editor.setHtml('');
         window.scrollTo(0, 0);
@@ -52,15 +61,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             editor.save();
             editor.destroy();
             save.textContent = 'Edit';
-            dist.disabled = true;
-            src.disabled = true;
-            clear.disabled = true;
+            toggle(true);
         } else {
             editor.load();
             save.textContent = 'Save';
-            dist.disabled = false;
-            src.disabled = false;
-            clear.disabled = false;
+            toggle(false);
         }
     });
     init();
