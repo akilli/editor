@@ -352,7 +352,7 @@ export default class Dom {
     getSelectedElementByName(name) {
         const element = this.getSelectedElement();
 
-        return element?.localName === name && element;
+        return element?.localName === name && element || undefined;
     }
 
     /**
@@ -409,7 +409,7 @@ export default class Dom {
      * @return {Range|undefined}
      */
     getRange() {
-        const sel = this.window.getSelection();
+        const sel = this.getSelection();
 
         return sel.rangeCount > 0 ? sel.getRangeAt(0) : undefined;
     }
