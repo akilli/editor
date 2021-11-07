@@ -17,7 +17,7 @@ export default class ToolbarListener extends BarListener {
      */
     insertbutton(event) {
         super.insertbutton(event);
-        event.detail.element.tabIndex = -1;
+        event.detail.element.tabIndex = event.detail.element === this.editor.toolbar.firstElementChild ? 0 : -1;
         event.detail.element.addEventListener('keydown', this);
     }
 }
