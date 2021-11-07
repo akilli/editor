@@ -427,6 +427,22 @@ export default class Dom {
     }
 
     /**
+     * Selects given element's contents
+     *
+     * @param {HTMLElement} element
+     * @return {void}
+     */
+    selectContents(element) {
+        if (!(element instanceof HTMLElement)) {
+            throw Error.INVALID_ARGUMENT;
+        }
+
+        const range = this.document.createRange();
+        range.selectNodeContents(element);
+        this.setRange(range);
+    }
+
+    /**
      * Focus end of contents
      *
      * @param {HTMLElement} element
