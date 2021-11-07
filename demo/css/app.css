@@ -191,6 +191,11 @@ details[open] {
     background: var(--app-color-accent);
 }
 
+details[open] ::selection {
+    color: var(--app-color-accent);
+    background: var(--app-color-accent-text);
+}
+
 #clear {
     color: var(--app-color-primary-text);
     background: var(--app-color-primary-light);
