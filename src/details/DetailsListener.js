@@ -83,9 +83,7 @@ export default class DetailsListener extends Listener {
         if (isKey(event, Key.SPACE)) {
             event.preventDefault();
             event.stopPropagation();
-            // @todo replace document.execCommand() usage
-            //this.editor.dom.insertText(' ');
-            this.editor.dom.document.execCommand('inserttext', false, ' ');
+            this.editor.dom.insertText(' ');
         } else if (isKey(event, Key.ENTER)) {
             event.preventDefault();
             event.stopPropagation();
