@@ -308,7 +308,7 @@ export default class Dom {
 
         if (!(element instanceof HTMLElement)) {
             throw Error.INVALID_ARGUMENT;
-        } else if (element.parentElement.localName !== name && (sibling = this.editor.dom.closest(element, name))) {
+        } else if (element.parentElement.localName !== name && (sibling = this.closest(element, name))) {
             const target = this.createElement(name, opts);
             sibling.insertAdjacentElement(Position.AFTEREND, target);
             target.appendChild(element);
