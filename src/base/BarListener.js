@@ -1,4 +1,3 @@
-import Base from './Base.js';
 import Listener from './Listener.js';
 import { Key } from './enum.js';
 import { isKey } from './util.js';
@@ -17,17 +16,7 @@ export default class BarListener extends Listener {
      * @return {void}
      */
     insertbutton(event) {
-        const key = event.detail.element.getAttribute('data-key');
-
-        if (key) {
-            const alt = this.editor.translator.translate(Base.name, 'Alt');
-            const shift = this.editor.translator.translate(Base.name, 'Shift');
-            event.detail.element.title += ` [${alt} + ${shift} + ${key}]`;
-        }
-
-        if (event.detail.element.getAttribute('data-command')) {
-            event.detail.element.addEventListener('click', this);
-        }
+        event.detail.element.getAttribute('data-command') && event.detail.element.addEventListener('click', this);
     }
 
     /**

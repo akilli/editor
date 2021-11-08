@@ -86,6 +86,17 @@ export default class Plugin {
     }
 
     /**
+     * Translates given string with base context
+     *
+     * @protected
+     * @param {string} key
+     * @return {string}
+     */
+    _base(key) {
+        return this.editor.translator.translate('base', key);
+    }
+
+    /**
      * Registers i18n data for this plugin
      *
      * @protected
@@ -129,7 +140,7 @@ export default class Plugin {
      * @return {void}
      */
     _toolbar(label, command = undefined) {
-        this.editor.toolbar.appendChild(this.#button(label, undefined, command));
+        this.editor.toolbar.appendChild(this.#button(label, label, undefined, command));
     }
 
     /**
@@ -142,7 +153,11 @@ export default class Plugin {
      * @return {void}
      */
     _formatbar(label, key = undefined, command = undefined) {
-        this.editor.formatbar.appendChild(this.#button(label, key, undefined));
+        const alt = this._base('Alt');
+        const shift = this._base('Shift');
+        const title = label + (key ? ` [${alt} + ${shift} + ${key}]` : '');
+
+        this.editor.formatbar.appendChild(this.#button(label, title, key, undefined));
     }
 
     /**
@@ -154,26 +169,27 @@ export default class Plugin {
      * @return {void}
      */
     _focusbar(label, command = undefined) {
-        this.editor.focusbar.appendChild(this.#button(label, undefined, command));
+        this.editor.focusbar.appendChild(this.#button(label, label, undefined, command));
     }
 
     /**
      * Creates a button
      *
      * @param {string} label
+     * @param {string} title
      * @param {string|undefined} [key = undefined]
      * @param {string|undefined} [command = undefined]
      * @return {HTMLButtonElement}
      */
-    #button(label, key = undefined, command = undefined) {
-        if (!isPopulatedString(label) || !isEmptyOrString(key)) {
+    #button(label, title, key = undefined, command = undefined) {
+        if (!isPopulatedString(label) || !isPopulatedString(title) || !isEmptyOrString(key)) {
             throw Error.INVALID_ARGUMENT;
         }
 
         return this.editor.dom.createElement(TagName.BUTTON, {
             attributes: {
                 type: 'button',
-                title: label,
+                title: title,
                 'data-command': command || this.constructor.name,
                 'data-key': key,
             },
