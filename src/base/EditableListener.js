@@ -78,6 +78,7 @@ export default class EditableListener extends Listener {
      *
      * @param {MouseEvent} event
      * @param {HTMLElement} event.target
+     * @return {void}
      */
     dblclick(event) {
         this.editor.dom.selectContents(event.target);
