@@ -157,7 +157,7 @@ export default class Plugin {
         const shift = this._base('Shift');
         const title = label + (key ? ` [${alt} + ${shift} + ${key}]` : '');
 
-        this.editor.formatbar.appendChild(this.#button(label, title, key, undefined));
+        this.editor.formatbar.appendChild(this.#button(label, title, key, command));
     }
 
     /**
