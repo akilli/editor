@@ -199,6 +199,16 @@ details[open] ::selection {
     background: var(--app-color-accent-text);
 }
 
+mark {
+    color: var(--app-color-accent-text);
+    background: var(--app-color-accent-light);
+}
+
+#rte app-block {
+    color: var(--app-color-accent-text);
+    background: var(--app-color-accent-dark);
+}
+
 #clear {
     color: var(--app-color-primary-text);
     background: var(--app-color-primary-light);
@@ -209,18 +219,16 @@ details[open] ::selection {
     background: var(--app-color-error);
 }
 
-mark {
-    background: var(--app-color-accent-light);
-}
-
 ::placeholder {
     color: var(--app-color-primary-light);
 }
 
+cite,
 ins {
     color: var(--app-color-accent-dark);
 }
 
+dfn,
 del {
     color: var(--app-color-accent-light);
 }
@@ -235,14 +243,6 @@ h2,
 h3,
 details[open] :is(a, blockquote, figure.blockquote) {
     color: var(--app-color-primary-dark);
-}
-
-cite {
-    color: #54442b;
-}
-
-dfn {
-    color: var(--app-color-accent-light);
 }
 
 hr {
@@ -385,6 +385,21 @@ th {
 :is(akilli-editor editor-root, #rte) div figure {
     float: none;
     margin: 0;
+}
+
+/**
+ * Block
+ */
+#rte app-block {
+    display: block;
+    padding: 0.75rem;
+    text-align: center;
+}
+
+#rte app-block::before {
+    display: inline-block;
+    vertical-align: middle;
+    content: var(--editor-text-block);
 }
 
 /**
