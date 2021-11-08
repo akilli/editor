@@ -27,6 +27,7 @@ export default class IframeDialog extends Dialog {
                 required: 'required',
             })
             .addNumberInput('width', this._('Width'))
-            .addNumberInput('height', this._('Height'));
+            .addNumberInput('height', this._('Height'))
+            .addTextInput('id', this._('ID'));
     }
 }

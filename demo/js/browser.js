@@ -39,8 +39,8 @@
 
         return {
             alt: media.getAttribute('alt'),
-            caption: element.lastElementChild.innerHTML,
             height: media.getAttribute('height'),
+            id: media.id,
             src: media.src,
             type: element.getAttribute('class'),
             width: media.getAttribute('width'),

@@ -39,7 +39,7 @@ export default class Video extends Plugin {
         this._tag({
             name: TagName.VIDEO,
             group: TagGroup.VIDEO,
-            attributes: ['controls', 'height', 'src', 'width'],
+            attributes: ['controls', 'height', 'id', 'src', 'width'],
             empty: true,
             navigable: true,
         });

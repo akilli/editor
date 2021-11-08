@@ -39,7 +39,7 @@ export default class Iframe extends Plugin {
         this._tag({
             name: TagName.IFRAME,
             group: TagGroup.IFRAME,
-            attributes: ['allowfullscreen', 'height', 'src', 'width'],
+            attributes: ['allowfullscreen', 'height', 'id', 'src', 'width'],
             empty: true,
             navigable: true,
         });

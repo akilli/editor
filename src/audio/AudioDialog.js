@@ -25,6 +25,7 @@ export default class AudioDialog extends Dialog {
                 pattern: '(https?|/).+',
                 placeholder: this._('Insert URL to audio'),
                 required: 'required',
-            });
+            })
+            .addTextInput('id', this._('ID'));
     }
 }

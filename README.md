@@ -305,6 +305,7 @@ message when an item is selected, p.e. for the image plugin something like
 window.opener.postMessage({
     alt: 'Alternative Text',// optional
     height: '300',// optional
+    id: 'image:1', // optional, can be used as regular id attribute and/or p. e. a reference to the image in the DB
     src: '/url/to/media',// required
     width: '400',// optional
 }, window.opener.origin);
@@ -312,9 +313,9 @@ window.opener.postMessage({
 
 The examples for the other browsers differ only in the keys the plugin considers:
 
-- the iframe and video plugins require `src` and additionally accept `height` and `width`
-- the audio plugin only accepts and requires `src`
-- the block plugin only accepts and requires `id`
+- the iframe and video plugins require `src` and additionally accept `height`, `width` and `id`
+- the audio plugin requires `src` and additionally accepts `id`
+- the block plugin only requires and accepts `id`
 
 You can also use this API for your own plugins and define the type and structure of the message to your likings, p.e.
 use a simple string if you are only interested in one value, an object or an array.

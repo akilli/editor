@@ -8,6 +8,7 @@ export default {
         'Alternative text': 'Alternativtext',
         'Cancel': 'Abbrechen',
         'Height': 'Höhe',
+        'ID': 'ID',
         'Image': 'Bild',
         'Insert URL to image': 'URL zur Bilddatei eingeben',
         'Save': 'Speichern',

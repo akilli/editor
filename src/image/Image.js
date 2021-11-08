@@ -39,7 +39,7 @@ export default class Image extends Plugin {
         this._tag({
             name: TagName.IMG,
             group: TagGroup.IMAGE,
-            attributes: ['alt', 'height', 'src', 'width'],
+            attributes: ['alt', 'height', 'id', 'src', 'width'],
             empty: true,
             navigable: true,
         });

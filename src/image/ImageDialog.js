@@ -30,6 +30,7 @@ export default class ImageDialog extends Dialog {
                 placeholder: this._('Text shown when media element is not available'),
             })
             .addNumberInput('width', this._('Width'))
-            .addNumberInput('height', this._('Height'));
+            .addNumberInput('height', this._('Height'))
+            .addTextInput('id', this._('ID'));
     }
 }
