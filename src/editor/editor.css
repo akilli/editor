@@ -272,10 +272,6 @@ editor-formatbar {
     border: 0.0625rem solid var(--editor-border);
 }
 
-editor-focusbar {
-    flex-direction: column;
-}
-
 akilli-editor editor-focusbar:empty,
 akilli-editor editor-focusbar [data-command] {
     display: none;
