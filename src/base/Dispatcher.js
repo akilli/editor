@@ -1,5 +1,5 @@
 import { Error, TagName } from './enum.js';
-import { isEmptyOrHtml, isFunction, isPopulatedString } from './util.js';
+import { isFunction, isOptHtml, isString } from './util.js';
 
 /**
  * Event Dispatcher
@@ -35,7 +35,7 @@ export default class Dispatcher {
      * @return {void}
      */
     dispatch(type, element = undefined, target = undefined) {
-        if (!isPopulatedString(type) || !isEmptyOrHtml(element) || !isEmptyOrHtml(target)) {
+        if (!isString(type) || !isOptHtml(element) || !isOptHtml(target)) {
             throw Error.INVALID_ARGUMENT;
         }
 

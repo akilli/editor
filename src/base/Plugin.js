@@ -2,7 +2,7 @@ import Command from './Command.js';
 import Editor from './Editor.js';
 import Tag from './Tag.js';
 import { Error, TagName } from './enum.js';
-import { isEmptyOrString, isPopulatedString } from './util.js';
+import { isOptString, isString } from './util.js';
 
 /**
  * Plugin
@@ -182,7 +182,7 @@ export default class Plugin {
      * @return {HTMLButtonElement}
      */
     #button(label, title, key = undefined, command = undefined) {
-        if (!isPopulatedString(label) || !isPopulatedString(title) || !isEmptyOrString(key)) {
+        if (!isString(label) || !isString(title) || !isOptString(key)) {
             throw Error.INVALID_ARGUMENT;
         }
 

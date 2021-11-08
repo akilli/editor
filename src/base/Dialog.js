@@ -1,7 +1,7 @@
 import Editor from './Editor.js';
 import FormCreator from './FormCreator.js';
 import { Error, TagName } from './enum.js';
-import { isEmptyOrString, isPopulatedString } from './util.js';
+import { isOptString, isString } from './util.js';
 
 /**
  * Dialog
@@ -79,13 +79,13 @@ export default class Dialog {
      * @param {string|undefined} url
      */
     constructor(editor, name, url = undefined) {
-        if (!(editor instanceof Editor) || !isPopulatedString(name) || !isEmptyOrString(url)) {
+        if (!(editor instanceof Editor) || !isString(name) || !isOptString(url)) {
             throw Error.INVALID_ARGUMENT;
         }
 
         this.#editor = editor;
         this.#name = name;
-        this.#url = url || undefined;
+        this.#url = url;
     }
 
     /**

@@ -1,6 +1,6 @@
 import Dom from './Dom.js';
 import { Error, Position, TagName } from './enum.js';
-import { isFunction, isPopulatedString } from './util.js';
+import { isFunction, isString } from './util.js';
 
 /**
  * Form Creator
@@ -45,7 +45,7 @@ export default class FormCreator {
      * @param {function} close
      */
     constructor(dom, submit, cancel, close) {
-        if (!(dom instanceof Dom) || !isPopulatedString(submit) || !isPopulatedString(cancel) || !isFunction(close)) {
+        if (!(dom instanceof Dom) || !isString(submit) || !isString(cancel) || !isFunction(close)) {
             throw Error.INVALID_ARGUMENT;
         }
 
@@ -80,7 +80,7 @@ export default class FormCreator {
      * @return {this}
      */
     addLegend(html) {
-        if (!isPopulatedString(html)) {
+        if (!isString(html)) {
             throw Error.INVALID_ARGUMENT;
         }
 
@@ -123,7 +123,7 @@ export default class FormCreator {
      * @return {this}
      */
     addInput(name, label, attributes = {}, type = 'text') {
-        if (!isPopulatedString(name) || !isPopulatedString(label) || !isPopulatedString(type)) {
+        if (!isString(name) || !isString(label) || !isString(type)) {
             throw Error.INVALID_ARGUMENT;
         }
 

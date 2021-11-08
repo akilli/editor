@@ -1,6 +1,6 @@
 import Editor from './Editor.js';
 import { Error, TagGroup } from './enum.js';
-import { isEmptyOrString, isPopulatedString } from './util.js';
+import { isOptString, isString } from './util.js';
 
 /**
  * Command
@@ -78,7 +78,7 @@ export default class Command {
      * @param {string|undefined} [tagName = undefined]
      */
     constructor(editor, name, tagName = undefined) {
-        if (!(editor instanceof Editor) || !isPopulatedString(name) || !isEmptyOrString(tagName)) {
+        if (!(editor instanceof Editor) || !isString(name) || !isOptString(tagName)) {
             throw Error.INVALID_ARGUMENT;
         }
 

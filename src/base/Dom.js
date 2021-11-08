@@ -1,6 +1,6 @@
 import Editor from './Editor.js';
 import { Error, Position, Sorting, TagName } from './enum.js';
-import { isFunction, isPopulatedString, isUndefined } from './util.js';
+import { isFunction, isString, not } from './util.js';
 
 /**
  * DOM Manager
@@ -115,7 +115,7 @@ export default class Dom {
      * @return {void}
      */
     registerElement(name, constructor, parentName = undefined) {
-        if (isUndefined(this.window.customElements.get(name))) {
+        if (not(this.window.customElements.get(name))) {
             this.window.customElements.define(name, constructor, parentName ? { extends: parentName } : undefined);
         }
     }
@@ -531,7 +531,7 @@ export default class Dom {
      * @return {void}
      */
     open({ url, name, call, params = {} }) {
-        if (!isPopulatedString(url) || !isPopulatedString(name) || !isFunction(call)) {
+        if (!isString(url) || !isString(name) || !isFunction(call)) {
             throw Error.INVALID_ARGUMENT;
         }
 

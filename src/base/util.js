@@ -23,7 +23,7 @@ export function isKey(event, key, { alt = false, ctrl = false, shift = false } =
  * @param {any} val
  * @return {boolean}
  */
-export function isUndefined(val) {
+export function not(val) {
     return typeof val === Type.UNDEFINED;
 }
 
@@ -43,36 +43,36 @@ export function isFunction(val) {
  * @param {any} val
  * @return {boolean}
  */
-export function isPopulatedString(val) {
+export function isString(val) {
     return val && typeof val === Type.STRING;
 }
 
 /**
- * Indicates if given value is either empty or a non-empty string
+ * Indicates if given value is either undefined or a non-empty string
  *
  * @param {any} val
  * @return {boolean}
  */
-export function isEmptyOrString(val) {
-    return !val || typeof val === Type.STRING;
+export function isOptString(val) {
+    return not(val) || isString(val);
 }
 
 /**
- * Indicates if given value is either empty or a non-empty array
+ * Indicates if given value is either undefined or a non-empty array
  *
  * @param {any} val
  * @return {boolean}
  */
-export function isEmptyOrArray(val) {
-    return !val || Array.isArray(val) && val.length > 0;
+export function isOptArray(val) {
+    return not(val) || Array.isArray(val) && val.length > 0;
 }
 
 /**
- * Indicates if given value is either empty or an instance of HTMLElement
+ * Indicates if given value is either undefined or an instance of HTMLElement
  *
  * @param {any} val
  * @return {boolean}
  */
-export function isEmptyOrHtml(val) {
-    return !val || val instanceof HTMLElement;
+export function isOptHtml(val) {
+    return not(val) || val instanceof HTMLElement;
 }

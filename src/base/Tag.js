@@ -1,5 +1,5 @@
 import { Error } from './enum.js';
-import { isEmptyOrArray, isEmptyOrString, isPopulatedString } from './util.js';
+import { isString, isOptArray, isOptString } from './util.js';
 
 /**
  * Tag
@@ -111,11 +111,11 @@ export default class Tag {
      * @param {Object.<string, any>} [opts = {}]
      */
     constructor({ name, group, ...opts } = {}) {
-        if (!isPopulatedString(name)
-            || !isPopulatedString(group)
-            || !isEmptyOrString(opts.enter)
-            || !isEmptyOrArray(opts.children)
-            || !isEmptyOrArray(opts.attributes)
+        if (!isString(name)
+            || !isString(group)
+            || !isOptArray(opts.children)
+            || !isOptArray(opts.attributes)
+            || !isOptString(opts.enter)
         ) {
             throw Error.INVALID_ARGUMENT;
         }
@@ -133,6 +133,6 @@ export default class Tag {
         this.navigable = opts.navigable === true;
         this.slotable = opts.slotable === true;
         this.sortable = opts.sortable === true;
-        this.enter = opts.enter || undefined;
+        this.enter = opts.enter;
     }
 }
