@@ -53,7 +53,7 @@ akilli-editor {
 /**
  * Editor Content
  */
-editor-root {
+akilli-editor editor-root {
     display: block;
     width: 100%;
     padding: 0.75rem 0.6875rem 0.6875rem;
@@ -61,16 +61,16 @@ editor-root {
     border-top: 0;
 }
 
-editor-root:is(::before, ::after) {
+akilli-editor editor-root:is(::before, ::after) {
     display: table;
     content: ' ';
 }
 
-editor-root::after {
+akilli-editor editor-root::after {
     clear: both;
 }
 
-editor-root:empty::after {
+akilli-editor editor-root:empty::after {
     color: var(--editor-placeholder);
     content: var(--editor-text-root);
 }
@@ -78,77 +78,84 @@ editor-root:empty::after {
 /**
  * Widgets
  */
-editor-root :hover {
+akilli-editor editor-root :hover {
     outline: 0.25rem dotted var(--editor-hover);
 }
 
-editor-root :focus {
+akilli-editor editor-root :focus {
     outline: 0.25rem dashed var(--editor-focus);
 }
 
 /**
  * Editable
  */
-editor-root [contenteditable] {
+akilli-editor editor-root [contenteditable] {
     min-height: 1.5rem;
 }
 
-editor-root [contenteditable=true]:hover {
+akilli-editor editor-root [contenteditable=true]:hover {
     outline: 0.25rem dotted var(--editor-hover);
 }
 
-editor-root [contenteditable=true]:empty::after {
+akilli-editor editor-root [contenteditable=true]:empty::after {
     color: var(--editor-placeholder);
     content: var(--editor-text-editable);
 }
 
-editor-root :is(td, th)[contenteditable] {
+akilli-editor editor-root :is(td, th)[contenteditable] {
     height: 1.5rem;
 }
 
-editor-root slot[contenteditable] {
+akilli-editor editor-root slot[contenteditable] {
     display: block;
     padding: 0.25rem;
     outline: 0.25rem solid var(--editor-slot);
 }
 
-editor-root slot[contenteditable=true]:empty::after {
+akilli-editor editor-root slot[contenteditable=true]:empty::after {
     color: var(--editor-slot);
     content: var(--editor-text-slot);
 }
 
-editor-root [contenteditable=true] :hover {
+akilli-editor editor-root [contenteditable=true] :hover {
     cursor: context-menu;
 }
 
 /**
  * Sortable
  */
-editor-root [data-sortable][data-sort]:hover {
+akilli-editor editor-root [data-sortable][data-sort]:hover {
     cursor: grab;
 }
 
-editor-root :is([data-sortover], [contenteditable][data-sortover]) {
+akilli-editor editor-root :is([data-sortover], [contenteditable][data-sortover]) {
     outline: 0.25rem dashed var(--editor-sortover);
 }
 
 /**
  * Media
  */
-editor-root :is(audio, iframe, img, video) {
+akilli-editor editor-root :is(audio, iframe, img, video) {
     pointer-events: none;
+}
+
+/**
+ * Details
+ */
+akilli-editor summary {
+    white-space: pre-wrap;
 }
 
 /**
  * Block
  */
-app-block {
+akilli-editor app-block {
     display: block;
     padding: 0.25rem;
     border: 0.0625rem solid var(--editor-block-background);
 }
 
-app-block::before {
+akilli-editor app-block::before {
     display: block;
     margin: -0.25rem -0.25rem 0.5rem;
     padding: 0.125rem 0.25rem;
@@ -160,11 +167,11 @@ app-block::before {
 /**
  * Dialog
  */
-editor-dialog {
+akilli-editor editor-dialog {
     display: none;
 }
 
-editor-dialog[open] {
+akilli-editor editor-dialog[open] {
     position: fixed;
     left: 0;
     right: 0;
@@ -180,7 +187,7 @@ editor-dialog[open] {
     background: var(--editor-dialog-backdrop);
 }
 
-editor-dialog form {
+akilli-editor editor-dialog form {
     min-width: 40rem;
     min-height: 20rem;
     padding: 0.75rem;
@@ -188,38 +195,38 @@ editor-dialog form {
     background: var(--editor-dialog-background);
 }
 
-editor-dialog :is(form, fieldset) > :not(:first-child) {
+akilli-editor editor-dialog :is(form, fieldset) > :not(:first-child) {
     margin-top: 1.5rem;
 }
 
-editor-dialog legend {
+akilli-editor editor-dialog legend {
     font-size: 1.25rem;
 }
 
-editor-dialog label {
+akilli-editor editor-dialog label {
     display: block;
 }
 
-editor-dialog [data-required] label::after {
+akilli-editor editor-dialog [data-required] label::after {
     content: ' *';
 }
 
-editor-dialog button {
+akilli-editor editor-dialog button {
     padding: 0.75rem;
     color: var(--editor-button-color);
     background: var(--editor-button-background);
 }
 
-editor-dialog button + button {
+akilli-editor editor-dialog button + button {
     margin-left: 1.5rem;
 }
 
-editor-dialog button[type=button] {
+akilli-editor editor-dialog button[type=button] {
     color: var(--editor-cancel-color);
     background: var(--editor-cancel-background);
 }
 
-editor-dialog input:is(
+akilli-editor editor-dialog input:is(
     [type=email],
     [type=number],
     [type=password],
@@ -228,13 +235,13 @@ editor-dialog input:is(
     [type=text],
     [type=url]
 ),
-editor-dialog select {
+akilli-editor editor-dialog select {
     width: 100%;
     padding: 0.71875rem 0;
     border-bottom: 0.0625rem solid var(--editor-border);
 }
 
-editor-dialog input:is(
+akilli-editor editor-dialog input:is(
     [type=email],
     [type=number],
     [type=password],
@@ -243,14 +250,14 @@ editor-dialog input:is(
     [type=text],
     [type=url]
 ):invalid,
-editor-dialog select:invalid {
+akilli-editor editor-dialog select:invalid {
     border-color: var(--editor-error);
 }
 
 /**
  * Toolbar
  */
-editor-toolbar {
+akilli-editor editor-toolbar {
     position: sticky;
     top: 0;
     display: flex;
@@ -260,8 +267,7 @@ editor-toolbar {
     border: 0.0625rem solid var(--editor-border);
 }
 
-editor-focusbar,
-editor-formatbar {
+akilli-editor :is(editor-focusbar, editor-formatbar) {
     position: absolute;
     display: flex;
     flex-wrap: wrap;
@@ -272,7 +278,7 @@ editor-formatbar {
     border: 0.0625rem solid var(--editor-border);
 }
 
-editor-focusbar {
+akilli-editor editor-focusbar {
     flex-direction: column;
 }
 
