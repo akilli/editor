@@ -24,6 +24,7 @@ const config = {
 document.addEventListener('DOMContentLoaded', async () => {
     const root = document.documentElement;
     const header = document.getElementById('header');
+    const base = document.getElementById('base');
     const light = document.getElementById('light');
     const dark = document.getElementById('dark');
     const dist = document.getElementById('dist');
@@ -38,6 +39,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         Array.from(header.getElementsByTagName('input')).forEach(item => (item.disabled = flag));
         clear.disabled = flag;
     };
+    const mode = () => {
+        if (light.checked) {
+            root.setAttribute('class', 'light');
+        } else if (dark.checked) {
+            root.setAttribute('class', 'dark');
+        } else {
+            root.removeAttribute('class');
+        }
+    };
     const init = () => {
         editor?.destroy();
         const Editor = src.checked ? SrcEditor : DistEditor;
@@ -49,9 +59,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
         console.log(editor);
     };
-    dark.checked && root.setAttribute('data-dark', '');
-    light.addEventListener('click', () => root.removeAttribute('data-dark'));
-    dark.addEventListener('click', () => root.setAttribute('data-dark', ''));
+    base.addEventListener('click', mode);
+    light.addEventListener('click', mode);
+    dark.addEventListener('click', mode);
     dist.addEventListener('click', init);
     src.addEventListener('click', init);
     en.addEventListener('click', init);
@@ -73,5 +83,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             toggle(false);
         }
     });
+    mode();
     init();
 });

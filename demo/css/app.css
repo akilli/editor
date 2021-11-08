@@ -13,6 +13,9 @@
     --app-color-primary-dark: #000;
     --app-color-primary-light: #2a9d8f;
     --app-color-primary-text: #fff;
+}
+
+:root:is(.light, .dark) {
     --editor-block-background: var(--app-color-primary-dark);
     --editor-block-color: var(--app-color-primary-text);
     --editor-border: var(--app-color-border);
@@ -33,7 +36,7 @@
     --editor-toolbar-color: var(--app-color-primary);
 }
 
-:root[data-dark] {
+:root.dark {
     --app-color-accent: #4166f5;
     --app-color-accent-dark: #003cc1;
     --app-color-accent-light: #8193ff;
@@ -167,7 +170,7 @@ body {
     background: var(--app-color-primary-text);
 }
 
-:root[data-dark] body {
+:root.dark body {
     color: var(--app-color-primary-text);
     background: var(--app-color-primary);
 }
