@@ -43,8 +43,22 @@ export default class DetailsListener extends Listener {
      */
     insertsummary(event) {
         this.#empty(event.detail.element);
+        event.detail.element.addEventListener('click', this);
         event.detail.element.addEventListener('blur', this);
         event.detail.element.addEventListener('keydown', this);
+    }
+
+    /**
+     * Prevents toggling details open state
+     *
+     * @param {MouseEvent} event
+     * @param {HTMLElement} event.target
+     * @return {void}
+     */
+    click(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        event.target.parentElement.open = true;
     }
 
     /**
