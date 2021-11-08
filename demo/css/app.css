@@ -88,7 +88,7 @@ body {
 /**
  * Margin
  */
-:is(editor-root, #rte, #rte div) > :not(:is(:first-child)) {
+:is(akilli-editor editor-root, #rte, #rte div) > :not(:is(:first-child)) {
     margin-top: 1.5rem;
 }
 
@@ -370,8 +370,7 @@ th {
 /**
  * Div
  */
-editor-root div,
-#rte div {
+:is(akilli-editor editor-root, #rte) div {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1.5rem;
@@ -380,12 +379,14 @@ editor-root div,
     padding: 1.5rem;
 }
 
-editor-root div figure.right,
-#rte div figure.left {
+:is(akilli-editor editor-root, #rte) div figure {
     float: none;
     margin: 0;
 }
 
-editor-toolbar {
+/**
+ * Editor Toolbar
+ */
+akilli-editor editor-toolbar {
     top: 3rem;
 }
