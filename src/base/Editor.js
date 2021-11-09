@@ -475,6 +475,8 @@ export default class Editor {
         } else {
             this.orig.innerHTML = this.getHtml();
         }
+
+        this.rootDispatcher.dispatch('save');
     }
 
     /**
