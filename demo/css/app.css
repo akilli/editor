@@ -149,7 +149,8 @@ h3 {
 
 figcaption,
 small,
-table {
+table,
+#header {
     font-size: 0.875rem;
 }
 
