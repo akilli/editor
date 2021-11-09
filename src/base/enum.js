@@ -54,6 +54,7 @@ export const Key = Object.freeze({
     S: 's',
     SPACE: ' ',
     T: 't',
+    TAB: 'Tab',
     U: 'u',
     UP: 'ArrowUp',
     V: 'v',
