@@ -61,12 +61,14 @@ akilli-editor editor-root {
     border-top: 0;
 }
 
-akilli-editor editor-root:is(::before, ::after) {
+akilli-editor editor-root::before {
     display: table;
     content: ' ';
 }
 
 akilli-editor editor-root::after {
+    display: table;
+    content: ' ';
     clear: both;
 }
 
