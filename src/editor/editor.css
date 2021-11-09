@@ -190,8 +190,6 @@ akilli-editor editor-dialog[open] {
 }
 
 akilli-editor editor-dialog form {
-    min-width: 40rem;
-    min-height: 20rem;
     padding: 0.75rem;
     color: var(--editor-dialog-color);
     background: var(--editor-dialog-background);
