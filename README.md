@@ -305,7 +305,7 @@ message when an item is selected, p.e. for the image plugin something like
 window.opener.postMessage({
     alt: 'Alternative Text',// optional
     height: '300',// optional
-    id: 'image:1', // optional, can be used as regular id attribute and/or p. e. a reference to the image in the DB
+    id: 'image-1', // optional, can be used as regular id attribute and/or p. e. a reference to the image in the DB
     src: '/url/to/media',// required
     width: '400',// optional
 }, window.opener.origin);
