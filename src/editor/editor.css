@@ -278,10 +278,6 @@ akilli-editor :is(editor-focusbar, editor-formatbar) {
     border: 0.0625rem solid var(--editor-border);
 }
 
-akilli-editor editor-focusbar {
-    flex-direction: column;
-}
-
 akilli-editor editor-focusbar:empty,
 akilli-editor editor-focusbar [data-command] {
     display: none;

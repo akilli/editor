@@ -406,10 +406,6 @@ th {
 /**
  * Editor
  */
-akilli-editor {
-    margin-left: 2.625rem;
-}
-
 akilli-editor editor-toolbar {
     top: 3rem;
 }
