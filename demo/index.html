@@ -11,28 +11,27 @@
     </head>
     <body>
         <header id="header">
-            <div id="mode">
-                <label>Mode</label>
-                <input id="base" name="mode" type="radio" value="base" checked/>
-                <label for="base">base</label>
-                <input id="light" name="mode" type="radio" value="light"/>
-                <label for="light">light</label>
-                <input id="dark" name="mode" type="radio" value="dark"/>
-                <label for="dark">dark</label>
+            <div>
+                <label for="mode">Mode</label>
+                <select id="mode">
+                    <option value="" selected>base</option>
+                    <option value="light">light</option>
+                    <option value="dark">dark</option>
+                </select>
             </div>
-            <div id="version">
-                <label>Version</label>
-                <input id="dist" name="version" type="radio" value="dist" checked/>
-                <label for="dist">dist</label>
-                <input id="src" name="version" type="radio" value="src"/>
-                <label for="src">src</label>
+            <div>
+                <label for="version">Version</label>
+                <select id="version">
+                    <option value="dist" selected>dist</option>
+                    <option value="src">src</option>
+                </select>
             </div>
-            <div id="lang">
-                <label>Lang</label>
-                <input id="en" name="lang" type="radio" value="en" checked/>
-                <label for="en">en</label>
-                <input id="de" name="lang" type="radio" value="de"/>
-                <label for="de">de</label>
+            <div>
+                <label for="lang">Lang</label>
+                <select id="lang">
+                    <option value="en" selected>en</option>
+                    <option value="de">de</option>
+                </select>
             </div>
         </header>
         <main>

@@ -404,8 +404,19 @@ th {
 }
 
 /**
- * Editor Toolbar
+ * Editor
  */
+akilli-editor {
+    margin-left: 2.625rem;
+}
+
 akilli-editor editor-toolbar {
     top: 3rem;
+}
+
+/**
+ * Form
+ */
+[disabled] {
+    opacity: 0.5;
 }

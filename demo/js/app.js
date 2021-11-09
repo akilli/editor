@@ -24,48 +24,32 @@ const config = {
 document.addEventListener('DOMContentLoaded', async () => {
     const root = document.documentElement;
     const header = document.getElementById('header');
-    const base = document.getElementById('base');
-    const light = document.getElementById('light');
-    const dark = document.getElementById('dark');
-    const dist = document.getElementById('dist');
-    const src = document.getElementById('src');
-    const en = document.getElementById('en');
-    const de = document.getElementById('de');
+    const mode = document.getElementById('mode');
+    const version = document.getElementById('version');
+    const lang = document.getElementById('lang');
     const rte = document.getElementById('rte');
     const clear = document.getElementById('clear');
     const save = document.getElementById('save');
     let editor;
     const toggle = (flag) => {
-        Array.from(header.getElementsByTagName('input')).forEach(item => (item.disabled = flag));
+        Array.from(header.getElementsByTagName('select')).forEach(item => (item.disabled = flag));
         clear.disabled = flag;
     };
-    const mode = () => {
-        if (light.checked) {
-            root.setAttribute('class', 'light');
-        } else if (dark.checked) {
-            root.setAttribute('class', 'dark');
-        } else {
-            root.removeAttribute('class');
-        }
-    };
+    const setMode = () => mode.value ? root.setAttribute('class', mode.value) : root.removeAttribute('class');
     const init = () => {
         editor?.destroy();
-        const Editor = src.checked ? SrcEditor : DistEditor;
+        const Editor = version.value === 'src' ? SrcEditor : DistEditor;
         editor = Editor.create(rte, {
             ...config,
             base: {
-                lang: de.checked ? 'de' : 'en',
+                lang: lang.value,
             },
         });
         console.log(editor);
     };
-    base.addEventListener('click', mode);
-    light.addEventListener('click', mode);
-    dark.addEventListener('click', mode);
-    dist.addEventListener('click', init);
-    src.addEventListener('click', init);
-    en.addEventListener('click', init);
-    de.addEventListener('click', init);
+    mode.addEventListener('change', setMode);
+    version.addEventListener('change', init);
+    lang.addEventListener('change', init);
     clear.addEventListener('click', () => {
         editor.setHtml('');
         window.scrollTo(0, 0);
@@ -83,6 +67,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             toggle(false);
         }
     });
-    mode();
+    setMode();
     init();
 });
