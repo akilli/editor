@@ -89,7 +89,7 @@ body {
 }
 
 /**
- * Margin
+ * Margin Top
  */
 :is(akilli-editor editor-root, #rte, #rte div) > :not(:is(:first-child)) {
     margin-top: 1.5rem;
