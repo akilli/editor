@@ -85,9 +85,7 @@ export default class FocusbarListener extends BarListener {
             return;
         }
 
-        this.editor.focusbar.hidden = false;
-        const top = element.offsetTop + element.offsetParent.offsetTop - this.editor.focusbar.clientHeight;
-        this.editor.focusbar.style.top = `${top}px`;
+        this._show(this.editor.focusbar, element);
         Object.keys(element.dataset).forEach(key => (this.editor.focusbar.dataset[key] = element.dataset[key]));
         this.editor.focusbar.dataset.tag = element.localName;
     }
@@ -98,8 +96,7 @@ export default class FocusbarListener extends BarListener {
      * @return {void}
      */
     #hide() {
-        this.editor.focusbar.hidden = true;
-        this.editor.focusbar.removeAttribute('style');
+        this._hide(this.editor.focusbar);
         Object.keys(this.editor.focusbar.dataset).forEach(key => delete this.editor.focusbar.dataset[key]);
     }
 }

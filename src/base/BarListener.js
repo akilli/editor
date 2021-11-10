@@ -1,5 +1,5 @@
 import Listener from './Listener.js';
-import { Key } from './enum.js';
+import { Error, Key } from './enum.js';
 import { isKey } from './util.js';
 
 /**
@@ -59,5 +59,36 @@ export default class BarListener extends Listener {
             event.preventDefault();
             event.stopPropagation();
         }
+    }
+
+    /**
+     * Shows and positions toolbar for given element
+     *
+     * @protected
+     * @param {HTMLElement} toolbar
+     * @param {HTMLElement} element
+     * @return {void}
+     */
+    _show(toolbar, element) {
+        if (!(toolbar instanceof HTMLElement) || !(element instanceof HTMLElement)) {
+            throw Error.INVALID_ARGUMENT;
+        }
+
+        toolbar.hidden = false;
+        const top = element.offsetTop + element.offsetParent.offsetTop - toolbar.clientHeight;
+        toolbar.style.left = `${element.offsetLeft}px`;
+        toolbar.style.top = `${top}px`;
+    }
+
+    /**
+     * Hides toolbar
+     *
+     * @protected
+     * @param {HTMLElement} toolbar
+     * @return {void}
+     */
+    _hide(toolbar) {
+        toolbar.hidden = true;
+        toolbar.removeAttribute('style');
     }
 }
