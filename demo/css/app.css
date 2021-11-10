@@ -56,6 +56,13 @@
 }
 
 /**
+ * Custom Elements
+ */
+:host * {
+    pointer-events: none;
+}
+
+/**
  * Layout
  */
 body {
