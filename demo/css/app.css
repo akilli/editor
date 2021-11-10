@@ -166,7 +166,8 @@ var {
 /**
  * Color
  */
-body {
+body,
+figure.preformat > figcaption {
     color: var(--app-color-primary);
     background: var(--app-color-primary-text);
 }
@@ -177,8 +178,9 @@ body {
 }
 
 details,
-pre,
 code,
+figure.preformat,
+:not(figure.preformat) > pre,
 #header {
     color: var(--app-color-primary-text);
     background: var(--app-color-primary-dark);
@@ -369,6 +371,18 @@ figure.table.center table {
 td,
 th {
     min-height: 1.5rem;
+}
+
+/**
+ * Preformat
+ */
+figure.preformat,
+:not(figure.preformat) > pre {
+    padding: 0.75rem;
+}
+
+figure.preformat > figcaption {
+    padding: 0.375rem;
 }
 
 /**
