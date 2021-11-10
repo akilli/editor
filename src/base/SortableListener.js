@@ -60,9 +60,11 @@ export default class SortableListener extends Listener {
      * @return {void}
      */
     pointerdown(event) {
-        if (event.target.hasAttribute('data-sortable')) {
-            event.target.setAttribute('data-sort', '');
-            event.target.setPointerCapture(event.pointerId);
+        const target = event.target.closest('[data-sortable]');
+
+        if (target && this.editor.dom.contains(target)) {
+            target.setAttribute('data-sort', '');
+            target.setPointerCapture(event.pointerId);
         }
     }
 
@@ -74,10 +76,11 @@ export default class SortableListener extends Listener {
      * @return {void}
      */
     pointermove(event) {
+        const target = event.target.closest('[data-sortable][data-sort]');
         const element = this.editor.dom.document.elementFromPoint(event.x, event.y);
         this.#sortover();
 
-        if (this.#droppable(event.target, element)) {
+        if (target && this.editor.dom.contains(target) && this.#droppable(target, element)) {
             element.setAttribute('data-sortover', '');
         }
     }
@@ -90,14 +93,16 @@ export default class SortableListener extends Listener {
      * @return {void}
      */
     pointerup(event) {
-        if (event.target.hasAttribute('data-sortable')) {
+        const target = event.target.closest('[data-sortable][data-sort]');
+
+        if (target && this.editor.dom.contains(target)) {
             const element = this.editor.dom.document.elementFromPoint(event.x, event.y);
             this.#sortover();
-            event.target.removeAttribute('data-sort');
-            event.target.releasePointerCapture(event.pointerId);
+            target.removeAttribute('data-sort');
+            target.releasePointerCapture(event.pointerId);
 
-            if (this.#droppable(event.target, element)) {
-                element.insertAdjacentElement(Position.BEFOREBEGIN, event.target);
+            if (this.#droppable(target, element)) {
+                element.insertAdjacentElement(Position.BEFOREBEGIN, target);
             }
         }
     }
