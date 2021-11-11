@@ -75,8 +75,15 @@ export default class BarListener extends Listener {
         }
 
         toolbar.hidden = false;
+        const diff = element.offsetLeft + toolbar.clientWidth - this.editor.root.clientWidth;
+        let left = toolbar.clientWidth < this.editor.root.clientWidth ? element.offsetLeft : 0;
+
+        if (left > 0 && diff > 0) {
+            left = left > diff ? left - diff : 0;
+        }
+
+        toolbar.style.left = `${left}px`;
         const top = element.offsetTop + element.offsetParent.offsetTop - toolbar.clientHeight;
-        toolbar.style.left = `${element.offsetLeft}px`;
         toolbar.style.top = `${top}px`;
     }
 
