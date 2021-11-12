@@ -188,7 +188,8 @@ details,
 code,
 figure.preformat,
 :not(figure.preformat) > pre,
-#header {
+#header,
+#header select {
     color: var(--app-color-primary-text);
     background: var(--app-color-primary-dark);
 }
@@ -441,4 +442,12 @@ akilli-editor editor-toolbar {
  */
 [disabled] {
     opacity: 0.5;
+}
+
+#header option,
+#header select {
+    height: 1.5rem;
+    padding: 0 0.375rem;
+    line-height: 1.5rem;
+    vertical-align: middle;
 }
