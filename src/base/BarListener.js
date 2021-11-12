@@ -83,7 +83,7 @@ export default class BarListener extends Listener {
         }
 
         toolbar.style.left = `${left}px`;
-        const top = element.offsetTop + element.offsetParent.offsetTop - toolbar.clientHeight;
+        const top = element.offsetTop - element.scrollTop - toolbar.clientHeight;
         toolbar.style.top = `${top}px`;
     }
 

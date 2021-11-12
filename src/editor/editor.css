@@ -47,6 +47,7 @@ akilli-editor[lang=de] {
  * Editor
  */
 akilli-editor {
+    position: relative;
     display: block;
 }
 
@@ -269,9 +270,9 @@ akilli-editor editor-toolbar {
 
 akilli-editor :is(editor-focusbar, editor-formatbar) {
     position: absolute;
+    left: 0;
     display: flex;
     flex-wrap: wrap;
-    min-width: 2.625rem;
     min-height: 2.125rem;
     color: var(--editor-toolbar-color);
     background: var(--editor-toolbar-background);
