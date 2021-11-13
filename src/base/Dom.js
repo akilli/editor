@@ -502,18 +502,18 @@ export default class Dom {
         const isFirst = element === first;
         const isLast = element === last;
 
-        if (sorting === Sorting.UP && !isFirst && prev.hasAttribute('data-sortable')) {
+        if (sorting === Sorting.PREV && !isFirst && prev.hasAttribute('data-sortable')) {
             prev.insertAdjacentHTML(Position.BEFOREBEGIN, element.outerHTML);
             parent.removeChild(element);
-        } else if (sorting === Sorting.DOWN && !isLast && next.hasAttribute('data-sortable')) {
+        } else if (sorting === Sorting.NEXT && !isLast && next.hasAttribute('data-sortable')) {
             next.insertAdjacentHTML(Position.AFTEREND, element.outerHTML);
             parent.removeChild(element);
-        } else if ((sorting === Sorting.TOP && !isFirst || sorting === Sorting.DOWN && isLast)
+        } else if ((sorting === Sorting.FIRST && !isFirst || sorting === Sorting.NEXT && isLast)
             && first.hasAttribute('data-sortable')
         ) {
             first.insertAdjacentHTML(Position.BEFOREBEGIN, element.outerHTML);
             parent.removeChild(element);
-        } else if ((sorting === Sorting.BOTTOM && !isLast || sorting === Sorting.UP && isFirst)
+        } else if ((sorting === Sorting.LAST && !isLast || sorting === Sorting.PREV && isFirst)
             && last.hasAttribute('data-sortable')
         ) {
             last.insertAdjacentHTML(Position.AFTEREND, element.outerHTML);

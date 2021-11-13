@@ -82,10 +82,10 @@ export const Position = Object.freeze({
  * @enum {string}
  */
 export const Sorting = Object.freeze({
-    BOTTOM: 'bottom',
-    DOWN: 'down',
-    TOP: 'top',
-    UP: 'up',
+    FIRST: 'first',
+    LAST: 'last',
+    NEXT: 'next',
+    PREV: 'prev',
 });
 
 /**

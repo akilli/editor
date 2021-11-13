@@ -349,157 +349,191 @@ akilli-editor [data-command=cite]::before {
 }
 
 akilli-editor [data-command=code]::before {
-    content: '\e810';
+    content: '\e80a';
 }
 
 akilli-editor [data-command=data]::before {
-    content: '\e811';
+    content: '\e80b';
 }
 
 akilli-editor [data-command=definition]::before {
-    content: '\e812';
+    content: '\e80c';
 }
 
 akilli-editor [data-command=delete]::before {
-    content: '\e813';
+    content: '\e80d';
 }
 
 akilli-editor [data-command=deletion]::before {
-    content: '\e814';
+    content: '\e80e';
 }
 
 akilli-editor [data-command=details]::before {
-    content: '\e815';
+    content: '\e80f';
 }
 
 akilli-editor [data-command=division]::before {
-    content: '\e816';
+    content: '\e810';
 }
 
 akilli-editor [data-command=emphasis]::before {
-    content: '\e817';
+    content: '\e811';
 }
 
 akilli-editor [data-command=heading]::before {
-    content: '\e818';
+    content: '\e812';
 }
 
 akilli-editor [data-command=horizontalrule]::before {
-    content: '\e819';
+    content: '\e813';
 }
 
 akilli-editor [data-command=iframe]::before {
-    content: '\e820';
+    content: '\e814';
 }
 
 akilli-editor [data-command=image]::before {
-    content: '\e821';
+    content: '\e815';
 }
 
 akilli-editor [data-command=insertion]::before {
-    content: '\e822';
+    content: '\e816';
 }
 
 akilli-editor [data-command=italic]::before {
-    content: '\e823';
+    content: '\e817';
 }
 
 akilli-editor [data-command=keyboard]::before {
-    content: '\e824';
+    content: '\e818';
 }
 
 akilli-editor [data-command=link]::before {
-    content: '\e825';
+    content: '\e819';
 }
 
 akilli-editor [data-command=mark]::before {
-    content: '\e826';
+    content: '\e81a';
 }
 
 akilli-editor [data-command=orderedlist]::before {
-    content: '\e827';
+    content: '\e81b';
 }
 
 akilli-editor [data-command=paragraph]::before {
-    content: '\e828';
+    content: '\e81c';
 }
 
 akilli-editor [data-command=preformat]::before {
-    content: '\e829';
+    content: '\e81d';
 }
 
 akilli-editor [data-command=quote]::before {
-    content: '\e830';
+    content: '\e81e';
 }
 
 akilli-editor [data-command=sample]::before {
-    content: '\e831';
+    content: '\e81f';
 }
 
 akilli-editor [data-command=section]::before {
-    content: '\e832';
+    content: '\e820';
 }
 
 akilli-editor [data-command=small]::before {
-    content: '\e833';
+    content: '\e821';
 }
 
-akilli-editor [data-command=sort-bottom]::before {
-    content: '\e834';
+akilli-editor [data-command=sort-first]::before {
+    content: '\e822';
 }
 
-akilli-editor [data-command=sort-down]::before {
-    content: '\e835';
+akilli-editor [data-command=sort-last]::before {
+    content: '\e823';
 }
 
-akilli-editor [data-command=sort-top]::before {
-    content: '\e836';
+akilli-editor [data-command=sort-next]::before {
+    content: '\e824';
 }
 
-akilli-editor [data-command=sort-up]::before {
-    content: '\e837';
+akilli-editor [data-command=sort-prev]::before {
+    content: '\e825';
 }
 
 akilli-editor [data-command=strikethrough]::before {
-    content: '\e838';
+    content: '\e826';
 }
 
 akilli-editor [data-command=strong]::before {
-    content: '\e839';
+    content: '\e827';
 }
 
 akilli-editor [data-command=subheading]::before {
-    content: '\e840';
+    content: '\e828';
 }
 
 akilli-editor [data-command=subscript]::before {
-    content: '\e841';
+    content: '\e829';
 }
 
 akilli-editor [data-command=superscript]::before {
-    content: '\e842';
+    content: '\e82a';
 }
 
 akilli-editor [data-command=table]::before {
-    content: '\e843';
+    content: '\e82b';
+}
+
+akilli-editor [data-command=tablecolumn-insertafter]::before {
+    content: '\e82c';
+}
+
+akilli-editor [data-command=tablecolumn-insertbefore]::before {
+    content: '\e82d';
+}
+
+akilli-editor [data-command=tablecolumn-removeafter]::before {
+    content: '\e82e';
+}
+
+akilli-editor [data-command=tablecolumn-removebefore]::before {
+    content: '\e82e';
+    transform: translate(-1, 1);
+}
+
+akilli-editor [data-command=tablerow-insertafter]::before {
+    content: '\e82f';
+}
+
+akilli-editor [data-command=tablerow-insertbefore]::before {
+    content: '\e830';
+}
+
+akilli-editor [data-command=tablerow-removeafter]::before {
+    content: '\e831';
+}
+
+akilli-editor [data-command=tablerow-removebefore]::before {
+    content: '\e831';
+    transform: translate(1, -1);
 }
 
 akilli-editor [data-command=time]::before {
-    content: '\e844';
+    content: '\e832';
 }
 
 akilli-editor [data-command=underline]::before {
-    content: '\e845';
+    content: '\e833';
 }
 
 akilli-editor [data-command=unorderedlist]::before {
-    content: '\e846';
+    content: '\e834';
 }
 
 akilli-editor [data-command=variable]::before {
-    content: '\e847';
+    content: '\e835';
 }
 
 akilli-editor [data-command=video]::before {
-    content: '\e848';
+    content: '\e836';
 }

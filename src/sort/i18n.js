@@ -5,9 +5,9 @@
  */
 export default {
     de: {
-        'Sort bottom': 'Ans Ende sortieren',
-        'Sort down': 'Nach unten sortieren',
-        'Sort top': 'An den Anfang sortieren',
-        'Sort up': 'Nach oben sortieren',
+        'Sort first': 'An den Anfang sortieren',
+        'Sort last': 'Ans Ende sortieren',
+        'Sort next': 'Eins zurück sortieren',
+        'Sort previous': 'Eins vor sortieren',
     },
 };

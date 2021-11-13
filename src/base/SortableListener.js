@@ -39,10 +39,10 @@ export default class SortableListener extends Listener {
      */
     keydown(event) {
         const map = {
-            [Key.UP]: Sorting.UP,
-            [Key.DOWN]: Sorting.DOWN,
-            [Key.HOME]: Sorting.TOP,
-            [Key.END]: Sorting.BOTTOM,
+            [Key.HOME]: Sorting.FIRST,
+            [Key.UP]: Sorting.PREV,
+            [Key.DOWN]: Sorting.NEXT,
+            [Key.END]: Sorting.LAST,
         };
 
         if (event.target === event.currentTarget && isKey(event, Object.keys(map), { ctrl: true })) {
