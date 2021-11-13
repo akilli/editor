@@ -484,36 +484,36 @@ akilli-editor [data-command=table]::before {
     content: '\e82b';
 }
 
-akilli-editor [data-command=tablecolumn-insertafter]::before {
+akilli-editor [data-command=tablecol-add-next]::before {
     content: '\e82c';
 }
 
-akilli-editor [data-command=tablecolumn-insertbefore]::before {
+akilli-editor [data-command=tablecol-add-prev]::before {
     content: '\e82d';
 }
 
-akilli-editor [data-command=tablecolumn-removeafter]::before {
+akilli-editor [data-command=tablecol-delete-next]::before {
     content: '\e82e';
 }
 
-akilli-editor [data-command=tablecolumn-removebefore]::before {
+akilli-editor [data-command=tablecol-delete-prev]::before {
     content: '\e82e';
     transform: translate(-1, 1);
 }
 
-akilli-editor [data-command=tablerow-insertafter]::before {
+akilli-editor [data-command=tablerow-add-next]::before {
     content: '\e82f';
 }
 
-akilli-editor [data-command=tablerow-insertbefore]::before {
+akilli-editor [data-command=tablerow-add-prev]::before {
     content: '\e830';
 }
 
-akilli-editor [data-command=tablerow-removeafter]::before {
+akilli-editor [data-command=tablerow-delete-next]::before {
     content: '\e831';
 }
 
-akilli-editor [data-command=tablerow-removebefore]::before {
+akilli-editor [data-command=tablerow-delete-prev]::before {
     content: '\e831';
     transform: translate(1, -1);
 }
