@@ -28,10 +28,10 @@ export default class Sort extends Plugin {
     init() {
         this._i18n(i18n);
         const sortings = {
-            [Sorting.FIRST]: this._('Sort first'),
-            [Sorting.PREV]: this._('Sort previous'),
-            [Sorting.NEXT]: this._('Sort next'),
-            [Sorting.LAST]: this._('Sort last'),
+            [Sorting.FIRST]: this._('Sort to the beginning'),
+            [Sorting.PREV]: this._('Sort before previous element'),
+            [Sorting.NEXT]: this._('Sort after next element'),
+            [Sorting.LAST]: this._('Sort to the end'),
         };
         Object.entries(sortings).forEach(([sorting, label]) => {
             const command = new SortCommand(this.editor, sorting);
