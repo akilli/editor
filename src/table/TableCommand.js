@@ -1,5 +1,6 @@
 import Command from '../base/Command.js';
 import Table from './Table.js';
+import TableDom from './TableDom.js';
 import { TagName } from '../base/enum.js';
 
 /**
@@ -7,37 +8,41 @@ import { TagName } from '../base/enum.js';
  */
 export default class TableCommand extends Command {
     /**
+     * Table DOM manager
+     *
+     * @type {TableDom}
+     */
+    #tableDom;
+
+    /**
+     * Allows read access to table DOM manager
+     *
+     * @return {TableDom}
+     */
+    get tableDom() {
+        return this.#tableDom;
+    }
+
+    /**
      * Initializes a new table command
      *
      * @param {Editor} editor
      */
     constructor(editor) {
         super(editor, Table.name, TagName.TABLE);
+        this.#tableDom = new TableDom(editor.dom);
     }
 
     /**
      * Inserts table element
      *
-     * @param {number} [rows = 1]
-     * @param {number} [cols = 1]
+     * @param {string} rows
+     * @param {string} cols
      * @return {void}
      */
-    insert({ rows = 1, cols = 1 } = {}) {
+    insert({ rows, cols } = {}) {
         const figure = this.editor.dom.createElement(TagName.FIGURE, { attributes: { class: Table.name } });
-        const table = this.editor.dom.createElement(TagName.TABLE);
-        const tbody = this.editor.dom.createElement(TagName.TBODY);
-
-        for (let i = 0; i < rows; i++) {
-            const tr = this.editor.dom.createElement(TagName.TR);
-            tbody.appendChild(tr);
-
-            for (let j = 0; j < cols; ++j) {
-                tr.appendChild(this.editor.dom.createElement(TagName.TD));
-            }
-        }
-
-        table.appendChild(tbody);
-        figure.appendChild(table);
+        figure.appendChild(this.tableDom.createTable(parseInt(rows, 10), parseInt(cols, 10)));
         this.editor.dom.insert(figure);
     }
 }
