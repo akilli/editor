@@ -35,7 +35,7 @@ export default class TableDom {
     }
 
     /**
-     * Creates table element
+     * Creates table element with given amount of rows and columns
      *
      * @param {number} rows
      * @param {number} cols
