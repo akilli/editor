@@ -72,21 +72,22 @@ body {
     line-height: 1.5rem;
 }
 
-#header,
-#footer {
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    display: flex;
-}
-
 #header {
+    position: absolute;
     top: 0;
 }
 
 #footer {
+    position: fixed;
     bottom: 0;
+}
+
+#header,
+#footer {
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
 }
 
 :is(#header, #footer) > * {
@@ -431,13 +432,6 @@ figure.preformat > figcaption {
     display: inline-block;
     vertical-align: middle;
     content: var(--editor-text-block);
-}
-
-/**
- * Editor
- */
-akilli-editor editor-toolbar {
-    top: 3rem;
 }
 
 /**
