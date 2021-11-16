@@ -450,7 +450,6 @@ akilli-editor editor-toolbar {
 #header option,
 #header select {
     height: 1.5rem;
-    padding: 0 0.375rem;
     line-height: 1.5rem;
     vertical-align: middle;
 }
