@@ -212,7 +212,7 @@ export default class TableListener extends Listener {
         }
 
         const sel = this.editor.dom.getSelection();
-        const anc = sel.anchorNode instanceof HTMLElement && sel.anchorNode;
+        const anc = sel.anchorNode instanceof HTMLElement ? sel.anchorNode : element;
 
         if (!sel.isCollapsed) {
             return false;
