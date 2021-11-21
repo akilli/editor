@@ -75,15 +75,17 @@ export default class BarListener extends Listener {
         }
 
         toolbar.hidden = false;
-        const diff = element.offsetLeft + toolbar.clientWidth - this.editor.root.clientWidth;
-        let left = toolbar.clientWidth < this.editor.root.clientWidth ? element.offsetLeft : 0;
+        const { x, y } = element.getBoundingClientRect();
+        const { x: rx, y: ry } = this.editor.root.getBoundingClientRect();
+        const diff = x - rx + toolbar.clientWidth - this.editor.root.clientWidth;
+        const top = y - ry - element.scrollTop + this.editor.root.offsetTop - toolbar.clientHeight;
+        let left = toolbar.clientWidth < this.editor.root.clientWidth ? x - rx : 0;
 
         if (left > 0 && diff > 0) {
-            left = left > diff ? left - diff : 0;
+            left = left > diff ? (left - diff) / 2 : 0;
         }
 
         toolbar.style.left = `${left}px`;
-        const top = element.offsetTop - element.scrollTop - toolbar.clientHeight;
         toolbar.style.top = `${top}px`;
     }
 
