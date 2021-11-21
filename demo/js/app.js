@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         editor.setHtml('');
         window.scrollTo(0, 0);
     });
-    save.textContent = rte.hidden ? 'Save' : 'Edit';
     save.addEventListener('click', () => {
         if (rte.hidden) {
             editor.save();
@@ -69,4 +68,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     setMode();
     init();
+    save.textContent = rte.hidden ? 'Save' : 'Edit';
 });
