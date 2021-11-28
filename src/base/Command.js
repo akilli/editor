@@ -1,5 +1,5 @@
 import Editor from './Editor.js';
-import { Error, TagGroup } from './enum.js';
+import { ErrorMessage, TagGroup } from './enum.js';
 import { isOptString, isString } from './util.js';
 
 /**
@@ -79,7 +79,7 @@ export default class Command {
      */
     constructor(editor, name, tagName = undefined) {
         if (!(editor instanceof Editor) || !isString(name) || !isOptString(tagName)) {
-            throw Error.INVALID_ARGUMENT;
+            throw ErrorMessage.INVALID_ARGUMENT;
         }
 
         this.#editor = editor;

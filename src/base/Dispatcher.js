@@ -1,4 +1,4 @@
-import { Error, TagName } from './enum.js';
+import { ErrorMessage, TagName } from './enum.js';
 import { isFunction, isOptHtml, isString } from './util.js';
 
 /**
@@ -19,7 +19,7 @@ export default class Dispatcher {
      */
     constructor(element) {
         if (!(element instanceof HTMLElement)) {
-            throw Error.INVALID_ARGUMENT;
+            throw ErrorMessage.INVALID_ARGUMENT;
         }
 
         this.#element = element;
@@ -36,7 +36,7 @@ export default class Dispatcher {
      */
     dispatch(type, element = undefined, target = undefined) {
         if (!isString(type) || !isOptHtml(element) || !isOptHtml(target)) {
-            throw Error.INVALID_ARGUMENT;
+            throw ErrorMessage.INVALID_ARGUMENT;
         }
 
         this.#element.dispatchEvent(new CustomEvent(type, { detail: { element: element, target: target } }));
@@ -51,7 +51,7 @@ export default class Dispatcher {
      */
     register(call, opts = { childList: true, subtree: true }) {
         if (!isFunction(call)) {
-            throw Error.INVALID_ARGUMENT;
+            throw ErrorMessage.INVALID_ARGUMENT;
         }
 
         const observer = new MutationObserver(call);

@@ -1,5 +1,5 @@
 import Plugin from './Plugin.js';
-import { Error } from './enum.js';
+import { ErrorMessage } from './enum.js';
 
 /**
  * Plugin Manager
@@ -39,7 +39,7 @@ export default class PluginManager {
      */
     set(plugin) {
         if (!(plugin instanceof Plugin)) {
-            throw Error.INVALID_ARGUMENT;
+            throw ErrorMessage.INVALID_ARGUMENT;
         }
 
         this.#items.set(plugin.constructor.name, plugin);

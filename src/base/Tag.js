@@ -1,4 +1,4 @@
-import { Error } from './enum.js';
+import { ErrorMessage } from './enum.js';
 import { isString, isOptArray, isOptString } from './util.js';
 
 /**
@@ -117,7 +117,7 @@ export default class Tag {
             || !isOptArray(opts.attributes)
             || !isOptString(opts.enter)
         ) {
-            throw Error.INVALID_ARGUMENT;
+            throw ErrorMessage.INVALID_ARGUMENT;
         }
 
         this.name = name;

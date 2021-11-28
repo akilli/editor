@@ -1,5 +1,5 @@
 import Command from './Command.js';
-import { Error } from './enum.js';
+import { ErrorMessage } from './enum.js';
 
 /**
  * Command Manager
@@ -39,7 +39,7 @@ export default class CommandManager {
      */
     set(command) {
         if (!(command instanceof Command)) {
-            throw Error.INVALID_ARGUMENT;
+            throw ErrorMessage.INVALID_ARGUMENT;
         }
 
         this.#items.set(command.name, command);

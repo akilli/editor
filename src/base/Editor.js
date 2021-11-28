@@ -6,7 +6,7 @@ import FilterManager from './FilterManager.js';
 import PluginManager from './PluginManager.js';
 import TagManager from './TagManager.js';
 import Translator from './Translator.js';
-import { Error, Position, TagName } from './enum.js';
+import { ErrorMessage, Position, TagName } from './enum.js';
 
 /**
  * Base Editor
@@ -317,7 +317,7 @@ export default class Editor {
      */
     constructor(orig, config = {}) {
         if (!(orig instanceof HTMLElement) || !(config instanceof Object)) {
-            throw Error.INVALID_ARGUMENT;
+            throw ErrorMessage.INVALID_ARGUMENT;
         }
 
         this.#orig = orig;
