@@ -79,7 +79,7 @@ export default class Command {
      */
     constructor(editor, name, tagName = undefined) {
         if (!(editor instanceof Editor) || !isString(name) || !isOptString(tagName)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#editor = editor;

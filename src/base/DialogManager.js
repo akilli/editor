@@ -39,7 +39,7 @@ export default class DialogManager {
      */
     set(dialog) {
         if (!(dialog instanceof Dialog)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#items.set(dialog.name, dialog);

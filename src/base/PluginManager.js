@@ -39,7 +39,7 @@ export default class PluginManager {
      */
     set(plugin) {
         if (!(plugin instanceof Plugin)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#items.set(plugin.constructor.name, plugin);

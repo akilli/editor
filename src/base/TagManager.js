@@ -39,7 +39,7 @@ export default class TagManager {
      */
     set(tag) {
         if (!(tag instanceof Tag)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#items.set(tag.name, tag);

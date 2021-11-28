@@ -39,7 +39,7 @@ export default class CommandManager {
      */
     set(command) {
         if (!(command instanceof Command)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#items.set(command.name, command);

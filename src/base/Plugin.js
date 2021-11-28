@@ -30,7 +30,7 @@ export default class Plugin {
      * @type {string}
      */
     static get name() {
-        throw ErrorMessage.MISSING_NAME;
+        throw new Error(ErrorMessage.MISSING_NAME);
     }
 
     /**
@@ -58,7 +58,7 @@ export default class Plugin {
      */
     constructor(editor) {
         if (!(editor instanceof Editor)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#editor = editor;
@@ -71,7 +71,7 @@ export default class Plugin {
      * @return {void}
      */
     init() {
-        throw ErrorMessage.NOT_IMPLEMENTED;
+        throw new Error(ErrorMessage.NOT_IMPLEMENTED);
     }
 
     /**
@@ -183,7 +183,7 @@ export default class Plugin {
      */
     #button(label, title, key = undefined, command = undefined) {
         if (!isString(label) || !isString(title) || !isOptString(key)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         return this.editor.dom.createElement(TagName.BUTTON, {

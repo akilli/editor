@@ -317,7 +317,7 @@ export default class Editor {
      */
     constructor(orig, config = {}) {
         if (!(orig instanceof HTMLElement) || !(config instanceof Object)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#orig = orig;

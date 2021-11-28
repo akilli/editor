@@ -71,7 +71,7 @@ export default class BarListener extends Listener {
      */
     _show(toolbar, element) {
         if (!(toolbar instanceof HTMLElement) || !(element instanceof HTMLElement)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         toolbar.hidden = false;

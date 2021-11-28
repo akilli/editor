@@ -28,7 +28,7 @@ export default class Filter {
      */
     constructor(editor) {
         if (!(editor instanceof Editor)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#editor = editor;
@@ -42,6 +42,6 @@ export default class Filter {
      * @return {void}
      */
     filter(element) {
-        throw ErrorMessage.NOT_IMPLEMENTED;
+        throw new Error(ErrorMessage.NOT_IMPLEMENTED);
     }
 }

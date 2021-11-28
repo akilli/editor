@@ -97,7 +97,7 @@ export default class Dom {
      */
     constructor(editor, document) {
         if (!(editor instanceof Editor) || !(document instanceof Document)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#editor = editor;
@@ -144,7 +144,7 @@ export default class Dom {
      */
     insert(element) {
         if (!(element instanceof HTMLElement)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         const editable = this.getSelectedEditable();
@@ -160,7 +160,7 @@ export default class Dom {
         } else if (this.editor.tags.allowed(this.editor.root, element)) {
             this.editor.root.appendChild(element);
         } else {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
     }
 
@@ -190,7 +190,7 @@ export default class Dom {
      */
     format(element) {
         if (!(element instanceof HTMLElement)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         const range = this.getRange();
@@ -258,7 +258,7 @@ export default class Dom {
      */
     contains(element) {
         if (!(element instanceof HTMLElement)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         if (this.editor.root.contains(element)) {
@@ -280,7 +280,7 @@ export default class Dom {
      */
     closest(element, child) {
         if (!(element instanceof HTMLElement) || !this.contains(element.parentElement)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         let sibling = element;
@@ -307,7 +307,7 @@ export default class Dom {
         let sibling;
 
         if (!(element instanceof HTMLElement)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         } else if (element.parentElement.localName !== name && (sibling = this.closest(element, name))) {
             const target = this.createElement(name, opts);
             sibling.insertAdjacentElement(Position.AFTEREND, target);
@@ -434,7 +434,7 @@ export default class Dom {
      */
     selectContents(element) {
         if (!(element instanceof HTMLElement)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         const range = this.document.createRange();
@@ -450,7 +450,7 @@ export default class Dom {
      */
     focusEnd(element) {
         if (!(element instanceof HTMLElement)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         element.focus();
@@ -468,7 +468,7 @@ export default class Dom {
      */
     delete(element) {
         if (!(element instanceof HTMLElement)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         const prev = element.previousElementSibling;
@@ -491,7 +491,7 @@ export default class Dom {
      */
     sort(element, sorting) {
         if (!(element instanceof HTMLElement) || !Object.values(Sorting).includes(sorting)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         const parent = element.parentElement;
@@ -532,7 +532,7 @@ export default class Dom {
      */
     open({ url, name, call, params = {} }) {
         if (!isString(url) || !isString(name) || !isFunction(call)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         /** @type {HTMLAnchorElement} */

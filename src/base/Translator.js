@@ -31,7 +31,7 @@ export default class Translator {
      */
     set(name, i18n) {
         if (!isString(name) || !(i18n instanceof Object)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#items.set(name, i18n);

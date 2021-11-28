@@ -23,7 +23,7 @@ export default class SortCommand extends Command {
         const key = Object.entries(Sorting).find(([, val]) => val === sorting)?.[0].toLowerCase();
 
         if (!key) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         super(editor, Sort.name + '-' + key);

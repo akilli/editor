@@ -32,7 +32,7 @@ export default class Listener {
      */
     constructor(editor) {
         if (!(editor instanceof Editor)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#editor = editor;

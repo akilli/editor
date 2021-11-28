@@ -117,7 +117,7 @@ export default class Tag {
             || !isOptArray(opts.attributes)
             || !isOptString(opts.enter)
         ) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.name = name;

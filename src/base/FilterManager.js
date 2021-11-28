@@ -20,7 +20,7 @@ export default class FilterManager {
      */
     add(filter) {
         if (!(filter instanceof Filter)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#items.add(filter);
@@ -34,7 +34,7 @@ export default class FilterManager {
      */
     filter(element) {
         if (!(element instanceof HTMLElement)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#items.forEach(filter => {

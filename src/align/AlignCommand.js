@@ -23,7 +23,7 @@ export default class AlignCommand extends Command {
         const key = Object.entries(Alignment).find(([, val]) => val === alignment)?.[0].toLowerCase();
 
         if (!key) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         super(editor, Align.name + '-' + key);

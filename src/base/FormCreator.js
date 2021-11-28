@@ -46,7 +46,7 @@ export default class FormCreator {
      */
     constructor(dom, submit, cancel, close) {
         if (!(dom instanceof Dom) || !isString(submit) || !isString(cancel) || !isFunction(close)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#dom = dom;
@@ -81,7 +81,7 @@ export default class FormCreator {
      */
     addLegend(html) {
         if (!isString(html)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         this.#fieldset.appendChild(this.#dom.createElement(TagName.LEGEND, { html }));
@@ -124,7 +124,7 @@ export default class FormCreator {
      */
     addInput(name, label, attributes = {}, type = 'text') {
         if (!isString(name) || !isString(label) || !isString(type)) {
-            throw ErrorMessage.INVALID_ARGUMENT;
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
         Object.assign(attributes, { id: `editor-${name}`, name, type });
