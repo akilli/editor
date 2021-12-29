@@ -497,43 +497,41 @@ akilli-editor [data-command=tablecol-delete-next]::before {
 }
 
 akilli-editor [data-command=tablecol-delete-prev]::before {
-    content: '\e82e';
-    transform: translate(-1, 1);
-}
-
-akilli-editor [data-command=tablerow-add-next]::before {
     content: '\e82f';
 }
 
-akilli-editor [data-command=tablerow-add-prev]::before {
+akilli-editor [data-command=tablerow-add-next]::before {
     content: '\e830';
 }
 
+akilli-editor [data-command=tablerow-add-prev]::before {
+    content: '\e831';
+}
+
 akilli-editor [data-command=tablerow-delete-next]::before {
-    content: '\e831';
-}
-
-akilli-editor [data-command=tablerow-delete-prev]::before {
-    content: '\e831';
-    transform: translate(1, -1);
-}
-
-akilli-editor [data-command=time]::before {
     content: '\e832';
 }
 
-akilli-editor [data-command=underline]::before {
+akilli-editor [data-command=tablerow-delete-prev]::before {
     content: '\e833';
 }
 
-akilli-editor [data-command=unorderedlist]::before {
+akilli-editor [data-command=time]::before {
     content: '\e834';
 }
 
-akilli-editor [data-command=variable]::before {
+akilli-editor [data-command=underline]::before {
     content: '\e835';
 }
 
-akilli-editor [data-command=video]::before {
+akilli-editor [data-command=unorderedlist]::before {
     content: '\e836';
+}
+
+akilli-editor [data-command=variable]::before {
+    content: '\e837';
+}
+
+akilli-editor [data-command=video]::before {
+    content: '\e838';
 }
