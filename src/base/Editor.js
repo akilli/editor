@@ -398,6 +398,8 @@ export default class Editor {
 
     /**
      * Freezes the editor and its configuration
+     *
+     * @return {void}
      */
     freeze() {
         Object.freeze(this.config);
