@@ -23,7 +23,7 @@ npm start
 or
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 In both cases the demo is accessible at
