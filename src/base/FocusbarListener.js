@@ -85,9 +85,9 @@ export default class FocusbarListener extends BarListener {
             return;
         }
 
-        this._show(this.editor.focusbar, element);
         Object.keys(element.dataset).forEach(key => (this.editor.focusbar.dataset[key] = element.dataset[key]));
         this.editor.focusbar.dataset.tag = element.localName;
+        this._show(this.editor.focusbar, element);
     }
 
     /**
