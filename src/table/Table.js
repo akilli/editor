@@ -2,6 +2,7 @@ import Base from '../base/Base.js';
 import Break from '../break/Break.js';
 import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
+import TableCellListener from './TableCellListener.js';
 import TableCommand from './TableCommand.js';
 import TableDialog from './TableDialog.js';
 import TableFilter from './TableFilter.js';
@@ -50,6 +51,7 @@ export default class Table extends Plugin {
         this._tag(this.#cell(TagName.TH));
         this._tag(this.#cell(TagName.TD));
         new TableListener(this.editor);
+        new TableCellListener(this.editor);
         this.editor.filters.add(new TableFilter(this.editor));
         this.editor.dialogs.set(new TableDialog(this.editor));
         this.editor.commands.set(new TableCommand(this.editor));

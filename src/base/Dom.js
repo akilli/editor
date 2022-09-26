@@ -241,6 +241,62 @@ export default class Dom {
     }
 
     /**
+     * Creates table
+     *
+     * @param {number} [rows = 1]
+     * @param {number} [cols = 1]
+     * @return {HTMLTableElement}
+     */
+    createTable(rows = 1, cols = 1) {
+        const table = this.createElement(TagName.TABLE);
+        const tbody = this.createElement(TagName.TBODY);
+
+        for (let i = 0; i < rows; i++) {
+            this.createTableRow(tbody, cols, i);
+        }
+
+        table.appendChild(tbody);
+
+        return table;
+    }
+
+    /**
+     * Creates table row
+     *
+     * @param {HTMLTableElement|HTMLTableSectionElement} element
+     * @param {number} cols
+     * @param {number} [index = 0]
+     * @return {void}
+     */
+    createTableRow(element, cols, index = 0) {
+        if (!(element instanceof HTMLTableElement) && !(element instanceof HTMLTableSectionElement)) {
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+        }
+
+        const row = element.insertRow(index);
+
+        for (let i = 0; i < cols; i++) {
+            this.createTableCell(row);
+        }
+    }
+
+    /**
+     * Creates table cell
+     *
+     * @param {HTMLTableRowElement} element
+     * @param {?HTMLTableCellElement} [ref = null]
+     * @return {void}
+     */
+    createTableCell(element, ref = null) {
+        if (!(element instanceof HTMLTableRowElement) || ref && !(ref instanceof HTMLTableCellElement)) {
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+        }
+
+        const name = element.parentElement.localName === TagName.THEAD ? TagName.TH : TagName.TD;
+        element.insertBefore(this.createElement(name), ref);
+    }
+
+    /**
      * Indicates if element allows arbitrary amount of child elements
      *
      * @param {HTMLElement} element

@@ -24,21 +24,7 @@ export default class TableCommand extends Command {
      */
     insert({ rows, cols } = {}) {
         const figure = this.editor.dom.createElement(TagName.FIGURE, { attributes: { class: Table.name } });
-        const table = this.editor.dom.createElement(TagName.TABLE);
-        const tbody = this.editor.dom.createElement(TagName.TBODY);
-        const r = parseInt(rows, 10) || 1;
-        const c = parseInt(cols, 10) || 1;
-
-        for (let i = 0; i < r; i++) {
-            const tr = this.editor.dom.createElement(TagName.TR);
-            tbody.appendChild(tr);
-
-            for (let j = 0; j < c; ++j) {
-                tr.appendChild(this.editor.dom.createElement(TagName.TD));
-            }
-        }
-
-        table.appendChild(tbody);
+        const table = this.editor.dom.createTable(parseInt(rows, 10) || 1, parseInt(cols, 10) || 1);
         figure.appendChild(table);
         this.editor.dom.insert(figure);
     }
