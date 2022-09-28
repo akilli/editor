@@ -39,7 +39,7 @@ export default class Dispatcher {
             throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
-        this.#element.dispatchEvent(new CustomEvent(type, { detail: { element: element, target: target } }));
+        this.#element.dispatchEvent(new CustomEvent(type, { detail: { element, target } }));
     }
 
     /**
@@ -84,13 +84,13 @@ export default class Dispatcher {
             record.addedNodes.forEach(element => {
                 if (element instanceof HTMLElement) {
                     this.#dispatch('insert', element, record.target);
-                    Array.from(element.getElementsByTagName(TagName.ALL)).forEach(
-                        item => this.#dispatch('insert', item, record.target),
+                    Array.from(element.getElementsByTagName(TagName.ALL)).forEach(item =>
+                        this.#dispatch('insert', item, record.target)
                     );
                 }
             });
-            record.removedNodes.forEach(
-                element => element instanceof HTMLElement && this.#dispatch('delete', element, record.target),
+            record.removedNodes.forEach(element =>
+                element instanceof HTMLElement && this.#dispatch('delete', element, record.target)
             );
         });
     }

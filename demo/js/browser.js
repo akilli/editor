@@ -25,7 +25,7 @@
         const id = element.id;
         element.removeAttribute('id');
 
-        return { id: id, content: element.outerHTML };
+        return { id, content: element.outerHTML };
     }
 
     /**
