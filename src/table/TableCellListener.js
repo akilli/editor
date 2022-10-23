@@ -38,7 +38,7 @@ export default class TableCellListener extends Listener {
     }
 
     /**
-     * Handles key combinations for sorting
+     * Handles key combinations for navigating, sorting, adding and deleting
      *
      * @param {KeyboardEvent} event
      * @param {HTMLTableCellElement} event.target
