@@ -1,6 +1,6 @@
 {
   "name": "@akilli/editor",
-  "version": "4.8.2",
+  "version": "4.8.3",
   "description": "A HTML standards-compliant and dependency-free rich text editor",
   "keywords": [
     "contenteditable",
