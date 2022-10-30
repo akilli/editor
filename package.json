@@ -20,7 +20,6 @@
     "url": "https://github.com/akilli/editor.git"
   },
   "browser": "./dist/editor.js",
-  "module": "./dist/editor.js",
   "files": [
     "dist"
   ],
