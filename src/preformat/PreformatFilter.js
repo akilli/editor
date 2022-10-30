@@ -1,6 +1,6 @@
 import Filter from '../base/Filter.js';
 import Preformat from './Preformat.js';
-import { Position, TagName } from '../base/enum.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Filters preformatted text figure
@@ -16,7 +16,7 @@ export default class PreformatFilter extends Filter {
             && element.querySelector(':scope > ' + TagName.PRE)
             && !element.querySelector(':scope > ' + TagName.FIGCAPTION)
         ) {
-            element.insertAdjacentElement(Position.BEFOREBEGIN, element.querySelector(':scope > ' + TagName.PRE));
+            this.editor.dom.insertBefore(element.querySelector(':scope > ' + TagName.PRE), element);
             element.parentElement.removeChild(element);
         }
     }

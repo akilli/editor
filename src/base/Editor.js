@@ -6,7 +6,7 @@ import FilterManager from './FilterManager.js';
 import PluginManager from './PluginManager.js';
 import TagManager from './TagManager.js';
 import Translator from './Translator.js';
-import { ErrorMessage, Position, TagName } from './enum.js';
+import { ErrorMessage, TagName } from './enum.js';
 
 /**
  * Base Editor
@@ -326,21 +326,21 @@ export default class Editor {
         this.#element = this.dom.createElement(TagName.EDITOR);
 
         this.#toolbar = this.dom.createElement(TagName.TOOLBAR, { attributes: { role: 'toolbar' } });
-        this.element.appendChild(this.toolbar);
+        this.dom.insertLastChild(this.toolbar, this.element);
         this.#toolbarDispatcher = new Dispatcher(this.toolbar);
 
         this.#formatbar = this.dom.createElement(TagName.FORMATBAR, { attributes: { role: 'toolbar' } });
         this.formatbar.hidden = true;
-        this.element.appendChild(this.formatbar);
+        this.dom.insertLastChild(this.formatbar, this.element);
         this.#formatbarDispatcher = new Dispatcher(this.formatbar);
 
         this.#focusbar = this.dom.createElement(TagName.FOCUSBAR, { attributes: { role: 'toolbar' } });
         this.focusbar.hidden = true;
-        this.element.appendChild(this.focusbar);
+        this.dom.insertLastChild(this.focusbar, this.element);
         this.#focusbarDispatcher = new Dispatcher(this.focusbar);
 
         this.#root = this.dom.createElement(TagName.ROOT);
-        this.element.appendChild(this.root);
+        this.dom.insertLastChild(this.root, this.element);
         this.#rootDispatcher = new Dispatcher(this.root);
     }
 
@@ -424,7 +424,7 @@ export default class Editor {
             this.setHtml(this.orig.innerHTML);
         }
 
-        this.orig.insertAdjacentElement(Position.AFTEREND, this.element);
+        this.dom.insertAfter(this.element, this.orig);
         this.orig.hidden = true;
         this.rootDispatcher.dispatch('load');
     }

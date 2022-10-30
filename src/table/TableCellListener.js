@@ -99,41 +99,47 @@ export default class TableCellListener extends Listener {
                 }
             } else if (isSort) {
                 if (event.key === Key.LEFT && cellLength > 1 && isFirst) {
-                    Array.from(table.rows).forEach(item => item.appendChild(item.cells[cellIndex]));
+                    Array.from(table.rows).forEach(item =>
+                        this.editor.dom.insertLastChild(item.cells[cellIndex], item)
+                    );
                 } else if (event.key === Key.LEFT && cellLength > 1) {
-                    Array.from(table.rows).forEach(
-                        item => item.insertBefore(item.cells[cellIndex], item.cells[cellIndex - 1]),
+                    Array.from(table.rows).forEach(item =>
+                        this.editor.dom.insertBefore(item.cells[cellIndex], item.cells[cellIndex - 1])
                     );
                 } else if (event.key === Key.RIGHT && cellLength > 1 && isLast) {
-                    Array.from(table.rows).forEach(item => item.insertBefore(item.cells[cellIndex], item.cells[0]));
+                    Array.from(table.rows).forEach(item =>
+                        this.editor.dom.insertFirstChild(item.cells[cellIndex], item)
+                    );
                 } else if (event.key === Key.RIGHT && cellLength > 1) {
-                    Array.from(table.rows).forEach(
-                        item => item.insertBefore(item.cells[cellIndex + 1], item.cells[cellIndex]),
+                    Array.from(table.rows).forEach(item =>
+                        this.editor.dom.insertAfter(item.cells[cellIndex], item.cells[cellIndex + 1])
                     );
                 } else if (event.key === Key.UP && rowLength > 1 && isFirstRow) {
-                    base.appendChild(row);
+                    this.editor.dom.insertLastChild(row, base);
                 } else if (event.key === Key.UP && rowLength > 1) {
-                    base.insertBefore(row, base.rows[rowIndex - 1]);
+                    this.editor.dom.insertBefore(row, base.rows[rowIndex - 1]);
                 } else if (event.key === Key.DOWN && rowLength > 1 && isLastRow) {
-                    base.insertBefore(row, base.rows[0]);
+                    this.editor.dom.insertFirstChild(row, base);
                 } else if (event.key === Key.DOWN && rowLength > 1) {
-                    base.insertBefore(base.rows[rowIndex + 1], row);
+                    this.editor.dom.insertAfter(row, base.rows[rowIndex + 1]);
                 }
 
                 cell.focus();
             } else if (isAdd) {
                 if (event.key === Key.LEFT) {
-                    Array.from(table.rows).forEach(item =>
-                        this.editor.dom.createTableCell(item, item.cells[cellIndex]
-                    ));
+                    Array.from(table.rows).forEach(item => {
+                        const c = item.cells[cellIndex];
+                        this.editor.dom.insertBefore(this.editor.dom.createElement(c.localName), c);
+                    });
                 } else if (event.key === Key.RIGHT) {
-                    Array.from(table.rows).forEach(item =>
-                        this.editor.dom.createTableCell(item, item.cells[cellIndex + 1]
-                    ));
+                    Array.from(table.rows).forEach(item => {
+                        const c = item.cells[cellIndex];
+                        this.editor.dom.insertAfter(this.editor.dom.createElement(c.localName), c);
+                    });
                 } else if (event.key === Key.UP) {
-                    this.editor.dom.createTableRow(base, cellLength, rowIndex);
+                    this.editor.dom.insertBefore(this.editor.dom.createTableRow(cellLength), row);
                 } else if (event.key === Key.DOWN) {
-                    this.editor.dom.createTableRow(base, cellLength, rowIndex + 1);
+                    this.editor.dom.insertAfter(this.editor.dom.createTableRow(cellLength), row);
                 }
             } else if (isDel) {
                 if (event.key === Key.LEFT && !isFirst) {

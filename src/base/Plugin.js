@@ -140,7 +140,7 @@ export default class Plugin {
      * @return {void}
      */
     _toolbar(label, command = undefined) {
-        this.editor.toolbar.appendChild(this.#button(label, label, undefined, command));
+        this.editor.dom.insertLastChild(this.#button(label, label, undefined, command), this.editor.toolbar);
     }
 
     /**
@@ -157,7 +157,7 @@ export default class Plugin {
         const shift = this._base('Shift');
         const title = label + (key ? ` [${alt} + ${shift} + ${key}]` : '');
 
-        this.editor.formatbar.appendChild(this.#button(label, title, key, command));
+        this.editor.dom.insertLastChild(this.#button(label, title, key, command), this.editor.formatbar);
     }
 
     /**
@@ -169,7 +169,7 @@ export default class Plugin {
      * @return {void}
      */
     _focusbar(label, command = undefined) {
-        this.editor.focusbar.appendChild(this.#button(label, label, undefined, command));
+        this.editor.dom.insertLastChild(this.#button(label, label, undefined, command), this.editor.focusbar);
     }
 
     /**

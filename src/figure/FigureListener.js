@@ -22,7 +22,7 @@ export default class FigureListener extends Listener {
      */
     insertfigure(event) {
         if (!event.detail.element.querySelector(':scope > ' + TagName.FIGCAPTION)) {
-            event.detail.element.appendChild(this.editor.dom.createElement(TagName.FIGCAPTION));
+            this.editor.dom.insertLastChild(this.editor.dom.createElement(TagName.FIGCAPTION), event.detail.element);
         }
     }
 }

@@ -1,5 +1,5 @@
 import Listener from './Listener.js';
-import { Key, Position, Sorting } from './enum.js';
+import { Key, Sorting } from './enum.js';
 import { isKey } from './util.js';
 
 /**
@@ -102,7 +102,7 @@ export default class SortableListener extends Listener {
             target.releasePointerCapture(event.pointerId);
 
             if (this.#droppable(target, element)) {
-                element.insertAdjacentElement(Position.BEFOREBEGIN, target);
+                this.editor.dom.insertBefore(target, element);
             }
         }
     }

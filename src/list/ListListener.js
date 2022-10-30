@@ -61,7 +61,7 @@ export default class ListListener extends Listener {
      */
     insertol(event) {
         if (event.detail.element.children.length === 0) {
-            event.detail.element.appendChild(this.editor.dom.createElement(TagName.LI));
+            this.editor.dom.insertLastChild(this.editor.dom.createElement(TagName.LI), event.detail.element);
         }
     }
 

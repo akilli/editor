@@ -1,6 +1,6 @@
 import Filter from '../base/Filter.js';
 import Table from './Table.js';
-import { Position, TagName } from '../base/enum.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Filters table figure, element, sections and rows
@@ -16,7 +16,7 @@ export default class TableFilter extends Filter {
             && element.querySelector(':scope > ' + TagName.TABLE)
             && !element.querySelector(':scope > ' + TagName.FIGCAPTION)
         ) {
-            element.insertAdjacentElement(Position.BEFOREBEGIN, element.querySelector(':scope > ' + TagName.TABLE));
+            this.editor.dom.insertBefore(element.querySelector(':scope > ' + TagName.TABLE), element);
             element.parentElement.removeChild(element);
         } else if (element instanceof HTMLTableElement
             && element.querySelector(`:scope > ${TagName.THEAD}, :scope > ${TagName.TFOOT}`)

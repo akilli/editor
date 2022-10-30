@@ -1,5 +1,3 @@
-import { Type } from './enum.js';
-
 /**
  * Indicates if keyboard event was triggered for given key combination
  *
@@ -24,7 +22,7 @@ export function isKey(event, key, { alt = false, ctrl = false, shift = false } =
  * @return {boolean}
  */
 export function not(val) {
-    return typeof val === Type.UNDEFINED;
+    return typeof val === 'undefined';
 }
 
 /**
@@ -34,7 +32,7 @@ export function not(val) {
  * @return {boolean}
  */
 export function isFunction(val) {
-    return typeof val === Type.FUNCTION;
+    return typeof val ==='function';
 }
 
 /**
@@ -44,7 +42,7 @@ export function isFunction(val) {
  * @return {boolean}
  */
 export function isString(val) {
-    return val && typeof val === Type.STRING;
+    return val && typeof val === 'string';
 }
 
 /**

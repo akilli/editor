@@ -1,6 +1,6 @@
 import Details from './Details.js';
 import Listener from '../base/Listener.js';
-import { Key, Position, TagName } from '../base/enum.js';
+import { Key, TagName } from '../base/enum.js';
 import { isKey } from '../base/util.js';
 
 /**
@@ -27,10 +27,7 @@ export default class DetailsListener extends Listener {
         event.detail.element.open = true;
 
         if (!event.detail.element.querySelector(`:scope > ${TagName.SUMMARY}:first-child`)) {
-            event.detail.element.insertAdjacentElement(
-                Position.AFTERBEGIN,
-                this.editor.dom.createElement(TagName.SUMMARY),
-            );
+            this.editor.dom.insertFirstChild(this.editor.dom.createElement(TagName.SUMMARY), event.detail.element);
         }
     }
 
@@ -106,7 +103,8 @@ export default class DetailsListener extends Listener {
             );
         }
 
-        element.lastElementChild instanceof HTMLBRElement
-        || element.appendChild(this.editor.dom.createElement(TagName.BR));
+        if (!(element.lastElementChild instanceof HTMLBRElement)) {
+            this.editor.dom.insertLastChild(this.editor.dom.createElement(TagName.BR), element);
+        }
     }
 }

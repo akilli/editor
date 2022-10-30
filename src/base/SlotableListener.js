@@ -27,7 +27,7 @@ export default class SlotableListener extends Listener {
         } else if (event.detail.element.hasAttribute('data-slotable')
             && !event.detail.element.querySelector(':scope > ' + TagName.SLOT)
         ) {
-            event.detail.element.appendChild(this.editor.dom.createElement(TagName.SLOT));
+            this.editor.dom.insertLastChild(this.editor.dom.createElement(TagName.SLOT), event.detail.element);
         }
     }
 

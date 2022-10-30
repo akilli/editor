@@ -160,9 +160,9 @@ export default class Dialog {
         /** @type {DialogElement} */
         const dialog = this.editor.dom.createElement(TagName.DIALOG);
         dialog.addEventListener('close', close);
-        dialog.appendChild(form);
+        this.editor.dom.insertLastChild(form, dialog);
         dialog.show();
-        this.editor.element.appendChild(dialog);
+        this.editor.dom.insertLastChild(dialog, this.editor.element);
     }
 
     /**

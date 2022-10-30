@@ -65,18 +65,6 @@ export const Key = Object.freeze({
 });
 
 /**
- * Position
- *
- * @enum {string}
- */
-export const Position = Object.freeze({
-    AFTERBEGIN: 'afterbegin',
-    AFTEREND: 'afterend',
-    BEFOREBEGIN: 'beforebegin',
-    BEFOREEND: 'beforeend',
-});
-
-/**
  * Sorting
  *
  * @enum {string}
@@ -191,15 +179,4 @@ export const TagName = Object.freeze({
     UL: 'ul',
     VAR: 'var',
     VIDEO: 'video',
-});
-
-/**
- * Type
- *
- * @enum {string}
- */
-export const Type = Object.freeze({
-    FUNCTION: 'function',
-    STRING: 'string',
-    UNDEFINED: 'undefined',
 });

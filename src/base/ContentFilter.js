@@ -15,7 +15,14 @@ export default class ContentFilter extends Filter {
         let p = [];
         const wrap = (ref = null) => {
             if (allowedParagraph && p.length > 0) {
-                element.insertBefore(this.editor.dom.createElement(TagName.P, { html: p.join(' ') }), ref);
+                const newP = this.editor.dom.createElement(TagName.P, { html: p.join(' ') });
+
+                if (ref) {
+                    this.editor.dom.insertBefore(newP, ref);
+                } else {
+                    this.editor.dom.insertLastChild(newP, element);
+                }
+
                 p = [];
             }
         };

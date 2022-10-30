@@ -1,5 +1,5 @@
 import Editor from './Editor.js';
-import { ErrorMessage, Position, Sorting, TagName } from './enum.js';
+import { ErrorMessage, Sorting, TagName } from './enum.js';
 import { isFunction, isString, not } from './util.js';
 
 /**
@@ -150,15 +150,19 @@ export default class Dom {
         const editable = this.getSelectedEditable();
 
         if (editable instanceof HTMLSlotElement && this.editor.tags.allowed(editable.parentElement, element)) {
-            editable.insertAdjacentElement(Position.BEFOREBEGIN, element);
+            this.insertBefore(element, editable);
         } else if (editable) {
-            this.closest(editable, element)?.insertAdjacentElement(Position.AFTEREND, element);
+            const sibling = this.closest(editable, element);
+
+            if (sibling) {
+                this.insertAfter(element, sibling);
+            }
 
             if (editable.hasAttribute('data-deletable') && !editable.textContent.trim()) {
                 editable.parentElement.removeChild(editable);
             }
         } else if (this.editor.tags.allowed(this.editor.root, element)) {
-            this.editor.root.appendChild(element);
+            this.insertLastChild(element, this.editor.root);
         } else {
             throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
@@ -248,52 +252,78 @@ export default class Dom {
      * @return {HTMLTableElement}
      */
     createTable(rows = 1, cols = 1) {
-        const table = this.createElement(TagName.TABLE);
-        const tbody = this.createElement(TagName.TBODY);
+        const element = this.createElement(TagName.TABLE);
 
-        for (let i = 0; i < rows; i++) {
-            this.createTableRow(tbody, cols, i);
+        this.insertLastChild(this.createTableHeader(1, cols), element);
+        this.insertLastChild(this.createTableBody(rows, cols), element);
+        this.insertLastChild(this.createTableFooter(1, cols), element);
+
+        return element;
+    }
+
+    /**
+     * Creates table header
+     *
+     * @param {number} [rows = 1]
+     * @param {number} [cols = 1]
+     * @return {HTMLTableSectionElement}
+     */
+    createTableHeader(rows = 1, cols = 1) {
+        return this.#createTableSection(TagName.THEAD, rows, cols);
+    }
+
+    /**
+     * Creates table body
+     *
+     * @param {number} [rows = 1]
+     * @param {number} [cols = 1]
+     * @return {HTMLTableSectionElement}
+     */
+    createTableBody(rows = 1, cols = 1) {
+        return this.#createTableSection(TagName.TBODY, rows, cols);
+    }
+
+    /**
+     * Creates table footer
+     *
+     * @param {number} [rows = 1]
+     * @param {number} [cols = 1]
+     * @return {HTMLTableSectionElement}
+     */
+    createTableFooter(rows = 1, cols = 1) {
+        return this.#createTableSection(TagName.TFOOT, rows, cols);
+    }
+
+    /**
+     * Creates table header row
+     *
+     * @param {number} cols
+     * @return {HTMLTableRowElement}
+     */
+    createTableHeaderRow(cols) {
+        const element = this.createElement(TagName.TR);
+
+        for (let i = 0; i < cols; i++) {
+            this.insertLastChild(this.createElement(TagName.TH), element);
         }
 
-        table.appendChild(tbody);
-
-        return table;
+        return element;
     }
 
     /**
      * Creates table row
      *
-     * @param {HTMLTableElement|HTMLTableSectionElement} element
      * @param {number} cols
-     * @param {number} [index = 0]
-     * @return {void}
+     * @return {HTMLTableRowElement}
      */
-    createTableRow(element, cols, index = 0) {
-        if (!(element instanceof HTMLTableElement) && !(element instanceof HTMLTableSectionElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
-        }
-
-        const row = element.insertRow(index);
+    createTableRow(cols) {
+        const element = this.createElement(TagName.TR);
 
         for (let i = 0; i < cols; i++) {
-            this.createTableCell(row);
-        }
-    }
-
-    /**
-     * Creates table cell
-     *
-     * @param {HTMLTableRowElement} element
-     * @param {?HTMLTableCellElement} [ref = null]
-     * @return {void}
-     */
-    createTableCell(element, ref = null) {
-        if (!(element instanceof HTMLTableRowElement) || ref && !(ref instanceof HTMLTableCellElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            this.insertLastChild(this.createElement(TagName.TD), element);
         }
 
-        const name = element.parentElement.localName === TagName.THEAD ? TagName.TH : TagName.TD;
-        element.insertBefore(this.createElement(name), ref);
+        return element;
     }
 
     /**
@@ -366,8 +396,8 @@ export default class Dom {
             throw new Error(ErrorMessage.INVALID_ARGUMENT);
         } else if (element.parentElement.localName !== name && (sibling = this.closest(element, name))) {
             const target = this.createElement(name, opts);
-            sibling.insertAdjacentElement(Position.AFTEREND, target);
-            target.appendChild(element);
+            this.insertAfter(target, sibling);
+            this.insertLastChild(element, target);
         }
     }
 
@@ -559,22 +589,78 @@ export default class Dom {
         const isLast = element === last;
 
         if (sorting === Sorting.PREV && !isFirst && prev.hasAttribute('data-sortable')) {
-            prev.insertAdjacentHTML(Position.BEFOREBEGIN, element.outerHTML);
-            parent.removeChild(element);
+            this.insertBefore(element, prev);
         } else if (sorting === Sorting.NEXT && !isLast && next.hasAttribute('data-sortable')) {
-            next.insertAdjacentHTML(Position.AFTEREND, element.outerHTML);
-            parent.removeChild(element);
+            this.insertAfter(element, next);
         } else if ((sorting === Sorting.FIRST && !isFirst || sorting === Sorting.NEXT && isLast)
             && first.hasAttribute('data-sortable')
         ) {
-            first.insertAdjacentHTML(Position.BEFOREBEGIN, element.outerHTML);
-            parent.removeChild(element);
+            this.insertBefore(element, first);
         } else if ((sorting === Sorting.LAST && !isLast || sorting === Sorting.PREV && isFirst)
             && last.hasAttribute('data-sortable')
         ) {
-            last.insertAdjacentHTML(Position.AFTEREND, element.outerHTML);
-            parent.removeChild(element);
+            this.insertAfter(element, last);
         }
+    }
+
+    /**
+     * Insert element before reference element
+     *
+     * @param {HTMLElement} element
+     * @param {HTMLElement} ref
+     * @return {void}
+     */
+    insertBefore(element, ref) {
+        if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+        }
+
+        ref.insertAdjacentElement('beforebegin', element);
+    }
+
+    /**
+     * Insert element after reference element
+     *
+     * @param {HTMLElement} element
+     * @param {HTMLElement} ref
+     * @return {void}
+     */
+    insertAfter(element, ref) {
+        if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+        }
+
+        ref.insertAdjacentElement('afterend', element);
+    }
+
+    /**
+     * Insert element as first child of reference element
+     *
+     * @param {HTMLElement} element
+     * @param {HTMLElement} ref
+     * @return {void}
+     */
+    insertFirstChild(element, ref) {
+        if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+        }
+
+        ref.insertAdjacentElement('afterbegin', element);
+    }
+
+    /**
+     * Insert element as last child of reference element
+     *
+     * @param {HTMLElement} element
+     * @param {HTMLElement} ref
+     * @return {void}
+     */
+    insertLastChild(element, ref) {
+        if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
+            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+        }
+
+        ref.insertAdjacentElement('beforeend', element);
     }
 
     /**
@@ -620,6 +706,27 @@ export default class Dom {
      */
     getHeight() {
         return this.window.screen.height;
+    }
+
+    /**
+     * Creates table section
+     *
+     * @param {string} name
+     * @param {number} rows
+     * @param {number} cols
+     * @return {HTMLTableSectionElement}
+     */
+    #createTableSection(name, rows, cols) {
+        const element = this.createElement(name);
+
+        for (let i = 0; i < rows; i++) {
+            this.insertLastChild(
+                name === TagName.THEAD ? this.createTableHeaderRow(cols) : this.createTableRow(cols),
+                element
+            );
+        }
+
+        return element;
     }
 
     /**

@@ -1,5 +1,5 @@
 import Listener from './Listener.js';
-import { Key, Position, TagName } from './enum.js';
+import { Key, TagName } from './enum.js';
 import { isKey } from './util.js';
 
 /**
@@ -47,15 +47,18 @@ export default class EditableListener extends Listener {
 
             if (enter) {
                 if (event.target.textContent.trim() || !event.target.hasAttribute('data-deletable')) {
-                    this.editor.dom.closest(event.target, enter)?.insertAdjacentElement(
-                        Position.AFTEREND,
-                        this.editor.dom.createElement(enter),
-                    );
+                    const sibling = this.editor.dom.closest(event.target, enter);
+
+                    if (sibling) {
+                        this.editor.dom.insertAfter(this.editor.dom.createElement(enter), sibling);
+                    }
                 } else if (!(event.target instanceof HTMLParagraphElement)) {
-                    this.editor.dom.closest(event.target, TagName.P)?.insertAdjacentElement(
-                        Position.AFTEREND,
-                        this.editor.dom.createElement(TagName.P),
-                    );
+                    const sibling = this.editor.dom.closest(event.target, TagName.P);
+
+                    if (sibling) {
+                        this.editor.dom.insertAfter(this.editor.dom.createElement(TagName.P), sibling);
+                    }
+
                     event.target.parentElement.removeChild(event.target);
                 }
             }

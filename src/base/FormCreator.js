@@ -1,5 +1,5 @@
 import Dom from './Dom.js';
-import { ErrorMessage, Position, TagName } from './enum.js';
+import { ErrorMessage, TagName } from './enum.js';
 import { isFunction, isString } from './util.js';
 
 /**
@@ -63,9 +63,9 @@ export default class FormCreator {
         const fieldset = this.#dom.createElement(TagName.FIELDSET);
 
         if (this.#fieldset) {
-            this.#fieldset.insertAdjacentElement(Position.AFTEREND, fieldset);
+            this.#dom.insertAfter(fieldset, this.#fieldset);
         } else {
-            this.#form.insertAdjacentElement(Position.AFTERBEGIN, fieldset);
+            this.#dom.insertFirstChild(fieldset, this.#form);
         }
 
         this.#fieldset = fieldset;
@@ -84,7 +84,7 @@ export default class FormCreator {
             throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
-        this.#fieldset.appendChild(this.#dom.createElement(TagName.LEGEND, { html }));
+        this.#dom.insertLastChild(this.#dom.createElement(TagName.LEGEND, { html }), this.#fieldset);
 
         return this;
     }
@@ -129,10 +129,13 @@ export default class FormCreator {
 
         Object.assign(attributes, { id: `editor-${name}`, name, type });
         const div = this.#dom.createElement(TagName.DIV);
-        div.appendChild(this.#dom.createElement(TagName.LABEL, { attributes: { for: attributes.id }, html: label }));
-        div.appendChild(this.#dom.createElement(TagName.INPUT, { attributes }));
+        this.#dom.insertLastChild(
+            this.#dom.createElement(TagName.LABEL, { attributes: { for: attributes.id }, html: label }),
+            div
+        );
+        this.#dom.insertLastChild(this.#dom.createElement(TagName.INPUT, { attributes }), div);
         attributes.required && div.setAttribute('data-required', '');
-        this.#fieldset.appendChild(div);
+        this.#dom.insertLastChild(div, this.#fieldset);
 
         return this;
     }
@@ -147,7 +150,7 @@ export default class FormCreator {
     #addCancelButton(html, click) {
         const button = this.#dom.createElement(TagName.BUTTON, { attributes: { type: 'button' }, html });
         button.addEventListener('click', click);
-        this.#form.appendChild(button);
+        this.#dom.insertLastChild(button, this.#form);
 
         return this;
     }
@@ -159,7 +162,7 @@ export default class FormCreator {
      * @return {this}
      */
     #addSubmitButton(html) {
-        this.#form.appendChild(this.#dom.createElement(TagName.BUTTON, { html }));
+        this.#dom.insertLastChild(this.#dom.createElement(TagName.BUTTON, { html }), this.#form);
 
         return this;
     }
