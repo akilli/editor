@@ -33,8 +33,9 @@
     "release:patch": "npm ci && npm version patch && npm publish",
     "release:minor": "npm ci && npm version minor && npm publish",
     "release:major": "npm ci && npm version major && npm publish",
+    "preversion": "git fetch --tags",
     "version": "npm run build && git add -A dist",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push --follow-tags"
   },
   "devDependencies": {
     "esbuild": "^0.15.12"
