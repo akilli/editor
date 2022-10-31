@@ -18,23 +18,21 @@ export default class ImageListener extends Listener {
     /**
      * Initializes image elements when editor html is set
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName(TagName.IMG)).forEach(item => this.#init(item));
+    sethtml({ detail: { element } }) {
+        Array.from(element.getElementsByTagName(TagName.IMG)).forEach(item => this.#init(item));
     }
 
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLImageElement} event.detail.element
+     * @param {HTMLImageElement} element
      * @return {void}
      */
-    insertimg(event) {
-        this.#init(event.detail.element);
+    insertimg({ detail: { element } }) {
+        this.#init(element);
     }
 
     /**

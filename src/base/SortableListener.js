@@ -17,16 +17,15 @@ export default class SortableListener extends Listener {
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    insert(event) {
-        if (event.detail.element.hasAttribute('data-sortable')) {
-            event.detail.element.addEventListener('keydown', this);
-            event.detail.element.addEventListener('pointerdown', this);
-            event.detail.element.addEventListener('pointermove', this);
-            event.detail.element.addEventListener('pointerup', this);
+    insert({ detail: { element } }) {
+        if (element.hasAttribute('data-sortable')) {
+            element.addEventListener('keydown', this);
+            element.addEventListener('pointerdown', this);
+            element.addEventListener('pointermove', this);
+            element.addEventListener('pointerup', this);
         }
     }
 

@@ -17,23 +17,21 @@ export default class LinkListener extends Listener {
     /**
      * Initializes link elements when editor html is set
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName(TagName.A)).forEach(item => this.#init(item));
+    sethtml({ detail: { element } }) {
+        Array.from(element.getElementsByTagName(TagName.A)).forEach(item => this.#init(item));
     }
 
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLAnchorElement} event.detail.element
+     * @param {HTMLAnchorElement} element
      * @return {void}
      */
-    inserta(event) {
-        this.#init(event.detail.element);
+    inserta({ detail: { element } }) {
+        this.#init(element);
     }
 
     /**

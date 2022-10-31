@@ -18,26 +18,22 @@ export default class PreformatListener extends Listener {
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLPreElement} event.detail.element
+     * @param {HTMLPreElement} element
      * @return {void}
      */
-    insertpre(event) {
-        this.editor.dom.wrap(event.detail.element, TagName.FIGURE, { attributes: { class: Preformat.name } });
+    insertpre({ detail: { element } }) {
+        this.editor.dom.wrap(element, TagName.FIGURE, { attributes: { class: Preformat.name } });
     }
 
     /**
      * Removes parent figure element
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.target
+     * @param {HTMLElement} target
      * @return {void}
      */
-    deletepre(event) {
-        if (event.detail.target.localName === TagName.FIGURE
-            && event.detail.target.classList.contains(Preformat.name)
-        ) {
-            event.detail.target.parentElement.removeChild(event.detail.target);
+    deletepre({ detail: { target } }) {
+        if (target.localName === TagName.FIGURE && target.classList.contains(Preformat.name)) {
+            target.parentElement.removeChild(target);
         }
     }
 }

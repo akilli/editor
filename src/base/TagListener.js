@@ -15,21 +15,20 @@ export default class TagListener extends Listener {
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    insert(event) {
-        const tag = this.editor.tags.get(event.detail.element);
+    insert({ detail: { element } }) {
+        const tag = this.editor.tags.get(element);
 
         if (tag) {
             if (tag.editable) {
-                event.detail.element.contentEditable = 'true';
+                element.contentEditable = 'true';
             }
 
             ['alignable', 'arbitrary', 'deletable', 'focusable', 'navigable', 'slotable', 'sortable'].forEach(item => {
                 if (tag[item]) {
-                    event.detail.element.dataset[item] = '';
+                    element.dataset[item] = '';
                 }
             });
         }

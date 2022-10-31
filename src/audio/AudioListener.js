@@ -18,23 +18,21 @@ export default class AudioListener extends Listener {
     /**
      * Initializes audio elements when editor html is set
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName(TagName.AUDIO)).forEach(item => this.#init(item));
+    sethtml({ detail: { element } }) {
+        Array.from(element.getElementsByTagName(TagName.AUDIO)).forEach(item => this.#init(item));
     }
 
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLAudioElement} event.detail.element
+     * @param {HTMLAudioElement} element
      * @return {void}
      */
-    insertaudio(event) {
-        this.#init(event.detail.element);
+    insertaudio({ detail: { element } }) {
+        this.#init(element);
     }
 
     /**

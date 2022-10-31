@@ -17,14 +17,13 @@ export default class NavigableListener extends Listener {
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    insert(event) {
-        if (event.detail.element.hasAttribute('data-navigable')) {
-            event.detail.element.tabIndex = 0;
-            event.detail.element.addEventListener('keydown', this);
+    insert({ detail: { element } }) {
+        if (element.hasAttribute('data-navigable')) {
+            element.tabIndex = 0;
+            element.addEventListener('keydown', this);
         }
     }
 

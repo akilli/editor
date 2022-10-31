@@ -18,23 +18,21 @@ export default class VideoListener extends Listener {
     /**
      * Initializes video elements when editor html is set
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName(TagName.VIDEO)).forEach(item => this.#init(item));
+    sethtml({ detail: { element } }) {
+        Array.from(element.getElementsByTagName(TagName.VIDEO)).forEach(item => this.#init(item));
     }
 
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLVideoElement} event.detail.element
+     * @param {HTMLVideoElement} element
      * @return {void}
      */
-    insertvideo(event) {
-        this.#init(event.detail.element);
+    insertvideo({ detail: { element } }) {
+        this.#init(element);
     }
 
     /**

@@ -17,23 +17,21 @@ export default class ParagraphListener extends Listener {
     /**
      * Initializes paragraph elements when editor html is set
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName(TagName.P)).forEach(item => this.#init(item));
+    sethtml({ detail: { element } }) {
+        Array.from(element.getElementsByTagName(TagName.P)).forEach(item => this.#init(item));
     }
 
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLParagraphElement} event.detail.element
+     * @param {HTMLParagraphElement} element
      * @return {void}
      */
-    insertp(event) {
-        this.#init(event.detail.element);
+    insertp({ detail: { element } }) {
+        this.#init(element);
     }
 
     /**

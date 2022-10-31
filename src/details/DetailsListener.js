@@ -19,30 +19,28 @@ export default class DetailsListener extends Listener {
     /**
      * Initializes details elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLDetailsElement} event.detail.element
+     * @param {HTMLDetailsElement} element
      * @return {void}
      */
-    insertdetails(event) {
-        event.detail.element.open = true;
+    insertdetails({ detail: { element } }) {
+        element.open = true;
 
-        if (!event.detail.element.querySelector(`:scope > ${TagName.SUMMARY}:first-child`)) {
-            this.editor.dom.insertFirstChild(this.editor.dom.createElement(TagName.SUMMARY), event.detail.element);
+        if (!element.querySelector(`:scope > ${TagName.SUMMARY}:first-child`)) {
+            this.editor.dom.insertFirstChild(this.editor.dom.createElement(TagName.SUMMARY), element);
         }
     }
 
     /**
      * Initializes summary elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    insertsummary(event) {
-        this.#empty(event.detail.element);
-        event.detail.element.addEventListener('click', this);
-        event.detail.element.addEventListener('blur', this);
-        event.detail.element.addEventListener('keydown', this);
+    insertsummary({ detail: { element } }) {
+        this.#empty(element);
+        element.addEventListener('click', this);
+        element.addEventListener('blur', this);
+        element.addEventListener('keydown', this);
     }
 
     /**

@@ -16,13 +16,12 @@ export default class FigureListener extends Listener {
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    insertfigure(event) {
-        if (!event.detail.element.querySelector(':scope > ' + TagName.FIGCAPTION)) {
-            this.editor.dom.insertLastChild(this.editor.dom.createElement(TagName.FIGCAPTION), event.detail.element);
+    insertfigure({ detail: { element } }) {
+        if (!element.querySelector(':scope > ' + TagName.FIGCAPTION)) {
+            this.editor.dom.insertLastChild(this.editor.dom.createElement(TagName.FIGCAPTION), element);
         }
     }
 }

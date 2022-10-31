@@ -32,7 +32,7 @@ export function not(val) {
  * @return {boolean}
  */
 export function isFunction(val) {
-    return typeof val ==='function';
+    return typeof val === 'function';
 }
 
 /**

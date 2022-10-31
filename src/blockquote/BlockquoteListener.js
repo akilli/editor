@@ -18,26 +18,22 @@ export default class BlockquoteListener extends Listener {
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLQuoteElement} event.detail.element
+     * @param {HTMLQuoteElement} element
      * @return {void}
      */
-    insertblockquote(event) {
-        this.editor.dom.wrap(event.detail.element, TagName.FIGURE, { attributes: { class: Blockquote.name } });
+    insertblockquote({ detail: { element } }) {
+        this.editor.dom.wrap(element, TagName.FIGURE, { attributes: { class: Blockquote.name } });
     }
 
     /**
      * Removes parent figure element
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.target
+     * @param {HTMLElement} target
      * @return {void}
      */
-    deleteblockquote(event) {
-        if (event.detail.target.localName === TagName.FIGURE
-            && event.detail.target.classList.contains(Blockquote.name)
-        ) {
-            event.detail.target.parentElement.removeChild(event.detail.target);
+    deleteblockquote({ detail: { target } }) {
+        if (target.localName === TagName.FIGURE && target.classList.contains(Blockquote.name)) {
+            target.parentElement.removeChild(target);
         }
     }
 }

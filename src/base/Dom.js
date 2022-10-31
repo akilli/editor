@@ -722,7 +722,7 @@ export default class Dom {
         for (let i = 0; i < rows; i++) {
             this.insertLastChild(
                 name === TagName.THEAD ? this.createTableHeaderRow(cols) : this.createTableRow(cols),
-                element
+                element,
             );
         }
 

@@ -17,12 +17,11 @@ export default class BlockListener extends Listener {
     /**
      * Filters block elements without id when editor html is set
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName(TagName.BLOCK)).forEach(
+    sethtml({ detail: { element } }) {
+        Array.from(element.getElementsByTagName(TagName.BLOCK)).forEach(
             /** @param {HTMLElement} item */
             item => item.id || item.parentElement.removeChild(item),
         );
@@ -31,13 +30,12 @@ export default class BlockListener extends Listener {
     /**
      * Removes block element if no id is set or sets block content from API if configured
      *
-     * @param {CustomEvent} event
-     * @param {BlockElement} event.detail.element
+     * @param {BlockElement} element
      * @return {Promise<void>}
      */
-    async insertappblock(event) {
-        if (!event.detail.element.id) {
-            event.detail.element.parentElement.removeChild(event.detail.element);
+    async insertappblock({ detail: { element } }) {
+        if (!element.id) {
+            element.parentElement.removeChild(element);
             return;
         }
 
@@ -45,7 +43,7 @@ export default class BlockListener extends Listener {
             return;
         }
 
-        const url = this.editor.config.block.api.replace('{id}', event.detail.element.id);
+        const url = this.editor.config.block.api.replace('{id}', element.id);
         const response = await fetch(url, { mode: 'no-cors' });
 
         if (!response.ok) {
@@ -62,6 +60,6 @@ export default class BlockListener extends Listener {
         }
 
         const content = await response.text();
-        event.detail.element.content = css + content;
+        element.content = css + content;
     }
 }

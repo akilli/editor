@@ -85,12 +85,12 @@ export default class Dispatcher {
                 if (element instanceof HTMLElement) {
                     this.#dispatch('insert', element, record.target);
                     Array.from(element.getElementsByTagName(TagName.ALL)).forEach(item =>
-                        this.#dispatch('insert', item, record.target)
+                        this.#dispatch('insert', item, record.target),
                     );
                 }
             });
             record.removedNodes.forEach(element =>
-                element instanceof HTMLElement && this.#dispatch('delete', element, record.target)
+                element instanceof HTMLElement && this.#dispatch('delete', element, record.target),
             );
         });
     }

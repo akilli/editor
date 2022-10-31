@@ -11,12 +11,13 @@ export default class BarListener extends Listener {
     /**
      * Initializes button elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLButtonElement} event.detail.element
+     * @param {HTMLButtonElement} element
      * @return {void}
      */
-    insertbutton(event) {
-        event.detail.element.getAttribute('data-command') && event.detail.element.addEventListener('click', this);
+    insertbutton({ detail: { element } }) {
+        if (element.getAttribute('data-command')) {
+            element.addEventListener('click', this);
+        }
     }
 
     /**

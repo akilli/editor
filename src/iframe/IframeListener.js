@@ -18,23 +18,21 @@ export default class IframeListener extends Listener {
     /**
      * Initializes iframe elements when editor html is set
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName(TagName.IFRAME)).forEach(item => this.#init(item));
+    sethtml({ detail: { element } }) {
+        Array.from(element.getElementsByTagName(TagName.IFRAME)).forEach(item => this.#init(item));
     }
 
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLIFrameElement} event.detail.element
+     * @param {HTMLIFrameElement} element
      * @return {void}
      */
-    insertiframe(event) {
-        this.#init(event.detail.element);
+    insertiframe({ detail: { element } }) {
+        this.#init(element);
     }
 
     /**

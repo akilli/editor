@@ -17,17 +17,14 @@ export default class SlotableListener extends Listener {
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    insert(event) {
-        if (event.detail.element instanceof HTMLSlotElement) {
-            event.detail.element.addEventListener('keydown', this);
-        } else if (event.detail.element.hasAttribute('data-slotable')
-            && !event.detail.element.querySelector(':scope > ' + TagName.SLOT)
-        ) {
-            this.editor.dom.insertLastChild(this.editor.dom.createElement(TagName.SLOT), event.detail.element);
+    insert({ detail: { element } }) {
+        if (element instanceof HTMLSlotElement) {
+            element.addEventListener('keydown', this);
+        } else if (element.hasAttribute('data-slotable') && !element.querySelector(':scope > ' + TagName.SLOT)) {
+            this.editor.dom.insertLastChild(this.editor.dom.createElement(TagName.SLOT), element);
         }
     }
 

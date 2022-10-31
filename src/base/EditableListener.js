@@ -17,15 +17,14 @@ export default class EditableListener extends Listener {
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    insert(event) {
-        if (event.detail.element.contentEditable === 'true') {
-            event.detail.element.addEventListener('keydown', this);
-        } else if (event.detail.element.parentElement.contentEditable === 'true') {
-            event.detail.element.addEventListener('dblclick', this);
+    insert({ detail: { element } }) {
+        if (element.contentEditable === 'true') {
+            element.addEventListener('keydown', this);
+        } else if (element.parentElement.contentEditable === 'true') {
+            element.addEventListener('dblclick', this);
         }
     }
 

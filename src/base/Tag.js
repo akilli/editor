@@ -1,5 +1,5 @@
 import { ErrorMessage } from './enum.js';
-import { isString, isOptArray, isOptString } from './util.js';
+import { isOptArray, isOptString, isString } from './util.js';
 
 /**
  * Tag

@@ -15,13 +15,12 @@ export default class FocusableListener extends Listener {
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    insert(event) {
-        if (event.detail.element.hasAttribute('data-focusable')) {
-            event.detail.element.focus();
+    insert({ detail: { element } }) {
+        if (element.hasAttribute('data-focusable')) {
+            element.focus();
         }
     }
 }

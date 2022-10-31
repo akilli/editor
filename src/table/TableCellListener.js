@@ -18,23 +18,21 @@ export default class TableCellListener extends Listener {
     /**
      * Initializes table cell elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLTableCellElement} event.detail.element
+     * @param {HTMLTableCellElement} element
      * @return {void}
      */
-    inserttd(event) {
-        event.detail.element.addEventListener('keydown', this);
+    inserttd({ detail: { element } }) {
+        element.addEventListener('keydown', this);
     }
 
     /**
      * Initializes table cell elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLTableHeaderCellElement} event.detail.element
+     * @param {HTMLTableHeaderCellElement} element
      * @return {void}
      */
-    insertth(event) {
-        event.detail.element.addEventListener('keydown', this);
+    insertth({ detail: { element } }) {
+        element.addEventListener('keydown', this);
     }
 
     /**
@@ -100,19 +98,19 @@ export default class TableCellListener extends Listener {
             } else if (isSort) {
                 if (event.key === Key.LEFT && cellLength > 1 && isFirst) {
                     Array.from(table.rows).forEach(item =>
-                        this.editor.dom.insertLastChild(item.cells[cellIndex], item)
+                        this.editor.dom.insertLastChild(item.cells[cellIndex], item),
                     );
                 } else if (event.key === Key.LEFT && cellLength > 1) {
                     Array.from(table.rows).forEach(item =>
-                        this.editor.dom.insertBefore(item.cells[cellIndex], item.cells[cellIndex - 1])
+                        this.editor.dom.insertBefore(item.cells[cellIndex], item.cells[cellIndex - 1]),
                     );
                 } else if (event.key === Key.RIGHT && cellLength > 1 && isLast) {
                     Array.from(table.rows).forEach(item =>
-                        this.editor.dom.insertFirstChild(item.cells[cellIndex], item)
+                        this.editor.dom.insertFirstChild(item.cells[cellIndex], item),
                     );
                 } else if (event.key === Key.RIGHT && cellLength > 1) {
                     Array.from(table.rows).forEach(item =>
-                        this.editor.dom.insertAfter(item.cells[cellIndex], item.cells[cellIndex + 1])
+                        this.editor.dom.insertAfter(item.cells[cellIndex], item.cells[cellIndex + 1]),
                     );
                 } else if (event.key === Key.UP && rowLength > 1 && isFirstRow) {
                     this.editor.dom.insertLastChild(row, base);
@@ -158,7 +156,7 @@ export default class TableCellListener extends Listener {
     /**
      * Enables or disables navigation for table cell elements
      *
-     * @param {HTMLElement} element
+     * @param {HTMLTableCellElement} element
      * @param {string} key
      * @return {boolean}
      */

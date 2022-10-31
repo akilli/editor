@@ -20,59 +20,53 @@ export default class ListListener extends Listener {
     /**
      * Initializes list item elements when editor html is set
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    sethtml(event) {
-        Array.from(event.detail.element.getElementsByTagName(TagName.LI)).forEach(item => this.#init(item));
+    sethtml({ detail: { element } }) {
+        Array.from(element.getElementsByTagName(TagName.LI)).forEach(item => this.#init(item));
     }
 
     /**
      * Initializes listitem elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLLIElement} event.detail.element
+     * @param {HTMLLIElement} element
      * @return {void}
      */
-    insertli(event) {
-        this.#init(event.detail.element);
+    insertli({ detail: { element } }) {
+        this.#init(element);
     }
 
     /**
      * Removes parent element too if deleted listitem was the only child
      *
-     * @param {CustomEvent} event
-     * @param {HTMLOListElement|HTMLUListElement} event.detail.target
+     * @param {HTMLOListElement|HTMLUListElement} target
      * @return {void}
      */
-    deleteli(event) {
-        if (event.detail.target.children.length === 0) {
-            event.detail.target.parentElement.removeChild(event.detail.target);
+    deleteli({ detail: { target } }) {
+        if (target.children.length === 0) {
+            target.parentElement.removeChild(target);
         }
     }
 
     /**
      * Initializes orderedlist elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLOListElement} event.detail.element
+     * @param {HTMLOListElement} element
      * @return {void}
      */
-    insertol(event) {
-        if (event.detail.element.children.length === 0) {
-            this.editor.dom.insertLastChild(this.editor.dom.createElement(TagName.LI), event.detail.element);
-        }
+    insertol({ detail: { element } }) {
+        this.#insert(element);
     }
 
     /**
      * Initializes unorderedlist elements
      *
-     * @param {CustomEvent} event
+     * @param {HTMLUListElement} element
      * @return {void}
      */
-    insertul(event) {
-        this.insertol(event);
+    insertul({ detail: { element } }) {
+        this.#insert(element);
     }
 
     /**
@@ -86,6 +80,18 @@ export default class ListListener extends Listener {
             && !(element.parentElement instanceof HTMLUListElement)
         ) {
             this.editor.dom.wrap(element, TagName.UL);
+        }
+    }
+
+    /**
+     * Initializes list elements
+     *
+     * @param {HTMLOListElement|HTMLUListElement} element
+     * @return {void}
+     */
+    #insert(element) {
+        if (element.children.length === 0) {
+            this.editor.dom.insertLastChild(this.editor.dom.createElement(TagName.LI), element);
         }
     }
 }

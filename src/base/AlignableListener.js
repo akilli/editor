@@ -17,13 +17,12 @@ export default class AlignableListener extends Listener {
     /**
      * Initializes elements
      *
-     * @param {CustomEvent} event
-     * @param {HTMLElement} event.detail.element
+     * @param {HTMLElement} element
      * @return {void}
      */
-    insert(event) {
-        if (event.detail.element.hasAttribute('data-alignable')) {
-            event.detail.element.addEventListener('keydown', this);
+    insert({ detail: { element } }) {
+        if (element.hasAttribute('data-alignable')) {
+            element.addEventListener('keydown', this);
         }
     }
 
