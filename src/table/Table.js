@@ -9,7 +9,6 @@ import TableFilter from './TableFilter.js';
 import TableListener from './TableListener.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
-import i18n from './i18n.js';
 
 /**
  * Table Plugin
@@ -33,7 +32,6 @@ export default class Table extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._i18n(i18n);
         this._tag({
             name: TagName.TABLE,
             group: TagGroup.TABLE,

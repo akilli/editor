@@ -6,7 +6,6 @@ import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
-import i18n from './i18n.js';
 
 /**
  * Blockquote Plugin
@@ -30,7 +29,6 @@ export default class Blockquote extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._i18n(i18n);
         this._tag({
             name: TagName.BLOCKQUOTE,
             group: TagGroup.QUOTE,

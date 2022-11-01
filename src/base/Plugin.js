@@ -82,18 +82,7 @@ export default class Plugin {
      * @return {string}
      */
     _(key) {
-        return this.editor.translator.translate(this.constructor.name, key);
-    }
-
-    /**
-     * Translates given string with base context
-     *
-     * @protected
-     * @param {string} key
-     * @return {string}
-     */
-    _base(key) {
-        return this.editor.translator.translate('base', key);
+        return this.editor.translate(key);
     }
 
     /**
@@ -105,7 +94,7 @@ export default class Plugin {
      */
     _i18n(i18n) {
         if (i18n[this.editor.config.base.lang]) {
-            this.editor.translator.set(this.constructor.name, i18n[this.editor.config.base.lang]);
+            this.editor.i18n = i18n[this.editor.config.base.lang];
         }
     }
 
@@ -153,8 +142,8 @@ export default class Plugin {
      * @return {void}
      */
     _formatbar(label, key = undefined, command = undefined) {
-        const alt = this._base('Alt');
-        const shift = this._base('Shift');
+        const alt = this._('Alt');
+        const shift = this._('Shift');
         const title = label + (key ? ` [${alt} + ${shift} + ${key}]` : '');
 
         this.editor.dom.insertLastChild(this.#button(label, title, key, command), this.editor.formatbar);

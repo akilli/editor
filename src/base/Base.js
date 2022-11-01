@@ -14,7 +14,6 @@ import TagGroup from './TagGroup.js';
 import TagListener from './TagListener.js';
 import ToolbarListener from './ToolbarListener.js';
 import TagName from './TagName.js';
-import i18n from './i18n.js';
 
 /**
  * Base Plugin
@@ -38,7 +37,6 @@ export default class Base extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._i18n(i18n);
         this.editor.dom.registerElement(TagName.DIALOG, DialogElement);
         this._tag({
             name: TagName.ROOT,

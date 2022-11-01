@@ -1,4 +1,3 @@
-import Base from './Base.js';
 import Editor from './Editor.js';
 import TagName from './TagName.js';
 import { isFunction, isString } from './util.js';
@@ -155,7 +154,7 @@ export default class FormCreator {
      * @return {this}
      */
     #addCancelButton(cancel) {
-        const html = this.#i18n('Cancel');
+        const html = this.editor.translate('Cancel');
         const button = this.editor.dom.createElement(TagName.BUTTON, { attributes: { type: 'button' }, html });
         button.addEventListener('click', cancel);
         this.editor.dom.insertLastChild(button, this.#form);
@@ -169,19 +168,9 @@ export default class FormCreator {
      * @return {this}
      */
     #addSubmitButton() {
-        const button = this.editor.dom.createElement(TagName.BUTTON, { html: this.#i18n('Save') });
+        const button = this.editor.dom.createElement(TagName.BUTTON, { html: this.editor.translate('Save') });
         this.editor.dom.insertLastChild(button, this.#form);
 
         return this;
-    }
-
-    /**
-     * Translates given string with base context
-     *
-     * @param {string} key
-     * @return {string}
-     */
-    #i18n(key) {
-        return this.editor.translator.translate(Base.name, key);
     }
 }

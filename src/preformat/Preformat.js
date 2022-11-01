@@ -6,7 +6,6 @@ import PreformatFilter from './PreformatFilter.js';
 import PreformatListener from './PreformatListener.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
-import i18n from './i18n.js';
 
 /**
  * Preformat Plugin
@@ -30,7 +29,6 @@ export default class Preformat extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._i18n(i18n);
         this._tag({
             name: TagName.PRE,
             group: TagGroup.PREFORMAT,

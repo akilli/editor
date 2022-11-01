@@ -2,7 +2,6 @@ import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 import SortCommand from './SortCommand.js';
 import Sorting from '../base/Sorting.js';
-import i18n from './i18n.js';
 
 /**
  * Sort Plugin
@@ -26,7 +25,6 @@ export default class Sort extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._i18n(i18n);
         const sortings = {
             [Sorting.FIRST]: this._('Sort to the beginning'),
             [Sorting.PREV]: this._('Sort before previous element'),

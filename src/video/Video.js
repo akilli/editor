@@ -5,7 +5,6 @@ import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
 import VideoDialog from './VideoDialog.js';
 import VideoListener from './VideoListener.js';
-import i18n from './i18n.js';
 
 /**
  * Video Plugin
@@ -36,7 +35,6 @@ export default class Video extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._i18n(i18n);
         this._tag({
             name: TagName.VIDEO,
             group: TagGroup.VIDEO,

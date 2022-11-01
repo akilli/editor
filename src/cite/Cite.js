@@ -3,7 +3,6 @@ import Key from '../base/Key.js';
 import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
-import i18n from './i18n.js';
 
 /**
  * Cite Plugin
@@ -27,7 +26,6 @@ export default class Cite extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._i18n(i18n);
         this._tag({ name: TagName.CITE, group: TagGroup.FORMAT });
         this._command(TagName.CITE);
         this._formatbar(this._('Citation'), Key.Z);

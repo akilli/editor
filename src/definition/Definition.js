@@ -4,7 +4,6 @@ import Key from '../base/Key.js';
 import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
-import i18n from './i18n.js';
 
 /**
  * Definition Plugin
@@ -28,7 +27,6 @@ export default class Definition extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._i18n(i18n);
         this._tag({ name: TagName.DFN, group: TagGroup.FORMAT, attributes: ['title'] });
         this.editor.dialogs.set(new DefinitionDialog(this.editor));
         this._command(TagName.DFN);

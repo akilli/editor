@@ -5,7 +5,6 @@ import ImageListener from './ImageListener.js';
 import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
-import i18n from './i18n.js';
 
 /**
  * Image Plugin
@@ -36,7 +35,6 @@ export default class Image extends Plugin {
      * @inheritDoc
      */
     init() {
-        this._i18n(i18n);
         this._tag({
             name: TagName.IMG,
             group: TagGroup.IMAGE,

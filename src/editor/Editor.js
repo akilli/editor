@@ -16,6 +16,7 @@ import Division from '../division/Division.js';
 import Emphasis from '../emphasis/Emphasis.js';
 import Heading from '../heading/Heading.js';
 import HorizontalRule from '../horizontalrule/HorizontalRule.js';
+import I18n from '../i18n/I18n.js';
 import Iframe from '../iframe/Iframe.js';
 import Image from '../image/Image.js';
 import Insertion from '../insertion/Insertion.js';
@@ -54,6 +55,7 @@ export default class Editor extends BaseEditor {
         return {
             base: {
                 plugins: [
+                    I18n,
                     Bold,
                     Italic,
                     Strong,

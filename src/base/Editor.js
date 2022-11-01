@@ -6,7 +6,6 @@ import FilterManager from './FilterManager.js';
 import PluginManager from './PluginManager.js';
 import TagManager from './TagManager.js';
 import TagName from './TagName.js';
-import Translator from './Translator.js';
 
 /**
  * Base Editor
@@ -205,19 +204,29 @@ export default class Editor {
     }
 
     /**
-     * Translator
+     * I18n
      *
-     * @type {Translator}
+     * @type {Object.<string, string>}
      */
-    #translator = new Translator();
+    #i18n = {};
 
     /**
-     * Allows read access to translator
+     * Allows read access to i18n
      *
-     * @return {Translator}
+     * @return {Object.<string, string>}
      */
-    get translator() {
-        return this.#translator;
+    get i18n() {
+        return this.#i18n;
+    }
+
+    /**
+     * Extend i18n
+     *
+     * @param {Object.<string, string>} i18n
+     * @return {void}
+     */
+    set i18n(i18n) {
+        this.#i18n = { ...this.#i18n, ...(i18n || {}) };
     }
 
     /**
@@ -403,7 +412,7 @@ export default class Editor {
      */
     freeze() {
         Object.freeze(this.config);
-        this.translator.freeze();
+        Object.freeze(this.i18n);
         this.tags.freeze();
         this.filters.freeze();
         this.dialogs.freeze();
@@ -479,6 +488,16 @@ export default class Editor {
         }
 
         this.rootDispatcher.dispatch('save');
+    }
+
+    /**
+     * Translates string with registered i18n data
+     *
+     * @param {string} key
+     * @return {string}
+     */
+    translate(key) {
+        return this.i18n[key] || key;
     }
 
     /**

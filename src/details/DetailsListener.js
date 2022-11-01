@@ -1,4 +1,3 @@
-import Details from './Details.js';
 import Key from '../base/Key.js';
 import Listener from '../base/Listener.js';
 import TagName from '../base/TagName.js';
@@ -94,7 +93,7 @@ export default class DetailsListener extends Listener {
      */
     #empty(element) {
         if (!element.textContent.trim()) {
-            element.textContent = this.editor.translator.translate(Details.name, 'Details');
+            element.textContent = this.editor.translate('Details');
         } else {
             element.querySelectorAll(TagName.BR + ':not(:last-child)').forEach(
                 item => item.parentElement.removeChild(item),
