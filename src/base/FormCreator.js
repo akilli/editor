@@ -1,4 +1,5 @@
-import Dom from './Dom.js';
+import Base from './Base.js';
+import Editor from './Editor.js';
 import { ErrorMessage, TagName } from './enum.js';
 import { isFunction, isString } from './util.js';
 
@@ -7,11 +8,20 @@ import { isFunction, isString } from './util.js';
  */
 export default class FormCreator {
     /**
-     * DOM manager
+     * Editor
      *
-     * @type {Dom}
+     * @type {Editor}
      */
-    #dom;
+    #editor;
+
+    /**
+     * Allows read access to editor
+     *
+     * @return {Editor}
+     */
+    get editor() {
+        return this.#editor;
+    }
 
     /**
      * Form element
@@ -37,21 +47,19 @@ export default class FormCreator {
     #fieldset;
 
     /**
-     * Initializes a form creator with given submit and cancel button labels and close callback
+     * Initializes a form creator with given editor and cancel callback
      *
-     * @param {Dom} dom
-     * @param {string} submit
-     * @param {string} cancel
-     * @param {function} close
+     * @param {Editor} editor
+     * @param {function} cancel
      */
-    constructor(dom, submit, cancel, close) {
-        if (!(dom instanceof Dom) || !isString(submit) || !isString(cancel) || !isFunction(close)) {
+    constructor(editor, cancel) {
+        if (!(editor instanceof Editor) || !isFunction(cancel)) {
             throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
-        this.#dom = dom;
-        this.#form = this.#dom.createElement(TagName.FORM, { attributes: { method: 'dialog' } });
-        this.addFieldset().#addCancelButton(cancel, close).#addSubmitButton(submit);
+        this.#editor = editor;
+        this.#form = this.editor.dom.createElement(TagName.FORM, { attributes: { method: 'dialog' } });
+        this.addFieldset().#addCancelButton(cancel).#addSubmitButton();
     }
 
     /**
@@ -60,12 +68,12 @@ export default class FormCreator {
      * @return {this}
      */
     addFieldset() {
-        const fieldset = this.#dom.createElement(TagName.FIELDSET);
+        const fieldset = this.editor.dom.createElement(TagName.FIELDSET);
 
         if (this.#fieldset) {
-            this.#dom.insertAfter(fieldset, this.#fieldset);
+            this.editor.dom.insertAfter(fieldset, this.#fieldset);
         } else {
-            this.#dom.insertFirstChild(fieldset, this.#form);
+            this.editor.dom.insertFirstChild(fieldset, this.#form);
         }
 
         this.#fieldset = fieldset;
@@ -84,7 +92,7 @@ export default class FormCreator {
             throw new Error(ErrorMessage.INVALID_ARGUMENT);
         }
 
-        this.#dom.insertLastChild(this.#dom.createElement(TagName.LEGEND, { html }), this.#fieldset);
+        this.editor.dom.insertLastChild(this.editor.dom.createElement(TagName.LEGEND, { html }), this.#fieldset);
 
         return this;
     }
@@ -128,14 +136,14 @@ export default class FormCreator {
         }
 
         Object.assign(attributes, { id: `editor-${name}`, name, type });
-        const div = this.#dom.createElement(TagName.DIV);
-        this.#dom.insertLastChild(
-            this.#dom.createElement(TagName.LABEL, { attributes: { for: attributes.id }, html: label }),
+        const div = this.editor.dom.createElement(TagName.DIV);
+        this.editor.dom.insertLastChild(
+            this.editor.dom.createElement(TagName.LABEL, { attributes: { for: attributes.id }, html: label }),
             div,
         );
-        this.#dom.insertLastChild(this.#dom.createElement(TagName.INPUT, { attributes }), div);
+        this.editor.dom.insertLastChild(this.editor.dom.createElement(TagName.INPUT, { attributes }), div);
         attributes.required && div.setAttribute('data-required', '');
-        this.#dom.insertLastChild(div, this.#fieldset);
+        this.editor.dom.insertLastChild(div, this.#fieldset);
 
         return this;
     }
@@ -143,14 +151,14 @@ export default class FormCreator {
     /**
      * Adds the cancel button
      *
-     * @param {string} html
-     * @param {function} click
+     * @param {function} cancel
      * @return {this}
      */
-    #addCancelButton(html, click) {
-        const button = this.#dom.createElement(TagName.BUTTON, { attributes: { type: 'button' }, html });
-        button.addEventListener('click', click);
-        this.#dom.insertLastChild(button, this.#form);
+    #addCancelButton(cancel) {
+        const html = this.#i18n('Cancel');
+        const button = this.editor.dom.createElement(TagName.BUTTON, { attributes: { type: 'button' }, html });
+        button.addEventListener('click', cancel);
+        this.editor.dom.insertLastChild(button, this.#form);
 
         return this;
     }
@@ -158,12 +166,22 @@ export default class FormCreator {
     /**
      * Adds the submit button
      *
-     * @param {string} html
      * @return {this}
      */
-    #addSubmitButton(html) {
-        this.#dom.insertLastChild(this.#dom.createElement(TagName.BUTTON, { html }), this.#form);
+    #addSubmitButton() {
+        const button = this.editor.dom.createElement(TagName.BUTTON, { html: this.#i18n('Save') });
+        this.editor.dom.insertLastChild(button, this.#form);
 
         return this;
+    }
+
+    /**
+     * Translates given string with base context
+     *
+     * @param {string} key
+     * @return {string}
+     */
+    #i18n(key) {
+        return this.editor.translator.translate(Base.name, key);
     }
 }

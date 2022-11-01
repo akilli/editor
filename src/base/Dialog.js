@@ -145,7 +145,7 @@ export default class Dialog {
             this.#cleanup();
         };
         this.#cleanup();
-        this.#formCreator = new FormCreator(this.editor.dom, this._('Save'), this._('Cancel'), close);
+        this.#formCreator = new FormCreator(this.editor, close);
         this._prepareForm();
         const form = this.formCreator.form;
         form.addEventListener('submit', event => {

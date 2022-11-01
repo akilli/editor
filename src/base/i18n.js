@@ -6,6 +6,8 @@
 export default {
     de: {
         'Alt': 'Alt',
+        'Cancel': 'Abbrechen',
         'Shift': 'Umschalt',
+        'Save': 'Speichern',
     },
 };
