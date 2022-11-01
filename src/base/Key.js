@@ -2,154 +2,247 @@
  * Keys
  */
 export default class Key {
+    /**
+     * @return {string}
+     */
     static get A() {
         return 'a';
     }
 
+    /**
+     * @return {string}
+     */
     static get B() {
         return 'b';
     }
 
+    /**
+     * @return {string}
+     */
     static get BACKSPACE() {
         return 'Backspace';
     }
 
+    /**
+     * @return {string}
+     */
     static get C() {
         return 'c';
     }
 
+    /**
+     * @return {string}
+     */
     static get D() {
         return 'd';
     }
 
+    /**
+     * @return {string}
+     */
     static get DEL() {
         return 'Delete';
     }
 
+    /**
+     * @return {string}
+     */
     static get DOWN() {
         return 'ArrowDown';
     }
 
+    /**
+     * @return {string}
+     */
     static get E() {
         return 'e';
     }
 
+    /**
+     * @return {string}
+     */
     static get END() {
         return 'End';
     }
 
+    /**
+     * @return {string}
+     */
     static get ENTER() {
         return 'Enter';
     }
 
+    /**
+     * @return {string}
+     */
     static get ESC() {
         return 'Escape';
     }
 
+    /**
+     * @return {string}
+     */
     static get F() {
         return 'f';
     }
 
+    /**
+     * @return {string}
+     */
     static get G() {
         return 'g';
     }
 
-    static get H() {
-        return 'h';
-    }
-
+    /**
+     * @return {string}
+     */
     static get HOME() {
         return 'Home';
     }
 
+    /**
+     * @return {string}
+     */
     static get I() {
         return 'i';
     }
 
+    /**
+     * @return {string}
+     */
     static get J() {
         return 'j';
     }
 
+    /**
+     * @return {string}
+     */
     static get K() {
         return 'k';
     }
 
+    /**
+     * @return {string}
+     */
     static get L() {
         return 'l';
     }
 
+    /**
+     * @return {string}
+     */
     static get LEFT() {
         return 'ArrowLeft';
     }
 
+    /**
+     * @return {string}
+     */
     static get M() {
         return 'm';
     }
 
-    static get N() {
-        return 'n';
-    }
-
+    /**
+     * @return {string}
+     */
     static get O() {
         return 'o';
     }
 
-    static get P() {
-        return 'p';
-    }
-
+    /**
+     * @return {string}
+     */
     static get Q() {
         return 'q';
     }
 
+    /**
+     * @return {string}
+     */
     static get R() {
         return 'r';
     }
 
+    /**
+     * @return {string}
+     */
     static get RIGHT() {
         return 'ArrowRight';
     }
 
+    /**
+     * @return {string}
+     */
     static get S() {
         return 's';
     }
 
+    /**
+     * @return {string}
+     */
     static get SPACE() {
         return ' ';
     }
 
+    /**
+     * @return {string}
+     */
     static get T() {
         return 't';
     }
 
+    /**
+     * @return {string}
+     */
     static get TAB() {
         return 'Tab';
     }
 
+    /**
+     * @return {string}
+     */
     static get U() {
         return 'u';
     }
 
+    /**
+     * @return {string}
+     */
     static get UP() {
         return 'ArrowUp';
     }
 
+    /**
+     * @return {string}
+     */
     static get V() {
         return 'v';
     }
 
+    /**
+     * @return {string}
+     */
     static get W() {
         return 'w';
     }
 
+    /**
+     * @return {string}
+     */
     static get X() {
         return 'x';
     }
 
+    /**
+     * @return {string}
+     */
     static get Y() {
         return 'y';
     }
 
+    /**
+     * @return {string}
+     */
     static get Z() {
         return 'z';
     }

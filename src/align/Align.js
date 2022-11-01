@@ -1,8 +1,8 @@
 import AlignCommand from './AlignCommand.js';
+import Alignment from '../base/Alignment.js';
 import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
-import { Alignment } from '../base/enum.js';
 
 /**
  * Align Plugin

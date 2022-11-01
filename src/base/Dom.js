@@ -1,5 +1,6 @@
 import Editor from './Editor.js';
-import { Sorting, TagName } from './enum.js';
+import Sorting from './Sorting.js';
+import { TagName } from './enum.js';
 import { isFunction, isString, not } from './util.js';
 
 /**
@@ -576,7 +577,7 @@ export default class Dom {
      * @return {void}
      */
     sort(element, sorting) {
-        if (!(element instanceof HTMLElement) || !Object.values(Sorting).includes(sorting)) {
+        if (!(element instanceof HTMLElement) || !Sorting.values().includes(sorting)) {
             throw new TypeError('Invalid argument');
         }
 

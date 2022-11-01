@@ -1,28 +1,4 @@
 /**
- * Alignment
- *
- * @enum {string}
- */
-export const Alignment = Object.freeze({
-    CENTER: 'center',
-    LEFT: 'left',
-    NONE: 'none',
-    RIGHT: 'right',
-});
-
-/**
- * Sorting
- *
- * @enum {string}
- */
-export const Sorting = Object.freeze({
-    FIRST: 'first',
-    LAST: 'last',
-    NEXT: 'next',
-    PREV: 'prev',
-});
-
-/**
  * Tag Groups
  *
  * @enum {string}

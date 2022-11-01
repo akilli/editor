@@ -1,6 +1,6 @@
 import Command from '../base/Command.js';
 import Sort from './Sort.js';
-import { Sorting } from '../base/enum.js';
+import Sorting from '../base/Sorting.js';
 
 /**
  * Sort Command
@@ -20,13 +20,11 @@ export default class SortCommand extends Command {
      * @param {string} sorting
      */
     constructor(editor, sorting) {
-        const key = Object.entries(Sorting).find(([, val]) => val === sorting)?.[0].toLowerCase();
-
-        if (!key) {
+        if (!Sorting.values().includes(sorting)) {
             throw new TypeError('Invalid argument');
         }
 
-        super(editor, Sort.name + '-' + key);
+        super(editor, Sort.name + '-' + sorting);
         this.#sorting = sorting;
     }
 
