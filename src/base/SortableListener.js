@@ -1,5 +1,6 @@
+import Key from './Key.js';
 import Listener from './Listener.js';
-import { Key, Sorting } from './enum.js';
+import { Sorting } from './enum.js';
 import { isKey } from './util.js';
 
 /**

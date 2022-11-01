@@ -1,5 +1,5 @@
+import Key from './Key.js';
 import Listener from './Listener.js';
-import { Key } from './enum.js';
 import { isKey } from './util.js';
 
 /**

@@ -11,49 +11,6 @@ export const Alignment = Object.freeze({
 });
 
 /**
- * Keys
- *
- * @enum {string}
- */
-export const Key = Object.freeze({
-    A: 'a',
-    B: 'b',
-    BACKSPACE: 'Backspace',
-    C: 'c',
-    D: 'd',
-    DEL: 'Delete',
-    DOWN: 'ArrowDown',
-    E: 'e',
-    END: 'End',
-    ENTER: 'Enter',
-    ESC: 'Escape',
-    F: 'f',
-    G: 'g',
-    HOME: 'Home',
-    I: 'i',
-    J: 'j',
-    K: 'k',
-    L: 'l',
-    LEFT: 'ArrowLeft',
-    M: 'm',
-    O: 'o',
-    Q: 'q',
-    R: 'r',
-    RIGHT: 'ArrowRight',
-    S: 's',
-    SPACE: ' ',
-    T: 't',
-    TAB: 'Tab',
-    U: 'u',
-    UP: 'ArrowUp',
-    V: 'v',
-    W: 'w',
-    X: 'x',
-    Y: 'y',
-    Z: 'z',
-});
-
-/**
  * Sorting
  *
  * @enum {string}

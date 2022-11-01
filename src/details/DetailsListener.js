@@ -1,6 +1,7 @@
 import Details from './Details.js';
+import Key from '../base/Key.js';
 import Listener from '../base/Listener.js';
-import { Key, TagName } from '../base/enum.js';
+import { TagName } from '../base/enum.js';
 import { isKey } from '../base/util.js';
 
 /**

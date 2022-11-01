@@ -1,8 +1,9 @@
 import AbbreviationDialog from './AbbreviationDialog.js';
 import Base from '../base/Base.js';
+import Key from '../base/Key.js';
 import Plugin from '../base/Plugin.js';
 import i18n from './i18n.js';
-import { Key, TagGroup, TagName } from '../base/enum.js';
+import { TagGroup, TagName } from '../base/enum.js';
 
 /**
  * Abbreviation Plugin
