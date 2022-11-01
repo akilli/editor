@@ -1,6 +1,5 @@
 import Key from '../base/Key.js';
 import Listener from '../base/Listener.js';
-import { isKey } from '../base/util.js';
 
 /**
  * Tablecell Listener
@@ -48,10 +47,10 @@ export default class TableCellListener extends Listener {
         const base = row.parentElement;
         const table = base instanceof HTMLTableElement ? base : base.parentElement;
         const keys = [Key.LEFT, Key.RIGHT, Key.UP, Key.DOWN];
-        const isNav = isKey(event, keys);
-        const isSort = isKey(event, keys, { ctrl: true });
-        const isAdd = isKey(event, keys, { alt: true });
-        const isDel = isKey(event, keys, { alt: true, shift: true });
+        const isNav = Key.isEventFor(event, keys);
+        const isSort = Key.isEventFor(event, keys, { ctrl: true });
+        const isAdd = Key.isEventFor(event, keys, { alt: true });
+        const isDel = Key.isEventFor(event, keys, { alt: true, shift: true });
 
         if (cell instanceof HTMLTableCellElement
             && row instanceof HTMLTableRowElement

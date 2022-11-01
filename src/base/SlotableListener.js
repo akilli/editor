@@ -1,7 +1,6 @@
 import Key from './Key.js';
 import Listener from './Listener.js';
 import { TagName } from './enum.js';
-import { isKey } from './util.js';
 
 /**
  * Slotable Listener
@@ -36,7 +35,7 @@ export default class SlotableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (!isKey(event, Key.TAB) && !isKey(event, Key.TAB, { shift: true })) {
+        if (!Key.isEventFor(event, Key.TAB) && !Key.isEventFor(event, Key.TAB, { shift: true })) {
             event.preventDefault();
             event.stopPropagation();
         }

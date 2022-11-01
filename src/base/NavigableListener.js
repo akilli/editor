@@ -1,6 +1,5 @@
 import Key from './Key.js';
 import Listener from './Listener.js';
-import { isKey } from './util.js';
 
 /**
  * Navigable Listener
@@ -36,7 +35,7 @@ export default class NavigableListener extends Listener {
      */
     keydown(event) {
         if (event.target === event.currentTarget
-            && isKey(event, [Key.UP, Key.DOWN, Key.HOME, Key.END])
+            && Key.isEventFor(event, [Key.UP, Key.DOWN, Key.HOME, Key.END])
             && this.#enabled(event.target)
         ) {
             const prev = event.target.previousElementSibling;

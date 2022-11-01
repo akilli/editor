@@ -2,7 +2,6 @@ import Details from './Details.js';
 import Key from '../base/Key.js';
 import Listener from '../base/Listener.js';
 import { TagName } from '../base/enum.js';
-import { isKey } from '../base/util.js';
 
 /**
  * Handles details elements
@@ -76,11 +75,11 @@ export default class DetailsListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (isKey(event, Key.SPACE)) {
+        if (Key.isEventFor(event, Key.SPACE)) {
             event.preventDefault();
             event.stopPropagation();
             this.editor.dom.insertText(' ');
-        } else if (isKey(event, Key.ENTER)) {
+        } else if (Key.isEventFor(event, Key.ENTER)) {
             event.preventDefault();
             event.stopPropagation();
             event.target.parentElement.open = true;

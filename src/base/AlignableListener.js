@@ -1,7 +1,6 @@
 import Key from './Key.js';
 import Listener from './Listener.js';
 import { Alignment } from './enum.js';
-import { isKey } from './util.js';
 
 /**
  * Alignable Listener
@@ -42,7 +41,7 @@ export default class AlignableListener extends Listener {
             [Key.RIGHT]: Alignment.RIGHT,
         };
 
-        if (event.target === event.currentTarget && isKey(event, Object.keys(map), { shift: true })) {
+        if (event.target === event.currentTarget && Key.isEventFor(event, Object.keys(map), { shift: true })) {
             event.preventDefault();
             event.stopPropagation();
             event.target.classList.remove(...Object.values(map));

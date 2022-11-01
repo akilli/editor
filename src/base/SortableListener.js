@@ -1,7 +1,6 @@
 import Key from './Key.js';
 import Listener from './Listener.js';
 import { Sorting } from './enum.js';
-import { isKey } from './util.js';
 
 /**
  * Sortable Listener
@@ -45,7 +44,7 @@ export default class SortableListener extends Listener {
             [Key.END]: Sorting.LAST,
         };
 
-        if (event.target === event.currentTarget && isKey(event, Object.keys(map), { ctrl: true })) {
+        if (event.target === event.currentTarget && Key.isEventFor(event, Object.keys(map), { ctrl: true })) {
             this.editor.dom.sort(event.target, map[event.key]);
             event.preventDefault();
             event.stopPropagation();
