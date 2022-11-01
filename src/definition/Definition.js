@@ -30,6 +30,6 @@ export default class Definition extends Plugin {
         this._tag({ name: TagName.DFN, group: TagGroup.FORMAT, attributes: ['title'] });
         this.editor.dialogs.set(new DefinitionDialog(this.editor));
         this._command(TagName.DFN);
-        this._formatbar(this._('Definition'), Key.D);
+        this._formatbar('Definition', Key.D);
     }
 }

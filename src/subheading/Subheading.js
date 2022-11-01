@@ -36,6 +36,6 @@ export default class Subheading extends Plugin {
             enter: TagName.P,
         });
         this._command(TagName.H3);
-        this._toolbar(this._('Subheading'));
+        this._toolbar('Subheading');
     }
 }

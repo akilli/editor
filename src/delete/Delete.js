@@ -25,6 +25,6 @@ export default class Delete extends Plugin {
      */
     init() {
         this.editor.commands.set(new DeleteCommand(this.editor));
-        this._focusbar(this._('Delete'), this.constructor.name);
+        this._focusbar('Delete', this.constructor.name);
     }
 }

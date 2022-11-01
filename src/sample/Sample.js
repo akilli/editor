@@ -28,6 +28,6 @@ export default class Sample extends Plugin {
     init() {
         this._tag({ name: TagName.SAMP, group: TagGroup.FORMAT });
         this._command(TagName.SAMP);
-        this._formatbar(this._('Sample Output'), Key.O);
+        this._formatbar('Sample Output', Key.O);
     }
 }

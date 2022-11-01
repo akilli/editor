@@ -28,6 +28,6 @@ export default class Superscript extends Plugin {
     init() {
         this._tag({ name: TagName.SUP, group: TagGroup.FORMAT });
         this._command(TagName.SUP);
-        this._formatbar(this._('superscript'), Key.Y);
+        this._formatbar('superscript', Key.Y);
     }
 }

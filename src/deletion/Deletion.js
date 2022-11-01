@@ -28,6 +28,6 @@ export default class Deletion extends Plugin {
     init() {
         this._tag({ name: TagName.DEL, group: TagGroup.FORMAT });
         this._command(TagName.DEL);
-        this._formatbar(this._('Text Deletion'), Key.G);
+        this._formatbar('Text Deletion', Key.G);
     }
 }

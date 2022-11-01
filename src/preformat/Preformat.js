@@ -40,7 +40,7 @@ export default class Preformat extends Plugin {
         });
         new PreformatListener(this.editor);
         this._command(TagName.PRE);
-        this._toolbar(this._('Preformatted Text'));
+        this._toolbar('Preformatted Text');
         this.editor.filters.add(new PreformatFilter(this.editor));
     }
 }

@@ -51,6 +51,6 @@ export default class Division extends Plugin {
         });
         this.editor.dialogs.set(new DivisionDialog(this.editor));
         this._command(TagName.DIV);
-        this._toolbar(this._('Division'));
+        this._toolbar('Division');
     }
 }

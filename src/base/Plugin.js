@@ -129,7 +129,8 @@ export default class Plugin {
      * @return {void}
      */
     _toolbar(label, command = undefined) {
-        this.editor.dom.insertLastChild(this.#button(label, label, undefined, command), this.editor.toolbar);
+        const l = this._(label);
+        this.editor.dom.insertLastChild(this.#button(l, l, undefined, command), this.editor.toolbar);
     }
 
     /**
@@ -142,11 +143,12 @@ export default class Plugin {
      * @return {void}
      */
     _formatbar(label, key = undefined, command = undefined) {
+        const l = this._(label);
         const alt = this._('Alt');
         const shift = this._('Shift');
-        const title = label + (key ? ` [${alt} + ${shift} + ${key}]` : '');
+        const title = l + (key ? ` [${alt} + ${shift} + ${key}]` : '');
 
-        this.editor.dom.insertLastChild(this.#button(label, title, key, command), this.editor.formatbar);
+        this.editor.dom.insertLastChild(this.#button(l, title, key, command), this.editor.formatbar);
     }
 
     /**
@@ -158,31 +160,32 @@ export default class Plugin {
      * @return {void}
      */
     _focusbar(label, command = undefined) {
-        this.editor.dom.insertLastChild(this.#button(label, label, undefined, command), this.editor.focusbar);
+        const l = this._(label);
+        this.editor.dom.insertLastChild(this.#button(l, l, undefined, command), this.editor.focusbar);
     }
 
     /**
      * Creates a button
      *
-     * @param {string} label
+     * @param {string} html
      * @param {string} title
      * @param {string|undefined} [key = undefined]
      * @param {string|undefined} [command = undefined]
      * @return {HTMLButtonElement}
      */
-    #button(label, title, key = undefined, command = undefined) {
-        if (!isString(label) || !isString(title) || !isOptString(key)) {
+    #button(html, title, key = undefined, command = undefined) {
+        if (!isString(html) || !isString(title) || !isOptString(key)) {
             throw new TypeError('Invalid argument');
         }
 
         return this.editor.dom.createElement(TagName.BUTTON, {
             attributes: {
                 type: 'button',
-                title: title,
+                title,
                 'data-command': command || this.constructor.name,
                 'data-key': key,
             },
-            html: label,
+            html,
         });
     }
 }

@@ -26,10 +26,10 @@ export default class Align extends Plugin {
      */
     init() {
         const alignments = {
-            [Alignment.NONE]: this._('No alignment'),
-            [Alignment.LEFT]: this._('Align left'),
-            [Alignment.CENTER]: this._('Align center'),
-            [Alignment.RIGHT]: this._('Align right'),
+            [Alignment.NONE]: 'No alignment',
+            [Alignment.LEFT]: 'Align left',
+            [Alignment.CENTER]: 'Align center',
+            [Alignment.RIGHT]: 'Align right',
         };
         Object.entries(alignments).forEach(([alignment, label]) => {
             const command = new AlignCommand(this.editor, alignment);

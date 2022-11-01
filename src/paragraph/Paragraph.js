@@ -40,6 +40,6 @@ export default class Paragraph extends Plugin {
         });
         new ParagraphListener(this.editor);
         this._command(TagName.P);
-        this._toolbar(this._('Paragraph'));
+        this._toolbar('Paragraph');
     }
 }

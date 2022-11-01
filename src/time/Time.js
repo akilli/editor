@@ -30,6 +30,6 @@ export default class Time extends Plugin {
         this._tag({ name: TagName.TIME, group: TagGroup.FORMAT, attributes: ['datetime'] });
         this.editor.dialogs.set(new TimeDialog(this.editor));
         this._command(TagName.TIME);
-        this._formatbar(this._('Time'), Key.T);
+        this._formatbar('Time', Key.T);
     }
 }

@@ -45,6 +45,6 @@ export default class Audio extends Plugin {
         new AudioListener(this.editor);
         this.editor.dialogs.set(new AudioDialog(this.editor, this.editor.config.audio.browser));
         this._command(TagName.AUDIO);
-        this._toolbar(this._('Audio'));
+        this._toolbar('Audio');
     }
 }

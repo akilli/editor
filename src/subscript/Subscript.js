@@ -28,6 +28,6 @@ export default class Subscript extends Plugin {
     init() {
         this._tag({ name: TagName.SUB, group: TagGroup.FORMAT });
         this._command(TagName.SUB);
-        this._formatbar(this._('subscript'), Key.X);
+        this._formatbar('subscript', Key.X);
     }
 }

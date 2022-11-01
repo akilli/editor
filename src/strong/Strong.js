@@ -28,6 +28,6 @@ export default class Strong extends Plugin {
     init() {
         this._tag({ name: TagName.STRONG, group: TagGroup.FORMAT });
         this._command(TagName.STRONG);
-        this._formatbar(this._('strongly emphasized'), Key.S);
+        this._formatbar('strongly emphasized', Key.S);
     }
 }

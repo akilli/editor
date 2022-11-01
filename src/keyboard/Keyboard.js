@@ -28,6 +28,6 @@ export default class Keyboard extends Plugin {
     init() {
         this._tag({ name: TagName.KBD, group: TagGroup.FORMAT });
         this._command(TagName.KBD);
-        this._formatbar(this._('User Input'), Key.K);
+        this._formatbar('User Input', Key.K);
     }
 }

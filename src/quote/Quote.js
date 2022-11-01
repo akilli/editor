@@ -28,6 +28,6 @@ export default class Quote extends Plugin {
     init() {
         this._tag({ name: TagName.Q, group: TagGroup.FORMAT });
         this._command(TagName.Q);
-        this._formatbar(this._('Quote'), Key.Q);
+        this._formatbar('Quote', Key.Q);
     }
 }

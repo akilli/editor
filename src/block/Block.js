@@ -49,6 +49,6 @@ export default class Block extends Plugin {
         new BlockListener(this.editor);
         this.editor.dialogs.set(new BlockDialog(this.editor, this.editor.config.block.browser));
         this._command(TagName.BLOCK);
-        this._toolbar(this._('Block'));
+        this._toolbar('Block');
     }
 }

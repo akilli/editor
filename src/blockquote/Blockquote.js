@@ -40,7 +40,7 @@ export default class Blockquote extends Plugin {
         });
         new BlockquoteListener(this.editor);
         this._command(TagName.BLOCKQUOTE);
-        this._toolbar(this._('Blockquote'));
+        this._toolbar('Blockquote');
         this.editor.filters.add(new BlockquoteFilter(this.editor));
     }
 }

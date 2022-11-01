@@ -30,6 +30,6 @@ export default class Abbreviation extends Plugin {
         this._tag({ name: TagName.ABBR, group: TagGroup.FORMAT, attributes: ['title'] });
         this.editor.dialogs.set(new AbbreviationDialog(this.editor));
         this._command(TagName.ABBR);
-        this._formatbar(this._('Abbreviation'), Key.A);
+        this._formatbar('Abbreviation', Key.A);
     }
 }
