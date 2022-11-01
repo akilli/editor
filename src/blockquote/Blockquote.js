@@ -4,8 +4,9 @@ import BlockquoteListener from './BlockquoteListener.js';
 import Break from '../break/Break.js';
 import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
+import TagGroup from '../base/TagGroup.js';
 import i18n from './i18n.js';
-import { TagGroup, TagName } from '../base/enum.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Blockquote Plugin

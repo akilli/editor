@@ -7,8 +7,9 @@ import TableCommand from './TableCommand.js';
 import TableDialog from './TableDialog.js';
 import TableFilter from './TableFilter.js';
 import TableListener from './TableListener.js';
+import TagGroup from '../base/TagGroup.js';
 import i18n from './i18n.js';
-import { TagGroup, TagName } from '../base/enum.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Table Plugin

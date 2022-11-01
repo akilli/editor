@@ -10,10 +10,11 @@ import NavigableListener from './NavigableListener.js';
 import Plugin from './Plugin.js';
 import SlotableListener from './SlotableListener.js';
 import SortableListener from './SortableListener.js';
+import TagGroup from './TagGroup.js';
 import TagListener from './TagListener.js';
 import ToolbarListener from './ToolbarListener.js';
 import i18n from './i18n.js';
-import { TagGroup, TagName } from './enum.js';
+import { TagName } from './enum.js';
 
 /**
  * Base Plugin

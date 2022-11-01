@@ -1,36 +1,4 @@
 /**
- * Tag Groups
- *
- * @enum {string}
- */
-export const TagGroup = Object.freeze({
-    AUDIO: 'audio',
-    BLOCK: 'block',
-    BREAK: 'break',
-    CAPTION: 'caption',
-    CONTAINER: 'container',
-    FIGURE: 'figure',
-    FORMAT: 'format',
-    HEADING: 'heading',
-    IFRAME: 'iframe',
-    IMAGE: 'image',
-    LIST: 'list',
-    LISTITEM: 'listitem',
-    PARAGRAPH: 'paragraph',
-    PREFORMAT: 'preformat',
-    QUOTE: 'quote',
-    ROOT: 'root',
-    RULE: 'rule',
-    SLOT: 'slot',
-    SUMMARY: 'summary',
-    TABLE: 'table',
-    TABLECELL: 'tablecell',
-    TABLEROW: 'tablerow',
-    TABLESECTION: 'tablesection',
-    VIDEO: 'video',
-});
-
-/**
  * Tag Names
  *
  * @enum {string}

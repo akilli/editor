@@ -1,5 +1,6 @@
 import Filter from './Filter.js';
-import { TagGroup, TagName } from './enum.js';
+import TagGroup from './TagGroup.js';
+import { TagName } from './enum.js';
 
 /**
  * Content filter

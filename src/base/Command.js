@@ -1,5 +1,5 @@
 import Editor from './Editor.js';
-import { TagGroup } from './enum.js';
+import TagGroup from './TagGroup.js';
 import { isOptString, isString } from './util.js';
 
 /**

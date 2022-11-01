@@ -1,5 +1,5 @@
 import BarListener from './BarListener.js';
-import { TagGroup } from './enum.js';
+import TagGroup from './TagGroup.js';
 
 /**
  * Formatbar Listener

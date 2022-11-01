@@ -2,7 +2,8 @@ import Base from '../base/Base.js';
 import FigureFilter from './FigureFilter.js';
 import FigureListener from './FigureListener.js';
 import Plugin from '../base/Plugin.js';
-import { TagGroup, TagName } from '../base/enum.js';
+import TagGroup from '../base/TagGroup.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Figure Plugin

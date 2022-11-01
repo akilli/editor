@@ -4,8 +4,9 @@ import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
 import PreformatFilter from './PreformatFilter.js';
 import PreformatListener from './PreformatListener.js';
+import TagGroup from '../base/TagGroup.js';
 import i18n from './i18n.js';
-import { TagGroup, TagName } from '../base/enum.js';
+import { TagName } from '../base/enum.js';
 
 /**
  * Preformat Plugin
