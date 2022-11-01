@@ -29,7 +29,7 @@
     "build:clean": "rm -rf dist",
     "build:font": "mkdir -p dist && cp src/editor/editor.woff2 dist/editor.woff2",
     "build:css": "esbuild src/editor/editor.css --minify --outfile=dist/editor.css",
-    "build:js": "esbuild src/editor/Editor.js --minify --bundle --outfile=dist/editor.js --target=es2020 --format=esm",
+    "build:js": "esbuild src/editor/Editor.js --minify --bundle --outfile=dist/editor.js --target=es2022 --format=esm",
     "release:patch": "npm ci && npm version patch && npm publish",
     "release:minor": "npm ci && npm version minor && npm publish",
     "release:major": "npm ci && npm version major && npm publish",
