@@ -1,6 +1,6 @@
 import Align from './Align.js';
 import Command from '../base/Command.js';
-import { Alignment, ErrorMessage } from '../base/enum.js';
+import { Alignment } from '../base/enum.js';
 
 /**
  * Align Command
@@ -23,7 +23,7 @@ export default class AlignCommand extends Command {
         const key = Object.entries(Alignment).find(([, val]) => val === alignment)?.[0].toLowerCase();
 
         if (!key) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         super(editor, Align.name + '-' + key);

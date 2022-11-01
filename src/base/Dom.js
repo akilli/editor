@@ -1,5 +1,5 @@
 import Editor from './Editor.js';
-import { ErrorMessage, Sorting, TagName } from './enum.js';
+import { Sorting, TagName } from './enum.js';
 import { isFunction, isString, not } from './util.js';
 
 /**
@@ -97,7 +97,7 @@ export default class Dom {
      */
     constructor(editor, document) {
         if (!(editor instanceof Editor) || !(document instanceof Document)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         this.#editor = editor;
@@ -144,7 +144,7 @@ export default class Dom {
      */
     insert(element) {
         if (!(element instanceof HTMLElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         const editable = this.getSelectedEditable();
@@ -164,7 +164,7 @@ export default class Dom {
         } else if (this.editor.tags.allowed(this.editor.root, element)) {
             this.insertLastChild(element, this.editor.root);
         } else {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
     }
 
@@ -194,7 +194,7 @@ export default class Dom {
      */
     format(element) {
         if (!(element instanceof HTMLElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         const range = this.getRange();
@@ -344,7 +344,7 @@ export default class Dom {
      */
     contains(element) {
         if (!(element instanceof HTMLElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         if (this.editor.root.contains(element)) {
@@ -366,7 +366,7 @@ export default class Dom {
      */
     closest(element, child) {
         if (!(element instanceof HTMLElement) || !this.contains(element.parentElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         let sibling = element;
@@ -393,7 +393,7 @@ export default class Dom {
         let sibling;
 
         if (!(element instanceof HTMLElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         } else if (element.parentElement.localName !== name && (sibling = this.closest(element, name))) {
             const target = this.createElement(name, opts);
             this.insertAfter(target, sibling);
@@ -520,7 +520,7 @@ export default class Dom {
      */
     selectContents(element) {
         if (!(element instanceof HTMLElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         const range = this.document.createRange();
@@ -536,7 +536,7 @@ export default class Dom {
      */
     focusEnd(element) {
         if (!(element instanceof HTMLElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         element.focus();
@@ -554,7 +554,7 @@ export default class Dom {
      */
     delete(element) {
         if (!(element instanceof HTMLElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         const prev = element.previousElementSibling;
@@ -577,7 +577,7 @@ export default class Dom {
      */
     sort(element, sorting) {
         if (!(element instanceof HTMLElement) || !Object.values(Sorting).includes(sorting)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         const parent = element.parentElement;
@@ -612,7 +612,7 @@ export default class Dom {
      */
     insertBefore(element, ref) {
         if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         ref.insertAdjacentElement('beforebegin', element);
@@ -627,7 +627,7 @@ export default class Dom {
      */
     insertAfter(element, ref) {
         if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         ref.insertAdjacentElement('afterend', element);
@@ -642,7 +642,7 @@ export default class Dom {
      */
     insertFirstChild(element, ref) {
         if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         ref.insertAdjacentElement('afterbegin', element);
@@ -657,7 +657,7 @@ export default class Dom {
      */
     insertLastChild(element, ref) {
         if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         ref.insertAdjacentElement('beforeend', element);
@@ -674,7 +674,7 @@ export default class Dom {
      */
     open({ url, name, call, params = {} }) {
         if (!isString(url) || !isString(name) || !isFunction(call)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         /** @type {HTMLAnchorElement} */

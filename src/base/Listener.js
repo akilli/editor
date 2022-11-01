@@ -1,5 +1,4 @@
 import Editor from './Editor.js';
-import { ErrorMessage } from './enum.js';
 import { isFunction } from './util.js';
 
 /**
@@ -32,7 +31,7 @@ export default class Listener {
      */
     constructor(editor) {
         if (!(editor instanceof Editor)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         this.#editor = editor;

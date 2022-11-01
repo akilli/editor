@@ -1,4 +1,3 @@
-import { ErrorMessage } from './enum.js';
 import { isString } from './util.js';
 
 /**
@@ -31,7 +30,7 @@ export default class Translator {
      */
     set(name, i18n) {
         if (!isString(name) || !(i18n instanceof Object)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         this.#items.set(name, i18n);

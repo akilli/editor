@@ -1,7 +1,7 @@
 import Command from './Command.js';
 import Editor from './Editor.js';
 import Tag from './Tag.js';
-import { ErrorMessage, TagName } from './enum.js';
+import { TagName } from './enum.js';
 import { isOptString, isString } from './util.js';
 
 /**
@@ -30,7 +30,7 @@ export default class Plugin {
      * @type {string}
      */
     static get name() {
-        throw new Error(ErrorMessage.MISSING_NAME);
+        throw new Error('Missing name');
     }
 
     /**
@@ -58,7 +58,7 @@ export default class Plugin {
      */
     constructor(editor) {
         if (!(editor instanceof Editor)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         this.#editor = editor;
@@ -71,7 +71,7 @@ export default class Plugin {
      * @return {void}
      */
     init() {
-        throw new Error(ErrorMessage.NOT_IMPLEMENTED);
+        throw new Error('Not implemented');
     }
 
     /**
@@ -183,7 +183,7 @@ export default class Plugin {
      */
     #button(label, title, key = undefined, command = undefined) {
         if (!isString(label) || !isString(title) || !isOptString(key)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         return this.editor.dom.createElement(TagName.BUTTON, {

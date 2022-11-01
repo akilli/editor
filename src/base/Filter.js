@@ -1,5 +1,4 @@
 import Editor from './Editor.js';
-import { ErrorMessage } from './enum.js';
 
 /**
  * Filter
@@ -28,7 +27,7 @@ export default class Filter {
      */
     constructor(editor) {
         if (!(editor instanceof Editor)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         this.#editor = editor;
@@ -42,6 +41,6 @@ export default class Filter {
      * @return {void}
      */
     filter(element) {
-        throw new Error(ErrorMessage.NOT_IMPLEMENTED);
+        throw new Error('Not implemented');
     }
 }

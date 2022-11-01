@@ -1,5 +1,4 @@
 import Filter from './Filter.js';
-import { ErrorMessage } from './enum.js';
 
 /**
  * Filter Manager
@@ -20,7 +19,7 @@ export default class FilterManager {
      */
     add(filter) {
         if (!(filter instanceof Filter)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         this.#items.add(filter);
@@ -34,7 +33,7 @@ export default class FilterManager {
      */
     filter(element) {
         if (!(element instanceof HTMLElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         this.#items.forEach(filter => {

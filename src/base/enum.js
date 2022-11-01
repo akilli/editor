@@ -11,17 +11,6 @@ export const Alignment = Object.freeze({
 });
 
 /**
- * Error Message
- *
- * @enum {string}
- */
-export const ErrorMessage = Object.freeze({
-    INVALID_ARGUMENT: 'Invalid argument',
-    MISSING_NAME: 'Missing name',
-    NOT_IMPLEMENTED: 'Not implemented',
-});
-
-/**
  * Keys
  *
  * @enum {string}

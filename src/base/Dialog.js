@@ -1,6 +1,6 @@
 import Editor from './Editor.js';
 import FormCreator from './FormCreator.js';
-import { ErrorMessage, TagName } from './enum.js';
+import { TagName } from './enum.js';
 import { isOptString, isString } from './util.js';
 
 /**
@@ -80,7 +80,7 @@ export default class Dialog {
      */
     constructor(editor, name, url = undefined) {
         if (!(editor instanceof Editor) || !isString(name) || !isOptString(url)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         this.#editor = editor;
@@ -117,7 +117,7 @@ export default class Dialog {
      * @return {void}
      */
     _prepareForm() {
-        throw new Error(ErrorMessage.NOT_IMPLEMENTED);
+        throw new Error('Not implemented');
     }
 
     /**

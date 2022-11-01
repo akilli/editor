@@ -1,5 +1,5 @@
 import Listener from './Listener.js';
-import { ErrorMessage, Key } from './enum.js';
+import { Key } from './enum.js';
 import { isKey } from './util.js';
 
 /**
@@ -72,7 +72,7 @@ export default class BarListener extends Listener {
      */
     _show(toolbar, element) {
         if (!(toolbar instanceof HTMLElement) || !(element instanceof HTMLElement)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         toolbar.hidden = false;

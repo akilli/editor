@@ -1,6 +1,6 @@
 import Base from './Base.js';
 import Editor from './Editor.js';
-import { ErrorMessage, TagName } from './enum.js';
+import { TagName } from './enum.js';
 import { isFunction, isString } from './util.js';
 
 /**
@@ -54,7 +54,7 @@ export default class FormCreator {
      */
     constructor(editor, cancel) {
         if (!(editor instanceof Editor) || !isFunction(cancel)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         this.#editor = editor;
@@ -89,7 +89,7 @@ export default class FormCreator {
      */
     addLegend(html) {
         if (!isString(html)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         this.editor.dom.insertLastChild(this.editor.dom.createElement(TagName.LEGEND, { html }), this.#fieldset);
@@ -132,7 +132,7 @@ export default class FormCreator {
      */
     addInput(name, label, attributes = {}, type = 'text') {
         if (!isString(name) || !isString(label) || !isString(type)) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         Object.assign(attributes, { id: `editor-${name}`, name, type });

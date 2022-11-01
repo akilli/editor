@@ -1,6 +1,6 @@
 import Command from '../base/Command.js';
 import Sort from './Sort.js';
-import { ErrorMessage, Sorting } from '../base/enum.js';
+import { Sorting } from '../base/enum.js';
 
 /**
  * Sort Command
@@ -23,7 +23,7 @@ export default class SortCommand extends Command {
         const key = Object.entries(Sorting).find(([, val]) => val === sorting)?.[0].toLowerCase();
 
         if (!key) {
-            throw new Error(ErrorMessage.INVALID_ARGUMENT);
+            throw new TypeError('Invalid argument');
         }
 
         super(editor, Sort.name + '-' + key);
