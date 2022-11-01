@@ -1,6 +1,6 @@
 import Audio from './Audio.js';
 import Listener from '../base/Listener.js';
-import { TagName } from '../base/enum.js';
+import TagName from '../base/TagName.js';
 
 /**
  * Handles audio elements

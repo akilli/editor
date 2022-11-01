@@ -8,8 +8,8 @@ import TableDialog from './TableDialog.js';
 import TableFilter from './TableFilter.js';
 import TableListener from './TableListener.js';
 import TagGroup from '../base/TagGroup.js';
+import TagName from '../base/TagName.js';
 import i18n from './i18n.js';
-import { TagName } from '../base/enum.js';
 
 /**
  * Table Plugin

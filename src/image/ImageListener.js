@@ -1,6 +1,6 @@
 import Image from './Image.js';
 import Listener from '../base/Listener.js';
-import { TagName } from '../base/enum.js';
+import TagName from '../base/TagName.js';
 
 /**
  * Handles image elements

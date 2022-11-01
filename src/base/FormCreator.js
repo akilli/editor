@@ -1,6 +1,6 @@
 import Base from './Base.js';
 import Editor from './Editor.js';
-import { TagName } from './enum.js';
+import TagName from './TagName.js';
 import { isFunction, isString } from './util.js';
 
 /**

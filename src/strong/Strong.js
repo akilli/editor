@@ -2,8 +2,8 @@ import Base from '../base/Base.js';
 import Key from '../base/Key.js';
 import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
+import TagName from '../base/TagName.js';
 import i18n from './i18n.js';
-import { TagName } from '../base/enum.js';
 
 /**
  * Strong Plugin

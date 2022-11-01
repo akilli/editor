@@ -1,6 +1,6 @@
 import Listener from '../base/Listener.js';
+import TagName from '../base/TagName.js';
 import Video from './Video.js';
-import { TagName } from '../base/enum.js';
 
 /**
  * Handles video elements

@@ -13,8 +13,8 @@ import SortableListener from './SortableListener.js';
 import TagGroup from './TagGroup.js';
 import TagListener from './TagListener.js';
 import ToolbarListener from './ToolbarListener.js';
+import TagName from './TagName.js';
 import i18n from './i18n.js';
-import { TagName } from './enum.js';
 
 /**
  * Base Plugin

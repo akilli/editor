@@ -1,6 +1,6 @@
 import Key from './Key.js';
 import Listener from './Listener.js';
-import { TagName } from './enum.js';
+import TagName from './TagName.js';
 
 /**
  * Editable Listener

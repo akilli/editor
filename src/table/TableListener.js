@@ -1,6 +1,6 @@
 import Listener from '../base/Listener.js';
 import Table from './Table.js';
-import { TagName } from '../base/enum.js';
+import TagName from '../base/TagName.js';
 
 /**
  * Table Listener

@@ -2,7 +2,7 @@ import Base from '../base/Base.js';
 import BreakFilter from './BreakFilter.js';
 import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
-import { TagName } from '../base/enum.js';
+import TagName from '../base/TagName.js';
 
 /**
  * Break Plugin

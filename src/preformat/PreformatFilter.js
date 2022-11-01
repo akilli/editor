@@ -1,6 +1,6 @@
 import Filter from '../base/Filter.js';
 import Preformat from './Preformat.js';
-import { TagName } from '../base/enum.js';
+import TagName from '../base/TagName.js';
 
 /**
  * Filters preformatted text figure

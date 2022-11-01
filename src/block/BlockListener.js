@@ -1,5 +1,5 @@
 import Listener from '../base/Listener.js';
-import { TagName } from '../base/enum.js';
+import TagName from '../base/TagName.js';
 
 /**
  * Block listener to set API and CSS

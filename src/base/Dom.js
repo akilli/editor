@@ -1,6 +1,6 @@
 import Editor from './Editor.js';
 import Sorting from './Sorting.js';
-import { TagName } from './enum.js';
+import TagName from './TagName.js';
 import { isFunction, isString, not } from './util.js';
 
 /**

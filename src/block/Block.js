@@ -4,8 +4,8 @@ import BlockElement from './BlockElement.js';
 import BlockListener from './BlockListener.js';
 import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
+import TagName from '../base/TagName.js';
 import i18n from '../iframe/i18n.js';
-import { TagName } from '../base/enum.js';
 
 /**
  * Block Plugin

@@ -1,6 +1,6 @@
 import Editor from './Editor.js';
 import FormCreator from './FormCreator.js';
-import { TagName } from './enum.js';
+import TagName from './TagName.js';
 import { isOptString, isString } from './util.js';
 
 /**

@@ -4,8 +4,8 @@ import LinkDialog from './LinkDialog.js';
 import LinkListener from './LinkListener.js';
 import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
+import TagName from '../base/TagName.js';
 import i18n from './i18n.js';
-import { TagName } from '../base/enum.js';
 
 /**
  * Link Plugin

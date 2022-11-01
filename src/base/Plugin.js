@@ -1,7 +1,7 @@
 import Command from './Command.js';
 import Editor from './Editor.js';
 import Tag from './Tag.js';
-import { TagName } from './enum.js';
+import TagName from './TagName.js';
 import { isOptString, isString } from './util.js';
 
 /**

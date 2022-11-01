@@ -1,6 +1,6 @@
 import Blockquote from './Blockquote.js';
 import Filter from '../base/Filter.js';
-import { TagName } from '../base/enum.js';
+import TagName from '../base/TagName.js';
 
 /**
  * Filters blockquote figure

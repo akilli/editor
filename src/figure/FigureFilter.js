@@ -1,5 +1,5 @@
 import Filter from '../base/Filter.js';
-import { TagName } from '../base/enum.js';
+import TagName from '../base/TagName.js';
 
 /**
  * Filters out figure elements with figcaption elements as only child

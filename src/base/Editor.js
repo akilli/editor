@@ -5,8 +5,8 @@ import Dom from './Dom.js';
 import FilterManager from './FilterManager.js';
 import PluginManager from './PluginManager.js';
 import TagManager from './TagManager.js';
+import TagName from './TagName.js';
 import Translator from './Translator.js';
-import { TagName } from './enum.js';
 
 /**
  * Base Editor

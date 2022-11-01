@@ -1,6 +1,6 @@
 import Command from '../base/Command.js';
 import Table from './Table.js';
-import { TagName } from '../base/enum.js';
+import TagName from '../base/TagName.js';
 
 /**
  * Table Command

@@ -1,6 +1,6 @@
 import Filter from '../base/Filter.js';
 import Table from './Table.js';
-import { TagName } from '../base/enum.js';
+import TagName from '../base/TagName.js';
 
 /**
  * Filters table figure, element, sections and rows

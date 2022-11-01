@@ -1,4 +1,4 @@
-import { TagName } from './enum.js';
+import TagName from './TagName.js';
 import { isFunction, isOptHtml, isString } from './util.js';
 
 /**
