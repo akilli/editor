@@ -40,9 +40,9 @@ export default class FocusbarListener extends BarListener {
      * @param {HTMLElement} event.target
      * @return {void}
      */
-    focusin(event) {
-        if (event.target instanceof HTMLElement && event.target.hasAttribute('data-focusable')) {
-            this.#show(event.target);
+    focusin({ target }) {
+        if (target instanceof HTMLElement && target.hasAttribute('data-focusable')) {
+            this.#show(target);
         }
     }
 

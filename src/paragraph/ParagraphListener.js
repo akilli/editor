@@ -34,7 +34,7 @@ export default class ParagraphListener extends Listener {
      * @param {HTMLParagraphElement} event.target
      * @return {void}
      */
-    paste(event) {
-        this.editor.dom.window.setTimeout(() => this.editor.filters.filter(event.target));
+    paste({ target }) {
+        this.editor.dom.window.setTimeout(() => this.editor.filters.filter(target));
     }
 }

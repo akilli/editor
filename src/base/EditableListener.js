@@ -75,8 +75,8 @@ export default class EditableListener extends Listener {
      * @param {HTMLElement} event.target
      * @return {void}
      */
-    dblclick(event) {
-        this.editor.dom.selectContents(event.target);
-        this.editor.commands.findByTagName(event.target.localName)?.execute();
+    dblclick({ target }) {
+        this.editor.dom.selectContents(target);
+        this.editor.commands.findByTagName(target.localName)?.execute();
     }
 }

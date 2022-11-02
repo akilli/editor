@@ -57,8 +57,8 @@ export default class DetailsListener extends Listener {
      * @param {HTMLElement} event.target
      * @return {void}
      */
-    blur(event) {
-        this.#empty(event.target);
+    blur({ target }) {
+        this.#empty(target);
     }
 
     /**

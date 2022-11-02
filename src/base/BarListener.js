@@ -21,8 +21,8 @@ export default class BarListener extends Listener {
      * @param {HTMLElement} event.target
      * @return {void}
      */
-    click(event) {
-        this.editor.commands.execute(event.target.getAttribute('data-command'));
+    click({ target }) {
+        this.editor.commands.execute(target.getAttribute('data-command'));
     }
 
     /**
