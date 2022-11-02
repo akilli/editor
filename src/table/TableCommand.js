@@ -17,9 +17,6 @@ export default class TableCommand extends Command {
      * @return {void}
      */
     insert({ rows, cols } = {}) {
-        const figure = this.editor.dom.createElement(TagName.FIGURE, { attributes: { class: Table.name } });
-        const table = this.editor.dom.createTable(parseInt(rows, 10) || 1, parseInt(cols, 10) || 1);
-        this.editor.dom.insertLastChild(table, figure);
-        this.editor.dom.insert(figure);
+        this.editor.dom.insert(this.editor.dom.createTable(parseInt(rows, 10) || 1, parseInt(cols, 10) || 1));
     }
 }
