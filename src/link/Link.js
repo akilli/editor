@@ -6,26 +6,23 @@ import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Link Plugin
- */
 export default class Link extends Plugin {
     /**
-     * @inheritDoc
+     * @type {string}
      */
     static get name() {
         return 'link';
     }
 
     /**
-     * @inheritDoc
+     * @type {Plugin[]}
      */
     static get dependencies() {
         return [Base];
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     init() {
         this._tag({ name: TagName.A, group: TagGroup.FORMAT, attributes: ['href'] });

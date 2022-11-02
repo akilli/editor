@@ -1,6 +1,3 @@
-/**
- * Sorting
- */
 export default class Sorting {
     /**
      * @return {string}
@@ -31,8 +28,6 @@ export default class Sorting {
     }
 
     /**
-     * Returns available sortings
-     *
      * @return {string[]}
      */
     static values() {

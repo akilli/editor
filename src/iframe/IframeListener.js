@@ -2,12 +2,9 @@ import Iframe from './Iframe.js';
 import Listener from '../base/Listener.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Handles iframe elements
- */
 export default class IframeListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -16,9 +13,8 @@ export default class IframeListener extends Listener {
     }
 
     /**
-     * Initializes iframe elements when editor html is set
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     sethtml({ detail: { element } }) {
@@ -26,9 +22,8 @@ export default class IframeListener extends Listener {
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLIFrameElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLIFrameElement} event.detail.element
      * @return {void}
      */
     insertiframe({ detail: { element } }) {
@@ -36,8 +31,6 @@ export default class IframeListener extends Listener {
     }
 
     /**
-     * Initializes iframe element
-     *
      * @param {HTMLIFrameElement} element
      * @return {void}
      */

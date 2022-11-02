@@ -1,11 +1,8 @@
 import Listener from './Listener.js';
 
-/**
- * Focusable Listener
- */
 export default class FocusableListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -13,9 +10,8 @@ export default class FocusableListener extends Listener {
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     insert({ detail: { element } }) {

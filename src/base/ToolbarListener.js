@@ -1,11 +1,8 @@
 import BarListener from './BarListener.js';
 
-/**
- * Toolbar Listener
- */
 export default class ToolbarListener extends BarListener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -13,7 +10,9 @@ export default class ToolbarListener extends BarListener {
     }
 
     /**
-     * @inheritDoc
+     * @param {CustomEvent} event
+     * @param {HTMLButtonElement} event.detail.element
+     * @return {void}
      */
     insertbutton({ detail: { element } }) {
         if (element.getAttribute('data-command')) {

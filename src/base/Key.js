@@ -1,6 +1,3 @@
-/**
- * Keys
- */
 export default class Key {
     /**
      * @return {string}

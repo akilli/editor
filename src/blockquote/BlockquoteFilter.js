@@ -2,12 +2,10 @@ import Blockquote from './Blockquote.js';
 import Filter from '../base/Filter.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Filters blockquote figure
- */
 export default class BlockquoteFilter extends Filter {
     /**
-     * @inheritDoc
+     * @param {HTMLElement} element
+     * @return {void}
      */
     filter(element) {
         if (

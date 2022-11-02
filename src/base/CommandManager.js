@@ -1,19 +1,12 @@
 import Command from './Command.js';
 
-/**
- * Command Manager
- */
 export default class CommandManager {
     /**
-     * Registered commands
-     *
      * @type {Map<string, Command>}
      */
     #items = new Map();
 
     /**
-     * Initializes a new command manager
-     *
      * @param {Command[]} [commands = []]
      */
     constructor(commands = []) {
@@ -21,8 +14,6 @@ export default class CommandManager {
     }
 
     /**
-     * Returns registered command with given name
-     *
      * @param {string} name
      * @return {Command|undefined}
      */
@@ -31,8 +22,6 @@ export default class CommandManager {
     }
 
     /**
-     * Adds or updates a command
-     *
      * @param {Command} command
      * @return {void}
      */
@@ -45,18 +34,14 @@ export default class CommandManager {
     }
 
     /**
-     * Returns registered command for given tag name
-     *
      * @param {string} tagName
      * @return {Command|undefined}
      */
-    find(tagName) {
+    findByTagName(tagName) {
         return Array.from(this.#items.values()).find((command) => command.tag?.name === tagName);
     }
 
     /**
-     * Executes command with given name
-     *
      * @param {string} name
      * @return {void}
      */
@@ -65,7 +50,7 @@ export default class CommandManager {
     }
 
     /**
-     * Freezes itself and its items
+     * @return {void}
      */
     freeze() {
         this.#items.forEach((command) => Object.freeze(command));

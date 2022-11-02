@@ -5,26 +5,23 @@ import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Data Plugin
- */
 export default class Data extends Plugin {
     /**
-     * @inheritDoc
+     * @type {string}
      */
     static get name() {
         return 'data';
     }
 
     /**
-     * @inheritDoc
+     * @type {Plugin[]}
      */
     static get dependencies() {
         return [Base];
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     init() {
         this._tag({ name: TagName.DATA, group: TagGroup.FORMAT, attributes: ['value'] });

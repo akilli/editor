@@ -1,19 +1,12 @@
 import Dialog from './Dialog.js';
 
-/**
- * Dialog Manager
- */
 export default class DialogManager {
     /**
-     * Registered dialogs
-     *
      * @type {Map<string, Dialog>}
      */
     #items = new Map();
 
     /**
-     * Initializes a new dialog manager
-     *
      * @param {Dialog[]} [dialogs = []]
      */
     constructor(dialogs = []) {
@@ -21,8 +14,6 @@ export default class DialogManager {
     }
 
     /**
-     * Returns registered dialog with given name
-     *
      * @param {string} name
      * @return {Dialog|undefined}
      */
@@ -31,8 +22,6 @@ export default class DialogManager {
     }
 
     /**
-     * Adds or updates a dialog
-     *
      * @param {Dialog} dialog
      * @return {void}
      */
@@ -45,7 +34,7 @@ export default class DialogManager {
     }
 
     /**
-     * Freezes itself and its items
+     * @return {void}
      */
     freeze() {
         this.#items.forEach((dialog) => Object.freeze(dialog));

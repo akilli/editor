@@ -5,26 +5,23 @@ import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Abbreviation Plugin
- */
 export default class Abbreviation extends Plugin {
     /**
-     * @inheritDoc
+     * @type {string}
      */
     static get name() {
         return 'abbreviation';
     }
 
     /**
-     * @inheritDoc
+     * @type {Plugin[]}
      */
     static get dependencies() {
         return [Base];
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     init() {
         this._tag({ name: TagName.ABBR, group: TagGroup.FORMAT, attributes: ['title'] });

@@ -2,12 +2,9 @@ import Listener from '../base/Listener.js';
 import TagName from '../base/TagName.js';
 import Video from './Video.js';
 
-/**
- * Handles video elements
- */
 export default class VideoListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -16,9 +13,8 @@ export default class VideoListener extends Listener {
     }
 
     /**
-     * Initializes video elements when editor html is set
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     sethtml({ detail: { element } }) {
@@ -26,9 +22,8 @@ export default class VideoListener extends Listener {
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLVideoElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLVideoElement} event.detail.element
      * @return {void}
      */
     insertvideo({ detail: { element } }) {
@@ -36,8 +31,6 @@ export default class VideoListener extends Listener {
     }
 
     /**
-     * Initializes video element
-     *
      * @param {HTMLVideoElement} element
      * @return {void}
      */

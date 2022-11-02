@@ -44,12 +44,9 @@ import UnorderedList from '../unorderedlist/UnorderedList.js';
 import Variable from '../variable/Variable.js';
 import Video from '../video/Video.js';
 
-/**
- * Editor
- */
 export default class Editor extends BaseEditor {
     /**
-     * @inheritDoc
+     * @type {Object.<string, Object>}
      */
     static get defaultConfig() {
         return {

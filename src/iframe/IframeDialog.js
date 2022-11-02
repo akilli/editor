@@ -1,22 +1,18 @@
 import Dialog from '../base/Dialog.js';
 import Iframe from './Iframe.js';
 
-/**
- * Iframe Dialog
- */
 export default class IframeDialog extends Dialog {
     /**
-     * Initializes a new iframe dialog
-     *
      * @param {Editor} editor
-     * @param {string|undefined} url
+     * @param {string|undefined} browserUrl
      */
-    constructor(editor, url = undefined) {
-        super(editor, Iframe.name, url);
+    constructor(editor, browserUrl = undefined) {
+        super(editor, Iframe.name, browserUrl);
     }
 
     /**
-     * @inheritDoc
+     * @protected
+     * @return {void}
      */
     _prepareForm() {
         this.formCreator

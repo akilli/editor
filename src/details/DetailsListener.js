@@ -2,12 +2,9 @@ import Key from '../base/Key.js';
 import Listener from '../base/Listener.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Handles details elements
- */
 export default class DetailsListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -16,9 +13,8 @@ export default class DetailsListener extends Listener {
     }
 
     /**
-     * Initializes details elements
-     *
-     * @param {HTMLDetailsElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLDetailsElement} event.detail.element
      * @return {void}
      */
     insertdetails({ detail: { element } }) {
@@ -30,9 +26,8 @@ export default class DetailsListener extends Listener {
     }
 
     /**
-     * Initializes summary elements
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     insertsummary({ detail: { element } }) {

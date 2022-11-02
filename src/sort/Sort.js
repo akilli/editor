@@ -3,26 +3,23 @@ import Plugin from '../base/Plugin.js';
 import SortCommand from './SortCommand.js';
 import Sorting from '../base/Sorting.js';
 
-/**
- * Sort Plugin
- */
 export default class Sort extends Plugin {
     /**
-     * @inheritDoc
+     * @type {string}
      */
     static get name() {
         return 'sort';
     }
 
     /**
-     * @inheritDoc
+     * @type {Plugin[]}
      */
     static get dependencies() {
         return [Base];
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     init() {
         const sortings = {

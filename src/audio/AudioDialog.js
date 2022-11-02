@@ -1,22 +1,18 @@
 import Audio from './Audio.js';
 import Dialog from '../base/Dialog.js';
 
-/**
- * Audio Dialog
- */
 export default class AudioDialog extends Dialog {
     /**
-     * Initializes a new audio dialog
-     *
      * @param {Editor} editor
-     * @param {string|undefined} url
+     * @param {string|undefined} browserUrl
      */
-    constructor(editor, url = undefined) {
-        super(editor, Audio.name, url);
+    constructor(editor, browserUrl = undefined) {
+        super(editor, Audio.name, browserUrl);
     }
 
     /**
-     * @inheritDoc
+     * @protected
+     * @return {void}
      */
     _prepareForm() {
         this.formCreator

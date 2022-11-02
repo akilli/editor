@@ -1,22 +1,18 @@
 import Dialog from '../base/Dialog.js';
 import Video from './Video.js';
 
-/**
- * Video Dialog
- */
 export default class VideoDialog extends Dialog {
     /**
-     * Initializes a new video dialog
-     *
      * @param {Editor} editor
-     * @param {string|undefined} url
+     * @param {string|undefined} browserUrl
      */
-    constructor(editor, url = undefined) {
-        super(editor, Video.name, url);
+    constructor(editor, browserUrl = undefined) {
+        super(editor, Video.name, browserUrl);
     }
 
     /**
-     * @inheritDoc
+     * @protected
+     * @return {void}
      */
     _prepareForm() {
         this.formCreator

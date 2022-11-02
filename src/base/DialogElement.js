@@ -1,12 +1,7 @@
 import Key from './Key.js';
 
-/**
- * Dialog Element
- */
 export default class DialogElement extends HTMLElement {
     /**
-     * Indicates dialog state
-     *
      * @return {boolean}
      */
     get open() {
@@ -14,8 +9,6 @@ export default class DialogElement extends HTMLElement {
     }
 
     /**
-     * Sets dialog state
-     *
      * @param {boolean} state
      * @return {void}
      */
@@ -24,9 +17,7 @@ export default class DialogElement extends HTMLElement {
     }
 
     /**
-     * Initializes new dialog element
-     *
-     * @borrows DialogElement.connectedCallback
+     * @borrows connectedCallback
      */
     constructor() {
         super();
@@ -35,8 +26,6 @@ export default class DialogElement extends HTMLElement {
     }
 
     /**
-     * Runs when element is added to the DOM
-     *
      * @return {void}
      */
     connectedCallback() {
@@ -46,8 +35,6 @@ export default class DialogElement extends HTMLElement {
     }
 
     /**
-     * Shows dialog and dispatches show event
-     *
      * @return {void}
      */
     show() {
@@ -56,8 +43,6 @@ export default class DialogElement extends HTMLElement {
     }
 
     /**
-     * Closes dialog and dispatches close event
-     *
      * @return {void}
      */
     close() {

@@ -1,6 +1,3 @@
-/**
- * Tag names
- */
 export default class TagName {
     /**
      * @return {string}

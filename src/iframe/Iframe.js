@@ -6,33 +6,30 @@ import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Iframe Plugin
- */
 export default class Iframe extends Plugin {
     /**
-     * @inheritDoc
+     * @type {string}
      */
     static get name() {
         return 'iframe';
     }
 
     /**
-     * @inheritDoc
+     * @type {Plugin[]}
      */
     static get dependencies() {
         return [Base, Figure];
     }
 
     /**
-     * @inheritDoc
+     * @type {Object.<string, any>}
      */
     static get config() {
         return { browser: undefined };
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     init() {
         this._tag({

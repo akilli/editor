@@ -2,20 +2,13 @@ import Editor from './Editor.js';
 import TagGroup from './TagGroup.js';
 import { isOptString, isString } from './util.js';
 
-/**
- * Command
- */
 export default class Command {
     /**
-     * Editor
-     *
      * @type {Editor}
      */
     #editor;
 
     /**
-     * Allows read access to editor
-     *
      * @return {Editor}
      */
     get editor() {
@@ -23,15 +16,11 @@ export default class Command {
     }
 
     /**
-     * Name
-     *
      * @type {string}
      */
     #name;
 
     /**
-     * Allows read access to name
-     *
      * @return {string}
      */
     get name() {
@@ -39,15 +28,11 @@ export default class Command {
     }
 
     /**
-     * Associated tag
-     *
      * @type {Tag|undefined}
      */
     #tag;
 
     /**
-     * Allows read access to associated tag
-     *
      * @return {Tag|undefined}
      */
     get tag() {
@@ -55,15 +40,11 @@ export default class Command {
     }
 
     /**
-     * Associated dialog
-     *
      * @type {Dialog|undefined}
      */
     #dialog;
 
     /**
-     * Allows read access to associated dialog
-     *
      * @return {Dialog|undefined}
      */
     get dialog() {
@@ -71,8 +52,6 @@ export default class Command {
     }
 
     /**
-     * Initializes a new editor command optionally with given tag name
-     *
      * @param {Editor} editor
      * @param {string} name
      * @param {string|undefined} [tagName = undefined]
@@ -89,8 +68,6 @@ export default class Command {
     }
 
     /**
-     * Executes the command
-     *
      * @return {void}
      */
     execute() {
@@ -98,8 +75,6 @@ export default class Command {
     }
 
     /**
-     * Inserts element
-     *
      * @param {Object.<string, string>} [attributes = {}]
      * @return {void}
      */
@@ -126,8 +101,6 @@ export default class Command {
     }
 
     /**
-     * Open dialog
-     *
      * @return {void}
      */
     openDialog() {

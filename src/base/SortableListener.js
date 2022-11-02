@@ -2,12 +2,9 @@ import Key from './Key.js';
 import Listener from './Listener.js';
 import Sorting from './Sorting.js';
 
-/**
- * Sortable Listener
- */
 export default class SortableListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -15,9 +12,8 @@ export default class SortableListener extends Listener {
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     insert({ detail: { element } }) {
@@ -30,8 +26,6 @@ export default class SortableListener extends Listener {
     }
 
     /**
-     * Handles key combinations for sorting
-     *
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
      * @return {void}
@@ -52,8 +46,6 @@ export default class SortableListener extends Listener {
     }
 
     /**
-     * Pointer down
-     *
      * @param {PointerEvent} event
      * @param {HTMLElement} event.target
      * @return {void}
@@ -68,8 +60,6 @@ export default class SortableListener extends Listener {
     }
 
     /**
-     * Pointer move
-     *
      * @param {PointerEvent} event
      * @param {HTMLElement} event.target
      * @return {void}
@@ -85,8 +75,6 @@ export default class SortableListener extends Listener {
     }
 
     /**
-     * Pointer up
-     *
      * @param {PointerEvent} event
      * @param {HTMLElement} event.target
      * @return {void}

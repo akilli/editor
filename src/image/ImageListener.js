@@ -2,12 +2,9 @@ import Image from './Image.js';
 import Listener from '../base/Listener.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Handles image elements
- */
 export default class ImageListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -16,9 +13,8 @@ export default class ImageListener extends Listener {
     }
 
     /**
-     * Initializes image elements when editor html is set
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     sethtml({ detail: { element } }) {
@@ -26,9 +22,8 @@ export default class ImageListener extends Listener {
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLImageElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLImageElement} event.detail.element
      * @return {void}
      */
     insertimg({ detail: { element } }) {
@@ -36,8 +31,6 @@ export default class ImageListener extends Listener {
     }
 
     /**
-     * Initializes image element
-     *
      * @param {HTMLImageElement} element
      * @return {void}
      */

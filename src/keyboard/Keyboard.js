@@ -4,26 +4,23 @@ import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Keyboard Plugin
- */
 export default class Keyboard extends Plugin {
     /**
-     * @inheritDoc
+     * @type {string}
      */
     static get name() {
         return 'keyboard';
     }
 
     /**
-     * @inheritDoc
+     * @type {Plugin[]}
      */
     static get dependencies() {
         return [Base];
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     init() {
         this._tag({ name: TagName.KBD, group: TagGroup.FORMAT });

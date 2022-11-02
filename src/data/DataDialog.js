@@ -1,13 +1,8 @@
 import Data from './Data.js';
 import Dialog from '../base/Dialog.js';
 
-/**
- * Data Dialog
- */
 export default class DataDialog extends Dialog {
     /**
-     * Initializes a new data dialog
-     *
      * @param {Editor} editor
      */
     constructor(editor) {
@@ -15,7 +10,8 @@ export default class DataDialog extends Dialog {
     }
 
     /**
-     * @inheritDoc
+     * @protected
+     * @return {void}
      */
     _prepareForm() {
         this.formCreator.addLegend(this._('Data')).addTextInput('value', this._('Machine-readable Value'), {

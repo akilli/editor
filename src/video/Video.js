@@ -6,33 +6,30 @@ import TagName from '../base/TagName.js';
 import VideoDialog from './VideoDialog.js';
 import VideoListener from './VideoListener.js';
 
-/**
- * Video Plugin
- */
 export default class Video extends Plugin {
     /**
-     * @inheritDoc
+     * @type {string}
      */
     static get name() {
         return 'video';
     }
 
     /**
-     * @inheritDoc
+     * @type {Plugin[]}
      */
     static get dependencies() {
         return [Base, Figure];
     }
 
     /**
-     * @inheritDoc
+     * @type {Object.<string, any>}
      */
     static get config() {
         return { browser: undefined };
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     init() {
         this._tag({

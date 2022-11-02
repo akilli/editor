@@ -1,40 +1,27 @@
 import { isOptArray, isOptString, isString } from './util.js';
 
-/**
- * Tag
- */
 export default class Tag {
     /**
-     * Name
-     *
      * @type {string}
      */
     name;
 
     /**
-     * Name of the tag group
-     *
      * @type {string}
      */
     group;
 
     /**
-     * Allowed groups of child elements
-     *
      * @type {string[]}
      */
     children;
 
     /**
-     * Allowed attributes
-     *
      * @type {string[]}
      */
     attributes;
 
     /**
-     * Is element alignable
-     *
      * @type {boolean}
      */
     alignable;
@@ -47,15 +34,11 @@ export default class Tag {
     arbitrary;
 
     /**
-     * Is element deletable
-     *
      * @type {boolean}
      */
     deletable;
 
     /**
-     * Is element editable
-     *
      * @type {boolean}
      */
     editable;
@@ -68,15 +51,11 @@ export default class Tag {
     empty;
 
     /**
-     * Should element be focused on insert
-     *
      * @type {boolean}
      */
     focusable;
 
     /**
-     * Is element navigable
-     *
      * @type {boolean}
      */
     navigable;
@@ -89,8 +68,6 @@ export default class Tag {
     slotable;
 
     /**
-     * Is element sortable
-     *
      * @type {boolean}
      */
     sortable;
@@ -103,8 +80,6 @@ export default class Tag {
     enter;
 
     /**
-     * Defines a new tag
-     *
      * @param {string} name
      * @param {string} group
      * @param {Object.<string, any>} [opts = {}]

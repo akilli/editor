@@ -1,12 +1,9 @@
 import Listener from '../base/Listener.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Handles list elements
- */
 export default class ListListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -18,9 +15,8 @@ export default class ListListener extends Listener {
     }
 
     /**
-     * Initializes list item elements when editor html is set
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     sethtml({ detail: { element } }) {
@@ -28,9 +24,8 @@ export default class ListListener extends Listener {
     }
 
     /**
-     * Initializes listitem elements
-     *
-     * @param {HTMLLIElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLLIElement} event.detail.element
      * @return {void}
      */
     insertli({ detail: { element } }) {
@@ -50,9 +45,8 @@ export default class ListListener extends Listener {
     }
 
     /**
-     * Initializes orderedlist elements
-     *
-     * @param {HTMLOListElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLOListElement} event.detail.element
      * @return {void}
      */
     insertol({ detail: { element } }) {
@@ -60,9 +54,8 @@ export default class ListListener extends Listener {
     }
 
     /**
-     * Initializes unorderedlist elements
-     *
-     * @param {HTMLUListElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLUListElement} event.detail.element
      * @return {void}
      */
     insertul({ detail: { element } }) {

@@ -2,12 +2,9 @@ import Blockquote from './Blockquote.js';
 import Listener from '../base/Listener.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Handles blockquote elements
- */
 export default class BlockquoteListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -16,9 +13,8 @@ export default class BlockquoteListener extends Listener {
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLQuoteElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLQuoteElement} event.detail.element
      * @return {void}
      */
     insertblockquote({ detail: { element } }) {
@@ -26,9 +22,8 @@ export default class BlockquoteListener extends Listener {
     }
 
     /**
-     * Removes parent figure element
-     *
-     * @param {HTMLElement} target
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.target
      * @return {void}
      */
     deleteblockquote({ detail: { target } }) {

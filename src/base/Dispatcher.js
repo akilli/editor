@@ -1,20 +1,13 @@
 import TagName from './TagName.js';
 import { isFunction, isOptHtml, isString } from './util.js';
 
-/**
- * Event Dispatcher
- */
 export default class Dispatcher {
     /**
-     * Managed element
-     *
      * @type {HTMLElement}
      */
     #element;
 
     /**
-     * Initializes a new event dispatcher
-     *
      * @param {HTMLElement} element
      */
     constructor(element) {
@@ -27,8 +20,6 @@ export default class Dispatcher {
     }
 
     /**
-     * Dispatches an event on managed element
-     *
      * @param {string} type
      * @param {HTMLElement|undefined} [element = undefined]
      * @param {HTMLElement|undefined} [target = undefined]

@@ -2,12 +2,10 @@ import Filter from './Filter.js';
 import TagGroup from './TagGroup.js';
 import TagName from './TagName.js';
 
-/**
- * Content filter
- */
 export default class ContentFilter extends Filter {
     /**
-     * @inheritDoc
+     * @param {HTMLElement} element
+     * @return {void}
      */
     filter(element) {
         const tag = this.editor.tags.get(element);
@@ -37,9 +35,9 @@ export default class ContentFilter extends Filter {
 
                 if (childTag && this.editor.tags.allowed(element, realChild)) {
                     wrap(realChild);
-                    this.#element(realChild, childTag);
+                    this.#filter(realChild, childTag);
                 } else if (childTag && childTag.group === TagGroup.FORMAT && allowedParagraph) {
-                    const filteredChild = this.#element(realChild, childTag);
+                    const filteredChild = this.#filter(realChild, childTag);
 
                     if (filteredChild) {
                         p.push(filteredChild.outerHTML);
@@ -70,8 +68,6 @@ export default class ContentFilter extends Filter {
     }
 
     /**
-     * Converts element
-     *
      * @param {HTMLElement} element
      * @return {HTMLElement}
      */
@@ -89,13 +85,11 @@ export default class ContentFilter extends Filter {
     }
 
     /**
-     * Filters element
-     *
      * @param {HTMLElement} element
      * @param {Tag} tag
      * @return {HTMLElement|undefined}
      */
-    #element(element, tag) {
+    #filter(element, tag) {
         Array.from(element.attributes).forEach(
             (item) => !tag.attributes.includes(item.name) && element.removeAttribute(item.name)
         );

@@ -1,22 +1,18 @@
 import Block from './Block.js';
 import Dialog from '../base/Dialog.js';
 
-/**
- * Block Dialog
- */
 export default class BlockDialog extends Dialog {
     /**
-     * Initializes a new block dialog
-     *
      * @param {Editor} editor
-     * @param {string|undefined} url
+     * @param {string|undefined} browserUrl
      */
-    constructor(editor, url = undefined) {
-        super(editor, Block.name, url);
+    constructor(editor, browserUrl = undefined) {
+        super(editor, Block.name, browserUrl);
     }
 
     /**
-     * @inheritDoc
+     * @protected
+     * @return {void}
      */
     _prepareForm() {
         this.formCreator.addLegend(this._('Block')).addTextInput('id', this._('ID'), { required: 'required' });

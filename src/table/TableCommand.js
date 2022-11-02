@@ -2,13 +2,8 @@ import Command from '../base/Command.js';
 import Table from './Table.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Table Command
- */
 export default class TableCommand extends Command {
     /**
-     * Initializes a new table command
-     *
      * @param {Editor} editor
      */
     constructor(editor) {
@@ -16,10 +11,9 @@ export default class TableCommand extends Command {
     }
 
     /**
-     * Inserts table element
-     *
-     * @param {string} rows
-     * @param {string} cols
+     * @param {Object.<string, string>} [attributes = {}]
+     * @param {string} attributes.rows
+     * @param {string} attributes.cols
      * @return {void}
      */
     insert({ rows, cols } = {}) {

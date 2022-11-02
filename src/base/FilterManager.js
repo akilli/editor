@@ -1,19 +1,12 @@
 import Filter from './Filter.js';
 
-/**
- * Filter Manager
- */
 export default class FilterManager {
     /**
-     * Registered filters
-     *
      * @type {Set<Filter>}
      */
     #items = new Set();
 
     /**
-     * Adds or updates a filter
-     *
      * @param {Filter} filter
      * @return {void}
      */
@@ -26,8 +19,6 @@ export default class FilterManager {
     }
 
     /**
-     * Filters element
-     *
      * @param {HTMLElement} element
      * @return {void}
      */
@@ -43,7 +34,7 @@ export default class FilterManager {
     }
 
     /**
-     * Freezes itself and its items
+     * @return {void}
      */
     freeze() {
         this.#items.forEach((filter) => Object.freeze(filter));

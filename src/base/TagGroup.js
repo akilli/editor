@@ -1,6 +1,3 @@
-/**
- * Tag groups
- */
 export default class TagGroup {
     /**
      * @return {string}

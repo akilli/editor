@@ -2,26 +2,23 @@ import Base from '../base/Base.js';
 import DeleteCommand from './DeleteCommand.js';
 import Plugin from '../base/Plugin.js';
 
-/**
- * Delete Plugin
- */
 export default class Delete extends Plugin {
     /**
-     * @inheritDoc
+     * @type {string}
      */
     static get name() {
         return 'delete';
     }
 
     /**
-     * @inheritDoc
+     * @type {Plugin[]}
      */
     static get dependencies() {
         return [Base];
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     init() {
         this.editor.commands.set(new DeleteCommand(this.editor));

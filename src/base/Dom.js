@@ -3,20 +3,13 @@ import Sorting from './Sorting.js';
 import TagName from './TagName.js';
 import { isFunction, isString, not } from './util.js';
 
-/**
- * DOM Manager
- */
 export default class Dom {
     /**
-     * Editor
-     *
      * @type {Editor}
      */
     #editor;
 
     /**
-     * Allows read access to editor
-     *
      * @return {Editor}
      */
     get editor() {
@@ -24,15 +17,11 @@ export default class Dom {
     }
 
     /**
-     * Correspondig DOM Document
-     *
      * @type {Document}
      */
     #document;
 
     /**
-     * Allows read access to correspondig DOM Document
-     *
      * @return {Document}
      */
     get document() {
@@ -40,15 +29,11 @@ export default class Dom {
     }
 
     /**
-     * Corresponding Window object
-     *
      * @type {Window}
      */
     #window;
 
     /**
-     * Allows read access to corresponding Window object
-     *
      * @return {Window}
      */
     get window() {
@@ -56,15 +41,11 @@ export default class Dom {
     }
 
     /**
-     * Correspondig DOM Document root element
-     *
      * @type {HTMLHtmlElement}
      */
     #root;
 
     /**
-     * Allows read access to correspondig DOM Document root element
-     *
      * @return {HTMLHtmlElement}
      */
     get root() {
@@ -91,8 +72,6 @@ export default class Dom {
     };
 
     /**
-     * Initializes a new DOM manager
-     *
      * @param {Editor} editor
      * @param {Document} document
      */
@@ -170,8 +149,6 @@ export default class Dom {
     }
 
     /**
-     * Inserts text
-     *
      * @param {string} text
      * @return {void}
      */
@@ -238,8 +215,6 @@ export default class Dom {
     }
 
     /**
-     * Creates text node in editor document
-     *
      * @param {string} text
      * @return {Text}
      */
@@ -248,8 +223,6 @@ export default class Dom {
     }
 
     /**
-     * Creates table
-     *
      * @param {number} [rows = 1]
      * @param {number} [cols = 1]
      * @return {HTMLTableElement}
@@ -265,8 +238,6 @@ export default class Dom {
     }
 
     /**
-     * Creates table header
-     *
      * @param {number} [rows = 1]
      * @param {number} [cols = 1]
      * @return {HTMLTableSectionElement}
@@ -276,8 +247,6 @@ export default class Dom {
     }
 
     /**
-     * Creates table body
-     *
      * @param {number} [rows = 1]
      * @param {number} [cols = 1]
      * @return {HTMLTableSectionElement}
@@ -287,8 +256,6 @@ export default class Dom {
     }
 
     /**
-     * Creates table footer
-     *
      * @param {number} [rows = 1]
      * @param {number} [cols = 1]
      * @return {HTMLTableSectionElement}
@@ -298,8 +265,6 @@ export default class Dom {
     }
 
     /**
-     * Creates table header row
-     *
      * @param {number} cols
      * @return {HTMLTableRowElement}
      */
@@ -314,8 +279,6 @@ export default class Dom {
     }
 
     /**
-     * Creates table row
-     *
      * @param {number} cols
      * @return {HTMLTableRowElement}
      */
@@ -405,8 +368,6 @@ export default class Dom {
     }
 
     /**
-     * Returns current active element
-     *
      * @return {HTMLElement|undefined}
      */
     getActiveElement() {
@@ -416,8 +377,6 @@ export default class Dom {
     }
 
     /**
-     * Returns current selected element
-     *
      * @return {HTMLElement|undefined}
      */
     getSelectedElement() {
@@ -462,8 +421,6 @@ export default class Dom {
     }
 
     /**
-     * Returns current selected contenteditable
-     *
      * @return {HTMLElement|undefined}
      */
     getSelectedEditable() {
@@ -484,8 +441,6 @@ export default class Dom {
     }
 
     /**
-     * Returns current selection
-     *
      * @return {Selection}
      */
     getSelection() {
@@ -493,8 +448,6 @@ export default class Dom {
     }
 
     /**
-     * Returns first range
-     *
      * @return {Range|undefined}
      */
     getRange() {
@@ -504,8 +457,6 @@ export default class Dom {
     }
 
     /**
-     * Removes all ranges and sets first range
-     *
      * @param {Range} range
      * @return {void}
      */
@@ -718,8 +669,6 @@ export default class Dom {
     }
 
     /**
-     * Creates table section
-     *
      * @param {string} name
      * @param {number} rows
      * @param {number} cols

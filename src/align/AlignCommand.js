@@ -2,20 +2,13 @@ import Align from './Align.js';
 import Alignment from '../base/Alignment.js';
 import Command from '../base/Command.js';
 
-/**
- * Align Command
- */
 export default class AlignCommand extends Command {
     /**
-     * Configured alignment
-     *
      * @type {string}
      */
     #alignment;
 
     /**
-     * Initializes a new align command
-     *
      * @param {Editor} editor
      * @param {string} alignment
      */
@@ -29,7 +22,7 @@ export default class AlignCommand extends Command {
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     execute() {
         const element = this.editor.dom.getActiveElement();

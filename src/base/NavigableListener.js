@@ -1,12 +1,9 @@
 import Key from './Key.js';
 import Listener from './Listener.js';
 
-/**
- * Navigable Listener
- */
 export default class NavigableListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -14,9 +11,8 @@ export default class NavigableListener extends Listener {
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     insert({ detail: { element } }) {
@@ -27,8 +23,6 @@ export default class NavigableListener extends Listener {
     }
 
     /**
-     * Handles key combinations for navigation
-     *
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
      * @return {void}
@@ -68,7 +62,7 @@ export default class NavigableListener extends Listener {
     }
 
     /**
-     * Enables or disables navigation for contenteditable elements
+     * Indicates if navigation is enabled for element
      *
      * @param {HTMLElement} element
      * @return {boolean}

@@ -1,13 +1,8 @@
 import Command from '../base/Command.js';
 import Delete from './Delete.js';
 
-/**
- * Delete Command
- */
 export default class DeleteCommand extends Command {
     /**
-     * Initializes a new delete command
-     *
      * @param {Editor} editor
      */
     constructor(editor) {
@@ -15,7 +10,7 @@ export default class DeleteCommand extends Command {
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     execute() {
         const element = this.editor.dom.getActiveElement();

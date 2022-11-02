@@ -2,12 +2,9 @@ import Audio from './Audio.js';
 import Listener from '../base/Listener.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Handles audio elements
- */
 export default class AudioListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -16,9 +13,8 @@ export default class AudioListener extends Listener {
     }
 
     /**
-     * Initializes audio elements when editor html is set
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     sethtml({ detail: { element } }) {
@@ -26,9 +22,8 @@ export default class AudioListener extends Listener {
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLAudioElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLAudioElement} event.detail.element
      * @return {void}
      */
     insertaudio({ detail: { element } }) {

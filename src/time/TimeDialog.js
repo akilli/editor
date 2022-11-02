@@ -1,13 +1,8 @@
 import Dialog from '../base/Dialog.js';
 import Time from './Time.js';
 
-/**
- * Time Dialog
- */
 export default class TimeDialog extends Dialog {
     /**
-     * Initializes a new time dialog
-     *
      * @param {Editor} editor
      */
     constructor(editor) {
@@ -15,7 +10,8 @@ export default class TimeDialog extends Dialog {
     }
 
     /**
-     * @inheritDoc
+     * @protected
+     * @return {void}
      */
     _prepareForm() {
         this.formCreator.addLegend(this._('Data')).addTextInput('datetime', this._('Machine-readable Datetime'), {

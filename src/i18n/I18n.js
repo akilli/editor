@@ -2,26 +2,23 @@ import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 import de from './de.js';
 
-/**
- * I18n Plugin
- */
 export default class I18n extends Plugin {
     /**
-     * @inheritDoc
+     * @type {string}
      */
     static get name() {
         return 'i18n';
     }
 
     /**
-     * @inheritDoc
+     * @type {Plugin[]}
      */
     static get dependencies() {
         return [Base];
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     init() {
         this._i18n({ de });

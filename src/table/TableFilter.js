@@ -2,12 +2,10 @@ import Filter from '../base/Filter.js';
 import Table from './Table.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Filters table figure, element, sections and rows
- */
 export default class TableFilter extends Filter {
     /**
-     * @inheritDoc
+     * @param {HTMLElement} element
+     * @return {void}
      */
     filter(element) {
         if (

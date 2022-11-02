@@ -2,12 +2,9 @@ import Listener from '../base/Listener.js';
 import Table from './Table.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Table Listener
- */
 export default class TableListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -15,9 +12,8 @@ export default class TableListener extends Listener {
     }
 
     /**
-     * Initializes table elements
-     *
-     * @param {HTMLTableElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLTableElement} event.detail.element
      * @return {void}
      */
     inserttable({ detail: { element } }) {

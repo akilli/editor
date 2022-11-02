@@ -2,12 +2,9 @@ import Key from './Key.js';
 import Listener from './Listener.js';
 import TagName from './TagName.js';
 
-/**
- * Editable Listener
- */
 export default class EditableListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -15,9 +12,8 @@ export default class EditableListener extends Listener {
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     insert({ detail: { element } }) {
@@ -29,8 +25,6 @@ export default class EditableListener extends Listener {
     }
 
     /**
-     * Handles enter and backspace keydown events
-     *
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
      * @return {void}
@@ -77,14 +71,12 @@ export default class EditableListener extends Listener {
     }
 
     /**
-     * Handles double-click events on format elements
-     *
      * @param {MouseEvent} event
      * @param {HTMLElement} event.target
      * @return {void}
      */
     dblclick(event) {
         this.editor.dom.selectContents(event.target);
-        this.editor.commands.find(event.target.localName)?.execute();
+        this.editor.commands.findByTagName(event.target.localName)?.execute();
     }
 }

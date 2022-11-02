@@ -1,13 +1,8 @@
 import Dialog from '../base/Dialog.js';
 import Division from './Division.js';
 
-/**
- * Division Dialog
- */
 export default class DivisionDialog extends Dialog {
     /**
-     * Initializes a new div dialog
-     *
      * @param {Editor} editor
      */
     constructor(editor) {
@@ -15,7 +10,8 @@ export default class DivisionDialog extends Dialog {
     }
 
     /**
-     * @inheritDoc
+     * @protected
+     * @return {void}
      */
     _prepareForm() {
         this.formCreator

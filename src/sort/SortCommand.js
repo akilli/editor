@@ -2,20 +2,13 @@ import Command from '../base/Command.js';
 import Sort from './Sort.js';
 import Sorting from '../base/Sorting.js';
 
-/**
- * Sort Command
- */
 export default class SortCommand extends Command {
     /**
-     * Configured sorting
-     *
      * @type {string}
      */
     #sorting;
 
     /**
-     * Initializes a new sort command
-     *
      * @param {Editor} editor
      * @param {string} sorting
      */
@@ -29,7 +22,7 @@ export default class SortCommand extends Command {
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     execute() {
         const element = this.editor.dom.getActiveElement();

@@ -1,12 +1,9 @@
 import Listener from '../base/Listener.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Creates missing figcaption elements
- */
 export default class FigureListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -14,9 +11,8 @@ export default class FigureListener extends Listener {
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     insertfigure({ detail: { element } }) {

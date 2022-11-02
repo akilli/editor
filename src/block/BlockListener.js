@@ -1,12 +1,9 @@
 import Listener from '../base/Listener.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Block listener to set API and CSS
- */
 export default class BlockListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -15,9 +12,8 @@ export default class BlockListener extends Listener {
     }
 
     /**
-     * Filters block elements without id when editor html is set
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     sethtml({ detail: { element } }) {
@@ -28,9 +24,8 @@ export default class BlockListener extends Listener {
     }
 
     /**
-     * Removes block element if no id is set or sets block content from API if configured
-     *
-     * @param {BlockElement} element
+     * @param {CustomEvent} event
+     * @param {BlockElement} event.detail.element
      * @return {Promise<void>}
      */
     async insertappblock({ detail: { element } }) {

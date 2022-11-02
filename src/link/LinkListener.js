@@ -1,12 +1,9 @@
 import Listener from '../base/Listener.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Handles link elements
- */
 export default class LinkListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -15,9 +12,8 @@ export default class LinkListener extends Listener {
     }
 
     /**
-     * Initializes link elements when editor html is set
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     sethtml({ detail: { element } }) {
@@ -25,9 +21,8 @@ export default class LinkListener extends Listener {
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLAnchorElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLAnchorElement} event.detail.element
      * @return {void}
      */
     inserta({ detail: { element } }) {
@@ -35,8 +30,6 @@ export default class LinkListener extends Listener {
     }
 
     /**
-     * Initializes link element
-     *
      * @param {HTMLAnchorElement} element
      * @return {void}
      */

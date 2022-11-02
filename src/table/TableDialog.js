@@ -1,13 +1,8 @@
 import Dialog from '../base/Dialog.js';
 import Table from './Table.js';
 
-/**
- * Table Dialog
- */
 export default class TableDialog extends Dialog {
     /**
-     * Initializes a new table dialog
-     *
      * @param {Editor} editor
      */
     constructor(editor) {
@@ -15,7 +10,8 @@ export default class TableDialog extends Dialog {
     }
 
     /**
-     * @inheritDoc
+     * @protected
+     * @return {void}
      */
     _prepareForm() {
         this.formCreator

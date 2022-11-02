@@ -1,12 +1,9 @@
 import Listener from '../base/Listener.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Handles paragraph elements
- */
 export default class ParagraphListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -15,38 +12,24 @@ export default class ParagraphListener extends Listener {
     }
 
     /**
-     * Initializes paragraph elements when editor html is set
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     sethtml({ detail: { element } }) {
-        Array.from(element.getElementsByTagName(TagName.P)).forEach((item) => this.#init(item));
+        Array.from(element.getElementsByTagName(TagName.P)).forEach((item) => item.addEventListener('paste', this));
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLParagraphElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLParagraphElement} event.detail.element
      * @return {void}
      */
     insertp({ detail: { element } }) {
-        this.#init(element);
-    }
-
-    /**
-     * Initializes paragraph element
-     *
-     * @param {HTMLParagraphElement} element
-     * @return {void}
-     */
-    #init(element) {
         element.addEventListener('paste', this);
     }
 
     /**
-     * Handles paste event
-     *
      * @param {ClipboardEvent} event
      * @param {HTMLParagraphElement} event.target
      * @return {void}

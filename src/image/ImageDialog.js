@@ -1,22 +1,18 @@
 import Dialog from '../base/Dialog.js';
 import Image from './Image.js';
 
-/**
- * Image Dialog
- */
 export default class ImageDialog extends Dialog {
     /**
-     * Initializes a new image dialog
-     *
      * @param {Editor} editor
-     * @param {string|undefined} url
+     * @param {string|undefined} browserUrl
      */
-    constructor(editor, url = undefined) {
-        super(editor, Image.name, url);
+    constructor(editor, browserUrl = undefined) {
+        super(editor, Image.name, browserUrl);
     }
 
     /**
-     * @inheritDoc
+     * @protected
+     * @return {void}
      */
     _prepareForm() {
         this.formCreator

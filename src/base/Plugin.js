@@ -4,20 +4,13 @@ import Tag from './Tag.js';
 import TagName from './TagName.js';
 import { isOptString, isString } from './util.js';
 
-/**
- * Plugin
- */
 export default class Plugin {
     /**
-     * Editor
-     *
      * @type {Editor}
      */
     #editor;
 
     /**
-     * Allows read access to editor
-     *
      * @return {Editor}
      */
     get editor() {
@@ -25,8 +18,6 @@ export default class Plugin {
     }
 
     /**
-     * Name
-     *
      * @type {string}
      */
     static get name() {
@@ -34,8 +25,6 @@ export default class Plugin {
     }
 
     /**
-     * Dependencies
-     *
      * @type {Plugin[]}
      */
     static get dependencies() {
@@ -43,7 +32,7 @@ export default class Plugin {
     }
 
     /**
-     * Returns plugin default configuration
+     * Default configuration
      *
      * @type {Object.<string, any>}
      */
@@ -52,8 +41,6 @@ export default class Plugin {
     }
 
     /**
-     * Initializes a new plugin
-     *
      * @param {Editor} editor
      */
     constructor(editor) {
@@ -65,8 +52,6 @@ export default class Plugin {
     }
 
     /**
-     * Initializes plugin
-     *
      * @abstract
      * @return {void}
      */

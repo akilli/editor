@@ -3,26 +3,23 @@ import Alignment from '../base/Alignment.js';
 import Base from '../base/Base.js';
 import Plugin from '../base/Plugin.js';
 
-/**
- * Align Plugin
- */
 export default class Align extends Plugin {
     /**
-     * @inheritDoc
+     * @type {string}
      */
     static get name() {
         return 'align';
     }
 
     /**
-     * @inheritDoc
+     * @type {Plugin[]}
      */
     static get dependencies() {
         return [Base];
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     init() {
         const alignments = {

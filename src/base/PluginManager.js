@@ -1,19 +1,12 @@
 import Plugin from './Plugin.js';
 
-/**
- * Plugin Manager
- */
 export default class PluginManager {
     /**
-     * Registered plugins
-     *
      * @type {Map<string, Plugin>}
      */
     #items = new Map();
 
     /**
-     * Initializes a new plugin map
-     *
      * @param {Plugin[]} [plugins = []]
      */
     constructor(plugins = []) {
@@ -21,8 +14,6 @@ export default class PluginManager {
     }
 
     /**
-     * Returns registered plugin with given name
-     *
      * @param {string} name
      * @return {Plugin|undefined}
      */
@@ -31,8 +22,6 @@ export default class PluginManager {
     }
 
     /**
-     * Adds or updates a plugin
-     *
      * @param {Plugin} plugin
      * @return {void}
      */
@@ -45,8 +34,6 @@ export default class PluginManager {
     }
 
     /**
-     * Initializes registered plugins
-     *
      * @return {void}
      */
     init() {
@@ -54,7 +41,7 @@ export default class PluginManager {
     }
 
     /**
-     * Freezes itself and its items
+     * @return {void}
      */
     freeze() {
         this.#items.forEach((plugin) => Object.freeze(plugin));

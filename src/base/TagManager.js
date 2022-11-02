@@ -1,19 +1,12 @@
 import Tag from './Tag.js';
 
-/**
- * Tag Manager
- */
 export default class TagManager {
     /**
-     * Registered tags
-     *
      * @type {Map<string, Tag>}
      */
     #items = new Map();
 
     /**
-     * Initializes a new tag manager
-     *
      * @param {Tag[]} [tags = []]
      */
     constructor(tags = []) {
@@ -21,8 +14,6 @@ export default class TagManager {
     }
 
     /**
-     * Returns registered tag for given key
-     *
      * @param {string|HTMLElement} key
      * @return {Tag|undefined}
      */
@@ -31,8 +22,6 @@ export default class TagManager {
     }
 
     /**
-     * Adds or updates a tag
-     *
      * @param {Tag} tag
      * @return {void}
      */
@@ -58,7 +47,7 @@ export default class TagManager {
     }
 
     /**
-     * Freezes itself and its items
+     * @return {void}
      */
     freeze() {
         this.#items.forEach((tag) => {

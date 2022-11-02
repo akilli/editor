@@ -15,26 +15,23 @@ import TagListener from './TagListener.js';
 import ToolbarListener from './ToolbarListener.js';
 import TagName from './TagName.js';
 
-/**
- * Base Plugin
- */
 export default class Base extends Plugin {
     /**
-     * @inheritDoc
+     * @type {string}
      */
     static get name() {
         return 'base';
     }
 
     /**
-     * @inheritDoc
+     * @type {Object.<string, any>}
      */
     static get config() {
         return { browser: {}, filter: {}, lang: undefined, plugins: [], pluginsDisabled: false };
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     init() {
         this.editor.dom.registerElement(TagName.DIALOG, DialogElement);

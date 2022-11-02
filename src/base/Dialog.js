@@ -3,20 +3,13 @@ import FormCreator from './FormCreator.js';
 import TagName from './TagName.js';
 import { isOptString, isString } from './util.js';
 
-/**
- * Dialog
- */
 export default class Dialog {
     /**
-     * Editor
-     *
      * @type {Editor}
      */
     #editor;
 
     /**
-     * Allows read access to editor
-     *
      * @return {Editor}
      */
     get editor() {
@@ -24,15 +17,11 @@ export default class Dialog {
     }
 
     /**
-     * Name
-     *
      * @type {string}
      */
     #name;
 
     /**
-     * Allows read access to name
-     *
      * @return {string}
      */
     get name() {
@@ -40,31 +29,23 @@ export default class Dialog {
     }
 
     /**
-     * Browser URL
-     *
      * @type {string|undefined}
      */
-    #url;
+    #browserUrl;
 
     /**
-     * Allows read access to browser URL
-     *
      * @return {string|undefined}
      */
-    get url() {
-        return this.#url;
+    get browserUrl() {
+        return this.#browserUrl;
     }
 
     /**
-     * Form creator
-     *
      * @type {FormCreator|undefined}
      */
     #formCreator;
 
     /**
-     * Allows read access to form creator
-     *
      * @type {FormCreator}
      */
     get formCreator() {
@@ -72,20 +53,18 @@ export default class Dialog {
     }
 
     /**
-     * Initializes a new dialog with given name
-     *
      * @param {Editor} editor
      * @param {string} name
-     * @param {string|undefined} url
+     * @param {string|undefined} browserUrl
      */
-    constructor(editor, name, url = undefined) {
-        if (!(editor instanceof Editor) || !isString(name) || !isOptString(url)) {
+    constructor(editor, name, browserUrl = undefined) {
+        if (!(editor instanceof Editor) || !isString(name) || !isOptString(browserUrl)) {
             throw new TypeError('Invalid argument');
         }
 
         this.#editor = editor;
         this.#name = name;
-        this.#url = url;
+        this.#browserUrl = browserUrl;
     }
 
     /**
@@ -96,7 +75,7 @@ export default class Dialog {
      * @return {void}
      */
     open(save, attributes = {}) {
-        this.url ? this.#openBrowser(save, attributes) : this.#openDialog(save, attributes);
+        this.browserUrl ? this.#openBrowser(save, attributes) : this.#openDialog(save, attributes);
     }
 
     /**
@@ -111,8 +90,6 @@ export default class Dialog {
     }
 
     /**
-     * Prepares the form
-     *
      * @protected
      * @return {void}
      */
@@ -128,7 +105,7 @@ export default class Dialog {
      * @return {void}
      */
     #openBrowser(save, attributes = {}) {
-        this.editor.dom.open({ url: this.url, name: this.name, call: save, params: attributes });
+        this.editor.dom.open({ url: this.browserUrl, name: this.name, call: save, params: attributes });
     }
 
     /**

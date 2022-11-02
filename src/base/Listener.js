@@ -2,21 +2,16 @@ import Editor from './Editor.js';
 import { isFunction } from './util.js';
 
 /**
- * Listener
- *
+ * @abstract
  * @implements EventListener
  */
 export default class Listener {
     /**
-     * Editor
-     *
      * @type {Editor}
      */
     #editor;
 
     /**
-     * Allows read access to editor
-     *
      * @return {Editor}
      */
     get editor() {
@@ -24,9 +19,7 @@ export default class Listener {
     }
 
     /**
-     * Initializes a new listener
-     *
-     * @borrows Listener.handleEvent
+     * @borrows handleEvent
      * @param {Editor} editor
      */
     constructor(editor) {
@@ -38,8 +31,6 @@ export default class Listener {
     }
 
     /**
-     * Handles events
-     *
      * @param {Event} event
      * @return {void}
      */

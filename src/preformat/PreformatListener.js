@@ -2,12 +2,9 @@ import Listener from '../base/Listener.js';
 import Preformat from './Preformat.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Handles preformatted text elements
- */
 export default class PreformatListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -16,9 +13,8 @@ export default class PreformatListener extends Listener {
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLPreElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLPreElement} event.detail.element
      * @return {void}
      */
     insertpre({ detail: { element } }) {
@@ -26,9 +22,8 @@ export default class PreformatListener extends Listener {
     }
 
     /**
-     * Removes parent figure element
-     *
-     * @param {HTMLElement} target
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.target
      * @return {void}
      */
     deletepre({ detail: { target } }) {

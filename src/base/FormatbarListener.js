@@ -1,12 +1,9 @@
 import BarListener from './BarListener.js';
 import TagGroup from './TagGroup.js';
 
-/**
- * Formatbar Listener
- */
 export default class FormatbarListener extends BarListener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);

@@ -2,12 +2,9 @@ import Key from './Key.js';
 import Listener from './Listener.js';
 import TagName from './TagName.js';
 
-/**
- * Slotable Listener
- */
 export default class SlotableListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -15,9 +12,8 @@ export default class SlotableListener extends Listener {
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     insert({ detail: { element } }) {
@@ -29,8 +25,6 @@ export default class SlotableListener extends Listener {
     }
 
     /**
-     * Disables all keyboard events for slot elements except `Tab` or `Shift + Tab`
-     *
      * @param {KeyboardEvent} event
      * @return {void}
      */

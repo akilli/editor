@@ -1,11 +1,8 @@
 import BarListener from './BarListener.js';
 
-/**
- * Focusbar Listener
- */
 export default class FocusbarListener extends BarListener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -16,7 +13,9 @@ export default class FocusbarListener extends BarListener {
     }
 
     /**
-     * @inheritDoc
+     * @param {CustomEvent} event
+     * @param {HTMLButtonElement} event.detail.element
+     * @return {void}
      */
     insertbutton({ detail: { element } }) {
         if (element.getAttribute('data-command')) {
@@ -26,8 +25,6 @@ export default class FocusbarListener extends BarListener {
     }
 
     /**
-     * Handles mousedown events
-     *
      * @param {MouseEvent} event
      * @return {void}
      */

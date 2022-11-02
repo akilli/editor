@@ -6,33 +6,30 @@ import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Block Plugin
- */
 export default class Block extends Plugin {
     /**
-     * @inheritDoc
+     * @type {string}
      */
     static get name() {
         return 'block';
     }
 
     /**
-     * @inheritDoc
+     * @type {Plugin[]}
      */
     static get dependencies() {
         return [Base];
     }
 
     /**
-     * @inheritDoc
+     * @type {Object.<string, any>}
      */
     static get config() {
         return { api: undefined, browser: undefined, css: undefined };
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     init() {
         this.editor.dom.registerElement(TagName.BLOCK, BlockElement);

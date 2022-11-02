@@ -2,12 +2,10 @@ import Filter from '../base/Filter.js';
 import Preformat from './Preformat.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Filters preformatted text figure
- */
 export default class PreformatFilter extends Filter {
     /**
-     * @inheritDoc
+     * @param {HTMLElement} element
+     * @return {void}
      */
     filter(element) {
         if (

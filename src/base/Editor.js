@@ -7,20 +7,13 @@ import PluginManager from './PluginManager.js';
 import TagManager from './TagManager.js';
 import TagName from './TagName.js';
 
-/**
- * Base Editor
- */
 export default class Editor {
     /**
-     * Corresponding DOM element of the source
-     *
      * @type {HTMLElement}
      */
     #orig;
 
     /**
-     * Allows read access to corresponding DOM element of the source
-     *
      * @return {HTMLElement}
      */
     get orig() {
@@ -28,15 +21,11 @@ export default class Editor {
     }
 
     /**
-     * Configuration
-     *
      * @type {Object}
      */
     #config = {};
 
     /**
-     * Allows read access to configuration
-     *
      * @return {Object}
      */
     get config() {
@@ -44,15 +33,11 @@ export default class Editor {
     }
 
     /**
-     * DOM manager
-     *
      * @type {Dom}
      */
     #dom;
 
     /**
-     * Allows read access to DOM manager
-     *
      * @return {Dom}
      */
     get dom() {
@@ -60,15 +45,11 @@ export default class Editor {
     }
 
     /**
-     * Corresponding DOM element of the editor
-     *
      * @type {HTMLElement}
      */
     #element;
 
     /**
-     * Allows read access to corresponding DOM element of the editor
-     *
      * @return {HTMLElement}
      */
     get element() {
@@ -76,15 +57,11 @@ export default class Editor {
     }
 
     /**
-     * Corresponding DOM element of the main toolbar
-     *
      * @type {HTMLElement}
      */
     #toolbar;
 
     /**
-     * Allows read access to corresponding DOM element of the main toolbar
-     *
      * @return {HTMLElement}
      */
     get toolbar() {
@@ -92,15 +69,11 @@ export default class Editor {
     }
 
     /**
-     * Event dispatcher of the editor main toolbar
-     *
      * @type {Dispatcher}
      */
     #toolbarDispatcher;
 
     /**
-     * Allows read access to event dispatcher of the editor main toolbar
-     *
      * @return {Dispatcher}
      */
     get toolbarDispatcher() {
@@ -108,15 +81,11 @@ export default class Editor {
     }
 
     /**
-     * Corresponding DOM element of the formatbar
-     *
      * @type {HTMLElement}
      */
     #formatbar;
 
     /**
-     * Allows read access to corresponding DOM element of the formatbar
-     *
      * @return {HTMLElement}
      */
     get formatbar() {
@@ -124,15 +93,11 @@ export default class Editor {
     }
 
     /**
-     * Event dispatcher of the editor formatbar
-     *
      * @type {Dispatcher}
      */
     #formatbarDispatcher;
 
     /**
-     * Allows read access to event dispatcher of the editor formatbar
-     *
      * @return {Dispatcher}
      */
     get formatbarDispatcher() {
@@ -140,15 +105,11 @@ export default class Editor {
     }
 
     /**
-     * Corresponding DOM element of the focusbar
-     *
      * @type {HTMLElement}
      */
     #focusbar;
 
     /**
-     * Allows read access to corresponding DOM element of the focusbar
-     *
      * @return {HTMLElement}
      */
     get focusbar() {
@@ -156,15 +117,11 @@ export default class Editor {
     }
 
     /**
-     * Event dispatcher of the editor focusbar
-     *
      * @type {Dispatcher}
      */
     #focusbarDispatcher;
 
     /**
-     * Allows read access to event dispatcher of the editor focusbar
-     *
      * @return {Dispatcher}
      */
     get focusbarDispatcher() {
@@ -172,15 +129,11 @@ export default class Editor {
     }
 
     /**
-     * Corresponding DOM element of the editor content root
-     *
      * @type {HTMLElement}
      */
     #root;
 
     /**
-     * Allows read access to corresponding DOM element of the editor content root
-     *
      * @return {HTMLElement}
      */
     get root() {
@@ -188,15 +141,11 @@ export default class Editor {
     }
 
     /**
-     * Event dispatcher of the editor content root
-     *
      * @type {Dispatcher}
      */
     #rootDispatcher;
 
     /**
-     * Allows read access to event dispatcher of the editor content root
-     *
      * @return {Dispatcher}
      */
     get rootDispatcher() {
@@ -204,15 +153,11 @@ export default class Editor {
     }
 
     /**
-     * I18n
-     *
      * @type {Object.<string, string>}
      */
     #i18n = {};
 
     /**
-     * Allows read access to i18n
-     *
      * @return {Object.<string, string>}
      */
     get i18n() {
@@ -220,8 +165,6 @@ export default class Editor {
     }
 
     /**
-     * Extend i18n
-     *
      * @param {Object.<string, string>} i18n
      * @return {void}
      */
@@ -230,15 +173,11 @@ export default class Editor {
     }
 
     /**
-     * Tag manager
-     *
      * @type {TagManager}
      */
     #tags = new TagManager();
 
     /**
-     * Allows read access to tag manager
-     *
      * @return {TagManager}
      */
     get tags() {
@@ -246,15 +185,11 @@ export default class Editor {
     }
 
     /**
-     * Filter manager
-     *
      * @type {FilterManager}
      */
     #filters = new FilterManager();
 
     /**
-     * Allows read access to filter manager
-     *
      * @return {FilterManager}
      */
     get filters() {
@@ -262,15 +197,11 @@ export default class Editor {
     }
 
     /**
-     * Dialog manager
-     *
      * @type {DialogManager}
      */
     #dialogs = new DialogManager();
 
     /**
-     * Allows read access to dialog manager
-     *
      * @type {DialogManager}
      */
     get dialogs() {
@@ -278,15 +209,11 @@ export default class Editor {
     }
 
     /**
-     * Command manager
-     *
      * @type {CommandManager}
      */
     #commands = new CommandManager();
 
     /**
-     * Allows read access to command manager
-     *
      * @return {CommandManager}
      */
     get commands() {
@@ -294,15 +221,11 @@ export default class Editor {
     }
 
     /**
-     * Plugin manager
-     *
      * @type {PluginManager}
      */
     #plugins = new PluginManager();
 
     /**
-     * Allows read access to plugin manager
-     *
      * @return {PluginManager}
      */
     get plugins() {
@@ -310,8 +233,6 @@ export default class Editor {
     }
 
     /**
-     * Default configuration
-     *
      * @type {Object.<string, Object>}
      */
     static get defaultConfig() {
@@ -319,8 +240,6 @@ export default class Editor {
     }
 
     /**
-     * Creates a new instance of editor with given configuration
-     *
      * @param {HTMLElement} orig
      * @param {Object} [config = {}]
      */
@@ -490,8 +409,6 @@ export default class Editor {
     }
 
     /**
-     * Translates string with registered i18n data
-     *
      * @param {string} key
      * @return {string}
      */

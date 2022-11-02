@@ -5,26 +5,23 @@ import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
 import TimeDialog from './TimeDialog.js';
 
-/**
- * Time Plugin
- */
 export default class Time extends Plugin {
     /**
-     * @inheritDoc
+     * @type {string}
      */
     static get name() {
         return 'time';
     }
 
     /**
-     * @inheritDoc
+     * @type {Plugin[]}
      */
     static get dependencies() {
         return [Base];
     }
 
     /**
-     * @inheritDoc
+     * @return {void}
      */
     init() {
         this._tag({ name: TagName.TIME, group: TagGroup.FORMAT, attributes: ['datetime'] });

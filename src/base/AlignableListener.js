@@ -2,12 +2,9 @@ import Alignment from './Alignment.js';
 import Key from './Key.js';
 import Listener from './Listener.js';
 
-/**
- * Alignable Listener
- */
 export default class AlignableListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -15,9 +12,8 @@ export default class AlignableListener extends Listener {
     }
 
     /**
-     * Initializes elements
-     *
-     * @param {HTMLElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLElement} event.detail.element
      * @return {void}
      */
     insert({ detail: { element } }) {
@@ -27,8 +23,6 @@ export default class AlignableListener extends Listener {
     }
 
     /**
-     * Handles key combinations for alignment
-     *
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
      * @return {void}

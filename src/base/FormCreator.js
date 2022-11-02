@@ -2,20 +2,13 @@ import Editor from './Editor.js';
 import TagName from './TagName.js';
 import { isFunction, isString } from './util.js';
 
-/**
- * Form Creator
- */
 export default class FormCreator {
     /**
-     * Editor
-     *
      * @type {Editor}
      */
     #editor;
 
     /**
-     * Allows read access to editor
-     *
      * @return {Editor}
      */
     get editor() {
@@ -23,15 +16,11 @@ export default class FormCreator {
     }
 
     /**
-     * Form element
-     *
      * @type {HTMLFormElement}
      */
     #form;
 
     /**
-     * Allows read access to form element
-     *
      * @return {HTMLFormElement}
      */
     get form() {
@@ -62,8 +51,6 @@ export default class FormCreator {
     }
 
     /**
-     * Adds a new fieldset
-     *
      * @return {this}
      */
     addFieldset() {
@@ -81,8 +68,6 @@ export default class FormCreator {
     }
 
     /**
-     * Adds a legend with given HTML
-     *
      * @param {string} html
      * @return {this}
      */
@@ -148,8 +133,6 @@ export default class FormCreator {
     }
 
     /**
-     * Adds the cancel button
-     *
      * @param {function} cancel
      * @return {this}
      */
@@ -163,8 +146,6 @@ export default class FormCreator {
     }
 
     /**
-     * Adds the submit button
-     *
      * @return {this}
      */
     #addSubmitButton() {

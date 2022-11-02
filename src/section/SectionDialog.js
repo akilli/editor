@@ -1,13 +1,8 @@
 import Dialog from '../base/Dialog.js';
 import Section from './Section.js';
 
-/**
- * Section Dialog
- */
 export default class SectionDialog extends Dialog {
     /**
-     * Initializes a new div dialog
-     *
      * @param {Editor} editor
      */
     constructor(editor) {
@@ -15,7 +10,8 @@ export default class SectionDialog extends Dialog {
     }
 
     /**
-     * @inheritDoc
+     * @protected
+     * @return {void}
      */
     _prepareForm() {
         this.formCreator

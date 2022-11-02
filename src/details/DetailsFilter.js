@@ -1,12 +1,10 @@
 import Filter from '../base/Filter.js';
 import TagName from '../base/TagName.js';
 
-/**
- * Filters out details elements with summary elements as only child
- */
 export default class DetailsFilter extends Filter {
     /**
-     * @inheritDoc
+     * @param {HTMLElement} element
+     * @return {void}
      */
     filter(element) {
         element

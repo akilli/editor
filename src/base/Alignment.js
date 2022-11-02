@@ -1,6 +1,3 @@
-/**
- * Alignment
- */
 export default class Alignment {
     /**
      * @return {string}
@@ -31,8 +28,6 @@ export default class Alignment {
     }
 
     /**
-     * Returns available aligments
-     *
      * @return {string[]}
      */
     static values() {

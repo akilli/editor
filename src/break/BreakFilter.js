@@ -1,11 +1,9 @@
 import Filter from '../base/Filter.js';
 
-/**
- * Filters break elements
- */
 export default class BreakFilter extends Filter {
     /**
-     * @inheritDoc
+     * @param {HTMLElement} element
+     * @return {void}
      */
     filter(element) {
         if (element instanceof HTMLPreElement) {

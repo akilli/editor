@@ -2,15 +2,12 @@ import Key from './Key.js';
 import Listener from './Listener.js';
 
 /**
- * Abstract Bar Listener
- *
  * @abstract
  */
 export default class BarListener extends Listener {
     /**
-     * Initializes button elements
-     *
-     * @param {HTMLButtonElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLButtonElement} event.detail.element
      * @return {void}
      */
     insertbutton({ detail: { element } }) {
@@ -20,8 +17,6 @@ export default class BarListener extends Listener {
     }
 
     /**
-     * Handles click events
-     *
      * @param {MouseEvent} event
      * @param {HTMLElement} event.target
      * @return {void}
@@ -31,8 +26,6 @@ export default class BarListener extends Listener {
     }
 
     /**
-     * Handles key combinations for navigation
-     *
      * @param {KeyboardEvent} event
      * @param {HTMLElement} event.target
      * @return {void}
@@ -62,8 +55,6 @@ export default class BarListener extends Listener {
     }
 
     /**
-     * Shows and positions toolbar for given element
-     *
      * @protected
      * @param {HTMLElement} toolbar
      * @param {HTMLElement} element
@@ -90,8 +81,6 @@ export default class BarListener extends Listener {
     }
 
     /**
-     * Hides toolbar
-     *
      * @protected
      * @param {HTMLElement} toolbar
      * @return {void}

@@ -1,13 +1,8 @@
 import Definition from './Definition.js';
 import Dialog from '../base/Dialog.js';
 
-/**
- * Definition Dialog
- */
 export default class DefinitionDialog extends Dialog {
     /**
-     * Initializes a new definition dialog
-     *
      * @param {Editor} editor
      */
     constructor(editor) {
@@ -15,7 +10,8 @@ export default class DefinitionDialog extends Dialog {
     }
 
     /**
-     * @inheritDoc
+     * @protected
+     * @return {void}
      */
     _prepareForm() {
         this.formCreator.addLegend(this._('Definition')).addTextInput('title', this._('Term'), {

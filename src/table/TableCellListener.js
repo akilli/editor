@@ -1,12 +1,9 @@
 import Key from '../base/Key.js';
 import Listener from '../base/Listener.js';
 
-/**
- * Tablecell Listener
- */
 export default class TableCellListener extends Listener {
     /**
-     * @inheritDoc
+     * @param {Editor} editor
      */
     constructor(editor) {
         super(editor);
@@ -15,9 +12,8 @@ export default class TableCellListener extends Listener {
     }
 
     /**
-     * Initializes table cell elements
-     *
-     * @param {HTMLTableCellElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLTableCellElement} event.detail.element
      * @return {void}
      */
     inserttd({ detail: { element } }) {
@@ -25,9 +21,8 @@ export default class TableCellListener extends Listener {
     }
 
     /**
-     * Initializes table cell elements
-     *
-     * @param {HTMLTableHeaderCellElement} element
+     * @param {CustomEvent} event
+     * @param {HTMLTableCellElement} event.detail.element
      * @return {void}
      */
     insertth({ detail: { element } }) {
@@ -35,8 +30,6 @@ export default class TableCellListener extends Listener {
     }
 
     /**
-     * Handles key combinations for navigating, sorting, adding and deleting
-     *
      * @param {KeyboardEvent} event
      * @param {HTMLTableCellElement} event.target
      * @return {void}
