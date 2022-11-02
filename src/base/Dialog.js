@@ -46,7 +46,7 @@ export default class Dialog {
     #formCreator;
 
     /**
-     * @type {FormCreator}
+     * @type {FormCreator|undefined}
      */
     get formCreator() {
         return this.#formCreator;
@@ -122,17 +122,16 @@ export default class Dialog {
             this.#cleanup();
         };
         this.#cleanup();
-        this.#formCreator = new FormCreator(this.editor, close);
+        this.#formCreator = new FormCreator(this.editor);
         this._prepareForm();
         const form = this.formCreator.form;
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            event.stopPropagation();
+        form.addEventListener('submit', () => {
             close();
             const data = {};
             Array.from(form.elements).forEach((item) => (data[item.name] = item.value));
             save(data);
         });
+        form.addEventListener('reset', close);
         Object.entries(attributes).forEach(([key, val]) => form.elements[key] && (form.elements[key].value = val));
         /** @type {HTMLDialogElement} */
         const dialog = this.editor.dom.createElement(TagName.DIALOG);

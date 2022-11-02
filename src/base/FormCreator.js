@@ -1,6 +1,6 @@
 import Editor from './Editor.js';
 import TagName from './TagName.js';
-import { isFunction, isString } from './util.js';
+import { isString } from './util.js';
 
 export default class FormCreator {
     /**
@@ -35,19 +35,16 @@ export default class FormCreator {
     #fieldset;
 
     /**
-     * Initializes a form creator with given editor and cancel callback
-     *
      * @param {Editor} editor
-     * @param {function} cancel
      */
-    constructor(editor, cancel) {
-        if (!(editor instanceof Editor) || !isFunction(cancel)) {
+    constructor(editor) {
+        if (!(editor instanceof Editor)) {
             throw new TypeError('Invalid argument');
         }
 
         this.#editor = editor;
         this.#form = this.editor.dom.createElement(TagName.FORM, { attributes: { method: 'dialog' } });
-        this.addFieldset().#addCancelButton(cancel).#addSubmitButton();
+        this.addFieldset().#addCancelButton().#addSubmitButton();
     }
 
     /**
@@ -133,13 +130,11 @@ export default class FormCreator {
     }
 
     /**
-     * @param {function} cancel
      * @return {this}
      */
-    #addCancelButton(cancel) {
+    #addCancelButton() {
         const html = this.editor.translate('Cancel');
-        const button = this.editor.dom.createElement(TagName.BUTTON, { attributes: { type: 'button' }, html });
-        button.addEventListener('click', cancel);
+        const button = this.editor.dom.createElement(TagName.BUTTON, { attributes: { type: 'reset' }, html });
         this.editor.dom.insertLastChild(button, this.#form);
 
         return this;
