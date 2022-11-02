@@ -61,9 +61,10 @@ export default class EditableListener extends Listener {
                     event.target.parentElement.removeChild(event.target);
                 }
             }
-        } else if (Key.isEventFor(event, Key.BACKSPACE)
-            && !event.target.textContent
-            && event.target.hasAttribute('data-deletable')
+        } else if (
+            Key.isEventFor(event, Key.BACKSPACE) &&
+            !event.target.textContent &&
+            event.target.hasAttribute('data-deletable')
         ) {
             this.editor.dom.delete(event.target);
             event.preventDefault();

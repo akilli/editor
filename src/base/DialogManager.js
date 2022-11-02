@@ -17,7 +17,7 @@ export default class DialogManager {
      * @param {Dialog[]} [dialogs = []]
      */
     constructor(dialogs = []) {
-        dialogs.forEach(dialog => this.set(dialog));
+        dialogs.forEach((dialog) => this.set(dialog));
     }
 
     /**
@@ -48,7 +48,7 @@ export default class DialogManager {
      * Freezes itself and its items
      */
     freeze() {
-        this.#items.forEach(dialog => Object.freeze(dialog));
+        this.#items.forEach((dialog) => Object.freeze(dialog));
         Object.freeze(this.#items);
         Object.freeze(this);
     }

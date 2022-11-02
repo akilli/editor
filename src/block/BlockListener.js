@@ -23,7 +23,7 @@ export default class BlockListener extends Listener {
     sethtml({ detail: { element } }) {
         Array.from(element.getElementsByTagName(TagName.BLOCK)).forEach(
             /** @param {HTMLElement} item */
-            item => item.id || item.parentElement.removeChild(item),
+            (item) => item.id || item.parentElement.removeChild(item)
         );
     }
 
@@ -55,7 +55,7 @@ export default class BlockListener extends Listener {
         if (this.editor.config.block.css) {
             css = this.editor.config.block.css
                 .split(',')
-                .map(item => `<link rel="stylesheet" href="${item}">`)
+                .map((item) => `<link rel="stylesheet" href="${item}">`)
                 .join('');
         }
 

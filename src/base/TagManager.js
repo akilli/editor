@@ -17,7 +17,7 @@ export default class TagManager {
      * @param {Tag[]} [tags = []]
      */
     constructor(tags = []) {
-        tags.forEach(tag => this.set(tag));
+        tags.forEach((tag) => this.set(tag));
     }
 
     /**
@@ -61,7 +61,7 @@ export default class TagManager {
      * Freezes itself and its items
      */
     freeze() {
-        this.#items.forEach(tag => {
+        this.#items.forEach((tag) => {
             Object.freeze(tag.children);
             Object.freeze(tag.attributes);
             Object.freeze(tag);

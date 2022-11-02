@@ -50,9 +50,9 @@ export default class BarListener extends Listener {
                 prev.focus();
             } else if (event.key === Key.RIGHT && !isLast) {
                 next.focus();
-            } else if (event.key === Key.HOME || event.key === Key.RIGHT && isLast) {
+            } else if (event.key === Key.HOME || (event.key === Key.RIGHT && isLast)) {
                 first.focus();
-            } else if (event.key === Key.END || event.key === Key.LEFT && isFirst) {
+            } else if (event.key === Key.END || (event.key === Key.LEFT && isFirst)) {
                 last.focus();
             }
 

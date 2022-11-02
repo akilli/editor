@@ -17,7 +17,7 @@ export default class PluginManager {
      * @param {Plugin[]} [plugins = []]
      */
     constructor(plugins = []) {
-        plugins.forEach(plugin => this.set(plugin));
+        plugins.forEach((plugin) => this.set(plugin));
     }
 
     /**
@@ -50,14 +50,14 @@ export default class PluginManager {
      * @return {void}
      */
     init() {
-        this.#items.forEach(plugin => plugin.init());
+        this.#items.forEach((plugin) => plugin.init());
     }
 
     /**
      * Freezes itself and its items
      */
     freeze() {
-        this.#items.forEach(plugin => Object.freeze(plugin));
+        this.#items.forEach((plugin) => Object.freeze(plugin));
         Object.freeze(this.#items);
         Object.freeze(this);
     }

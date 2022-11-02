@@ -22,7 +22,7 @@ export default class IframeListener extends Listener {
      * @return {void}
      */
     sethtml({ detail: { element } }) {
-        Array.from(element.getElementsByTagName(TagName.IFRAME)).forEach(item => this.#init(item));
+        Array.from(element.getElementsByTagName(TagName.IFRAME)).forEach((item) => this.#init(item));
     }
 
     /**

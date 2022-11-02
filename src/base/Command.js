@@ -116,7 +116,7 @@ export default class Command {
         } else if (element && Object.keys(attributes).length > 0) {
             element.parentElement.replaceChild(
                 this.editor.dom.createElement(this.tag.name, { attributes, html: element.textContent }),
-                element,
+                element
             );
         } else if (element) {
             element.parentElement.replaceChild(this.editor.dom.createText(element.textContent), element);
@@ -131,7 +131,7 @@ export default class Command {
      * @return {void}
      */
     openDialog() {
-        this.dialog?.open(attributes => this.insert(attributes), this.#selectedAttributes());
+        this.dialog?.open((attributes) => this.insert(attributes), this.#selectedAttributes());
     }
 
     /**
@@ -158,7 +158,7 @@ export default class Command {
      */
     #filterAttributes(attributes) {
         Object.keys(attributes).forEach(
-            item => this.tag.attributes.includes(item) && attributes[item] || delete attributes[item],
+            (item) => (this.tag.attributes.includes(item) && attributes[item]) || delete attributes[item]
         );
     }
 }

@@ -21,7 +21,7 @@ export default class ParagraphListener extends Listener {
      * @return {void}
      */
     sethtml({ detail: { element } }) {
-        Array.from(element.getElementsByTagName(TagName.P)).forEach(item => this.#init(item));
+        Array.from(element.getElementsByTagName(TagName.P)).forEach((item) => this.#init(item));
     }
 
     /**

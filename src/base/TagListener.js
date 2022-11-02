@@ -26,11 +26,13 @@ export default class TagListener extends Listener {
                 element.contentEditable = 'true';
             }
 
-            ['alignable', 'arbitrary', 'deletable', 'focusable', 'navigable', 'slotable', 'sortable'].forEach(item => {
-                if (tag[item]) {
-                    element.dataset[item] = '';
+            ['alignable', 'arbitrary', 'deletable', 'focusable', 'navigable', 'slotable', 'sortable'].forEach(
+                (item) => {
+                    if (tag[item]) {
+                        element.dataset[item] = '';
+                    }
                 }
-            });
+            );
         }
     }
 }

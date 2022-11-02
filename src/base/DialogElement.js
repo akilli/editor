@@ -30,8 +30,8 @@ export default class DialogElement extends HTMLElement {
      */
     constructor() {
         super();
-        this.addEventListener('keydown', event => event.key === Key.ESC && this.close());
-        this.addEventListener('click', event => event.target === this && this.close());
+        this.addEventListener('keydown', (event) => event.key === Key.ESC && this.close());
+        this.addEventListener('click', (event) => event.target === this && this.close());
     }
 
     /**

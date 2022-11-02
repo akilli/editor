@@ -21,7 +21,7 @@ export default class LinkListener extends Listener {
      * @return {void}
      */
     sethtml({ detail: { element } }) {
-        Array.from(element.getElementsByTagName(TagName.A)).forEach(item => this.#init(item));
+        Array.from(element.getElementsByTagName(TagName.A)).forEach((item) => this.#init(item));
     }
 
     /**

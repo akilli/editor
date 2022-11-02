@@ -5,14 +5,14 @@
  */
 export default {
     'CSS class': 'CSS-Klasse',
-    'Height': 'Höhe',
-    'ID': 'ID',
+    Height: 'Höhe',
+    ID: 'ID',
     'Insert CSS class': 'CSS-Klasse eingeben',
-    'URL': 'URL',
-    'Width': 'Breite',
+    URL: 'URL',
+    Width: 'Breite',
 
     // abbreviation
-    'Abbreviation': 'Abkürzung',
+    Abbreviation: 'Abkürzung',
     'Full term': 'Langform',
     'Insert full term or leave empty to remove it': 'Langform eingeben oder zum Entfernen leer lassen',
 
@@ -23,68 +23,68 @@ export default {
     'No alignment': 'Keine Ausrichtung',
 
     // audio
-    'Audio': 'Audio',
+    Audio: 'Audio',
     'Insert URL to audio': 'URL zur Audiodatei eingeben',
 
     // base
-    'Alt': 'Alt',
-    'Cancel': 'Abbrechen',
-    'Save': 'Speichern',
-    'Shift': 'Umschalt',
+    Alt: 'Alt',
+    Cancel: 'Abbrechen',
+    Save: 'Speichern',
+    Shift: 'Umschalt',
 
     // block
-    'Block': 'Block',
+    Block: 'Block',
 
     // Blockquote
-    'Blockquote': 'Blockzitat',
+    Blockquote: 'Blockzitat',
 
     // bold
-    'bold': 'fett',
+    bold: 'fett',
 
     // cite
-    'Citation': 'Zitatquelle',
+    Citation: 'Zitatquelle',
 
     // code
-    'Code': 'Quelltext',
+    Code: 'Quelltext',
 
     // data
-    'Data': 'Data',
+    Data: 'Data',
     'Machine-readable Value': 'Maschinenlesbarer Wert',
     'Insert value or leave empty to remove it': 'Wert eingeben oder zum Entfernen leer lassen',
 
     // definition
-    'Definition': 'Definition',
+    Definition: 'Definition',
     'Insert term or leave empty to remove it': 'Begriff eingeben oder zum Entfernen leer lassen',
-    'Term': 'Begriff',
+    Term: 'Begriff',
 
     // delete
-    'Delete': 'Löschen',
+    Delete: 'Löschen',
 
     // deletion
     'Text Deletion': 'Textlöschung',
 
     // details
-    'Details': 'Details',
+    Details: 'Details',
 
     // division
-    'Division': 'Division',
+    Division: 'Division',
 
     // emphasis
-    'emphasized': 'betont',
+    emphasized: 'betont',
 
     // heading
-    'Heading': 'Überschrift',
+    Heading: 'Überschrift',
 
     // horizontalrule
     'Horizontal Rule': 'Horizontale Linie',
 
     // iframe
-    'Ifrane': 'Iframe',
+    Ifrane: 'Iframe',
     'Insert URL to embedded page': 'URL zur eingebetteten Seite eingeben',
 
     // image
     'Alternative text': 'Alternativtext',
-    'Image': 'Bild',
+    Image: 'Bild',
     'Insert URL to image': 'URL zur Bilddatei eingeben',
     'Text shown when media element is not available': 'Ersatztext, falls Medienelement nicht verfügbar ist',
 
@@ -92,38 +92,38 @@ export default {
     'Text Insertion': 'Texteinfügung',
 
     // italic
-    'italic': 'kursiv',
+    italic: 'kursiv',
 
     // keyboard
     'User Input': 'Benutzereingabe',
 
     // link
     'Insert link or leave empty to unlink': 'Link eingeben oder zum Entfernen leer lassen',
-    'Link': 'Link',
+    Link: 'Link',
 
     // mark
-    'mark': 'markiert',
+    mark: 'markiert',
 
     // orderedlist
     'Ordered List': 'Geordnete Liste',
 
     // paragraph
-    'Paragraph': 'Absatz',
+    Paragraph: 'Absatz',
 
     // preformat
     'Preformatted Text': 'Vorformatierter Text',
 
     // quote
-    'Quote': 'Zitat',
+    Quote: 'Zitat',
 
     // sample
     'Sample Output': 'Beispielausgabe',
 
     // section
-    'Section': 'Sektion',
+    Section: 'Sektion',
 
     // small
-    'small': 'klein',
+    small: 'klein',
 
     // sort
     'Sort after next element': 'Hinter das nächste Element sortieren',
@@ -132,27 +132,27 @@ export default {
     'Sort to the end': 'Ans Ende sortieren',
 
     // strikethrough
-    'strikethrough': 'durchgestrichen',
+    strikethrough: 'durchgestrichen',
 
     // strong
     'strongly emphasized': 'stark betont',
 
     // subheading
-    'Subheading': 'Unterüberschrift',
+    Subheading: 'Unterüberschrift',
 
     // subscript
-    'subscript': 'tiefgestellt',
+    subscript: 'tiefgestellt',
 
     // superscript
-    'superscript': 'hochgestellt',
+    superscript: 'hochgestellt',
 
     // table
-    'Columns': 'Spalten',
+    Columns: 'Spalten',
     'Delete next column': 'Nächste Spalte löschen',
     'Delete next row': 'Nächste Zeile löschen',
     'Delete previous column': 'Vorherige Spalte löschen',
     'Delete previous row': 'Vorherige Zeile löschen',
-    'Rows': 'Zeilen',
+    Rows: 'Zeilen',
     'Sort after next column': 'Hinter die nächste Spalte sortieren',
     'Sort after next row': 'Hinter die nächste Zeile sortieren',
     'Sort before previous column': 'Vor die vorherige Spalte sortieren',
@@ -161,23 +161,23 @@ export default {
     'Sort row to the beginning': 'Zeile an den Anfang sortieren',
     'Sort column to the end': 'Spalte ans Ende sortieren',
     'Sort row to the end': 'Zeile ans Ende sortieren',
-    'Table': 'Tabelle',
+    Table: 'Tabelle',
 
     // time
     'Insert date/time or leave empty to remove it': 'Datum/Zeit eingeben oder zum Entfernen leer lassen',
     'Machine-readable Datetime': 'Maschinenlesbare Datums-/Zeitangabe',
-    'Time': 'Zeit',
+    Time: 'Zeit',
 
     // underline
-    'underline': 'unterstrichen',
+    underline: 'unterstrichen',
 
     // unorderedlist
     'Unordered List': 'Ungeordnete Liste',
 
     // variable
-    'Variable': 'Variable',
+    Variable: 'Variable',
 
     // video
     'Insert URL to video': 'URL zur Videodatei eingeben',
-    'Video': 'Video',
+    Video: 'Video',
 };

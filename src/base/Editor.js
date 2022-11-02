@@ -369,27 +369,26 @@ export default class Editor {
 
             if (!config.base?.pluginsDisabled) {
                 configured = [];
-                p.forEach(item => {
-                    const b = builtin.find(i => i.name === item);
+                p.forEach((item) => {
+                    const b = builtin.find((i) => i.name === item);
                     b && configured.push(b);
                 });
             } else {
-                configured = configured.filter(i => !p.includes(i.name));
+                configured = configured.filter((i) => !p.includes(i.name));
             }
         }
 
         const plugins = new Set();
-        const add = item => {
+        const add = (item) => {
             item.dependencies?.forEach(add);
             plugins.add(item);
         };
         configured.map(add);
-        plugins.forEach(item => {
+        plugins.forEach((item) => {
             Object.entries(item.config).forEach(([key, val]) => {
                 this.config[item.name] ??= {};
-                this.config[item.name][key] = config[item.name]?.[key]
-                    || this.constructor.defaultConfig[item.name]?.[key]
-                    || val;
+                this.config[item.name][key] =
+                    config[item.name]?.[key] || this.constructor.defaultConfig[item.name]?.[key] || val;
             });
             this.plugins.set(new item(this));
         });

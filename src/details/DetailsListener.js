@@ -95,9 +95,9 @@ export default class DetailsListener extends Listener {
         if (!element.textContent.trim()) {
             element.textContent = this.editor.translate('Details');
         } else {
-            element.querySelectorAll(TagName.BR + ':not(:last-child)').forEach(
-                item => item.parentElement.removeChild(item),
-            );
+            element
+                .querySelectorAll(TagName.BR + ':not(:last-child)')
+                .forEach((item) => item.parentElement.removeChild(item));
         }
 
         if (!(element.lastElementChild instanceof HTMLBRElement)) {

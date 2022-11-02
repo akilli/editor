@@ -18,10 +18,8 @@ export default class DataDialog extends Dialog {
      * @inheritDoc
      */
     _prepareForm() {
-        this.formCreator
-            .addLegend(this._('Data'))
-            .addTextInput('value', this._('Machine-readable Value'), {
-                placeholder: this._('Insert value or leave empty to remove it'),
-            });
+        this.formCreator.addLegend(this._('Data')).addTextInput('value', this._('Machine-readable Value'), {
+            placeholder: this._('Insert value or leave empty to remove it'),
+        });
     }
 }

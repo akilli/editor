@@ -201,11 +201,12 @@ export default class Dom {
         const range = this.getRange();
         const editable = this.getSelectedEditable();
 
-        if (!range
-            || range.collapsed
-            || !range.toString().trim()
-            || !editable
-            || !this.editor.tags.allowed(editable, element)
+        if (
+            !range ||
+            range.collapsed ||
+            !range.toString().trim() ||
+            !editable ||
+            !this.editor.tags.allowed(editable, element)
         ) {
             return;
         }
@@ -220,8 +221,9 @@ export default class Dom {
 
         const selText = range.toString();
         const same = Array.from(range.cloneContents().childNodes).every(
-            item => item instanceof Text && !item.textContent.trim()
-                || item instanceof HTMLElement && item.localName === element.localName,
+            (item) =>
+                (item instanceof Text && !item.textContent.trim()) ||
+                (item instanceof HTMLElement && item.localName === element.localName)
         );
         range.deleteContents();
 
@@ -439,7 +441,7 @@ export default class Dom {
     getSelectedElementByName(name) {
         const element = this.getSelectedElement();
 
-        return element?.localName === name && element || undefined;
+        return (element?.localName === name && element) || undefined;
     }
 
     /**
@@ -453,7 +455,7 @@ export default class Dom {
         const attributes = {};
 
         if (element) {
-            Array.from(element.attributes).forEach(item => (attributes[item.nodeName] = item.nodeValue));
+            Array.from(element.attributes).forEach((item) => (attributes[item.nodeName] = item.nodeValue));
         }
 
         return attributes;
@@ -593,12 +595,14 @@ export default class Dom {
             this.insertBefore(element, prev);
         } else if (sorting === Sorting.NEXT && !isLast && next.hasAttribute('data-sortable')) {
             this.insertAfter(element, next);
-        } else if ((sorting === Sorting.FIRST && !isFirst || sorting === Sorting.NEXT && isLast)
-            && first.hasAttribute('data-sortable')
+        } else if (
+            ((sorting === Sorting.FIRST && !isFirst) || (sorting === Sorting.NEXT && isLast)) &&
+            first.hasAttribute('data-sortable')
         ) {
             this.insertBefore(element, first);
-        } else if ((sorting === Sorting.LAST && !isLast || sorting === Sorting.PREV && isFirst)
-            && last.hasAttribute('data-sortable')
+        } else if (
+            ((sorting === Sorting.LAST && !isLast) || (sorting === Sorting.PREV && isFirst)) &&
+            last.hasAttribute('data-sortable')
         ) {
             this.insertAfter(element, last);
         }
@@ -683,12 +687,16 @@ export default class Dom {
         const urlObject = new URL(a.href);
         Object.entries(params).forEach(([key, val]) => urlObject.searchParams.set(key, `${val}`));
         const win = this.window.open(urlObject.toString(), name, this.#features());
-        this.window.addEventListener('message', event => {
-            if (event.origin === urlObject.origin && event.source === win) {
-                call(event.data);
-                win.close();
-            }
-        }, false);
+        this.window.addEventListener(
+            'message',
+            (event) => {
+                if (event.origin === urlObject.origin && event.source === win) {
+                    call(event.data);
+                    win.close();
+                }
+            },
+            false
+        );
     }
 
     /**
@@ -723,7 +731,7 @@ export default class Dom {
         for (let i = 0; i < rows; i++) {
             this.insertLastChild(
                 name === TagName.THEAD ? this.createTableHeaderRow(cols) : this.createTableRow(cols),
-                element,
+                element
             );
         }
 
@@ -740,9 +748,12 @@ export default class Dom {
             {},
             this.#browser,
             { height: `${this.getHeight()}`, width: `${this.getWidth()}` },
-            this.editor.config.base.browser,
+            this.editor.config.base.browser
         );
 
-        return Object.entries(features).filter(([, val]) => !!val).map(([key, val]) => `${key}=${val}`).join(',');
+        return Object.entries(features)
+            .filter(([, val]) => !!val)
+            .map(([key, val]) => `${key}=${val}`)
+            .join(',');
     }
 }

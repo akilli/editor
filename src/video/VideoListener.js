@@ -22,7 +22,7 @@ export default class VideoListener extends Listener {
      * @return {void}
      */
     sethtml({ detail: { element } }) {
-        Array.from(element.getElementsByTagName(TagName.VIDEO)).forEach(item => this.#init(item));
+        Array.from(element.getElementsByTagName(TagName.VIDEO)).forEach((item) => this.#init(item));
     }
 
     /**

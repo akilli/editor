@@ -52,11 +52,12 @@ export default class TableCellListener extends Listener {
         const isAdd = Key.isEventFor(event, keys, { alt: true });
         const isDel = Key.isEventFor(event, keys, { alt: true, shift: true });
 
-        if (cell instanceof HTMLTableCellElement
-            && row instanceof HTMLTableRowElement
-            && (base instanceof HTMLTableElement || base instanceof HTMLTableSectionElement)
-            && table instanceof HTMLTableElement
-            && (isNav && this.#enabled(cell, event.key) || isSort || isAdd || isDel)
+        if (
+            cell instanceof HTMLTableCellElement &&
+            row instanceof HTMLTableRowElement &&
+            (base instanceof HTMLTableElement || base instanceof HTMLTableSectionElement) &&
+            table instanceof HTMLTableElement &&
+            ((isNav && this.#enabled(cell, event.key)) || isSort || isAdd || isDel)
         ) {
             const cellIndex = cell.cellIndex;
             const cellLength = row.cells.length;
@@ -96,20 +97,20 @@ export default class TableCellListener extends Listener {
                 }
             } else if (isSort) {
                 if (event.key === Key.LEFT && cellLength > 1 && isFirst) {
-                    Array.from(table.rows).forEach(item =>
-                        this.editor.dom.insertLastChild(item.cells[cellIndex], item),
+                    Array.from(table.rows).forEach((item) =>
+                        this.editor.dom.insertLastChild(item.cells[cellIndex], item)
                     );
                 } else if (event.key === Key.LEFT && cellLength > 1) {
-                    Array.from(table.rows).forEach(item =>
-                        this.editor.dom.insertBefore(item.cells[cellIndex], item.cells[cellIndex - 1]),
+                    Array.from(table.rows).forEach((item) =>
+                        this.editor.dom.insertBefore(item.cells[cellIndex], item.cells[cellIndex - 1])
                     );
                 } else if (event.key === Key.RIGHT && cellLength > 1 && isLast) {
-                    Array.from(table.rows).forEach(item =>
-                        this.editor.dom.insertFirstChild(item.cells[cellIndex], item),
+                    Array.from(table.rows).forEach((item) =>
+                        this.editor.dom.insertFirstChild(item.cells[cellIndex], item)
                     );
                 } else if (event.key === Key.RIGHT && cellLength > 1) {
-                    Array.from(table.rows).forEach(item =>
-                        this.editor.dom.insertAfter(item.cells[cellIndex], item.cells[cellIndex + 1]),
+                    Array.from(table.rows).forEach((item) =>
+                        this.editor.dom.insertAfter(item.cells[cellIndex], item.cells[cellIndex + 1])
                     );
                 } else if (event.key === Key.UP && rowLength > 1 && isFirstRow) {
                     this.editor.dom.insertLastChild(row, base);
@@ -124,12 +125,12 @@ export default class TableCellListener extends Listener {
                 cell.focus();
             } else if (isAdd) {
                 if (event.key === Key.LEFT) {
-                    Array.from(table.rows).forEach(item => {
+                    Array.from(table.rows).forEach((item) => {
                         const c = item.cells[cellIndex];
                         this.editor.dom.insertBefore(this.editor.dom.createElement(c.localName), c);
                     });
                 } else if (event.key === Key.RIGHT) {
-                    Array.from(table.rows).forEach(item => {
+                    Array.from(table.rows).forEach((item) => {
                         const c = item.cells[cellIndex];
                         this.editor.dom.insertAfter(this.editor.dom.createElement(c.localName), c);
                     });
@@ -140,9 +141,9 @@ export default class TableCellListener extends Listener {
                 }
             } else if (isDel) {
                 if (event.key === Key.LEFT && !isFirst) {
-                    Array.from(table.rows).forEach(item => item.deleteCell(cellIndex - 1));
+                    Array.from(table.rows).forEach((item) => item.deleteCell(cellIndex - 1));
                 } else if (event.key === Key.RIGHT && !isLast) {
-                    Array.from(table.rows).forEach(item => item.deleteCell(cellIndex + 1));
+                    Array.from(table.rows).forEach((item) => item.deleteCell(cellIndex + 1));
                 } else if (event.key === Key.UP && rowIndex > 0) {
                     base.deleteRow(rowIndex - 1);
                 } else if (event.key === Key.DOWN && rowIndex < rowLength - 1) {

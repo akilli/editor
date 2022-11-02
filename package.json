@@ -25,19 +25,22 @@
   ],
   "scripts": {
     "start": "npx --yes servor --reload . index.html 20000",
+    "lint:check": "prettier --check '**/*.js'",
+    "lint:fix": "prettier --write '**/*.js'",
     "build": "npm run build:clean && npm run build:font && npm run build:css && npm run build:js",
     "build:clean": "rm -rf dist",
     "build:font": "mkdir -p dist && cp src/editor/editor.woff2 dist/editor.woff2",
     "build:css": "esbuild src/editor/editor.css --minify --outfile=dist/editor.css",
     "build:js": "esbuild src/editor/Editor.js --minify --bundle --outfile=dist/editor.js --target=es2022 --format=esm",
-    "release:patch": "npm ci && npm version patch && npm publish",
-    "release:minor": "npm ci && npm version minor && npm publish",
-    "release:major": "npm ci && npm version major && npm publish",
+    "release:patch": "npm ci && lint:check && npm version patch && npm publish",
+    "release:minor": "npm ci && lint:check && npm version minor && npm publish",
+    "release:major": "npm ci && lint:check && npm version major && npm publish",
     "preversion": "git fetch --tags",
     "version": "npm run build && git add -A dist",
     "postversion": "git push --follow-tags"
   },
   "devDependencies": {
-    "esbuild": "^0.15.12"
+    "esbuild": "^0.15.12",
+    "prettier": "^2.7.1"
   }
 }

@@ -22,7 +22,7 @@ export default class AudioListener extends Listener {
      * @return {void}
      */
     sethtml({ detail: { element } }) {
-        Array.from(element.getElementsByTagName(TagName.AUDIO)).forEach(item => this.#init(item));
+        Array.from(element.getElementsByTagName(TagName.AUDIO)).forEach((item) => this.#init(item));
     }
 
     /**

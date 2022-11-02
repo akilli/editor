@@ -10,11 +10,12 @@ export default class PreformatFilter extends Filter {
      * @inheritDoc
      */
     filter(element) {
-        if (element instanceof HTMLElement
-            && element.localName === TagName.FIGURE
-            && element.classList.contains(Preformat.name)
-            && element.querySelector(':scope > ' + TagName.PRE)
-            && !element.querySelector(':scope > ' + TagName.FIGCAPTION)
+        if (
+            element instanceof HTMLElement &&
+            element.localName === TagName.FIGURE &&
+            element.classList.contains(Preformat.name) &&
+            element.querySelector(':scope > ' + TagName.PRE) &&
+            !element.querySelector(':scope > ' + TagName.FIGCAPTION)
         ) {
             this.editor.dom.insertBefore(element.querySelector(':scope > ' + TagName.PRE), element);
             element.parentElement.removeChild(element);

@@ -22,7 +22,7 @@ export default class ImageListener extends Listener {
      * @return {void}
      */
     sethtml({ detail: { element } }) {
-        Array.from(element.getElementsByTagName(TagName.IMG)).forEach(item => this.#init(item));
+        Array.from(element.getElementsByTagName(TagName.IMG)).forEach((item) => this.#init(item));
     }
 
     /**

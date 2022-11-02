@@ -22,9 +22,10 @@ export default class FormatbarListener extends BarListener {
     selectionchange() {
         const editable = this.editor.dom.getSelectedEditable();
 
-        if (editable
-            && !this.editor.dom.getSelection().isCollapsed
-            && this.editor.tags.allowed(editable, TagGroup.FORMAT, true)
+        if (
+            editable &&
+            !this.editor.dom.getSelection().isCollapsed &&
+            this.editor.tags.allowed(editable, TagGroup.FORMAT, true)
         ) {
             this._show(this.editor.formatbar, editable);
         } else {

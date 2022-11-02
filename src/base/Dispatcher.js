@@ -80,17 +80,17 @@ export default class Dispatcher {
      * @return {void}
      */
     #observe(records) {
-        records.forEach(record => {
-            record.addedNodes.forEach(element => {
+        records.forEach((record) => {
+            record.addedNodes.forEach((element) => {
                 if (element instanceof HTMLElement) {
                     this.#dispatch('insert', element, record.target);
-                    Array.from(element.getElementsByTagName(TagName.ALL)).forEach(item =>
-                        this.#dispatch('insert', item, record.target),
+                    Array.from(element.getElementsByTagName(TagName.ALL)).forEach((item) =>
+                        this.#dispatch('insert', item, record.target)
                     );
                 }
             });
-            record.removedNodes.forEach(element =>
-                element instanceof HTMLElement && this.#dispatch('delete', element, record.target),
+            record.removedNodes.forEach(
+                (element) => element instanceof HTMLElement && this.#dispatch('delete', element, record.target)
             );
         });
     }

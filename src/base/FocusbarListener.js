@@ -84,7 +84,7 @@ export default class FocusbarListener extends BarListener {
             return;
         }
 
-        Object.keys(element.dataset).forEach(key => (this.editor.focusbar.dataset[key] = element.dataset[key]));
+        Object.keys(element.dataset).forEach((key) => (this.editor.focusbar.dataset[key] = element.dataset[key]));
         this.editor.focusbar.dataset.tag = element.localName;
         this._show(this.editor.focusbar, element);
     }
@@ -96,6 +96,6 @@ export default class FocusbarListener extends BarListener {
      */
     #hide() {
         this._hide(this.editor.focusbar);
-        Object.keys(this.editor.focusbar.dataset).forEach(key => delete this.editor.focusbar.dataset[key]);
+        Object.keys(this.editor.focusbar.dataset).forEach((key) => delete this.editor.focusbar.dataset[key]);
     }
 }

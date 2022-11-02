@@ -32,10 +32,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const save = document.getElementById('save');
     let editor;
     const toggle = (flag) => {
-        Array.from(header.getElementsByTagName('select')).forEach(item => (item.disabled = flag));
+        Array.from(header.getElementsByTagName('select')).forEach((item) => (item.disabled = flag));
         clear.disabled = flag;
     };
-    const setMode = () => mode.value ? root.setAttribute('class', mode.value) : root.removeAttribute('class');
+    const setMode = () => (mode.value ? root.setAttribute('class', mode.value) : root.removeAttribute('class'));
     const init = () => {
         editor?.destroy();
         const Editor = version.value === 'src' ? SrcEditor : DistEditor;

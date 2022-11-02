@@ -17,7 +17,7 @@ export default class CommandManager {
      * @param {Command[]} [commands = []]
      */
     constructor(commands = []) {
-        commands.forEach(command => this.set(command));
+        commands.forEach((command) => this.set(command));
     }
 
     /**
@@ -51,7 +51,7 @@ export default class CommandManager {
      * @return {Command|undefined}
      */
     find(tagName) {
-        return Array.from(this.#items.values()).find(command => command.tag?.name === tagName);
+        return Array.from(this.#items.values()).find((command) => command.tag?.name === tagName);
     }
 
     /**
@@ -68,7 +68,7 @@ export default class CommandManager {
      * Freezes itself and its items
      */
     freeze() {
-        this.#items.forEach(command => Object.freeze(command));
+        this.#items.forEach((command) => Object.freeze(command));
         Object.freeze(this.#items);
         Object.freeze(this);
     }

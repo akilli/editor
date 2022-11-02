@@ -110,11 +110,12 @@ export default class Tag {
      * @param {Object.<string, any>} [opts = {}]
      */
     constructor({ name, group, ...opts } = {}) {
-        if (!isString(name)
-            || !isString(group)
-            || !isOptArray(opts.children)
-            || !isOptArray(opts.attributes)
-            || !isOptString(opts.enter)
+        if (
+            !isString(name) ||
+            !isString(group) ||
+            !isOptArray(opts.children) ||
+            !isOptArray(opts.attributes) ||
+            !isOptString(opts.enter)
         ) {
             throw new TypeError('Invalid argument');
         }

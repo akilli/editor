@@ -36,7 +36,7 @@ export default class FilterManager {
             throw new TypeError('Invalid argument');
         }
 
-        this.#items.forEach(filter => {
+        this.#items.forEach((filter) => {
             element.normalize();
             filter.filter(element);
         });
@@ -46,7 +46,7 @@ export default class FilterManager {
      * Freezes itself and its items
      */
     freeze() {
-        this.#items.forEach(filter => Object.freeze(filter));
+        this.#items.forEach((filter) => Object.freeze(filter));
         Object.freeze(this.#items);
         Object.freeze(this);
     }

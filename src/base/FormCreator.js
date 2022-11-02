@@ -138,7 +138,7 @@ export default class FormCreator {
         const div = this.editor.dom.createElement(TagName.DIV);
         this.editor.dom.insertLastChild(
             this.editor.dom.createElement(TagName.LABEL, { attributes: { for: attributes.id }, html: label }),
-            div,
+            div
         );
         this.editor.dom.insertLastChild(this.editor.dom.createElement(TagName.INPUT, { attributes }), div);
         attributes.required && div.setAttribute('data-required', '');

@@ -258,9 +258,11 @@ export default class Key {
      * @return {boolean}
      */
     static isEventFor(event, key, { alt = false, ctrl = false, shift = false } = {}) {
-        return (Array.isArray(key) && key.includes(event.key) || event.key === key)
-            && event.altKey === alt
-            && event.ctrlKey === ctrl
-            && event.shiftKey === shift;
+        return (
+            ((Array.isArray(key) && key.includes(event.key)) || event.key === key) &&
+            event.altKey === alt &&
+            event.ctrlKey === ctrl &&
+            event.shiftKey === shift
+        );
     }
 }

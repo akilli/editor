@@ -112,7 +112,7 @@ export default class SortableListener extends Listener {
      * @return {void}
      */
     #sortover() {
-        this.editor.root.querySelectorAll('[data-sortover]').forEach(item => item.removeAttribute('data-sortover'));
+        this.editor.root.querySelectorAll('[data-sortover]').forEach((item) => item.removeAttribute('data-sortover'));
     }
 
     /**
@@ -123,15 +123,16 @@ export default class SortableListener extends Listener {
      * @return {boolean}
      */
     #droppable(element, target) {
-        return element instanceof HTMLElement
-            && target instanceof HTMLElement
-            && this.editor.dom.contains(target)
-            && ![this.editor.root, element].includes(target)
-            && target.hasAttribute('data-sortable')
-            && (
-                element.parentElement === target.parentElement
-                || this.editor.dom.arbitrary(element.parentElement) && this.editor.dom.arbitrary(target.parentElement)
-            )
-            && this.editor.tags.allowed(target.parentElement, element);
+        return (
+            element instanceof HTMLElement &&
+            target instanceof HTMLElement &&
+            this.editor.dom.contains(target) &&
+            ![this.editor.root, element].includes(target) &&
+            target.hasAttribute('data-sortable') &&
+            (element.parentElement === target.parentElement ||
+                (this.editor.dom.arbitrary(element.parentElement) &&
+                    this.editor.dom.arbitrary(target.parentElement))) &&
+            this.editor.tags.allowed(target.parentElement, element)
+        );
     }
 }

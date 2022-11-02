@@ -28,7 +28,7 @@ export default class ContentFilter extends Filter {
             }
         };
 
-        Array.from(element.childNodes).forEach(child => {
+        Array.from(element.childNodes).forEach((child) => {
             const text = child.textContent.trim();
 
             if (child instanceof HTMLElement) {
@@ -97,7 +97,7 @@ export default class ContentFilter extends Filter {
      */
     #element(element, tag) {
         Array.from(element.attributes).forEach(
-            item => !tag.attributes.includes(item.name) && element.removeAttribute(item.name),
+            (item) => !tag.attributes.includes(item.name) && element.removeAttribute(item.name)
         );
 
         if (element.hasChildNodes()) {

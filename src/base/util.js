@@ -45,7 +45,7 @@ export function isOptString(val) {
  * @return {boolean}
  */
 export function isOptArray(val) {
-    return not(val) || Array.isArray(val) && val.length > 0;
+    return not(val) || (Array.isArray(val) && val.length > 0);
 }
 
 /**

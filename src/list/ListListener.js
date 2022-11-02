@@ -24,7 +24,7 @@ export default class ListListener extends Listener {
      * @return {void}
      */
     sethtml({ detail: { element } }) {
-        Array.from(element.getElementsByTagName(TagName.LI)).forEach(item => this.#init(item));
+        Array.from(element.getElementsByTagName(TagName.LI)).forEach((item) => this.#init(item));
     }
 
     /**
@@ -76,8 +76,9 @@ export default class ListListener extends Listener {
      * @return {void}
      */
     #init(element) {
-        if (!(element.parentElement instanceof HTMLOListElement)
-            && !(element.parentElement instanceof HTMLUListElement)
+        if (
+            !(element.parentElement instanceof HTMLOListElement) &&
+            !(element.parentElement instanceof HTMLUListElement)
         ) {
             this.editor.dom.wrap(element, TagName.UL);
         }

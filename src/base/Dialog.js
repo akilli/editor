@@ -148,12 +148,12 @@ export default class Dialog {
         this.#formCreator = new FormCreator(this.editor, close);
         this._prepareForm();
         const form = this.formCreator.form;
-        form.addEventListener('submit', event => {
+        form.addEventListener('submit', (event) => {
             event.preventDefault();
             event.stopPropagation();
             close();
             const data = {};
-            Array.from(form.elements).forEach(item => (data[item.name] = item.value));
+            Array.from(form.elements).forEach((item) => (data[item.name] = item.value));
             save(data);
         });
         Object.entries(attributes).forEach(([key, val]) => form.elements[key] && (form.elements[key].value = val));
@@ -171,7 +171,7 @@ export default class Dialog {
      * @return {void}
      */
     #cleanup() {
-        Array.from(this.editor.element.getElementsByTagName(TagName.DIALOG)).forEach(item => {
+        Array.from(this.editor.element.getElementsByTagName(TagName.DIALOG)).forEach((item) => {
             item.parentElement.removeChild(item);
         });
     }
