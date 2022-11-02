@@ -72,13 +72,6 @@ export default class Key {
     /**
      * @return {string}
      */
-    static get ESC() {
-        return 'Escape';
-    }
-
-    /**
-     * @return {string}
-     */
     static get F() {
         return 'f';
     }

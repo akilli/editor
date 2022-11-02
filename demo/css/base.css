@@ -226,6 +226,13 @@ textarea {
 }
 
 /**
+ * Dialog
+ */
+dialog {
+    margin: auto;
+}
+
+/**
  * Clear
  */
 hr {

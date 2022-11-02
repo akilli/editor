@@ -134,12 +134,13 @@ export default class Dialog {
             save(data);
         });
         Object.entries(attributes).forEach(([key, val]) => form.elements[key] && (form.elements[key].value = val));
-        /** @type {DialogElement} */
+        /** @type {HTMLDialogElement} */
         const dialog = this.editor.dom.createElement(TagName.DIALOG);
         dialog.addEventListener('close', close);
+        dialog.addEventListener('click', (event) => event.target === dialog && close());
         this.editor.dom.insertLastChild(form, dialog);
-        dialog.show();
         this.editor.dom.insertLastChild(dialog, this.editor.element);
+        dialog.showModal();
     }
 
     /**

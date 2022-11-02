@@ -9,7 +9,6 @@
     --editor-button-color: #fff;
     --editor-cancel-background: #f1c40f;
     --editor-cancel-color: #191919;
-    --editor-dialog-backdrop: #000000cc;
     --editor-dialog-background: #fff;
     --editor-dialog-color: #191919;
     --editor-error: #960200;
@@ -30,6 +29,10 @@ akilli-editor[lang=de] {
     --editor-text-editable: 'Gib mir Text!';
     --editor-text-root: 'Gib mir Widgets!';
     --editor-text-slot: 'Fokussiere diesen Slot und gib mir Widgets!';
+}
+
+::backdrop {
+    --editor-dialog-backdrop: #000000cc;
 }
 
 /**
@@ -170,64 +173,48 @@ akilli-editor app-block::before {
 /**
  * Dialog
  */
-akilli-editor editor-dialog {
-    display: none;
-}
-
-akilli-editor editor-dialog[open] {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
+akilli-editor dialog::backdrop {
     background: var(--editor-dialog-backdrop);
 }
 
-akilli-editor editor-dialog form {
+akilli-editor dialog form {
     padding: 0.75rem;
     color: var(--editor-dialog-color);
     background: var(--editor-dialog-background);
 }
 
-akilli-editor editor-dialog :is(form, fieldset) > :not(:first-child) {
+akilli-editor dialog :is(form, fieldset) > :not(:first-child) {
     margin-top: 1.5rem;
 }
 
-akilli-editor editor-dialog legend {
+akilli-editor dialog legend {
     font-size: 1.25rem;
 }
 
-akilli-editor editor-dialog label {
+akilli-editor dialog label {
     display: block;
 }
 
-akilli-editor editor-dialog [data-required] label::after {
+akilli-editor dialog [data-required] label::after {
     content: ' *';
 }
 
-akilli-editor editor-dialog button {
+akilli-editor dialog button {
     padding: 0.75rem;
     color: var(--editor-button-color);
     background: var(--editor-button-background);
 }
 
-akilli-editor editor-dialog button + button {
+akilli-editor dialog button + button {
     margin-left: 1.5rem;
 }
 
-akilli-editor editor-dialog button[type=button] {
+akilli-editor dialog button[type=button] {
     color: var(--editor-cancel-color);
     background: var(--editor-cancel-background);
 }
 
-akilli-editor editor-dialog input:is(
+akilli-editor dialog input:is(
     [type=email],
     [type=number],
     [type=password],
@@ -236,13 +223,13 @@ akilli-editor editor-dialog input:is(
     [type=text],
     [type=url]
 ),
-akilli-editor editor-dialog select {
+akilli-editor dialog select {
     width: 100%;
     padding: 0.71875rem 0;
     border-bottom: 0.0625rem solid var(--editor-border);
 }
 
-akilli-editor editor-dialog input:is(
+akilli-editor dialog input:is(
     [type=email],
     [type=number],
     [type=password],
@@ -251,7 +238,7 @@ akilli-editor editor-dialog input:is(
     [type=text],
     [type=url]
 ):invalid,
-akilli-editor editor-dialog select:invalid {
+akilli-editor dialog select:invalid {
     border-color: var(--editor-error);
 }
 

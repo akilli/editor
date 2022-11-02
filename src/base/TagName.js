@@ -108,7 +108,7 @@ export default class TagName {
      * @return {string}
      */
     static get DIALOG() {
-        return 'editor-dialog';
+        return 'dialog';
     }
 
     /**
