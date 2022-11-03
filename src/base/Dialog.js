@@ -1,7 +1,7 @@
 import Editor from './Editor.js';
 import FormCreator from './FormCreator.js';
 import TagName from './TagName.js';
-import { isOptString, isString } from './util.js';
+import { is, isOptString, isString } from './util.js';
 
 export default class Dialog {
     /**
@@ -133,7 +133,7 @@ export default class Dialog {
         const form = this.formCreator.form;
         form.addEventListener('submit', () => save(Object.fromEntries(new FormData(form))));
         form.addEventListener('reset', () => dialog.close());
-        Object.entries(attributes).forEach(([key, val]) => form.elements[key] && (form.elements[key].value = val));
+        new FormData(form).forEach((val, key) => is(attributes[key]) && (form.elements[key].value = attributes[key]));
         this.editor.dom.insertLastChild(form, dialog);
 
         dialog.showModal();
