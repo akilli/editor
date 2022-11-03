@@ -122,23 +122,25 @@ export default class Dialog {
             this.#cleanup();
         };
         this.#cleanup();
-        this.#formCreator = new FormCreator(this.editor);
-        this._prepareForm();
-        const form = this.formCreator.form;
-        form.addEventListener('submit', () => {
-            close();
-            const data = {};
-            Array.from(form.elements).forEach((item) => (data[item.name] = item.value));
-            save(data);
-        });
-        form.addEventListener('reset', close);
-        Object.entries(attributes).forEach(([key, val]) => form.elements[key] && (form.elements[key].value = val));
+
         /** @type {HTMLDialogElement} */
         const dialog = this.editor.dom.createElement(TagName.DIALOG);
         dialog.addEventListener('close', close);
         dialog.addEventListener('click', (event) => event.target === dialog && close());
-        this.editor.dom.insertLastChild(form, dialog);
         this.editor.dom.insertLastChild(dialog, this.editor.element);
+
+        this.#formCreator = new FormCreator(this.editor);
+        this._prepareForm();
+        const form = this.formCreator.form;
+        form.addEventListener('submit', () => {
+            const data = {};
+            new FormData(form).forEach((value, key) => (data[key] = value));
+            save(data);
+        });
+        form.addEventListener('reset', close);
+        Object.entries(attributes).forEach(([key, val]) => form.elements[key] && (form.elements[key].value = val));
+        this.editor.dom.insertLastChild(form, dialog);
+
         dialog.showModal();
     }
 
