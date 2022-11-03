@@ -132,11 +132,7 @@ export default class Dialog {
         this.#formCreator = new FormCreator(this.editor);
         this._prepareForm();
         const form = this.formCreator.form;
-        form.addEventListener('submit', () => {
-            const data = {};
-            new FormData(form).forEach((value, key) => (data[key] = value));
-            save(data);
-        });
+        form.addEventListener('submit', () => save(Object.fromEntries(new FormData(form))));
         form.addEventListener('reset', close);
         Object.entries(attributes).forEach(([key, val]) => form.elements[key] && (form.elements[key].value = val));
         this.editor.dom.insertLastChild(form, dialog);
