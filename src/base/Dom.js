@@ -400,7 +400,7 @@ export default class Dom {
     getSelectedElementByName(name) {
         const element = this.getSelectedElement();
 
-        return (element?.localName === name && element) || undefined;
+        return element?.localName === name ? element : undefined;
     }
 
     /**
