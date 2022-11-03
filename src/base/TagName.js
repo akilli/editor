@@ -199,7 +199,7 @@ export default class TagName {
      * @return {string}
      */
     static get I() {
-        return 'I';
+        return 'i';
     }
 
     /**
