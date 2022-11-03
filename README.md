@@ -190,7 +190,7 @@ const config = {
          * If browser URL is provided, an audio browser dialog is used to insert new audio elements instead of the 
          * default audio dialog that provides just a simple form to set the src attribute.
          *
-         * @see Audio.init
+         * @see AudioDialog.constructor
          * @type {string|undefined}
          */
         browser: undefined,
@@ -219,7 +219,7 @@ const config = {
          * If browser URL is provided, a block browser dialog is used to insert new block elements instead of the 
          * default block dialog that provides just a simple form to set the id attribute.
          *
-         * @see Block.init
+         * @see BlockDialog.constructor
          * @type {string|undefined}
          */
         browser: undefined,
@@ -243,7 +243,7 @@ const config = {
          * If browser URL is provided, an iframe browser dialog is used to insert new iframe elements instead of the
          * default iframe dialog that provides just a simple form to set the src, width and height attributes.
          *
-         * @see Iframe.init
+         * @see IframeDialog.constructor
          * @type {string|undefined}
          */
         browser: undefined,
@@ -259,7 +259,7 @@ const config = {
          * If browser URL is provided, an image browser dialog is used to insert new image elements instead of the 
          * default image dialog that provides just a simple form to set the src, alt, width and height attributes.
          *
-         * @see Image.init
+         * @see ImageDialog.constructor
          * @type {string|undefined}
          */
         browser: undefined,
@@ -275,7 +275,7 @@ const config = {
          * If browser URL is provided, a video browser dialog is used to insert new video elements instead of the 
          * default video dialog that provides just a simple form to set the src, width and height attributes.
          *
-         * @see Video.init
+         * @see VideoDialog.constructor
          * @type {string|undefined}
          */
         browser: undefined,
