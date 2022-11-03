@@ -1,7 +1,7 @@
 import Editor from './Editor.js';
 import Sorting from './Sorting.js';
 import TagName from './TagName.js';
-import { isFunction, isString, not } from './util.js';
+import { is, isFunction, isString } from './util.js';
 
 export default class Dom {
     /**
@@ -95,7 +95,7 @@ export default class Dom {
      * @return {void}
      */
     registerElement(name, constructor, parentName = undefined) {
-        if (not(this.window.customElements.get(name))) {
+        if (!is(this.window.customElements.get(name))) {
             this.window.customElements.define(name, constructor, parentName ? { extends: parentName } : undefined);
         }
     }

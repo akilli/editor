@@ -1,11 +1,11 @@
 /**
- * Indicates if given value is undefined
+ * Indicates if given value is defined
  *
  * @param {any} val
  * @return {boolean}
  */
-export function not(val) {
-    return typeof val === 'undefined';
+export function is(val) {
+    return typeof val !== 'undefined';
 }
 
 /**
@@ -35,7 +35,7 @@ export function isString(val) {
  * @return {boolean}
  */
 export function isOptString(val) {
-    return not(val) || isString(val);
+    return !is(val) || isString(val);
 }
 
 /**
@@ -45,7 +45,7 @@ export function isOptString(val) {
  * @return {boolean}
  */
 export function isOptArray(val) {
-    return not(val) || (Array.isArray(val) && val.length > 0);
+    return !is(val) || (Array.isArray(val) && val.length > 0);
 }
 
 /**
@@ -55,5 +55,5 @@ export function isOptArray(val) {
  * @return {boolean}
  */
 export function isOptHtml(val) {
-    return not(val) || val instanceof HTMLElement;
+    return !is(val) || val instanceof HTMLElement;
 }
