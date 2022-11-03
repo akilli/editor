@@ -117,23 +117,22 @@ export default class Dialog {
      */
     #openDialog(save, attributes = {}) {
         const range = this.editor.dom.getRange();
-        const close = () => {
-            range && this.editor.dom.setRange(range);
-            this.#cleanup();
-        };
         this.#cleanup();
 
         /** @type {HTMLDialogElement} */
         const dialog = this.editor.dom.createElement(TagName.DIALOG);
-        dialog.addEventListener('close', close);
-        dialog.addEventListener('click', (event) => event.target === dialog && close());
+        dialog.addEventListener('click', (event) => event.target === dialog && dialog.close());
+        dialog.addEventListener('close', () => {
+            range && this.editor.dom.setRange(range);
+            this.#cleanup();
+        });
         this.editor.dom.insertLastChild(dialog, this.editor.element);
 
         this.#formCreator = new FormCreator(this.editor);
         this._prepareForm();
         const form = this.formCreator.form;
         form.addEventListener('submit', () => save(Object.fromEntries(new FormData(form))));
-        form.addEventListener('reset', close);
+        form.addEventListener('reset', () => dialog.close());
         Object.entries(attributes).forEach(([key, val]) => form.elements[key] && (form.elements[key].value = val));
         this.editor.dom.insertLastChild(form, dialog);
 
