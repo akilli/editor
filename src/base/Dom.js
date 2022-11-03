@@ -513,6 +513,7 @@ export default class Dom {
 
         const prev = element.previousElementSibling;
         const next = element.nextElementSibling;
+        element === this.getActiveElement() && element.blur();
         element.parentElement.removeChild(element);
 
         if (prev instanceof HTMLElement && prev.hasAttribute('data-focusable')) {
