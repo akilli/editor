@@ -44,7 +44,7 @@ export default class Block extends Plugin {
             sortable: true,
         });
         new BlockListener(this.editor);
-        this.editor.dialogs.set(new BlockDialog(this.editor, this.editor.config.block.browser));
+        this.editor.dialogs.set(new BlockDialog(this.editor));
         this._command(TagName.BLOCK);
         this._toolbar('Block');
     }

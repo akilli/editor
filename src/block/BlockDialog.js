@@ -4,10 +4,9 @@ import Dialog from '../base/Dialog.js';
 export default class BlockDialog extends Dialog {
     /**
      * @param {Editor} editor
-     * @param {string|undefined} browserUrl
      */
-    constructor(editor, browserUrl = undefined) {
-        super(editor, Block.name, browserUrl);
+    constructor(editor) {
+        super(editor, Block.name, editor.config.block.browser);
     }
 
     /**

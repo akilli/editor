@@ -40,7 +40,7 @@ export default class Image extends Plugin {
             navigable: true,
         });
         new ImageListener(this.editor);
-        this.editor.dialogs.set(new ImageDialog(this.editor, this.editor.config.image.browser));
+        this.editor.dialogs.set(new ImageDialog(this.editor));
         this._command(TagName.IMG);
         this._toolbar('Image');
     }

@@ -4,10 +4,9 @@ import Dialog from '../base/Dialog.js';
 export default class AudioDialog extends Dialog {
     /**
      * @param {Editor} editor
-     * @param {string|undefined} browserUrl
      */
-    constructor(editor, browserUrl = undefined) {
-        super(editor, Audio.name, browserUrl);
+    constructor(editor) {
+        super(editor, Audio.name, editor.config.audio.browser);
     }
 
     /**

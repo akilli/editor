@@ -4,10 +4,9 @@ import Video from './Video.js';
 export default class VideoDialog extends Dialog {
     /**
      * @param {Editor} editor
-     * @param {string|undefined} browserUrl
      */
-    constructor(editor, browserUrl = undefined) {
-        super(editor, Video.name, browserUrl);
+    constructor(editor) {
+        super(editor, Video.name, editor.config.video.browser);
     }
 
     /**

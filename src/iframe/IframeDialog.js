@@ -4,10 +4,9 @@ import Iframe from './Iframe.js';
 export default class IframeDialog extends Dialog {
     /**
      * @param {Editor} editor
-     * @param {string|undefined} browserUrl
      */
-    constructor(editor, browserUrl = undefined) {
-        super(editor, Iframe.name, browserUrl);
+    constructor(editor) {
+        super(editor, Iframe.name, editor.config.iframe.browser);
     }
 
     /**

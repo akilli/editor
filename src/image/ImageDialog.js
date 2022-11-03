@@ -4,10 +4,9 @@ import Image from './Image.js';
 export default class ImageDialog extends Dialog {
     /**
      * @param {Editor} editor
-     * @param {string|undefined} browserUrl
      */
-    constructor(editor, browserUrl = undefined) {
-        super(editor, Image.name, browserUrl);
+    constructor(editor) {
+        super(editor, Image.name, editor.config.image.browser);
     }
 
     /**

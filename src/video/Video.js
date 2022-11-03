@@ -40,7 +40,7 @@ export default class Video extends Plugin {
             navigable: true,
         });
         new VideoListener(this.editor);
-        this.editor.dialogs.set(new VideoDialog(this.editor, this.editor.config.video.browser));
+        this.editor.dialogs.set(new VideoDialog(this.editor));
         this._command(TagName.VIDEO);
         this._toolbar('Video');
     }
