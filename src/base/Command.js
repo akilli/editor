@@ -71,14 +71,15 @@ export default class Command {
      * @return {void}
      */
     execute() {
-        this.dialog ? this.openDialog() : this.insert(this.#selectedAttributes());
+        this.dialog ? this._openDialog() : this._insert(this.#selectedAttributes());
     }
 
     /**
+     * @protected
      * @param {Object.<string, string>} [attributes = {}]
      * @return {void}
      */
-    insert(attributes = {}) {
+    _insert(attributes = {}) {
         if (!this.tag) {
             return;
         }
@@ -101,10 +102,11 @@ export default class Command {
     }
 
     /**
+     * @protected
      * @return {void}
      */
-    openDialog() {
-        this.dialog?.open((attributes) => this.insert(attributes), this.#selectedAttributes());
+    _openDialog() {
+        this.dialog?.open((attributes) => this._insert(attributes), this.#selectedAttributes());
     }
 
     /**

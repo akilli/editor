@@ -11,12 +11,13 @@ export default class TableCommand extends Command {
     }
 
     /**
+     * @protected
      * @param {Object.<string, string>} [attributes = {}]
      * @param {string} attributes.rows
      * @param {string} attributes.cols
      * @return {void}
      */
-    insert({ rows, cols } = {}) {
+    _insert({ rows, cols } = {}) {
         this.editor.dom.insert(this.editor.dom.createTable(parseInt(rows, 10) || 1, parseInt(cols, 10) || 1));
     }
 }
