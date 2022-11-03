@@ -124,6 +124,7 @@ export default class Dialog {
         dialog.addEventListener('click', (event) => event.target === dialog && dialog.close());
         dialog.addEventListener('close', () => {
             range && this.editor.dom.setRange(range);
+            dialog.returnValue && save(JSON.parse(dialog.returnValue));
             this.#cleanup();
         });
         this.editor.dom.insertLastChild(dialog, this.editor.element);
@@ -131,7 +132,7 @@ export default class Dialog {
         this.#formCreator = new FormCreator(this.editor);
         this._prepareForm();
         const form = this.formCreator.form;
-        form.addEventListener('submit', () => save(Object.fromEntries(new FormData(form))));
+        form.addEventListener('submit', () => dialog.close(JSON.stringify(Object.fromEntries(new FormData(form)))));
         form.addEventListener('reset', () => dialog.close());
         new FormData(form).forEach((val, key) => is(attributes[key]) && (form.elements[key].value = attributes[key]));
         this.editor.dom.insertLastChild(form, dialog);
