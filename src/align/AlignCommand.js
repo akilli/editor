@@ -28,7 +28,7 @@ export default class AlignCommand extends Command {
         const element = this.editor.dom.getActiveElement();
 
         if (element?.hasAttribute('data-alignable')) {
-            element.classList.remove(...Alignment.values());
+            this.editor.dom.removeClass(element, ...Alignment.values());
             this.#alignment !== Alignment.NONE && element.classList.add(this.#alignment);
         }
     }

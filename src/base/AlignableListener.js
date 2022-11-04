@@ -38,7 +38,7 @@ export default class AlignableListener extends Listener {
         if (event.target === event.currentTarget && Key.isEventFor(event, Object.keys(map), { shift: true })) {
             event.preventDefault();
             event.stopPropagation();
-            event.target.classList.remove(...Alignment.values());
+            this.editor.dom.removeClass(event.target, ...Alignment.values());
             map[event.key] !== Alignment.NONE && event.target.classList.add(map[event.key]);
         }
     }

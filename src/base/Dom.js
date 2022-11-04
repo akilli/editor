@@ -293,6 +293,126 @@ export default class Dom {
     }
 
     /**
+     * Sorts element
+     *
+     * @param {HTMLElement} element
+     * @param {string} sorting
+     * @return {void}
+     */
+    sort(element, sorting) {
+        if (!(element instanceof HTMLElement) || !Sorting.values().includes(sorting)) {
+            throw new TypeError('Invalid argument');
+        }
+
+        const parent = element.parentElement;
+        const prev = element.previousElementSibling;
+        const next = element.nextElementSibling;
+        const first = parent.firstElementChild;
+        const last = parent.lastElementChild;
+        const isFirst = element === first;
+        const isLast = element === last;
+
+        if (sorting === Sorting.PREV && !isFirst && prev.hasAttribute('data-sortable')) {
+            this.insertBefore(element, prev);
+        } else if (sorting === Sorting.NEXT && !isLast && next.hasAttribute('data-sortable')) {
+            this.insertAfter(element, next);
+        } else if (
+            ((sorting === Sorting.FIRST && !isFirst) || (sorting === Sorting.NEXT && isLast)) &&
+            first.hasAttribute('data-sortable')
+        ) {
+            this.insertBefore(element, first);
+        } else if (
+            ((sorting === Sorting.LAST && !isLast) || (sorting === Sorting.PREV && isFirst)) &&
+            last.hasAttribute('data-sortable')
+        ) {
+            this.insertAfter(element, last);
+        }
+    }
+
+    /**
+     * Insert element before reference element
+     *
+     * @param {HTMLElement} element
+     * @param {HTMLElement} ref
+     * @return {void}
+     */
+    insertBefore(element, ref) {
+        if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
+            throw new TypeError('Invalid argument');
+        }
+
+        ref.insertAdjacentElement('beforebegin', element);
+    }
+
+    /**
+     * Insert element after reference element
+     *
+     * @param {HTMLElement} element
+     * @param {HTMLElement} ref
+     * @return {void}
+     */
+    insertAfter(element, ref) {
+        if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
+            throw new TypeError('Invalid argument');
+        }
+
+        ref.insertAdjacentElement('afterend', element);
+    }
+
+    /**
+     * Insert element as first child of reference element
+     *
+     * @param {HTMLElement} element
+     * @param {HTMLElement} ref
+     * @return {void}
+     */
+    insertFirstChild(element, ref) {
+        if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
+            throw new TypeError('Invalid argument');
+        }
+
+        ref.insertAdjacentElement('afterbegin', element);
+    }
+
+    /**
+     * Insert element as last child of reference element
+     *
+     * @param {HTMLElement} element
+     * @param {HTMLElement} ref
+     * @return {void}
+     */
+    insertLastChild(element, ref) {
+        if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
+            throw new TypeError('Invalid argument');
+        }
+
+        ref.insertAdjacentElement('beforeend', element);
+    }
+
+    /**
+     * Deletes element and focuses previous sibling if applicable
+     *
+     * @param {HTMLElement} element
+     * @return {void}
+     */
+    delete(element) {
+        if (!(element instanceof HTMLElement)) {
+            throw new TypeError('Invalid argument');
+        }
+
+        const prev = element.previousElementSibling;
+        const next = element.nextElementSibling;
+        element === this.getActiveElement() && element.blur();
+        element.parentElement.removeChild(element);
+
+        if (prev instanceof HTMLElement && prev.hasAttribute('data-focusable')) {
+            this.focusEnd(prev);
+        } else if (next instanceof HTMLElement && next.hasAttribute('data-focusable')) {
+            next.focus();
+        }
+    }
+
+    /**
      * Indicates if element allows arbitrary amount of child elements
      *
      * @param {HTMLElement} element
@@ -501,123 +621,19 @@ export default class Dom {
     }
 
     /**
-     * Deletes element and focuses previous sibling if applicable
+     * Focus end of contents
      *
      * @param {HTMLElement} element
+     * @param {...string} classes
      * @return {void}
      */
-    delete(element) {
+    removeClass(element, ...classes) {
         if (!(element instanceof HTMLElement)) {
             throw new TypeError('Invalid argument');
         }
 
-        const prev = element.previousElementSibling;
-        const next = element.nextElementSibling;
-        element === this.getActiveElement() && element.blur();
-        element.parentElement.removeChild(element);
-
-        if (prev instanceof HTMLElement && prev.hasAttribute('data-focusable')) {
-            this.focusEnd(prev);
-        } else if (next instanceof HTMLElement && next.hasAttribute('data-focusable')) {
-            next.focus();
-        }
-    }
-
-    /**
-     * Sorts element
-     *
-     * @param {HTMLElement} element
-     * @param {string} sorting
-     * @return {void}
-     */
-    sort(element, sorting) {
-        if (!(element instanceof HTMLElement) || !Sorting.values().includes(sorting)) {
-            throw new TypeError('Invalid argument');
-        }
-
-        const parent = element.parentElement;
-        const prev = element.previousElementSibling;
-        const next = element.nextElementSibling;
-        const first = parent.firstElementChild;
-        const last = parent.lastElementChild;
-        const isFirst = element === first;
-        const isLast = element === last;
-
-        if (sorting === Sorting.PREV && !isFirst && prev.hasAttribute('data-sortable')) {
-            this.insertBefore(element, prev);
-        } else if (sorting === Sorting.NEXT && !isLast && next.hasAttribute('data-sortable')) {
-            this.insertAfter(element, next);
-        } else if (
-            ((sorting === Sorting.FIRST && !isFirst) || (sorting === Sorting.NEXT && isLast)) &&
-            first.hasAttribute('data-sortable')
-        ) {
-            this.insertBefore(element, first);
-        } else if (
-            ((sorting === Sorting.LAST && !isLast) || (sorting === Sorting.PREV && isFirst)) &&
-            last.hasAttribute('data-sortable')
-        ) {
-            this.insertAfter(element, last);
-        }
-    }
-
-    /**
-     * Insert element before reference element
-     *
-     * @param {HTMLElement} element
-     * @param {HTMLElement} ref
-     * @return {void}
-     */
-    insertBefore(element, ref) {
-        if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
-            throw new TypeError('Invalid argument');
-        }
-
-        ref.insertAdjacentElement('beforebegin', element);
-    }
-
-    /**
-     * Insert element after reference element
-     *
-     * @param {HTMLElement} element
-     * @param {HTMLElement} ref
-     * @return {void}
-     */
-    insertAfter(element, ref) {
-        if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
-            throw new TypeError('Invalid argument');
-        }
-
-        ref.insertAdjacentElement('afterend', element);
-    }
-
-    /**
-     * Insert element as first child of reference element
-     *
-     * @param {HTMLElement} element
-     * @param {HTMLElement} ref
-     * @return {void}
-     */
-    insertFirstChild(element, ref) {
-        if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
-            throw new TypeError('Invalid argument');
-        }
-
-        ref.insertAdjacentElement('afterbegin', element);
-    }
-
-    /**
-     * Insert element as last child of reference element
-     *
-     * @param {HTMLElement} element
-     * @param {HTMLElement} ref
-     * @return {void}
-     */
-    insertLastChild(element, ref) {
-        if (!(element instanceof HTMLElement) || !(ref instanceof HTMLElement)) {
-            throw new TypeError('Invalid argument');
-        }
-
-        ref.insertAdjacentElement('beforeend', element);
+        element.classList.remove(...classes);
+        element.classList.length > 0 || element.removeAttribute('class');
     }
 
     /**
