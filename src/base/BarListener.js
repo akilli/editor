@@ -10,10 +10,13 @@ export default class BarListener extends Listener {
      * @param {HTMLButtonElement} event.detail.element
      * @return {void}
      */
-    insertbutton({ detail: { element } }) {
+    insertbutton({ target, detail: { element } }) {
         if (element.getAttribute('data-command')) {
             element.addEventListener('click', this);
         }
+
+        element.tabIndex = element === target.firstElementChild ? 0 : -1;
+        element.addEventListener('keydown', this);
     }
 
     /**

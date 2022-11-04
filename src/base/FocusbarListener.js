@@ -17,10 +17,11 @@ export default class FocusbarListener extends BarListener {
      * @param {HTMLButtonElement} event.detail.element
      * @return {void}
      */
-    insertbutton({ detail: { element } }) {
-        if (element.getAttribute('data-command')) {
-            element.addEventListener('click', this);
-            element.addEventListener('mousedown', this);
+    insertbutton(event) {
+        super.insertbutton(event);
+
+        if (event.detail.element.getAttribute('data-command')) {
+            event.detail.element.addEventListener('mousedown', this);
         }
     }
 
