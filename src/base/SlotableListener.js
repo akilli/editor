@@ -26,10 +26,13 @@ export default class SlotableListener extends Listener {
 
     /**
      * @param {KeyboardEvent} event
+     * @param {HTMLSlotElement} event.target
      * @return {void}
      */
     keydown(event) {
-        if (!Key.isEventFor(event, Key.TAB) && !Key.isEventFor(event, Key.TAB, { shift: true })) {
+        if (Key.isEventFor(event, Key.BACKSPACE) && event.target.matches(':only-child')) {
+            this.editor.dom.delete(event.target.parentElement);
+        } else if (!Key.isEventFor(event, Key.TAB) && !Key.isEventFor(event, Key.TAB, { shift: true })) {
             event.preventDefault();
             event.stopPropagation();
         }
