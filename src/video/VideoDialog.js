@@ -1,14 +1,6 @@
 import Dialog from '../base/Dialog.js';
-import Video from './Video.js';
 
 export default class VideoDialog extends Dialog {
-    /**
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, Video.name, editor.config.video.browser);
-    }
-
     /**
      * @protected
      * @return {void}

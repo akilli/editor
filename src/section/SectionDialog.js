@@ -1,14 +1,6 @@
 import Dialog from '../base/Dialog.js';
-import Section from './Section.js';
 
 export default class SectionDialog extends Dialog {
-    /**
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, Section.name);
-    }
-
     /**
      * @protected
      * @return {void}

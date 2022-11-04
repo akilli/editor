@@ -48,7 +48,7 @@ export default class Section extends Plugin {
             slotable: true,
             sortable: true,
         });
-        this.editor.dialogs.set(new SectionDialog(this.editor));
+        this.editor.dialogs.set(new SectionDialog(this.editor, this.constructor.name));
         this._command(TagName.SECTION);
         this._toolbar('Section');
     }

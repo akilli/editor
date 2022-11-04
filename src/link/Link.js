@@ -27,7 +27,7 @@ export default class Link extends Plugin {
     init() {
         this._tag({ name: TagName.A, group: TagGroup.FORMAT, attributes: ['href'] });
         new LinkListener(this.editor);
-        this.editor.dialogs.set(new LinkDialog(this.editor));
+        this.editor.dialogs.set(new LinkDialog(this.editor, this.constructor.name));
         this._command(TagName.A);
         this._formatbar('Link', Key.L);
     }

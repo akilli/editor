@@ -1,14 +1,6 @@
 import Dialog from '../base/Dialog.js';
-import Time from './Time.js';
 
 export default class TimeDialog extends Dialog {
-    /**
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, Time.name);
-    }
-
     /**
      * @protected
      * @return {void}

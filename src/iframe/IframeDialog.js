@@ -1,14 +1,6 @@
 import Dialog from '../base/Dialog.js';
-import Iframe from './Iframe.js';
 
 export default class IframeDialog extends Dialog {
-    /**
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, Iframe.name, editor.config.iframe.browser);
-    }
-
     /**
      * @protected
      * @return {void}

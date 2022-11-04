@@ -25,7 +25,7 @@ export default class Definition extends Plugin {
      */
     init() {
         this._tag({ name: TagName.DFN, group: TagGroup.FORMAT, attributes: ['title'] });
-        this.editor.dialogs.set(new DefinitionDialog(this.editor));
+        this.editor.dialogs.set(new DefinitionDialog(this.editor, this.constructor.name));
         this._command(TagName.DFN);
         this._formatbar('Definition', Key.D);
     }

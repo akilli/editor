@@ -49,7 +49,7 @@ export default class Table extends Plugin {
         new TableListener(this.editor);
         new TableCellListener(this.editor);
         this.editor.filters.add(new TableFilter(this.editor));
-        this.editor.dialogs.set(new TableDialog(this.editor));
+        this.editor.dialogs.set(new TableDialog(this.editor, this.constructor.name));
         this.editor.commands.set(new TableCommand(this.editor));
         this._toolbar('Table');
     }

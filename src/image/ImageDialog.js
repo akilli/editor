@@ -1,14 +1,6 @@
 import Dialog from '../base/Dialog.js';
-import Image from './Image.js';
 
 export default class ImageDialog extends Dialog {
-    /**
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, Image.name, editor.config.image.browser);
-    }
-
     /**
      * @protected
      * @return {void}

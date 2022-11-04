@@ -25,7 +25,7 @@ export default class Data extends Plugin {
      */
     init() {
         this._tag({ name: TagName.DATA, group: TagGroup.FORMAT, attributes: ['value'] });
-        this.editor.dialogs.set(new DataDialog(this.editor));
+        this.editor.dialogs.set(new DataDialog(this.editor, this.constructor.name));
         this._command(TagName.DATA);
         this._formatbar('Data', Key.J);
     }

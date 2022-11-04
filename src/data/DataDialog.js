@@ -1,14 +1,6 @@
-import Data from './Data.js';
 import Dialog from '../base/Dialog.js';
 
 export default class DataDialog extends Dialog {
-    /**
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, Data.name);
-    }
-
     /**
      * @protected
      * @return {void}

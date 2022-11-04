@@ -1,14 +1,6 @@
 import Dialog from '../base/Dialog.js';
-import Link from './Link.js';
 
 export default class LinkDialog extends Dialog {
-    /**
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, Link.name);
-    }
-
     /**
      * @protected
      * @return {void}

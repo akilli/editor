@@ -1,14 +1,6 @@
-import Definition from './Definition.js';
 import Dialog from '../base/Dialog.js';
 
 export default class DefinitionDialog extends Dialog {
-    /**
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, Definition.name);
-    }
-
     /**
      * @protected
      * @return {void}

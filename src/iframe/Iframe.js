@@ -40,7 +40,9 @@ export default class Iframe extends Plugin {
             navigable: true,
         });
         new IframeListener(this.editor);
-        this.editor.dialogs.set(new IframeDialog(this.editor));
+        this.editor.dialogs.set(
+            new IframeDialog(this.editor, this.constructor.name, this.editor.config.iframe.browser)
+        );
         this._command(TagName.IFRAME);
         this._toolbar('Iframe');
     }

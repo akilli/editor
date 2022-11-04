@@ -1,14 +1,6 @@
 import Dialog from '../base/Dialog.js';
-import Table from './Table.js';
 
 export default class TableDialog extends Dialog {
-    /**
-     * @param {Editor} editor
-     */
-    constructor(editor) {
-        super(editor, Table.name);
-    }
-
     /**
      * @protected
      * @return {void}
