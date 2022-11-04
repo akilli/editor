@@ -94,22 +94,6 @@ Figure widgets like blockquote, table or media elements allow changing alignment
 class `left`, `center` or `right`. This is done by combining the `Shift` key with the `ArrowLeft` (`left`)
 , `ArrowDown` (`center`) or `ArrowRight` (`right`) or `ArrowUp` (*removes CSS classes*) keys.
 
-### Table widget keyboard shortcuts
-
-The keyboard shortcuts within a table slightly differ due to the nature of table elements. Navigating, sorting, adding
-and deleting shortcuts use the **arrow keys** `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown`. Note that sorting,
-adding and deleting take the table section (`thead`, `tbody`, `tfoot`) into account.
-
-To navigate among the cells and rows use one of the **arrow keys**.
-
-To sort a table row/column combine the `Control` key with one of the **arrow keys**.
-
-To add a new row/column before/after the currently focused table cell combine the `Alt` key with one of the **arrow
-keys**.
-
-To delete the row/column before/after the currently focused table cell combine the `Alt` and `Shift` keys with one of
-the **arrow keys**.
-
 ### Text-level elements
 
 Each formatting command registers a keyboard shortcut in the form `Alt` + `Shift` + a letter. If you hover a formatbar

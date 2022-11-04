@@ -23,6 +23,10 @@ export default class TableListener extends Listener {
             const tbody = element.tBodies[0];
             const cols = tbody.rows[0].cells.length;
 
+            if (!element.querySelector(':scope > ' + TagName.COLGROUP)) {
+                this.editor.dom.insertFirstChild(this.editor.dom.createTableColumnGroup(cols), element);
+            }
+
             if (!element.tHead) {
                 this.editor.dom.insertBefore(this.editor.dom.createTableHeader(1, cols), tbody);
             }

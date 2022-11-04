@@ -79,6 +79,20 @@ export default class TagName {
     /**
      * @return {string}
      */
+    static get COL() {
+        return 'col';
+    }
+
+    /**
+     * @return {string}
+     */
+    static get COLGROUP() {
+        return 'colgroup';
+    }
+
+    /**
+     * @return {string}
+     */
     static get DATA() {
         return 'data';
     }

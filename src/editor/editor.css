@@ -23,12 +23,20 @@
     --editor-text-editable: 'Gimme some text!';
     --editor-text-root: 'Gimme some widgets!';
     --editor-text-slot: 'Focus this slot and gimme some widgets!';
+    --editor-text-tablecol: 'Col ';
+    --editor-text-tablebodyrow: 'Row ';
+    --editor-text-tablefootrow: 'Foot ';
+    --editor-text-tableheadrow: 'Head ';
 }
 
 akilli-editor[lang=de] {
     --editor-text-editable: 'Gib mir Text!';
     --editor-text-root: 'Gib mir Widgets!';
     --editor-text-slot: 'Fokussiere diesen Slot und gib mir Widgets!';
+    --editor-text-tablecol: 'Spalte ';
+    --editor-text-tablebodyrow: 'Zeile ';
+    --editor-text-tablefootrow: 'Fuß ';
+    --editor-text-tableheadrow: 'Kopf ';
 }
 
 ::backdrop {
@@ -146,22 +154,71 @@ akilli-editor editor-root :is(audio, iframe, img, video) {
 }
 
 /**
+ * Table
+ */
+akilli-editor editor-root :is(thead, tbody, tfoot) {
+    counter-reset: rows;
+}
+
+akilli-editor editor-root colgroup {
+    display: table-header-group;
+    counter-reset: cols;
+}
+
+akilli-editor editor-root col,
+akilli-editor editor-root :is(colgroup, tr)::before {
+    display: table-cell;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    vertical-align: middle;
+    text-align: center;
+    color: var(--editor-placeholder);
+}
+
+akilli-editor editor-root col::after {
+    counter-increment: cols;
+    content: var(--editor-text-tablecol) counter(cols);
+}
+
+akilli-editor editor-root colgroup::before {
+    content: ' ';
+}
+
+akilli-editor editor-root tr::before {
+    counter-increment: rows;
+    content: var(--editor-text-tablebodyrow) counter(rows);
+}
+
+akilli-editor editor-root thead tr::before {
+    content: var(--editor-text-tableheadrow) counter(rows);
+}
+
+akilli-editor editor-root tfoot tr::before {
+    content: var(--editor-text-tablefootrow) counter(rows);
+}
+
+akilli-editor editor-root col:focus,
+akilli-editor editor-root tr:focus::before {
+    background: var(--editor-focus);
+}
+
+/**
  * Details
  */
-akilli-editor summary {
+akilli-editor editor-root summary {
     white-space: pre-wrap;
 }
 
 /**
  * Block
  */
-akilli-editor app-block {
+akilli-editor editor-root app-block {
     display: block;
     padding: 0.25rem;
     border: 0.0625rem solid var(--editor-block-background);
 }
 
-akilli-editor app-block::before {
+akilli-editor editor-root app-block::before {
     display: block;
     margin: -0.25rem -0.25rem 0.5rem;
     padding: 0.125rem 0.25rem;

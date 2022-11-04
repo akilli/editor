@@ -1,6 +1,7 @@
 import Key from './Key.js';
 import Listener from './Listener.js';
 import Sorting from './Sorting.js';
+import TagName from './TagName.js';
 
 export default class SortableListener extends Listener {
     /**
@@ -89,6 +90,13 @@ export default class SortableListener extends Listener {
             target.releasePointerCapture(event.pointerId);
 
             if (this.#droppable(target, element)) {
+                if (target.localName === TagName.COL && target.parentElement === element.parentElement) {
+                    const t = Array.from(target.parentElement.children).indexOf(target);
+                    const e = Array.from(target.parentElement.children).indexOf(element);
+                    const table = target.closest(TagName.TABLE);
+                    Array.from(table.rows).forEach((row) => this.editor.dom.insertBefore(row.cells[t], row.cells[e]));
+                }
+
                 this.editor.dom.insertBefore(target, element);
             }
         }

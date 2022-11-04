@@ -36,6 +36,19 @@ export default class Table extends Plugin {
             deletable: true,
             navigable: true,
         });
+        this._tag({
+            name: TagName.COLGROUP,
+            group: TagGroup.COLGROUP,
+            children: [TagGroup.COL],
+        });
+        this._tag({
+            name: TagName.COL,
+            group: TagGroup.COL,
+            deletable: true,
+            focusable: true,
+            navigable: true,
+            sortable: true,
+        });
         this._tag(this.#section(TagName.THEAD));
         this._tag(this.#section(TagName.TBODY));
         this._tag(this.#section(TagName.TFOOT));
@@ -43,6 +56,10 @@ export default class Table extends Plugin {
             name: TagName.TR,
             group: TagGroup.TABLEROW,
             children: [TagGroup.TABLECELL],
+            deletable: true,
+            focusable: true,
+            navigable: true,
+            sortable: true,
         });
         this._tag(this.#cell(TagName.TH));
         this._tag(this.#cell(TagName.TD));
@@ -79,11 +96,8 @@ export default class Table extends Plugin {
             name,
             group: TagGroup.TABLECELL,
             children: [TagGroup.BREAK, TagGroup.FORMAT],
-            attributes: ['class'],
-            alignable: true,
             editable: true,
             empty: true,
-            focusable: true,
         };
     }
 }

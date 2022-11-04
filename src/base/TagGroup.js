@@ -30,6 +30,20 @@ export default class TagGroup {
     /**
      * @return {string}
      */
+    static get COL() {
+        return 'col';
+    }
+
+    /**
+     * @return {string}
+     */
+    static get COLGROUP() {
+        return 'colgroup';
+    }
+
+    /**
+     * @return {string}
+     */
     static get CONTAINER() {
         return 'container';
     }

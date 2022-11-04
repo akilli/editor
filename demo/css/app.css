@@ -372,10 +372,16 @@ figure.table.center > table {
     width: 100%;
 }
 
+colgroup::before,
+tr::before,
 td,
 th {
     min-height: 1.5rem;
     padding: 0.71875rem 0.375rem;
+}
+
+col {
+    padding: 0 0.375rem;
 }
 
 :is(thead, tbody) tr:last-child :is(td, th) {
