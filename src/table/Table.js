@@ -79,8 +79,11 @@ export default class Table extends Plugin {
             name,
             group: TagGroup.TABLECELL,
             children: [TagGroup.BREAK, TagGroup.FORMAT],
+            attributes: ['class'],
+            alignable: true,
             editable: true,
             empty: true,
+            focusable: true,
         };
     }
 }

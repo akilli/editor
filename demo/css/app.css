@@ -386,6 +386,18 @@ tfoot tr:last-child :is(td, th) {
     border-bottom-color: transparent;
 }
 
+:is(td, th).left {
+    text-align: left;
+}
+
+:is(td, th).center {
+    text-align: center;
+}
+
+:is(td, th).right {
+    text-align: right;
+}
+
 /**
  * Preformat
  */
