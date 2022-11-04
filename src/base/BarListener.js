@@ -31,7 +31,7 @@ export default class BarListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (Key.isEventFor(event, [Key.LEFT, Key.RIGHT, Key.HOME, Key.END])) {
+        if (Key.isEventFor(event, [Key.ARROWLEFT, Key.ARROWRIGHT, Key.HOME, Key.END])) {
             const prev = event.target.previousElementSibling;
             const next = event.target.nextElementSibling;
             const first = event.target.parentElement.firstElementChild;
@@ -39,13 +39,13 @@ export default class BarListener extends Listener {
             const isFirst = event.target === first;
             const isLast = event.target === last;
 
-            if (event.key === Key.LEFT && !isFirst) {
+            if (event.key === Key.ARROWLEFT && !isFirst) {
                 prev.focus();
-            } else if (event.key === Key.RIGHT && !isLast) {
+            } else if (event.key === Key.ARROWRIGHT && !isLast) {
                 next.focus();
-            } else if (event.key === Key.HOME || (event.key === Key.RIGHT && isLast)) {
+            } else if (event.key === Key.HOME || (event.key === Key.ARROWRIGHT && isLast)) {
                 first.focus();
-            } else if (event.key === Key.END || (event.key === Key.LEFT && isFirst)) {
+            } else if (event.key === Key.END || (event.key === Key.ARROWLEFT && isFirst)) {
                 last.focus();
             }
 

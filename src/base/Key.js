@@ -9,6 +9,34 @@ export default class Key {
     /**
      * @return {string}
      */
+    static get ARROWDOWN() {
+        return 'ArrowDown';
+    }
+
+    /**
+     * @return {string}
+     */
+    static get ARROWLEFT() {
+        return 'ArrowLeft';
+    }
+
+    /**
+     * @return {string}
+     */
+    static get ARROWRIGHT() {
+        return 'ArrowRight';
+    }
+
+    /**
+     * @return {string}
+     */
+    static get ARROWUP() {
+        return 'ArrowUp';
+    }
+
+    /**
+     * @return {string}
+     */
     static get B() {
         return 'b';
     }
@@ -39,13 +67,6 @@ export default class Key {
      */
     static get DEL() {
         return 'Delete';
-    }
-
-    /**
-     * @return {string}
-     */
-    static get DOWN() {
-        return 'ArrowDown';
     }
 
     /**
@@ -121,13 +142,6 @@ export default class Key {
     /**
      * @return {string}
      */
-    static get LEFT() {
-        return 'ArrowLeft';
-    }
-
-    /**
-     * @return {string}
-     */
     static get M() {
         return 'm';
     }
@@ -151,13 +165,6 @@ export default class Key {
      */
     static get R() {
         return 'r';
-    }
-
-    /**
-     * @return {string}
-     */
-    static get RIGHT() {
-        return 'ArrowRight';
     }
 
     /**
@@ -193,13 +200,6 @@ export default class Key {
      */
     static get U() {
         return 'u';
-    }
-
-    /**
-     * @return {string}
-     */
-    static get UP() {
-        return 'ArrowUp';
     }
 
     /**

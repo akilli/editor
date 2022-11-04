@@ -30,7 +30,7 @@ export default class NavigableListener extends Listener {
     keydown(event) {
         if (
             event.target === event.currentTarget &&
-            Key.isEventFor(event, [Key.UP, Key.DOWN, Key.HOME, Key.END]) &&
+            Key.isEventFor(event, [Key.ARROWUP, Key.ARROWDOWN, Key.HOME, Key.END]) &&
             this.#enabled(event.target)
         ) {
             const prev = event.target.previousElementSibling;
@@ -40,17 +40,17 @@ export default class NavigableListener extends Listener {
             const isFirst = event.target === first;
             const isLast = event.target === last;
 
-            if (event.key === Key.UP && !isFirst && prev.hasAttribute('data-navigable')) {
+            if (event.key === Key.ARROWUP && !isFirst && prev.hasAttribute('data-navigable')) {
                 prev.focus();
-            } else if (event.key === Key.DOWN && !isLast && next.hasAttribute('data-navigable')) {
+            } else if (event.key === Key.ARROWDOWN && !isLast && next.hasAttribute('data-navigable')) {
                 next.focus();
             } else if (
-                (event.key === Key.HOME || (event.key === Key.DOWN && isLast)) &&
+                (event.key === Key.HOME || (event.key === Key.ARROWDOWN && isLast)) &&
                 first.hasAttribute('data-navigable')
             ) {
                 first.focus();
             } else if (
-                (event.key === Key.END || (event.key === Key.UP && isFirst)) &&
+                (event.key === Key.END || (event.key === Key.ARROWUP && isFirst)) &&
                 last.hasAttribute('data-navigable')
             ) {
                 last.focus();

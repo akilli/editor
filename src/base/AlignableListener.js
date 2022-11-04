@@ -29,10 +29,10 @@ export default class AlignableListener extends Listener {
      */
     keydown(event) {
         const map = {
-            [Key.UP]: Alignment.NONE,
-            [Key.LEFT]: Alignment.LEFT,
-            [Key.DOWN]: Alignment.CENTER,
-            [Key.RIGHT]: Alignment.RIGHT,
+            [Key.ARROWUP]: Alignment.NONE,
+            [Key.ARROWLEFT]: Alignment.LEFT,
+            [Key.ARROWDOWN]: Alignment.CENTER,
+            [Key.ARROWRIGHT]: Alignment.RIGHT,
         };
 
         if (event.target === event.currentTarget && Key.isEventFor(event, Object.keys(map), { shift: true })) {

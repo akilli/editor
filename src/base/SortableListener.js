@@ -33,8 +33,8 @@ export default class SortableListener extends Listener {
     keydown(event) {
         const map = {
             [Key.HOME]: Sorting.FIRST,
-            [Key.UP]: Sorting.PREV,
-            [Key.DOWN]: Sorting.NEXT,
+            [Key.ARROWUP]: Sorting.PREV,
+            [Key.ARROWDOWN]: Sorting.NEXT,
             [Key.END]: Sorting.LAST,
         };
 
