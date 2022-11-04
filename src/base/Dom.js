@@ -318,37 +318,38 @@ export default class Dom {
             throw new TypeError('Invalid argument');
         }
 
+        if (element.parentElement.children.length <= 1) {
+            return;
+        }
+
         const parent = element.parentElement;
-
-        if (parent.children.length <= 1) {
-            return;
-        }
-
-        if (element.localName === TagName.COL) {
-            this.#sortTableColumn(element, sorting);
-            return;
-        }
-
+        const grand = parent.parentElement;
         const prev = element.previousElementSibling;
         const next = element.nextElementSibling;
         const first = parent.firstElementChild;
         const last = parent.lastElementChild;
         const isFirst = element === first;
         const isLast = element === last;
+        const isCol = element.localName === TagName.COL;
+        const i = Array.from(parent.children).indexOf(element);
 
         if (sorting === Sorting.PREV && !isFirst && prev.hasAttribute('data-sortable')) {
+            isCol && Array.from(grand.rows).forEach((row) => this.insertBefore(row.cells[i], row.cells[i - 1]));
             this.insertBefore(element, prev);
         } else if (sorting === Sorting.NEXT && !isLast && next.hasAttribute('data-sortable')) {
+            isCol && Array.from(grand.rows).forEach((row) => this.insertAfter(row.cells[i], row.cells[i + 1]));
             this.insertAfter(element, next);
         } else if (
             ((sorting === Sorting.FIRST && !isFirst) || (sorting === Sorting.NEXT && isLast)) &&
             first.hasAttribute('data-sortable')
         ) {
+            isCol && Array.from(grand.rows).forEach((row) => this.insertFirstChild(row.cells[i], row));
             this.insertBefore(element, first);
         } else if (
             ((sorting === Sorting.LAST && !isLast) || (sorting === Sorting.PREV && isFirst)) &&
             last.hasAttribute('data-sortable')
         ) {
+            isCol && Array.from(grand.rows).forEach((row) => this.insertLastChild(row.cells[i], row));
             this.insertAfter(element, last);
         }
     }
@@ -726,43 +727,6 @@ export default class Dom {
         }
 
         return element;
-    }
-
-    /**
-     * @param {HTMLTableColElement} element
-     * @param {string} sorting
-     * @return {void}
-     */
-    #sortTableColumn(element, sorting) {
-        const colgroup = element.parentElement;
-        const table = colgroup.parentElement;
-        const index = Array.from(colgroup.children).indexOf(element);
-        const prev = colgroup.children[index - 1];
-        const next = colgroup.children[index + 1];
-        const first = colgroup.children[0];
-        const last = colgroup.children[colgroup.children.length - 1];
-        const isFirst = element === first;
-        const isLast = element === last;
-
-        if (sorting === Sorting.PREV && !isFirst && prev.hasAttribute('data-sortable')) {
-            Array.from(table.rows).forEach((row) => this.insertBefore(row.cells[index], row.cells[index - 1]));
-            this.insertBefore(element, prev);
-        } else if (sorting === Sorting.NEXT && !isLast && next.hasAttribute('data-sortable')) {
-            Array.from(table.rows).forEach((row) => this.insertAfter(row.cells[index], row.cells[index + 1]));
-            this.insertAfter(element, next);
-        } else if (
-            ((sorting === Sorting.FIRST && !isFirst) || (sorting === Sorting.NEXT && isLast)) &&
-            first.hasAttribute('data-sortable')
-        ) {
-            Array.from(table.rows).forEach((row) => this.insertFirstChild(row.cells[index], row));
-            this.insertBefore(element, first);
-        } else if (
-            ((sorting === Sorting.LAST && !isLast) || (sorting === Sorting.PREV && isFirst)) &&
-            last.hasAttribute('data-sortable')
-        ) {
-            Array.from(table.rows).forEach((row) => this.insertLastChild(row.cells[index], row));
-            this.insertAfter(element, last);
-        }
     }
 
     /**
