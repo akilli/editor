@@ -1,4 +1,4 @@
-![akilli editor](demo/img/logo.svg)
+![akilli editor](https://raw.githubusercontent.com/akilli/editor/demo/img/logo.svg?sanitize=true)
 
 # akilli editor
 
