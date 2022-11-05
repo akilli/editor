@@ -204,7 +204,6 @@ akilli-editor editor-root app-block {
     display: block;
     padding: 0.25rem;
     border: 0.0625rem solid var(--editor-block-background);
-    pointer-events: none;
 }
 
 akilli-editor editor-root app-block::before {
