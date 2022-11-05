@@ -528,54 +528,22 @@ akilli-editor [data-command=table]::before {
     content: '\e82b';
 }
 
-akilli-editor [data-command=tablecol-add-next]::before {
+akilli-editor [data-command=time]::before {
     content: '\e82c';
 }
 
-akilli-editor [data-command=tablecol-add-prev]::before {
+akilli-editor [data-command=underline]::before {
     content: '\e82d';
 }
 
-akilli-editor [data-command=tablecol-delete-next]::before {
+akilli-editor [data-command=unorderedlist]::before {
     content: '\e82e';
 }
 
-akilli-editor [data-command=tablecol-delete-prev]::before {
+akilli-editor [data-command=variable]::before {
     content: '\e82f';
 }
 
-akilli-editor [data-command=tablerow-add-next]::before {
-    content: '\e830';
-}
-
-akilli-editor [data-command=tablerow-add-prev]::before {
-    content: '\e831';
-}
-
-akilli-editor [data-command=tablerow-delete-next]::before {
-    content: '\e832';
-}
-
-akilli-editor [data-command=tablerow-delete-prev]::before {
-    content: '\e833';
-}
-
-akilli-editor [data-command=time]::before {
-    content: '\e834';
-}
-
-akilli-editor [data-command=underline]::before {
-    content: '\e835';
-}
-
-akilli-editor [data-command=unorderedlist]::before {
-    content: '\e836';
-}
-
-akilli-editor [data-command=variable]::before {
-    content: '\e837';
-}
-
 akilli-editor [data-command=video]::before {
-    content: '\e838';
+    content: '\e830';
 }
