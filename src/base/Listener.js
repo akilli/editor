@@ -37,4 +37,15 @@ export default class Listener {
     handleEvent(event) {
         isFunction(this[event.type]) && this[event.type](event);
     }
+
+    /**
+     * Translates given string
+     *
+     * @protected
+     * @param {string} key
+     * @return {string}
+     */
+    _(key) {
+        return this.editor.translate(key);
+    }
 }

@@ -133,7 +133,7 @@ export default class FormCreator {
      * @return {this}
      */
     #addCancelButton() {
-        const html = this.editor.translate('Cancel');
+        const html = this.#t('Cancel');
         const button = this.editor.dom.createElement(TagName.BUTTON, { attributes: { type: 'reset' }, html });
         this.editor.dom.insertLastChild(button, this.#form);
 
@@ -144,9 +144,19 @@ export default class FormCreator {
      * @return {this}
      */
     #addSubmitButton() {
-        const button = this.editor.dom.createElement(TagName.BUTTON, { html: this.editor.translate('Save') });
+        const button = this.editor.dom.createElement(TagName.BUTTON, { html: this.#t('Save') });
         this.editor.dom.insertLastChild(button, this.#form);
 
         return this;
+    }
+
+    /**
+     * Translates given string
+     *
+     * @param {string} key
+     * @return {string}
+     */
+    #t(key) {
+        return this.editor.translate(key);
     }
 }

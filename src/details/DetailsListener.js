@@ -88,7 +88,7 @@ export default class DetailsListener extends Listener {
      */
     #empty(element) {
         if (!element.textContent.trim()) {
-            element.textContent = this.editor.translate('Details');
+            element.textContent = this._('Details');
         } else {
             element
                 .querySelectorAll(TagName.BR + ':not(:last-child)')
