@@ -18,7 +18,7 @@ export default class BlockListener extends Listener {
      */
     sethtml({ detail: { element } }) {
         Array.from(element.getElementsByTagName(TagName.BLOCK)).forEach(
-            /** @param {HTMLElement} item */
+            /** @param {BlockElement} item */
             (item) => item.id || item.parentElement.removeChild(item)
         );
     }
