@@ -27,6 +27,8 @@ export default class TableRowListener extends Listener {
     keydown(event) {
         if (Key.isEventFor(event, Key.ENTER)) {
             this.editor.dom.insertAfter(this.editor.dom.createTableRow(event.target.cells.length), event.target);
+        } else if (Key.isEventFor(event, Key.BACKSPACE)) {
+            this.editor.dom.delete(event.target);
         }
     }
 }

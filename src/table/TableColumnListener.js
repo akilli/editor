@@ -34,6 +34,8 @@ export default class TableColumnListener extends Listener {
                 this.editor.dom.insertAfter(this.editor.dom.createElement(row.cells[index].localName), row.cells[index])
             );
             this.editor.dom.insertAfter(this.editor.dom.createElement(TagName.COL), event.target);
+        } else if (Key.isEventFor(event, Key.BACKSPACE)) {
+            this.editor.dom.delete(event.target);
         }
     }
 }
