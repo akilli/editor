@@ -1,5 +1,4 @@
 import DistEditor from '../../dist/editor.js';
-import NpmEditor from 'https://unpkg.com/@akilli/editor@latest/dist/editor.js';
 import SrcEditor from '../../src/editor/Editor.js';
 
 /**
@@ -10,10 +9,6 @@ import SrcEditor from '../../src/editor/Editor.js';
  * @type {Object<string, EditorMap>}
  */
 const map = {
-    npm: {
-        editor: NpmEditor,
-        css: 'https://unpkg.com/@akilli/editor@latest/dist/editor.css',
-    },
     dist: {
         editor: DistEditor,
         css: '../dist/editor.css',
@@ -70,6 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const setMode = () => (mode.value ? root.setAttribute('class', mode.value) : root.removeAttribute('class'));
     const init = () => {
         editor?.destroy();
+        /** @type {EditorMap} */
         const entry = map[version.value];
         css.setAttribute('href', entry.css);
 
