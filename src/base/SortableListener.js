@@ -85,15 +85,16 @@ export default class SortableListener extends Listener {
 
         if (target && this.editor.dom.contains(target)) {
             const element = this.editor.dom.document.elementFromPoint(event.x, event.y);
+            const parent = element.parentElement;
             this.#sortover();
             target.removeAttribute('data-sort');
             target.releasePointerCapture(event.pointerId);
 
             if (this.#droppable(target, element)) {
-                if (target.localName === TagName.COL && target.parentElement === element.parentElement) {
-                    const t = Array.from(target.parentElement.children).indexOf(target);
-                    const e = Array.from(target.parentElement.children).indexOf(element);
-                    const table = target.closest(TagName.TABLE);
+                if (target.localName === TagName.COL && parent === target.parentElement) {
+                    const t = Array.from(parent.children).indexOf(target);
+                    const e = Array.from(parent.children).indexOf(element);
+                    const table = parent.parentElement;
                     Array.from(table.rows).forEach((row) => this.editor.dom.insertBefore(row.cells[t], row.cells[e]));
                 }
 

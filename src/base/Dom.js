@@ -431,7 +431,7 @@ export default class Dom {
 
         if (element.localName === TagName.COL) {
             const index = Array.from(element.parentElement.children).indexOf(element);
-            const table = element.closest(TagName.TABLE);
+            const table = element.parentElement.parentElement;
             Array.from(table.rows).forEach((row) => row.removeChild(row.cells[index]));
         }
 

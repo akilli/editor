@@ -69,8 +69,8 @@ the sibling elements.
 ### `Enter` key handling
 
 After adding the first widget into the content area, you can also use the `Enter` key to add a new paragraph. Depending
-on the widget, this new paragraph will be created inside the widget itself or on top-level. Within lists, the `Enter`
-key will add a new list item.
+on the widget, this new paragraph will be created inside the widget itself or on top-level. Within lists the `Enter`
+key will add a new list item, within tables either a new row or new column.
 
 ### Sortable elements
 
