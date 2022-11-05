@@ -1,6 +1,32 @@
 import DistEditor from '../../dist/editor.js';
+import NpmEditor from 'https://unpkg.com/@akilli/editor@latest/dist/editor.js';
 import SrcEditor from '../../src/editor/Editor.js';
 
+/**
+ * @typedef {Object} EditorMap
+ * @property {typeof Editor} editor
+ * @property {string} css
+ *
+ * @type {Object<string, EditorMap>}
+ */
+const map = {
+    npm: {
+        editor: NpmEditor,
+        css: 'https://unpkg.com/@akilli/editor@latest/dist/editor.css',
+    },
+    dist: {
+        editor: DistEditor,
+        css: '../dist/editor.css',
+    },
+    src: {
+        editor: SrcEditor,
+        css: '../src/editor/editor.css',
+    },
+};
+
+/**
+ * @type {Object}
+ */
 const config = {
     audio: {
         browser: 'browser/audio.html',
@@ -21,9 +47,15 @@ const config = {
     },
 };
 
+/**
+ * @type {number}
+ */
+const now = Date.now();
+
 document.addEventListener('DOMContentLoaded', async () => {
     const root = document.documentElement;
     const header = document.getElementById('header');
+    const css = document.getElementById('css');
     const mode = document.getElementById('mode');
     const version = document.getElementById('version');
     const lang = document.getElementById('lang');
@@ -38,7 +70,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     const setMode = () => (mode.value ? root.setAttribute('class', mode.value) : root.removeAttribute('class'));
     const init = () => {
         editor?.destroy();
-        const Editor = version.value === 'src' ? SrcEditor : DistEditor;
+        const entry = map[version.value];
+        css.setAttribute('href', entry.css);
+
+        const cache = (u) => {
+            const url = new URL(u);
+            url.searchParams.set('v', `${now}`);
+            return url.toString();
+        };
+        Array.from(document.getElementsByTagName('link')).forEach((item) => (item.href = cache(item.href)));
+        Array.from(document.getElementsByTagName('script')).forEach((item) => (item.src = cache(item.src)));
+
+        const Editor = entry.editor;
         editor = Editor.create(rte, {
             ...config,
             base: {

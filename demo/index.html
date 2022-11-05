@@ -4,10 +4,10 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0"/>
         <title>akilli editor</title>
-        <link rel="stylesheet" href="css/base.css?v=7"/>
-        <link rel="stylesheet" href="../src/editor/editor.css?v=7"/>
-        <link rel="stylesheet" href="css/app.css?v=7"/>
-        <script type="module" src="js/app.js?v=7"></script>
+        <link rel="stylesheet" href="css/base.css"/>
+        <link id="css" rel="stylesheet"/>
+        <link rel="stylesheet" href="css/app.css"/>
+        <script type="module" src="js/app.js"></script>
     </head>
     <body>
         <header id="header">
@@ -22,8 +22,9 @@
             <div>
                 <label for="version">Version</label>
                 <select id="version">
-                    <option value="dist" selected>dist</option>
-                    <option value="src">src</option>
+                    <option value="npm" selected>npm@latest</option>
+                    <option value="dist">dist@master</option>
+                    <option value="src">src@master</option>
                 </select>
             </div>
             <div>
