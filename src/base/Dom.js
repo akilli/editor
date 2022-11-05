@@ -331,25 +331,25 @@ export default class Dom {
         const isFirst = element === first;
         const isLast = element === last;
         const isCol = element.localName === TagName.COL;
-        const i = Array.from(parent.children).indexOf(element);
+        const index = Array.from(parent.children).indexOf(element);
 
         if (sorting === Sorting.PREV && !isFirst && prev.hasAttribute('data-sortable')) {
-            isCol && Array.from(grand.rows).forEach((row) => this.insertBefore(row.cells[i], row.cells[i - 1]));
+            isCol && Array.from(grand.rows).forEach((row) => this.insertBefore(row.cells[index], row.cells[index - 1]));
             this.insertBefore(element, prev);
         } else if (sorting === Sorting.NEXT && !isLast && next.hasAttribute('data-sortable')) {
-            isCol && Array.from(grand.rows).forEach((row) => this.insertAfter(row.cells[i], row.cells[i + 1]));
+            isCol && Array.from(grand.rows).forEach((row) => this.insertAfter(row.cells[index], row.cells[index + 1]));
             this.insertAfter(element, next);
         } else if (
             ((sorting === Sorting.FIRST && !isFirst) || (sorting === Sorting.NEXT && isLast)) &&
             first.hasAttribute('data-sortable')
         ) {
-            isCol && Array.from(grand.rows).forEach((row) => this.insertFirstChild(row.cells[i], row));
+            isCol && Array.from(grand.rows).forEach((row) => this.insertFirstChild(row.cells[index], row));
             this.insertBefore(element, first);
         } else if (
             ((sorting === Sorting.LAST && !isLast) || (sorting === Sorting.PREV && isFirst)) &&
             last.hasAttribute('data-sortable')
         ) {
-            isCol && Array.from(grand.rows).forEach((row) => this.insertLastChild(row.cells[i], row));
+            isCol && Array.from(grand.rows).forEach((row) => this.insertLastChild(row.cells[index], row));
             this.insertAfter(element, last);
         }
     }
@@ -423,6 +423,16 @@ export default class Dom {
     delete(element) {
         if (!(element instanceof HTMLElement)) {
             throw new TypeError('Invalid argument');
+        }
+
+        if ([TagName.COL, TagName.TR].includes(element.localName) && element.matches(':only-child')) {
+            return;
+        }
+
+        if (element.localName === TagName.COL) {
+            const index = Array.from(element.parentElement.children).indexOf(element);
+            const table = element.closest(TagName.TABLE);
+            Array.from(table.rows).forEach((row) => row.removeChild(row.cells[index]));
         }
 
         const prev = element.previousElementSibling;
