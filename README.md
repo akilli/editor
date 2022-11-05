@@ -70,9 +70,17 @@ the sibling elements.
 
 ### `Enter` key handling
 
-After adding the first widget into the content area, you can also use the `Enter` key to add a new paragraph. Depending
-on the widget, this new paragraph will be created inside the widget itself or on top-level. Within lists the `Enter`
-key will add a new list item, within tables either a new row or new column.
+After adding the first widget into the content area, you can also use the `Enter` key to add a new one. In most cases
+this will be a new paragraph. Depending on the widget, this new paragraph will be created inside the widget itself or on
+top-level.
+
+Within lists the `Enter` key will add a new list item. Within tables it's either a new row or new column, depending on
+wheter a row or a column currently is focused.
+
+### `Backspace` key handling
+
+Certain editable elements like p. e. paragraphs and headings remove themselves if they contain no text and the 
+`Backspace` key is pressed. Other (pseudo) elements like p. e. table rows and colums do the same. 
 
 ### Sortable elements
 
