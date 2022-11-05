@@ -28,7 +28,6 @@
     --editor-dialog-color: var(--app-color-primary);
     --editor-error: var(--app-color-error);
     --editor-focus: var(--app-color-accent-light);
-    --editor-hover: var(--app-color-accent-light);
     --editor-placeholder: var(--app-color-primary-light);
     --editor-slot: var(--app-color-primary-light);
     --editor-sortover: var(--app-color-primary-dark);

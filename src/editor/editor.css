@@ -2,23 +2,22 @@
  * Variable
  */
 :root {
-    --editor-block-background: #191919;
+    --editor-block-background: #012022;
     --editor-block-color: #fff;
-    --editor-border: #19191933;
-    --editor-button-background: #191919;
+    --editor-border: #01202233;
+    --editor-button-background: #012022;
     --editor-button-color: #fff;
-    --editor-cancel-background: #f1c40f;
-    --editor-cancel-color: #191919;
+    --editor-cancel-background: #e3e7e7;
+    --editor-cancel-color: #012022;
     --editor-dialog-background: #fff;
-    --editor-dialog-color: #191919;
-    --editor-error: #960200;
-    --editor-focus: #f1c40f;
-    --editor-hover: #f1c40f;
-    --editor-placeholder: #19191933;
-    --editor-slot: #54442b;
-    --editor-sortover: #191919;
+    --editor-dialog-color: #012022;
+    --editor-error: #cc2e2c;
+    --editor-focus: #fcece1;
+    --editor-placeholder: #01202233;
+    --editor-slot: #f0813d;
+    --editor-sortover: #012022;
     --editor-toolbar-background: #fff;
-    --editor-toolbar-color: #191919;
+    --editor-toolbar-color: #012022;
     --editor-text-block: 'Block: ' attr(id);
     --editor-text-editable: 'Gimme some text!';
     --editor-text-root: 'Gimme some widgets!';
@@ -92,10 +91,6 @@ akilli-editor editor-root:empty::after {
 /**
  * Widgets
  */
-akilli-editor editor-root :hover {
-    outline: 0.25rem dotted var(--editor-hover);
-}
-
 akilli-editor editor-root :focus {
     outline: 0.25rem dashed var(--editor-focus);
 }
@@ -105,10 +100,6 @@ akilli-editor editor-root :focus {
  */
 akilli-editor editor-root [contenteditable] {
     min-height: 1.5rem;
-}
-
-akilli-editor editor-root [contenteditable=true]:hover {
-    outline: 0.25rem dotted var(--editor-hover);
 }
 
 akilli-editor editor-root [contenteditable=true]:empty::after {
@@ -266,7 +257,7 @@ akilli-editor dialog button + button {
     margin-left: 1.5rem;
 }
 
-akilli-editor dialog button[type=button] {
+akilli-editor dialog button[type=reset] {
     color: var(--editor-cancel-color);
     background: var(--editor-cancel-background);
 }
