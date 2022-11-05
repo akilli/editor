@@ -1,3 +1,5 @@
+![akilli editor](demo/img/logo.svg)
+
 # akilli editor
 
 A HTML standards-compliant and dependency-free rich text editor.
