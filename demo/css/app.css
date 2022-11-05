@@ -47,13 +47,6 @@
 }
 
 /**
- * Custom Elements
- */
-:host * {
-    pointer-events: none;
-}
-
-/**
  * Layout
  */
 body {
@@ -162,7 +155,7 @@ var {
 }
 
 #header label:first-child {
-    font-variation-settings: 'wght' 700;;
+    font-variation-settings: 'wght' 700;
 }
 
 /**
@@ -269,20 +262,6 @@ th {
 }
 
 /**
- * Clear
- */
-:is(details, section)::before {
-    display: table;
-    content: ' ';
-}
-
-:is(details, section)::after {
-    display: table;
-    clear: both;
-    content: ' ';
-}
-
-/**
  * Text
  */
 h2 {
@@ -309,6 +288,14 @@ mark,
 samp {
     padding: 0.125rem 0.25rem;
     border-radius: 0.25rem;
+}
+
+/**
+ * Container
+ */
+details,
+section {
+    overflow: auto;
 }
 
 /**

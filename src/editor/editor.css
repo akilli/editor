@@ -62,25 +62,15 @@ akilli-editor {
 }
 
 /**
- * Editor Content
+ * Editor Root
  */
 akilli-editor editor-root {
     display: block;
     width: 100%;
     padding: 0.75rem 0.6875rem 0.6875rem;
+    overflow: auto;
     border: 0.0625rem solid var(--editor-border);
     border-top: 0;
-}
-
-akilli-editor editor-root::before {
-    display: table;
-    content: ' ';
-}
-
-akilli-editor editor-root::after {
-    display: table;
-    content: ' ';
-    clear: both;
 }
 
 akilli-editor editor-root:empty::after {
@@ -135,6 +125,13 @@ akilli-editor editor-root [data-sortable][data-sort]:hover {
 
 akilli-editor editor-root :is([data-sortover], [contenteditable][data-sortover]) {
     outline: 0.25rem dashed var(--editor-sortover);
+}
+
+/**
+ * Container
+ */
+akilli-editor editor-root :is(details, div, section) {
+    overflow: auto;
 }
 
 /**
@@ -207,6 +204,7 @@ akilli-editor editor-root app-block {
     display: block;
     padding: 0.25rem;
     border: 0.0625rem solid var(--editor-block-background);
+    pointer-events: none;
 }
 
 akilli-editor editor-root app-block::before {
