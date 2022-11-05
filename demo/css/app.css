@@ -2,37 +2,17 @@
  * Variable
  */
 :root {
-    --app-color-accent: #f4a261;
-    --app-color-accent-dark: #e76f51;
-    --app-color-accent-light: #e9c46a;
-    --app-color-accent-text: #000;
-    --app-color-border: #000;
-    --app-color-error: #d23632;
+    --app-color-accent: #f0813d;
+    --app-color-accent-dark: #f7c6a4;
+    --app-color-accent-light: #fcece1;
+    --app-color-accent-text: #012022;
+    --app-color-border: #012022;
+    --app-color-error: #cc2e2c;
     --app-color-error-text: #fff;
-    --app-color-primary: #264653;
+    --app-color-primary: #012022;
     --app-color-primary-dark: #000;
-    --app-color-primary-light: #2a9d8f;
+    --app-color-primary-light: #8ccdb1;
     --app-color-primary-text: #fff;
-}
-
-:root:is(.light, .dark) {
-    --editor-block-background: var(--app-color-primary-dark);
-    --editor-block-color: var(--app-color-primary-text);
-    --editor-border: var(--app-color-border);
-    --editor-button-background: var(--app-color-primary-dark);
-    --editor-button-color: var(--app-color-primary-text);
-    --editor-cancel-background: var(--app-color-primary-light);
-    --editor-cancel-color: var(--app-color-primary-text);
-    --editor-dialog-backdrop: #000000cc;
-    --editor-dialog-background: var(--app-color-primary-text);
-    --editor-dialog-color: var(--app-color-primary);
-    --editor-error: var(--app-color-error);
-    --editor-focus: var(--app-color-accent-light);
-    --editor-placeholder: var(--app-color-primary-light);
-    --editor-slot: var(--app-color-primary-light);
-    --editor-sortover: var(--app-color-primary-dark);
-    --editor-toolbar-background: var(--app-color-primary-text);
-    --editor-toolbar-color: var(--app-color-primary);
 }
 
 :root.dark {
@@ -47,9 +27,21 @@
     --app-color-primary-dark: #000;
     --app-color-primary-light: #494949;
     --app-color-primary-text: #fff;
+    --editor-block-background: var(--app-color-primary-dark);
+    --editor-block-color: var(--app-color-primary-text);
+    --editor-border: var(--app-color-border);
+    --editor-button-background: var(--app-color-primary-dark);
+    --editor-button-color: var(--app-color-primary-text);
+    --editor-cancel-background: var(--app-color-primary-light);
+    --editor-cancel-color: var(--app-color-primary-text);
     --editor-dialog-backdrop: #ffffffcc;
     --editor-dialog-background: var(--app-color-primary);
     --editor-dialog-color: var(--app-color-primary-text);
+    --editor-error: var(--app-color-error);
+    --editor-focus: var(--app-color-accent-light);
+    --editor-placeholder: var(--app-color-primary-light);
+    --editor-slot: var(--app-color-primary-light);
+    --editor-sortover: var(--app-color-primary-dark);
     --editor-toolbar-background: var(--app-color-primary);
     --editor-toolbar-color: var(--app-color-primary-text);
 }
