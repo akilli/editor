@@ -88,6 +88,10 @@ body {
     border: 0;
 }
 
+#rte {
+    overflow: auto;
+}
+
 /**
  * Margin Top
  */
