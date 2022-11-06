@@ -53,6 +53,9 @@ export default class Editor extends BaseEditor {
             base: {
                 plugins: [
                     I18n,
+                    Align,
+                    Sort,
+                    Delete,
                     Bold,
                     Italic,
                     Strong,
@@ -93,9 +96,6 @@ export default class Editor extends BaseEditor {
                     Details,
                     Division,
                     Block,
-                    Align,
-                    Sort,
-                    Delete,
                 ],
             },
         };

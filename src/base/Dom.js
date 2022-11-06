@@ -307,6 +307,36 @@ export default class Dom {
     }
 
     /**
+     * @param {HTMLTableRowElement} element
+     * @return {void}
+     */
+    createTableRowAfter(element) {
+        if (!(element instanceof HTMLTableRowElement)) {
+            throw new TypeError('Invalid argument');
+        }
+
+        this.insertAfter(this.createTableRow(element.cells.length), element);
+    }
+
+    /**
+     * @param {HTMLTableColElement} element
+     * @return {void}
+     */
+    createTableColumnAfter(element) {
+        if (!(element instanceof HTMLTableColElement) || element.localName !== TagName.COL) {
+            throw new TypeError('Invalid argument');
+        }
+
+        const colgroup = element.parentElement;
+        const table = colgroup.parentElement;
+        const index = Array.from(colgroup.children).indexOf(element);
+        Array.from(table.rows).forEach((row) =>
+            this.insertAfter(this.createElement(row.cells[index].localName), row.cells[index])
+        );
+        this.insertAfter(this.createElement(TagName.COL), element);
+    }
+
+    /**
      * Sorts element
      *
      * @param {HTMLElement} element

@@ -3,11 +3,13 @@ import Break from '../break/Break.js';
 import Figure from '../figure/Figure.js';
 import Plugin from '../base/Plugin.js';
 import TableCellListener from './TableCellListener.js';
+import TableColumnAddCommand from './TableColumnAddCommand.js';
 import TableColumnListener from './TableColumnListener.js';
 import TableCommand from './TableCommand.js';
 import TableDialog from './TableDialog.js';
 import TableFilter from './TableFilter.js';
 import TableListener from './TableListener.js';
+import TableRowAddCommand from './TableRowAddCommand.js';
 import TableRowListener from './TableRowListener.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
@@ -72,7 +74,11 @@ export default class Table extends Plugin {
         this.editor.filters.add(new TableFilter(this.editor));
         this.editor.dialogs.set(new TableDialog(this.editor, this.constructor.name));
         this.editor.commands.set(new TableCommand(this.editor));
+        this.editor.commands.set(new TableColumnAddCommand(this.editor));
+        this.editor.commands.set(new TableRowAddCommand(this.editor));
         this._toolbar('Table');
+        this._focusbar('Add column', 'tablecolumn-add');
+        this._focusbar('Add row', 'tablerow-add');
     }
 
     /**
