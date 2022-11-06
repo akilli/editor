@@ -104,7 +104,8 @@ akilli-editor editor-root :is(td, th)[contenteditable] {
 akilli-editor editor-root slot[contenteditable] {
     display: block;
     padding: 0.25rem;
-    outline: 0.25rem solid var(--editor-slot);
+    clear: both;
+    border: 0.25rem solid var(--editor-slot);
 }
 
 akilli-editor editor-root slot[contenteditable=true]:empty::after {
