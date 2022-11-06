@@ -1,6 +1,5 @@
-import Command from '../base/Command.js';
-import Sort from './Sort.js';
-import Sorting from '../base/Sorting.js';
+import Command from './Command.js';
+import Sorting from './Sorting.js';
 
 export default class SortCommand extends Command {
     /**
@@ -17,7 +16,7 @@ export default class SortCommand extends Command {
             throw new TypeError('Invalid argument');
         }
 
-        super(editor, Sort.name + '-' + sorting);
+        super(editor, 'sort-' + sorting);
         this.#sorting = sorting;
     }
 
@@ -26,9 +25,6 @@ export default class SortCommand extends Command {
      */
     execute() {
         const element = this.editor.dom.getActiveElement();
-
-        if (element?.hasAttribute('data-sortable')) {
-            this.editor.dom.sort(element, this.#sorting);
-        }
+        element?.hasAttribute('data-sortable') && this.editor.dom.sort(element, this.#sorting);
     }
 }

@@ -1,6 +1,5 @@
-import Align from './Align.js';
-import Alignment from '../base/Alignment.js';
-import Command from '../base/Command.js';
+import Alignment from './Alignment.js';
+import Command from './Command.js';
 
 export default class AlignCommand extends Command {
     /**
@@ -17,7 +16,7 @@ export default class AlignCommand extends Command {
             throw new TypeError('Invalid argument');
         }
 
-        super(editor, Align.name + '-' + alignment);
+        super(editor, 'align-' + alignment);
         this.#alignment = alignment;
     }
 

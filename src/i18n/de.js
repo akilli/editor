@@ -16,21 +16,24 @@ export default {
     'Full term': 'Langform',
     'Insert full term or leave empty to remove it': 'Langform eingeben oder zum Entfernen leer lassen',
 
-    // align
-    'Align center': 'zentriert',
-    'Align left': 'linksbündig',
-    'Align right': 'rechtsbündig',
-    'No alignment': 'Keine Ausrichtung',
-
     // audio
     Audio: 'Audio',
     'Insert URL to audio': 'URL zur Audiodatei eingeben',
 
     // base
+    'Align center': 'zentriert',
+    'Align left': 'linksbündig',
+    'Align right': 'rechtsbündig',
     Alt: 'Alt',
     Cancel: 'Abbrechen',
+    Delete: 'Löschen',
+    'No alignment': 'Keine Ausrichtung',
     Save: 'Speichern',
     Shift: 'Umschalt',
+    'Sort after next element': 'Hinter das nächste Element sortieren',
+    'Sort before previous element': 'Vor das vorherige Element sortieren',
+    'Sort to the beginning': 'An den Anfang sortieren',
+    'Sort to the end': 'Ans Ende sortieren',
 
     // block
     Block: 'Block',
@@ -56,9 +59,6 @@ export default {
     Definition: 'Definition',
     'Insert term or leave empty to remove it': 'Begriff eingeben oder zum Entfernen leer lassen',
     Term: 'Begriff',
-
-    // delete
-    Delete: 'Löschen',
 
     // deletion
     'Text Deletion': 'Textlöschung',
@@ -124,12 +124,6 @@ export default {
 
     // small
     small: 'klein',
-
-    // sort
-    'Sort after next element': 'Hinter das nächste Element sortieren',
-    'Sort before previous element': 'Vor das vorherige Element sortieren',
-    'Sort to the beginning': 'An den Anfang sortieren',
-    'Sort to the end': 'Ans Ende sortieren',
 
     // strikethrough
     strikethrough: 'durchgestrichen',

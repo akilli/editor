@@ -1,5 +1,4 @@
 import Abbreviation from '../abbreviation/Abbreviation.js';
-import Align from '../align/Align.js';
 import Audio from '../audio/Audio.js';
 import BaseEditor from '../base/Editor.js';
 import Block from '../block/Block.js';
@@ -9,7 +8,6 @@ import Cite from '../cite/Cite.js';
 import Code from '../code/Code.js';
 import Data from '../data/Data.js';
 import Definition from '../definition/Definition.js';
-import Delete from '../delete/Delete.js';
 import Deletion from '../deletion/Deletion.js';
 import Details from '../details/Details.js';
 import Division from '../division/Division.js';
@@ -31,7 +29,6 @@ import Quote from '../quote/Quote.js';
 import Sample from '../sample/Sample.js';
 import Section from '../section/Section.js';
 import Small from '../small/Small.js';
-import Sort from '../sort/Sort.js';
 import Strikethrough from '../strikethrough/Strikethrough.js';
 import Strong from '../strong/Strong.js';
 import Subheading from '../subheading/Subheading.js';
@@ -53,9 +50,6 @@ export default class Editor extends BaseEditor {
             base: {
                 plugins: [
                     I18n,
-                    Align,
-                    Sort,
-                    Delete,
                     Bold,
                     Italic,
                     Strong,
