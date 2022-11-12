@@ -79,8 +79,8 @@ wheter a row or a column currently is focused.
 
 ### `Backspace` key handling
 
-Certain editable elements like p. e. paragraphs and headings remove themselves if they contain no text and the 
-`Backspace` key is pressed. Other (pseudo) elements like p. e. table rows and colums do the same. 
+Certain editable elements like p. e. paragraphs and headings remove themselves if they contain no text and the
+`Backspace` key is pressed. Other (pseudo) elements like p. e. table rows and colums do the same.
 
 ### Sortable elements
 
@@ -108,7 +108,7 @@ class `left`, `center` or `right`. This is done by combining the `Shift` key wit
 
 Each formatting command registers a keyboard shortcut in the form `Alt` + `Shift` + a letter. If you hover a formatbar
 button for such a text-level element, the actual keyboard shortcut will be shown. Using such a shortcut will execute the
-corresponding command. 
+corresponding command.
 
 In addition to that, you can also doubleclick on a text-level element to execute the corresponding command.
 
