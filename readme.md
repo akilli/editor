@@ -10,13 +10,15 @@ https://akilli.github.io/editor/demo
 
 ## Development
 
-To build the editor run
+Use the editor [source version](build/AkilliEditor.js) directly or the bundled and minified
+[dist version](dist/editor.js) of it. If you use the source version all changes in the code take effect immediately,
+whereas the dist version needs to rebuild with
 
 ```
 npm run build
 ```
 
-To start the demo locally run either
+The demo offers both versions and can be started with either
 
 ```
 npm start
@@ -28,8 +30,7 @@ or
 docker compose up -d
 ```
 
-In both cases the demo is accessible at
-http://localhost:20000/demo/index.html
+In both cases the demo is accessible at http://localhost:20000/demo/index.html
 
 ## Info
 
