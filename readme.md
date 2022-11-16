@@ -12,7 +12,7 @@ https://akilli.github.io/editor/demo
 
 Use the editor [source version](build/AkilliEditor.js) directly or the bundled and minified
 [dist version](dist/editor.js) of it. If you use the source version all changes in the code take effect immediately,
-whereas the dist version needs to rebuild with
+whereas the dist version needs to be rebuild with
 
 ```
 npm run build
