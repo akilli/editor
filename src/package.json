@@ -1,0 +1,24 @@
+{
+  "name": "@akilli/editor-src",
+  "version": "5.1.2",
+  "description": "@akilli/editor source files",
+  "keywords": [
+    "contenteditable",
+    "editor",
+    "html-editor",
+    "rte",
+    "rich-text",
+    "rich-text-editor",
+    "wysiwyg",
+    "wysiwyg-editor"
+  ],
+  "author": "Ayhan Akilli",
+  "license": "MIT",
+  "bugs": "https://github.com/akilli/editor/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akilli/editor.git"
+  },
+  "type": "module",
+  "browser": "./build/BuildEditor.js"
+}

@@ -1,0 +1,37 @@
+#!/bin/sh
+
+set -eux
+
+versionType="$1"
+
+case "$versionType" in
+    patch|minor|major)
+        ;;
+    *)
+        echo "ERROR: Invalid version type passed: $versionType"
+        exit 1
+        ;;
+esac
+
+# qa
+npm run lint:check
+
+# update versions
+git fetch --tags
+npm version "$versionType" --workspaces --git-tag-version=false
+version=$(npm version "$versionType" --git-tag-version=false)
+npm update --workspaces --include-workspace-root --save
+
+# rebuild the package-lock.json and dist folder
+rm package-lock.json
+npm install
+npm run build
+
+# commit, tag and push changes
+git add dist src package.json package-lock.json
+git commit --message="$version"
+git tag "$version"
+git push --follow-tags
+
+# release new version
+npm publish --workspaces --include-workspace-root
