@@ -10,7 +10,7 @@ https://akilli.github.io/editor/demo
 
 ## Development
 
-Use the editor [source version](build/AkilliEditor.js) directly or the bundled and minified
+Use the editor [source version](src/build/BuildEditor.js) directly or the bundled and minified
 [dist version](dist/editor.js) of it. If you use the source version all changes in the code take effect immediately,
 whereas the dist version needs to be rebuild with
 

@@ -1,4 +1,4 @@
-import AkilliEditor from '../../build/AkilliEditor.js';
+import BuildEditor from '../../src/build/BuildEditor.js';
 import DistEditor from '../../dist/editor.js';
 
 /**
@@ -14,8 +14,8 @@ const map = {
         css: '../dist/editor.css',
     },
     src: {
-        editor: AkilliEditor,
-        css: '../build/editor.css',
+        editor: BuildEditor,
+        css: '../src/build/editor.css',
     },
 };
 
