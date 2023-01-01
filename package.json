@@ -31,7 +31,6 @@
     "start": "npx --yes servor --reload . index.html 20000",
     "lint:check": "prettier --check '**/*.js'",
     "lint:fix": "prettier --write '**/*.js'",
-    "test": "node ./test/index.js",
     "build": "npm run build:clean && npm run build:font && npm run build:css && npm run build:js",
     "build:clean": "rm -rf dist",
     "build:font": "mkdir -p dist && cp src/build/editor.woff2 dist/editor.woff2",
@@ -43,10 +42,7 @@
   },
   "devDependencies": {
     "@akilli/editor-src": "^5.1.6",
-    "baretest": "^2.0.0",
     "esbuild": "^0.16.12",
-    "glob": "^8.0.3",
-    "jsdom-global": "^3.0.2",
     "prettier": "^2.8.1"
   }
 }
