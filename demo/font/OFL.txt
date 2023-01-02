@@ -5,7 +5,7 @@ raleway ::: copyright (c) 2010-2013, Matt McInerney <matt@pixelspread.com>
             copyright (c) 2016, Alexei Vanyashin <a@cyreal.org>
             copyright (c) 2016, Ivan Petrov <malamaka@yandex.ru>
             copyright (c) 2016, Nhung Nguyen <vns.wonderland@gmail.com>
-            copyright (c) 2020, Caleb Maclennan <caleb@alerque>
+            copyright (c) 2020, Caleb Maclennan <caleb@alerque.com>
 spartan ::: copyright (c) 2014, Micah Rich <micah@micahrich.com>
             copyright (c) 2016-2020, Tyler Finck <hi@tylerfinck.com>
 
