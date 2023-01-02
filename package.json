@@ -35,7 +35,7 @@
     "build:clean": "rm -rf dist",
     "build:font": "mkdir -p dist && cp src/build/editor.woff2 dist/editor.woff2",
     "build:css": "esbuild src/build/editor.css --minify --outfile=dist/editor.css",
-    "build:js": "esbuild src/build/BuildEditor.js --minify --bundle --outfile=dist/editor.js --target=es2022 --format=esm",
+    "build:js": "node ./build.js",
     "release:patch": "./release patch",
     "release:minor": "./release minor",
     "release:major": "./release major"
