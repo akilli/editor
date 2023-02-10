@@ -92,7 +92,7 @@ iframe,
 img,
 video {
     width: 100%;
-    max-height: 14rem;
+    max-height: 24rem;
     object-fit: cover;
     pointer-events: none;
 }
