@@ -1,5 +1,6 @@
 import BuildEditor from '../../src/build/BuildEditor.js';
 import DistEditor from '../../dist/editor.js';
+import { cache } from './util.js';
 
 /**
  * @typedef {Object} EditorMap
@@ -42,11 +43,6 @@ const config = {
     },
 };
 
-/**
- * @type {number}
- */
-const now = Date.now();
-
 document.addEventListener('DOMContentLoaded', async () => {
     const root = document.documentElement;
     const header = document.getElementById('header');
@@ -69,11 +65,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const entry = map[version.value];
         css.setAttribute('href', entry.css);
 
-        const cache = (u) => {
-            const url = new URL(u);
-            url.searchParams.set('v', `${now}`);
-            return url.toString();
-        };
         Array.from(document.getElementsByTagName('link')).forEach((item) => (item.href = cache(item.href)));
         Array.from(document.getElementsByTagName('script')).forEach((item) => (item.src = cache(item.src)));
 
