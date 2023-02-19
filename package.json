@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "start": "npx --yes servor --reload . index.html 20000",
-    "lint:check": "prettier --check '**/*.js'",
+    "lint": "prettier --check '**/*.js'",
     "lint:fix": "prettier --write '**/*.js'",
     "build": "npm run build:clean && npm run build:font && npm run build:css && npm run build:js",
     "build:clean": "rm -rf dist",
