@@ -30,7 +30,7 @@ npm run build
 # commit, tag and push changes
 git add dist src package.json package-lock.json
 git commit --message="$version"
-git tag -a "$version" --message="$version"
+git tag --annotate "$version" --message="$version"
 git push --follow-tags
 
 # release new version
