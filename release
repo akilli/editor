@@ -14,7 +14,7 @@ case "$versionType" in
 esac
 
 # qa
-npm run lint:check
+npm run lint
 
 # update versions
 git fetch --tags
