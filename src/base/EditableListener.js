@@ -1,4 +1,4 @@
-import Key from './Key.js';
+import Key, { isEventFor } from './Key.js';
 import Listener from './Listener.js';
 import TagName from './TagName.js';
 
@@ -30,10 +30,10 @@ export default class EditableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (Key.isEventFor(event, Key.ENTER, { shift: true }) && !this.editor.tags.allowed(event.target, TagName.BR)) {
+        if (isEventFor(event, Key.ENTER, { shift: true }) && !this.editor.tags.allowed(event.target, TagName.BR)) {
             event.preventDefault();
             event.stopPropagation();
-        } else if (Key.isEventFor(event, Key.ENTER)) {
+        } else if (isEventFor(event, Key.ENTER)) {
             event.preventDefault();
             event.stopPropagation();
             const enter = this.editor.tags.get(event.target)?.enter;
@@ -56,14 +56,14 @@ export default class EditableListener extends Listener {
                 }
             }
         } else if (
-            Key.isEventFor(event, Key.BACKSPACE) &&
+            isEventFor(event, Key.BACKSPACE) &&
             !event.target.textContent &&
             event.target.hasAttribute('data-deletable')
         ) {
             this.editor.dom.delete(event.target);
             event.preventDefault();
             event.stopPropagation();
-        } else if (/^[A-Z]$/.test(event.key) && Key.isEventFor(event, event.key, { alt: true, shift: true })) {
+        } else if (/^[A-Z]$/.test(event.key) && isEventFor(event, event.key, { alt: true, shift: true })) {
             event.preventDefault();
             event.stopPropagation();
             this.editor.formatbar.querySelector(`${TagName.BUTTON}[data-key=${event.key.toLowerCase()}]`)?.click();

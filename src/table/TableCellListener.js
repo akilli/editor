@@ -1,4 +1,4 @@
-import Key from '../base/Key.js';
+import Key, { isEventFor } from '../base/Key.js';
 import Listener from '../base/Listener.js';
 import TagName from '../base/TagName.js';
 
@@ -44,7 +44,7 @@ export default class TableCellListener extends Listener {
             cell instanceof HTMLTableCellElement &&
             row instanceof HTMLTableRowElement &&
             table instanceof HTMLTableElement &&
-            Key.isEventFor(event, [Key.ARROWLEFT, Key.ARROWRIGHT, Key.ARROWUP, Key.ARROWDOWN]) &&
+            isEventFor(event, [Key.ARROWLEFT, Key.ARROWRIGHT, Key.ARROWUP, Key.ARROWDOWN]) &&
             this.#enabled(cell, event.key)
         ) {
             const cellIndex = cell.cellIndex;

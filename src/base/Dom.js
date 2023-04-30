@@ -344,7 +344,7 @@ export default class Dom {
      * @return {void}
      */
     sort(element, sorting) {
-        if (!(element instanceof HTMLElement) || !Sorting.values().includes(sorting)) {
+        if (!(element instanceof HTMLElement) || !Object.values(Sorting).includes(sorting)) {
             throw new TypeError('Invalid argument');
         }
 

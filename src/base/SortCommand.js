@@ -12,7 +12,7 @@ export default class SortCommand extends Command {
      * @param {string} sorting
      */
     constructor(editor, sorting) {
-        if (!Sorting.values().includes(sorting)) {
+        if (!Object.values(Sorting).includes(sorting)) {
             throw new TypeError('Invalid argument');
         }
 

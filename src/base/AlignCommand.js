@@ -12,7 +12,7 @@ export default class AlignCommand extends Command {
      * @param {string} alignment
      */
     constructor(editor, alignment) {
-        if (!Alignment.values().includes(alignment)) {
+        if (!Object.values(Alignment).includes(alignment)) {
             throw new TypeError('Invalid argument');
         }
 
@@ -27,7 +27,7 @@ export default class AlignCommand extends Command {
         const element = this.editor.dom.getActiveElement();
 
         if (element?.hasAttribute('data-alignable')) {
-            this.editor.dom.removeClass(element, ...Alignment.values());
+            this.editor.dom.removeClass(element, ...Object.values(Alignment));
             this.#alignment !== Alignment.NONE && element.classList.add(this.#alignment);
         }
     }

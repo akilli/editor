@@ -1,4 +1,4 @@
-import Key from './Key.js';
+import Key, { isEventFor } from './Key.js';
 import Listener from './Listener.js';
 
 export default class DeletableListener extends Listener {
@@ -27,7 +27,7 @@ export default class DeletableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (event.target === event.currentTarget && Key.isEventFor(event, Key.DEL, { ctrl: true })) {
+        if (event.target === event.currentTarget && isEventFor(event, Key.DEL, { ctrl: true })) {
             this.editor.dom.delete(event.target);
             event.preventDefault();
             event.stopPropagation();

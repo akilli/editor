@@ -1,4 +1,4 @@
-import Key from './Key.js';
+import Key, { isEventFor } from './Key.js';
 import Listener from './Listener.js';
 import TagName from './TagName.js';
 
@@ -30,9 +30,9 @@ export default class SlotableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (Key.isEventFor(event, Key.BACKSPACE) && event.target.matches(':only-child')) {
+        if (isEventFor(event, Key.BACKSPACE) && event.target.matches(':only-child')) {
             this.editor.dom.delete(event.target.parentElement);
-        } else if (!Key.isEventFor(event, Key.TAB) && !Key.isEventFor(event, Key.TAB, { shift: true })) {
+        } else if (!isEventFor(event, Key.TAB) && !isEventFor(event, Key.TAB, { shift: true })) {
             event.preventDefault();
             event.stopPropagation();
         }

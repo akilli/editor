@@ -1,5 +1,5 @@
 import Alignment from './Alignment.js';
-import Key from './Key.js';
+import Key, { isEventFor } from './Key.js';
 import Listener from './Listener.js';
 
 export default class AlignableListener extends Listener {
@@ -28,6 +28,7 @@ export default class AlignableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
+        /** @type {Object<Key, Alignment>} */
         const map = {
             [Key.ARROWUP]: Alignment.NONE,
             [Key.ARROWLEFT]: Alignment.LEFT,
@@ -35,10 +36,10 @@ export default class AlignableListener extends Listener {
             [Key.ARROWRIGHT]: Alignment.RIGHT,
         };
 
-        if (event.target === event.currentTarget && Key.isEventFor(event, Object.keys(map), { shift: true })) {
+        if (event.target === event.currentTarget && isEventFor(event, Object.keys(map), { shift: true })) {
             event.preventDefault();
             event.stopPropagation();
-            this.editor.dom.removeClass(event.target, ...Alignment.values());
+            this.editor.dom.removeClass(event.target, ...Object.values(Alignment));
             map[event.key] !== Alignment.NONE && event.target.classList.add(map[event.key]);
         }
     }
