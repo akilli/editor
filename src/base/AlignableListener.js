@@ -1,5 +1,5 @@
 import Alignment from './Alignment.js';
-import Key, { isEventFor } from './Key.js';
+import Key, { isKey } from './Key.js';
 import Listener from './Listener.js';
 
 export default class AlignableListener extends Listener {
@@ -36,7 +36,7 @@ export default class AlignableListener extends Listener {
             [Key.ARROWRIGHT]: Alignment.RIGHT,
         };
 
-        if (event.target === event.currentTarget && isEventFor(event, Object.keys(map), { shift: true })) {
+        if (event.target === event.currentTarget && isKey(event, Object.keys(map), { shift: true })) {
             event.preventDefault();
             event.stopPropagation();
             this.editor.dom.removeClass(event.target, ...Object.values(Alignment));

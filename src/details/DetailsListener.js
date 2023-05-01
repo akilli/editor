@@ -1,4 +1,4 @@
-import Key, { isEventFor } from '../base/Key.js';
+import Key, { isKey } from '../base/Key.js';
 import Listener from '../base/Listener.js';
 import TagName from '../base/TagName.js';
 
@@ -69,11 +69,11 @@ export default class DetailsListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (isEventFor(event, Key.SPACE)) {
+        if (isKey(event, Key.SPACE)) {
             event.preventDefault();
             event.stopPropagation();
             this.editor.dom.insertText(' ');
-        } else if (isEventFor(event, Key.ENTER)) {
+        } else if (isKey(event, Key.ENTER)) {
             event.preventDefault();
             event.stopPropagation();
             event.target.parentElement.open = true;

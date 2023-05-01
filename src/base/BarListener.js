@@ -1,4 +1,4 @@
-import Key, { isEventFor } from './Key.js';
+import Key, { isKey } from './Key.js';
 import Listener from './Listener.js';
 
 /**
@@ -34,7 +34,7 @@ export default class BarListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (isEventFor(event, [Key.ARROWLEFT, Key.ARROWRIGHT, Key.HOME, Key.END])) {
+        if (isKey(event, [Key.ARROWLEFT, Key.ARROWRIGHT, Key.HOME, Key.END])) {
             const prev = event.target.previousElementSibling;
             const next = event.target.nextElementSibling;
             const first = event.target.parentElement.firstElementChild;

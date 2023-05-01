@@ -1,4 +1,4 @@
-import Key, { isEventFor } from '../base/Key.js';
+import Key, { isKey } from '../base/Key.js';
 import Listener from '../base/Listener.js';
 
 export default class TableColumnListener extends Listener {
@@ -25,9 +25,9 @@ export default class TableColumnListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (isEventFor(event, Key.ENTER)) {
+        if (isKey(event, Key.ENTER)) {
             this.editor.dom.createTableColumnAfter(event.target);
-        } else if (isEventFor(event, Key.BACKSPACE)) {
+        } else if (isKey(event, Key.BACKSPACE)) {
             this.editor.dom.delete(event.target);
         }
     }

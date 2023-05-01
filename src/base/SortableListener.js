@@ -1,4 +1,4 @@
-import Key, { isEventFor } from './Key.js';
+import Key, { isKey } from './Key.js';
 import Listener from './Listener.js';
 import Sorting from './Sorting.js';
 import TagName from './TagName.js';
@@ -40,7 +40,7 @@ export default class SortableListener extends Listener {
             [Key.END]: Sorting.LAST,
         };
 
-        if (event.target === event.currentTarget && isEventFor(event, Object.keys(map), { ctrl: true })) {
+        if (event.target === event.currentTarget && isKey(event, Object.keys(map), { ctrl: true })) {
             this.editor.dom.sort(event.target, map[event.key]);
             event.preventDefault();
             event.stopPropagation();
