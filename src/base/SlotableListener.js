@@ -1,6 +1,6 @@
-import Key, { isKey } from './Key.js';
 import Listener from './Listener.js';
 import TagName from './TagName.js';
+import { Key, isKey } from './Key.js';
 
 export default class SlotableListener extends Listener {
     /**

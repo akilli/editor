@@ -1,7 +1,10 @@
+import Alignment from './Alignment.js';
+import Sorting from './Sorting.js';
+
 /**
  * @enum {string}
  */
-export default Object.freeze({
+export const Key = Object.freeze({
     A: 'a',
     ARROWDOWN: 'ArrowDown',
     ARROWLEFT: 'ArrowLeft',
@@ -39,6 +42,36 @@ export default Object.freeze({
 });
 
 /**
+ * @type {string[]}
+ */
+export const NavKeys = Object.freeze([Key.HOME, Key.ARROWUP, Key.ARROWDOWN, Key.END]);
+
+/**
+ * @type {string[]}
+ */
+export const BarNavKeys = Object.freeze([Key.HOME, Key.ARROWLEFT, Key.ARROWRIGHT, Key.END]);
+
+/**
+ * @type {Object<Key, Alignment>}
+ */
+export const AlignKeyMap = Object.freeze({
+    [Key.ARROWUP]: Alignment.NONE,
+    [Key.ARROWLEFT]: Alignment.LEFT,
+    [Key.ARROWDOWN]: Alignment.CENTER,
+    [Key.ARROWRIGHT]: Alignment.RIGHT,
+});
+
+/**
+ * @type {Object<Key, Sorting>}
+ */
+export const SortKeyMap = Object.freeze({
+    [Key.HOME]: Sorting.FIRST,
+    [Key.ARROWUP]: Sorting.PREV,
+    [Key.ARROWDOWN]: Sorting.NEXT,
+    [Key.END]: Sorting.LAST,
+});
+
+/**
  * Indicates if keyboard event was triggered for given key combination
  *
  * @param {KeyboardEvent} event
@@ -55,4 +88,54 @@ export function isKey(event, key, { alt = false, ctrl = false, shift = false } =
         event.ctrlKey === ctrl &&
         event.shiftKey === shift
     );
+}
+
+/**
+ * Indicates if keyboard event was triggered for given navigation key combination
+ *
+ * @param {KeyboardEvent} event
+ * @return {boolean}
+ */
+export function isNavKey(event) {
+    return isKey(event, NavKeys);
+}
+
+/**
+ * Indicates if keyboard event was triggered for given bar navigation key combination
+ *
+ * @param {KeyboardEvent} event
+ * @return {boolean}
+ */
+export function isBarNavKey(event) {
+    return isKey(event, BarNavKeys);
+}
+
+/**
+ * Indicates if keyboard event was triggered for given aligment key combination
+ *
+ * @param {KeyboardEvent} event
+ * @return {boolean}
+ */
+export function isAlignKey(event) {
+    return isKey(event, Object.keys(AlignKeyMap), { shift: true });
+}
+
+/**
+ * Indicates if keyboard event was triggered for given sorting key combination
+ *
+ * @param {KeyboardEvent} event
+ * @return {boolean}
+ */
+export function isSortKey(event) {
+    return isKey(event, Object.keys(SortKeyMap), { ctrl: true });
+}
+
+/**
+ * Indicates if keyboard event was triggered for given format key combination
+ *
+ * @param {KeyboardEvent} event
+ * @return {boolean}
+ */
+export function isFormatKey(event) {
+    return /^[A-Z]$/.test(event.key) && isKey(event, event.key, { alt: true, shift: true });
 }

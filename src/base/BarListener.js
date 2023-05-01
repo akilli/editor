@@ -1,5 +1,5 @@
-import Key, { isKey } from './Key.js';
 import Listener from './Listener.js';
+import { Key, isBarNavKey } from './Key.js';
 
 /**
  * @abstract
@@ -34,7 +34,7 @@ export default class BarListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (isKey(event, [Key.ARROWLEFT, Key.ARROWRIGHT, Key.HOME, Key.END])) {
+        if (isBarNavKey(event)) {
             const prev = event.target.previousElementSibling;
             const next = event.target.nextElementSibling;
             const first = event.target.parentElement.firstElementChild;

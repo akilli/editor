@@ -1,7 +1,6 @@
-import Key, { isKey } from './Key.js';
 import Listener from './Listener.js';
-import Sorting from './Sorting.js';
 import TagName from './TagName.js';
+import { SortKeyMap, isSortKey } from './Key.js';
 
 export default class SortableListener extends Listener {
     /**
@@ -32,16 +31,8 @@ export default class SortableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        /** @type {Object<Key, Sorting>} */
-        const map = {
-            [Key.HOME]: Sorting.FIRST,
-            [Key.ARROWUP]: Sorting.PREV,
-            [Key.ARROWDOWN]: Sorting.NEXT,
-            [Key.END]: Sorting.LAST,
-        };
-
-        if (event.target === event.currentTarget && isKey(event, Object.keys(map), { ctrl: true })) {
-            this.editor.dom.sort(event.target, map[event.key]);
+        if (event.target === event.currentTarget && isSortKey(event)) {
+            this.editor.dom.sort(event.target, SortKeyMap[event.key]);
             event.preventDefault();
             event.stopPropagation();
         }

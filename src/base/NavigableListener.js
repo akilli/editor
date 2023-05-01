@@ -1,5 +1,5 @@
-import Key, { isKey } from './Key.js';
 import Listener from './Listener.js';
+import { Key, isNavKey } from './Key.js';
 
 export default class NavigableListener extends Listener {
     /**
@@ -28,11 +28,7 @@ export default class NavigableListener extends Listener {
      * @return {void}
      */
     keydown(event) {
-        if (
-            event.target === event.currentTarget &&
-            isKey(event, [Key.ARROWUP, Key.ARROWDOWN, Key.HOME, Key.END]) &&
-            this.#enabled(event.target)
-        ) {
+        if (event.target === event.currentTarget && isNavKey(event) && this.#enabled(event.target)) {
             const prev = event.target.previousElementSibling;
             const next = event.target.nextElementSibling;
             const first = event.target.parentElement.firstElementChild;

@@ -1,6 +1,6 @@
-import Key, { isKey } from './Key.js';
 import Listener from './Listener.js';
 import TagName from './TagName.js';
+import { Key, isFormatKey, isKey } from './Key.js';
 
 export default class EditableListener extends Listener {
     /**
@@ -63,7 +63,7 @@ export default class EditableListener extends Listener {
             this.editor.dom.delete(event.target);
             event.preventDefault();
             event.stopPropagation();
-        } else if (/^[A-Z]$/.test(event.key) && isKey(event, event.key, { alt: true, shift: true })) {
+        } else if (isFormatKey(event)) {
             event.preventDefault();
             event.stopPropagation();
             this.editor.formatbar.querySelector(`${TagName.BUTTON}[data-key=${event.key.toLowerCase()}]`)?.click();
