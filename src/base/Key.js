@@ -44,6 +44,11 @@ export const Key = Object.freeze({
 /**
  * @type {string[]}
  */
+export const ArrowKeys = Object.freeze([Key.ARROWLEFT, Key.ARROWRIGHT, Key.ARROWUP, Key.ARROWDOWN]);
+
+/**
+ * @type {string[]}
+ */
 export const NavKeys = Object.freeze([Key.HOME, Key.ARROWUP, Key.ARROWDOWN, Key.END]);
 
 /**
@@ -88,6 +93,16 @@ export function isKey(event, key, { alt = false, ctrl = false, shift = false } =
         event.ctrlKey === ctrl &&
         event.shiftKey === shift
     );
+}
+
+/**
+ * Indicates if keyboard event was triggered for given arrow key combination
+ *
+ * @param {KeyboardEvent} event
+ * @return {boolean}
+ */
+export function isArrowKey(event) {
+    return isKey(event, ArrowKeys);
 }
 
 /**
