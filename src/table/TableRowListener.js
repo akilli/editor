@@ -1,5 +1,5 @@
+import Key, { isKey } from '../base/Key.js';
 import Listener from '../base/Listener.js';
-import { Key, isKey } from '../base/Key.js';
 
 export default class TableRowListener extends Listener {
     /**

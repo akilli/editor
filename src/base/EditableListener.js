@@ -1,6 +1,6 @@
+import Key, { isFormatKey, isKey } from './Key.js';
 import Listener from './Listener.js';
 import TagName from './TagName.js';
-import { Key, isFormatKey, isKey } from './Key.js';
 
 export default class EditableListener extends Listener {
     /**

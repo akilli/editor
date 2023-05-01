@@ -1,5 +1,5 @@
+import Key, { isBarNavKey } from './Key.js';
 import Listener from './Listener.js';
-import { Key, isBarNavKey } from './Key.js';
 
 /**
  * @abstract

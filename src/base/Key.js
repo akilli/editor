@@ -4,7 +4,7 @@ import Sorting from './Sorting.js';
 /**
  * @enum {string}
  */
-export const Key = Object.freeze({
+const Key = Object.freeze({
     A: 'a',
     ARROWDOWN: 'ArrowDown',
     ARROWLEFT: 'ArrowLeft',
@@ -40,6 +40,8 @@ export const Key = Object.freeze({
     Y: 'y',
     Z: 'z',
 });
+
+export default Key;
 
 /**
  * @type {string[]}

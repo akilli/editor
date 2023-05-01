@@ -1,5 +1,5 @@
+import Key, { isNavKey } from './Key.js';
 import Listener from './Listener.js';
-import { Key, isNavKey } from './Key.js';
 
 export default class NavigableListener extends Listener {
     /**

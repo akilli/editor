@@ -1,9 +1,9 @@
 import Base from '../base/Base.js';
+import Key from '../base/Key.js';
 import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
 import TimeDialog from './TimeDialog.js';
-import { Key } from '../base/Key.js';
 
 export default class Time extends Plugin {
     /**
