@@ -80,15 +80,30 @@ export const SortKeyMap = Object.freeze({
  * Indicates if keyboard event was triggered for given key combination
  *
  * @param {KeyboardEvent} event
- * @param {string|string[]} key
+ * @param {string} key
  * @param {boolean} alt
  * @param {boolean} ctrl
  * @param {boolean} shift
  * @return {boolean}
  */
 export function isKey(event, key, { alt = false, ctrl = false, shift = false } = {}) {
+    return event.key === key && event.altKey === alt && event.ctrlKey === ctrl && event.shiftKey === shift;
+}
+
+/**
+ * Indicates if keyboard event was triggered for any of the given key combinations
+ *
+ * @param {KeyboardEvent} event
+ * @param {string[]} key
+ * @param {boolean} alt
+ * @param {boolean} ctrl
+ * @param {boolean} shift
+ * @return {boolean}
+ */
+export function isAnyKey(event, key, { alt = false, ctrl = false, shift = false } = {}) {
     return (
-        ((Array.isArray(key) && key.includes(event.key)) || event.key === key) &&
+        Array.isArray(key) &&
+        key.includes(event.key) &&
         event.altKey === alt &&
         event.ctrlKey === ctrl &&
         event.shiftKey === shift
@@ -102,7 +117,7 @@ export function isKey(event, key, { alt = false, ctrl = false, shift = false } =
  * @return {boolean}
  */
 export function isArrowKey(event) {
-    return isKey(event, ArrowKeys);
+    return isAnyKey(event, ArrowKeys);
 }
 
 /**
@@ -112,7 +127,7 @@ export function isArrowKey(event) {
  * @return {boolean}
  */
 export function isNavKey(event) {
-    return isKey(event, NavKeys);
+    return isAnyKey(event, NavKeys);
 }
 
 /**
@@ -122,7 +137,7 @@ export function isNavKey(event) {
  * @return {boolean}
  */
 export function isBarNavKey(event) {
-    return isKey(event, BarNavKeys);
+    return isAnyKey(event, BarNavKeys);
 }
 
 /**
@@ -132,7 +147,7 @@ export function isBarNavKey(event) {
  * @return {boolean}
  */
 export function isAlignKey(event) {
-    return isKey(event, Object.keys(AlignKeyMap), { shift: true });
+    return isAnyKey(event, Object.keys(AlignKeyMap), { shift: true });
 }
 
 /**
@@ -142,7 +157,7 @@ export function isAlignKey(event) {
  * @return {boolean}
  */
 export function isSortKey(event) {
-    return isKey(event, Object.keys(SortKeyMap), { ctrl: true });
+    return isAnyKey(event, Object.keys(SortKeyMap), { ctrl: true });
 }
 
 /**
