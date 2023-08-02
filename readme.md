@@ -132,7 +132,7 @@ const config = {
         /**
          * Overrides default browser dialog window options
          *
-         * @see BrowserManager.#opts
+         * @see Dom.#browser
          * @type {Object.<string, string>}
          */
         browser: {},
