@@ -39,7 +39,7 @@ details, dialog, menu, summary {
 }
 
 body {
-    width: 100%;
+    width: 100vw;
     min-height: 100vh;
 }
 
@@ -76,11 +76,6 @@ th {
 /**
  * Display
  */
-main,
-dialog[open] {
-    display: block;
-}
-
 a[role=button],
 audio,
 canvas,
@@ -94,8 +89,7 @@ video {
     max-width: 100%;
 }
 
-[hidden],
-dialog {
+[hidden] {
     display: none;
 }
 
@@ -160,7 +154,8 @@ nav ul {
 /**
  * Text
  */
-main {
+main,
+[role=main] {
     hyphens: auto;
 }
 
@@ -237,13 +232,4 @@ dialog {
  */
 hr {
     clear: both;
-}
-
-/**
- * Print
- */
-@media print {
-    dialog[open] {
-        display: none;
-    }
 }
