@@ -1,6 +1,6 @@
 {
   "name": "@akilli/editor",
-  "version": "5.2.1",
+  "version": "5.2.2",
   "description": "A HTML standards-compliant and dependency-free rich text editor",
   "keywords": [
     "contenteditable",
@@ -41,7 +41,7 @@
     "release:major": "./release major"
   },
   "devDependencies": {
-    "@akilli/editor-src": "^5.2.1",
+    "@akilli/editor-src": "^5.2.2",
     "esbuild": "^0.19.5",
     "prettier": "^3.0.3"
   }
