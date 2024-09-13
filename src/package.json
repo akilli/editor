@@ -1,6 +1,6 @@
 {
   "name": "@akilli/editor-src",
-  "version": "5.2.2",
+  "version": "5.2.3",
   "description": "Source files for @akilli/editor",
   "keywords": [
     "contenteditable",
