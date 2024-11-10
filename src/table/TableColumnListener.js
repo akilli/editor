@@ -27,7 +27,11 @@ export default class TableColumnListener extends Listener {
     keydown(event) {
         if (isKey(event, Key.ENTER)) {
             this.editor.dom.createTableColumnAfter(event.target);
-        } else if (isKey(event, Key.BACKSPACE)) {
+        } else if (
+            isKey(event, Key.BACKSPACE) &&
+            !event.target.textContent &&
+            event.target.hasAttribute('data-deletable')
+        ) {
             this.editor.dom.delete(event.target);
         }
     }
