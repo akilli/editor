@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@akilli/editor-src": "^5.2.5",
-    "esbuild": "^0.24.0",
-    "prettier": "^3.3.3"
+    "esbuild": "^0.24.2",
+    "prettier": "^3.4.2"
   }
 }
