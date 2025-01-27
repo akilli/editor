@@ -65,6 +65,8 @@ export default {
 
     // details
     Details: 'Details',
+    'Insert name or leave empty to remove it': 'Name eingeben oder zum Entfernen leer lassen',
+    Name: 'Name',
 
     // division
     Division: 'Division',

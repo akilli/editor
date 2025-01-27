@@ -1,4 +1,5 @@
 import Base from '../base/Base.js';
+import DetailsDialog from './DetailsDialog.js';
 import DetailsFilter from './DetailsFilter.js';
 import DetailsListener from './DetailsListener.js';
 import Plugin from '../base/Plugin.js';
@@ -41,6 +42,7 @@ export default class Details extends Plugin {
                 TagGroup.TABLE,
                 TagGroup.VIDEO,
             ],
+            attributes: ['name'],
             arbitrary: true,
             deletable: true,
             focusable: true,
@@ -56,6 +58,7 @@ export default class Details extends Plugin {
             enter: TagName.P,
         });
         new DetailsListener(this.editor);
+        this.editor.dialogs.set(new DetailsDialog(this.editor, this.constructor.name));
         this._command(TagName.DETAILS);
         this._toolbar('Details');
         this.editor.filters.add(new DetailsFilter(this.editor));
