@@ -3,6 +3,7 @@ import DetailsDialog from './DetailsDialog.js';
 import DetailsFilter from './DetailsFilter.js';
 import DetailsListener from './DetailsListener.js';
 import Plugin from '../base/Plugin.js';
+import SummaryListener from './SummaryListener.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
 
@@ -58,6 +59,7 @@ export default class Details extends Plugin {
             enter: TagName.P,
         });
         new DetailsListener(this.editor);
+        new SummaryListener(this.editor);
         this.editor.dialogs.set(new DetailsDialog(this.editor, this.constructor.name));
         this._command(TagName.DETAILS);
         this._toolbar('Details');
