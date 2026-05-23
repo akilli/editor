@@ -3,7 +3,8 @@ import { isFunction } from './util.js';
 
 /**
  * @abstract
- * @implements EventListener
+ * @implements {EventListener}
+ * @borrows EventListener#handleEvent as handleEvent
  */
 export default class Listener {
     /**
@@ -19,7 +20,6 @@ export default class Listener {
     }
 
     /**
-     * @borrows handleEvent
      * @param {Editor} editor
      */
     constructor(editor) {
