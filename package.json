@@ -1,48 +1,48 @@
 {
-  "name": "@akilli/editor",
-  "version": "5.2.7",
-  "description": "A HTML standards-compliant and dependency-free rich text editor",
-  "keywords": [
-    "contenteditable",
-    "editor",
-    "html-editor",
-    "rte",
-    "rich-text",
-    "rich-text-editor",
-    "wysiwyg",
-    "wysiwyg-editor"
-  ],
-  "author": "Ayhan Akilli",
-  "license": "MIT",
-  "bugs": "https://github.com/akilli/editor/issues",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/akilli/editor.git"
-  },
-  "type": "module",
-  "browser": "./dist/editor.js",
-  "files": [
-    "dist"
-  ],
-  "workspaces": [
-    "src"
-  ],
-  "scripts": {
-    "start": "npx --yes servor --reload . index.html 20000",
-    "lint": "prettier --check '**/*.js'",
-    "lint:fix": "prettier --write '**/*.js'",
-    "build": "npm run build:clean && npm run build:font && npm run build:css && npm run build:js",
-    "build:clean": "rm -rf dist",
-    "build:font": "mkdir -p dist && cp src/build/editor.woff2 dist/editor.woff2",
-    "build:css": "esbuild src/build/editor.css --minify --outfile=dist/editor.css",
-    "build:js": "node ./build.js",
-    "release:patch": "./release patch",
-    "release:minor": "./release minor",
-    "release:major": "./release major"
-  },
-  "devDependencies": {
-    "@akilli/editor-src": "^5.2.7",
-    "esbuild": "^0.27.3",
-    "prettier": "^3.8.1"
-  }
+    "name": "@akilli/editor",
+    "version": "5.2.7",
+    "description": "A HTML standards-compliant and dependency-free rich text editor",
+    "keywords": [
+        "contenteditable",
+        "editor",
+        "html-editor",
+        "rte",
+        "rich-text",
+        "rich-text-editor",
+        "wysiwyg",
+        "wysiwyg-editor"
+    ],
+    "author": "Ayhan Akilli",
+    "license": "MIT",
+    "bugs": "https://github.com/akilli/editor/issues",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/akilli/editor.git"
+    },
+    "type": "module",
+    "browser": "./dist/editor.js",
+    "files": [
+        "dist"
+    ],
+    "workspaces": [
+        "src"
+    ],
+    "scripts": {
+        "start": "npx --yes servor --reload . index.html 20000",
+        "lint": "prettier --check '**/*.js'",
+        "lint:fix": "prettier --write '**/*.js'",
+        "build": "npm run build:clean && npm run build:font && npm run build:css && npm run build:js",
+        "build:clean": "rm -rf dist",
+        "build:font": "mkdir -p dist && cp src/build/editor.woff2 dist/editor.woff2",
+        "build:css": "esbuild src/build/editor.css --minify --outfile=dist/editor.css",
+        "build:js": "node ./build.js",
+        "release:patch": "./release patch",
+        "release:minor": "./release minor",
+        "release:major": "./release major"
+    },
+    "devDependencies": {
+        "@akilli/editor-src": "^5.2.7",
+        "esbuild": "^0.28.0",
+        "prettier": "^3.8.3"
+    }
 }
