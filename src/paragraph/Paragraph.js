@@ -1,6 +1,5 @@
 import Base from '../base/Base.js';
 import Break from '../break/Break.js';
-import ParagraphListener from './ParagraphListener.js';
 import Plugin from '../base/Plugin.js';
 import TagGroup from '../base/TagGroup.js';
 import TagName from '../base/TagName.js';
@@ -35,7 +34,6 @@ export default class Paragraph extends Plugin {
             sortable: true,
             enter: TagName.P,
         });
-        new ParagraphListener(this.editor);
         this._command(TagName.P);
         this._toolbar('Paragraph');
     }

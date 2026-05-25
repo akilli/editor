@@ -117,6 +117,13 @@ export default class Dom {
     }
 
     /**
+     * @return {DocumentFragment}
+     */
+    createFragment() {
+        return this.document.createDocumentFragment();
+    }
+
+    /**
      * Inserts element
      *
      * @param {HTMLElement} element
@@ -154,14 +161,50 @@ export default class Dom {
      */
     insertText(text) {
         const editable = this.getSelectedEditable();
+        const range = this.getRange();
 
-        if (editable) {
-            const range = this.getRange();
-            range.deleteContents();
-            range.insertNode(this.createText(text));
-            range.collapse();
-            editable.normalize();
+        if (!editable || !range || !text) {
+            return;
         }
+
+        range.deleteContents();
+        range.insertNode(this.createText(text));
+        range.collapse();
+        editable.normalize();
+    }
+
+    /**
+     * @param {string} html
+     * @return {void}
+     */
+    insertHtml(html) {
+        const editable = this.getSelectedEditable();
+        const range = this.getRange();
+
+        if (!editable || !range || !html) {
+            return;
+        }
+
+        const element = this.createElement(editable.localName, { html });
+        this.editor.filters.filter(element);
+        const fragment = this.createFragment();
+
+        while (element.firstChild) {
+            fragment.appendChild(element.firstChild);
+        }
+
+        range.deleteContents();
+        range.insertNode(fragment);
+
+        const lastChild = fragment.lastChild;
+
+        if (lastChild) {
+            range.setStartAfter(lastChild);
+            range.setEndAfter(lastChild);
+            this.setRange(range);
+        }
+
+        editable.normalize();
     }
 
     /**
@@ -502,7 +545,7 @@ export default class Dom {
             return true;
         }
 
-        const root = element.closest(this.editor.root.localName);
+        const root = element.closest(TagName.ROOT);
 
         return root && !root.parentElement;
     }

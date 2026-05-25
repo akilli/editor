@@ -9,6 +9,7 @@ export default class EditableListener extends Listener {
     constructor(editor) {
         super(editor);
         this.editor.root.addEventListener('insert', this);
+        this.editor.root.addEventListener('beforeinput', this);
     }
 
     /**
@@ -78,5 +79,28 @@ export default class EditableListener extends Listener {
     dblclick({ target }) {
         this.editor.dom.selectContents(target);
         this.editor.commands.findByTagName(target.localName)?.execute();
+    }
+
+    /**
+     * @param {InputEvent} event
+     * @return {void}
+     */
+    beforeinput(event) {
+        if (event.inputType !== 'insertFromPaste' || !event.cancelable) {
+            return;
+        }
+
+        const html = event.dataTransfer?.getData('text/html');
+        const text = event.dataTransfer?.getData('text/plain');
+
+        if (html) {
+            event.preventDefault();
+            event.stopPropagation();
+            this.editor.dom.insertHtml(html);
+        } else if (text) {
+            event.preventDefault();
+            event.stopPropagation();
+            this.editor.dom.insertText(text);
+        }
     }
 }
