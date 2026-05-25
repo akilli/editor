@@ -16,8 +16,8 @@ import SortableListener from './SortableListener.js';
 import Sorting from './Sorting.js';
 import TagGroup from './TagGroup.js';
 import TagListener from './TagListener.js';
-import ToolbarListener from './ToolbarListener.js';
 import TagName from './TagName.js';
+import ToolbarListener from './ToolbarListener.js';
 
 export default class Base extends Plugin {
     /**
