@@ -373,7 +373,7 @@ export default class Editor {
      * @return {string}
      */
     getHtml() {
-        const root = this.dom.createElement(this.root.localName, { html: this.root.innerHTML });
+        const root = this.dom.createElement(TagName.ROOT, { html: this.root.innerHTML });
         this.filters.filter(root);
         this.rootDispatcher.dispatch('gethtml', root);
 
@@ -387,7 +387,7 @@ export default class Editor {
      * @return {void}
      */
     setHtml(html) {
-        const root = this.dom.createElement(this.root.localName, { html });
+        const root = this.dom.createElement(TagName.ROOT, { html });
         this.rootDispatcher.dispatch('sethtml', root);
         this.filters.filter(root);
         this.root.innerHTML = root.innerHTML;
