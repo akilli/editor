@@ -1,7 +1,7 @@
 /**
  * @enum {string}
  */
-export default Object.freeze({
+export default {
     A: 'a',
     ABBR: 'abbr',
     ALL: '*',
@@ -69,4 +69,4 @@ export default Object.freeze({
     UL: 'ul',
     VAR: 'var',
     VIDEO: 'video',
-});
+};

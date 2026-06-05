@@ -32,13 +32,4 @@ export default class FilterManager {
             filter.filter(element);
         });
     }
-
-    /**
-     * @return {void}
-     */
-    freeze() {
-        this.#items.forEach((filter) => Object.freeze(filter));
-        Object.freeze(this.#items);
-        Object.freeze(this);
-    }
 }

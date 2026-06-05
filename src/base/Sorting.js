@@ -1,9 +1,9 @@
 /**
  * @enum {string}
  */
-export default Object.freeze({
+export default {
     FIRST: 'first',
     PREV: 'prev',
     NEXT: 'next',
     LAST: 'last',
-});
+};

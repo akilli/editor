@@ -48,13 +48,4 @@ export default class CommandManager {
     execute(name) {
         this.get(name).execute();
     }
-
-    /**
-     * @return {void}
-     */
-    freeze() {
-        this.#items.forEach((command) => Object.freeze(command));
-        Object.freeze(this.#items);
-        Object.freeze(this);
-    }
 }

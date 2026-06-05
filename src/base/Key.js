@@ -4,7 +4,7 @@ import Sorting from './Sorting.js';
 /**
  * @enum {string}
  */
-const Key = Object.freeze({
+const Key = {
     A: 'a',
     ARROWDOWN: 'ArrowDown',
     ARROWLEFT: 'ArrowLeft',
@@ -39,44 +39,44 @@ const Key = Object.freeze({
     X: 'x',
     Y: 'y',
     Z: 'z',
-});
+};
 
 export default Key;
 
 /**
  * @type {string[]}
  */
-export const ArrowKeys = Object.freeze([Key.ARROWLEFT, Key.ARROWRIGHT, Key.ARROWUP, Key.ARROWDOWN]);
+export const ArrowKeys = [Key.ARROWLEFT, Key.ARROWRIGHT, Key.ARROWUP, Key.ARROWDOWN];
 
 /**
  * @type {string[]}
  */
-export const NavKeys = Object.freeze([Key.HOME, Key.ARROWUP, Key.ARROWDOWN, Key.END]);
+export const NavKeys = [Key.HOME, Key.ARROWUP, Key.ARROWDOWN, Key.END];
 
 /**
  * @type {string[]}
  */
-export const BarNavKeys = Object.freeze([Key.HOME, Key.ARROWLEFT, Key.ARROWRIGHT, Key.END]);
+export const BarNavKeys = [Key.HOME, Key.ARROWLEFT, Key.ARROWRIGHT, Key.END];
 
 /**
  * @type {Object<Key, Alignment>}
  */
-export const AlignKeyMap = Object.freeze({
+export const AlignKeyMap = {
     [Key.ARROWUP]: Alignment.NONE,
     [Key.ARROWLEFT]: Alignment.LEFT,
     [Key.ARROWDOWN]: Alignment.CENTER,
     [Key.ARROWRIGHT]: Alignment.RIGHT,
-});
+};
 
 /**
  * @type {Object<Key, Sorting>}
  */
-export const SortKeyMap = Object.freeze({
+export const SortKeyMap = {
     [Key.HOME]: Sorting.FIRST,
     [Key.ARROWUP]: Sorting.PREV,
     [Key.ARROWDOWN]: Sorting.NEXT,
     [Key.END]: Sorting.LAST,
-});
+};
 
 /**
  * Indicates if keyboard event was triggered for given key combination

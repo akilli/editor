@@ -39,13 +39,4 @@ export default class PluginManager {
     init() {
         this.#items.forEach((plugin) => plugin.init());
     }
-
-    /**
-     * @return {void}
-     */
-    freeze() {
-        this.#items.forEach((plugin) => Object.freeze(plugin));
-        Object.freeze(this.#items);
-        Object.freeze(this);
-    }
 }

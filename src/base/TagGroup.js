@@ -1,7 +1,7 @@
 /**
  * @enum {string}
  */
-export default Object.freeze({
+export default {
     AUDIO: 'audio',
     BLOCK: 'block',
     BREAK: 'break',
@@ -28,4 +28,4 @@ export default Object.freeze({
     TABLEROW: 'tablerow',
     TABLESECTION: 'tablesection',
     VIDEO: 'video',
-});
+};

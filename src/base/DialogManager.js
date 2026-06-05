@@ -32,13 +32,4 @@ export default class DialogManager {
 
         this.#items.set(dialog.name, dialog);
     }
-
-    /**
-     * @return {void}
-     */
-    freeze() {
-        this.#items.forEach((dialog) => Object.freeze(dialog));
-        Object.freeze(this.#items);
-        Object.freeze(this);
-    }
 }
