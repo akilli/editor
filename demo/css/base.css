@@ -1,235 +1,79 @@
-/**
- * Reset
- */
-:root,
-address, article, aside, body, footer, h1, h2, h3, h4, h5, h6, header, nav, section,
-blockquote, dd, div, dl, dt, figcaption, figure, hr, li, main, ol, p, pre, ul,
-a, abbr, b, cite, code, data, dfn, em, i, kbd, mark, q, s, samp, small, span, strong, sub, sup, time, u, var,
-del, ins,
-audio, canvas, embed, iframe, img, object, picture, video,
-caption, table, tbody, td, tfoot, th, thead, tr,
-button, fieldset, form, input, label, legend, output, select, textarea,
-details, dialog, menu, summary {
-    vertical-align: baseline;
-    margin: 0;
-    padding: 0;
-    font: inherit;
-    color: inherit;
-    background: none repeat scroll 0 0 transparent;
-    border: 0 none;
-    outline: 0 none;
-}
-
-/**
- * Box sizing
- */
-*,
-::before,
-::after {
+*, ::before, ::after {
     box-sizing: border-box;
 }
 
-/**
- * Global
- */
+* {
+    margin: 0;
+}
+
+*:not(button, input, select, textarea) {
+    padding: 0;
+}
+
 :root {
-    width: 100%;
-    overflow-y: scroll;
-    font-size: 16px;
+    color-scheme: light dark;
 }
 
 body {
-    width: 100vw;
-    min-height: 100vh;
+    min-height: 100dvh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
-/**
- * Box shadow
- */
-:invalid {
-    box-shadow: none;
+button, input, select, textarea {
+    font: inherit;
 }
 
-/**
- * Vertical align
- */
-a[role=button],
-audio, canvas, embed, iframe, img, object, picture, video,
-thead :is(td, th),
-button, input, label, select, textarea {
-    vertical-align: middle;
-}
-
-sub {
-    vertical-align: sub;
-}
-
-sup {
-    vertical-align: super;
-}
-
-td,
-th {
-    vertical-align: top;
-}
-
-/**
- * Display
- */
-a[role=button],
-audio,
-canvas,
-embed,
-iframe,
-img,
-object,
-picture,
-video {
-    display: inline-block;
-    max-width: 100%;
-}
-
-[hidden] {
-    display: none;
-}
-
-/**
- * Font
- */
-code,
-kbd,
-pre,
-samp {
-    font-family: monospace;
-}
-
-blockquote,
-cite,
-dfn,
-em,
-optgroup,
-q,
-i,
-var {
-    font-style: italic;
-}
-
-b,
-em,
-optgroup,
-option[selected],
-strong,
-th,
-thead td {
-    font-weight: bold;
-}
-
-/**
- * Cursor
- */
-a,
-button,
-input:is([type=button], [type=reset], [type=submit], [type=checkbox], [type=radio]),
-label,
-select,
-summary {
+[role=button], button {
     cursor: pointer;
 }
 
-:is(abbr, del, dfn, ins)[title] {
-    cursor: help;
+audio, canvas, iframe, img, picture, svg, video {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
-[draggable=true] {
-    cursor: move;
-}
-
-/**
- * Nav
- */
-nav ul {
-    list-style: none;
-}
-
-/**
- * Text
- */
-main,
-[role=main] {
+main, [role=main] {
     hyphens: auto;
 }
 
-pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
+
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
 }
 
-q {
-    quotes: '“' '”' '‘' '’';
+p {
+    text-wrap: pretty;
 }
 
-s,
-del {
-    text-decoration: line-through;
+select[multiple], textarea {
+    resize: vertical;
 }
 
-u,
-ins {
-    text-decoration: underline;
-}
-
-:is(abbr, dfn)[title] {
-    text-decoration: underline dotted;
-}
-
-a {
-    text-decoration: none;
-}
-
-/**
- * Figure
- */
-img {
-    user-select: none;
-}
-
-/**
- * Table
- */
 table {
     empty-cells: show;
     border-collapse: collapse;
     border-spacing: 0;
 }
 
-th,
-td {
+th, td {
     text-align: left;
 }
 
-th,
-thead td {
+th, thead td {
     white-space: nowrap;
 }
 
-/**
- * Form
- */
-select[multiple],
-textarea {
-    resize: both;
-}
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 
-/**
- * Dialog
- */
-dialog {
-    margin: auto;
-}
-
-/**
- * Clear
- */
-hr {
-    clear: both;
+    :root:focus-within {
+        scroll-behavior: auto !important;
+    }
 }

@@ -1,111 +1,3 @@
-/**
- * Variable
- */
-:root {
-    --app-color-accent: #f0813d;
-    --app-color-accent-dark: #f7c6a4;
-    --app-color-accent-light: #fcece1;
-    --app-color-accent-text: #012022;
-    --app-color-border: #012022;
-    --app-color-error: #cc2e2c;
-    --app-color-error-text: #fff;
-    --app-color-primary: #012022;
-    --app-color-primary-dark: #000;
-    --app-color-primary-light: #8ccdb1;
-    --app-color-primary-text: #fff;
-}
-
-:root.dark {
-    --app-color-accent: #4166f5;
-    --app-color-accent-dark: #003cc1;
-    --app-color-accent-light: #8193ff;
-    --app-color-accent-text: #fff;
-    --app-color-border: #000;
-    --app-color-error: #b22222;
-    --app-color-error-text: #fff;
-    --app-color-primary: #222;
-    --app-color-primary-dark: #000;
-    --app-color-primary-light: #494949;
-    --app-color-primary-text: #fff;
-    --editor-block-background: var(--app-color-primary-dark);
-    --editor-block-color: var(--app-color-primary-text);
-    --editor-border: var(--app-color-border);
-    --editor-button-background: var(--app-color-primary-dark);
-    --editor-button-color: var(--app-color-primary-text);
-    --editor-cancel-background: var(--app-color-primary-light);
-    --editor-cancel-color: var(--app-color-primary-text);
-    --editor-dialog-backdrop: #ffffffcc;
-    --editor-dialog-background: var(--app-color-primary);
-    --editor-dialog-color: var(--app-color-primary-text);
-    --editor-error: var(--app-color-error);
-    --editor-focus: var(--app-color-accent-light);
-    --editor-placeholder: var(--app-color-primary-light);
-    --editor-slot: var(--app-color-primary-light);
-    --editor-sortover: var(--app-color-primary-dark);
-    --editor-toolbar-background: var(--app-color-primary);
-    --editor-toolbar-color: var(--app-color-primary-text);
-}
-
-/**
- * Custom Elements
- */
-:host * {
-    pointer-events: none;
-}
-
-/**
- * Layout
- */
-body {
-    max-width: 66rem;
-    margin: 7.5rem auto;
-    padding: 0.75rem;
-    line-height: 1.5rem;
-}
-
-#header {
-    position: absolute;
-    top: 0;
-}
-
-#footer {
-    position: fixed;
-    bottom: 0;
-}
-
-#header,
-#footer {
-    left: 0;
-    right: 0;
-    z-index: 100;
-    display: flex;
-}
-
-:is(#header, #footer) > * {
-    display: block;
-    width: 100%;
-    padding: 0.75rem 0.375rem;
-    border: 0;
-}
-
-#rte {
-    overflow: auto;
-}
-
-/**
- * Margin Top
- */
-:is(akilli-editor editor-root, #rte, #rte div) > :not(:is(:first-child)) {
-    margin-top: 1.5rem;
-}
-
-:is(details, figure, section) > :not(:first-child) {
-    margin-top: 0.75rem;
-}
-
-/**
- * Font
- */
 @font-face {
     font-family: knewave;
     font-display: swap;
@@ -130,33 +22,77 @@ body {
     src: url('../font/spartan.woff2') format('woff2');
 }
 
+:root {
+    color-scheme: light dark;
+    --app-color-accent: light-dark(oklch(67% 0.17 48), oklch(53% 0.22 258));
+    --app-color-accent-container: light-dark(oklch(84% 0.08 49), oklch(41% 0.26 264));
+    --app-color-accent-dim: light-dark(oklch(95% 0.03 48), oklch(64% 0.16 250));
+    --app-color-accent-text: light-dark(oklch(18% 0.02 140), oklch(100% 0 0));
+    --app-color-border: light-dark(oklch(18% 0.02 140), oklch(0% 0 0));
+    --app-color-error: oklch(47% 0.19 26);
+    --app-color-error-text: oklch(100% 0 0);
+    --app-color-primary: light-dark(oklch(100% 0 0), oklch(27% 0 0));
+    --app-color-primary-dark: light-dark(oklch(100% 0 0), oklch(0% 0 0));
+    --app-color-primary-alpha: light-dark(oklch(0% 0 0 / 67%), oklch(100% 0 0 / 67%));
+    --app-color-primary-text: light-dark(oklch(0% 0 0), oklch(100% 0 0));
+    --app-color-toolbar: oklch(0% 0 0);
+    --app-color-toolbar-clear: oklch(100% 0 0 / 67%);
+    --app-color-toolbar-save: oklch(47% 0.19 26);
+    --app-color-toolbar-text: oklch(100% 0 0);
+}
+
+:root.light {
+    color-scheme: light;
+}
+
+:root.dark {
+    color-scheme: dark;
+}
+
+:host * {
+    pointer-events: none;
+}
+
+::placeholder {
+    color: var(--app-color-primary-alpha);
+}
+
+::selection {
+    color: var(--app-color-accent-text);
+    background: var(--app-color-accent);
+}
+
+[disabled] {
+    opacity: 0.5;
+}
+
 body {
-    font-family: raleway;
+    max-width: 66rem;
+    margin: 7.5rem auto;
+    padding: 0.75rem;
+    line-height: 1.5rem;
+    font-family: raleway, sans-serif;
+    color: var(--app-color-primary-text);
+    background: var(--app-color-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-blockquote {
-    font-family: knewave;
-    font-size: 3rem;
+a {
+    text-decoration: underline double;
+    color: var(--app-color-accent);
 }
 
-h2 {
-    font-family: spartan;
-    font-size: 3rem;
-    font-variation-settings: 'wght' 900;
+code, kbd, mark, samp {
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
 }
 
-h3 {
-    font-family: spartan;
-    font-size: 1.5rem;
-    font-variation-settings: 'wght' 700;
+code {
+    color: var(--app-color-primary-text);
+    background: var(--app-color-primary-dark);
 }
 
-figcaption,
-small,
-sub,
-sup,
-table,
-#header {
+small, sub, sup {
     font-size: 0.875rem;
 }
 
@@ -165,43 +101,73 @@ var {
     font-weight: bold;
 }
 
-#header label:first-child {
-    font-variation-settings: 'wght' 700;
-}
-
-/**
- * Color
- */
-body,
-figure.preformat > figcaption {
-    color: var(--app-color-primary);
-    background: var(--app-color-primary-text);
-}
-
-:root.dark body {
-    color: var(--app-color-primary-text);
-    background: var(--app-color-primary);
-}
-
-details,
-code,
-figure.preformat,
-:not(figure.preformat) > pre,
-#header,
-#header select {
-    color: var(--app-color-primary-text);
-    background: var(--app-color-primary-dark);
-}
-
 samp {
-    color: var(--app-color-accent-light);
+    color: var(--app-color-accent-dim);
     background: var(--app-color-primary-dark);
 }
 
-::selection,
+mark {
+    color: var(--app-color-accent-text);
+    background: var(--app-color-accent-dim);
+}
+
+cite, ins {
+    color: var(--app-color-accent-container);
+}
+
+dfn, del {
+    color: var(--app-color-accent-dim);
+}
+
+h2 {
+    line-height: 3rem;
+    font-family: spartan, sans-serif;
+    font-size: 3rem;
+    font-variation-settings: 'wght' 900;
+    color: var(--app-color-primary-dark);
+}
+
+h3 {
+    font-family: spartan, sans-serif;
+    font-size: 1.5rem;
+    font-variation-settings: 'wght' 700;
+    color: var(--app-color-primary-dark);
+}
+
+ol, ul {
+    padding-left: 2rem;
+}
+
+hr {
+    height: 1.5rem;
+    background: linear-gradient(to left, var(--app-color-primary-dark), var(--app-color-primary-dark)) no-repeat center;
+    background-size: auto 0.125rem;
+}
+
+section {
+    padding: 0.75rem 0.375rem;
+    overflow: auto;
+}
+
+section > :not(:first-child) {
+    margin-top: 0.75rem;
+}
+
+details {
+    padding: 0.6875rem 0.3125rem;
+    overflow: auto;
+    color: var(--app-color-primary-text);
+    background: var(--app-color-primary-dark);
+    border: 0.0625rem solid var(--app-color-primary-dark);
+}
+
 details[open] {
     color: var(--app-color-accent-text);
     background: var(--app-color-accent);
+}
+
+details > :not(:first-child) {
+    margin-top: 0.75rem;
 }
 
 details[open] ::selection {
@@ -209,105 +175,42 @@ details[open] ::selection {
     background: var(--app-color-accent-text);
 }
 
-mark {
-    color: var(--app-color-accent-text);
-    background: var(--app-color-accent-light);
+details[open] summary {
+    padding-bottom: 0.6875rem;
+    border-bottom: 0.0625rem solid var(--app-color-primary-dark);
 }
 
-#rte app-block {
-    color: var(--app-color-accent-text);
-    background: var(--app-color-accent-dark);
-}
-
-#clear {
-    color: var(--app-color-primary-text);
-    background: var(--app-color-primary-light);
-}
-
-#save {
-    color: var(--app-color-error-text);
-    background: var(--app-color-error);
-}
-
-::placeholder {
-    color: var(--app-color-primary-light);
-}
-
-cite,
-ins {
-    color: var(--app-color-accent-dark);
-}
-
-dfn,
-del {
-    color: var(--app-color-accent-light);
-}
-
-a,
-blockquote,
-figure.blockquote {
-    color: var(--app-color-accent);
-}
-
-h2,
-h3,
 details[open] :is(a, blockquote, figure.blockquote) {
     color: var(--app-color-primary-dark);
 }
 
-hr {
-    background: linear-gradient(to left, var(--app-color-primary-dark), var(--app-color-primary-dark)) no-repeat center;
+figure > :not(:first-child) {
+    margin-top: 0.75rem;
 }
 
-details {
-    border: 0.0625rem solid var(--app-color-primary-dark);
+figcaption {
+    font-size: 0.875rem;
 }
 
-details[open] summary {
-    border-bottom: 0.0625rem solid var(--app-color-primary-dark);
+figure.preformat,
+:not(figure.preformat) > pre {
+    padding: 0.75rem;
+    color: var(--app-color-primary-text);
+    background: var(--app-color-primary-dark);
 }
 
-td,
-th {
-    border-bottom: dotted 0.0625rem var(--app-color-border);
+figure.preformat > figcaption {
+    padding: 0.375rem;
+    color: var(--app-color-primary);
+    background: var(--app-color-primary-text);
 }
 
-/**
- * Text
- */
-h2 {
-    line-height: 3rem;
-}
-
-hr {
-    height: 1.5rem;
-    background-size: auto 0.125rem;
-}
-
-ol,
-ul {
-    padding-left: 2rem;
-}
-
-a {
-    text-decoration: underline double;
-}
-
-code,
-kbd,
-mark,
-samp {
-    padding: 0.125rem 0.25rem;
-    border-radius: 0.25rem;
-}
-
-/**
- * Figure
- */
 figure.left {
     max-width: 50%;
     float: left;
-    margin-right: 0.75rem;
+    shape-outside: inset(0 0 0 0);
+    shape-margin: 0.75rem;
+    margin: 0 0.75rem 0.75rem 0;
 }
 
 figure.center {
@@ -319,13 +222,17 @@ figure.center {
 figure.right {
     max-width: 50%;
     float: right;
-    margin-left: 0.75rem;
+    shape-outside: inset(0 0 0 0);
+    shape-margin: 0.75rem;
+    margin: 0 0 0.75rem 0.75rem;
 }
 
-/**
- * Blockquote
- */
-figure.blockquote,
+figure.blockquote {
+    padding: 0.75rem;
+    text-align: center;
+    color: var(--app-color-accent);
+}
+
 :not(figure.blockquote) > blockquote {
     padding: 0.75rem;
     text-align: center;
@@ -333,19 +240,20 @@ figure.blockquote,
 
 blockquote {
     line-height: 3rem;
+    font-family: knewave, cursive;
+    font-size: 3rem;
+    color: var(--app-color-accent);
 }
 
-/**
- * Table
- */
 figure.table.center > table {
     width: 100%;
 }
 
-colgroup::before,
-tr::before,
-td,
-th {
+table {
+    font-size: 0.875rem;
+}
+
+colgroup::before, tr::before, td, th {
     min-height: 1.5rem;
     padding: 0.71875rem 0.375rem;
 }
@@ -362,6 +270,10 @@ tfoot tr:last-child :is(td, th) {
     border-bottom-color: transparent;
 }
 
+td, th {
+    border-bottom: dotted 0.0625rem var(--app-color-border);
+}
+
 :is(td, th).left {
     text-align: left;
 }
@@ -374,41 +286,64 @@ tfoot tr:last-child :is(td, th) {
     text-align: right;
 }
 
-/**
- * Preformat
- */
-figure.preformat,
-:not(figure.preformat) > pre {
-    padding: 0.75rem;
+#header, #footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    font-size: 0.875rem;
+    color: var(--app-color-toolbar-text);
+    background: var(--app-color-toolbar);
 }
 
-figure.preformat > figcaption {
-    padding: 0.375rem;
+#header {
+    top: 0;
 }
 
-/**
- * Section
- */
-section {
+#footer {
+    bottom: 0;
+}
+
+:is(#header, #footer) > * {
+    display: block;
+    width: 100%;
     padding: 0.75rem 0.375rem;
+    border: 0;
+}
+
+#header label:first-child {
+    font-variation-settings: 'wght' 700;
+}
+
+#header select {
+    color: var(--app-color-primary-text);
+    background: var(--app-color-primary-dark);
+}
+
+#clear {
+    color: var(--app-color-toolbar-text);
+    background: var(--app-color-toolbar-clear);
+}
+
+#save {
+    color: var(--app-color-toolbar-text);
+    background: var(--app-color-toolbar-save);
+}
+
+#rte {
     overflow: auto;
 }
 
-/**
- * Details
- */
-details {
-    padding: 0.6875rem 0.3125rem;
-    overflow: auto;
+#rte app-block {
+    color: var(--app-color-accent-text);
+    background: var(--app-color-accent-container);
 }
 
-details[open] summary {
-    padding-bottom: 0.6875rem;
+:is(akilli-editor editor-root, #rte, #rte div) > :not(:is(:first-child)) {
+    margin-top: 1.5rem;
 }
 
-/**
- * Div
- */
 :is(akilli-editor editor-root, #rte) div {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -421,32 +356,25 @@ details[open] summary {
 :is(akilli-editor editor-root, #rte) div figure {
     float: none;
     margin: 0;
+    shape-outside: none;
 }
 
-/**
- * Block
- */
-#rte app-block {
-    display: block;
-    padding: 0.75rem;
-    text-align: center;
-}
-
-#rte app-block::before {
-    display: inline-block;
-    vertical-align: middle;
-    content: var(--editor-text-block);
-}
-
-/**
- * Form
- */
-[disabled] {
-    opacity: 0.5;
-}
-
-#header :is(option, select) {
-    height: 1.5rem;
-    line-height: 1.5rem;
-    vertical-align: middle;
+akilli-editor {
+    --editor-block-background: var(--app-color-primary-dark);
+    --editor-block-color: var(--app-color-primary-text);
+    --editor-border: var(--app-color-border);
+    --editor-button-background: var(--app-color-primary-dark);
+    --editor-button-color: var(--app-color-primary-text);
+    --editor-cancel-background: var(--app-color-primary-alpha);
+    --editor-cancel-color: var(--app-color-primary-text);
+    --editor-dialog-backdrop: #ffffffcc;
+    --editor-dialog-background: var(--app-color-primary);
+    --editor-dialog-color: var(--app-color-primary-text);
+    --editor-error: var(--app-color-error);
+    --editor-focus: var(--app-color-accent-dim);
+    --editor-placeholder: var(--app-color-primary-alpha);
+    --editor-slot: var(--app-color-primary-alpha);
+    --editor-sortover: var(--app-color-primary-dark);
+    --editor-toolbar-background: var(--app-color-primary);
+    --editor-toolbar-color: var(--app-color-primary-text);
 }
