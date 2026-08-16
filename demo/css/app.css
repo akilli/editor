@@ -340,8 +340,12 @@ td, th {
     background: var(--app-color-accent-container);
 }
 
-:is(akilli-editor editor-root, #rte, #rte div) > :not(:is(:first-child)) {
+:is(akilli-editor editor-root, #rte, #rte div) > :not(:first-child) {
     margin-top: 1.5rem;
+}
+
+:is(akilli-editor editor-root, #rte, #rte div) > :is(.left, .right):first-child + * {
+    margin-top: 0;
 }
 
 :is(akilli-editor editor-root, #rte) div {
@@ -357,24 +361,4 @@ td, th {
     float: none;
     margin: 0;
     shape-outside: none;
-}
-
-akilli-editor {
-    --editor-block-background: var(--app-color-primary-dark);
-    --editor-block-color: var(--app-color-primary-text);
-    --editor-border: var(--app-color-border);
-    --editor-button-background: var(--app-color-primary-dark);
-    --editor-button-color: var(--app-color-primary-text);
-    --editor-cancel-background: var(--app-color-primary-alpha);
-    --editor-cancel-color: var(--app-color-primary-text);
-    --editor-dialog-backdrop: #ffffffcc;
-    --editor-dialog-background: var(--app-color-primary);
-    --editor-dialog-color: var(--app-color-primary-text);
-    --editor-error: var(--app-color-error);
-    --editor-focus: var(--app-color-accent-dim);
-    --editor-placeholder: var(--app-color-primary-alpha);
-    --editor-slot: var(--app-color-primary-alpha);
-    --editor-sortover: var(--app-color-primary-dark);
-    --editor-toolbar-background: var(--app-color-primary);
-    --editor-toolbar-color: var(--app-color-primary-text);
 }
