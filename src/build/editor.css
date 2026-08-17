@@ -148,9 +148,7 @@ akilli-editor[lang=de] {
     --editor-i18n-tableheadrow: 'Kopf ';
 }
 
-akilli-editor [hidden] {
-    display: none;
-}
+akilli-editor [hidden] { display: none; }
 
 akilli-editor editor-root {
     display: block;
@@ -166,22 +164,16 @@ akilli-editor editor-root:empty::after {
     content: var(--editor-i18n-root);
 }
 
-akilli-editor editor-root :focus {
-    outline: 0.25rem dashed var(--editor-focus);
-}
+akilli-editor editor-root :focus { outline: 0.25rem dashed var(--editor-focus); }
 
-akilli-editor editor-root [contenteditable] {
-    min-height: 1.5rem;
-}
+akilli-editor editor-root [contenteditable] { min-height: 1.5rem; }
 
 akilli-editor editor-root [contenteditable=true]:empty::after {
     color: var(--editor-placeholder);
     content: var(--editor-i18n-editable);
 }
 
-akilli-editor editor-root :is(td, th)[contenteditable] {
-    height: 1.5rem;
-}
+akilli-editor editor-root :is(td, th)[contenteditable] { height: 1.5rem; }
 
 akilli-editor editor-root slot[contenteditable] {
     display: block;
@@ -195,29 +187,16 @@ akilli-editor editor-root slot[contenteditable=true]:empty::after {
     content: var(--editor-i18n-slot);
 }
 
-akilli-editor editor-root [contenteditable=true] :hover {
-    cursor: context-menu;
-}
+akilli-editor editor-root [contenteditable=true] :hover { cursor: context-menu; }
+akilli-editor editor-root [data-sortable][data-sort]:hover { cursor: grab; }
 
-akilli-editor editor-root [data-sortable][data-sort]:hover {
-    cursor: grab;
-}
+akilli-editor editor-root :is([data-sortover], [contenteditable][data-sortover]) { outline: 0.25rem dashed var(--editor-sortover); }
 
-akilli-editor editor-root :is([data-sortover], [contenteditable][data-sortover]) {
-    outline: 0.25rem dashed var(--editor-sortover);
-}
+akilli-editor editor-root :is(details, div, section) { overflow: auto; }
 
-akilli-editor editor-root :is(details, div, section) {
-    overflow: auto;
-}
+akilli-editor editor-root :is(audio, iframe, img, video) { pointer-events: none; }
 
-akilli-editor editor-root :is(audio, iframe, img, video) {
-    pointer-events: none;
-}
-
-akilli-editor editor-root :is(thead, tbody, tfoot) {
-    counter-reset: rows;
-}
+akilli-editor editor-root :is(thead, tbody, tfoot) { counter-reset: rows; }
 
 akilli-editor editor-root colgroup {
     display: table-header-group;
@@ -239,31 +218,22 @@ akilli-editor editor-root col::after {
     content: var(--editor-i18n-tablecol) counter(cols);
 }
 
-akilli-editor editor-root colgroup::before {
-    content: ' ';
-}
+akilli-editor editor-root colgroup::before { content: ' '; }
 
 akilli-editor editor-root tr::before {
     counter-increment: rows;
     content: var(--editor-i18n-tablebodyrow) counter(rows);
 }
 
-akilli-editor editor-root thead tr::before {
-    content: var(--editor-i18n-tableheadrow) counter(rows);
-}
-
-akilli-editor editor-root tfoot tr::before {
-    content: var(--editor-i18n-tablefootrow) counter(rows);
-}
+akilli-editor editor-root thead tr::before { content: var(--editor-i18n-tableheadrow) counter(rows); }
+akilli-editor editor-root tfoot tr::before { content: var(--editor-i18n-tablefootrow) counter(rows); }
 
 akilli-editor editor-root col:focus,
 akilli-editor editor-root tr:focus::before {
     background: var(--editor-focus);
 }
 
-akilli-editor editor-root summary {
-    white-space: pre-wrap;
-}
+akilli-editor editor-root summary { white-space: pre-wrap; }
 
 akilli-editor editor-root app-block {
     display: block;
@@ -280,9 +250,7 @@ akilli-editor editor-root app-block::before {
     content: var(--editor-i18n-block);
 }
 
-akilli-editor dialog::backdrop {
-    background: var(--editor-dialog-backdrop);
-}
+akilli-editor dialog::backdrop { background: var(--editor-dialog-backdrop); }
 
 akilli-editor dialog form {
     padding: 0.75rem;
@@ -290,21 +258,11 @@ akilli-editor dialog form {
     background: var(--editor-dialog-background);
 }
 
-akilli-editor dialog :is(form, fieldset) > :not(:first-child) {
-    margin-top: 1.5rem;
-}
+akilli-editor dialog :is(form, fieldset) > :not(:first-child) { margin-top: 1.5rem; }
 
-akilli-editor dialog legend {
-    font-size: 1.25rem;
-}
-
-akilli-editor dialog label {
-    display: block;
-}
-
-akilli-editor dialog [data-required] label::after {
-    content: ' *';
-}
+akilli-editor dialog legend { font-size: 1.25rem; }
+akilli-editor dialog label { display: block; }
+akilli-editor dialog [data-required] label::after { content: ' *'; }
 
 akilli-editor dialog button {
     padding: 0.75rem;
@@ -313,24 +271,14 @@ akilli-editor dialog button {
     border: 0;
 }
 
-akilli-editor dialog button + button {
-    margin-left: 1.5rem;
-}
+akilli-editor dialog button + button { margin-left: 1.5rem; }
 
 akilli-editor dialog button[type=reset] {
     color: var(--editor-cancel-color);
     background: var(--editor-cancel-background);
 }
 
-akilli-editor dialog input:is(
-    [type=email],
-    [type=number],
-    [type=password],
-    [type=search],
-    [type=tel],
-    [type=text],
-    [type=url]
-),
+akilli-editor dialog input:is([type=email], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url]),
 akilli-editor dialog select {
     width: 100%;
     padding: 0.71875rem 0.25rem;
@@ -338,15 +286,7 @@ akilli-editor dialog select {
     border-bottom: 0.0625rem solid var(--editor-border);
 }
 
-akilli-editor dialog input:is(
-    [type=email],
-    [type=number],
-    [type=password],
-    [type=search],
-    [type=tel],
-    [type=text],
-    [type=url]
-):invalid,
+akilli-editor dialog input:is([type=email], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url]):invalid,
 akilli-editor dialog select:invalid {
     border-color: var(--editor-error);
 }
@@ -375,7 +315,11 @@ akilli-editor editor-focusbar:empty, akilli-editor editor-focusbar [data-command
     display: none;
 }
 
-akilli-editor editor-focusbar[data-alignable] [data-command^=align-], akilli-editor editor-focusbar[data-deletable] [data-command=delete], akilli-editor editor-focusbar[data-sortable] [data-command^=sort-], akilli-editor editor-focusbar[data-tag=col] [data-command^=tablecolumn-], akilli-editor editor-focusbar[data-tag=tr] [data-command^=tablerow-] {
+akilli-editor editor-focusbar[data-alignable] [data-command^=align-],
+akilli-editor editor-focusbar[data-deletable] [data-command=delete],
+akilli-editor editor-focusbar[data-sortable] [data-command^=sort-],
+akilli-editor editor-focusbar[data-tag=col] [data-command^=tablecolumn-],
+akilli-editor editor-focusbar[data-tag=tr] [data-command^=tablerow-] {
     display: inline-block;
 }
 

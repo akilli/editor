@@ -40,30 +40,19 @@
     --app-toolbar-text: oklch(100% 0 0);
 }
 
-:root.light {
-    color-scheme: light;
-}
+:root.light { color-scheme: light; }
+:root.dark { color-scheme: dark; }
 
-:root.dark {
-    color-scheme: dark;
-}
+:host * { pointer-events: none; }
 
-:host * {
-    pointer-events: none;
-}
-
-::placeholder {
-    color: var(--app-primary-alpha);
-}
+::placeholder { color: var(--app-primary-alpha); }
 
 ::selection {
     color: var(--app-accent-text);
     background: var(--app-accent);
 }
 
-[disabled] {
-    opacity: 0.5;
-}
+[disabled] { opacity: 0.5; }
 
 body {
     max-width: 66rem;
@@ -91,9 +80,7 @@ code {
     background: var(--app-primary-dark);
 }
 
-small, sub, sup {
-    font-size: 0.875rem;
-}
+small, sub, sup { font-size: 0.875rem; }
 
 var {
     font-family: monospace;
@@ -110,13 +97,9 @@ mark {
     background: var(--app-accent-dim);
 }
 
-cite, ins {
-    color: var(--app-accent-container);
-}
+cite, ins { color: var(--app-accent-container); }
 
-dfn, del {
-    color: var(--app-accent-dim);
-}
+dfn, del { color: var(--app-accent-dim); }
 
 h2 {
     line-height: 3rem;
@@ -133,9 +116,7 @@ h3 {
     color: var(--app-primary-dark);
 }
 
-ol, ul {
-    padding-left: 2rem;
-}
+ol, ul { padding-left: 2rem; }
 
 hr {
     height: 1.5rem;
@@ -148,9 +129,7 @@ section {
     overflow: auto;
 }
 
-section > :not(:first-child) {
-    margin-top: 0.75rem;
-}
+section > :not(:first-child) { margin-top: 0.75rem; }
 
 details {
     padding: 0.6875rem 0.3125rem;
@@ -165,9 +144,7 @@ details[open] {
     background: var(--app-accent);
 }
 
-details > :not(:first-child) {
-    margin-top: 0.75rem;
-}
+details > :not(:first-child) { margin-top: 0.75rem; }
 
 details[open] ::selection {
     color: var(--app-accent);
@@ -179,17 +156,10 @@ details[open] summary {
     border-bottom: 0.0625rem solid var(--app-primary-dark);
 }
 
-details[open] :is(a, blockquote, figure.blockquote) {
-    color: var(--app-primary-dark);
-}
+details[open] :is(a, blockquote, figure.blockquote) { color: var(--app-primary-dark); }
 
-figure > :not(:first-child) {
-    margin-top: 0.75rem;
-}
-
-figcaption {
-    font-size: 0.875rem;
-}
+figure > :not(:first-child) { margin-top: 0.75rem; }
+figcaption { font-size: 0.875rem; }
 
 figure.preformat,
 :not(figure.preformat) > pre {
@@ -244,46 +214,22 @@ blockquote {
     color: var(--app-accent);
 }
 
-figure.table.center > table {
-    width: 100%;
-}
-
-table {
-    font-size: 0.875rem;
-}
+figure.table.center > table { width: 100%; }
+table { font-size: 0.875rem; }
 
 colgroup::before, tr::before, td, th {
     min-height: 1.5rem;
     padding: 0.71875rem 0.375rem;
 }
 
-col {
-    padding: 0 0.375rem;
-}
+col { padding: 0 0.375rem; }
 
-:is(thead, tbody) tr:last-child :is(td, th) {
-    border-bottom-style: solid;
-}
-
-tfoot tr:last-child :is(td, th) {
-    border-bottom-color: transparent;
-}
-
-td, th {
-    border-bottom: dotted 0.0625rem var(--app-border);
-}
-
-:is(td, th).left {
-    text-align: left;
-}
-
-:is(td, th).center {
-    text-align: center;
-}
-
-:is(td, th).right {
-    text-align: right;
-}
+:is(thead, tbody) tr:last-child :is(td, th) { border-bottom-style: solid; }
+tfoot tr:last-child :is(td, th) { border-bottom-color: transparent; }
+td, th { border-bottom: dotted 0.0625rem var(--app-border); }
+:is(td, th).left { text-align: left; }
+:is(td, th).center { text-align: center; }
+:is(td, th).right { text-align: right; }
 
 #header, #footer {
     position: fixed;
@@ -296,13 +242,8 @@ td, th {
     background: var(--app-toolbar);
 }
 
-#header {
-    top: 0;
-}
-
-#footer {
-    bottom: 0;
-}
+#header { top: 0; }
+#footer { bottom: 0; }
 
 :is(#header, #footer) > * {
     display: block;
@@ -311,9 +252,7 @@ td, th {
     border: 0;
 }
 
-#header label:first-child {
-    font-variation-settings: 'wght' 700;
-}
+#header label:first-child { font-variation-settings: 'wght' 700; }
 
 #header select {
     color: var(--app-primary-text);
@@ -330,22 +269,15 @@ td, th {
     background: var(--app-toolbar-save);
 }
 
-#rte {
-    overflow: auto;
-}
+#rte { overflow: auto; }
 
 #rte app-block {
     color: var(--app-accent-text);
     background: var(--app-accent-container);
 }
 
-:is(akilli-editor editor-root, #rte, #rte div) > :not(:first-child) {
-    margin-top: 1.5rem;
-}
-
-:is(akilli-editor editor-root, #rte, #rte div) > :is(.left, .right):first-child + * {
-    margin-top: 0;
-}
+:is(akilli-editor editor-root, #rte, #rte div) > :not(:first-child) { margin-top: 1.5rem; }
+:is(akilli-editor editor-root, #rte, #rte div) > :is(.left, .right):first-child + * { margin-top: 0; }
 
 :is(akilli-editor editor-root, #rte) div {
     display: grid;

@@ -13,13 +13,8 @@
     --app-primary-text: light-dark(oklch(0% 0 0), oklch(100% 0 0));
 }
 
-:root.light {
-    color-scheme: light;
-}
-
-:root.dark {
-    color-scheme: dark;
-}
+:root.light { color-scheme: light; }
+:root.dark { color-scheme: dark; }
 
 body {
     display: grid;
@@ -38,13 +33,9 @@ body > * {
     cursor: pointer;
 }
 
-body > :hover {
-    border-color: var(--app-accent);
-}
+body > :hover { border-color: var(--app-accent); }
 
-h2 {
-    font-size: 1.25rem;
-}
+h2 { font-size: 1.25rem; }
 
 section {
     align-self: start;
@@ -56,9 +47,7 @@ section:hover {
     background: var(--app-accent);
 }
 
-section > :not(:first-child) {
-    margin-top: 0.75rem;
-}
+section > :not(:first-child) { margin-top: 0.75rem; }
 
 figcaption {
     padding: 0.75rem;
