@@ -331,8 +331,8 @@ akilli-editor [data-command] {
     padding: 0.25rem 0.5rem;
     font-family: editor, sans-serif;
     font-size: 0;
-    color: var(--editor-toolbar-color);
-    background: var(--editor-toolbar-background);
+    color: inherit;
+    background: transparent;
     border: 0;
 }
 
