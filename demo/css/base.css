@@ -20,20 +20,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-button, input, select, textarea {
-    font: inherit;
-}
-
-[role=button], button {
-    cursor: pointer;
-}
-
-audio, canvas, iframe, img, picture, svg, video {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
-
 main, [role=main] {
     hyphens: auto;
 }
@@ -47,8 +33,10 @@ p {
     text-wrap: pretty;
 }
 
-select[multiple], textarea {
-    resize: vertical;
+audio, canvas, iframe, img, picture, svg, video {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 table {
@@ -63,6 +51,18 @@ th, td {
 
 th, thead td {
     white-space: nowrap;
+}
+
+button, input, select, textarea {
+    font: inherit;
+}
+
+button, summary {
+    cursor: pointer;
+}
+
+select[multiple], textarea {
+    resize: vertical;
 }
 
 @media (prefers-reduced-motion: reduce) {
