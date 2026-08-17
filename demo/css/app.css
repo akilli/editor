@@ -23,7 +23,6 @@
 }
 
 :root {
-    color-scheme: light dark;
     --app-accent: light-dark(oklch(67% 0.17 48), oklch(53% 0.22 258));
     --app-accent-container: light-dark(oklch(84% 0.08 49), oklch(41% 0.26 264));
     --app-accent-dim: light-dark(oklch(95% 0.03 48), oklch(64% 0.16 250));

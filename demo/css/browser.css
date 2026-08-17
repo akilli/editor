@@ -6,7 +6,6 @@
 }
 
 :root {
-    color-scheme: light dark;
     --app-accent: light-dark(oklch(67% 0.17 48), oklch(53% 0.22 258));
     --app-accent-text: light-dark(oklch(18% 0.02 140), oklch(100% 0 0));
     --app-primary: light-dark(oklch(100% 0 0), oklch(27% 0 0));
