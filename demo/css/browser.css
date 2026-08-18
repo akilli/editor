@@ -6,15 +6,12 @@
 }
 
 :root {
-    --app-accent: light-dark(oklch(67% 0.17 48), oklch(53% 0.22 258));
-    --app-accent-text: light-dark(oklch(18% 0.02 140), oklch(100% 0 0));
-    --app-primary: light-dark(oklch(100% 0 0), oklch(27% 0 0));
-    --app-primary-dark: light-dark(oklch(100% 0 0), oklch(0% 0 0));
-    --app-primary-text: light-dark(oklch(0% 0 0), oklch(100% 0 0));
+    --app-color-accent: oklch(53% 0.22 258);
+    --app-color-accent-text: oklch(100% 0 0);
+    --app-color-primary: oklch(27% 0 0);
+    --app-color-primary-dark: oklch(0% 0 0);
+    --app-color-primary-text: oklch(100% 0 0);
 }
-
-:root.light { color-scheme: light; }
-:root.dark { color-scheme: dark; }
 
 body {
     display: grid;
@@ -24,16 +21,16 @@ body {
     min-height: 0;
     padding: 1.5rem;
     font-family: raleway;
-    color: var(--app-primary-text);
-    background: var(--app-primary);
+    color: var(--app-color-primary-text);
+    background: var(--app-color-primary);
 }
 
 body > * {
-    border: 0.0625rem solid var(--app-primary-dark);
+    border: 0.0625rem solid var(--app-color-primary-dark);
     cursor: pointer;
 }
 
-body > :hover { border-color: var(--app-accent); }
+body > :hover { border-color: var(--app-color-accent); }
 
 h2 { font-size: 1.25rem; }
 
@@ -43,8 +40,8 @@ section {
 }
 
 section:hover {
-    color: var(--app-accent-text);
-    background: var(--app-accent);
+    color: var(--app-color-accent-text);
+    background: var(--app-color-accent);
 }
 
 section > :not(:first-child) { margin-top: 0.75rem; }
@@ -52,12 +49,12 @@ section > :not(:first-child) { margin-top: 0.75rem; }
 figcaption {
     padding: 0.75rem;
     font-size: 0.85rem;
-    background: var(--app-primary-dark);
+    background: var(--app-color-primary-dark);
 }
 
 body > figure:hover > figcaption {
-    color: var(--app-accent-text);
-    background: var(--app-accent);
+    color: var(--app-color-accent-text);
+    background: var(--app-color-accent);
 }
 
 audio, iframe, img, video {

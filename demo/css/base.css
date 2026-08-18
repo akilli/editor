@@ -2,8 +2,6 @@
 * { margin: 0; }
 *:not(button, input, select, textarea) { padding: 0; }
 
-:root { color-scheme: light dark; }
-
 body {
     min-height: 100dvh;
     line-height: 1.5;

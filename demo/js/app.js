@@ -44,10 +44,8 @@ const config = {
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const root = document.documentElement;
     const header = document.getElementById('header');
     const css = document.getElementById('css');
-    const scheme = document.getElementById('scheme');
     const version = document.getElementById('version');
     const lang = document.getElementById('lang');
     const rte = document.getElementById('rte');
@@ -58,7 +56,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         Array.from(header.getElementsByTagName('select')).forEach((item) => (item.disabled = flag));
         clear.disabled = flag;
     };
-    const setScheme = () => (scheme.value ? root.setAttribute('class', scheme.value) : root.removeAttribute('class'));
     const init = () => {
         editor?.destroy();
         /** @type {EditorMap} */
@@ -77,7 +74,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
         console.log(editor);
     };
-    scheme.addEventListener('change', setScheme);
     version.addEventListener('change', init);
     lang.addEventListener('change', init);
     clear.addEventListener('click', () => {
@@ -96,7 +92,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             toggle(false);
         }
     });
-    setScheme();
     init();
     save.textContent = rte.hidden ? 'Save' : 'Edit';
 });

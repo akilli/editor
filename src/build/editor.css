@@ -6,136 +6,33 @@
     src: url('editor.woff2') format('woff2');
 }
 
-@property --editor-block-background {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(18% 0.02 140);
-}
-
-@property --editor-block-color {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(100% 0 0);
-}
-
-@property --editor-border {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(18% 0.02 140 / 20%);
-}
-
-@property --editor-button-background {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(18% 0.02 140);
-}
-
-@property --editor-button-color {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(100% 0 0);
-}
-
-@property --editor-cancel-background {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(92% 0.01 140);
-}
-
-@property --editor-cancel-color {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(18% 0.02 140);
-}
-
-@property --editor-dialog-backdrop {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(0% 0 0 / 80%);
-}
-
-@property --editor-dialog-background {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(100% 0 0);
-}
-
-@property --editor-dialog-color {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(18% 0.02 140);
-}
-
-@property --editor-error {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(47% 0.19 26);
-}
-
-@property --editor-focus {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(95% 0.03 48);
-}
-
-@property --editor-placeholder {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(18% 0.02 140 / 20%);
-}
-
-@property --editor-slot {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(37% 0.11 194);
-}
-
-@property --editor-sortover {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(18% 0.02 140);
-}
-
-@property --editor-toolbar-background {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(100% 0 0);
-}
-
-@property --editor-toolbar-color {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: oklch(18% 0.02 140);
-}
+@property --editor-color-primary { syntax: '<color>'; inherits: true; initial-value: oklch(41% 0.26 264); }
+@property --editor-color-on-primary { syntax: '<color>';  inherits: true;  initial-value: oklch(100% 0 0); }
+@property --editor-color-primary-container { syntax: '<color>';  inherits: true;  initial-value: oklch(27% 0 0); }
+@property --editor-color-on-primary-container { syntax: '<color>';  inherits: true;  initial-value: oklch(100% 0 0); }
+@property --editor-color-secondary { syntax: '<color>';  inherits: true;  initial-value: oklch(27% 0 0); }
+@property --editor-color-on-secondary { syntax: '<color>'; inherits: true; initial-value: oklch(100% 0 0); }
+@property --editor-color-tertiary { syntax: '<color>'; inherits: true; initial-value: oklch(0% 0 0); }
+@property --editor-color-on-tertiary { syntax: '<color>'; inherits: true; initial-value: oklch(100% 0 0); }
+@property --editor-color-surface { syntax: '<color>'; inherits: true; initial-value: oklch(27% 0 0); }
+@property --editor-color-on-surface { syntax: '<color>'; inherits: true; initial-value: oklch(100% 0 0); }
+@property --editor-color-on-surface-variant { syntax: '<color>'; inherits: true; initial-value: oklch(100% 0 0 / 20%); }
+@property --editor-color-outline { syntax: '<color>'; inherits: true; initial-value: oklch(0% 0 0 / 40%); }
+@property --editor-color-outline-variant { syntax: '<color>'; inherits: true; initial-value: oklch(64% 0.16 250); }
+@property --editor-color-outline-error { syntax: '<color>'; inherits: true; initial-value: oklch(47% 0.19 26); }
+@property --editor-color-outline-slot { syntax: '<color>'; inherits: true; initial-value: oklch(53% 0.22 258); }
+@property --editor-color-outline-sortover { syntax: '<color>'; inherits: true; initial-value: oklch(100% 0 0); }
+@property --editor-color-scrim { syntax: '<color>'; inherits: true; initial-value: oklch(0% 0 0 / 85%); }
+@property --editor-i18n-block { syntax: '<string>'; inherits: true; initial-value: 'Block: ' attr(id); }
+@property --editor-i18n-editable { syntax: '<string>'; inherits: true; initial-value: 'Gimme some text!'; }
+@property --editor-i18n-root { syntax: '<string>'; inherits: true; initial-value: 'Gimme some widgets!'; }
+@property --editor-i18n-slot { syntax: '<string>'; inherits: true; initial-value: 'Focus this slot and gimme some widgets!'; }
+@property --editor-i18n-tablecol { syntax: '<string>'; inherits: true; initial-value: 'Col '; }
+@property --editor-i18n-tablebodyrow { syntax: '<string>'; inherits: true; initial-value: 'Row '; }
+@property --editor-i18n-tablefootrow { syntax: '<string>'; inherits: true; initial-value: 'Foot '; }
+@property --editor-i18n-tableheadrow { syntax: '<string>'; inherits: true; initial-value: 'Head '; }
 
 akilli-editor {
-    --editor-block-background: light-dark(oklch(18% 0.02 140), oklch(0% 0 0));
-    --editor-block-color: light-dark(oklch(100% 0 0), oklch(100% 0 0));
-    --editor-border: light-dark(oklch(18% 0.02 140 / 20%), oklch(0% 0 0 / 40%));
-    --editor-button-background: light-dark(oklch(18% 0.02 140), oklch(41% 0.26 264));
-    --editor-button-color: light-dark(oklch(100% 0 0), oklch(100% 0 0));
-    --editor-cancel-background: light-dark(oklch(92% 0.01 140), oklch(27% 0 0));
-    --editor-cancel-color: light-dark(oklch(18% 0.02 140), oklch(100% 0 0));
-    --editor-dialog-backdrop: light-dark(oklch(0% 0 0 / 80%), oklch(0% 0 0 / 85%));
-    --editor-dialog-background: light-dark(oklch(100% 0 0), oklch(27% 0 0));
-    --editor-dialog-color: light-dark(oklch(18% 0.02 140), oklch(100% 0 0));
-    --editor-error: oklch(47% 0.19 26);
-    --editor-focus: light-dark(oklch(95% 0.03 48), oklch(64% 0.16 250));
-    --editor-placeholder: light-dark(oklch(18% 0.02 140 / 20%), oklch(100% 0 0 / 20%));
-    --editor-slot: light-dark(oklch(37% 0.11 194), oklch(53% 0.22 258));
-    --editor-sortover: light-dark(oklch(18% 0.02 140), oklch(100% 0 0));
-    --editor-toolbar-background: light-dark(oklch(100% 0 0), oklch(27% 0 0));
-    --editor-toolbar-color: light-dark(oklch(18% 0.02 140), oklch(100% 0 0));
-
-    --editor-i18n-block: 'Block: ' attr(id);
-    --editor-i18n-editable: 'Gimme some text!';
-    --editor-i18n-root: 'Gimme some widgets!';
-    --editor-i18n-slot: 'Focus this slot and gimme some widgets!';
-    --editor-i18n-tablecol: 'Col ';
-    --editor-i18n-tablebodyrow: 'Row ';
-    --editor-i18n-tablefootrow: 'Foot ';
-    --editor-i18n-tableheadrow: 'Head ';
-
     position: relative;
     display: block;
 }
@@ -157,21 +54,21 @@ akilli-editor editor-root {
     width: 100%;
     padding: 0.75rem 0.6875rem 0.6875rem;
     overflow: auto;
-    border: 0.0625rem solid var(--editor-border);
+    border: 0.0625rem solid var(--editor-color-outline);
     border-top: 0;
 }
 
 akilli-editor editor-root:empty::after {
-    color: var(--editor-placeholder);
+    color: var(--editor-color-on-surface-variant);
     content: var(--editor-i18n-root);
 }
 
-akilli-editor editor-root :focus { outline: 0.25rem dashed var(--editor-focus); }
+akilli-editor editor-root :focus { outline: 0.25rem dashed var(--editor-color-outline-variant); }
 
 akilli-editor editor-root [contenteditable] { min-height: 1.5rem; }
 
 akilli-editor editor-root [contenteditable=true]:empty::after {
-    color: var(--editor-placeholder);
+    color: var(--editor-color-on-surface-variant);
     content: var(--editor-i18n-editable);
 }
 
@@ -181,18 +78,18 @@ akilli-editor editor-root slot[contenteditable] {
     display: block;
     padding: 0.25rem;
     clear: both;
-    border: 0.25rem solid var(--editor-slot);
+    border: 0.25rem solid var(--editor-color-outline-slot);
 }
 
 akilli-editor editor-root slot[contenteditable=true]:empty::after {
-    color: var(--editor-slot);
+    color: var(--editor-color-on-surface-variant);
     content: var(--editor-i18n-slot);
 }
 
 akilli-editor editor-root [contenteditable=true] :hover { cursor: context-menu; }
 akilli-editor editor-root [data-sortable][data-sort]:hover { cursor: grab; }
 
-akilli-editor editor-root :is([data-sortover], [contenteditable][data-sortover]) { outline: 0.25rem dashed var(--editor-sortover); }
+akilli-editor editor-root :is([data-sortover], [contenteditable][data-sortover]) { outline: 0.25rem dashed var(--editor-color-outline-sortover); }
 
 akilli-editor editor-root :is(details, div, section) { overflow: auto; }
 
@@ -212,7 +109,7 @@ akilli-editor editor-root :is(colgroup, tr)::before {
     line-height: 1.5rem;
     vertical-align: middle;
     text-align: center;
-    color: var(--editor-placeholder);
+    color: var(--editor-color-on-surface-variant);
 }
 
 akilli-editor editor-root col::after {
@@ -232,7 +129,7 @@ akilli-editor editor-root tfoot tr::before { content: var(--editor-i18n-tablefoo
 
 akilli-editor editor-root col:focus,
 akilli-editor editor-root tr:focus::before {
-    background: var(--editor-focus);
+    background: var(--editor-color-outline-variant);
 }
 
 akilli-editor editor-root summary { white-space: pre-wrap; }
@@ -240,24 +137,24 @@ akilli-editor editor-root summary { white-space: pre-wrap; }
 akilli-editor editor-root app-block {
     display: block;
     padding: 0.25rem;
-    border: 0.0625rem solid var(--editor-block-background);
+    border: 0.0625rem solid var(--editor-color-tertiary);
 }
 
 akilli-editor editor-root app-block::before {
     display: block;
     margin: -0.25rem -0.25rem 0.5rem;
     padding: 0.125rem 0.25rem;
-    color: var(--editor-block-color);
-    background: var(--editor-block-background);
+    color: var(--editor-color-on-tertiary);
+    background: var(--editor-color-tertiary);
     content: var(--editor-i18n-block);
 }
 
-akilli-editor dialog::backdrop { background: var(--editor-dialog-backdrop); }
+akilli-editor dialog::backdrop { background: var(--editor-color-scrim); }
 
 akilli-editor dialog form {
     padding: 0.75rem;
-    color: var(--editor-dialog-color);
-    background: var(--editor-dialog-background);
+    color: var(--editor-color-on-primary-container);
+    background: var(--editor-color-primary-container);
 }
 
 akilli-editor dialog :is(form, fieldset) > :not(:first-child) { margin-top: 1.5rem; }
@@ -268,16 +165,16 @@ akilli-editor dialog [data-required] label::after { content: ' *'; }
 
 akilli-editor dialog button {
     padding: 0.75rem;
-    color: var(--editor-button-color);
-    background: var(--editor-button-background);
+    color: var(--editor-color-on-primary);
+    background: var(--editor-color-primary);
     border: 0;
 }
 
 akilli-editor dialog button + button { margin-left: 1.5rem; }
 
 akilli-editor dialog button[type=reset] {
-    color: var(--editor-cancel-color);
-    background: var(--editor-cancel-background);
+    color: var(--editor-color-on-secondary);
+    background: var(--editor-color-secondary);
 }
 
 akilli-editor dialog input:is([type=email], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url]),
@@ -285,12 +182,12 @@ akilli-editor dialog select {
     width: 100%;
     padding: 0.71875rem 0.25rem;
     border: 0;
-    border-bottom: 0.0625rem solid var(--editor-border);
+    border-bottom: 0.0625rem solid var(--editor-color-outline);
 }
 
 akilli-editor dialog input:is([type=email], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url]):invalid,
 akilli-editor dialog select:invalid {
-    border-color: var(--editor-error);
+    border-color: var(--editor-color-outline-error);
 }
 
 akilli-editor editor-toolbar {
@@ -298,9 +195,9 @@ akilli-editor editor-toolbar {
     top: 0;
     display: flex;
     flex-wrap: wrap;
-    color: var(--editor-toolbar-color);
-    background: var(--editor-toolbar-background);
-    border: 0.0625rem solid var(--editor-border);
+    color: var(--editor-color-on-surface);
+    background: var(--editor-color-surface);
+    border: 0.0625rem solid var(--editor-color-outline);
 }
 
 akilli-editor :is(editor-focusbar, editor-formatbar) {
@@ -308,9 +205,9 @@ akilli-editor :is(editor-focusbar, editor-formatbar) {
     left: 0;
     display: flex;
     flex-wrap: wrap;
-    color: var(--editor-toolbar-color);
-    background: var(--editor-toolbar-background);
-    border: 0.0625rem solid var(--editor-border);
+    color: var(--editor-color-on-surface);
+    background: var(--editor-color-surface);
+    border: 0.0625rem solid var(--editor-color-outline);
 }
 
 akilli-editor editor-focusbar:empty, akilli-editor editor-focusbar [data-command] {
@@ -336,7 +233,7 @@ akilli-editor [data-command] {
     border: 0;
 }
 
-akilli-editor [data-command]:focus { color: var(--editor-focus); }
+akilli-editor [data-command]:focus { color: var(--editor-color-outline-variant); }
 akilli-editor [data-command]::before { font-size: 1.5rem; }
 akilli-editor [data-command=abbreviation]::before { content: '\e800'; }
 akilli-editor [data-command=align-center]::before { content: '\e801'; }
