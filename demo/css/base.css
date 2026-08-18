@@ -1,6 +1,9 @@
 *, ::before, ::after { box-sizing: border-box; }
-* { margin: 0; }
-*:not(button, input, select, textarea) { padding: 0; }
+
+body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd, nav ul {
+    margin: 0;
+    padding: 0;
+}
 
 body {
     min-height: 100dvh;
@@ -11,11 +14,17 @@ body {
 main { hyphens: auto; }
 h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
 p { text-wrap: pretty; }
+nav ul { list-style: none; }
 
-audio, canvas, iframe, img, picture, svg, video {
+audio, canvas, img, picture, svg, video {
     display: block;
     max-width: 100%;
     height: auto;
+}
+
+iframe {
+    display: block;
+    max-width: 100%;
 }
 
 table {
@@ -30,14 +39,20 @@ th, thead td { white-space: nowrap; }
 button, input, select, textarea { font: inherit; }
 button, summary { cursor: pointer; }
 select[multiple], textarea { resize: vertical; }
+select, select::picker { appearance: base-select; }
 
 @media (prefers-reduced-motion: reduce) {
-    *, ::before, ::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+    :root {
+        scroll-behavior: auto;
     }
 
-    :root:focus-within { scroll-behavior: auto !important; }
+    *, ::before, ::after {
+        animation-delay: -1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        background-attachment: scroll !important;
+        scroll-behavior: auto !important;
+        transition-delay: 0s !important;
+        transition-duration: 0s !important;
+    }
 }

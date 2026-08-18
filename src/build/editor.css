@@ -149,16 +149,14 @@ akilli-editor editor-root app-block::before {
     content: var(--editor-i18n-block);
 }
 
-akilli-editor dialog::backdrop { background: var(--editor-color-scrim); }
-
-akilli-editor dialog form {
+akilli-editor dialog {
     padding: 0.75rem;
     color: var(--editor-color-on-primary-container);
     background: var(--editor-color-primary-container);
 }
 
+akilli-editor dialog::backdrop { background: var(--editor-color-scrim); }
 akilli-editor dialog :is(form, fieldset) > :not(:first-child) { margin-top: 1.5rem; }
-
 akilli-editor dialog legend { font-size: 1.25rem; }
 akilli-editor dialog label { display: block; }
 akilli-editor dialog [data-required] label::after { content: ' *'; }
