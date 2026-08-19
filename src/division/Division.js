@@ -32,6 +32,8 @@ export default class Division extends Plugin {
                 TagGroup.FIGURE,
                 TagGroup.IFRAME,
                 TagGroup.IMAGE,
+                TagGroup.LIST,
+                TagGroup.PARAGRAPH,
                 TagGroup.PREFORMAT,
                 TagGroup.QUOTE,
                 TagGroup.RULE,
