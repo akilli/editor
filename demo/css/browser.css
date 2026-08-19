@@ -6,11 +6,33 @@
 }
 
 :root {
-    --app-color-accent: oklch(53% 0.22 258);
-    --app-color-accent-text: oklch(100% 0 0);
-    --app-color-primary: oklch(27% 0 0);
-    --app-color-primary-dark: oklch(0% 0 0);
-    --app-color-primary-text: oklch(100% 0 0);
+    --app-color-primary: oklch(64% 0.17 258);
+    --app-color-on-primary:  oklch(20% 0.12 258);
+    --app-color-primary-container: oklch(32% 0.10 258 / 67%);
+    --app-color-on-primary-container: oklch(90% 0.05 258);
+    --app-color-secondary: oklch(74% 0.04 140);
+    --app-color-on-secondary: oklch(30% 0.04 140);
+    --app-color-secondary-container: oklch(44% 0.04 140 / 67%);
+    --app-color-on-secondary-container: oklch(89% 0.02 140);
+    --app-color-tertiary: oklch(72% 0.06 15);
+    --app-color-on-tertiary: oklch(28% 0.05 15);
+    --app-color-tertiary-container: oklch(42% 0.05 15 / 67%);
+    --app-color-on-tertiary-container: oklch(91% 0.02 15);
+    --app-color-error: oklch(70% 0.15 24);
+    --app-color-on-error: oklch(26% 0.12 24);
+    --app-color-error-container: oklch(40% 0.12 24 / 67%);
+    --app-color-on-error-container: oklch(91% 0.04 24);
+    --app-color-surface: oklch(19.2% 0.012 273.9);
+    --app-color-on-surface: oklch(91% 0.00 254);
+    --app-color-surface-variant: oklch(0% 0 0 / 67%);
+    --app-color-on-surface-variant: oklch(100% 0 0);
+    --app-color-inverse-surface: oklch(92% 0.01 273.9);
+    --app-color-inverse-on-surface: oklch(25% 0.012 273.9);
+    --app-color-inverse-primary: oklch(50% 0.15 258);
+    --app-color-outline: oklch(45% 0.01 273.9);
+    --app-color-outline-variant: oklch(32% 0.01 273.9);
+    --app-color-shadow: oklch(0% 0 0);
+    --app-color-scrim: oklch(0% 0 0);
 }
 
 body {
@@ -21,16 +43,16 @@ body {
     min-height: 0;
     padding: 1.5rem;
     font-family: raleway;
-    color: var(--app-color-primary-text);
-    background: var(--app-color-primary);
+    color: var(--app-color-on-surface);
+    background: var(--app-color-surface);
 }
 
 body > * {
-    border: 0.0625rem solid var(--app-color-primary-dark);
+    border: 0.0625rem solid var(--app-color-outline);
     cursor: pointer;
 }
 
-body > :hover { border-color: var(--app-color-accent); }
+body > :hover { border-color: var(--app-color-outline-variant); }
 
 h2 { font-size: 1.25rem; }
 
@@ -40,8 +62,8 @@ section {
 }
 
 section:hover {
-    color: var(--app-color-accent-text);
-    background: var(--app-color-accent);
+    color: var(--app-color-on-tertiary);
+    background: var(--app-color-tertiary);
 }
 
 section > :not(:first-child) { margin-top: 0.75rem; }
@@ -49,12 +71,13 @@ section > :not(:first-child) { margin-top: 0.75rem; }
 figcaption {
     padding: 0.75rem;
     font-size: 0.85rem;
-    background: var(--app-color-primary-dark);
+    color: var(--app-color-on-surface-variant);
+    background: var(--app-color-surface-variant);
 }
 
 body > figure:hover > figcaption {
-    color: var(--app-color-accent-text);
-    background: var(--app-color-accent);
+    color: var(--app-color-on-tertiary);
+    background: var(--app-color-tertiary);
 }
 
 audio, iframe, img, video {
